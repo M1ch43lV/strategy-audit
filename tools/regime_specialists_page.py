@@ -37,7 +37,21 @@ import pandas as pd
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, ROOT)
-from evidence import execution_robustness as er, profile_full_window  # noqa: E402
+from evidence import execution_robustness as er, profile_full_window, verdicts  # noqa: E402
+
+
+# One name per gate, so a comparison states which verdict class it means. The
+# vocabulary and its fail-closed behaviour live in `evidence/verdicts.py`.
+def _robustness_verdict(raw):
+    return verdicts.value("STRATEGY_STATUS.csv", "execution_robustness_status", raw)
+
+
+def _cost_verdict(raw):
+    return verdicts.value("COST_SCREEN.json", "status", raw)
+
+
+def _run_verdict(raw):
+    return verdicts.value("full_backtest_manifest.json", "status", raw)
 
 SPEC = os.path.join(ROOT, "results", "regime", "specialist_evaluation")
 DATA = os.path.join(ROOT, "tools", "regime_specialists_data")
@@ -114,14 +128,14 @@ class Robustness(object):
 
     def row(self, strategy, kind, state):
         xs = self.status(strategy)
-        ok = xs == "PASS" and er.qualifies_in(self.cost.get(strategy), kind, state)
+        ok = _robustness_verdict(xs) == "PASS" and er.qualifies_in(self.cost.get(strategy), kind, state)
         return {"xs": xs, "ok": 1 if ok else 0}
 
     def total(self, strategy):
         """The whole validation window, all states together."""
         xs = self.status(strategy)
         cost = er.validation_total(self.cost.get(strategy), "btc")
-        ok = xs == "PASS" and cost["status"] == "PASS"
+        ok = _robustness_verdict(xs) == "PASS" and _cost_verdict(cost["status"]) == "PASS"
         record = self.record.get(strategy) or {}
         basis = {er.BASIS_RULE: "rule", er.BASIS_MEASURED: "measured"}.get(record.get("basis"), "")
         return {"xs": xs, "ok": 1 if ok else 0, "cv": cost["status"],
@@ -130,7 +144,7 @@ class Robustness(object):
 
     def universal(self, strategy):
         xs = self.status(strategy)
-        ok = xs == "PASS" and er.qualifies_universal(self.cost.get(strategy), "coin")
+        ok = _robustness_verdict(xs) == "PASS" and er.qualifies_universal(self.cost.get(strategy), "coin")
         return {"xs": xs, "ok": 1 if ok else 0}
 
 
@@ -482,7 +496,7 @@ def top10_annotation(robustness, confirm):
 def recovery_5m_strategies():
     """Strategies whose accepted baseline is an owner-approved 5m rerun of a 1m strategy (marked with a dagger)."""
     manifest = _read_json(os.path.join(ROOT, "results", "regime", "full_backtest_manifest.json"))["results"]
-    return sorted(s for s, r in manifest.items() if r.get("status") == "measured"
+    return sorted(s for s, r in manifest.items() if _run_verdict(r.get("status")) == "MEASURED"
                   and r.get("measurement_scope") == "owner_approved_timeframe_5m_recovery_pooled_pair_universe")
 
 
@@ -574,7 +588,7 @@ def facts_and_text(btc, coin, universal, gain, native, rejected, robustness, fut
     with io.open(STATUS, newline="", encoding="utf-8-sig") as handle:
         marker = sum(1 for r in csv.DictReader(handle) if "grid_dca" in (r.get("strategy_type") or ""))
     ft_profitable = sum(1 for r in native if (r.get("profit_total") or 0) > 0)
-    measured = sum(1 for s, r in pooled.items() if r.get("status") == "measured"
+    measured = sum(1 for s, r in pooled.items() if _run_verdict(r.get("status")) == "MEASURED"
                    and r.get("measurement_scope") in er.ACCEPTED_BASELINE_SCOPES)
     verified_btc = sum(r["ok"] for r in rows["btc"])
     verified_coin = sum(r["ok"] for r in rows["coin"])
@@ -583,8 +597,11 @@ def facts_and_text(btc, coin, universal, gain, native, rejected, robustness, fut
     confirmed_coin = sum(1 for r in rows["coin"] if r["cf"] == 2)
     univ_strict = sum(1 for r in rows["universal"] if r["ur"] == 2)
     univ_mild = sum(1 for r in rows["universal"] if r["ur"] == 1)
-    pending = sum(1 for s in evaluated if robustness.status(s) == "PENDING")
-    sensitive = sum(1 for s in evaluated if robustness.status(s) == "SENSITIVE")
+    pending = sum(1 for s in evaluated if _robustness_verdict(robustness.status(s)) == "SKIP")
+    sensitive = sum(1 for s in evaluated if _robustness_verdict(robustness.status(s)) == "FOUND")
+    # Deliberately raw, not `_robustness_verdict`: a classification ERROR and a
+    # plain `NA` both normalize to `NA`, so the mapped comparison would absorb
+    # the 673 rows that were never classified into the failure count.
     failed = sum(1 for s in evaluated if robustness.status(s) == "ERROR")
     run_state = ("bei %d steht der 5m-Lauf noch aus (Timeframe über 5m)" % pending if pending
                  else "alle 5m-Läufe sind abgeschlossen")

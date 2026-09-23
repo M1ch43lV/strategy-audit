@@ -43,6 +43,48 @@ inventories. Writer utilities that merge these stores live here as well.
 The authoritative reader/writer order is documented in
 [`../PIPELINE.md`](../PIPELINE.md). [`../README.md`](../README.md) says which document answers which question.
 
+## Verdict schema
+
+`verdicts.py` holds one closed status vocabulary for the stores above. It is a
+read-side layer: it changes how a result is described, never which inputs were
+measured, and the raw stores are never rewritten.
+
+A verdict is one statement on exactly one **layer** - `check` (what a gate
+found), `execution` (how a run ended), `state` (whether the warm-up ladder
+settled), `disposition` (what the pipeline decided about a row), `run`
+(operational provenance of an agent run). The layer is what keeps a `PASS` in a
+coverage check distinguishable from a `PASS` in an agent run.
+
+Four rules bind every reader:
+
+1. A reason is required for every value except the satisfying one of its layer.
+2. Fail closed: an unknown token becomes `UNKNOWN`, which is not a member of any
+   layer and is never satisfied. It is reported, not mapped to a pass.
+3. An absent value is `UNKNOWN` with reason `missing_value`. "Not verified" is
+   never published as "clean".
+4. Normalization is bound to `(store, field)`, never global, because `measured`
+   does not mean the same thing in the smoke store and in the full-backtest
+   manifest.
+
+```powershell
+.\ftenv\Scripts\python.exe evidence\verdicts.py --list       # layers and mapping
+.\ftenv\Scripts\python.exe evidence\verdicts.py --check      # internal consistency
+.\ftenv\Scripts\python.exe evidence\verdicts.py --selftest   # every rule, exercised
+```
+
+Two guards protect the boundary in the other direction. Whether stored evidence
+is re-measured is decided by identity hashes, so a status word must never enter
+one:
+
+- `tools/identity_freeze.py` freezes the key sets of all four identity
+  functions, the policy tokens that are hashed into records, and the parameters
+  hash of the detail classifier. Adding a key to an identity function is
+  allowed, but it has to be edited there too, where the cost - re-measuring that
+  store - is written down.
+- `tools/verdict_migration_audit.py` walks the real stores, counts every raw
+  token at every mapped field, and names the tokens and fields that still need a
+  decision. It reads only.
+
 ## Git LFS migration record (2026-09-15)
 
 Formerly `evidence/GIT_LFS_MIGRATION.md`, merged here without changes. Read it only when an old local log or transcript

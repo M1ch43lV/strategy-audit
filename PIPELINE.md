@@ -427,6 +427,7 @@ made and what it replaced. Where a later entry supersedes an earlier one, the ea
 | 2026-09-15 | Smoke cascade drops the one-year rung | 1 |
 | 2026-09-16 | "Frozen file" description of REGIME_ELIGIBILITY.csv dropped | 6 |
 | 2026-09-22 | FrequentHippo feed added as a pinned, review-only discovery source; no automatic acquisition or measurement | 0 |
+| 2026-09-23 | One verdict vocabulary for every evidence store; identity inputs guarded against silent change | 1-8, 13 |
 
 ### Amendment 2026-09-22: FrequentHippo strategy feed is discovery-only
 
@@ -435,6 +436,40 @@ made and what it replaced. Where a later entry supersedes an earlier one, the ea
 `evidence.strategy_feed` may write only the review inventory. It records the post metadata, the immutable upstream reference, a SHA-256 of the fetched bytes, the IStrategy classes parsed without execution, and a comparison against the current corpus's source paths and class names. A `candidate_requires_review` record means only that a distinct IStrategy class was observed outside known paths and names. It is neither a quality verdict nor an import instruction.
 
 Only an explicit subsequent `python -m tools.harvest owner/repo` can acquire source files. That command remains the sole Stage-0 writer below `repos/`, retains the existing malware gate and dependency closure, and performs the existing duplicate adjudication. Because harvest reads the repository's then-current default branch, it is intentionally a new, reviewable acquisition event rather than an attempt to silently replace the feed's pinned revision.
+
+### Amendment 2026-09-23: one verdict vocabulary, and a guard on the identity inputs
+
+**Owner's decision.** Until now every reader decided for itself which spellings of an outcome meant the same thing:
+`PASS`/`FOUND`/`NA` in the check stores, `measured`/`timeout`/`failed`/`oom_confirmed`/`performance_limited` in the
+manifests, `converged`/`no_usable_ladder` in the ladder, `eligibility_status` in the regime stores. Each reader module
+carried its own list, so a new value from one writer could change a published count with no test noticing. The owner
+asked for one closed schema instead of a per-reader convention.
+
+`evidence/verdicts.py` holds it, and it is a read-side layer only: it changes how a result is *described*, never which
+inputs were measured. No store changed shape, no runner changed what it writes, no identity changed, and no measurement
+was repeated. The layers, the four rules, the mapping and the `UNKNOWN` sentinel are in that one file, and
+`evidence/README.md` states them; this entry only records why the schema exists and what it replaced. Where a reader
+deliberately keeps a raw token instead of the normalized value, that line says why.
+
+`evidence/PIPELINE_STATE.json` gains `strategies.<id>.evidence_resolution.verdicts`: the five layers in a fixed
+six-gate order (`measurement`, `lookahead`, `recursive`, `full_backtest`, `execution_robustness`, `cost_screen`), each
+gate a bare string when its value satisfies the layer and `{value, reason}` when it does not. A reason is carried only
+where there is one, because a reason on a satisfying value is noise.
+
+Two guards join the verify chain, because the boundary between a verdict and stored evidence is the identity hash - a
+status word must never enter one, and an identity input must never change unnoticed:
+
+- `tools/identity_freeze.py` fails the build when an identity input changes: the key set of each identity function, the
+  policy tokens that are hashed into records, and the parameters hash of the detail classifier. Adding a key stays
+  allowed, but it has to be added there too, which is where the cost of re-measuring that store is written down. The
+  guard reads those functions with `ast` and never imports them, because they need real data.
+- `tools/verdict_migration_audit.py` counts the tokens actually present - in the JSON stores and in both published CSV
+  verdict columns - and names every `(store, field)` that still needs a decision. It reads only.
+
+`python -m evidence.strategy_status --check` and `python -m tools.strategy_status_page --check` now also verify the two
+reports with handwritten timestamps and the published page against their sources, and the automatic finalizer treats a
+stale page as a failed finalization rather than as an ignorable post-processing warning: a stale published page is a
+wrong verdict shown to a reader.
 
 ### Frozen warm-up convergence amendment
 

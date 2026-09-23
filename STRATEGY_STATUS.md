@@ -1,6 +1,6 @@
 # Strategy status - current evidence for all 1357 rows
 
-**Generated 2026-09-23 04:01:18 by `evidence/strategy_status.py`.** Regenerate it rather than editing it.
+**Generated 2026-09-23 20:50:16 by `evidence/strategy_status.py`.** Regenerate it rather than editing it.
 
 **This table decides nothing.** Admission happens only in
 `evidence/eligibility_expansion_adjudicate.py`; this is a reading of what has
@@ -55,8 +55,8 @@ have neither and are left empty rather than given an invented time.
 
 | Cohort | Strategies |
 |---|---:|
-| `E1_expanded` | 702 |
-| `excluded` | 547 |
+| `E1_expanded` | 703 |
+| `excluded` | 546 |
 | `pending` | 42 |
 | `too_few_trades` | 34 |
 | `not_a_strategy` | 23 |
@@ -67,7 +67,7 @@ have neither and are left empty rather than given an invented time.
 
 Both read from the strategy's own source by `strategy_classification.py`,
 not measured - see that module's docstring for the marker table and its
-limits. `timeframe` is blank on 46 rows the source does not state it for. `strategy_type` can be more than one label - most rows carry two or three - and is blank on 1 rows where no marker matched at all, so its counts below add up to more than 1357.
+limits. `timeframe` is blank on 46 rows the source does not state it for. `strategy_type` can be more than one label - most rows carry two or three - and is blank on 0 rows where no marker matched at all, so its counts below add up to more than 1357.
 
 ### Timeframe
 
@@ -96,7 +96,7 @@ limits. `timeframe` is blank on 46 rows the source does not state it for. `strat
 | `momentum` | 566 |
 | `trend_following` | 314 |
 | `volatility_breakout` | 251 |
-| `ml_ai` | 203 |
+| `ml_ai` | 204 |
 | `grid_dca` | 141 |
 | `volume_based` | 139 |
 | `unclassified` | 35 |
@@ -317,7 +317,7 @@ evaluate a single signal without it. The warm-up ladder passes
 `--startup-candle` with every rung at once, which is why one run
 reports the whole ladder.
 
-## Passing - 702 strategies
+## Passing - 703 strategies
 
 Every original gate returned `PASS`: measured in its native mode,
 produced trades, clean look-ahead and recursion, complete candle
@@ -571,6 +571,7 @@ coverage, no published trap.
 | `FastSupertrend_optim3_rsi_70` | `futures_long_short` | `E1_expanded` | 297 | `convergence:168:warmup_supplied` | 2026-09-02 19:09:29 | [log](user_data/convergence_logs/FastSupertrend_optim3_rsi_70-ladder.log) |
 | `FastSupertrend_optim3_rsi_75` | `futures_long_short` | `E1_expanded` | 320 | `convergence:168:warmup_supplied` | 2026-09-02 19:09:55 | [log](user_data/convergence_logs/FastSupertrend_optim3_rsi_75-ladder.log) |
 | `FastSupertrend_optim3_rsi_752` | `futures_long_short` | `E1_expanded` | 383 | `convergence:168:warmup_supplied` | 2026-09-02 19:10:21 | [log](user_data/convergence_logs/FastSupertrend_optim3_rsi_752-ladder.log) |
+| `FastSupertrend_optim3_rsi_75fix` | `futures_long_short` | `E1_expanded` | 320 | `convergence:168:warmup_supplied` | 2026-09-02 19:10:46 | [log](user_data/convergence_logs/FastSupertrend_optim3_rsi_75fix-ladder.log) |
 | `FastSupertrend_optim3_rsi_75fix_signal` | `futures_long_short` | `E1_expanded` | 215 | `convergence:168:warmup_supplied` | 2026-09-02 19:11:12 | [log](user_data/convergence_logs/FastSupertrend_optim3_rsi_75fix_signal-ladder.log) |
 | `FastSupertrend_optim3_rsi_75lev` | `futures_long_short` | `E1_expanded` | 763 | `convergence:168:warmup_supplied` | 2026-09-02 19:11:38 | [log](user_data/convergence_logs/FastSupertrend_optim3_rsi_75lev-ladder.log) |
 | `FastSupertrend_optim3_rsi_75sell` | `futures_long_short` | `E1_expanded` | 319 | `convergence:168:warmup_supplied` | 2026-09-02 19:12:05 | [log](user_data/convergence_logs/FastSupertrend_optim3_rsi_75sell-ladder.log) |
@@ -2505,6 +2506,12 @@ The calls behind each, one per gate:
   backtest   [reconstructed] freqtrade backtesting --config user_data/profile_configs/futures_futures_long_short.json --strategy FastSupertrend_optim3_rsi_752 --strategy-path user_data/profile_repairs --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/FastSupertrend_optim3_rsi_752 --cache none
   lookahead  [recorded] freqtrade lookahead-analysis --config user_data/profile_configs/FastSupertrend_optim3_rsi_752_gate.json --strategy FastSupertrend_optim3_rsi_752 --strategy-path user_data/profile_bias_strategies/FastSupertrend_optim3_rsi_752 --timerange 20200301-20200401 --no-color
   recursive  [recorded] freqtrade recursive-analysis --config profile_futures_config.json --strategy FastSupertrend_optim3_rsi_752 --strategy-path user_data/profile_bias_strategies/FastSupertrend_optim3_rsi_752 --timerange 20200301-20200401 --no-color --startup-candle 24 48 168 336
+  ```
+- `FastSupertrend_optim3_rsi_75fix`
+  ```
+  backtest   [reconstructed] freqtrade backtesting --config user_data/profile_configs/futures_futures_long_short.json --strategy FastSupertrend_optim3_rsi_75fix --strategy-path user_data/profile_repairs --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/FastSupertrend_optim3_rsi_75fix --cache none
+  lookahead  [recorded] freqtrade lookahead-analysis --config user_data/profile_configs/FastSupertrend_optim3_rsi_75fix_gate.json --strategy FastSupertrend_optim3_rsi_75fix --strategy-path user_data/profile_bias_strategies/FastSupertrend_optim3_rsi_75fix --timerange 20200301-20200401 --no-color
+  recursive  [recorded] freqtrade recursive-analysis --config profile_futures_config.json --strategy FastSupertrend_optim3_rsi_75fix --strategy-path user_data/profile_bias_strategies/FastSupertrend_optim3_rsi_75fix --timerange 20200301-20200401 --no-color --startup-candle 24 48 168 336
   ```
 - `FastSupertrend_optim3_rsi_75fix_signal`
   ```
@@ -5290,7 +5297,7 @@ This is not a softening. A row here may well end up excluded - the
 limited environment does not invent bias. It ends up there on our
 own evidence or not at all.
 
-## Not passing - 547 strategies, by decisive reason
+## Not passing - 546 strategies, by decisive reason
 
 A row usually fails several gates. It is grouped by the most final
 one: a strategy that reads future candles is out however clean its
@@ -5338,7 +5345,7 @@ whether the row is finished with or waiting on us.
 
 | Basis | Meaning | Strategies |
 |---|---|---:|
-| `own_measurement` | a disqualifying result measured here, from this implementation | 505 |
+| `own_measurement` | a disqualifying result measured here, from this implementation | 504 |
 
 Only `own_measurement` is a closed case. The other three carry the
 work that would settle them in `open_work`, and the selftest fails if
@@ -5355,7 +5362,7 @@ one of them carries none.
 | `measured_only_in_freqai_arm` | runs only under its author's own FreqAI configuration, measured separately in that arm; not comparable with the ordinary spot audit | 6 |
 | `third_party_package_declined` | needs a Python package this runtime does not install; declined because installing one changes the runtime every other strategy runs under, owner's call 2026-09-04 | 30 |
 | `shared_runtime_change_declined` | the fix is understood - pandas' or numpy's own type-coercion rules have tightened - but applying it would touch every strategy's column writes, not just this row's; declined, owner's call 2026-09-04 | 11 |
-| `duplicate_implementation` | duplicates the executable code of a retained representative - either confirmed further by an identical canonical full-backtest trade set, or, since 2026-09-16, by code identity alone once no config overlay and no measured disagreement stand against it (see evidence_rule in SEMANTIC_DUPLICATE_ADJUDICATION.json for which applied to a given row) | 91 |
+| `duplicate_implementation` | duplicates the executable code of a retained representative - either confirmed further by an identical canonical full-backtest trade set, or, since 2026-09-16, by code identity alone once no config overlay and no measured disagreement stand against it (see evidence_rule in SEMANTIC_DUPLICATE_ADJUDICATION.json for which applied to a given row) | 90 |
 | `recursive_check_incomplete_at_longest_rungs` | - | 13 |
 | `repeated_timeout_after_exhausted_repair` | - | 4 |
 | `user_policy_excluded_after_triage` | - | 42 |
@@ -5374,7 +5381,7 @@ one of them carries none.
 | `measured_only_in_freqai_arm` | 0 | 0 | 0 | 5 | 0 | 0 | 1 |
 | `third_party_package_declined` | 18 | 0 | 0 | 12 | 0 | 0 | 0 |
 | `shared_runtime_change_declined` | 4 | 0 | 0 | 6 | 0 | 0 | 1 |
-| `duplicate_implementation` | 86 | 1 | 0 | 2 | 0 | 0 | 2 |
+| `duplicate_implementation` | 86 | 1 | 0 | 2 | 0 | 0 | 1 |
 | `recursive_check_incomplete_at_longest_rungs` | 13 | 0 | 0 | 0 | 0 | 0 | 0 |
 | `repeated_timeout_after_exhausted_repair` | 4 | 0 | 0 | 0 | 0 | 0 | 0 |
 | `user_policy_excluded_after_triage` | 41 | 0 | 0 | 1 | 0 | 0 | 0 |
@@ -5615,7 +5622,7 @@ Wave `not_scheduled` - 1:
 
 `DIV_v1`
 
-### `duplicate_implementation` - 91
+### `duplicate_implementation` - 90
 
 Duplicates the executable code of a retained representative - either confirmed further by an identical canonical full-backtest trade set, or, since 2026-09-16, by code identity alone once no config overlay and no measured disagreement stand against it (see evidence_rule in semantic_duplicate_adjudication.json for which applied to a given row).
 
@@ -5652,9 +5659,9 @@ Wave `C_measurement_recovery` - 2:
 
 `FSupertrendStrategyETH`, `SuperHV27`
 
-Wave `not_scheduled` - 2:
+Wave `not_scheduled` - 1:
 
-`FastSupertrend_optim3_rsi_75fix`, `NostalgiaForInfinityV7_SMAv2`
+`NostalgiaForInfinityV7_SMAv2`
 
 ### `recursive_check_incomplete_at_longest_rungs` - 13
 

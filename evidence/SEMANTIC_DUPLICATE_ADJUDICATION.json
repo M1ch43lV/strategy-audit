@@ -377,14 +377,6 @@
       "trades_sha256": ""
     },
     {
-      "canonical_representative": "FastSupertrend_optim3_rsi_75",
-      "decision": "excluded_duplicate_implementation",
-      "evidence_rule": "normalized_code_and_identical_full_backtest_trades_v1",
-      "normalized_ast_sha256": "sha256_2514f6d04ba3bdf251e5a8a4e6269425b4929b03224f98ddba4ed5c062cda1ba",
-      "strategy_id": "FastSupertrend_optim3_rsi_75fix",
-      "trades_sha256": "sha256_62f9e431504d88718ca6b96fe309cb0d72279aec92b3c53f7aa85fc51c31263b"
-    },
-    {
       "canonical_representative": "FSupertrendStrategyBTC",
       "decision": "excluded_duplicate_implementation",
       "evidence_rule": "normalized_code_and_identical_full_backtest_trades_v1",

@@ -111,6 +111,11 @@
       "timeframe": "15m",
       "timeframe_evidence": "timeframe_attr"
     },
+    "AlexBandSniperV10AINoBias": {
+      "strategy_type": "ml_ai",
+      "timeframe": "15m",
+      "timeframe_evidence": "timeframe_attr"
+    },
     "AlexBandSniperV58COptuna": {
       "strategy_type": "mean_reversion;momentum;volatility_breakout;volume_based",
       "timeframe": "15m",

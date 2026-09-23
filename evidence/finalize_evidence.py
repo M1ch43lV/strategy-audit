@@ -51,4 +51,6 @@ def refresh_published_state():
         raise RuntimeError("strategy status page refresh failed")
     if strategy_status.main(["--check"]) != 0:
         raise RuntimeError("published pipeline state is stale after refresh")
+    if strategy_status_page.main(["--check"]) != 0:
+        raise RuntimeError("published status page is stale after refresh")
     print("canonical pipeline state refreshed")

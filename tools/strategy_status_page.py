@@ -22,7 +22,7 @@ import re
 import sys
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-from evidence import exclusion_criteria
+from evidence import exclusion_criteria, verdicts
 
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -128,8 +128,12 @@ FIELDS = {
 }
 
 
-POOLED_RETIRED = ("failed", "resource_inconclusive", "timeout",
-                  "performance_limited", "oom_confirmed", "stake_overflow_confirmed")
+# The retired outcomes, expressed in the verdict vocabulary instead of the six
+# raw tokens they arrive as: `failed` and `stake_overflow_confirmed` are both a
+# FAILED execution, `oom_confirmed`/`performance_limited`/
+# `resource_inconclusive` are all the same resource-inconclusive outcome, and
+# only `timeout` stands alone. See evidence/verdicts.py.
+POOLED_RETIRED = ("FAILED", "RESOURCE_INCONCLUSIVE", "TIMEOUT")
 
 
 def pooled_results():
@@ -145,7 +149,8 @@ def pooled_trades(results):
     a non-testable result, not a trade count.
     """
     return {strategy: record["trades"] for strategy, record in results.items()
-            if record.get("status") == "measured"}
+            if verdicts.value("full_backtest_manifest.json", "status",
+                              record.get("status")) == "MEASURED"}
 
 
 def pooled_retired(results):
@@ -158,7 +163,8 @@ def pooled_retired(results):
     2026-09-10: they are final non-testable outcomes for this benchmark.
     """
     return {strategy for strategy, record in results.items()
-            if record.get("status") in POOLED_RETIRED}
+            if verdicts.value("full_backtest_manifest.json", "status",
+                              record.get("status")) in POOLED_RETIRED}
 
 
 def rows():
@@ -180,7 +186,8 @@ def rows():
             yield out
 
 
-def build(destination):
+def render():
+    """The page as a string, without writing it. Returns (page, data)."""
     template = io.open(TEMPLATE, encoding="utf-8").read()
     data = {"rows": list(rows())}
     generated = datetime.datetime.now().replace(microsecond=0).isoformat(sep=" ")
@@ -204,6 +211,11 @@ def build(destination):
                         str(sum(1 for row in data["rows"] if row.get("ls") == "native")))
     page = page.replace("__WARMUP_SETTLED__",
                         str(sum(1 for row in data["rows"] if row.get("cs"))))
+    return page, data
+
+
+def build(destination):
+    page, data = render()
     with io.open(destination, "w", encoding="utf-8", newline="\n") as handle:
         handle.write(page)
     return len(data["rows"]), os.path.getsize(destination)
@@ -251,13 +263,43 @@ def selftest():
           "counts, %d pooled-retired)" % (len(FIELDS), len(pooled), len(retired)))
 
 
+RX_SNAPSHOT = re.compile(
+    r"(Strategy Audit &middot; snapshot )\d{4}-\d\d-\d\d \d\d:\d\d")
+
+
+def _without_snapshot_stamp(content):
+    """Blank the snapshot time in the page header.
+
+    The page names the moment it was built, so it differs from a fresh render
+    a minute later. Replacing that one stamp keeps the rest of the comparison
+    strict, and the failure this guards against is a page whose table has
+    moved on while the page still reads as the current snapshot - which
+    nothing checked until now: the committed page carried `last_tested_at`
+    values two hours behind the CSV it renders from.
+    """
+    return RX_SNAPSHOT.sub(r"\g<1><stamp>", content)
+
+
 def main(argv=None):
     parser = argparse.ArgumentParser()
     parser.add_argument("--out", default=os.path.join(ROOT, "strategy_status.html"))
     parser.add_argument("--selftest", action="store_true")
+    parser.add_argument("--check", action="store_true",
+                        help="fail when the page no longer matches its own data")
     args = parser.parse_args(argv)
     if args.selftest:
         selftest()
+        return 0
+    if args.check:
+        if not os.path.exists(args.out):
+            print("stale: %s" % os.path.relpath(args.out, ROOT))
+            return 1
+        on_disk = io.open(args.out, encoding="utf-8").read()
+        fresh, _data = render()
+        if _without_snapshot_stamp(on_disk) != _without_snapshot_stamp(fresh):
+            print("stale: %s" % os.path.relpath(args.out, ROOT))
+            return 1
+        print("strategy status page: current")
         return 0
     count, size = build(args.out)
     print("built %s: %d rows, %.1f KB" % (args.out, count, size / 1024.0))

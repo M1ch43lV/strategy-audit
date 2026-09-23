@@ -80,3 +80,21 @@ jobs:
           print("checked python files:", len(checked))
           sys.exit(1 if bad else 0)
           PY
+
+      - name: Verdict schema — every rule, exercised
+        run: python evidence/verdicts.py --selftest
+
+      - name: Verdict schema — internal consistency
+        run: python evidence/verdicts.py --check
+
+      # The guard must pass AND must catch a planted change, or a green tick
+      # means nothing. --selftest plants the change.
+      - name: Identity inputs must not change silently
+        run: |
+          python tools/identity_freeze.py --selftest
+          python tools/identity_freeze.py
+
+      # The audit reads local evidence stores, which a clean checkout may not
+      # have; only its own logic is verified here.
+      - name: Verdict migration audit — self-test
+        run: python tools/verdict_migration_audit.py --selftest

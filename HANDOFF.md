@@ -11,6 +11,28 @@ Never write a count that a command can print: counts in prose are what made the 
 
 ## Baton
 
+- Last agent: codex
+- Last update: 2026-09-23T21:14:39+02:00
+- Stopped because: the verdict-schema work is complete, committed and green. No benchmark, analyzer or runner was
+  started; every published change below came from a reader, not from a rerun.
+  - One verdict vocabulary describes every store now (`evidence/verdicts.py`; read-side only, no store rewritten). The
+    schema and the two guards are in `evidence/README.md`, the decision behind them in `PIPELINE.md`. The same layers
+    are also in `evidence/PIPELINE_STATE.json` at `strategies.<id>.evidence_resolution.verdicts`.
+  - `python -m evidence.strategy_status --selftest` is green again. It was the red test in the previous handoff, and
+    the canary - not the producer - was wrong twice: its exclusion-reason list did not include
+    `repeated_timeout_after_exhausted_repair` (documented in `repair/adjudicate.py`, registered in
+    `evidence/exclusion_criteria.py`), and its duplicate term counted rows whose source file had come back. Read the
+    producer's docstring before widening a canary.
+  - Two published rows changed, both a corrected reader rather than a corrected measurement: `AlexBandSniperV10AINoBias`
+    gained its classification (`ml_ai`, `15m`), and `FastSupertrend_optim3_rsi_75fix` is no longer excluded as a
+    duplicate - its trade set and hash differ from its twin, so the `code_equivalent_only` guard applies.
+- Next agent should: re-run the whole gate chain after touching `evidence/strategy_status.py` or
+  `tools/strategy_status_page.py`. Their assertions are canaries and fail one at a time, so fixing one unmasks the
+  next. Everything else in the entry below still holds: continue only the non-gated serial chain, and
+  `AlexBandSniperV10AI` stays `needs_a_look` until the owner decides.
+
+### Previous baton entry - claude, 2026-09-22
+
 - Last agent: claude
 - Last update: 2026-09-22T09:20+02:00
 - Stopped because: `AlexBandSniperV10AI` (`repos/vaskosmihaylov_nfi-custom-strategies/.../AlexBAndSniperV10MLAI.py`)
@@ -176,10 +198,6 @@ strategies) followed, all `measured` on the first pass. Stages 9-13 (Model 0) th
   Full-Backtest queue is idle, rerun one small case first (`DevilStra`), design a narrow repair from its
   `LOOKAHEAD_FRAME_ALIGNMENT` record, then retry `Schism5` alone with the agreed extended look-ahead timeout. Serial,
   and finalize each result before the next launch. Whether this was done since is not recorded here.
-- **A test that was red at HEAD:** `python -m evidence.strategy_status --selftest` was failing before the execution
-  robustness work. Two causes were fixed; a third remained: `MASlopeStrategy` carries the primary reason
-  `repeated_timeout_after_exhausted_repair`, which an assertion does not accept. Run the selftest to see whether it still
-  fails.
 - **Observed, unexplained (execution robustness):** the first ten detail strategies failed natively and were measured in
   Docker with an empty `.err` file. Trades that close before they open appear only under `--timeframe-detail` (15 trades
   in 7 strategies); the classifier reports them and does not act on them.

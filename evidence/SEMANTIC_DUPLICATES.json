@@ -56,7 +56,7 @@
     },
     {
       "evidence_status": "code_equivalent_only",
-      "measured_members": 0,
+      "measured_members": 1,
       "members": [
         {
           "canonical_file": "repos/eovie_freqtrade_strs/ClucHAnix/ClucHAnix.py",
@@ -69,16 +69,18 @@
         },
         {
           "canonical_file": "repos/PeetCrypto_freqtrade-stuff/ClucHAnix.py",
-          "full_backtest_status": "oom_confirmed",
+          "full_backtest_status": "measured",
           "repo": "PeetCrypto/freqtrade-stuff",
           "run_profile": "spot_long",
           "strategy_id": "ClucHAnix",
-          "trades": "",
-          "trades_sha256": ""
+          "trades": 4668,
+          "trades_sha256": "sha256_606fd1256b1e8105aa940244075e0be0a98a810fa38f8cd652c6892eb884fa8f"
         }
       ],
       "normalized_ast_sha256": "sha256_0ef442561e2b7f0fe43581f14362cea01cc62075ea6f634bef8fbfb119440712",
-      "trade_hashes": []
+      "trade_hashes": [
+        "sha256_606fd1256b1e8105aa940244075e0be0a98a810fa38f8cd652c6892eb884fa8f"
+      ]
     },
     {
       "evidence_status": "code_equivalent_only",
@@ -822,7 +824,7 @@
       ]
     },
     {
-      "evidence_status": "confirmed_same_trades",
+      "evidence_status": "code_equivalent_only",
       "measured_members": 2,
       "members": [
         {
@@ -831,8 +833,8 @@
           "repo": "TheoBrigitte/freqtrade",
           "run_profile": "futures_long_short",
           "strategy_id": "FastSupertrend_optim3_rsi_75",
-          "trades": 15898,
-          "trades_sha256": "sha256_62f9e431504d88718ca6b96fe309cb0d72279aec92b3c53f7aa85fc51c31263b"
+          "trades": 15590,
+          "trades_sha256": "sha256_8475c14ddbe64698336ea3f7db88d7fa7d2c2ed21ce1afbecd170660bb1034f7"
         },
         {
           "canonical_file": "user_data/profile_repairs/FastSupertrend_optim3_rsi_75fix.py",
@@ -846,7 +848,8 @@
       ],
       "normalized_ast_sha256": "sha256_2514f6d04ba3bdf251e5a8a4e6269425b4929b03224f98ddba4ed5c062cda1ba",
       "trade_hashes": [
-        "sha256_62f9e431504d88718ca6b96fe309cb0d72279aec92b3c53f7aa85fc51c31263b"
+        "sha256_62f9e431504d88718ca6b96fe309cb0d72279aec92b3c53f7aa85fc51c31263b",
+        "sha256_8475c14ddbe64698336ea3f7db88d7fa7d2c2ed21ce1afbecd170660bb1034f7"
       ]
     },
     {
@@ -1610,7 +1613,7 @@
       "members": [
         {
           "canonical_file": "repos/PeetCrypto_freqtrade-stuff/Schism-v1.5.py",
-          "full_backtest_status": "not_run",
+          "full_backtest_status": "timeout",
           "repo": "PeetCrypto/freqtrade-stuff",
           "run_profile": "spot_long",
           "strategy_id": "Schism5",
@@ -1791,16 +1794,16 @@
     },
     {
       "evidence_status": "code_equivalent_only",
-      "measured_members": 0,
+      "measured_members": 1,
       "members": [
         {
           "canonical_file": "repos/PeetCrypto_freqtrade-stuff/Cluc5werk.py",
-          "full_backtest_status": "oom_confirmed",
+          "full_backtest_status": "measured",
           "repo": "PeetCrypto/freqtrade-stuff",
           "run_profile": "spot_long",
           "strategy_id": "Cluc5werk",
-          "trades": "",
-          "trades_sha256": ""
+          "trades": 2602,
+          "trades_sha256": "sha256_b13fb4fe0b90fdf8cff2d51ba9c26800d1dae34c9d0d13fd78e5ad07d6b35767"
         },
         {
           "canonical_file": "repos/PeetCrypto_freqtrade-stuff/Cluc5werk.py",
@@ -1831,7 +1834,9 @@
         }
       ],
       "normalized_ast_sha256": "sha256_8e71274ea862bcdd43bf91db0b87833d674570d374d72c0fc4581a054fec4dad",
-      "trade_hashes": []
+      "trade_hashes": [
+        "sha256_b13fb4fe0b90fdf8cff2d51ba9c26800d1dae34c9d0d13fd78e5ad07d6b35767"
+      ]
     },
     {
       "evidence_status": "code_equivalent_only",
@@ -1870,16 +1875,16 @@
     },
     {
       "evidence_status": "code_equivalent_only",
-      "measured_members": 0,
+      "measured_members": 1,
       "members": [
         {
           "canonical_file": "repos/PeetCrypto_freqtrade-stuff/ClucHAwerk.py",
-          "full_backtest_status": "oom_confirmed",
+          "full_backtest_status": "measured",
           "repo": "PeetCrypto/freqtrade-stuff",
           "run_profile": "spot_long",
           "strategy_id": "ClucHAwerk",
-          "trades": "",
-          "trades_sha256": ""
+          "trades": 6354,
+          "trades_sha256": "sha256_b8b3bd2f53076dae193f0a918d50cb6c550cc5a88505f893a8ed9f2a6b86f6a8"
         },
         {
           "canonical_file": "repos/PeetCrypto_freqtrade-stuff/ClucHAwerk.py",
@@ -1910,7 +1915,9 @@
         }
       ],
       "normalized_ast_sha256": "sha256_8f4e0dd6cf62fa6439e1629801c6b94bd153f0c5171d28e2abf50210d24e262a",
-      "trade_hashes": []
+      "trade_hashes": [
+        "sha256_b8b3bd2f53076dae193f0a918d50cb6c550cc5a88505f893a8ed9f2a6b86f6a8"
+      ]
     },
     {
       "evidence_status": "confirmed_same_trades",
@@ -1951,16 +1958,16 @@
     },
     {
       "evidence_status": "code_equivalent_only",
-      "measured_members": 0,
+      "measured_members": 1,
       "members": [
         {
           "canonical_file": "repos/PeetCrypto_freqtrade-stuff/Cluc4werk.py",
-          "full_backtest_status": "oom_confirmed",
+          "full_backtest_status": "measured",
           "repo": "PeetCrypto/freqtrade-stuff",
           "run_profile": "spot_long",
           "strategy_id": "Cluc4werk",
-          "trades": "",
-          "trades_sha256": ""
+          "trades": 3988,
+          "trades_sha256": "sha256_6862f8142b5a0fecd0580c2d3e3dffa13f1fe5ff55ca047bbf8170686e415494"
         },
         {
           "canonical_file": "repos/PeetCrypto_freqtrade-stuff/Cluc4werk.py",
@@ -1973,7 +1980,9 @@
         }
       ],
       "normalized_ast_sha256": "sha256_9761bd11bb0d19621cc4b6fa657bf9012b8dff70d000896bf09ac13230633699",
-      "trade_hashes": []
+      "trade_hashes": [
+        "sha256_6862f8142b5a0fecd0580c2d3e3dffa13f1fe5ff55ca047bbf8170686e415494"
+      ]
     },
     {
       "evidence_status": "code_equivalent_only",
@@ -2664,7 +2673,7 @@
     },
     {
       "evidence_status": "code_equivalent_only",
-      "measured_members": 1,
+      "measured_members": 3,
       "members": [
         {
           "canonical_file": "repos/PeetCrypto_freqtrade-stuff/NASOSv5_mod1 (1).py",
@@ -2677,25 +2686,27 @@
         },
         {
           "canonical_file": "repos/PeetCrypto_freqtrade-stuff/NASOSv5_mod1 (1).py",
-          "full_backtest_status": "not_run",
+          "full_backtest_status": "measured",
           "repo": "PeetCrypto/freqtrade-stuff",
           "run_profile": "spot_long",
           "strategy_id": "NASOSv5HO",
-          "trades": "",
-          "trades_sha256": ""
+          "trades": 440,
+          "trades_sha256": "sha256_d7e46930cf08e160dafa30b9f27dc558b48047b6b9525f005593a11cbe6c8644"
         },
         {
           "canonical_file": "repos/PeetCrypto_freqtrade-stuff/NASOSv5_mod1 (1).py",
-          "full_backtest_status": "not_run",
+          "full_backtest_status": "measured",
           "repo": "PeetCrypto/freqtrade-stuff",
           "run_profile": "spot_long",
           "strategy_id": "NASOSv5SL",
-          "trades": "",
-          "trades_sha256": ""
+          "trades": 513,
+          "trades_sha256": "sha256_d9d2f757e95508ee3179df9dde53090c35e8dd3aa21c01afd22a6435a34a4e00"
         }
       ],
       "normalized_ast_sha256": "sha256_dc5d5595bf47375c8f125df709445c8f86265ab2b9539cc2bd8b8e92cf81ee20",
       "trade_hashes": [
+        "sha256_d7e46930cf08e160dafa30b9f27dc558b48047b6b9525f005593a11cbe6c8644",
+        "sha256_d9d2f757e95508ee3179df9dde53090c35e8dd3aa21c01afd22a6435a34a4e00",
         "sha256_fc3f95c4b4d2f89e6c0a88a2444d430aa065b9814bb8d5395697abd2550b3d22"
       ]
     },

@@ -25,6 +25,8 @@ import os
 import re
 import sys
 
+from evidence import verdicts
+
 from evidence.pipeline_state import (
     EvidenceStore,
     OUTPUT as PIPELINE_STATE_OUT,
@@ -240,6 +242,38 @@ _ARCHIVE_TIME = re.compile(r"-(\d{4}-\d{2}-\d{2})_(\d{2})-(\d{2})-(\d{2})\.zip$"
 # of the 896 cards still carry Cyrillic.
 sys.path.insert(0, os.path.join(ROOT, "repair"))
 import i18n
+
+# One name per gate. A reader that asks "did this gate pass" states which
+# question it is asking, instead of comparing raw store tokens; the vocabulary
+# and its fail-closed behaviour live in `evidence/verdicts.py`, and
+# `tools/verdict_migration_audit.py` proves every token the stores write is
+# mapped. Only comparisons that mean "which verdict class" go through these -
+# a branch that deliberately distinguishes two raw states within one class
+# (the warm-up ladder's `crashes_even_at_longest_rungs` beside `inconclusive`)
+# keeps reading the raw value, or it would silently broaden.
+def _lookahead_verdict(raw):
+    return verdicts.value("STRATEGY_STATUS.csv", "lookahead", raw)
+
+
+def _recursive_verdict(raw):
+    return verdicts.value("STRATEGY_STATUS.csv", "recursive", raw)
+
+
+def _ladder_state(raw):
+    return verdicts.value("WARMUP_CONVERGENCE.json", "state", raw)
+
+
+def _measurement_verdict(raw):
+    return verdicts.value("PROFILE_SMOKE.json", "status", raw)
+
+
+def _window_verdict(raw):
+    return verdicts.value("PROFILE_FULL_WINDOW.json", "status", raw)
+
+
+def _admission(raw):
+    return verdicts.value("REGIME_ELIGIBILITY.csv", "eligibility_status", raw)
+
 
 CORPUS = os.path.join(ROOT, "corpus")
 LEDGER = os.path.join(ROOT, "old", "predecessor_audit", "LEDGER.csv")
@@ -906,7 +940,8 @@ def rows():
             reason = "duplicate_implementation"
         elif strategy in admitted:
             cohort = "E1_expanded"
-        elif settled.get("state") == "converged" and lookahead == "PASS" \
+        elif _ladder_state(settled.get("state")) == "CONVERGED" \
+                and _lookahead_verdict(lookahead) == "PASS" \
                 and lookahead_evidence in NATIVE_LOOKAHEAD_EVIDENCE:
             # Convergence answers one question: is there a warm-up at which no
             # indicator drifts. It says nothing about whether the strategy
@@ -920,7 +955,7 @@ def rows():
             # full-window run, hours of computation for a row that could not
             # be admitted whatever that run showed.
             cohort = "convergence_candidate"
-        elif lookahead == "FOUND" and lookahead_evidence == "native"                 or recursive_evidence == "convergence:not_settled"                 or recursive_evidence == "convergence:crash_exhausted":
+        elif _lookahead_verdict(lookahead) == "FOUND" and lookahead_evidence == "native"                 or recursive_evidence == "convergence:not_settled"                 or recursive_evidence == "convergence:crash_exhausted":
             # A finding of ours settles the row, and settles it whatever else
             # is still outstanding. Without this the "diagnostics not
             # completed" branch below outranked the finding: dropping the trap
@@ -934,7 +969,7 @@ def rows():
             # be ranked by market phase, because three trades in six and a
             # half years distribute across nothing.
             cohort = "too_few_trades"
-        elif base.get("eligibility_status") == "pending_diagnostics":
+        elif _admission(base.get("eligibility_status")) == "PENDING":
             cohort = "pending"
         elif not ran_here and base.get("canonical_measured") != "true":
             # Untested under THIS pipeline, which is the only claim this table
@@ -945,7 +980,7 @@ def rows():
             # evidence would import exactly the assumption the re-measurement
             # exists to avoid.
             cohort = "not_tested_in_current_runtime"
-        elif measurement and measurement.get("status") != "measured":
+        elif measurement and _measurement_verdict(measurement.get("status")) != "MEASURED":
             # The trial run is the first precondition, and a strategy that
             # fails it has not been judged on anything else: no gate has seen
             # it. It is therefore open, not excluded, until the obstacle is
@@ -964,7 +999,7 @@ def rows():
             # `can_short` unset. None of that is a statement about the
             # strategy, so none of it excludes one.
             cohort = "pending"
-        elif window.get("status") == "measured" \
+        elif _window_verdict(window.get("status")) == "MEASURED" \
                 and _integer(window.get("trades")) > 0:
             # A current canonical full-window measurement with trades
             # disproves an inherited zero-trade label. It does not admit the
@@ -990,7 +1025,7 @@ def rows():
             reasons = set(filter(None,
                                  (base.get("exclusion_reasons") or "").split(";")))
             # Evidence gathered since the freeze outranks the frozen reason.
-            if lookahead == "FOUND":
+            if _lookahead_verdict(lookahead) == "FOUND":
                 reasons.add("lookahead_found")
             else:
                 # A frozen baseline can carry "lookahead_found" from a sweep
@@ -1000,14 +1035,14 @@ def rows():
                 # recursive_bias_found below, or the row stays excluded on a
                 # finding nothing here still supports.
                 reasons.discard("lookahead_found")
-            if recursive == "FOUND":
+            if _recursive_verdict(recursive) == "FOUND":
                 reasons.add("recursive_bias_found")
-            if recursive == "WARMUP_NEEDED":
+            if _recursive_verdict(recursive) == "SKIP":
                 reasons.discard("recursive_bias_found")
                 reasons.add("recursive_warmup_refused")
-            if measurement.get("status") == "measured":
+            if _measurement_verdict(measurement.get("status")) == "MEASURED":
                 reasons.discard("canonical_implementation_not_measured")
-            if window.get("status") == "measured" \
+            if _window_verdict(window.get("status")) == "MEASURED" \
                     and _integer(window.get("trades")) > 0:
                 # Do not let the frozen source keep a "never trades" reason
                 # once the canonical full-window store records trades.
@@ -1024,7 +1059,7 @@ def rows():
             # in `traps_n`, and the realism problem is met in the run itself,
             # with `--timeframe-detail 1m`.
             reasons.discard("technical_trap_found")
-            if measurement and measurement.get("status") != "measured":
+            if measurement and _measurement_verdict(measurement.get("status")) != "MEASURED":
                 # A strategy that will not run cannot be judged on anything
                 # else, so this outranks every gate label - and in particular
                 # outranks recursive_bias_unverified, which is a statement
@@ -1045,7 +1080,7 @@ def rows():
             # strategy's own warm-up, which flipped the verdict for 47 of 302
             # logs, every one of them from excluded to clean. A row is only
             # confirmed once the convergence ladder has failed to settle it.
-            if settled.get("state") == "converged":
+            if _ladder_state(settled.get("state")) == "CONVERGED":
                 # The ladder answered the recursion question and the answer was
                 # PASS. Keeping the frozen reason would let a settled row be
                 # excluded for the very thing that was settled, and would hide
@@ -1053,7 +1088,7 @@ def rows():
                 reasons.discard("recursive_bias_found")
                 reasons.discard("recursive_bias_unverified")
             if "recursive_bias_found" in reasons \
-                    and settled.get("state") != "not_converged_within_ladder":
+                    and _ladder_state(settled.get("state")) != "NOT_CONVERGED":
                 reasons.discard("recursive_bias_found")
                 reasons.add("recursive_bias_unverified")
             # REASON_ORDER puts `strategy_does_not_run` above the recursion
@@ -1084,16 +1119,18 @@ def rows():
                 # the too-few-trades cohort keeps that as its first clause
                 # and carries this one after it.
                 reason = "measured_outside_its_design"
-            if not reason and window.get("status") == "measured" \
+            if not reason and _window_verdict(window.get("status")) == "MEASURED" \
                     and _integer(window.get("trades")) == 0:
                 # Measured over the whole window and it never traded. The
                 # frozen reason cannot say this: at the freeze it had not run.
                 reason = "no_trades_in_full_measurement"
-            if not reason and "NA" in (lookahead, recursive):
+            if not reason and "NA" in (_lookahead_verdict(lookahead),
+                                      _recursive_verdict(recursive)):
                 # Measured, but at least one gate produced no verdict. That is
                 # not a finding against the strategy and must not read as one.
                 missing = [name for name, value in
-                           (("lookahead", lookahead), ("recursive", recursive))
+                           (("lookahead", _lookahead_verdict(lookahead)),
+                            ("recursive", _recursive_verdict(recursive)))
                            if value == "NA"]
                 reason = "no_verdict_on_" + "_and_".join(missing)
             if not reason:
@@ -1102,7 +1139,7 @@ def rows():
             reason = ROLE_REASON.get(profile.get("artifact_role"),
                                      "not_a_trading_strategy")
             failure = i18n.translate(measurement.get("why") or "").strip()
-            if measurement and measurement.get("status") != "measured" \
+            if measurement and _measurement_verdict(measurement.get("status")) != "MEASURED" \
                     and failure:
                 # It would not have run either. Two separate facts, and
                 # dropping the second would lose a real observation.
@@ -1135,10 +1172,14 @@ def rows():
             # trade list that changes under it is the consequence of measuring
             # properly rather than a reason to hold the row back. Asking for a
             # test that no longer exists promises work nobody will do.
-            if lookahead not in ("PASS", "FOUND"):
+            if _lookahead_verdict(lookahead) not in ("PASS", "FOUND"):
                 open_work.append("lookahead_verdict")
         elif cohort == "not_tested_in_current_runtime":
             open_work.append("first_measurement_in_current_runtime")
+        # Deliberately raw, not `_ladder_state`: the label below carries the
+        # state's own name, and the two states named here are a subset of the
+        # INCONCLUSIVE class - mapping them would widen the match to
+        # `no_usable_ladder` and `crashes_even_at_longest_rungs` as well.
         elif cohort == "excluded" and settled.get("state") in (
                 "not_converged_within_ladder", "inconclusive"):
             open_work.append("convergence_" + settled["state"])
@@ -1150,7 +1191,7 @@ def rows():
         # rows already carry `re-measure_gates_in_current_runtime` for this;
         # the unfinished ones need the ladder itself.
         inherited_recursive_pass = (
-            recursive in ("PASS", "PASS_1PCT")
+            _recursive_verdict(recursive) == "PASS"
             and not recursive_evidence.startswith("convergence")
             and cohort in ("excluded", "pending"))
         # `diagnostics` counts as having run here too. A row whose look-ahead
@@ -1168,7 +1209,7 @@ def rows():
         # recorded recursive_evidence is itself proof the row has been
         # touched before.
         if (measurement or window or diagnostics or recursive_evidence) \
-                and (recursive not in ("PASS", "PASS_1PCT")
+                and (_recursive_verdict(recursive) != "PASS"
                      or inherited_recursive_pass):
             # Anything that runs and has no settled recursion verdict is a
             # question for the ladder: a FOUND no ladder has re-measured
@@ -1216,6 +1257,11 @@ def rows():
         # specific finding behind a vaguer one that is no longer current.
         if strategy in repair_source and repair.get("verdict") != "refuse_repair":
             repair["family"] = repair_source[strategy]
+            # Deliberately raw: `repair_run` is selected from whichever repair
+            # store produced it, and those stores are repair provenance rather
+            # than one identity-bound verdict per row - a single (store, field)
+            # attribution for it would therefore be false. Their own status
+            # token set is the smoke-run one.
             if repair_run.get("status") == "measured":
                 repair["verdict"] = "repaired"
             elif repair_run.get("status") == "failed":
@@ -1315,7 +1361,7 @@ def rows():
             repair["verdict"] = (
                 "repaired"
                 if lookahead_evidence in NATIVE_LOOKAHEAD_EVIDENCE
-                and lookahead in ("PASS", "FOUND") else "to_be_fixed")
+                and _lookahead_verdict(lookahead) in ("PASS", "FOUND") else "to_be_fixed")
         if strategy in refused_repair:
             repair["verdict"] = "refuse_repair"
             repair["note"], refusal_family = refused_repair[strategy]
@@ -1484,7 +1530,7 @@ def rows():
             # returned nothing - a timeout, an exception - has produced
             # no verdict either, and the row cannot rest on it.
             if lookahead_evidence not in NATIVE_LOOKAHEAD_EVIDENCE \
-                    or lookahead not in ("PASS", "FOUND"):
+                    or _lookahead_verdict(lookahead) not in ("PASS", "FOUND"):
                 open_work.append("lookahead_remeasure_pending")
             if reason == "no_trades_in_full_measurement" \
                     and source != "full_window":
@@ -1574,7 +1620,8 @@ def rows():
             "assumed_market_regime_evidence": phase_hypothesis.get(
                 strategy, {}).get("assumed_market_regime_evidence", ""),
             "cohort": cohort,
-            "measured": "true" if (measurement.get("status") == "measured"
+            "measured": "true" if (_measurement_verdict(measurement.get("status"))
+                                   == "MEASURED"
                                    or base.get("canonical_measured") == "true")
                         else "false",
             "observed_trades": trades,
@@ -1616,11 +1663,11 @@ def rows():
                 ("lookahead NA: " + ((fresh or tried
                                       or diagnostics.get("lookahead")
                                       or {}).get("why") or "no record")[:110])
-                if lookahead == "NA" else "",
+                if _lookahead_verdict(lookahead) == "NA" else "",
                 ("recursive NA: " + ((diagnostics.get("recursive")
                                       or settled or {}).get("why")
                                      or "no record")[:110])
-                if recursive == "NA" else "",
+                if _recursive_verdict(recursive) == "NA" else "",
                 # Provenance kept, never decisive: this row was part of the
                 # original frozen 67 before the cohort was retired
                 # 2026-09-03. Its own C1/C2 measurement now decides it like
@@ -1643,9 +1690,11 @@ def rows():
                                   repair.get("settings_extra", "")) if part),
             "required_image": class1_entry.get("image", DEFAULT_IMAGE),
             "primary_reason": reason,
-            "runtime_failure": (i18n.translate(measurement.get("why") or "")[:160]
-                                if measurement.get("status") not in (None, "measured")
-                                else ""),
+            "runtime_failure": (
+                i18n.translate(measurement.get("why") or "")[:160]
+                if measurement.get("status") not in (None,)
+                and _measurement_verdict(measurement.get("status")) != "MEASURED"
+                else ""),
             "evidence_gap": ";".join(gaps),
             "last_tested_at": stamp,
             "last_tested_source": stamp_source,
@@ -1656,8 +1705,9 @@ def rows():
             "cmd_lookahead": cmd_lookahead,
             "cmd_recursive": cmd_recursive,
             "needed_no_override": ("true" if settled.get("needed_no_override")
-                                   else ("false" if settled.get("state") == "converged"
-                                         else "")),
+                                   else ("false"
+                                         if _ladder_state(settled.get("state"))
+                                         == "CONVERGED" else "")),
             "evidence_paths": ";".join(evidence_paths(records)),
             "open_work": ";".join(open_work),
         })
@@ -2367,9 +2417,20 @@ def selftest():
     # representative-protection guard) - the log keeps the entry as a
     # permanent record, but the strategy is back in the corpus and must not
     # still read as excluded.
+    #
+    # `file_present_again_at` is the second signal of the same thing: the file
+    # was restored WHOLE because it also defines live kept classes, and the
+    # entry says so itself - its exclusion "stays evidence-only and the file is
+    # kept". NASOSv5HO/NASOSv5SL are the live case: code-equivalent to
+    # NASOSv5_mod1 by inheritance, yet measured at 440 and 513 trades against
+    # its 432 - three different trade hashes, which is exactly the measured
+    # disagreement `semantic_duplicates.adjudicate()` treats as direct proof of
+    # non-equivalence and never excludes. Reading only `recovered_at` made this
+    # assertion disagree with `rows()` about two rows for the wrong reason.
     duplicates |= {row["strategy_id"] for row in
                    _json(REMOVED_DUPLICATES_LOG, "removed")
-                   if not row.get("recovered_at")}
+                   if not row.get("recovered_at")
+                   and not row.get("file_present_again_at")}
     # 2026-09-16: a code-identical duplicate with no config overlay and no
     # measured disagreement is now removed at the SOURCE (tools.harvest.
     # remove_semantic_duplicates deletes the file; see semantic_duplicates.
@@ -2430,6 +2491,14 @@ def selftest():
                 or row["primary_reason"] == "shared_runtime_change_declined"
                 or row["primary_reason"] == "duplicate_implementation"
                 or row["primary_reason"] == "user_policy_excluded_after_triage"
+                # A repeated, identical timeout after the repair route was
+                # exhausted. Not a finding about the strategy: the policy
+                # `repair/adjudicate.py` states ("a first timeout is never an
+                # exclusion; a repeated, identical one may be excluded only
+                # after the documented repair route was exhausted") and
+                # `exclusion_criteria.py` registers as its own criterion. It
+                # belongs here beside the other documented policy reasons.
+                or row["primary_reason"] == "repeated_timeout_after_exhausted_repair"
             ), (row["strategy_id"], row["primary_reason"],
                 row["lookahead"], row["recursive_evidence"])
         # A trap is a fact about the source, never a verdict. It may sit on
@@ -2615,6 +2684,22 @@ def selftest():
              sum(1 for r in data if r["last_tested_at"])))
 
 
+RX_GENERATED_STAMP = re.compile(
+    rb"\*\*Generated \d{4}-\d\d-\d\d \d\d:\d\d:\d\d by `")
+
+
+def _without_generation_stamp(content):
+    """Blank the generation time in a generated report's header.
+
+    Both published reports name the moment they were written, so comparing
+    them byte-for-byte would fail a second after every run. Replacing the
+    stamp keeps the rest of the comparison strict, and the failure this
+    guards against is a report whose body describes a pipeline state that has
+    moved on - which stays invisible while only the row data is checked.
+    """
+    return RX_GENERATED_STAMP.sub(b"**Generated <stamp> by `", content)
+
+
 def main(argv=None):
     parser = argparse.ArgumentParser()
     parser.add_argument("--check", action="store_true")
@@ -2627,12 +2712,22 @@ def main(argv=None):
     rendered = {OUTPUT: _csv_bytes(data), REPORT: _report(data),
                RUNTIME_OUT: _runtime_environments_report(data)}
     if args.check:
-        # The report embeds its generation time, so it is stale by definition
-        # a second after it is written. Only the row data is compared.
         current = io.open(OUTPUT, "rb").read() if os.path.exists(OUTPUT) else b""
         if current != rendered[OUTPUT]:
             print("stale: %s" % os.path.relpath(OUTPUT, ROOT))
             return 1
+        # The two published reports embed their own generation time, so a byte
+        # comparison would fail a second after every run. The stamp is
+        # normalized away and the rest is compared strictly: a report whose
+        # body describes a pipeline state that has since moved on reads as
+        # current, and that is the failure this check exists to prevent.
+        for path in (REPORT, RUNTIME_OUT):
+            on_disk = (io.open(path, "rb").read()
+                       if os.path.exists(path) else b"")
+            if (_without_generation_stamp(on_disk)
+                    != _without_generation_stamp(rendered[path])):
+                print("stale: %s" % os.path.relpath(path, ROOT))
+                return 1
         if not os.path.exists(PIPELINE_STATE_OUT):
             print("stale: %s" % os.path.relpath(PIPELINE_STATE_OUT, ROOT))
             return 1

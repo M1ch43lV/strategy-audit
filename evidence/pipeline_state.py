@@ -23,6 +23,8 @@ import io
 import json
 import os
 
+from evidence import verdicts
+
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OUTPUT = os.path.join(ROOT, "evidence", "PIPELINE_STATE.json")
@@ -48,7 +50,8 @@ def _csv(path):
 def completed_full_backtest(profile, record):
     """Whether this exact implementation completed an accepted pooled run."""
     return bool(record) and all((
-        record.get("status") == "measured",
+        verdicts.value("full_backtest_manifest.json", "status",
+                       record.get("status")) == "MEASURED",
         record.get("measurement_scope") in (
             "canonical_pooled_native_pair_universe",
             "owner_approved_timeframe_override_pooled_pair_universe",
@@ -220,7 +223,8 @@ class EvidenceStore:
         review = self.review.get(strategy_id)
         review_note = ""
         review_store = ""
-        if lookahead == "FOUND" and review:
+        if verdicts.value("STRATEGY_STATUS.csv", "lookahead",
+                          lookahead) == "FOUND" and review:
             active_sha = (self.remeasured_sha.get(strategy_id)
                           if fresh is not None
                           else diagnostics.get("canonical_sha256"))
@@ -248,7 +252,8 @@ class EvidenceStore:
             recursive_store = (self._relative(self.paths["baseline"])
                                if baseline.get("recursive") else "")
 
-        if recursive == "FOUND" and not diagnostics.get("recursive") \
+        if verdicts.value("STRATEGY_STATUS.csv", "recursive",
+                          recursive) == "FOUND" and not diagnostics.get("recursive") \
                 and not settled \
                 and baseline.get("recursive_kind") == "refused_no_warmup":
             recursive = "WARMUP_NEEDED"
@@ -292,8 +297,10 @@ class EvidenceStore:
 
         return {
             "strategy_id": strategy_id,
-            "measured": (measurement.get("status") == "measured"
-                         or baseline.get("canonical_measured") == "true"),
+            "measured": (
+                verdicts.value("PROFILE_SMOKE.json", "status",
+                               measurement.get("status")) == "MEASURED"
+                or baseline.get("canonical_measured") == "true"),
             "measurement_attempted": bool(measurement or window),
             "measurement_store": measurement_store,
             "observed_trades": trades,
@@ -301,13 +308,16 @@ class EvidenceStore:
             "trade_store": trade_store,
             "lookahead": lookahead,
             "lookahead_attempted": lookahead_attempted,
-            "lookahead_has_verdict": lookahead in ("PASS", "FOUND"),
+            "lookahead_has_verdict": verdicts.value(
+                "STRATEGY_STATUS.csv", "lookahead", lookahead) in ("PASS", "FOUND"),
             "lookahead_evidence": lookahead_evidence,
             "lookahead_store": lookahead_store,
             "lookahead_review_store": review_store,
             "recursive": recursive,
             "recursive_attempted": recursive_attempted,
-            "recursive_has_verdict": recursive in ("PASS", "PASS_1PCT", "FOUND"),
+            "recursive_has_verdict": verdicts.value(
+                "STRATEGY_STATUS.csv", "recursive", recursive
+            ) in ("PASS", "PASS_1PCT", "FOUND"),
             "recursive_evidence": recursive_evidence,
             "recursive_store": recursive_store,
             "full_backtest_status": full_backtest.get("status", ""),
@@ -316,7 +326,10 @@ class EvidenceStore:
             # Necessary, not sufficient: true when the execution stage passes and at
             # least one ADX state passes the cost screen. The designation for a
             # claimed state must consult that state in `cost_screen_regimes_pass`.
-            "robustness_qualified": robustness_status == "PASS" and bool(regimes_pass),
+            "robustness_qualified": (
+                verdicts.value("EXECUTION_ROBUSTNESS.json", "status",
+                               robustness_status) == "PASS"
+                and bool(regimes_pass)),
             # A PASS is either a measured 5m detail run or, at or below 5m,
             # the owner rule that counts the baseline as equal to one.
             "execution_robustness_basis": robustness.get("basis", "") if full_complete else "",
@@ -455,6 +468,19 @@ def _public_resolution(resolved):
             "break_even_slippage_bps_per_side": resolved["cost_break_even_bps"],
             "producer_store": "evidence/COST_SCREEN.json",
         },
+        # One normalized verdict per gate, on the layer that owns the question.
+        # The raw stores keep their own tokens and provenance; a consumer that
+        # needs a consistent answer reads here instead of comparing raw strings.
+        # Compact form, and `verdicts.decode` restores it. Derived, not
+        # evidence: see evidence/verdicts.py.
+        "verdicts": verdicts.block({
+            "measurement": (resolved["measurement_record"] or {}).get("status"),
+            "lookahead": resolved["lookahead"],
+            "recursive": resolved["recursive"],
+            "full_backtest": resolved["full_backtest_status"],
+            "execution_robustness": resolved["execution_robustness_status"],
+            "cost_screen": resolved["cost_screen_status"],
+        }),
     }
 
 
