@@ -34,6 +34,8 @@ Do not rederive these; a change is a new dated entry in the Decision record or i
 
 `python -m evidence.strategy_feed --write` records the newest posts from the FrequentHippo strategy feed as review-only leads. Each record retains its GitHub raw URL, repository, commit, path, content hash and local duplicate/class-name status. The feed is an automated discovery index, not an endorsement: it can contain fixtures, samples, mirrors and this audit's own copies. It never writes under `repos/`, invokes `harvest`, refreshes intake evidence, or starts a measurement. A reviewer must separately choose a source repository and explicitly run the normal harvest command; that later acquisition records the default-branch snapshot then available and remains subject to the malware gate and duplicate adjudication.
 
+`python -m tools.frequenthippo_ranking` reads the ranking behind the same site's public backtest summary as a lead list: one rank per strategy, with the exchange and quote repetitions of one run collapsed and with identifiers the operator recorded separately but measured on identical trades merged into one entry that names its twins. It writes nothing and ends where the feed text ends - a reviewer names a source repository and runs harvest explicitly. A strategy that site publishes without any repository cannot be acquired by this stage at all; see the amendment of 2026-09-23.
+
 For serial operational continuation after an intake refresh, use
 `python -m tools.pipeline_dispatcher` to inspect the next eligible action or
 `python -m tools.pipeline_dispatcher --watch --apply` to dispatch one
@@ -65,6 +67,7 @@ minutes and refuses recovery while a strategy-audit Docker container runs.
 | `tools/census_repos.py` | `evidence/corpus_sources.json`, `repos/**` | Statistics on copy families (console/reference for `evidence/exclusion_criteria.py`s C-text) |
 | `evidence/new_repo_candidates.py` | GitHub topic search, `evidence/corpus_sources.json` | `evidence/NEW_REPO_CANDIDATES.json`, `evidence/NEW_REPO_CANDIDATES.md` |
 | `evidence/strategy_feed.py` | FrequentHippo post metadata and pinned GitHub raw files, `STRATEGY_STATUS.csv` | `evidence/STRATEGY_FEED.json`, `evidence/STRATEGY_FEED.md` |
+| `tools/frequenthippo_ranking.py` | FrequentHippo Grafana table (anonymous datasource API) | nothing; one rank per strategy, printed for review |
 | `evidence/repo_freshness.py` | local `git log` per repo, GitHub tip, `evidence/EXECUTION_PROFILES.csv` | `evidence/REPO_FRESHNESS.csv`, `evidence/REPO_FRESHNESS.md` |
 
 Result of this stage: new rows in `evidence/EXECUTION_PROFILES.csv` (one row per strategy implementation, the canonical source for the rest of the chain).
@@ -428,6 +431,7 @@ made and what it replaced. Where a later entry supersedes an earlier one, the ea
 | 2026-09-16 | "Frozen file" description of REGIME_ELIGIBILITY.csv dropped | 6 |
 | 2026-09-22 | FrequentHippo feed added as a pinned, review-only discovery source; no automatic acquisition or measurement | 0 |
 | 2026-09-23 | One verdict vocabulary for every evidence store; identity inputs guarded against silent change | 1-8, 13 |
+| 2026-09-23 | FrequentHippo ranking added as a second review-only Stage-0 reader; a published strategy without a repository has no intake path | 0 |
 
 ### Amendment 2026-09-22: FrequentHippo strategy feed is discovery-only
 
@@ -436,6 +440,14 @@ made and what it replaced. Where a later entry supersedes an earlier one, the ea
 `evidence.strategy_feed` may write only the review inventory. It records the post metadata, the immutable upstream reference, a SHA-256 of the fetched bytes, the IStrategy classes parsed without execution, and a comparison against the current corpus's source paths and class names. A `candidate_requires_review` record means only that a distinct IStrategy class was observed outside known paths and names. It is neither a quality verdict nor an import instruction.
 
 Only an explicit subsequent `python -m tools.harvest owner/repo` can acquire source files. That command remains the sole Stage-0 writer below `repos/`, retains the existing malware gate and dependency closure, and performs the existing duplicate adjudication. Because harvest reads the repository's then-current default branch, it is intentionally a new, reviewable acquisition event rather than an attempt to silently replace the feed's pinned revision.
+
+### Amendment 2026-09-23: the ranking is a lead reader, and a published strategy without a repository has no intake path
+
+**Owner's decision.** The ranking behind the same public backtest summary joins Stage 0 as a second review-only reader, next to the feed. It exists because the feed answers "what appeared" and the ranking answers "what scored well for someone else" - and neither is evidence. `overall_score_percent` depends on another operator's data, pairlists, cost model and scoring; this audit neither controls nor reproduces any of it. The reader therefore writes nothing, no stage reads it, and a rank from it can never appear as a verdict, a cohort, an admission argument or a repair trigger.
+
+`tools/frequenthippo_ranking.py` removes the two kinds of repetition that make the published table unusable as a list. A strategy measured on several exchanges and quote currencies becomes one rank, keeping its best row. Two identifiers the operator recorded separately but measured on identical trades become one strategy, named with its twins. The second merge uses the same "identical values, no similarity threshold" test `evidence/semantic_duplicates.py` applies to this audit's own stores, applied to someone else's numbers, and it is reported in its own `trade_twins` column so the two kinds of repetition stay distinguishable.
+
+Two consequences are rules, not events. First, a ranking is a lead list: naming a candidate is not examining it, and the decision to look at one is taken with `evidence.strategy_feed` (pinned revision) and executed only by an explicit `python -m tools.harvest owner/repo`. Second, a strategy that the site publishes *without* a GitHub repository - its own published files live under `/wp-content/uploads/strategies/` - cannot be acquired by any route this stage allows: harvest reads the GitHub API, and nothing else may write below `repos/`. Adopting such a file needs a new, explicitly decided intake path for non-repository sources; until the owner decides that, such a strategy stays a lead and is reported as one.
 
 ### Amendment 2026-09-23: one verdict vocabulary, and a guard on the identity inputs
 

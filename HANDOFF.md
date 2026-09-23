@@ -11,6 +11,36 @@ Never write a count that a command can print: counts in prose are what made the 
 
 ## Baton
 
+- Last agent: copilot
+- Last update: 2026-09-23T23:13:51+02:00
+- Stopped because: Stage 0 intake for the highest-ranked FrequentHippo leads is done and the published state is
+  consistent. No benchmark was started and no runner was touched.
+  - The lead list came from `python -m tools.frequenthippo_ranking` (new, review-only; a third party's score is a
+    lead, never evidence). Source chosen for the two leads that existed nowhere else in the corpus:
+    `python -m tools.harvest remiotore/ccxt-freqtrade`. `BinHModWhiteHOV0` and `CombinedBinHClucAndSMAOffset_2` are
+    now corpus rows in `not_tested_in_current_runtime`.
+  - The wave is large - `git diff --numstat evidence/EXECUTION_PROFILES.csv` prints its size - and
+    `repos/remiotore_ccxt-freqtrade/` is still untracked, so it is deliberately not committed yet.
+  - The intake adjudication removed the freshly downloaded copies it found to be duplicates
+    (`normalized_code_match_no_config_overlay_either_side_v1`; record in `evidence/REMOVED_DUPLICATE_SOURCES.json`).
+    `evidence.strategy_status --check`, `evidence.semantic_duplicates --check`, `tools.strategy_status_page --check`
+    and `evidence.pipeline_state --selftest` are current and green.
+  - A `tools/malware_gate` re-scan of the new folder flagged nothing; every write had already been gated inside
+    harvest, so this only confirms it after the fact.
+  - Two leads cannot be acquired by any route this stage allows: `BB_RPB_TSL_RNG_V2_20211008` and
+    `BB_RPB_TSL_jilv220_github_20211008` exist only as the site's own published files, and harvest reads the GitHub
+    API only. They are parked outside the corpus in `user_data/site_sources/` with their provenance; admitting them
+    needs a decided intake path for non-repository sources (PIPELINE.md, amendment 2026-09-23). A third lead,
+    `BB_Github_mupol313_hossain__rtr__20240622_082213_dca`, has no source left anywhere.
+  - `Combined_NFIv7_SMA_Rallipanos_20210707` and its DCA twin are known intake duplicates (representative
+    `NostalgiaForInfinityV7_SMA`) and were not re-admitted.
+- Next agent should: run the machine-state commands, then put the open wave question to the owner - keep
+  `repos/remiotore_ccxt-freqtrade/` (commit corpus, stores and docs together) or revert it (delete the folder and
+  re-run the intake refresh). The dispatcher's next eligible action is a smoke run and its queue is alphabetical, so
+  the new rows arrive in their turn. `AlexBandSniperV10AI` still needs the owner's policy call recorded below.
+
+### Previous baton entry - codex, 2026-09-23
+
 - Last agent: codex
 - Last update: 2026-09-23T21:14:39+02:00
 - Stopped because: the verdict-schema work is complete, committed and green. No benchmark, analyzer or runner was
