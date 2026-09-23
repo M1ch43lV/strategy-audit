@@ -32,6 +32,8 @@ Do not rederive these; a change is a new dated entry in the Decision record or i
 
 `python -m tools.harvest owner/repo` is the complete source-intake command. When it finds at least one new class, it regenerates execution profiles, classification, preregistered phase hypotheses, semantic duplicate evidence, duplicate adjudication, strategy status, and the status page in dependency order. These are source/report transformations only: harvest never starts a smoke run, bias diagnostic, full backtest, or performance-based decision. `--no-refresh` is the explicit batch-download escape hatch.
 
+`python -m evidence.strategy_feed --write` records the newest posts from the FrequentHippo strategy feed as review-only leads. Each record retains its GitHub raw URL, repository, commit, path, content hash and local duplicate/class-name status. The feed is an automated discovery index, not an endorsement: it can contain fixtures, samples, mirrors and this audit's own copies. It never writes under `repos/`, invokes `harvest`, refreshes intake evidence, or starts a measurement. A reviewer must separately choose a source repository and explicitly run the normal harvest command; that later acquisition records the default-branch snapshot then available and remains subject to the malware gate and duplicate adjudication.
+
 For serial operational continuation after an intake refresh, use
 `python -m tools.pipeline_dispatcher` to inspect the next eligible action or
 `python -m tools.pipeline_dispatcher --watch --apply` to dispatch one
@@ -62,6 +64,7 @@ minutes and refuses recovery while a strategy-audit Docker container runs.
 | `tools/harvest.py` | GitHub API (only `.py` files with `IStrategy`) | Files under `repos/<repo>/` |
 | `tools/census_repos.py` | `evidence/corpus_sources.json`, `repos/**` | Statistics on copy families (console/reference for `evidence/exclusion_criteria.py`s C-text) |
 | `evidence/new_repo_candidates.py` | GitHub topic search, `evidence/corpus_sources.json` | `evidence/NEW_REPO_CANDIDATES.json`, `evidence/NEW_REPO_CANDIDATES.md` |
+| `evidence/strategy_feed.py` | FrequentHippo post metadata and pinned GitHub raw files, `STRATEGY_STATUS.csv` | `evidence/STRATEGY_FEED.json`, `evidence/STRATEGY_FEED.md` |
 | `evidence/repo_freshness.py` | local `git log` per repo, GitHub tip, `evidence/EXECUTION_PROFILES.csv` | `evidence/REPO_FRESHNESS.csv`, `evidence/REPO_FRESHNESS.md` |
 
 Result of this stage: new rows in `evidence/EXECUTION_PROFILES.csv` (one row per strategy implementation, the canonical source for the rest of the chain).
@@ -423,6 +426,15 @@ made and what it replaced. Where a later entry supersedes an earlier one, the ea
 | 2026-09-11 | Look-ahead, then warm-up ladder, then final recursive-bias | 2, 3, 4 |
 | 2026-09-15 | Smoke cascade drops the one-year rung | 1 |
 | 2026-09-16 | "Frozen file" description of REGIME_ELIGIBILITY.csv dropped | 6 |
+| 2026-09-22 | FrequentHippo feed added as a pinned, review-only discovery source; no automatic acquisition or measurement | 0 |
+
+### Amendment 2026-09-22: FrequentHippo strategy feed is discovery-only
+
+**Owner's decision.** The public FrequentHippo strategy feed is added to Stage 0 because it exposes a dated GitHub raw URL and commit for newly indexed Python files. The feed is not a curation or validation service: it includes test fixtures, samples, baseline strategies, duplicate class names, and mirrors of this audit. Its presence therefore cannot change technical eligibility, a source hash, a run profile, a candidate wave, a repair decision, or a benchmark queue.
+
+`evidence.strategy_feed` may write only the review inventory. It records the post metadata, the immutable upstream reference, a SHA-256 of the fetched bytes, the IStrategy classes parsed without execution, and a comparison against the current corpus's source paths and class names. A `candidate_requires_review` record means only that a distinct IStrategy class was observed outside known paths and names. It is neither a quality verdict nor an import instruction.
+
+Only an explicit subsequent `python -m tools.harvest owner/repo` can acquire source files. That command remains the sole Stage-0 writer below `repos/`, retains the existing malware gate and dependency closure, and performs the existing duplicate adjudication. Because harvest reads the repository's then-current default branch, it is intentionally a new, reviewable acquisition event rather than an attempt to silently replace the feed's pinned revision.
 
 ### Frozen warm-up convergence amendment
 

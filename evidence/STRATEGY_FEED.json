@@ -1,0 +1,1640 @@
+{
+  "feed": "https://frequenthippo.ddns.net/category/strategy-feed/",
+  "observed_at": "2026-09-22T19:10:03.490319+00:00",
+  "records": [
+    {
+      "commit": "c3687556ecad14868fa02dcaab8dbd3eca214715",
+      "feed_date": "2026-09-22T16:50:22",
+      "feed_post_url": "https://frequenthippo.ddns.net/github_m1ch43lv_strategy_audit__alexbandsniperv10mlai__20260922_153701/",
+      "feed_title": "Github_M1ch43lV_strategy_audit__AlexBAndSniperV10MLAI__20260922_153701",
+      "known_classes": [
+        "AlexBandSniperV10AI"
+      ],
+      "path": "repair/patched/repos/vaskosmihaylov_nfi-custom-strategies/user_data/strategies/AlexNexus/AlexBAndSniperV10MLAI.py",
+      "post_id": 104828,
+      "repository": "M1ch43lV/strategy-audit",
+      "review_status": "local_audit_source",
+      "source_sha256": "90790053e4b0f8890adfcdc9cc9c32ea3af8d2b29cf82c083ffaadfec4867c03",
+      "strategy_classes": [
+        "AlexBandSniperV10AI"
+      ],
+      "url": "https://raw.githubusercontent.com/M1ch43lV/strategy-audit/c3687556ecad14868fa02dcaab8dbd3eca214715/repair/patched/repos/vaskosmihaylov_nfi-custom-strategies/user_data/strategies/AlexNexus/AlexBAndSniperV10MLAI.py"
+    },
+    {
+      "commit": "40d5bf4d4f3a81e77aa9026c6dd9c0e16539ff98",
+      "feed_date": "2026-09-22T12:46:46",
+      "feed_post_url": "https://frequenthippo.ddns.net/github_jorgehn98_btc_lab__smacrossbaseline__20260922_123453/",
+      "feed_title": "Github_jorgehn98_btc_lab__SmaCrossBaseline__20260922_123453",
+      "known_classes": [],
+      "path": "strategies/baseline/SmaCrossBaseline.py",
+      "post_id": 104827,
+      "repository": "jorgehn98/btc-lab",
+      "review_status": "fixture_or_scaffold_requires_review",
+      "source_sha256": "2000b17cce861e799682493fc815426d75e1614facb2aaabcb4a38d6b57d4bcf",
+      "strategy_classes": [
+        "SmaCrossBaseline"
+      ],
+      "url": "https://raw.githubusercontent.com/jorgehn98/btc-lab/40d5bf4d4f3a81e77aa9026c6dd9c0e16539ff98/strategies/baseline/SmaCrossBaseline.py"
+    },
+    {
+      "commit": "239cbcf55379f2f3b1bee8aa8dfe07a15c44e642",
+      "feed_date": "2026-09-22T11:58:00",
+      "feed_post_url": "https://frequenthippo.ddns.net/github_infinityf4p_backtest_repair__candidate__20260922_094333/",
+      "feed_title": "Github_infinityf4p_backtest_repair__candidate__20260922_094333",
+      "known_classes": [
+        "Strategy004"
+      ],
+      "path": "evaluation/cases/volume_lookahead/candidate.py",
+      "post_id": 104826,
+      "repository": "infinityf4p/backtest-repair",
+      "review_status": "known_class_name",
+      "source_sha256": "95a81e65064b20f5cfb347d2927604dc1b39cf59d7e7cbbdadd99640cbadfa65",
+      "strategy_classes": [
+        "Strategy004"
+      ],
+      "url": "https://raw.githubusercontent.com/infinityf4p/backtest-repair/239cbcf55379f2f3b1bee8aa8dfe07a15c44e642/evaluation/cases/volume_lookahead/candidate.py"
+    },
+    {
+      "commit": "40d5bf4d4f3a81e77aa9026c6dd9c0e16539ff98",
+      "feed_date": "2026-09-22T10:18:51",
+      "feed_post_url": "https://frequenthippo.ddns.net/github_jorgehn98_btc_lab__notradesmoke__20260922_094926/",
+      "feed_title": "Github_jorgehn98_btc_lab__NoTradeSmoke__20260922_094926",
+      "known_classes": [],
+      "path": "strategies/smoke/NoTradeSmoke.py",
+      "post_id": 104825,
+      "repository": "jorgehn98/btc-lab",
+      "review_status": "fixture_or_scaffold_requires_review",
+      "source_sha256": "e8aa6432db85086ebf8d922586c5eff7501a252090eb8e0469eea80daab1f7e0",
+      "strategy_classes": [
+        "NoTradeSmoke"
+      ],
+      "url": "https://raw.githubusercontent.com/jorgehn98/btc-lab/40d5bf4d4f3a81e77aa9026c6dd9c0e16539ff98/strategies/smoke/NoTradeSmoke.py"
+    },
+    {
+      "commit": "8045def1673fea70664a855ae6673cbc80753593",
+      "feed_date": "2026-09-22T08:27:07",
+      "feed_post_url": "https://frequenthippo.ddns.net/github_apex_prim_strategy_audit__foreign_strategy_audit__20260922_045443/",
+      "feed_title": "Github_Apex_prim_strategy_audit__foreign_strategy_audit__20260922_045443",
+      "known_classes": [],
+      "path": "foreign_strategy_audit.py",
+      "post_id": 104824,
+      "repository": "Apex-prim/strategy-audit",
+      "review_status": "non_strategy_fixture",
+      "source_sha256": "b0021daf5313d7702f8633cf376c28f4a332af363fa7cd7d0a144eb88c3293c2",
+      "strategy_classes": [],
+      "url": "https://raw.githubusercontent.com/Apex-prim/strategy-audit/8045def1673fea70664a855ae6673cbc80753593/foreign_strategy_audit.py"
+    },
+    {
+      "commit": "16a04bd8b1004e90b9b17b556429a2eb730d96da",
+      "feed_date": "2026-09-21T18:15:32",
+      "feed_post_url": "https://frequenthippo.ddns.net/github_jcd1991_market_behavior_lab__slowresidualrotation__20260921_130836/",
+      "feed_title": "Github_jcd1991_market_behavior_lab__SlowResidualRotation__20260921_130836",
+      "known_classes": [],
+      "path": "user_data/strategies/SlowResidualRotation.py",
+      "post_id": 104823,
+      "repository": "jcd1991/market-behavior-lab",
+      "review_status": "candidate_requires_review",
+      "source_sha256": "7cc3b0b8a512b4a26a599dfa0fe15cc2271686d060a7c38a0898ebb5faad89a5",
+      "strategy_classes": [
+        "SlowResidualRotation"
+      ],
+      "url": "https://raw.githubusercontent.com/jcd1991/market-behavior-lab/16a04bd8b1004e90b9b17b556429a2eb730d96da/user_data/strategies/SlowResidualRotation.py"
+    },
+    {
+      "commit": "16a04bd8b1004e90b9b17b556429a2eb730d96da",
+      "feed_date": "2026-09-21T18:09:07",
+      "feed_post_url": "https://frequenthippo.ddns.net/github_jcd1991_market_behavior_lab__quietbreakoutswing__20260921_130836/",
+      "feed_title": "Github_jcd1991_market_behavior_lab__QuietBreakoutSwing__20260921_130836",
+      "known_classes": [],
+      "path": "user_data/strategies/QuietBreakoutSwing.py",
+      "post_id": 104822,
+      "repository": "jcd1991/market-behavior-lab",
+      "review_status": "candidate_requires_review",
+      "source_sha256": "a7ac196065f94584b25f9bf166e221bf503a671b5158b0e283eda78253bf3b26",
+      "strategy_classes": [
+        "QuietBreakoutSwing"
+      ],
+      "url": "https://raw.githubusercontent.com/jcd1991/market-behavior-lab/16a04bd8b1004e90b9b17b556429a2eb730d96da/user_data/strategies/QuietBreakoutSwing.py"
+    },
+    {
+      "commit": "16a04bd8b1004e90b9b17b556429a2eb730d96da",
+      "feed_date": "2026-09-21T15:09:46",
+      "feed_post_url": "https://frequenthippo.ddns.net/github_jcd1991_market_behavior_lab__sizeliquiditydualsignal__20260921_130836/",
+      "feed_title": "Github_jcd1991_market_behavior_lab__SizeLiquidityDualSignal__20260921_130836",
+      "known_classes": [],
+      "path": "user_data/strategies/SizeLiquidityDualSignal.py",
+      "post_id": 104821,
+      "repository": "jcd1991/market-behavior-lab",
+      "review_status": "candidate_requires_review",
+      "source_sha256": "25de9bd8a28a8d5b7f57be4e4eb6243568e760a036d80339f9c03cfe4db350ce",
+      "strategy_classes": [
+        "SizeLiquidityDualSignal"
+      ],
+      "url": "https://raw.githubusercontent.com/jcd1991/market-behavior-lab/16a04bd8b1004e90b9b17b556429a2eb730d96da/user_data/strategies/SizeLiquidityDualSignal.py"
+    },
+    {
+      "commit": "16a04bd8b1004e90b9b17b556429a2eb730d96da",
+      "feed_date": "2026-09-21T15:06:39",
+      "feed_post_url": "https://frequenthippo.ddns.net/github_jcd1991_market_behavior_lab__crosssectionalreversal8w__20260921_130836/",
+      "feed_title": "Github_jcd1991_market_behavior_lab__CrossSectionalReversal8W__20260921_130836",
+      "known_classes": [],
+      "path": "user_data/strategies/CrossSectionalReversal8W.py",
+      "post_id": 104820,
+      "repository": "jcd1991/market-behavior-lab",
+      "review_status": "candidate_requires_review",
+      "source_sha256": "ea7e85ad000bfd8a3b1962f54ff667034ddc5d67c45fa47aa0667cd0a55e48bd",
+      "strategy_classes": [
+        "CrossSectionalReversal8W"
+      ],
+      "url": "https://raw.githubusercontent.com/jcd1991/market-behavior-lab/16a04bd8b1004e90b9b17b556429a2eb730d96da/user_data/strategies/CrossSectionalReversal8W.py"
+    },
+    {
+      "commit": "16a04bd8b1004e90b9b17b556429a2eb730d96da",
+      "feed_date": "2026-09-21T14:47:06",
+      "feed_post_url": "https://frequenthippo.ddns.net/github_jcd1991_market_behavior_lab__relativevaluestatarb__20260921_130836/",
+      "feed_title": "Github_jcd1991_market_behavior_lab__RelativeValueStatArb__20260921_130836",
+      "known_classes": [],
+      "path": "user_data/strategies/RelativeValueStatArb.py",
+      "post_id": 104819,
+      "repository": "jcd1991/market-behavior-lab",
+      "review_status": "candidate_requires_review",
+      "source_sha256": "24a2c03d8ef334bdf58b312e4edcd5ec2c5d87e68039297fda763cd01d7e4c31",
+      "strategy_classes": [
+        "RelativeValueStatArb"
+      ],
+      "url": "https://raw.githubusercontent.com/jcd1991/market-behavior-lab/16a04bd8b1004e90b9b17b556429a2eb730d96da/user_data/strategies/RelativeValueStatArb.py"
+    },
+    {
+      "commit": "16a04bd8b1004e90b9b17b556429a2eb730d96da",
+      "feed_date": "2026-09-21T14:43:20",
+      "feed_post_url": "https://frequenthippo.ddns.net/github_jcd1991_market_behavior_lab__cointegrationresidual__20260921_130836/",
+      "feed_title": "Github_jcd1991_market_behavior_lab__CointegrationResidual__20260921_130836",
+      "known_classes": [],
+      "path": "user_data/strategies/CointegrationResidual.py",
+      "post_id": 104818,
+      "repository": "jcd1991/market-behavior-lab",
+      "review_status": "candidate_requires_review",
+      "source_sha256": "ad7209a0f32ac40129f1c8072ae465ffcb4457eba52601c48e5cdc49424d8327",
+      "strategy_classes": [
+        "CointegrationResidual"
+      ],
+      "url": "https://raw.githubusercontent.com/jcd1991/market-behavior-lab/16a04bd8b1004e90b9b17b556429a2eb730d96da/user_data/strategies/CointegrationResidual.py"
+    },
+    {
+      "commit": "16a04bd8b1004e90b9b17b556429a2eb730d96da",
+      "feed_date": "2026-09-21T14:39:58",
+      "feed_post_url": "https://frequenthippo.ddns.net/github_jcd1991_market_behavior_lab__multitimeframeconfirmation__20260921_130836/",
+      "feed_title": "Github_jcd1991_market_behavior_lab__MultiTimeframeConfirmation__20260921_130836",
+      "known_classes": [],
+      "path": "user_data/strategies/MultiTimeframeConfirmation.py",
+      "post_id": 104817,
+      "repository": "jcd1991/market-behavior-lab",
+      "review_status": "candidate_requires_review",
+      "source_sha256": "0f00eba78fefca70b3d3c895ff1c445910952f09c2b8870b294dde3bde2de95e",
+      "strategy_classes": [
+        "MultiTimeframeConfirmation"
+      ],
+      "url": "https://raw.githubusercontent.com/jcd1991/market-behavior-lab/16a04bd8b1004e90b9b17b556429a2eb730d96da/user_data/strategies/MultiTimeframeConfirmation.py"
+    },
+    {
+      "commit": "16a04bd8b1004e90b9b17b556429a2eb730d96da",
+      "feed_date": "2026-09-21T14:35:55",
+      "feed_post_url": "https://frequenthippo.ddns.net/github_jcd1991_market_behavior_lab__cryptomomentumrotation__20260921_130836/",
+      "feed_title": "Github_jcd1991_market_behavior_lab__CryptoMomentumRotation__20260921_130836",
+      "known_classes": [],
+      "path": "user_data/strategies/CryptoMomentumRotation.py",
+      "post_id": 104816,
+      "repository": "jcd1991/market-behavior-lab",
+      "review_status": "candidate_requires_review",
+      "source_sha256": "146c1eca0f5c7e67fd4d462c89cdd52e0ee757b5a8298b8a7ead0e547cad7878",
+      "strategy_classes": [
+        "CryptoMomentumRotation"
+      ],
+      "url": "https://raw.githubusercontent.com/jcd1991/market-behavior-lab/16a04bd8b1004e90b9b17b556429a2eb730d96da/user_data/strategies/CryptoMomentumRotation.py"
+    },
+    {
+      "commit": "16a04bd8b1004e90b9b17b556429a2eb730d96da",
+      "feed_date": "2026-09-21T14:34:13",
+      "feed_post_url": "https://frequenthippo.ddns.net/github_jcd1991_market_behavior_lab__hurstregimeswitch__20260921_130836/",
+      "feed_title": "Github_jcd1991_market_behavior_lab__HurstRegimeSwitch__20260921_130836",
+      "known_classes": [],
+      "path": "user_data/strategies/HurstRegimeSwitch.py",
+      "post_id": 104815,
+      "repository": "jcd1991/market-behavior-lab",
+      "review_status": "candidate_requires_review",
+      "source_sha256": "3e6ea54ebbf01ed542fa833df866482c0ea8f5f6737be034caa2a3b9db5ed3a5",
+      "strategy_classes": [
+        "HurstRegimeSwitch"
+      ],
+      "url": "https://raw.githubusercontent.com/jcd1991/market-behavior-lab/16a04bd8b1004e90b9b17b556429a2eb730d96da/user_data/strategies/HurstRegimeSwitch.py"
+    },
+    {
+      "commit": "16a04bd8b1004e90b9b17b556429a2eb730d96da",
+      "feed_date": "2026-09-21T14:30:36",
+      "feed_post_url": "https://frequenthippo.ddns.net/github_jcd1991_market_behavior_lab__dispersionconditionedmomentum__20260921_130836/",
+      "feed_title": "Github_jcd1991_market_behavior_lab__DispersionConditionedMomentum__20260921_130836",
+      "known_classes": [],
+      "path": "user_data/strategies/DispersionConditionedMomentum.py",
+      "post_id": 104814,
+      "repository": "jcd1991/market-behavior-lab",
+      "review_status": "candidate_requires_review",
+      "source_sha256": "b6acfc80da21b0610d5ef396522326a04dfb44bc32a67b00e0e469f1cfaef398",
+      "strategy_classes": [
+        "DispersionConditionedMomentum"
+      ],
+      "url": "https://raw.githubusercontent.com/jcd1991/market-behavior-lab/16a04bd8b1004e90b9b17b556429a2eb730d96da/user_data/strategies/DispersionConditionedMomentum.py"
+    },
+    {
+      "commit": "16a04bd8b1004e90b9b17b556429a2eb730d96da",
+      "feed_date": "2026-09-21T14:16:41",
+      "feed_post_url": "https://frequenthippo.ddns.net/github_jcd1991_market_behavior_lab__volumeprofileohlcvproxy__20260921_130836/",
+      "feed_title": "Github_jcd1991_market_behavior_lab__VolumeProfileOHLCVProxy__20260921_130836",
+      "known_classes": [],
+      "path": "user_data/strategies/VolumeProfileOHLCVProxy.py",
+      "post_id": 104813,
+      "repository": "jcd1991/market-behavior-lab",
+      "review_status": "candidate_requires_review",
+      "source_sha256": "2941ef2c7fcf70214630a08145ba36b387e8aecfd52632f39693ac59e0a9d274",
+      "strategy_classes": [
+        "VolumeProfileOHLCVProxy"
+      ],
+      "url": "https://raw.githubusercontent.com/jcd1991/market-behavior-lab/16a04bd8b1004e90b9b17b556429a2eb730d96da/user_data/strategies/VolumeProfileOHLCVProxy.py"
+    },
+    {
+      "commit": "16a04bd8b1004e90b9b17b556429a2eb730d96da",
+      "feed_date": "2026-09-21T13:55:18",
+      "feed_post_url": "https://frequenthippo.ddns.net/github_jcd1991_market_behavior_lab__multihorizontrendreversal__20260921_130836/",
+      "feed_title": "Github_jcd1991_market_behavior_lab__MultiHorizonTrendReversal__20260921_130836",
+      "known_classes": [],
+      "path": "user_data/strategies/MultiHorizonTrendReversal.py",
+      "post_id": 104812,
+      "repository": "jcd1991/market-behavior-lab",
+      "review_status": "candidate_requires_review",
+      "source_sha256": "5e8013918d69a2311b4e52051ec1b72bfee46408a04e194ceee76bc8aafacea2",
+      "strategy_classes": [
+        "MultiHorizonTrendReversal"
+      ],
+      "url": "https://raw.githubusercontent.com/jcd1991/market-behavior-lab/16a04bd8b1004e90b9b17b556429a2eb730d96da/user_data/strategies/MultiHorizonTrendReversal.py"
+    },
+    {
+      "commit": "16a04bd8b1004e90b9b17b556429a2eb730d96da",
+      "feed_date": "2026-09-21T13:55:16",
+      "feed_post_url": "https://frequenthippo.ddns.net/github_jcd1991_market_behavior_lab__standalonebreakouttrend__20260921_130836/",
+      "feed_title": "Github_jcd1991_market_behavior_lab__StandaloneBreakoutTrend__20260921_130836",
+      "known_classes": [],
+      "path": "user_data/strategies/StandaloneBreakoutTrend.py",
+      "post_id": 104811,
+      "repository": "jcd1991/market-behavior-lab",
+      "review_status": "candidate_requires_review",
+      "source_sha256": "76778c5b9670da8bce8647015b349d401180a64b1e54bf0d16d2936b990f2d3e",
+      "strategy_classes": [
+        "StandaloneBreakoutTrend"
+      ],
+      "url": "https://raw.githubusercontent.com/jcd1991/market-behavior-lab/16a04bd8b1004e90b9b17b556429a2eb730d96da/user_data/strategies/StandaloneBreakoutTrend.py"
+    },
+    {
+      "commit": "16a04bd8b1004e90b9b17b556429a2eb730d96da",
+      "feed_date": "2026-09-21T13:50:02",
+      "feed_post_url": "https://frequenthippo.ddns.net/github_jcd1991_market_behavior_lab__baselineemaadx__20260921_130836/",
+      "feed_title": "Github_jcd1991_market_behavior_lab__BaselineEMAADX__20260921_130836",
+      "known_classes": [],
+      "path": "user_data/strategies/BaselineEMAADX.py",
+      "post_id": 104810,
+      "repository": "jcd1991/market-behavior-lab",
+      "review_status": "candidate_requires_review",
+      "source_sha256": "d96074c75f2c4083be8fc845583f3453571ade8de878fe6bf64183fbd229d5ec",
+      "strategy_classes": [
+        "BaselineEMAADX"
+      ],
+      "url": "https://raw.githubusercontent.com/jcd1991/market-behavior-lab/16a04bd8b1004e90b9b17b556429a2eb730d96da/user_data/strategies/BaselineEMAADX.py"
+    },
+    {
+      "commit": "16a04bd8b1004e90b9b17b556429a2eb730d96da",
+      "feed_date": "2026-09-21T13:49:18",
+      "feed_post_url": "https://frequenthippo.ddns.net/github_jcd1991_market_behavior_lab__symmetrictrendveto__20260921_130836/",
+      "feed_title": "Github_jcd1991_market_behavior_lab__SymmetricTrendVeto__20260921_130836",
+      "known_classes": [],
+      "path": "user_data/strategies/SymmetricTrendVeto.py",
+      "post_id": 104809,
+      "repository": "jcd1991/market-behavior-lab",
+      "review_status": "candidate_requires_review",
+      "source_sha256": "694e5c084afdd6d241e52880a9a56cb3100cb1aa1532aea24638f7f27af001b8",
+      "strategy_classes": [
+        "SymmetricTrendVeto"
+      ],
+      "url": "https://raw.githubusercontent.com/jcd1991/market-behavior-lab/16a04bd8b1004e90b9b17b556429a2eb730d96da/user_data/strategies/SymmetricTrendVeto.py"
+    },
+    {
+      "commit": "16a04bd8b1004e90b9b17b556429a2eb730d96da",
+      "feed_date": "2026-09-21T13:36:32",
+      "feed_post_url": "https://frequenthippo.ddns.net/github_jcd1991_market_behavior_lab__simplemeanreversioncontrol__20260921_130836/",
+      "feed_title": "Github_jcd1991_market_behavior_lab__SimpleMeanReversionControl__20260921_130836",
+      "known_classes": [],
+      "path": "user_data/strategies/SimpleMeanReversionControl.py",
+      "post_id": 104808,
+      "repository": "jcd1991/market-behavior-lab",
+      "review_status": "candidate_requires_review",
+      "source_sha256": "5834bcfb16373144104de813411e2bb74c3c8c1f96978495bc6b22510a929543",
+      "strategy_classes": [
+        "SimpleMeanReversionControl"
+      ],
+      "url": "https://raw.githubusercontent.com/jcd1991/market-behavior-lab/16a04bd8b1004e90b9b17b556429a2eb730d96da/user_data/strategies/SimpleMeanReversionControl.py"
+    },
+    {
+      "commit": "189fbe1ba23c9ff952cc4a4e09c5ea69b72fa738",
+      "feed_date": "2026-09-21T10:13:51",
+      "feed_post_url": "https://frequenthippo.ddns.net/github_m1ch43lv_strategy_audit__regimerotationbot__20260921_044120/",
+      "feed_title": "Github_M1ch43lV_strategy_audit__RegimeRotationBot__20260921_044120",
+      "known_classes": [],
+      "path": "bot/RegimeRotationBot.py",
+      "post_id": 104807,
+      "repository": "M1ch43lV/strategy-audit",
+      "review_status": "local_audit_source",
+      "source_sha256": "cd28ffb9fc4f423cf9063bf0b243d9c6416d7997dccad3159a99a09db5234092",
+      "strategy_classes": [
+        "RegimeRotationBot"
+      ],
+      "url": "https://raw.githubusercontent.com/M1ch43lV/strategy-audit/189fbe1ba23c9ff952cc4a4e09c5ea69b72fa738/bot/RegimeRotationBot.py"
+    },
+    {
+      "commit": "a11dde73b1e530eb808a7ba4b6cac93c1aa796f5",
+      "feed_date": "2026-09-20T20:13:47",
+      "feed_post_url": "https://frequenthippo.ddns.net/github_m1ch43lv_strategy_audit__regimerotationbot__20260920_200816/",
+      "feed_title": "Github_M1ch43lV_strategy_audit__RegimeRotationBot__20260920_200816",
+      "known_classes": [],
+      "path": "bot/RegimeRotationBot.py",
+      "post_id": 104806,
+      "repository": "M1ch43lV/strategy-audit",
+      "review_status": "local_audit_source",
+      "source_sha256": "f98e99d9a3cabb70a6412373f88686e98f93e82f7a171fa0492865da8dcccc0a",
+      "strategy_classes": [
+        "RegimeRotationBot"
+      ],
+      "url": "https://raw.githubusercontent.com/M1ch43lV/strategy-audit/a11dde73b1e530eb808a7ba4b6cac93c1aa796f5/bot/RegimeRotationBot.py"
+    },
+    {
+      "commit": "e479493782eebf48586320b7bbea8dc212724516",
+      "feed_date": "2026-09-20T11:05:08",
+      "feed_post_url": "https://frequenthippo.ddns.net/github_ayhanarashtasin_multilivebot__zecvolumeflow5m__20260920_073741/",
+      "feed_title": "Github_ayhanarashtasin_MultiLiveBot__ZECVolumeFlow5M__20260920_073741",
+      "known_classes": [],
+      "path": "strategies/approved/ZECVolumeFlow5M.py",
+      "post_id": 104805,
+      "repository": "ayhanarashtasin/MultiLiveBot",
+      "review_status": "candidate_requires_review",
+      "source_sha256": "99c57cf618cb6f5d3ffadeb18449b9f11b3f7fde5f941db65aecfea592bc2146",
+      "strategy_classes": [
+        "ZECVolumeFlow5M"
+      ],
+      "url": "https://raw.githubusercontent.com/ayhanarashtasin/MultiLiveBot/e479493782eebf48586320b7bbea8dc212724516/strategies/approved/ZECVolumeFlow5M.py"
+    },
+    {
+      "commit": "777b5bb8245ce36b9d32c21fc41decbaa93eecb3",
+      "feed_date": "2026-09-20T02:00:39",
+      "feed_post_url": "https://frequenthippo.ddns.net/github_jerome_benoit_freqai_strategies__quickadapterv3__20260920_002711/",
+      "feed_title": "Github_jerome_benoit_freqai_strategies__QuickAdapterV3__20260920_002711",
+      "known_classes": [
+        "QuickAdapterV3"
+      ],
+      "path": "quickadapter/user_data/strategies/QuickAdapterV3.py",
+      "post_id": 104804,
+      "repository": "jerome-benoit/freqai-strategies",
+      "review_status": "known_class_name",
+      "source_sha256": "b4f146f58568bb40bb730d21fce6367497aa7be99e827c0bbe091f8f89a5fe96",
+      "strategy_classes": [
+        "QuickAdapterV3"
+      ],
+      "url": "https://raw.githubusercontent.com/jerome-benoit/freqai-strategies/777b5bb8245ce36b9d32c21fc41decbaa93eecb3/quickadapter/user_data/strategies/QuickAdapterV3.py"
+    },
+    {
+      "commit": "eb5a8cbf654fcdf0d90a9d46460847cffb707e1f",
+      "feed_date": "2026-09-19T04:22:42",
+      "feed_post_url": "https://frequenthippo.ddns.net/github_jcd1991_market_behavior_lab__slowresidualrotation__20260919_000040/",
+      "feed_title": "Github_jcd1991_market_behavior_lab__SlowResidualRotation__20260919_000040",
+      "known_classes": [],
+      "path": "user_data/strategies/SlowResidualRotation.py",
+      "post_id": 104803,
+      "repository": "jcd1991/market-behavior-lab",
+      "review_status": "candidate_requires_review",
+      "source_sha256": "f8ad3063e626fdd6e517c7c317d9c4aad066724f3854c9344f37857d8c0ea366",
+      "strategy_classes": [
+        "SlowResidualRotation"
+      ],
+      "url": "https://raw.githubusercontent.com/jcd1991/market-behavior-lab/eb5a8cbf654fcdf0d90a9d46460847cffb707e1f/user_data/strategies/SlowResidualRotation.py"
+    },
+    {
+      "commit": "eb5a8cbf654fcdf0d90a9d46460847cffb707e1f",
+      "feed_date": "2026-09-19T04:16:22",
+      "feed_post_url": "https://frequenthippo.ddns.net/github_jcd1991_market_behavior_lab__quietbreakoutswing__20260919_000040/",
+      "feed_title": "Github_jcd1991_market_behavior_lab__QuietBreakoutSwing__20260919_000040",
+      "known_classes": [],
+      "path": "user_data/strategies/QuietBreakoutSwing.py",
+      "post_id": 104802,
+      "repository": "jcd1991/market-behavior-lab",
+      "review_status": "candidate_requires_review",
+      "source_sha256": "08e83ad13e5949d99f2f85c9034b986a9c98dd40bc7939bb566ef2bb6daa46e3",
+      "strategy_classes": [
+        "QuietBreakoutSwing"
+      ],
+      "url": "https://raw.githubusercontent.com/jcd1991/market-behavior-lab/eb5a8cbf654fcdf0d90a9d46460847cffb707e1f/user_data/strategies/QuietBreakoutSwing.py"
+    },
+    {
+      "commit": "eb5a8cbf654fcdf0d90a9d46460847cffb707e1f",
+      "feed_date": "2026-09-19T03:38:40",
+      "feed_post_url": "https://frequenthippo.ddns.net/github_jcd1991_market_behavior_lab__portfolioallocatorspot__20260919_000040/",
+      "feed_title": "Github_jcd1991_market_behavior_lab__PortfolioAllocatorSpot__20260919_000040",
+      "known_classes": [],
+      "path": "user_data/strategies/PortfolioAllocatorSpot.py",
+      "post_id": 104801,
+      "repository": "jcd1991/market-behavior-lab",
+      "review_status": "candidate_requires_review",
+      "source_sha256": "0e58997700ef069f98fcf06bcf69cedfb48f3576b2f49f1d253f248b958a6adf",
+      "strategy_classes": [
+        "PortfolioAllocatorSpot"
+      ],
+      "url": "https://raw.githubusercontent.com/jcd1991/market-behavior-lab/eb5a8cbf654fcdf0d90a9d46460847cffb707e1f/user_data/strategies/PortfolioAllocatorSpot.py"
+    },
+    {
+      "commit": "8937995531bd7a90f4ff504ddaeedcfbe790b3d1",
+      "feed_date": "2026-09-18T23:55:11",
+      "feed_post_url": "https://frequenthippo.ddns.net/github_ncu571633_finance__rsimeanreversion__20260918_213038/",
+      "feed_title": "Github_ncu571633_finance__RSIMeanReversion__20260918_213038",
+      "known_classes": [],
+      "path": "freqtrade-bot/user_data/strategies/RSIMeanReversion.py",
+      "post_id": 104800,
+      "repository": "ncu571633/finance",
+      "review_status": "candidate_requires_review",
+      "source_sha256": "8acbb9c0c895acdb4976f2701abed266fe4c666951b7a8851a18de84fbcab0cc",
+      "strategy_classes": [
+        "RSIMeanReversion"
+      ],
+      "url": "https://raw.githubusercontent.com/ncu571633/finance/8937995531bd7a90f4ff504ddaeedcfbe790b3d1/freqtrade-bot/user_data/strategies/RSIMeanReversion.py"
+    },
+    {
+      "commit": "6ca3d7649eda9ce16f0c6fc60b8a5ca180bee6be",
+      "feed_date": "2026-09-18T19:54:31",
+      "feed_post_url": "https://frequenthippo.ddns.net/github_geovanybramanthya_azuraazurequant__apexdualalpha_omni_v13_highvelocity__20260918_180015/",
+      "feed_title": "Github_geovanybramanthya_AzuraAzureQuant__ApexDualAlpha_Omni_V13_HighVelocity__20260918_180015",
+      "known_classes": [],
+      "path": "user_data/strategies/ApexDualAlpha_Omni_V13_HighVelocity.py",
+      "post_id": 104799,
+      "repository": "geovanybramanthya/AzuraAzureQuant",
+      "review_status": "candidate_requires_review",
+      "source_sha256": "1377fbe5021b796789f31fc7938bba3bbdbe7b687ab39604a550f97a9c9b202b",
+      "strategy_classes": [
+        "ApexDualAlpha_Omni_V13_HighVelocity"
+      ],
+      "url": "https://raw.githubusercontent.com/geovanybramanthya/AzuraAzureQuant/6ca3d7649eda9ce16f0c6fc60b8a5ca180bee6be/user_data/strategies/ApexDualAlpha_Omni_V13_HighVelocity.py"
+    },
+    {
+      "commit": "6ca3d7649eda9ce16f0c6fc60b8a5ca180bee6be",
+      "feed_date": "2026-09-18T19:54:29",
+      "feed_post_url": "https://frequenthippo.ddns.net/github_geovanybramanthya_azuraazurequant__apexdualalpha_omni_v14_highvelocity__20260918_180015/",
+      "feed_title": "Github_geovanybramanthya_AzuraAzureQuant__ApexDualAlpha_Omni_V14_HighVelocity__20260918_180015",
+      "known_classes": [],
+      "path": "user_data/strategies/ApexDualAlpha_Omni_V14_HighVelocity.py",
+      "post_id": 104798,
+      "repository": "geovanybramanthya/AzuraAzureQuant",
+      "review_status": "candidate_requires_review",
+      "source_sha256": "f5c3ba45023d5949baf7db6daf76ec3cfef9a52fe0051d7aeddef27633111dcf",
+      "strategy_classes": [
+        "ApexDualAlpha_Omni_V14_HighVelocity"
+      ],
+      "url": "https://raw.githubusercontent.com/geovanybramanthya/AzuraAzureQuant/6ca3d7649eda9ce16f0c6fc60b8a5ca180bee6be/user_data/strategies/ApexDualAlpha_Omni_V14_HighVelocity.py"
+    },
+    {
+      "commit": "6ca3d7649eda9ce16f0c6fc60b8a5ca180bee6be",
+      "feed_date": "2026-09-18T19:54:27",
+      "feed_post_url": "https://frequenthippo.ddns.net/github_geovanybramanthya_azuraazurequant__apexdualalpha_omni_v15_trialpha__20260918_180015/",
+      "feed_title": "Github_geovanybramanthya_AzuraAzureQuant__ApexDualAlpha_Omni_V15_TriAlpha__20260918_180015",
+      "known_classes": [],
+      "path": "user_data/strategies/ApexDualAlpha_Omni_V15_TriAlpha.py",
+      "post_id": 104797,
+      "repository": "geovanybramanthya/AzuraAzureQuant",
+      "review_status": "candidate_requires_review",
+      "source_sha256": "98c2fb5113e959ff837f73462db5e96b40c3f8be9ffb637f355cad03ba3a958f",
+      "strategy_classes": [
+        "ApexDualAlpha_Omni_V15_TriAlpha"
+      ],
+      "url": "https://raw.githubusercontent.com/geovanybramanthya/AzuraAzureQuant/6ca3d7649eda9ce16f0c6fc60b8a5ca180bee6be/user_data/strategies/ApexDualAlpha_Omni_V15_TriAlpha.py"
+    },
+    {
+      "commit": "db07ceb71ac165a38fe200a86ae48586ed040f60",
+      "feed_date": "2026-09-18T19:48:47",
+      "feed_post_url": "https://frequenthippo.ddns.net/github_roshan7869_algotrading__bos_v1_short_top9_vwap_dir__20260825_161638/",
+      "feed_title": "Github_Roshan7869_algotrading__bos_v1_short_top9_vwap_dir__20260825_161638",
+      "known_classes": [],
+      "path": "user_data/strategies/ssrn-4631351_vwap_holy_grail/bos_v1_short_top9_vwap_dir.py",
+      "post_id": 104796,
+      "repository": "Roshan7869/algotrading",
+      "review_status": "candidate_requires_review",
+      "source_sha256": "f6c8ab57871379e1ba77c74cd2bb837de7f9f4f510d29c3beba0db795cd4927b",
+      "strategy_classes": [
+        "BOS_V1_ShortTop9_VWAP_Dir"
+      ],
+      "url": "https://raw.githubusercontent.com/Roshan7869/algotrading/db07ceb71ac165a38fe200a86ae48586ed040f60/user_data/strategies/ssrn-4631351_vwap_holy_grail/bos_v1_short_top9_vwap_dir.py"
+    },
+    {
+      "commit": "6ca3d7649eda9ce16f0c6fc60b8a5ca180bee6be",
+      "feed_date": "2026-09-18T19:48:41",
+      "feed_post_url": "https://frequenthippo.ddns.net/github_geovanybramanthya_azuraazurequant__apexdualalpha_omni_v9_supreme__20260918_180015/",
+      "feed_title": "Github_geovanybramanthya_AzuraAzureQuant__ApexDualAlpha_Omni_V9_Supreme__20260918_180015",
+      "known_classes": [],
+      "path": "user_data/strategies/ApexDualAlpha_Omni_V9_Supreme.py",
+      "post_id": 104795,
+      "repository": "geovanybramanthya/AzuraAzureQuant",
+      "review_status": "candidate_requires_review",
+      "source_sha256": "4147975e31c395b188bbc43808e5fa4b3d5e26d98c4054c8b16e3d07b941a4ce",
+      "strategy_classes": [
+        "ApexDualAlpha_Omni_V9_Supreme"
+      ],
+      "url": "https://raw.githubusercontent.com/geovanybramanthya/AzuraAzureQuant/6ca3d7649eda9ce16f0c6fc60b8a5ca180bee6be/user_data/strategies/ApexDualAlpha_Omni_V9_Supreme.py"
+    },
+    {
+      "commit": "6ca3d7649eda9ce16f0c6fc60b8a5ca180bee6be",
+      "feed_date": "2026-09-18T19:47:30",
+      "feed_post_url": "https://frequenthippo.ddns.net/github_geovanybramanthya_azuraazurequant__apexdualalpha_omni_v12_active__20260918_180015/",
+      "feed_title": "Github_geovanybramanthya_AzuraAzureQuant__ApexDualAlpha_Omni_V12_Active__20260918_180015",
+      "known_classes": [],
+      "path": "user_data/strategies/ApexDualAlpha_Omni_V12_Active.py",
+      "post_id": 104794,
+      "repository": "geovanybramanthya/AzuraAzureQuant",
+      "review_status": "candidate_requires_review",
+      "source_sha256": "0c172031586ffd683f0dead3ec245be790ef303de9385365d9eefe355e795c2c",
+      "strategy_classes": [
+        "ApexDualAlpha_Omni_V12_Active"
+      ],
+      "url": "https://raw.githubusercontent.com/geovanybramanthya/AzuraAzureQuant/6ca3d7649eda9ce16f0c6fc60b8a5ca180bee6be/user_data/strategies/ApexDualAlpha_Omni_V12_Active.py"
+    },
+    {
+      "commit": "6ca3d7649eda9ce16f0c6fc60b8a5ca180bee6be",
+      "feed_date": "2026-09-18T19:46:48",
+      "feed_post_url": "https://frequenthippo.ddns.net/github_geovanybramanthya_azuraazurequant__apexdualalpha_omni_v11_resolved__20260918_180015/",
+      "feed_title": "Github_geovanybramanthya_AzuraAzureQuant__ApexDualAlpha_Omni_V11_Resolved__20260918_180015",
+      "known_classes": [],
+      "path": "user_data/strategies/ApexDualAlpha_Omni_V11_Resolved.py",
+      "post_id": 104793,
+      "repository": "geovanybramanthya/AzuraAzureQuant",
+      "review_status": "candidate_requires_review",
+      "source_sha256": "2909680c49e5b75496414130280321b94a3561323b6987c60bb4826f15c849ed",
+      "strategy_classes": [
+        "ApexDualAlpha_Omni_V11_Resolved"
+      ],
+      "url": "https://raw.githubusercontent.com/geovanybramanthya/AzuraAzureQuant/6ca3d7649eda9ce16f0c6fc60b8a5ca180bee6be/user_data/strategies/ApexDualAlpha_Omni_V11_Resolved.py"
+    },
+    {
+      "commit": "6ca3d7649eda9ce16f0c6fc60b8a5ca180bee6be",
+      "feed_date": "2026-09-18T19:45:37",
+      "feed_post_url": "https://frequenthippo.ddns.net/github_geovanybramanthya_azuraazurequant__apexdualalpha_omni_v11_calibrated__20260918_180015/",
+      "feed_title": "Github_geovanybramanthya_AzuraAzureQuant__ApexDualAlpha_Omni_V11_Calibrated__20260918_180015",
+      "known_classes": [],
+      "path": "user_data/strategies/ApexDualAlpha_Omni_V11_Calibrated.py",
+      "post_id": 104792,
+      "repository": "geovanybramanthya/AzuraAzureQuant",
+      "review_status": "candidate_requires_review",
+      "source_sha256": "9d3fab88d24c78134d4a83a265f1be4d0821ba7ccb666c77e63bd5f357070636",
+      "strategy_classes": [
+        "ApexDualAlpha_Omni_V11_Calibrated"
+      ],
+      "url": "https://raw.githubusercontent.com/geovanybramanthya/AzuraAzureQuant/6ca3d7649eda9ce16f0c6fc60b8a5ca180bee6be/user_data/strategies/ApexDualAlpha_Omni_V11_Calibrated.py"
+    },
+    {
+      "commit": "6ca3d7649eda9ce16f0c6fc60b8a5ca180bee6be",
+      "feed_date": "2026-09-18T19:45:36",
+      "feed_post_url": "https://frequenthippo.ddns.net/github_geovanybramanthya_azuraazurequant__apexdualalpha_omni_v11_optionb__20260918_180015/",
+      "feed_title": "Github_geovanybramanthya_AzuraAzureQuant__ApexDualAlpha_Omni_V11_OptionB__20260918_180015",
+      "known_classes": [],
+      "path": "user_data/strategies/ApexDualAlpha_Omni_V11_OptionB.py",
+      "post_id": 104791,
+      "repository": "geovanybramanthya/AzuraAzureQuant",
+      "review_status": "candidate_requires_review",
+      "source_sha256": "0167849e04d2fa71d0d5b77a0b48bb82cd6d3909feda433e603ad8bdaca196f3",
+      "strategy_classes": [
+        "ApexDualAlpha_Omni_V11_OptionB"
+      ],
+      "url": "https://raw.githubusercontent.com/geovanybramanthya/AzuraAzureQuant/6ca3d7649eda9ce16f0c6fc60b8a5ca180bee6be/user_data/strategies/ApexDualAlpha_Omni_V11_OptionB.py"
+    },
+    {
+      "commit": "474e761904a19a03f294f1829272bd88e04858b5",
+      "feed_date": "2026-09-18T17:43:55",
+      "feed_post_url": "https://frequenthippo.ddns.net/github_yussefkannich_quant_validation__emacrossovercheck__20260918_131437/",
+      "feed_title": "Github_Yussefkannich_quant_validation__EmaCrossoverCheck__20260918_131437",
+      "known_classes": [],
+      "path": "freqtrade/EmaCrossoverCheck.py",
+      "post_id": 104790,
+      "repository": "Yussefkannich/quant-validation",
+      "review_status": "candidate_requires_review",
+      "source_sha256": "c3001f0635943e5aa1500af9959ecade599bc822061ca37c5f9a3cdcc5130de7",
+      "strategy_classes": [
+        "EmaCrossoverCheck"
+      ],
+      "url": "https://raw.githubusercontent.com/Yussefkannich/quant-validation/474e761904a19a03f294f1829272bd88e04858b5/freqtrade/EmaCrossoverCheck.py"
+    },
+    {
+      "commit": "8f9adc398a0b73eb81ae1145b3309785f0863a00",
+      "feed_date": "2026-09-18T15:48:18",
+      "feed_post_url": "https://frequenthippo.ddns.net/github_jerome_benoit_freqai_strategies__quickadapterv3__20260918_152359/",
+      "feed_title": "Github_jerome_benoit_freqai_strategies__QuickAdapterV3__20260918_152359",
+      "known_classes": [
+        "QuickAdapterV3"
+      ],
+      "path": "quickadapter/user_data/strategies/QuickAdapterV3.py",
+      "post_id": 104789,
+      "repository": "jerome-benoit/freqai-strategies",
+      "review_status": "known_class_name",
+      "source_sha256": "d6b3550fd45285b15834d6415ad52a076a2df4999f7f4abf0f7d4e750dd88834",
+      "strategy_classes": [
+        "QuickAdapterV3"
+      ],
+      "url": "https://raw.githubusercontent.com/jerome-benoit/freqai-strategies/8f9adc398a0b73eb81ae1145b3309785f0863a00/quickadapter/user_data/strategies/QuickAdapterV3.py"
+    },
+    {
+      "commit": "165cf294df7199f10a744d6460cf8645a95fca79",
+      "feed_date": "2026-09-18T11:32:05",
+      "feed_post_url": "https://frequenthippo.ddns.net/github_jotalbot_model__freqtrade_t2__20260918_104502/",
+      "feed_title": "Github_JoTalbot_model__freqtrade_t2__20260918_104502",
+      "known_classes": [],
+      "path": "octopus-aios-integration/worktree/scripts/aios/freqtrade/freqtrade_t2.py",
+      "post_id": 104788,
+      "repository": "JoTalbot/model",
+      "review_status": "candidate_requires_review",
+      "source_sha256": "3f0adef2a9361a31666fcfbdae470c0d93cbc1ff112964f76b80c10c73dd6e1b",
+      "strategy_classes": [
+        "T2Momentum"
+      ],
+      "url": "https://raw.githubusercontent.com/JoTalbot/model/165cf294df7199f10a744d6460cf8645a95fca79/octopus-aios-integration/worktree/scripts/aios/freqtrade/freqtrade_t2.py"
+    },
+    {
+      "commit": "d3572689679015b9eb76af06e757097f03574039",
+      "feed_date": "2026-09-18T04:40:01",
+      "feed_post_url": "https://frequenthippo.ddns.net/github_m1ch43lv_strategy_audit__trendbreakout__20260916_180122/",
+      "feed_title": "Github_M1ch43lV_strategy_audit__TrendBreakout__20260916_180122",
+      "known_classes": [
+        "TrendBreakout"
+      ],
+      "path": "repos/Kureshi25_cryptobot/user_data/strategies/TrendBreakout.py",
+      "post_id": 104787,
+      "repository": "M1ch43lV/strategy-audit",
+      "review_status": "local_audit_source",
+      "source_sha256": "694ac356d779c955633cbb62579ee52cc6f18ce74c1d5b2e9a8634b3014eaaac",
+      "strategy_classes": [
+        "TrendBreakout"
+      ],
+      "url": "https://raw.githubusercontent.com/M1ch43lV/strategy-audit/d3572689679015b9eb76af06e757097f03574039/repos/Kureshi25_cryptobot/user_data/strategies/TrendBreakout.py"
+    },
+    {
+      "commit": "5395c3a9395f9137ef13617814a8b2443dad0665",
+      "feed_date": "2026-09-18T04:39:33",
+      "feed_post_url": "https://frequenthippo.ddns.net/github_geovanybramanthya_bot_azuraazurequant__apexdualalpha_m15_longalpha__20260913_152406/",
+      "feed_title": "Github_geovanybramanthya_bot_AzuraAzureQuant__ApexDualAlpha_M15_LongAlpha__20260913_152406",
+      "known_classes": [],
+      "path": "user_data/strategies/ApexDualAlpha_M15_LongAlpha.py",
+      "post_id": 104786,
+      "repository": "geovanybramanthya-bot/AzuraAzureQuant",
+      "review_status": "candidate_requires_review",
+      "source_sha256": "0931df2070d14c91789dca17feaace044b6da580d3dcad5cf66ea1199b1e6c4e",
+      "strategy_classes": [
+        "ApexDualAlpha_M15_LongAlpha"
+      ],
+      "url": "https://raw.githubusercontent.com/geovanybramanthya-bot/AzuraAzureQuant/5395c3a9395f9137ef13617814a8b2443dad0665/user_data/strategies/ApexDualAlpha_M15_LongAlpha.py"
+    },
+    {
+      "commit": "1c8715591bc1664cf52d366fd4cb1c2873f7a99a",
+      "feed_date": "2026-09-18T03:57:37",
+      "feed_post_url": "https://frequenthippo.ddns.net/github_jstrange22_cell_tradeworks__tradevisorbridge__20260531_224421/",
+      "feed_title": "Github_jstrange22_cell_tradeworks__TradeVisorBridge__20260531_224421",
+      "known_classes": [],
+      "path": "infra/freqtrade/user_data/strategies/TradeVisorBridge.py",
+      "post_id": 104785,
+      "repository": "jstrange22-cell/tradeworks",
+      "review_status": "candidate_requires_review",
+      "source_sha256": "72e99d806d4444354a7a2e6c9de758bdbd0631cc6d6b33cf505bdbe58dca48ad",
+      "strategy_classes": [
+        "TradeVisorBridge"
+      ],
+      "url": "https://raw.githubusercontent.com/jstrange22-cell/tradeworks/1c8715591bc1664cf52d366fd4cb1c2873f7a99a/infra/freqtrade/user_data/strategies/TradeVisorBridge.py"
+    },
+    {
+      "commit": "cbcd1e01f0660a263c375e22c0e8838b6626fc22",
+      "feed_date": "2026-09-18T02:01:24",
+      "feed_post_url": "https://frequenthippo.ddns.net/github_jerome_benoit_freqai_strategies__quickadapterv3__20260917_225348/",
+      "feed_title": "Github_jerome_benoit_freqai_strategies__QuickAdapterV3__20260917_225348",
+      "known_classes": [
+        "QuickAdapterV3"
+      ],
+      "path": "quickadapter/user_data/strategies/QuickAdapterV3.py",
+      "post_id": 104784,
+      "repository": "jerome-benoit/freqai-strategies",
+      "review_status": "known_class_name",
+      "source_sha256": "78f855e9737daf8d48fcbae6c9857997b82af163398f07c88d04daa18cff4838",
+      "strategy_classes": [
+        "QuickAdapterV3"
+      ],
+      "url": "https://raw.githubusercontent.com/jerome-benoit/freqai-strategies/cbcd1e01f0660a263c375e22c0e8838b6626fc22/quickadapter/user_data/strategies/QuickAdapterV3.py"
+    },
+    {
+      "commit": "e37f5c3490a3b8df367abbc4137dc750e6af2b69",
+      "feed_date": "2026-09-18T01:11:20",
+      "feed_post_url": "https://frequenthippo.ddns.net/github_pablom03_freqtrade__combinedbinhandcluc__20260917_183407/",
+      "feed_title": "Github_PabloM03_freqtrade__CombinedBinHAndCluc__20260917_183407",
+      "path": "user_data/strategies/CombinedBinHAndCluc.py",
+      "post_id": 104783,
+      "repository": "PabloM03/freqtrade",
+      "review_status": "source_fetch_error",
+      "source_error": "HTTP Error 404: Not Found",
+      "url": "https://raw.githubusercontent.com/PabloM03/freqtrade/e37f5c3490a3b8df367abbc4137dc750e6af2b69/user_data/strategies/CombinedBinHAndCluc.py"
+    },
+    {
+      "commit": "5395c3a9395f9137ef13617814a8b2443dad0665",
+      "feed_date": "2026-09-17T23:19:03",
+      "feed_post_url": "https://frequenthippo.ddns.net/github_geovanybramanthya_bot_azuraazurequant__apexdualalpha_omni_v7_evolution__20260913_152406/",
+      "feed_title": "Github_geovanybramanthya_bot_AzuraAzureQuant__ApexDualAlpha_Omni_V7_Evolution__20260913_152406",
+      "known_classes": [],
+      "path": "user_data/strategies/ApexDualAlpha_Omni_V7_Evolution.py",
+      "post_id": 104782,
+      "repository": "geovanybramanthya-bot/AzuraAzureQuant",
+      "review_status": "candidate_requires_review",
+      "source_sha256": "f173b765de1d3b1415a801c53956b5487b8e9e91404544a81b37975eb77b12a8",
+      "strategy_classes": [
+        "ApexDualAlpha_Omni_V7_Evolution"
+      ],
+      "url": "https://raw.githubusercontent.com/geovanybramanthya-bot/AzuraAzureQuant/5395c3a9395f9137ef13617814a8b2443dad0665/user_data/strategies/ApexDualAlpha_Omni_V7_Evolution.py"
+    },
+    {
+      "commit": "5395c3a9395f9137ef13617814a8b2443dad0665",
+      "feed_date": "2026-09-17T23:15:05",
+      "feed_post_url": "https://frequenthippo.ddns.net/github_geovanybramanthya_bot_azuraazurequant__apexdualalpha_omni_v3__20260913_152406/",
+      "feed_title": "Github_geovanybramanthya_bot_AzuraAzureQuant__ApexDualAlpha_Omni_V3__20260913_152406",
+      "known_classes": [],
+      "path": "user_data/strategies/ApexDualAlpha_Omni_V3.py",
+      "post_id": 104781,
+      "repository": "geovanybramanthya-bot/AzuraAzureQuant",
+      "review_status": "candidate_requires_review",
+      "source_sha256": "c94f5124a667bf9e0341c14300b5a7ea4cdc258888d01daf8e4e829ed1a07fbc",
+      "strategy_classes": [
+        "ApexDualAlpha_Omni_V3"
+      ],
+      "url": "https://raw.githubusercontent.com/geovanybramanthya-bot/AzuraAzureQuant/5395c3a9395f9137ef13617814a8b2443dad0665/user_data/strategies/ApexDualAlpha_Omni_V3.py"
+    },
+    {
+      "commit": "5395c3a9395f9137ef13617814a8b2443dad0665",
+      "feed_date": "2026-09-17T23:14:49",
+      "feed_post_url": "https://frequenthippo.ddns.net/github_geovanybramanthya_bot_azuraazurequant__apexdualalpha_omni_v9_candidate__20260913_152406/",
+      "feed_title": "Github_geovanybramanthya_bot_AzuraAzureQuant__ApexDualAlpha_Omni_V9_Candidate__20260913_152406",
+      "known_classes": [],
+      "path": "user_data/strategies/ApexDualAlpha_Omni_V9_Candidate.py",
+      "post_id": 104780,
+      "repository": "geovanybramanthya-bot/AzuraAzureQuant",
+      "review_status": "fixture_or_scaffold_requires_review",
+      "source_sha256": "50a6de5a592b26d1107deeb4f6288cde0d0cc1731eb6838255b137d710128343",
+      "strategy_classes": [
+        "ApexDualAlpha_Omni_V9_Candidate"
+      ],
+      "url": "https://raw.githubusercontent.com/geovanybramanthya-bot/AzuraAzureQuant/5395c3a9395f9137ef13617814a8b2443dad0665/user_data/strategies/ApexDualAlpha_Omni_V9_Candidate.py"
+    },
+    {
+      "commit": "5395c3a9395f9137ef13617814a8b2443dad0665",
+      "feed_date": "2026-09-17T23:07:24",
+      "feed_post_url": "https://frequenthippo.ddns.net/github_geovanybramanthya_bot_azuraazurequant__apexdualalpha_omni_v11_ultimate__20260913_152406/",
+      "feed_title": "Github_geovanybramanthya_bot_AzuraAzureQuant__ApexDualAlpha_Omni_V11_Ultimate__20260913_152406",
+      "known_classes": [],
+      "path": "user_data/strategies/ApexDualAlpha_Omni_V11_Ultimate.py",
+      "post_id": 104779,
+      "repository": "geovanybramanthya-bot/AzuraAzureQuant",
+      "review_status": "candidate_requires_review",
+      "source_sha256": "a217539660fa133db53eb38567da9f39f68d6b4653116286759005b2f4d96b63",
+      "strategy_classes": [
+        "ApexDualAlpha_Omni_V11_Ultimate"
+      ],
+      "url": "https://raw.githubusercontent.com/geovanybramanthya-bot/AzuraAzureQuant/5395c3a9395f9137ef13617814a8b2443dad0665/user_data/strategies/ApexDualAlpha_Omni_V11_Ultimate.py"
+    },
+    {
+      "commit": "5395c3a9395f9137ef13617814a8b2443dad0665",
+      "feed_date": "2026-09-17T23:06:30",
+      "feed_post_url": "https://frequenthippo.ddns.net/github_geovanybramanthya_bot_azuraazurequant__apexdualalpha_omni_v6_shield__20260913_152406/",
+      "feed_title": "Github_geovanybramanthya_bot_AzuraAzureQuant__ApexDualAlpha_Omni_V6_Shield__20260913_152406",
+      "known_classes": [],
+      "path": "user_data/strategies/ApexDualAlpha_Omni_V6_Shield.py",
+      "post_id": 104778,
+      "repository": "geovanybramanthya-bot/AzuraAzureQuant",
+      "review_status": "candidate_requires_review",
+      "source_sha256": "c5e048c756cf9b5dc56477298f602e8d8008180081f8b55b8ec8af9f011a7620",
+      "strategy_classes": [
+        "ApexDualAlpha_Omni_V6_Shield"
+      ],
+      "url": "https://raw.githubusercontent.com/geovanybramanthya-bot/AzuraAzureQuant/5395c3a9395f9137ef13617814a8b2443dad0665/user_data/strategies/ApexDualAlpha_Omni_V6_Shield.py"
+    },
+    {
+      "commit": "5395c3a9395f9137ef13617814a8b2443dad0665",
+      "feed_date": "2026-09-17T23:03:16",
+      "feed_post_url": "https://frequenthippo.ddns.net/github_geovanybramanthya_bot_azuraazurequant__omni_sens_exit_rsi74__20260913_152406/",
+      "feed_title": "Github_geovanybramanthya_bot_AzuraAzureQuant__Omni_Sens_Exit_RSI74__20260913_152406",
+      "known_classes": [],
+      "path": "user_data/strategies/Omni_Sens_Exit_RSI74.py",
+      "post_id": 104777,
+      "repository": "geovanybramanthya-bot/AzuraAzureQuant",
+      "review_status": "candidate_requires_review",
+      "source_sha256": "1a6052f5036596b40e3b8c600a6c7c9173a8d2f43b7cbc990978aec2a8c5f237",
+      "strategy_classes": [
+        "Omni_Sens_Exit_RSI74"
+      ],
+      "url": "https://raw.githubusercontent.com/geovanybramanthya-bot/AzuraAzureQuant/5395c3a9395f9137ef13617814a8b2443dad0665/user_data/strategies/Omni_Sens_Exit_RSI74.py"
+    },
+    {
+      "commit": "5395c3a9395f9137ef13617814a8b2443dad0665",
+      "feed_date": "2026-09-17T23:03:13",
+      "feed_post_url": "https://frequenthippo.ddns.net/github_geovanybramanthya_bot_azuraazurequant__omni_v6_roifloor_6__20260913_152406/",
+      "feed_title": "Github_geovanybramanthya_bot_AzuraAzureQuant__Omni_V6_ROIFloor_6__20260913_152406",
+      "known_classes": [],
+      "path": "user_data/strategies/Omni_V6_ROIFloor_6.py",
+      "post_id": 104776,
+      "repository": "geovanybramanthya-bot/AzuraAzureQuant",
+      "review_status": "candidate_requires_review",
+      "source_sha256": "76a82c74245d00aa33b09759dbb5a350608f63b5ecdb9429af143bfb550c2f3a",
+      "strategy_classes": [
+        "Omni_V6_ROIFloor_6"
+      ],
+      "url": "https://raw.githubusercontent.com/geovanybramanthya-bot/AzuraAzureQuant/5395c3a9395f9137ef13617814a8b2443dad0665/user_data/strategies/Omni_V6_ROIFloor_6.py"
+    },
+    {
+      "commit": "5395c3a9395f9137ef13617814a8b2443dad0665",
+      "feed_date": "2026-09-17T23:03:12",
+      "feed_post_url": "https://frequenthippo.ddns.net/github_geovanybramanthya_bot_azuraazurequant__omni_v6_roifloor_8__20260913_152406/",
+      "feed_title": "Github_geovanybramanthya_bot_AzuraAzureQuant__Omni_V6_ROIFloor_8__20260913_152406",
+      "known_classes": [],
+      "path": "user_data/strategies/Omni_V6_ROIFloor_8.py",
+      "post_id": 104775,
+      "repository": "geovanybramanthya-bot/AzuraAzureQuant",
+      "review_status": "candidate_requires_review",
+      "source_sha256": "57a6a83b83778def297bd2bb9807d5605c181025d0c35986696b5af56edde7e0",
+      "strategy_classes": [
+        "Omni_V6_ROIFloor_8"
+      ],
+      "url": "https://raw.githubusercontent.com/geovanybramanthya-bot/AzuraAzureQuant/5395c3a9395f9137ef13617814a8b2443dad0665/user_data/strategies/Omni_V6_ROIFloor_8.py"
+    },
+    {
+      "commit": "5395c3a9395f9137ef13617814a8b2443dad0665",
+      "feed_date": "2026-09-17T23:02:11",
+      "feed_post_url": "https://frequenthippo.ddns.net/github_geovanybramanthya_bot_azuraazurequant__omni_sens_adx_plus2__20260913_152406/",
+      "feed_title": "Github_geovanybramanthya_bot_AzuraAzureQuant__Omni_Sens_ADX_Plus2__20260913_152406",
+      "known_classes": [],
+      "path": "user_data/strategies/Omni_Sens_ADX_Plus2.py",
+      "post_id": 104774,
+      "repository": "geovanybramanthya-bot/AzuraAzureQuant",
+      "review_status": "candidate_requires_review",
+      "source_sha256": "9a29197534e0036d1a2cb7b1cc4d0d964af59328b619861b04cd53a98950b291",
+      "strategy_classes": [
+        "Omni_Sens_ADX_Plus2"
+      ],
+      "url": "https://raw.githubusercontent.com/geovanybramanthya-bot/AzuraAzureQuant/5395c3a9395f9137ef13617814a8b2443dad0665/user_data/strategies/Omni_Sens_ADX_Plus2.py"
+    },
+    {
+      "commit": "5395c3a9395f9137ef13617814a8b2443dad0665",
+      "feed_date": "2026-09-17T23:02:10",
+      "feed_post_url": "https://frequenthippo.ddns.net/github_geovanybramanthya_bot_azuraazurequant__omni_v6_roifloor_15__20260913_152406/",
+      "feed_title": "Github_geovanybramanthya_bot_AzuraAzureQuant__Omni_V6_ROIFloor_15__20260913_152406",
+      "known_classes": [],
+      "path": "user_data/strategies/Omni_V6_ROIFloor_15.py",
+      "post_id": 104773,
+      "repository": "geovanybramanthya-bot/AzuraAzureQuant",
+      "review_status": "candidate_requires_review",
+      "source_sha256": "23a95c3f7c4b2b1e5159739f34951139aef79b4d0ec8e023ec73f7714d05b6af",
+      "strategy_classes": [
+        "Omni_V6_ROIFloor_15"
+      ],
+      "url": "https://raw.githubusercontent.com/geovanybramanthya-bot/AzuraAzureQuant/5395c3a9395f9137ef13617814a8b2443dad0665/user_data/strategies/Omni_V6_ROIFloor_15.py"
+    },
+    {
+      "commit": "5395c3a9395f9137ef13617814a8b2443dad0665",
+      "feed_date": "2026-09-17T23:01:17",
+      "feed_post_url": "https://frequenthippo.ddns.net/github_geovanybramanthya_bot_azuraazurequant__apexdualalpha_omni_v4__20260913_152406/",
+      "feed_title": "Github_geovanybramanthya_bot_AzuraAzureQuant__ApexDualAlpha_Omni_V4__20260913_152406",
+      "known_classes": [],
+      "path": "user_data/strategies/ApexDualAlpha_Omni_V4.py",
+      "post_id": 104772,
+      "repository": "geovanybramanthya-bot/AzuraAzureQuant",
+      "review_status": "candidate_requires_review",
+      "source_sha256": "63d370b20f885bb4a86742610d0d14a09482ce2e8f72bd2576f42a8a7960f4df",
+      "strategy_classes": [
+        "ApexDualAlpha_Omni_V4"
+      ],
+      "url": "https://raw.githubusercontent.com/geovanybramanthya-bot/AzuraAzureQuant/5395c3a9395f9137ef13617814a8b2443dad0665/user_data/strategies/ApexDualAlpha_Omni_V4.py"
+    },
+    {
+      "commit": "5395c3a9395f9137ef13617814a8b2443dad0665",
+      "feed_date": "2026-09-17T23:01:14",
+      "feed_post_url": "https://frequenthippo.ddns.net/github_geovanybramanthya_bot_azuraazurequant__omni_sens_adx_minus2__20260913_152406/",
+      "feed_title": "Github_geovanybramanthya_bot_AzuraAzureQuant__Omni_Sens_ADX_Minus2__20260913_152406",
+      "known_classes": [],
+      "path": "user_data/strategies/Omni_Sens_ADX_Minus2.py",
+      "post_id": 104771,
+      "repository": "geovanybramanthya-bot/AzuraAzureQuant",
+      "review_status": "candidate_requires_review",
+      "source_sha256": "e8eebacc8bc753d296212658a577d586f8722cbc11254381b505c48d44187ac8",
+      "strategy_classes": [
+        "Omni_Sens_ADX_Minus2"
+      ],
+      "url": "https://raw.githubusercontent.com/geovanybramanthya-bot/AzuraAzureQuant/5395c3a9395f9137ef13617814a8b2443dad0665/user_data/strategies/Omni_Sens_ADX_Minus2.py"
+    },
+    {
+      "commit": "5395c3a9395f9137ef13617814a8b2443dad0665",
+      "feed_date": "2026-09-17T23:01:10",
+      "feed_post_url": "https://frequenthippo.ddns.net/github_geovanybramanthya_bot_azuraazurequant__omni_sens_rsi_39__20260913_152406/",
+      "feed_title": "Github_geovanybramanthya_bot_AzuraAzureQuant__Omni_Sens_RSI_39__20260913_152406",
+      "known_classes": [],
+      "path": "user_data/strategies/Omni_Sens_RSI_39.py",
+      "post_id": 104770,
+      "repository": "geovanybramanthya-bot/AzuraAzureQuant",
+      "review_status": "candidate_requires_review",
+      "source_sha256": "98ac13eb56bfbffbd4554cf0de1647161400d6446999a33886c3362815f2136a",
+      "strategy_classes": [
+        "Omni_Sens_RSI_39"
+      ],
+      "url": "https://raw.githubusercontent.com/geovanybramanthya-bot/AzuraAzureQuant/5395c3a9395f9137ef13617814a8b2443dad0665/user_data/strategies/Omni_Sens_RSI_39.py"
+    },
+    {
+      "commit": "5395c3a9395f9137ef13617814a8b2443dad0665",
+      "feed_date": "2026-09-17T23:00:19",
+      "feed_post_url": "https://frequenthippo.ddns.net/github_geovanybramanthya_bot_azuraazurequant__apexdualalpha_omni_v8_elite__20260913_152406/",
+      "feed_title": "Github_geovanybramanthya_bot_AzuraAzureQuant__ApexDualAlpha_Omni_V8_Elite__20260913_152406",
+      "known_classes": [],
+      "path": "user_data/strategies/ApexDualAlpha_Omni_V8_Elite.py",
+      "post_id": 104769,
+      "repository": "geovanybramanthya-bot/AzuraAzureQuant",
+      "review_status": "candidate_requires_review",
+      "source_sha256": "9f93a10b6464ec0c3b5abe8cc61fb09c6cb0beefcae0c0239f5f3a537a9a5c47",
+      "strategy_classes": [
+        "ApexDualAlpha_Omni_V8_Elite"
+      ],
+      "url": "https://raw.githubusercontent.com/geovanybramanthya-bot/AzuraAzureQuant/5395c3a9395f9137ef13617814a8b2443dad0665/user_data/strategies/ApexDualAlpha_Omni_V8_Elite.py"
+    },
+    {
+      "commit": "5395c3a9395f9137ef13617814a8b2443dad0665",
+      "feed_date": "2026-09-17T23:00:18",
+      "feed_post_url": "https://frequenthippo.ddns.net/github_geovanybramanthya_bot_azuraazurequant__omni_sens_exit_rsi68__20260913_152406/",
+      "feed_title": "Github_geovanybramanthya_bot_AzuraAzureQuant__Omni_Sens_Exit_RSI68__20260913_152406",
+      "known_classes": [],
+      "path": "user_data/strategies/Omni_Sens_Exit_RSI68.py",
+      "post_id": 104768,
+      "repository": "geovanybramanthya-bot/AzuraAzureQuant",
+      "review_status": "candidate_requires_review",
+      "source_sha256": "4394a094716220300845d6ab57b87b27663e7912872bfad31c526fe81722d705",
+      "strategy_classes": [
+        "Omni_Sens_Exit_RSI68"
+      ],
+      "url": "https://raw.githubusercontent.com/geovanybramanthya-bot/AzuraAzureQuant/5395c3a9395f9137ef13617814a8b2443dad0665/user_data/strategies/Omni_Sens_Exit_RSI68.py"
+    },
+    {
+      "commit": "5395c3a9395f9137ef13617814a8b2443dad0665",
+      "feed_date": "2026-09-17T23:00:16",
+      "feed_post_url": "https://frequenthippo.ddns.net/github_geovanybramanthya_bot_azuraazurequant__omni_v6_roifloor_12__20260913_152406/",
+      "feed_title": "Github_geovanybramanthya_bot_AzuraAzureQuant__Omni_V6_ROIFloor_12__20260913_152406",
+      "known_classes": [],
+      "path": "user_data/strategies/Omni_V6_ROIFloor_12.py",
+      "post_id": 104767,
+      "repository": "geovanybramanthya-bot/AzuraAzureQuant",
+      "review_status": "candidate_requires_review",
+      "source_sha256": "31f3378cb41ea3a0f23c863063ee90155b8953ec60a7b756d4fe36f31808097a",
+      "strategy_classes": [
+        "Omni_V6_ROIFloor_12"
+      ],
+      "url": "https://raw.githubusercontent.com/geovanybramanthya-bot/AzuraAzureQuant/5395c3a9395f9137ef13617814a8b2443dad0665/user_data/strategies/Omni_V6_ROIFloor_12.py"
+    },
+    {
+      "commit": "5395c3a9395f9137ef13617814a8b2443dad0665",
+      "feed_date": "2026-09-17T23:00:15",
+      "feed_post_url": "https://frequenthippo.ddns.net/github_geovanybramanthya_bot_azuraazurequant__omni_sens_rsi_43__20260913_152406/",
+      "feed_title": "Github_geovanybramanthya_bot_AzuraAzureQuant__Omni_Sens_RSI_43__20260913_152406",
+      "known_classes": [],
+      "path": "user_data/strategies/Omni_Sens_RSI_43.py",
+      "post_id": 104766,
+      "repository": "geovanybramanthya-bot/AzuraAzureQuant",
+      "review_status": "candidate_requires_review",
+      "source_sha256": "e30df844627f145c5386588da45ec7b331b2320c38416ace521b7e30ba0df427",
+      "strategy_classes": [
+        "Omni_Sens_RSI_43"
+      ],
+      "url": "https://raw.githubusercontent.com/geovanybramanthya-bot/AzuraAzureQuant/5395c3a9395f9137ef13617814a8b2443dad0665/user_data/strategies/Omni_Sens_RSI_43.py"
+    },
+    {
+      "commit": "5395c3a9395f9137ef13617814a8b2443dad0665",
+      "feed_date": "2026-09-17T22:51:16",
+      "feed_post_url": "https://frequenthippo.ddns.net/github_geovanybramanthya_bot_azuraazurequant__apexdualalpha_omni_v2__20260913_152406/",
+      "feed_title": "Github_geovanybramanthya_bot_AzuraAzureQuant__ApexDualAlpha_Omni_V2__20260913_152406",
+      "known_classes": [],
+      "path": "user_data/strategies/ApexDualAlpha_Omni_V2.py",
+      "post_id": 104765,
+      "repository": "geovanybramanthya-bot/AzuraAzureQuant",
+      "review_status": "candidate_requires_review",
+      "source_sha256": "5a4e5f6a5cd7abd7116675a39bb39be88d239381f539a72b31771cb5c879c68d",
+      "strategy_classes": [
+        "ApexDualAlpha_Omni_V2"
+      ],
+      "url": "https://raw.githubusercontent.com/geovanybramanthya-bot/AzuraAzureQuant/5395c3a9395f9137ef13617814a8b2443dad0665/user_data/strategies/ApexDualAlpha_Omni_V2.py"
+    },
+    {
+      "commit": "5395c3a9395f9137ef13617814a8b2443dad0665",
+      "feed_date": "2026-09-17T22:45:44",
+      "feed_post_url": "https://frequenthippo.ddns.net/github_geovanybramanthya_bot_azuraazurequant__apexdualalpha_highvelocity__20260913_152406/",
+      "feed_title": "Github_geovanybramanthya_bot_AzuraAzureQuant__ApexDualAlpha_HighVelocity__20260913_152406",
+      "known_classes": [],
+      "path": "user_data/strategies/ApexDualAlpha_HighVelocity.py",
+      "post_id": 104764,
+      "repository": "geovanybramanthya-bot/AzuraAzureQuant",
+      "review_status": "candidate_requires_review",
+      "source_sha256": "cfaf24f5f0ad7b930ab5402286446f5357b7feef86da63f78312493d89e23424",
+      "strategy_classes": [
+        "ApexDualAlpha_HighVelocity"
+      ],
+      "url": "https://raw.githubusercontent.com/geovanybramanthya-bot/AzuraAzureQuant/5395c3a9395f9137ef13617814a8b2443dad0665/user_data/strategies/ApexDualAlpha_HighVelocity.py"
+    },
+    {
+      "commit": "0696b8cace49e96166408e12496bbd2f05021360",
+      "feed_date": "2026-09-17T18:00:05",
+      "feed_post_url": "https://frequenthippo.ddns.net/github_jcd1991_market_behavior_lab__slowresidualrotation__20260917_134757/",
+      "feed_title": "Github_jcd1991_market_behavior_lab__SlowResidualRotation__20260917_134757",
+      "known_classes": [],
+      "path": "user_data/strategies/SlowResidualRotation.py",
+      "post_id": 104763,
+      "repository": "jcd1991/market-behavior-lab",
+      "review_status": "candidate_requires_review",
+      "source_sha256": "d405d0c5e071a6e8c41fe7e2e1fd1ece79db24c9cc49ccb4a35260cc3ed9737f",
+      "strategy_classes": [
+        "SlowResidualRotation"
+      ],
+      "url": "https://raw.githubusercontent.com/jcd1991/market-behavior-lab/0696b8cace49e96166408e12496bbd2f05021360/user_data/strategies/SlowResidualRotation.py"
+    },
+    {
+      "commit": "0696b8cace49e96166408e12496bbd2f05021360",
+      "feed_date": "2026-09-17T17:53:28",
+      "feed_post_url": "https://frequenthippo.ddns.net/github_jcd1991_market_behavior_lab__quietbreakoutswing__20260917_134757/",
+      "feed_title": "Github_jcd1991_market_behavior_lab__QuietBreakoutSwing__20260917_134757",
+      "known_classes": [],
+      "path": "user_data/strategies/QuietBreakoutSwing.py",
+      "post_id": 104762,
+      "repository": "jcd1991/market-behavior-lab",
+      "review_status": "candidate_requires_review",
+      "source_sha256": "15c2ddca098bc50b664e4ecc6a046f190f4239a266d1e4ff2f0afb617e0bff1a",
+      "strategy_classes": [
+        "QuietBreakoutSwing"
+      ],
+      "url": "https://raw.githubusercontent.com/jcd1991/market-behavior-lab/0696b8cace49e96166408e12496bbd2f05021360/user_data/strategies/QuietBreakoutSwing.py"
+    },
+    {
+      "commit": "0696b8cace49e96166408e12496bbd2f05021360",
+      "feed_date": "2026-09-17T17:40:17",
+      "feed_post_url": "https://frequenthippo.ddns.net/github_jcd1991_market_behavior_lab__crosssectionalrotation_kr__20260917_134757/",
+      "feed_title": "Github_jcd1991_market_behavior_lab__CrossSectionalRotation_KR__20260917_134757",
+      "known_classes": [],
+      "path": "user_data/strategies/CrossSectionalRotation_KR.py",
+      "post_id": 104761,
+      "repository": "jcd1991/market-behavior-lab",
+      "review_status": "candidate_requires_review",
+      "source_sha256": "ab49f3eb435e2593d9ffc5702109a1e2ac79a0bd2dd4ee7130cf0d11ddfa81bc",
+      "strategy_classes": [
+        "CrossSectionalRotation_KR"
+      ],
+      "url": "https://raw.githubusercontent.com/jcd1991/market-behavior-lab/0696b8cace49e96166408e12496bbd2f05021360/user_data/strategies/CrossSectionalRotation_KR.py"
+    },
+    {
+      "commit": "0696b8cace49e96166408e12496bbd2f05021360",
+      "feed_date": "2026-09-17T17:40:16",
+      "feed_post_url": "https://frequenthippo.ddns.net/github_jcd1991_market_behavior_lab__crosssectionalrotation__20260917_134757/",
+      "feed_title": "Github_jcd1991_market_behavior_lab__CrossSectionalRotation__20260917_134757",
+      "known_classes": [],
+      "path": "user_data/strategies/CrossSectionalRotation.py",
+      "post_id": 104760,
+      "repository": "jcd1991/market-behavior-lab",
+      "review_status": "candidate_requires_review",
+      "source_sha256": "4ac93a924e9e936c02bdfcc2b1af6b0db18a39912628e6cc5025358f84107be2",
+      "strategy_classes": [
+        "CrossSectionalRotation"
+      ],
+      "url": "https://raw.githubusercontent.com/jcd1991/market-behavior-lab/0696b8cace49e96166408e12496bbd2f05021360/user_data/strategies/CrossSectionalRotation.py"
+    },
+    {
+      "commit": "0696b8cace49e96166408e12496bbd2f05021360",
+      "feed_date": "2026-09-17T17:14:27",
+      "feed_post_url": "https://frequenthippo.ddns.net/github_jcd1991_market_behavior_lab__portfolioallocatorspot__20260917_134757/",
+      "feed_title": "Github_jcd1991_market_behavior_lab__PortfolioAllocatorSpot__20260917_134757",
+      "known_classes": [],
+      "path": "user_data/strategies/PortfolioAllocatorSpot.py",
+      "post_id": 104759,
+      "repository": "jcd1991/market-behavior-lab",
+      "review_status": "candidate_requires_review",
+      "source_sha256": "14d52d5eb9434201dd409b12e37500abd77c67a6190629c10a427454a0142b8b",
+      "strategy_classes": [
+        "PortfolioAllocatorSpot"
+      ],
+      "url": "https://raw.githubusercontent.com/jcd1991/market-behavior-lab/0696b8cace49e96166408e12496bbd2f05021360/user_data/strategies/PortfolioAllocatorSpot.py"
+    },
+    {
+      "commit": "0696b8cace49e96166408e12496bbd2f05021360",
+      "feed_date": "2026-09-17T17:01:06",
+      "feed_post_url": "https://frequenthippo.ddns.net/github_jcd1991_market_behavior_lab__relativevaluebucket__20260917_134757/",
+      "feed_title": "Github_jcd1991_market_behavior_lab__RelativeValueBucket__20260917_134757",
+      "known_classes": [],
+      "path": "user_data/strategies/RelativeValueBucket.py",
+      "post_id": 104758,
+      "repository": "jcd1991/market-behavior-lab",
+      "review_status": "candidate_requires_review",
+      "source_sha256": "99009c1504460b0e06d8c84935a002943dd279a93303a42420f6e6cd729bdbb2",
+      "strategy_classes": [
+        "RelativeValueBucket"
+      ],
+      "url": "https://raw.githubusercontent.com/jcd1991/market-behavior-lab/0696b8cace49e96166408e12496bbd2f05021360/user_data/strategies/RelativeValueBucket.py"
+    },
+    {
+      "commit": "d3572689679015b9eb76af06e757097f03574039",
+      "feed_date": "2026-09-17T01:27:03",
+      "feed_post_url": "https://frequenthippo.ddns.net/github_m1ch43lv_strategy_audit__keltnerbounce__20260916_180122/",
+      "feed_title": "Github_M1ch43lV_strategy_audit__KeltnerBounce__20260916_180122",
+      "known_classes": [
+        "KeltnerBounce"
+      ],
+      "path": "repos/hamidreza07_freqai-strategy/startegy test/5/__KeltnerBounce/KeltnerBounce.py",
+      "post_id": 104757,
+      "repository": "M1ch43lV/strategy-audit",
+      "review_status": "local_audit_source",
+      "source_sha256": "bb29a1b6dcdc151061f8ac92939289f9776b807805b72e1c66e0e27dc457e2a8",
+      "strategy_classes": [
+        "KeltnerBounce"
+      ],
+      "url": "https://raw.githubusercontent.com/M1ch43lV/strategy-audit/d3572689679015b9eb76af06e757097f03574039/repos/hamidreza07_freqai-strategy/startegy%20test/5/__KeltnerBounce/KeltnerBounce.py"
+    },
+    {
+      "commit": "52c4bd40414645f079a980cf4486dc7af4061efb",
+      "feed_date": "2026-09-17T01:24:36",
+      "feed_post_url": "https://frequenthippo.ddns.net/github_roboticautomations_freqtradestrategies__rsi_futures__3__20260915_233254/",
+      "feed_title": "Github_RoboticAutomations_freqtradestrategies__RSI_Futures__3__20260915_233254",
+      "known_classes": [],
+      "path": "AIRA - open code v2/strategies/rsi-momentum/RSI_Futures__3.py",
+      "post_id": 104756,
+      "repository": "RoboticAutomations/freqtradestrategies",
+      "review_status": "candidate_requires_review",
+      "source_sha256": "e4e5b4ae3fd5ca5f54c36535ae100658f67bc44ef6ce3ca0d95e62b2a5d49fac",
+      "strategy_classes": [
+        "RSI_Futures"
+      ],
+      "url": "https://raw.githubusercontent.com/RoboticAutomations/freqtradestrategies/52c4bd40414645f079a980cf4486dc7af4061efb/AIRA%20-%20open%20code%20v2/strategies/rsi-momentum/RSI_Futures__3.py"
+    },
+    {
+      "commit": "52c4bd40414645f079a980cf4486dc7af4061efb",
+      "feed_date": "2026-09-17T00:46:48",
+      "feed_post_url": "https://frequenthippo.ddns.net/github_roboticautomations_freqtradestrategies__clucmay72018__20260915_233254/",
+      "feed_title": "Github_RoboticAutomations_freqtradestrategies__clucmay72018__20260915_233254",
+      "known_classes": [
+        "ClucMay72018"
+      ],
+      "path": "AIRA - open code v2/tools/bollinger/clucmay72018.py",
+      "post_id": 104755,
+      "repository": "RoboticAutomations/freqtradestrategies",
+      "review_status": "known_class_name",
+      "source_sha256": "14db92eb58ed096e632310b07e8acaca4fe0d002f4599a263f1234ba3b536252",
+      "strategy_classes": [
+        "ClucMay72018"
+      ],
+      "url": "https://raw.githubusercontent.com/RoboticAutomations/freqtradestrategies/52c4bd40414645f079a980cf4486dc7af4061efb/AIRA%20-%20open%20code%20v2/tools/bollinger/clucmay72018.py"
+    },
+    {
+      "commit": "d3572689679015b9eb76af06e757097f03574039",
+      "feed_date": "2026-09-17T00:46:28",
+      "feed_post_url": "https://frequenthippo.ddns.net/github_m1ch43lv_strategy_audit__trendfutures__20260916_180122/",
+      "feed_title": "Github_M1ch43lV_strategy_audit__TrendFutures__20260916_180122",
+      "known_classes": [
+        "TrendFutures"
+      ],
+      "path": "repos/Kureshi25_cryptobot/user_data/strategies/TrendFutures.py",
+      "post_id": 104754,
+      "repository": "M1ch43lV/strategy-audit",
+      "review_status": "local_audit_source",
+      "source_sha256": "996f504ad07d02a330b9b27d10d78fbee3c2edf79d9e715bdc508126c12861bf",
+      "strategy_classes": [
+        "TrendFutures"
+      ],
+      "url": "https://raw.githubusercontent.com/M1ch43lV/strategy-audit/d3572689679015b9eb76af06e757097f03574039/repos/Kureshi25_cryptobot/user_data/strategies/TrendFutures.py"
+    },
+    {
+      "commit": "52c4bd40414645f079a980cf4486dc7af4061efb",
+      "feed_date": "2026-09-17T00:36:32",
+      "feed_post_url": "https://frequenthippo.ddns.net/github_roboticautomations_freqtradestrategies__sslongonly15_opt__20260915_233254/",
+      "feed_title": "Github_RoboticAutomations_freqtradestrategies__SSLongonly15_OPT__20260915_233254",
+      "known_classes": [],
+      "path": "AIRA - open code v2/strategies/uncategorized/SSLongonly15_OPT.py",
+      "post_id": 104753,
+      "repository": "RoboticAutomations/freqtradestrategies",
+      "review_status": "candidate_requires_review",
+      "source_sha256": "d851b6e989ca545a80ca5842c3a1b9db1dc78a5731b75c3b62dcac8a266af46a",
+      "strategy_classes": [
+        "SSLongonly15_OPT"
+      ],
+      "url": "https://raw.githubusercontent.com/RoboticAutomations/freqtradestrategies/52c4bd40414645f079a980cf4486dc7af4061efb/AIRA%20-%20open%20code%20v2/strategies/uncategorized/SSLongonly15_OPT.py"
+    },
+    {
+      "commit": "532ed8fed005b09e3da180e77811b594783f5f27",
+      "feed_date": "2026-09-17T00:36:30",
+      "feed_post_url": "https://frequenthippo.ddns.net/github_thanhphan20_freq_trading_bot__informativesample__20260916_101422/",
+      "feed_title": "Github_thanhphan20_freq_trading_bot__InformativeSample__20260916_101422",
+      "known_classes": [
+        "InformativeSample"
+      ],
+      "path": "user_data/strategies/InformativeSample.py",
+      "post_id": 104752,
+      "repository": "thanhphan20/freq-trading-bot",
+      "review_status": "known_class_name",
+      "source_sha256": "6635f36f70257a4e7337deb1950691a5c4b23f618d5c9d7ee69e0928f83442ea",
+      "strategy_classes": [
+        "InformativeSample"
+      ],
+      "url": "https://raw.githubusercontent.com/thanhphan20/freq-trading-bot/532ed8fed005b09e3da180e77811b594783f5f27/user_data/strategies/InformativeSample.py"
+    },
+    {
+      "commit": "52c4bd40414645f079a980cf4486dc7af4061efb",
+      "feed_date": "2026-09-17T00:24:04",
+      "feed_post_url": "https://frequenthippo.ddns.net/github_roboticautomations_freqtradestrategies__gnf_v2__20260915_233254/",
+      "feed_title": "Github_RoboticAutomations_freqtradestrategies__GnF_V2__20260915_233254",
+      "known_classes": [
+        "GnF_V2"
+      ],
+      "path": "AIRA - open code v2/strategies/moving-average/GnF_V2.py",
+      "post_id": 104751,
+      "repository": "RoboticAutomations/freqtradestrategies",
+      "review_status": "known_class_name",
+      "source_sha256": "ae303f7cc445343f7c0ab475b35db84f6bea167c7544e59a7a29ec2f0862d641",
+      "strategy_classes": [
+        "GnF_V2"
+      ],
+      "url": "https://raw.githubusercontent.com/RoboticAutomations/freqtradestrategies/52c4bd40414645f079a980cf4486dc7af4061efb/AIRA%20-%20open%20code%20v2/strategies/moving-average/GnF_V2.py"
+    },
+    {
+      "commit": "d3572689679015b9eb76af06e757097f03574039",
+      "feed_date": "2026-09-17T00:06:40",
+      "feed_post_url": "https://frequenthippo.ddns.net/github_m1ch43lv_strategy_audit__highfreqdemo__20260916_180122/",
+      "feed_title": "Github_M1ch43lV_strategy_audit__HighFreqDemo__20260916_180122",
+      "known_classes": [
+        "HighFreqDemo"
+      ],
+      "path": "repos/Kureshi25_cryptobot/user_data/strategies/HighFreqDemo.py",
+      "post_id": 104750,
+      "repository": "M1ch43lV/strategy-audit",
+      "review_status": "local_audit_source",
+      "source_sha256": "d605bba0a20c6cecd20725c3101f1926e571826bb0ef30e6e438985ff9affe8b",
+      "strategy_classes": [
+        "HighFreqDemo"
+      ],
+      "url": "https://raw.githubusercontent.com/M1ch43lV/strategy-audit/d3572689679015b9eb76af06e757097f03574039/repos/Kureshi25_cryptobot/user_data/strategies/HighFreqDemo.py"
+    },
+    {
+      "commit": "a62f63278fbb7d8edebc6b59a1bbe0d9014294c0",
+      "feed_date": "2026-09-16T23:42:08",
+      "feed_post_url": "https://frequenthippo.ddns.net/github_4mrm4_crypto_agent_bot__setup_ft__20260616_234037/",
+      "feed_title": "Github_4mrm4_crypto_agent_bot__setup_ft__20260616_234037",
+      "known_classes": [],
+      "path": "backtesting/setup_ft.py",
+      "post_id": 104749,
+      "repository": "4mrm4/crypto-agent-bot",
+      "review_status": "non_strategy_fixture",
+      "source_sha256": "9ff454431ed2b0754052238aefea960dfba2630f54ad9e0a488bcadbdb34b313",
+      "strategy_classes": [],
+      "url": "https://raw.githubusercontent.com/4mrm4/crypto-agent-bot/a62f63278fbb7d8edebc6b59a1bbe0d9014294c0/backtesting/setup_ft.py"
+    },
+    {
+      "commit": "52c4bd40414645f079a980cf4486dc7af4061efb",
+      "feed_date": "2026-09-16T23:24:13",
+      "feed_post_url": "https://frequenthippo.ddns.net/github_roboticautomations_freqtradestrategies__scalpinuptrend__20260915_233254/",
+      "feed_title": "Github_RoboticAutomations_freqtradestrategies__ScalpInUptrend__20260915_233254",
+      "known_classes": [],
+      "path": "AIRA - open code v2/strategies/scalping/ScalpInUptrend.py",
+      "post_id": 104748,
+      "repository": "RoboticAutomations/freqtradestrategies",
+      "review_status": "candidate_requires_review",
+      "source_sha256": "715bf48f64f87ecac5843a427007f32b4d40b338444272b6388bc89923d26d2e",
+      "strategy_classes": [
+        "ScalpInUptrend"
+      ],
+      "url": "https://raw.githubusercontent.com/RoboticAutomations/freqtradestrategies/52c4bd40414645f079a980cf4486dc7af4061efb/AIRA%20-%20open%20code%20v2/strategies/scalping/ScalpInUptrend.py"
+    },
+    {
+      "commit": "b583c0610a73bdf2aec24c9ecc91dc5da6926c9d",
+      "feed_date": "2026-09-16T23:24:10",
+      "feed_post_url": "https://frequenthippo.ddns.net/github_dopestt_sentinel_os_core__solanaalpha__20260813_024838/",
+      "feed_title": "Github_DopestT_Sentinel_OS_Core__SolanaAlpha__20260813_024838",
+      "known_classes": [],
+      "path": "strategies/SolanaAlpha.py",
+      "post_id": 104747,
+      "repository": "DopestT/Sentinel-OS-Core",
+      "review_status": "candidate_requires_review",
+      "source_sha256": "06aa8b1177b58d77a4f16ce996af0e950be29d0f9b6554186ded38c543e83de7",
+      "strategy_classes": [
+        "SolanaAlpha"
+      ],
+      "url": "https://raw.githubusercontent.com/DopestT/Sentinel-OS-Core/b583c0610a73bdf2aec24c9ecc91dc5da6926c9d/strategies/SolanaAlpha.py"
+    },
+    {
+      "commit": "d3572689679015b9eb76af06e757097f03574039",
+      "feed_date": "2026-09-16T22:24:10",
+      "feed_post_url": "https://frequenthippo.ddns.net/github_m1ch43lv_strategy_audit__nostalgiaforinfinitynext772__20260916_180122/",
+      "feed_title": "Github_M1ch43lV_strategy_audit__NostalgiaForInfinityNext772__20260916_180122",
+      "known_classes": [
+        "NostalgiaForInfinityNext772"
+      ],
+      "path": "repos/TheoBrigitte_freqtrade/sources/nfix/NostalgiaForInfinityNext772.py",
+      "post_id": 104746,
+      "repository": "M1ch43lV/strategy-audit",
+      "review_status": "local_audit_source",
+      "source_sha256": "349bec0a391a332dc5c7ae42f19cc729d0bca5a679e19cf54222e1e5836fa3d9",
+      "strategy_classes": [
+        "NostalgiaForInfinityNext772"
+      ],
+      "url": "https://raw.githubusercontent.com/M1ch43lV/strategy-audit/d3572689679015b9eb76af06e757097f03574039/repos/TheoBrigitte_freqtrade/sources/nfix/NostalgiaForInfinityNext772.py"
+    },
+    {
+      "commit": "52c4bd40414645f079a980cf4486dc7af4061efb",
+      "feed_date": "2026-09-16T22:17:20",
+      "feed_post_url": "https://frequenthippo.ddns.net/github_roboticautomations_freqtradestrategies__alex_gkd_fishertransformv5_ml__20260915_233254/",
+      "feed_title": "Github_RoboticAutomations_freqtradestrategies__Alex_GKD_FisherTransformV5_ML__20260915_233254",
+      "known_classes": [],
+      "path": "dirty LA/from-AIRA/machine-learning/Alex_GKD_FisherTransformV5_ML.py",
+      "post_id": 104745,
+      "repository": "RoboticAutomations/freqtradestrategies",
+      "review_status": "candidate_requires_review",
+      "source_sha256": "46996e78da411b8a4b1ebd714288e1236f30778636205c20c6dfc7828c62bf90",
+      "strategy_classes": [
+        "Alex_GKD_FisherTransformV5_ML"
+      ],
+      "url": "https://raw.githubusercontent.com/RoboticAutomations/freqtradestrategies/52c4bd40414645f079a980cf4486dc7af4061efb/dirty%20LA/from-AIRA/machine-learning/Alex_GKD_FisherTransformV5_ML.py"
+    },
+    {
+      "commit": "52c4bd40414645f079a980cf4486dc7af4061efb",
+      "feed_date": "2026-09-16T22:17:18",
+      "feed_post_url": "https://frequenthippo.ddns.net/github_roboticautomations_freqtradestrategies__alexgkd_fishertransformv61_ml__20260915_233254/",
+      "feed_title": "Github_RoboticAutomations_freqtradestrategies__ALEXGKD_FisherTransformV61_ML__20260915_233254",
+      "known_classes": [],
+      "path": "dirty LA/from-AIRA/machine-learning/ALEXGKD_FisherTransformV61_ML.py",
+      "post_id": 104744,
+      "repository": "RoboticAutomations/freqtradestrategies",
+      "review_status": "candidate_requires_review",
+      "source_sha256": "3ab8c858d25c864d4127c5c23e460cb4daf9361d0a3821bc8651d86f63117efc",
+      "strategy_classes": [
+        "AlexGKD_FisherTransformV61_ML"
+      ],
+      "url": "https://raw.githubusercontent.com/RoboticAutomations/freqtradestrategies/52c4bd40414645f079a980cf4486dc7af4061efb/dirty%20LA/from-AIRA/machine-learning/ALEXGKD_FisherTransformV61_ML.py"
+    },
+    {
+      "commit": "d3572689679015b9eb76af06e757097f03574039",
+      "feed_date": "2026-09-16T20:51:45",
+      "feed_post_url": "https://frequenthippo.ddns.net/github_m1ch43lv_strategy_audit__ultimate_alpha_v16__20260916_180122/",
+      "feed_title": "Github_M1ch43lV_strategy_audit__ultimate_alpha_v16__20260916_180122",
+      "known_classes": [
+        "UltimateAlphaV16"
+      ],
+      "path": "repos/OfficialGIGA_freqtrade-ml-strategy/ultimate_alpha_v16.py",
+      "post_id": 104743,
+      "repository": "M1ch43lV/strategy-audit",
+      "review_status": "local_audit_source",
+      "source_sha256": "599bf117dfc34e9c00f916f46613dabafcfab824ae8e4d4c72503dd7f5f70b69",
+      "strategy_classes": [
+        "UltimateAlphaV16"
+      ],
+      "url": "https://raw.githubusercontent.com/M1ch43lV/strategy-audit/d3572689679015b9eb76af06e757097f03574039/repos/OfficialGIGA_freqtrade-ml-strategy/ultimate_alpha_v16.py"
+    },
+    {
+      "commit": "d3572689679015b9eb76af06e757097f03574039",
+      "feed_date": "2026-09-16T20:40:37",
+      "feed_post_url": "https://frequenthippo.ddns.net/github_m1ch43lv_strategy_audit__meanreversiontrend__20260916_180122/",
+      "feed_title": "Github_M1ch43lV_strategy_audit__MeanReversionTrend__20260916_180122",
+      "known_classes": [
+        "MeanReversionTrend"
+      ],
+      "path": "repos/yeboster_liquidity-sweep-freqtrade/strategies/MeanReversionTrend.py",
+      "post_id": 104742,
+      "repository": "M1ch43lV/strategy-audit",
+      "review_status": "local_audit_source",
+      "source_sha256": "8970d13fe62a153642ffd4f644c36491f7fa92b1be077caadbea5be237b3efdb",
+      "strategy_classes": [
+        "MeanReversionTrend"
+      ],
+      "url": "https://raw.githubusercontent.com/M1ch43lV/strategy-audit/d3572689679015b9eb76af06e757097f03574039/repos/yeboster_liquidity-sweep-freqtrade/strategies/MeanReversionTrend.py"
+    },
+    {
+      "commit": "52c4bd40414645f079a980cf4486dc7af4061efb",
+      "feed_date": "2026-09-16T20:39:00",
+      "feed_post_url": "https://frequenthippo.ddns.net/github_roboticautomations_freqtradestrategies__picasso_ce_cti_stc_ema_1h_v5_4x_3mt_jan16_np_jan20__20260915_233254/",
+      "feed_title": "Github_RoboticAutomations_freqtradestrategies__picasso_CE_CTI_STC_EMA_1h_V5_4x_3mt_Jan16_np_Jan20__20260915_233254",
+      "known_classes": [],
+      "path": "dirty LA/from-AIRA/rsi-momentum/picasso_CE_CTI_STC_EMA_1h_V5_4x_3mt_Jan16_np_Jan20.py",
+      "post_id": 104741,
+      "repository": "RoboticAutomations/freqtradestrategies",
+      "review_status": "candidate_requires_review",
+      "source_sha256": "5f274fce87e2eef3cb583956a8d5bd97b1fd922d81a211b72fdfa0eea8c89487",
+      "strategy_classes": [
+        "picasso_CE_CTI_STC_EMA_1h_V5_4x_3mt_Jan16_np_Jan20"
+      ],
+      "url": "https://raw.githubusercontent.com/RoboticAutomations/freqtradestrategies/52c4bd40414645f079a980cf4486dc7af4061efb/dirty%20LA/from-AIRA/rsi-momentum/picasso_CE_CTI_STC_EMA_1h_V5_4x_3mt_Jan16_np_Jan20.py"
+    },
+    {
+      "commit": "52c4bd40414645f079a980cf4486dc7af4061efb",
+      "feed_date": "2026-09-16T20:29:25",
+      "feed_post_url": "https://frequenthippo.ddns.net/github_roboticautomations_freqtradestrategies__ei4_t4c0s_qa3__20260915_233254/",
+      "feed_title": "Github_RoboticAutomations_freqtradestrategies__EI4_t4c0s_QA3__20260915_233254",
+      "known_classes": [],
+      "path": "AIRA - open code v2/strategies/elliott-wave/EI4_t4c0s_QA3.py",
+      "post_id": 104740,
+      "repository": "RoboticAutomations/freqtradestrategies",
+      "review_status": "candidate_requires_review",
+      "source_sha256": "e0fb953d81939477d6767d6f5504dea114c17e014a1faf5e147548c0a92e8110",
+      "strategy_classes": [
+        "EI4_t4c0s_QA3"
+      ],
+      "url": "https://raw.githubusercontent.com/RoboticAutomations/freqtradestrategies/52c4bd40414645f079a980cf4486dc7af4061efb/AIRA%20-%20open%20code%20v2/strategies/elliott-wave/EI4_t4c0s_QA3.py"
+    },
+    {
+      "commit": "db07ceb71ac165a38fe200a86ae48586ed040f60",
+      "feed_date": "2026-09-16T20:16:52",
+      "feed_post_url": "https://frequenthippo.ddns.net/github_roshan7869_algotrading__aroonmomentumengine_hybrid__20260825_161638/",
+      "feed_title": "Github_Roshan7869_algotrading__AroonMomentumEngine_Hybrid__20260825_161638",
+      "known_classes": [],
+      "path": "user_data/strategies/AroonMomentumEngine_Hybrid.py",
+      "post_id": 104739,
+      "repository": "Roshan7869/algotrading",
+      "review_status": "candidate_requires_review",
+      "source_sha256": "75469cec1a7b91de6f3b187e6f8ff1ae50fb85568a4213dc5cccad731db62a78",
+      "strategy_classes": [
+        "AroonMomentumEngine_Hybrid"
+      ],
+      "url": "https://raw.githubusercontent.com/Roshan7869/algotrading/db07ceb71ac165a38fe200a86ae48586ed040f60/user_data/strategies/AroonMomentumEngine_Hybrid.py"
+    },
+    {
+      "commit": "52c4bd40414645f079a980cf4486dc7af4061efb",
+      "feed_date": "2026-09-16T20:12:48",
+      "feed_post_url": "https://frequenthippo.ddns.net/github_roboticautomations_freqtradestrategies__dualwave__20260915_233254/",
+      "feed_title": "Github_RoboticAutomations_freqtradestrategies__dualwave__20260915_233254",
+      "known_classes": [],
+      "path": "AIRA - open code v2/tools/wavetrend/dualwave.py",
+      "post_id": 104738,
+      "repository": "RoboticAutomations/freqtradestrategies",
+      "review_status": "source_parse_error",
+      "source_error": "syntax_error: invalid syntax",
+      "source_sha256": "4d5484c365da65f812f76e903f4483675847098f1b04331e066867e41213ccde",
+      "strategy_classes": [],
+      "url": "https://raw.githubusercontent.com/RoboticAutomations/freqtradestrategies/52c4bd40414645f079a980cf4486dc7af4061efb/AIRA%20-%20open%20code%20v2/tools/wavetrend/dualwave.py"
+    },
+    {
+      "commit": "52c4bd40414645f079a980cf4486dc7af4061efb",
+      "feed_date": "2026-09-16T20:03:33",
+      "feed_post_url": "https://frequenthippo.ddns.net/github_roboticautomations_freqtradestrategies__arima_5_dca__6__20260915_233254/",
+      "feed_title": "Github_RoboticAutomations_freqtradestrategies__ARIMA_5_DCA__6__20260915_233254",
+      "known_classes": [
+        "ARIMA_5"
+      ],
+      "path": "AIRA - open code v2/strategies/arima-statistical/ARIMA_5_DCA__6.py",
+      "post_id": 104737,
+      "repository": "RoboticAutomations/freqtradestrategies",
+      "review_status": "known_class_name",
+      "source_sha256": "249c9a811ff7d55b0a3228b650828d637c7ba712905ef2017fdd800949ec1207",
+      "strategy_classes": [
+        "ARIMA_5"
+      ],
+      "url": "https://raw.githubusercontent.com/RoboticAutomations/freqtradestrategies/52c4bd40414645f079a980cf4486dc7af4061efb/AIRA%20-%20open%20code%20v2/strategies/arima-statistical/ARIMA_5_DCA__6.py"
+    },
+    {
+      "commit": "d3572689679015b9eb76af06e757097f03574039",
+      "feed_date": "2026-09-16T19:56:01",
+      "feed_post_url": "https://frequenthippo.ddns.net/github_m1ch43lv_strategy_audit__schism_v2__20260916_180122/",
+      "feed_title": "Github_M1ch43lV_strategy_audit__Schism_v2__20260916_180122",
+      "known_classes": [
+        "Schism2"
+      ],
+      "path": "repair/patched/repos/PeetCrypto_freqtrade-stuff/Schism-v2.py",
+      "post_id": 104736,
+      "repository": "M1ch43lV/strategy-audit",
+      "review_status": "local_audit_source",
+      "source_sha256": "2197613774f9b1f9de555fa74491d7c777890933e4ed980379f82d08b97ac071",
+      "strategy_classes": [
+        "Schism2"
+      ],
+      "url": "https://raw.githubusercontent.com/M1ch43lV/strategy-audit/d3572689679015b9eb76af06e757097f03574039/repair/patched/repos/PeetCrypto_freqtrade-stuff/Schism-v2.py"
+    },
+    {
+      "commit": "52c4bd40414645f079a980cf4486dc7af4061efb",
+      "feed_date": "2026-09-16T19:54:13",
+      "feed_post_url": "https://frequenthippo.ddns.net/github_roboticautomations_freqtradestrategies__ei3v2_tag_cofi_green_2__2__20260915_233254/",
+      "feed_title": "Github_RoboticAutomations_freqtradestrategies__EI3v2_tag_cofi_green_2__2__20260915_233254",
+      "known_classes": [],
+      "path": "AIRA - open code v2/strategies/elliott-wave/EI3v2_tag_cofi_green_2__2.py",
+      "post_id": 104735,
+      "repository": "RoboticAutomations/freqtradestrategies",
+      "review_status": "candidate_requires_review",
+      "source_sha256": "e9d53237a37b6e996747bf736723fdce5c4b1280be396f7647edd9babd32653b",
+      "strategy_classes": [
+        "EI3v2_tag_cofi_green_2"
+      ],
+      "url": "https://raw.githubusercontent.com/RoboticAutomations/freqtradestrategies/52c4bd40414645f079a980cf4486dc7af4061efb/AIRA%20-%20open%20code%20v2/strategies/elliott-wave/EI3v2_tag_cofi_green_2__2.py"
+    },
+    {
+      "commit": "52c4bd40414645f079a980cf4486dc7af4061efb",
+      "feed_date": "2026-09-16T19:54:12",
+      "feed_post_url": "https://frequenthippo.ddns.net/github_roboticautomations_freqtradestrategies__ei3v2_tag_cofi_green__3__20260915_233254/",
+      "feed_title": "Github_RoboticAutomations_freqtradestrategies__EI3v2_tag_cofi_green__3__20260915_233254",
+      "known_classes": [],
+      "path": "AIRA - open code v2/strategies/elliott-wave/EI3v2_tag_cofi_green__3.py",
+      "post_id": 104734,
+      "repository": "RoboticAutomations/freqtradestrategies",
+      "review_status": "candidate_requires_review",
+      "source_sha256": "2efdb7f94079b6bb02d5d6583e9ffa2b7be7b9aa70fe1874d191a63811f0dd9e",
+      "strategy_classes": [
+        "EI3v2_tag_cofi_green_2"
+      ],
+      "url": "https://raw.githubusercontent.com/RoboticAutomations/freqtradestrategies/52c4bd40414645f079a980cf4486dc7af4061efb/AIRA%20-%20open%20code%20v2/strategies/elliott-wave/EI3v2_tag_cofi_green__3.py"
+    },
+    {
+      "commit": "d3572689679015b9eb76af06e757097f03574039",
+      "feed_date": "2026-09-16T19:53:42",
+      "feed_post_url": "https://frequenthippo.ddns.net/github_m1ch43lv_strategy_audit__antigravitystrategyv3__20260916_180122/",
+      "feed_title": "Github_M1ch43lV_strategy_audit__AntigravityStrategyV3__20260916_180122",
+      "known_classes": [
+        "AntigravityStrategyV3"
+      ],
+      "path": "repos/Vijay190899_Trade-Bot/user_data/strategies/AntigravityStrategyV3.py",
+      "post_id": 104733,
+      "repository": "M1ch43lV/strategy-audit",
+      "review_status": "local_audit_source",
+      "source_sha256": "1779982d84258181cbed10f886afdb244f04413fcde8850c12453d7baf639332",
+      "strategy_classes": [
+        "AntigravityStrategyV3"
+      ],
+      "url": "https://raw.githubusercontent.com/M1ch43lV/strategy-audit/d3572689679015b9eb76af06e757097f03574039/repos/Vijay190899_Trade-Bot/user_data/strategies/AntigravityStrategyV3.py"
+    },
+    {
+      "commit": "d3572689679015b9eb76af06e757097f03574039",
+      "feed_date": "2026-09-16T19:49:02",
+      "feed_post_url": "https://frequenthippo.ddns.net/github_m1ch43lv_strategy_audit__cs_mom_stable__20260916_180122/",
+      "feed_title": "Github_M1ch43lV_strategy_audit__cs_mom_stable__20260916_180122",
+      "known_classes": [
+        "CsMom"
+      ],
+      "path": "repos/songhuaxueyue-tech_trend-regime-transformer/freqtrade/strategies/cs_mom_stable.py",
+      "post_id": 104732,
+      "repository": "M1ch43lV/strategy-audit",
+      "review_status": "local_audit_source",
+      "source_sha256": "3a1a805fa0588a32283d43f3b6ea0fd6ed549d00253c48baa83cc6e1664f157e",
+      "strategy_classes": [
+        "CsMom"
+      ],
+      "url": "https://raw.githubusercontent.com/M1ch43lV/strategy-audit/d3572689679015b9eb76af06e757097f03574039/repos/songhuaxueyue-tech_trend-regime-transformer/freqtrade/strategies/cs_mom_stable.py"
+    },
+    {
+      "commit": "d3572689679015b9eb76af06e757097f03574039",
+      "feed_date": "2026-09-16T19:43:03",
+      "feed_post_url": "https://frequenthippo.ddns.net/github_m1ch43lv_strategy_audit__squeezemomentum__20260916_180122/",
+      "feed_title": "Github_M1ch43lV_strategy_audit__SqueezeMomentum__20260916_180122",
+      "known_classes": [
+        "SqueezeMomentum"
+      ],
+      "path": "repos/hamidreza07_freqai-strategy/startegy test/5/__SqueezeMomentum/SqueezeMomentum.py",
+      "post_id": 104731,
+      "repository": "M1ch43lV/strategy-audit",
+      "review_status": "local_audit_source",
+      "source_sha256": "fd5d870db19bd34d2d97387000c6afe216a358abdd7caa96c7a300ac0101e3e8",
+      "strategy_classes": [
+        "SqueezeMomentum"
+      ],
+      "url": "https://raw.githubusercontent.com/M1ch43lV/strategy-audit/d3572689679015b9eb76af06e757097f03574039/repos/hamidreza07_freqai-strategy/startegy%20test/5/__SqueezeMomentum/SqueezeMomentum.py"
+    },
+    {
+      "commit": "d3572689679015b9eb76af06e757097f03574039",
+      "feed_date": "2026-09-16T19:37:11",
+      "feed_post_url": "https://frequenthippo.ddns.net/github_m1ch43lv_strategy_audit__cs_mom_ai__20260916_180122/",
+      "feed_title": "Github_M1ch43lV_strategy_audit__cs_mom_ai__20260916_180122",
+      "known_classes": [
+        "CsMom"
+      ],
+      "path": "repos/songhuaxueyue-tech_trend-regime-transformer/freqtrade/strategies/cs_mom_ai.py",
+      "post_id": 104730,
+      "repository": "M1ch43lV/strategy-audit",
+      "review_status": "local_audit_source",
+      "source_sha256": "4c7da54118f389ced817ca90ad7635dc41bb8481050cd1fd942bda247b56af78",
+      "strategy_classes": [
+        "CsMom"
+      ],
+      "url": "https://raw.githubusercontent.com/M1ch43lV/strategy-audit/d3572689679015b9eb76af06e757097f03574039/repos/songhuaxueyue-tech_trend-regime-transformer/freqtrade/strategies/cs_mom_ai.py"
+    },
+    {
+      "commit": "db07ceb71ac165a38fe200a86ae48586ed040f60",
+      "feed_date": "2026-09-16T19:31:01",
+      "feed_post_url": "https://frequenthippo.ddns.net/github_roshan7869_algotrading__vectoromni_metalearner__20260825_161638/",
+      "feed_title": "Github_Roshan7869_algotrading__VectorOmni_MetaLearner__20260825_161638",
+      "known_classes": [],
+      "path": "user_data/strategies/VectorOmni_MetaLearner.py",
+      "post_id": 104729,
+      "repository": "Roshan7869/algotrading",
+      "review_status": "candidate_requires_review",
+      "source_sha256": "fb3152780694584d9166a246a34f05a88120b81fb128d939019f6396a69815c5",
+      "strategy_classes": [
+        "VectorOmni_MetaLearner"
+      ],
+      "url": "https://raw.githubusercontent.com/Roshan7869/algotrading/db07ceb71ac165a38fe200a86ae48586ed040f60/user_data/strategies/VectorOmni_MetaLearner.py"
+    }
+  ],
+  "schema_version": 1
+}

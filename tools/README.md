@@ -3,7 +3,9 @@
 This directory contains maintained support programs that are not benchmark
 result stores. Corpus intake uses `harvest.py`, `census_repos.py`, `expand.py`,
 `tfscan.py`, and the shared `harness.py`; `fetch_bulk.py` supplies archived
-Binance spot candles. The remaining programs classify, triage, validate, or
+Binance spot candles. `evidence.strategy_feed` is a separate, review-only
+Stage-0 discovery scanner: it records pinned feed sources but never downloads
+them into `repos/`. The remaining programs classify, triage, validate, or
 publish current evidence on demand.
 
 Run tools from the repository root. Prefer module form where supported, for
