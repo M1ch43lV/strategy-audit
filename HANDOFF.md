@@ -131,6 +131,9 @@ container exists. Inspect processes, locks, artifact timestamps, and the run log
 - **The two result pages** (`regime_specialists.html`, `regime_gating.html`) are rebuilt with
   `python -m tools.regime_specialists_page` and always both, with the timestamp of that generation, before either is
   published. Rankings are recomputed whenever results change; only the floor and the rules are frozen.
+  `python -m tools.regime_specialists_page --check` says whether the committed pair still matches its data. It
+  renders both pages, so it costs about a minute, and it is not a CI step: the module imports pandas and reads the
+  regime stores, neither of which is in a clean checkout.
 - **Generated files are never hand-edited.** Run the writer as a module from the repository root:
   `python -m evidence.<module>`. Evidence stores do not move back to the root and are not invoked by file path.
 - **Graph:** `graphify update .` only, never `graphify extract .` (semantic extraction consumes API quota).

@@ -779,7 +779,8 @@ def fill(template, facts, text):
     return re.sub(r"\{\{([a-z_0-9]+)\}\}", lambda m: mapping[m.group(1)], template)
 
 
-def render_page(template_path, destination, facts, text, blobs):
+def render(template_path, facts, text, blobs):
+    """The page as a string. Never writes, so `--check` can compare it."""
     template = io.open(template_path, encoding="utf-8").read()
     template = fill(template, facts, text)
     for marker, path in (("/*__COMMON_CSS__*/", COMMON_CSS), ("/*__COMMON_JS__*/", COMMON_JS)):
@@ -792,11 +793,23 @@ def render_page(template_path, destination, facts, text, blobs):
     left = re.findall(r"__[A-Z0-9]+_JSON__", template)
     assert not left, "blobs the template asks for were not supplied: %s" % ", ".join(sorted(set(left)))
     assert len(re.findall(r"<section[ >]", template)) == template.count("</section>")
+    return template
+
+
+def render_page(template_path, destination, facts, text, blobs):
+    page = render(template_path, facts, text, blobs)
     with io.open(destination, "w", encoding="utf-8", newline="\n") as handle:
-        handle.write(template)
+        handle.write(page)
+    return page
 
 
-def build(destination, gating_destination, skip_native=False):
+def rendered_pages(skip_native=False):
+    """Both pages as strings, plus the facts behind them. Never writes.
+
+    `--check` compares these against the files on disk and the writer below
+    uses the same function, so a check can never disagree with a build - the
+    same split `tools.strategy_status_page` uses.
+    """
     robustness = Robustness()
     btc = pd.read_csv(os.path.join(SPEC, "btc_specialist_table.csv"))
     coin = pd.read_csv(os.path.join(SPEC, "coin_specialist_table.csv"))
@@ -843,9 +856,55 @@ def build(destination, gating_destination, skip_native=False):
                     "TOP10BYREGIME": static["TOP10BYREGIME"],
                     "TOP10ANNOT": _dump(top10_annotation(robustness, confirm))}
     gating_blobs.update(shared)
-    render_page(TEMPLATE, destination, facts, text, main_blobs)
-    render_page(GATING_TEMPLATE, gating_destination, facts, text, gating_blobs)
+    return (facts,
+            render(TEMPLATE, facts, text, main_blobs),
+            render(GATING_TEMPLATE, facts, text, gating_blobs))
+
+
+def build(destination, gating_destination, skip_native=False):
+    facts, main_page, gating_page = rendered_pages(skip_native)
+    for path, page in ((destination, main_page), (gating_destination, gating_page)):
+        with io.open(path, "w", encoding="utf-8", newline="\n") as handle:
+            handle.write(page)
     return facts
+
+
+RX_STAMP = re.compile(r"(Stand )\d{4}-\d\d-\d\d \d\d:\d\d")
+
+
+def _without_stamp(content):
+    """Blank the build stamp in the page header.
+
+    Both pages name the moment they were built (`Stand {{generated}}` in their
+    eyebrow), so a fresh render differs from the file on disk a minute later.
+    Blanking that one stamp keeps the rest of the comparison byte-strict. The
+    failure this guards against is a page whose tables have moved on while the
+    page still reads as the current snapshot - the same defect found in
+    `strategy_status.html` on 2026-09-23, where the committed page carried
+    `last_tested_at` values two hours behind the CSV it renders from, and the
+    two published regime pages had no way to notice it at all.
+    """
+    return RX_STAMP.sub(r"\g<1><stamp>", content)
+
+
+def selftest():
+    # If the pattern stopped matching the eyebrow, `--check` would silently
+    # become byte-exact and report both pages stale the minute after every
+    # build; if it matched more than the eyebrow, a real content change could
+    # hide behind a blanked field. Both directions are asserted here.
+    for template in (TEMPLATE, GATING_TEMPLATE):
+        assert "Stand {{generated}}" in io.open(template, encoding="utf-8").read(), template
+    sample = 'class="eyebrow">Specialist-/Universal-Auswertung &middot; Stand 2026-09-23 21:56</div>'
+    assert len(RX_STAMP.findall(sample)) == 1, "the stamp pattern does not match the eyebrow"
+    assert _without_stamp(sample) == _without_stamp(sample.replace("21:56", "22:04")), \
+        "a rebuilt page would read as stale"
+    assert _without_stamp(sample) != _without_stamp(sample.replace("Specialist-", "Gating-")), \
+        "a content change would hide behind the blanked stamp"
+    # Dates that are content rather than the build stamp - an "as of" column,
+    # a timerange - must survive the blanking untouched.
+    for content in ("| 2026-09-02 | 16:13 |", "20200401-20260821", "Stand der Daten"):
+        assert _without_stamp(content) == content, content
+    print("regime_specialists_page selftest: PASS")
 
 
 def main(argv=None):
@@ -854,7 +913,32 @@ def main(argv=None):
     parser.add_argument("--gating-out", default=os.path.join(ROOT, "regime_gating.html"))
     parser.add_argument("--skip-native", action="store_true",
                         help="leave the Freqtrade-native block empty (fast, for layout work)")
+    parser.add_argument("--selftest", action="store_true")
+    parser.add_argument("--check", action="store_true",
+                        help="fail when either page no longer matches its own data "
+                             "(costs one build, about a minute: it renders both pages, "
+                             "most of that in the Model-0 native block)")
     args = parser.parse_args(argv)
+    if args.selftest:
+        selftest()
+        return 0
+    if args.check:
+        if args.skip_native:
+            parser.error("--check cannot be combined with --skip-native: the native "
+                         "block is part of the page being compared")
+        _facts, main_page, gating_page = rendered_pages()
+        stale = []
+        for path, fresh in ((args.out, main_page), (args.gating_out, gating_page)):
+            if not os.path.exists(path):
+                stale.append(os.path.relpath(path, ROOT))
+                continue
+            if _without_stamp(io.open(path, encoding="utf-8").read()) != _without_stamp(fresh):
+                stale.append(os.path.relpath(path, ROOT))
+        if stale:
+            print("stale: %s" % ", ".join(stale))
+            return 1
+        print("regime pages: current")
+        return 0
     facts = build(args.out, args.gating_out, args.skip_native)
     for path in (args.out, args.gating_out):
         print("built %s (%.1f KB)" % (path, os.path.getsize(path) / 1024.0))
