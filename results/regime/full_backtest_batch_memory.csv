@@ -115,3 +115,5 @@ binance_shorts,solo,measured,145,5686,15500m
 momentum,solo,measured,199,4490,15500m
 momentum_rsi,solo,measured,202,4554,15500m
 momentum_wick,solo,measured,341,4419,15500m
+AlexBandSniperV10AINoBias,1,timeout,3601,2183,3500m
+AlexBandSniperV10AINoBias,solo,timeout,3601,2129,15500m

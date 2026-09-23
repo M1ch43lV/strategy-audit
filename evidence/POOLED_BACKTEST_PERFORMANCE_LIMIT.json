@@ -42,6 +42,14 @@
         {"elapsed_s": 3599.9, "status": "timeout"},
         {"elapsed_s": 3599.9, "status": "timeout"}
       ]
+    },
+    "AlexBandSniperV10AINoBias": {
+      "verdict": "performance_limited",
+      "why": "Two independent attempts (pooled w1 and solo retry, same day) both ran to exactly the 3600s ceiling with no exception and no OOM signature - not a resource_inconclusive case. This is the audit-authored lookahead-fix derivative of AlexBandSniperV10AI: the vectorized ML-entry fix (populate_entry_trend) now runs the 16-feature RandomForest predict_proba computation and the pivot-window scan over every qualifying row across 8 pairs and 6.5 years, instead of only ever the original's single last row, so the pooled window's per-candle cost is materially higher than the un-fixed strategy's.",
+      "confirmed_attempts": [
+        {"elapsed_s": 3601.0, "status": "timeout"},
+        {"elapsed_s": 3601.0, "status": "timeout"}
+      ]
     }
   }
 }

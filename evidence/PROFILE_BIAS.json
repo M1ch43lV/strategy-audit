@@ -260,6 +260,99 @@
       "run_profile": "futures_long_short",
       "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6"
     },
+    "AlexBandSniperV10AINoBias": {
+      "canonical_sha256": "sha256_e2ad2479790be251166908f6da658d5b26a84e10923faea9b83dbcfaa0a87717",
+      "class1_rules": [],
+      "lookahead": {
+        "attempted_timeranges": [
+          "20200301-20200601"
+        ],
+        "elapsed_s": 790.4,
+        "invocation": "freqtrade lookahead-analysis --config runtime/profile_futures_config.json --strategy AlexBandSniperV10AINoBias --strategy-path user_data/profile_bias_strategies/AlexBandSniperV10AINoBias-5eb3077f --timerange 20200301-20200601 --no-color",
+        "output_sha256": "sha256_d6c2a89bd67257da302bff8c25aea6000e14b7797e2743bbc68690eed665591c",
+        "runtime_id": "docker:sha256:385a287ced73c5326334598adabb078c6cf55f12fd0ed30149354b606ad6148a",
+        "status": "PASS",
+        "timerange": "20200301-20200601",
+        "why": "no bias detected"
+      },
+      "mode": "futures",
+      "recursive": {
+        "attempted_timeranges": [
+          "20200301-20200601"
+        ],
+        "config_overrides": {
+          "startup_candle_count": 1344
+        },
+        "drifts": [
+          [
+            "ema200_1h_1h",
+            0.0
+          ],
+          [
+            "volume_sma",
+            0.0
+          ],
+          [
+            "volume_ratio",
+            -0.0
+          ],
+          [
+            "mfi",
+            0.0
+          ],
+          [
+            "stoch",
+            0.0
+          ],
+          [
+            "uo",
+            -0.0
+          ],
+          [
+            "cmf",
+            -0.0
+          ],
+          [
+            "bb_lower",
+            0.0
+          ],
+          [
+            "bb_upper",
+            -0.0
+          ],
+          [
+            "bb_percent",
+            0.0
+          ],
+          [
+            "bollinger_lowerband",
+            0.0
+          ],
+          [
+            "bollinger_upperband",
+            -0.0
+          ],
+          [
+            "ema200",
+            0.0
+          ],
+          [
+            "price_vs_ema200",
+            0.001
+          ]
+        ],
+        "elapsed_s": 68.2,
+        "invocation": "freqtrade recursive-analysis --config user_data/profile_configs/AlexBandSniperV10AINoBias-5eb3077f_gate.json --strategy AlexBandSniperV10AINoBias --strategy-path user_data/profile_bias_strategies/AlexBandSniperV10AINoBias-5eb3077f --timerange 20200301-20200601 --no-color --startup-candle 1344",
+        "output_sha256": "sha256_ee01284b2f8958da5284fa52c454f451121ccb6e91f64b880d29636488baba85",
+        "runtime_id": "docker:sha256:385a287ced73c5326334598adabb078c6cf55f12fd0ed30149354b606ad6148a",
+        "settled_startup_candle_count": 1344,
+        "status": "PASS",
+        "timerange": "20200301-20200601",
+        "why": "no recursive deviations found"
+      },
+      "run_profile": "futures_long_short",
+      "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6"
+    },
     "AlexBandSniperV58COptuna": {
       "canonical_sha256": "sha256_ea74116e04267f9882295fed2e4223ad6ab0245194939690ad3b917e49a97435",
       "class1_rules": [],

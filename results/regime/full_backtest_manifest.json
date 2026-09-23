@@ -449,6 +449,30 @@
       "trades": 11385,
       "trades_sha256": "sha256_2ebc773afaec1541a88bd89d3d16cfe03a9b00b11baae60dd548b3f8c3e6a265"
     },
+    "AlexBandSniperV10AINoBias": {
+      "attempted_at": "2026-09-23T02:01:14+00:00",
+      "attempts": [
+        {
+          "attempted_at": "2026-09-23T01:54:10+00:00",
+          "elapsed_s": 3599.9,
+          "status": "timeout",
+          "why": "timeout after 3600 seconds"
+        }
+      ],
+      "canonical_sha256": "sha256_e2ad2479790be251166908f6da658d5b26a84e10923faea9b83dbcfaa0a87717",
+      "measurement_scope": "canonical_pooled_native_pair_universe",
+      "repair_state": {
+        "config_overrides": {},
+        "config_source": "",
+        "data_files": [],
+        "python_paths": [],
+        "rules": []
+      },
+      "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6",
+      "runtime_id": "native_unversioned",
+      "status": "performance_limited",
+      "why": "Two independent attempts (pooled w1 and solo retry, same day) both ran to exactly the 3600s ceiling with no exception and no OOM signature - not a resource_inconclusive case. This is the audit-authored lookahead-fix derivative of AlexBandSniperV10AI: the vectorized ML-entry fix (populate_entry_trend) now runs the 16-feature RandomForest predict_proba computation and the pivot-window scan over every qualifying row across 8 pairs and 6.5 years, instead of only ever the original's single last row, so the pooled window's per-candle cost is materially higher than the un-fixed strategy's."
+    },
     "AlligatorStrat": {
       "archive": "user_data/profile_smoke/AlligatorStrat-5369987d-2026-09-06_17-43-10.zip",
       "archive_sha256": "sha256_a11f99a3819db7260f4eb994102b2c9fc61792d5a3cbc0ba6770436c28158067",

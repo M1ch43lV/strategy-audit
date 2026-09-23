@@ -717,6 +717,52 @@
       "trades": 509,
       "trades_sha256": "sha256_9ca5c6092d33f0333aa48edd0aebfe092c25764474b5538caa29a0f9947d0671"
     },
+    "AlexBandSniperV10AINoBias": {
+      "archive": "user_data/profile_smoke/AlexBandSniperV10AINoBias-5eb3077f-smoke_20200301_20200401-b4807b77-2026-09-22_23-32-21.zip",
+      "archive_sha256": "sha256_60e2c0a0e134d6378eaefa5a52a7b8ee717daebc8c40521b588689c5c41c85a1",
+      "artifact_key": "smoke_20200301_20200401",
+      "attempted_timeranges": [
+        "20200301-20200401"
+      ],
+      "attempts": [
+        {
+          "archive": "user_data/profile_smoke/AlexBandSniperV10AINoBias-5eb3077f-smoke_20200301_20200401-b4807b77-2026-09-22_23-32-21.zip",
+          "archive_sha256": "sha256_60e2c0a0e134d6378eaefa5a52a7b8ee717daebc8c40521b588689c5c41c85a1",
+          "artifact_key": "smoke_20200301_20200401",
+          "class1_rules": [],
+          "config_overrides": {},
+          "elapsed_s": 451.5,
+          "invocation": "freqtrade backtesting --config runtime/profile_futures_config.json --strategy AlexBandSniperV10AINoBias --strategy-path repos/audit-authored_lookahead-rewrites/user_data/strategies/AlexNexus --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/AlexBandSniperV10AINoBias-5eb3077f-smoke_20200301_20200401-b4807b77 --cache none",
+          "long_trades": 486,
+          "mode": "futures",
+          "run_profile": "futures_long_short",
+          "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6",
+          "runtime_id": "docker:sha256:385a287ced73c5326334598adabb078c6cf55f12fd0ed30149354b606ad6148a",
+          "short_trades": 331,
+          "status": "measured",
+          "timerange": "20200301-20200401",
+          "trades": 817,
+          "trades_sha256": "sha256_c5c487eaaf98f9251247270ace1c7105014dcc234690af86666632e4339f1f40"
+        }
+      ],
+      "canonical_sha256": "sha256_e2ad2479790be251166908f6da658d5b26a84e10923faea9b83dbcfaa0a87717",
+      "class1_rules": [],
+      "config_overrides": {},
+      "elapsed_s": 451.5,
+      "invocation": "freqtrade backtesting --config runtime/profile_futures_config.json --strategy AlexBandSniperV10AINoBias --strategy-path repos/audit-authored_lookahead-rewrites/user_data/strategies/AlexNexus --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/AlexBandSniperV10AINoBias-5eb3077f-smoke_20200301_20200401-b4807b77 --cache none",
+      "long_trades": 486,
+      "mode": "futures",
+      "run_profile": "futures_long_short",
+      "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6",
+      "runtime_id": "docker:sha256:385a287ced73c5326334598adabb078c6cf55f12fd0ed30149354b606ad6148a",
+      "short_trades": 331,
+      "smoke_policy_id": "fixed_1m_3m_until_10_trades_v2",
+      "status": "measured",
+      "timerange": "20200301-20200401",
+      "trade_floor": 10,
+      "trades": 817,
+      "trades_sha256": "sha256_c5c487eaaf98f9251247270ace1c7105014dcc234690af86666632e4339f1f40"
+    },
     "AlexBandSniperV58COptuna": {
       "archive": "user_data/profile_smoke/AlexBandSniperV58COptuna-28f20120-smoke_20200301_20200401-b4807b77-2026-09-14_19-05-09.zip",
       "archive_sha256": "sha256_b95420a3a192dd892f6cfc3d00dd161d1bd250a4c4ab1ac74d2e08e714668167",
@@ -39829,10 +39875,11 @@
     }
   },
   "schema_version": 1,
-  "smoke_policy_id": "custom_d7c05fc275a7",
+  "smoke_policy_id": "fixed_1m_3m_until_10_trades_v2",
   "timerange": "20200301-20200401",
   "timeranges": [
-    "20200301-20200401"
+    "20200301-20200401",
+    "20200301-20200601"
   ],
   "trade_floor": 10
 }

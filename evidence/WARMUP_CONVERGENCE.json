@@ -1637,6 +1637,390 @@
       "timeframe": "5m",
       "timerange": "20190101-20190401"
     },
+    "AlexBandSniperV10AINoBias": {
+      "available_prefix_candles": 5440,
+      "chosen_ladder_days": 14,
+      "chosen_startup_candle_count": 1344,
+      "cohort": "lookahead_pass",
+      "columns": [
+        {
+          "from_strategy": false,
+          "startup_candle_count": 96
+        },
+        {
+          "from_strategy": false,
+          "startup_candle_count": 192
+        },
+        {
+          "from_strategy": true,
+          "startup_candle_count": 220
+        },
+        {
+          "from_strategy": false,
+          "startup_candle_count": 672
+        },
+        {
+          "from_strategy": false,
+          "startup_candle_count": 1344
+        }
+      ],
+      "debug_log": "user_data/convergence_logs/AlexBandSniperV10AINoBias-5eb3077f-ladder.log",
+      "declared_max_drift_pct": 25.239,
+      "declared_startup_candle_count": 220,
+      "declared_warmup_override": null,
+      "drift_threshold_pct": 1.0,
+      "drifts": {
+        "adx": [
+          2.527,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "atr": [
+          -0.126,
+          0.0,
+          -0.0,
+          0.0,
+          0.0
+        ],
+        "atr_multiplier": [
+          0.162,
+          -0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "bb_lower": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          -0.0
+        ],
+        "bb_middle": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "bb_percent": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          -0.0
+        ],
+        "bb_upper": [
+          -0.0,
+          -0.0,
+          -0.0,
+          -0.0,
+          0.0
+        ],
+        "bollinger_lowerband": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          -0.0
+        ],
+        "bollinger_upperband": [
+          -0.0,
+          -0.0,
+          -0.0,
+          -0.0,
+          0.0
+        ],
+        "cmf": [
+          -0.0,
+          -0.0,
+          -0.0,
+          -0.0,
+          -0.0
+        ],
+        "ema20": [
+          0.0,
+          -0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "ema200": [
+          -0.227,
+          -0.227,
+          0.057,
+          -0.004,
+          0.0
+        ],
+        "ema200_1h_1h": [
+          null,
+          null,
+          -1.064,
+          0.015,
+          0.0
+        ],
+        "ema21": [
+          0.0,
+          -0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "ema50": [
+          0.027,
+          -0.001,
+          -0.0,
+          -0.0,
+          0.0
+        ],
+        "ema50_1h_1h": [
+          0.05,
+          0.001,
+          0.0,
+          -0.0,
+          0.0
+        ],
+        "ema9": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "ema_long": [
+          0.0,
+          -0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "ema_short": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "kc_lowerband": [
+          0.0,
+          -0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "kc_middleband": [
+          0.0,
+          -0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "kc_upperband": [
+          0.0,
+          -0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "ma_alignment_bear": [
+          null,
+          null,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "macd": [
+          0.259,
+          -0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "macdhist": [
+          1.037,
+          -0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "macdsignal": [
+          0.351,
+          -0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "mfi": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "ml_confidence_long": [
+          -1.306,
+          -1.186,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "ml_confidence_short": [
+          -1.306,
+          -1.186,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "ml_prediction": [
+          -1.306,
+          -1.186,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "natr": [
+          -0.002,
+          0.0,
+          -0.0,
+          0.0,
+          0.0
+        ],
+        "price_vs_ema200": [
+          null,
+          null,
+          25.239,
+          -1.893,
+          0.001
+        ],
+        "price_vs_ema21": [
+          -0.133,
+          0.0,
+          -0.0,
+          0.0,
+          0.0
+        ],
+        "price_vs_ema50": [
+          16.06,
+          -0.36,
+          -0.044,
+          -0.0,
+          0.0
+        ],
+        "rsi": [
+          -0.276,
+          -0.0,
+          -0.0,
+          0.0,
+          0.0
+        ],
+        "rsi_1h_1h": [
+          -0.092,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "signal_strength": [
+          -33.333,
+          -33.333,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "stoch": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "trend_1h_1h": [
+          -0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "trend_strength_1h_1h": [
+          0.788,
+          0.001,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "uo": [
+          -0.0,
+          -0.0,
+          -0.0,
+          -0.0,
+          -0.0
+        ],
+        "volatility": [
+          -0.126,
+          0.0,
+          -0.0,
+          0.0,
+          0.0
+        ],
+        "volume_mean": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "volume_ratio": [
+          -0.0,
+          -0.0,
+          -0.0,
+          -0.0,
+          -0.0
+        ],
+        "volume_sma": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "elapsed_s": 75.6,
+      "exchange_startup_limit": 2494,
+      "file_derived_period": null,
+      "implementation_id": "AlexBandSniperV10AINoBias:e2ad2479790b",
+      "invocation": "freqtrade recursive-analysis --config runtime/profile_futures_config.json --strategy AlexBandSniperV10AINoBias --strategy-path user_data/profile_bias_strategies/AlexBandSniperV10AINoBias-5eb3077f --timerange 20200301-20200601 --no-color --startup-candle 96 192 672 1344",
+      "ladder_candles": [
+        96,
+        192,
+        672,
+        1344
+      ],
+      "ladder_days": [
+        1,
+        2,
+        7,
+        14
+      ],
+      "ladder_trimmed_to_exchange_limit": [
+        96,
+        192,
+        672,
+        1344
+      ],
+      "max_drift_indicator": "price_vs_ema200",
+      "max_drift_pct": 0.001,
+      "needed_no_override": false,
+      "output_sha256": "sha256_eacaaa6fbaf78a5ee67ca4d439b8d0c9da260561a4a5ac6d39e31a4fbc3ca98b",
+      "returncode": 0,
+      "run_profile": "futures_long_short",
+      "runtime_id": "docker:sha256:385a287ced73c5326334598adabb078c6cf55f12fd0ed30149354b606ad6148a",
+      "state": "converged",
+      "strategy_id": "AlexBandSniperV10AINoBias",
+      "timeframe": "15m",
+      "timerange": "20200301-20200601"
+    },
     "AlexStrategyFinalV8": {
       "available_prefix_candles": 616,
       "cohort": "ladder_pending",
@@ -143333,6 +143717,396 @@
         "timeframe": "1d",
         "timerange": "20200301-20200601",
         "why": "analyzer produced no drift table"
+      }
+    ],
+    "AlexBandSniperV10AINoBias": [
+      {
+        "available_prefix_candles": 5440,
+        "cohort": "lookahead_pass",
+        "columns": [
+          {
+            "from_strategy": false,
+            "startup_candle_count": 96
+          },
+          {
+            "from_strategy": false,
+            "startup_candle_count": 192
+          },
+          {
+            "from_strategy": true,
+            "startup_candle_count": 220
+          },
+          {
+            "from_strategy": false,
+            "startup_candle_count": 672
+          },
+          {
+            "from_strategy": false,
+            "startup_candle_count": 1344
+          }
+        ],
+        "debug_log": "user_data/convergence_logs/AlexBandSniperV10AINoBias-5eb3077f-ladder.log",
+        "declared_max_drift_pct": 122.57,
+        "declared_startup_candle_count": 220,
+        "declared_warmup_override": null,
+        "drift_threshold_pct": 1.0,
+        "drifts": {
+          "adx": [
+            2.527,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "atr": [
+            -0.126,
+            0.0,
+            -0.0,
+            0.0,
+            0.0
+          ],
+          "atr_multiplier": [
+            0.162,
+            -0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "bb_lower": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            -0.0
+          ],
+          "bb_middle": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "bb_percent": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            -0.0
+          ],
+          "bb_upper": [
+            -0.0,
+            -0.0,
+            -0.0,
+            -0.0,
+            0.0
+          ],
+          "bollinger_lowerband": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            -0.0
+          ],
+          "bollinger_upperband": [
+            -0.0,
+            -0.0,
+            -0.0,
+            -0.0,
+            0.0
+          ],
+          "cmf": [
+            -0.0,
+            -0.0,
+            -0.0,
+            -0.0,
+            -0.0
+          ],
+          "ema20": [
+            0.0,
+            -0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "ema200": [
+            -0.227,
+            -0.227,
+            0.057,
+            -0.004,
+            0.0
+          ],
+          "ema200_1h_1h": [
+            null,
+            null,
+            -1.064,
+            0.015,
+            0.0
+          ],
+          "ema21": [
+            0.0,
+            -0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "ema50": [
+            0.027,
+            -0.001,
+            -0.0,
+            -0.0,
+            0.0
+          ],
+          "ema50_1h_1h": [
+            0.05,
+            0.001,
+            0.0,
+            -0.0,
+            0.0
+          ],
+          "ema9": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "ema_long": [
+            0.0,
+            -0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "ema_short": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "kc_lowerband": [
+            0.0,
+            -0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "kc_middleband": [
+            0.0,
+            -0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "kc_upperband": [
+            0.0,
+            -0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "ma_alignment_bear": [
+            null,
+            null,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "macd": [
+            0.259,
+            -0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "macdhist": [
+            1.037,
+            -0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "macdsignal": [
+            0.351,
+            -0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "mfi": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "ml_confidence_long": [
+            -1.306,
+            -1.186,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "ml_confidence_short": [
+            -1.306,
+            -1.186,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "ml_prediction": [
+            -1.306,
+            -1.186,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "natr": [
+            -0.002,
+            0.0,
+            -0.0,
+            0.0,
+            0.0
+          ],
+          "obv": [
+            -109.719,
+            -119.314,
+            -122.57,
+            292.666,
+            -1809.224
+          ],
+          "price_vs_ema200": [
+            null,
+            null,
+            25.239,
+            -1.893,
+            0.001
+          ],
+          "price_vs_ema21": [
+            -0.133,
+            0.0,
+            -0.0,
+            0.0,
+            0.0
+          ],
+          "price_vs_ema50": [
+            16.06,
+            -0.36,
+            -0.044,
+            -0.0,
+            0.0
+          ],
+          "rsi": [
+            -0.276,
+            -0.0,
+            -0.0,
+            0.0,
+            0.0
+          ],
+          "rsi_1h_1h": [
+            -0.092,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "signal_strength": [
+            -33.333,
+            -33.333,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "stoch": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "trend_1h_1h": [
+            -0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "trend_strength_1h_1h": [
+            0.788,
+            0.001,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "uo": [
+            -0.0,
+            -0.0,
+            -0.0,
+            -0.0,
+            -0.0
+          ],
+          "volatility": [
+            -0.126,
+            0.0,
+            -0.0,
+            0.0,
+            0.0
+          ],
+          "volume_mean": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "volume_ratio": [
+            -0.0,
+            -0.0,
+            -0.0,
+            -0.0,
+            -0.0
+          ],
+          "volume_sma": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        "elapsed_s": 74.3,
+        "exchange_startup_limit": 2494,
+        "file_derived_period": null,
+        "implementation_id": "AlexBandSniperV10AINoBias:0a172c10897e",
+        "invocation": "freqtrade recursive-analysis --config runtime/profile_futures_config.json --strategy AlexBandSniperV10AINoBias --strategy-path user_data/profile_bias_strategies/AlexBandSniperV10AINoBias-5eb3077f --timerange 20200301-20200601 --no-color --startup-candle 96 192 672 1344",
+        "ladder_candles": [
+          96,
+          192,
+          672,
+          1344
+        ],
+        "ladder_days": [
+          1,
+          2,
+          7,
+          14
+        ],
+        "ladder_trimmed_to_exchange_limit": [
+          96,
+          192,
+          672,
+          1344
+        ],
+        "output_sha256": "sha256_1fdad05080d2f0f31e36c34b82f29d3f2dd6a068b496a2885ec3ffc42bb99021",
+        "returncode": 0,
+        "run_profile": "futures_long_short",
+        "runtime_id": "docker:sha256:385a287ced73c5326334598adabb078c6cf55f12fd0ed30149354b606ad6148a",
+        "state": "not_converged_within_ladder",
+        "strategy_id": "AlexBandSniperV10AINoBias",
+        "superseded_because": "explicit rerun under the 2026-09-11 diagnostic order",
+        "timeframe": "15m",
+        "timerange": "20200301-20200601",
+        "why": "no startup up to 1344 candles keeps every indicator inside 1.0%"
       }
     ],
     "AlligatorStrat": [
