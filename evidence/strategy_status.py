@@ -221,7 +221,9 @@ REASON_ORDER = (
      "duplicates the executable code of a retained representative - either "
      "confirmed further by an identical canonical full-backtest trade set, "
      "or, since 2026-09-16, by code identity alone once no config overlay "
-     "and no measured disagreement stand against it (see evidence_rule in "
+     "stands against it and no two of its measurements disagree under the "
+     "same condition; hashes from different windows are not comparable and "
+     "are no evidence either way (see evidence_rule in "
      "SEMANTIC_DUPLICATE_ADJUDICATION.json for which applied to a given row)"),
     ("canonical_implementation_not_measured", "never ran"),
     ("no_verdict_on_lookahead_and_recursive", "measured; neither gate returned a verdict"),
@@ -2423,8 +2425,9 @@ def selftest():
     # entry says so itself - its exclusion "stays evidence-only and the file is
     # kept". NASOSv5HO/NASOSv5SL are the live case: code-equivalent to
     # NASOSv5_mod1 by inheritance, yet measured at 440 and 513 trades against
-    # its 432 - three different trade hashes, which is exactly the measured
-    # disagreement `semantic_duplicates.adjudicate()` treats as direct proof of
+    # its 432 - three different trade hashes, all three taken over the SAME
+    # window, which is exactly the same-condition disagreement
+    # `semantic_duplicates.adjudicate()` treats as direct proof of
     # non-equivalence and never excludes. Reading only `recovered_at` made this
     # assertion disagree with `rows()` about two rows for the wrong reason.
     duplicates |= {row["strategy_id"] for row in

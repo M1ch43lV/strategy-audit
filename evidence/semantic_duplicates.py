@@ -28,7 +28,7 @@ import tokenize
 import warnings
 from collections import defaultdict
 
-from evidence import execution_profiles
+from evidence import execution_profiles, profile_full_window
 
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -116,6 +116,69 @@ def _full_results(path=FULL_MANIFEST):
         return {}
     with io.open(path, encoding="utf-8") as handle:
         return (json.load(handle).get("results") or {})
+
+
+def _condition_key(measurement):
+    """The conditions a full backtest is only comparable within.
+
+    A trade hash is a statement about behaviour relative to the run that
+    produced it, so two canonical runs witness the same behaviour only when
+    they used the same profile, the same window and the same runtime config.
+    `tools.pipeline_dispatcher._window_stale()` applies the same rule when it
+    decides which canonical runs are owed a repeat.
+    """
+    return "|".join((measurement.get("run_profile") or "",
+                     measurement.get("timerange") or "",
+                     measurement.get("runtime_config_sha256") or ""))
+
+
+def _expected_timerange(run_profile):
+    """Today's canonical window for the mode `run_profile` belongs to."""
+    mode = "futures" if (run_profile or "").startswith("futures_") else "spot"
+    return profile_full_window.timerange(mode)
+
+
+def _condition_analysis(members):
+    """How a group's measurements may and may not be compared.
+
+    Four facts, and the first two are mutually exclusive by construction:
+
+    - `hashes_by_condition`: condition -> sorted distinct trade hashes.
+    - `identical_condition_disagreement`: two members measured under ONE
+      condition disagree. That is direct proof of non-equivalence, whatever
+      the condition was - `MACDStrategy*` measured seven trade counts over
+      one window, `Schism2*` three, `NASOSv5*` three.
+    - `condition_conflict`: the hashes differ, but no single condition shows a
+      disagreement, so the difference is explained by the conditions. This is
+      the `FastSupertrend_optim3_rsi_75` / `..._75fix` shape: same code, same
+      runtime config, but `_75fix` still carries the pre-2026-09-21 window
+      start `20200301`, while `_75` was re-measured over `20200401-20260821`.
+      Their 15898 and 15590 trades say nothing about equivalence, and treating
+      them as proof would let a stale window settle a duplicate question for
+      good.
+    - `remeasure_owed`: members whose measured window is not today's canonical
+      window for their mode. They are the fix for a `condition_conflict`: once
+      they carry the current window the group answers itself, either into
+      `confirmed_same_trades` or into an identical-condition disagreement.
+    """
+    by_condition = defaultdict(set)
+    owed = []
+    for member in members:
+        trade_hash = member.get("trades_sha256") or ""
+        if not trade_hash:
+            continue
+        by_condition[member.get("condition", "")].add(trade_hash)
+        timerange = member.get("timerange") or ""
+        if timerange and timerange != _expected_timerange(member.get("run_profile")):
+            owed.append(member["strategy_id"])
+    identical = any(len(hashes) > 1 for hashes in by_condition.values())
+    distinct = {trade_hash for hashes in by_condition.values() for trade_hash in hashes}
+    return {
+        "hashes_by_condition": {key: sorted(value) for key, value in sorted(by_condition.items())},
+        "identical_condition_disagreement": identical,
+        "condition_conflict": (not identical) and len(distinct) > 1,
+        "remeasure_owed": sorted(owed),
+    }
 
 
 def _pure_inheritance_bases():
@@ -212,15 +275,21 @@ def build(profile_path=PROFILES, full_manifest_path=FULL_MANIFEST):
                 "full_backtest_status": measurement.get("status", "not_run"),
                 "trades": measurement.get("trades", ""),
                 "trades_sha256": trade_hash,
+                "timerange": measurement.get("timerange", "") if trade_hash else "",
+                "condition": _condition_key(measurement) if trade_hash else "",
             })
         measured_n = sum(bool(entry["trades_sha256"]) for entry in entries)
-        result.append({
+        group = {
             "normalized_ast_sha256": digest,
             "members": entries,
             "measured_members": measured_n,
             "trade_hashes": sorted(measured_hashes),
             "evidence_status": "confirmed_same_trades" if measured_n >= 2 and len(measured_hashes) == 1 else "code_equivalent_only",
-        })
+        }
+        # Written from the same function `adjudicate()` reads, so the published
+        # condition facts cannot drift from the decision they explain.
+        group.update(_condition_analysis(entries))
+        result.append(group)
     return {"schema_version": 1, "groups": result, "unreadable": unreadable}
 
 
@@ -343,10 +412,19 @@ def adjudicate(data, class1=None):
     `MACDStrategyADA`/`AVAX`/`BTC`/`ENJ`/`ETC`/`SOL`/`XRP` are byte-identical
     after class-name normalization yet measured seven DIFFERENT trade
     counts - `_has_own_config_overlay` catches ADA/BTC specifically (a
-    same-named `.json` params file), but a group with two or more measured,
-    disagreeing trade hashes is direct proof of non-equivalence regardless
-    of whether the mechanism is known, and is never excluded here even if
-    every other tier-2 condition holds.
+    same-named `.json` params file), but two measured members that disagree
+    under one and the same condition are direct proof of non-equivalence
+    whatever the mechanism is, and are never excluded here even if every
+    other tier-2 condition holds.
+
+    2026-09-23: "under one and the same condition" is the whole of that
+    clause, not a detail. A trade hash describes behaviour only relative to
+    the run that produced it, so hashes from different windows are not
+    comparable and a difference between them is not evidence of anything.
+    See `_condition_analysis()`: a group in that state is not excluded here
+    either, and it names the members that owe a window repeat. Excluding it
+    would settle the question for good on a measurement this pipeline no
+    longer accepts.
 
     Both tiers keep the member `_pick_representative` prefers, tier 1 out of
     the measured subset its own evidence requires, tier 2 out of every member
@@ -371,8 +449,11 @@ def adjudicate(data, class1=None):
                     "evidence_rule": "normalized_code_and_identical_full_backtest_trades_v1",
                 })
             continue
-        if len(group["trade_hashes"]) > 1:
-            continue  # measured disagreement - direct proof, never excluded
+        conditions = _condition_analysis(group["members"])
+        if conditions["identical_condition_disagreement"]:
+            continue  # one condition, different trades - direct proof
+        if conditions["condition_conflict"]:
+            continue  # different conditions - hashes are not comparable
         representative = _pick_representative(group["members"])
         rep_overlay = _has_own_config_overlay(
             representative["strategy_id"], representative["canonical_file"], class1)
@@ -495,16 +576,45 @@ def _report(data):
         "Generated by `evidence.semantic_duplicates`.  Equal normalized ASTs are",
         "candidate evidence, not an automatic exclusion.  `confirmed_same_trades`",
         "additionally means two or more canonical full backtests share one trade hash.", "",
+        "Trade hashes are comparable only inside one condition (profile, window,",
+        "runtime config).  A group marked below as measured under different",
+        "conditions names the members that owe a re-measure: their difference is",
+        "not evidence about equivalence, and the window repeat is already theirs.", "",
     ]
     for group in data["groups"]:
         lines += ["## `%s` - %s" % (group["normalized_ast_sha256"], group["evidence_status"]), "",
-                  "| Strategy | Full backtest | Trades | Trade hash |", "|---|---|---:|---|"]
+                  "| Strategy | Full backtest | Trades | Window | Trade hash |",
+                  "|---|---|---:|---|---|"]
         for member in group["members"]:
-            lines.append("| `%s` | `%s` | %s | `%s` |" % (
+            lines.append("| `%s` | `%s` | %s | %s | `%s` |" % (
                 member["strategy_id"], member["full_backtest_status"],
-                member["trades"] or "-", member["trades_sha256"] or "-"))
+                member["trades"] or "-", member.get("timerange") or "-",
+                member["trades_sha256"] or "-"))
         lines.append("")
+        if group.get("condition_conflict"):
+            lines += ["> Measured under different conditions, so the trade hashes are not",
+                      "> comparable and the difference is not evidence of non-equivalence.",
+                      "> Re-measure owed: %s." % (
+                          ", ".join("`%s`" % sid for sid in group["remeasure_owed"])
+                          or "none recorded"),
+                      ""]
     return ("\n".join(lines) + "\n").encode("utf-8")
+
+
+def _condition_note(data):
+    """One line naming the groups whose measurements are not comparable.
+
+    Printed by both the writer and `--check` rather than turned into a failing
+    exit code: the mixed condition is a fact about the evidence, not stale
+    output, and it clears itself once the named members carry the current
+    window. A permanently red gate would just stop being read.
+    """
+    mixed = [group for group in data["groups"] if group.get("condition_conflict")]
+    if not mixed:
+        return ""
+    owed = sorted({sid for group in mixed for sid in group["remeasure_owed"]})
+    return ("%d group(s) compare measurements from different conditions; "
+            "owed a window re-measure: %s" % (len(mixed), ", ".join(owed) or "none recorded"))
 
 
 def _write(path, content):
@@ -514,11 +624,12 @@ def _write(path, content):
     os.replace(temporary, path)
 
 
-def _member(strategy_id, trades="", trades_sha256=""):
+def _member(strategy_id, trades="", trades_sha256="", condition="", timerange=""):
     return {"strategy_id": strategy_id, "canonical_file": "repos/x/%s.py" % strategy_id,
             "repo": "x/y", "run_profile": "spot_long", "full_backtest_status":
             "measured" if trades_sha256 else "not_run", "trades": trades,
-            "trades_sha256": trades_sha256}
+            "trades_sha256": trades_sha256, "timerange": timerange,
+            "condition": condition}
 
 
 def selftest():
@@ -571,6 +682,62 @@ def selftest():
         "members": [_member("MacdA", 10, "sha_x"), _member("MacdB", 20, "sha_y")],
     }]}
     assert adjudicate(macd_like, class1={})["decisions"] == []
+
+    # A hash difference is proof only INSIDE one condition. This is the
+    # FastSupertrend_optim3_rsi_75 / ..._75fix shape: same code, one runtime
+    # config, but _75fix still carries the pre-2026-09-21 window start
+    # 20200301 while _75 was re-measured over 20200401-20260821. The group must
+    # not be excluded - and it must not read as proven non-equivalence either,
+    # so it names the member that owes the window repeat.
+    stale_window = {"groups": [{
+        "normalized_ast_sha256": "sha_d", "evidence_status": "code_equivalent_only",
+        "trade_hashes": ["sha_new", "sha_old"],
+        "members": [
+            _member("FastA", 15590, "sha_new", condition="spot_long|20200401-20260821|rc",
+                    timerange="20200401-20260821"),
+            _member("FastB", 15898, "sha_old", condition="spot_long|20200301-20260821|rc",
+                    timerange="20200301-20260821"),
+        ],
+    }]}
+    assert adjudicate(stale_window, class1={})["decisions"] == []
+    analysis = _condition_analysis(stale_window["groups"][0]["members"])
+    assert analysis["identical_condition_disagreement"] is False, analysis
+    assert analysis["condition_conflict"] is True, analysis
+    assert analysis["remeasure_owed"] == ["FastB"], analysis
+
+    # The same two hashes over ONE window are direct proof, so nothing is
+    # excluded even though every other tier-2 condition would allow it.
+    one_window = {"groups": [{
+        "normalized_ast_sha256": "sha_e", "evidence_status": "code_equivalent_only",
+        "trade_hashes": ["sha_new", "sha_old"],
+        "members": [
+            _member("SameA", 15590, "sha_new", condition="spot_long|20200401-20260821|rc",
+                    timerange="20200401-20260821"),
+            _member("SameB", 15898, "sha_old", condition="spot_long|20200401-20260821|rc",
+                    timerange="20200401-20260821"),
+        ],
+    }]}
+    assert adjudicate(one_window, class1={})["decisions"] == []
+    analysis = _condition_analysis(one_window["groups"][0]["members"])
+    assert analysis["identical_condition_disagreement"] is True, analysis
+    assert analysis["condition_conflict"] is False, analysis
+    assert analysis["remeasure_owed"] == [], analysis
+
+    # A single measured member can never conflict, whatever window it used:
+    # there is nothing to compare it with, so tier 2 still decides on code
+    # identity and the overlay test alone.
+    single = {"groups": [{
+        "normalized_ast_sha256": "sha_f", "evidence_status": "code_equivalent_only",
+        "trade_hashes": ["sha_old"],
+        "members": [
+            _member("OnlyA", 10, "sha_old", condition="spot_long|20200301-20260821|rc",
+                    timerange="20200301-20260821"),
+            _member("OnlyB"),
+        ],
+    }]}
+    analysis = _condition_analysis(single["groups"][0]["members"])
+    assert analysis["condition_conflict"] is False, analysis
+    assert analysis["remeasure_owed"] == ["OnlyA"], analysis
 
     # duplicate_source_files()'s three safety guards, each found necessary
     # after a real loss or near-loss (REGISTER.md Phase 17 addendum).
@@ -649,17 +816,22 @@ def main(argv=None):
     decisions = adjudicate(data)
     outputs = ((OUTPUT_JSON, _json_bytes(data)), (OUTPUT_MD, _report(data)),
                (ADJUDICATION, _json_bytes(decisions)))
+    note = _condition_note(data)
     if args.check:
         stale = [path for path, content in outputs if not os.path.exists(path) or open(path, "rb").read() != content]
         if stale:
             print("semantic duplicate evidence stale: %s" % ", ".join(stale))
             return 1
         print("semantic duplicate evidence current")
+        if note:
+            print("  " + note)
         return 0
     for path, content in outputs:
         _write(path, content)
     print("semantic duplicates: %d groups, %d exclusions, %d unreadable" % (
         len(data["groups"]), len(decisions["decisions"]), len(data["unreadable"])))
+    if note:
+        print("  " + note)
     return 0
 
 

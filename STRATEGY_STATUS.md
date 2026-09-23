@@ -1,6 +1,6 @@
 # Strategy status - current evidence for all 1357 rows
 
-**Generated 2026-09-23 20:50:16 by `evidence/strategy_status.py`.** Regenerate it rather than editing it.
+**Generated 2026-09-23 22:04:08 by `evidence/strategy_status.py`.** Regenerate it rather than editing it.
 
 **This table decides nothing.** Admission happens only in
 `evidence/eligibility_expansion_adjudicate.py`; this is a reading of what has
@@ -5362,7 +5362,7 @@ one of them carries none.
 | `measured_only_in_freqai_arm` | runs only under its author's own FreqAI configuration, measured separately in that arm; not comparable with the ordinary spot audit | 6 |
 | `third_party_package_declined` | needs a Python package this runtime does not install; declined because installing one changes the runtime every other strategy runs under, owner's call 2026-09-04 | 30 |
 | `shared_runtime_change_declined` | the fix is understood - pandas' or numpy's own type-coercion rules have tightened - but applying it would touch every strategy's column writes, not just this row's; declined, owner's call 2026-09-04 | 11 |
-| `duplicate_implementation` | duplicates the executable code of a retained representative - either confirmed further by an identical canonical full-backtest trade set, or, since 2026-09-16, by code identity alone once no config overlay and no measured disagreement stand against it (see evidence_rule in SEMANTIC_DUPLICATE_ADJUDICATION.json for which applied to a given row) | 90 |
+| `duplicate_implementation` | duplicates the executable code of a retained representative - either confirmed further by an identical canonical full-backtest trade set, or, since 2026-09-16, by code identity alone once no config overlay stands against it and no two of its measurements disagree under the same condition; hashes from different windows are not comparable and are no evidence either way (see evidence_rule in SEMANTIC_DUPLICATE_ADJUDICATION.json for which applied to a given row) | 90 |
 | `recursive_check_incomplete_at_longest_rungs` | - | 13 |
 | `repeated_timeout_after_exhausted_repair` | - | 4 |
 | `user_policy_excluded_after_triage` | - | 42 |
@@ -5624,7 +5624,7 @@ Wave `not_scheduled` - 1:
 
 ### `duplicate_implementation` - 90
 
-Duplicates the executable code of a retained representative - either confirmed further by an identical canonical full-backtest trade set, or, since 2026-09-16, by code identity alone once no config overlay and no measured disagreement stand against it (see evidence_rule in semantic_duplicate_adjudication.json for which applied to a given row).
+Duplicates the executable code of a retained representative - either confirmed further by an identical canonical full-backtest trade set, or, since 2026-09-16, by code identity alone once no config overlay stands against it and no two of its measurements disagree under the same condition; hashes from different windows are not comparable and are no evidence either way (see evidence_rule in semantic_duplicate_adjudication.json for which applied to a given row).
 
 Wave `-` - 86:
 
