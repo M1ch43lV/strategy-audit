@@ -10,7 +10,7 @@ separate plan file until 2026-09-20; the text is unchanged, only the headings mo
 | 2. Execution robustness and cost screen | 8b (after the pooled Full-Backtest) | Built and running; Amendments 2026-09-19 and 2026-09-20 are current | `EXECUTION_ROBUSTNESS_PLAN.md` |
 | 3. Validation window extension | 9 to 13 (regime, attribution, evaluation) | **On hold** (owner, 2026-09-20). Do not start, do not change `END` or `TIMERANGE` | `VALIDATION_EXTENSION_PLAN.md` |
 | 4. Regime rotation bot | none (a consumer of the results, not part of the chain) | Variants and the rule of each, written before it is run | new 2026-09-20 |
-| 5. Adopting a source that has no repository | 0 (what may enter the corpus, and how) | **Proposed 2026-09-24, not decided.** No program named here exists yet | new 2026-09-24 |
+| 5. Adopting a source that has no repository | 0 (what may enter the corpus, and how) | **Accepted 2026-09-24**; `tools/adopt_source.py` in use, `frequenthippo` is the only source tag decided so far | new 2026-09-24 |
 
 Section numbers quoted inside a part (for example `section 5.1`) refer to that part. A file name inside the text of a merged part (for example `EXECUTION_ROBUSTNESS_PLAN.md`) names the file as it was then; the table "Where a former document went" in `README.md` resolves it.
 
@@ -1172,8 +1172,13 @@ Reading:
 
 ## 5. Adopting a source that has no repository
 
-*Proposed 2026-09-24. **Nothing in this part is a rule until the owner accepts it**, and no program it names exists
- yet. It is written down because Stage 0 has no answer for a case that already exists twice and will recur.*
+*Accepted 2026-09-24 by the owner: a strategy published without a repository goes into `repos/frequenthippo/`, is
+ listed as that source's own strategy, and is admitted **like any other strategy** - same intake refresh, same
+duplicate adjudication, same representative rule, same population rules. `tools/adopt_source.py` implements it, and
+the two files it was written for are in the corpus.*
+
+*Read the rest of this part as the implementation's contract: what the command refuses, what it records, what it
+deliberately does not do, and which two questions are still open.*
 
 ### 5.1 The case
 
@@ -1188,19 +1193,25 @@ Do not confuse this with a source that has *disappeared*: `BB_Github_mupol313_ho
 no copy left anywhere, and reconstructing it from a third party's mirror is a different decision that this part does
 not make. Here the source is available and simply is not a repository.
 
-### 5.2 What it would add (Option A)
+### 5.2 What it adds
 
-One new writer, `tools/adopt_source.py`, with one explicit command per file:
+One writer, `tools/adopt_source.py`, and one explicit command per file:
 
 ```text
 python -m tools.adopt_source --url <published file> --strategy <class it must define> \
-    --source <tag> --reason "<why this file and no repository>"
+    [--source frequenthippo] --reason "<why this file and no repository>"
 ```
 
-It writes `repos/audit-adopted_<tag>/<file>.py`. A synthetic folder under `repos/` is the smaller change, not the
-bigger one: `evidence/execution_profiles.discover()` walks `repos/`, so a corpus root outside it would change the
-corpus definition itself, and the corpus already carries one hand-authored folder there
-(`repos/audit-authored_lookahead-rewrites/`).
+It writes `repos/frequenthippo/<file>.py` - one folder per source, and the folder is the attribution:
+`evidence/execution_profiles.py` reports `repo` from the directory name, so the corpus lists these strategies as that
+source's own, exactly as it lists a repository's. A folder inside `repos/` is also the smaller change: `discover()`
+walks `repos/`, so a corpus root outside it would change the corpus definition itself, and the corpus already carries
+one hand-authored folder there (`repos/audit-authored_lookahead-rewrites/`).
+
+The tag is restricted in the command (`ALLOWED_SOURCES`), so a new source is a decision in this part and not an
+argument. Only the last segment of the URL becomes the file name, and it has to be one plain `.py` name
+(`[A-Za-z0-9_ .()+-]`); a name Windows would refuse, a percent-escaped one or a bare `.py` is refused rather than
+sanitised.
 
 ### 5.3 The rules the command must obey
 
@@ -1210,9 +1221,12 @@ corpus definition itself, and the corpus already carries one hand-authored folde
    written.
 3. **The named class must be there.** The downloaded text must parse and define `--strategy` as a class with an
    `IStrategy` base somewhere in its hierarchy, otherwise nothing is written.
-4. **Provenance is append-only** in `evidence/ADOPTED_SOURCES.json`: URL, retrieval time in UTC, SHA-256 of the stored
-   bytes, the classes found, the requested class, the tag and the reason. Adopting the same URL again with different
-   bytes adds a row; it never rewrites one. A file that changes on the server therefore shows up as two hashes.
+4. **Provenance is append-only, next to the files** in `repos/<source>/.sources.json`: URL, retrieval time in UTC,
+   SHA-256 of the stored bytes, the requested class, the tag and the reason. Adopting the same URL again with
+   different bytes appends a row; it never rewrites one, so a file that changes on the server shows up as two hashes.
+   It sits beside the files because it belongs to the source rather than to a read model, and no consumer of `repos/`
+   reads it (`find_strategies` and `discover()` look at `.py` only) - which is also why it can never be mistaken for
+   the `<file>.json` companion overlay that the duplicate rule treats as configuration.
 5. **No silent replacement.** Same hash: the command is a no-op and says so. Different hash: it refuses unless
    `--replace` is passed, and the old hash stays in the provenance store.
 6. **The intake refresh runs afterwards, unchanged** - the same duplicate adjudication, the same representative rule
@@ -1222,10 +1236,13 @@ corpus definition itself, and the corpus already carries one hand-authored folde
 7. **"Adopted" is not a quality signal.** Part 1's populations are untouched, and the tag and the provenance store
    must never enter an identity hash - only the bytes are identity, which is what the measurement stores already
    assume.
-8. **The reports must not read the folder as a repository.** `tools/census_repos.py`, `evidence/repo_freshness.py`
-   and `evidence/new_repo_candidates.py` walk `repos/` and would otherwise list `audit-adopted_*` as a GitHub
-   repository that was never fetched. How they treat the existing `repos/audit-authored_lookahead-rewrites/` and the
-   non-repository folder `logs` has to be checked first and, if it is wrong, corrected in the same change.
+8. **The reports must not read the folder as a repository.** Checked while the first source was adopted:
+   `evidence/repo_freshness.py` asked GitHub for `frequenthippo` and answered `api_error_or_not_found`, which reads
+   like a repository that vanished; it now names local-only sources in `NON_GITHUB_SOURCES` and reports
+   `not_a_repository` instead, with that meaning written into `REPO_FRESHNESS.md`. `tools/census_repos.py` needed no
+   change - it lists the folder as a source and prints its own contribution. `evidence/new_repo_candidates.py`
+   needed none either: it uses the source list only as a set of known names and never asks GitHub about an entry in
+   it.
 
 ### 5.4 What it would not do
 
@@ -1242,24 +1259,30 @@ corpus definition itself, and the corpus already carries one hand-authored folde
 
 | # | Question | Why it matters |
 |---|---|---|
-| 1 | Does an adopted strategy count for the confirmatory `E1_expanded` population, or only as `E3_derived_exploratory`? | Part 1's estimand names "public Freqtrade implementations"; a file with no repository is public but is not a repository artifact |
-| 2 | Is per-file adoption a standing path or a named exception? | A standing path needs a wave-style record; an exception needs a stop condition |
-| 3 | Only this site's published strategies, or any non-GitHub source (a Discord share, a blog listing, a paste)? | A GitHub gist is a repository in harvest's sense and needs none of this; a Discord share has no author tree and no hash to pin |
-| 4 | Who may adopt - the owner only, or an agent under an explicit instruction? | The command writes below `repos/`, the one place Stage 0 protects hardest |
+| 1 | **Answered 2026-09-24:** an adopted strategy is admitted like any other, so Part 1's population rules apply unchanged - no separate cohort and no weaker evidence status | The owner's words: "aufgenommen wie jede andere Strategie auch" |
+| 2 | Is per-file adoption a standing path or a named exception? | It exists as a path now. Whether it may be used without a fresh owner decision per source is still open - today a new tag needs one (§5.2) |
+| 3 | **Answered 2026-09-24 for one source:** the folder is `repos/frequenthippo/`, so the decision names that site. Any other non-GitHub source is a new decision and a new entry in `ALLOWED_SOURCES` | A GitHub gist is a repository in harvest's sense and needs none of this; a Discord share has no author tree and no hash to pin |
+| 4 | Who may adopt - the owner only, or an agent under an explicit instruction? | Still open, and bounded by the design: one file per call, a recorded reason, and nothing automated invokes it - it writes below `repos/`, the one place Stage 0 protects hardest |
 
-### 5.6 How it would be verified before first use
+### 5.6 What was verified when it went into use
 
-- A `--selftest` over the refusal cases: malware hit, missing or wrong class, changed hash without `--replace`, a
-  destination outside `repos/audit-adopted_*`.
-- One acceptance test that matters more than the rest: adopt a file that is **already** in the corpus and prove the
-  adoption ends as a duplicate (removed or excluded) instead of adding a second strategy. That is what shows the new
-  writer cannot smuggle a copy past the existing rules.
-- After a real adoption: `evidence.strategy_status --check`, `evidence.semantic_duplicates --check`,
-  `tools.strategy_status_page --check`, `evidence.pipeline_state --selftest`, `tools.identity_freeze --quiet`.
+- `tools/adopt_source.py --selftest` passes over the refusal cases: a URL that does not end in one plain `.py` name, a
+  percent-escaped name, a name Windows would refuse, an undecided source tag, a file without an `IStrategy` class and
+  a file that defines the wrong class. Plus the provenance file keeping both rows when the same URL arrives twice.
+- The first two real adoptions: `BB_RPB_TSL_RNG_V2_20211008` (rank 4) and `BB_RPB_TSL_jilv220_github_20211008`
+  (rank 6) are corpus rows attributed to `frequenthippo`, in `not_tested_in_current_runtime` - the same state a newly
+  harvested strategy gets.
+- The intake-deletion path is wired: the command passes its source folder as freshly fetched, so the rule of
+  2026-09-16 can remove an adopted file that is a code-identical copy of a strategy no check has looked at. That rule
+  is not new code - the harvest wave of 2026-09-23 removed 509 files by it - but the adoption case has not occurred
+  yet: neither of the two files is code-identical to the corpus copy of its name (`normalized_ast_digest` differs, so
+  both are revisions rather than copies). The first adopted file that *is* a copy is therefore still the moment to
+  watch, and the expectation is `removed duplicate: ...` in the refresh output.
+- Not applicable here and worth stating: an adopted file that duplicates an **already measured** strategy keeps its
+  file and appears as `exclude_duplicate_implementation` - the same protection a harvested copy gets.
 
-### 5.7 If the owner declines
+### 5.7 If a source is declined instead
 
-Then the two files stay what they are: leads with provenance, parked under `user_data/site_sources/`, named in
-`HANDOFF.md`, never measured, never counted. That is Option B, and its point is that the answer stays explicit rather
-than becoming a hand-copy nobody can see. Option C - adopt them but forbid any benchmark from touching them - adds a
-storage rule for no measurable gain and is listed only for completeness.
+A source the owner does not want adopted stays what the two files were before: leads with provenance, parked under
+`user_data/site_sources/`, named in `HANDOFF.md`, never measured, never counted. Its point is that the answer stays
+explicit rather than becoming a hand-copy nobody can see.

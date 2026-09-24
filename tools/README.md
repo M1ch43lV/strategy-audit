@@ -1,7 +1,9 @@
 # Manual and corpus tools
 
 This directory contains maintained support programs that are not benchmark
-result stores. Corpus intake uses `harvest.py`, `census_repos.py`, `expand.py`,
+result stores. Corpus intake uses `harvest.py` (repositories) and
+`adopt_source.py` (one file published without a repository,
+`PIPELINE_EXTENSIONS.md` Part 5), plus `census_repos.py`, `expand.py`,
 `tfscan.py`, and the shared `harness.py`; `fetch_bulk.py` supplies archived
 Binance spot candles. `evidence.strategy_feed` is a separate, review-only
 Stage-0 discovery scanner: it records pinned feed sources but never downloads

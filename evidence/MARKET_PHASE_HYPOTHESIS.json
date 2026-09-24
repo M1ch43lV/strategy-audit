@@ -876,6 +876,10 @@
       "assumed_market_regime": "range_choppy;range_quiet",
       "assumed_market_regime_evidence": "logic(mean_reversion); direction(long_only): bear excluded"
     },
+    "BB_RPB_TSL_RNG_V2_20211008": {
+      "assumed_market_regime": "range_choppy;range_quiet",
+      "assumed_market_regime_evidence": "logic(none) undecided, type(mean_reversion,scalping); direction(long_only): bear excluded"
+    },
     "BB_RPB_TSL_RNG_VWAP": {
       "assumed_market_regime": "range_choppy;range_quiet",
       "assumed_market_regime_evidence": "logic(mean_reversion); direction(long_only): bear excluded"
@@ -919,6 +923,10 @@
     "BB_RPB_TSL_c7c477d_20211030": {
       "assumed_market_regime": "range_choppy;range_quiet",
       "assumed_market_regime_evidence": "logic(mean_reversion); direction(long_only): bear excluded"
+    },
+    "BB_RPB_TSL_jilv220_github_20211008": {
+      "assumed_market_regime": "range_choppy;range_quiet",
+      "assumed_market_regime_evidence": "logic(none) undecided, type(mean_reversion,scalping); direction(long_only): bear excluded"
     },
     "BB_RPB_TSL_meneguzzo": {
       "assumed_market_regime": "bull_trend;high_vol_shock;range_choppy;range_quiet;transition",

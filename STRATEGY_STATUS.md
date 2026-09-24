@@ -1,6 +1,6 @@
-# Strategy status - current evidence for all 3230 rows
+# Strategy status - current evidence for all 3232 rows
 
-**Generated 2026-09-24 06:38:51 by `evidence/strategy_status.py`.** Regenerate it rather than editing it.
+**Generated 2026-09-24 06:57:41 by `evidence/strategy_status.py`.** Regenerate it rather than editing it.
 
 **This table decides nothing.** Admission happens only in
 `evidence/eligibility_expansion_adjudicate.py`; this is a reading of what has
@@ -39,14 +39,14 @@ reason to skip a check.
 records, so `last_tested_at` is recovered from what they leave behind:
 a result archive's filename, which carries the run's own clock, or
 failing that a log file's modification time, which is close but is the
-file's time and is labelled `log_mtime` for that reason. 1973 of 3230 rows
+file's time and is labelled `log_mtime` for that reason. 1975 of 3232 rows
 have neither and are left empty rather than given an invented time.
 
 ## Measurement
 
 | | Strategies |
 |---|---:|
-| in the manifest | 3230 |
+| in the manifest | 3232 |
 | measured at all | 1254 |
 | produced trades | 1019 |
 | carrying a run time | 1257 |
@@ -55,7 +55,7 @@ have neither and are left empty rather than given an invented time.
 
 | Cohort | Strategies |
 |---|---:|
-| `not_tested_in_current_runtime` | 1851 |
+| `not_tested_in_current_runtime` | 1853 |
 | `E1_expanded` | 703 |
 | `excluded` | 555 |
 | `pending` | 42 |
@@ -68,13 +68,13 @@ have neither and are left empty rather than given an invented time.
 
 Both read from the strategy's own source by `strategy_classification.py`,
 not measured - see that module's docstring for the marker table and its
-limits. `timeframe` is blank on 165 rows the source does not state it for. `strategy_type` can be more than one label - most rows carry two or three - and is blank on 0 rows where no marker matched at all, so its counts below add up to more than 3230.
+limits. `timeframe` is blank on 165 rows the source does not state it for. `strategy_type` can be more than one label - most rows carry two or three - and is blank on 0 rows where no marker matched at all, so its counts below add up to more than 3232.
 
 ### Timeframe
 
 | Timeframe | Strategies |
 |---|---:|
-| `5m` | 1814 |
+| `5m` | 1816 |
 | `1h` | 392 |
 | `15m` | 292 |
 | `1m` | 226 |
@@ -97,8 +97,8 @@ limits. `timeframe` is blank on 165 rows the source does not state it for. `stra
 
 | Type | Strategies |
 |---|---:|
-| `scalping` | 1825 |
-| `mean_reversion` | 1598 |
+| `scalping` | 1827 |
+| `mean_reversion` | 1600 |
 | `momentum` | 1505 |
 | `trend_following` | 747 |
 | `volatility_breakout` | 661 |
@@ -139,13 +139,13 @@ preregistration OPEN item 6; the amendment records it.
 | `bear_trend` | `coin_adx >= 25 and coin_minus_di > coin_plus_di` | 219 |
 | `bull_trend` | `coin_adx >= 25 and coin_plus_di > coin_minus_di` | 1828 |
 | `high_vol_shock` | `coin_realized_vol_30d >= 1.291, whatever the DMI state` | 507 |
-| `range_choppy` | `coin_adx < 20 and coin_realized_vol_30d >= 0.623` | 1496 |
-| `range_quiet` | `coin_adx < 20 and coin_realized_vol_30d < 0.623` | 1404 |
+| `range_choppy` | `coin_adx < 20 and coin_realized_vol_30d >= 0.623` | 1498 |
+| `range_quiet` | `coin_adx < 20 and coin_realized_vol_30d < 0.623` | 1406 |
 | `transition` | `20 <= coin_adx < 25` | 488 |
 
 A row may carry more than one phase, and 504 carry none: 251 are model-driven, where the indicators are features of a model and say nothing about which phase it favours, and 253 name no phase-bearing marker at all. Both are left blank rather than given an invented prior - a blank is itself testable, as the prediction that the row is phase-neutral.
 
-`bear_trend` is rare by construction: 2844 of 3230 rows are long-only and a long-only strategy cannot earn in a sustained downtrend, so the direction gate removes it whatever the indicators suggest.
+`bear_trend` is rare by construction: 2846 of 3232 rows are long-only and a long-only strategy cannot earn in a sustained downtrend, so the direction gate removes it whatever the indicators suggest.
 
 ## Test duration
 
@@ -155,7 +155,7 @@ look-ahead/recursion pair, a later native look-ahead
 re-measurement, the warm-up ladder, a wave B recursion attempt, and
 the eight-pair full-window backtest actually ran for it - see
 `test_duration` in evidence/strategy_status.py for why this is a sum rather
-than a pick-one-source figure. 1958 of 3230 rows carry no stamp at all,
+than a pick-one-source figure. 1960 of 3232 rows carry no stamp at all,
 either because nothing has run yet or because no runner on that
 path records its own time.
 
@@ -303,7 +303,7 @@ carries the command it was produced by. **`recorded`** is the argv that
 actually ran. **`reconstructed`** is derived from the run profile and
 the window, because nothing stored the call before 2026-09-01; it is
 labelled because a reconstruction is a different claim from a
-recording. 2534 of 7730 commands are recorded so far, and every new run
+recording. 2534 of 7734 commands are recorded so far, and every new run
 adds one.
 
 There is one column per gate, not one per row. A row can carry three
@@ -5283,7 +5283,7 @@ neither a pass nor a fail.
 `ViNBuyVws`, `degen`, `el_extrema_RL`, `epretrace`
 `haGradient`, `tbedit`
 
-## Attempted, no measurement - 1851 strategies
+## Attempted, no measurement - 1853 strategies
 
 No run under the current pipeline is recorded for these. The
 original corpus sweep did attempt every row, but it ran in an
@@ -5399,9 +5399,11 @@ verdict. Where such a hint exists it is shown in brackets.
 | `BB_RPB_TSL_RNG_3` | `-` | `no run under the current runtime` |
 | `BB_RPB_TSL_RNG_5` | `-` | `no run under the current runtime` |
 | `BB_RPB_TSL_RNG_724` | `-` | `no run under the current runtime` |
+| `BB_RPB_TSL_RNG_V2_20211008` | `-` | `no run under the current runtime` |
 | `BB_RPB_TSL_RNG_VWAP_0` | `-` | `no run under the current runtime` |
 | `BB_RPB_TSL_SMA_Tranz_1` | `-` | `no run under the current runtime` |
 | `BB_RPB_TSL_SMA_Tranz_1_5_2_MAIN` | `-` | `no run under the current runtime` |
+| `BB_RPB_TSL_jilv220_github_20211008` | `-` | `no run under the current runtime` |
 | `BB_RPB_TSL_meneguzzo` | `-` | `no run under the current runtime` |
 | `BB_RPB_TSL_v102` | `-` | `no run under the current runtime` |
 | `BB_RPB_TSL_v104` | `-` | `no run under the current runtime` |
@@ -7573,7 +7575,7 @@ Wave `C_measurement_recovery` - 1:
 
 | Wave | Strategies |
 |---|---:|
-| `(none)` | 2334 |
+| `(none)` | 2336 |
 | `not_scheduled` | 390 |
 | `C_measurement_recovery` | 229 |
 | `D_recursive_drift` | 121 |
@@ -7585,8 +7587,8 @@ Wave `C_measurement_recovery` - 1:
 
 | Item | Strategies |
 |---|---:|
-| `recursive_ladder_pending` | 1878 |
-| `first_measurement_in_current_runtime` | 1851 |
+| `recursive_ladder_pending` | 1880 |
+| `first_measurement_in_current_runtime` | 1853 |
 | `lookahead_remeasure_pending` | 32 |
 | `needs_a_look` | 11 |
 | `repair_attempted` | 3 |

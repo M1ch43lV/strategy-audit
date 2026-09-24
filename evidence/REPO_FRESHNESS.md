@@ -4,88 +4,91 @@
 
 Deciding anything from a row here means a deliberate, later re-fetch of that one repo - never a silent swap of the files this audit's `canonical_sha256` values are pinned to.
 
-## Repos already in the corpus - 61 checked
+`not_a_repository` marks a source that was never a repository (`PIPELINE_EXTENSIONS.md` Part 5): it has no upstream that could have moved, so it is not a drift candidate and `api_error_or_not_found` would mean something else entirely.
+
+## Repos already in the corpus - 66 checked
 
 | Repo | Status | Ahead by | Pushed |
 |---|---|---:|---|
 | `AlexCryptoKing/freqailstm` | current_by_pushed_at | - | 2024-11-14T05:14:55Z |
-| `Bananajoexxc/RegimeFilterStrategy-Freqtrade` | current | - | 2026-01-20T14:59:50Z |
-| `DonaldSimpson/remora-freqtrade` | current | - | 2025-12-22T18:15:03Z |
-| `DutchCryptoDad/FreqtradeBotStrategyDevelopmentForBeginners` | current | - | 2021-12-10T08:41:45Z |
-| `Foxel05/freqtrade-stuff` | current | - | 2021-11-19T07:51:14Z |
-| `HeyMrRobot/Freqtrade-Adaptive-Renko-Strategy` | current | - | 2023-05-24T12:01:58Z |
-| `Juusseli/Trade` | current | - | 2021-09-01T17:08:01Z |
+| `Bananajoexxc/RegimeFilterStrategy-Freqtrade` | current_by_pushed_at | - | 2026-01-20T14:59:50Z |
+| `DonaldSimpson/remora-freqtrade` | current_by_pushed_at | - | 2025-12-22T18:15:03Z |
+| `DutchCryptoDad/FreqtradeBotStrategyDevelopmentForBeginners` | current_by_pushed_at | - | 2021-12-10T08:41:45Z |
+| `Foxel05/freqtrade-stuff` | current_by_pushed_at | - | 2021-11-19T07:51:14Z |
+| `HeyMrRobot/Freqtrade-Adaptive-Renko-Strategy` | current_by_pushed_at | - | 2023-05-24T12:01:58Z |
+| `Juusseli/Trade` | current_by_pushed_at | - | 2021-09-01T17:08:01Z |
 | `Kureshi25/cryptobot` | current_by_pushed_at | - | 2026-09-07T15:23:05Z |
 | `LazyPigPig/freqtrade-grid` | current_by_pushed_at | - | 2025-01-31T15:06:55Z |
-| `Lijunnan0113/Lijunnan0113-Lijunnan_Freqtrade_Strategy` | current | - | 2024-09-24T05:53:13Z |
-| `MMR-19/freqtrade-strategies` | current | - | 2025-06-07T20:02:21Z |
-| `MelvynClark/Freqtrade-Strategy` | current | - | 2022-11-23T05:41:43Z |
-| `Mohamed-sm/Freqtrade-RLStrategy-IA` | current | - | 2025-07-16T01:02:17Z |
+| `Lijunnan0113/Lijunnan0113-Lijunnan_Freqtrade_Strategy` | current_by_pushed_at | - | 2024-09-24T05:53:13Z |
+| `MMR-19/freqtrade-strategies` | current_by_pushed_at | - | 2025-06-07T20:02:21Z |
+| `MelvynClark/Freqtrade-Strategy` | current_by_pushed_at | - | 2022-11-23T05:41:43Z |
+| `Mohamed-sm/Freqtrade-RLStrategy-IA` | current_by_pushed_at | - | 2025-07-16T01:02:17Z |
 | `OfficialGIGA/freqtrade-ml-strategy` | current_by_pushed_at | - | 2026-06-11T01:10:35Z |
 | `PeetCrypto/freqtrade-stuff` | current_by_pushed_at | - | 2022-02-18T16:53:53Z |
-| `Rikj000/MoniGoMani` | current | - | 2023-03-11T14:05:58Z |
-| `ShahAnuj2610/my-freqtrade` | current | - | 2025-05-18T04:25:02Z |
-| `ShahAnuj2610/my-freqtrade-nfi-nextgen` | current | - | 2025-05-18T06:54:04Z |
+| `Rikj000/MoniGoMani` | current_by_pushed_at | - | 2023-03-11T14:05:58Z |
+| `ShahAnuj2610/my-freqtrade` | current_by_pushed_at | - | 2025-05-18T04:25:02Z |
+| `ShahAnuj2610/my-freqtrade-nfi-nextgen` | current_by_pushed_at | - | 2025-05-18T06:54:04Z |
 | `TheoBrigitte/freqtrade` | current_by_pushed_at | - | 2025-04-15T20:40:15Z |
-| `TomtomEh/freqtrade-websocket` | current | - | 2021-10-15T08:37:35Z |
+| `TomtomEh/freqtrade-websocket` | current_by_pushed_at | - | 2021-10-15T08:37:35Z |
 | `Vijay190899/Trade-Bot` | current_by_pushed_at | - | 2026-09-02T18:17:03Z |
-| `anakein/beastbotXB` | current | - | 2022-05-23T17:15:12Z |
+| `XXA222/HPRL` | current_by_pushed_at | - | 2026-08-25T11:26:29Z |
+| `anakein/beastbotXB` | current_by_pushed_at | - | 2022-05-23T17:15:12Z |
+| `audit-authored/lookahead-rewrites` | api_error_or_not_found | - | - |
 | `beanbocchi/money-generator` | current_by_pushed_at | - | 2026-07-30T01:33:02Z |
-| `botenesp/freqtrade_strategies` | current | - | 2021-05-14T23:24:57Z |
-| `brookmiles/freqtrade-stuff` | current | - | 2021-05-20T23:42:45Z |
-| `bustillo/freqtrade-strategies` | current | - | 2025-06-24T03:17:57Z |
-| `cyberjunky/freqtrade_strategy` | current | - | 2024-04-12T05:44:29Z |
+| `brookmiles/freqtrade-stuff` | current_by_pushed_at | - | 2021-05-20T23:42:45Z |
+| `bustillo/freqtrade-strategies` | current_by_pushed_at | - | 2025-06-24T03:17:57Z |
+| `cyberjunky/freqtrade_strategy` | current_by_pushed_at | - | 2024-04-12T05:44:29Z |
 | `darkvolg/trendrider-strategy` | current_by_pushed_at | - | 2026-04-21T13:35:13Z |
 | `davidzr/freqtrade-strategies` | current_by_pushed_at | - | 2024-02-10T20:25:41Z |
 | `djienne/AVELLANEDA_MARKET_MAKING_FREQTRADE` | current_by_pushed_at | - | 2025-12-10T11:38:34Z |
-| `djienne/COPY_WALLET_HYPERLIQUID` | current | - | 2026-04-19T15:35:27Z |
+| `djienne/COPY_WALLET_HYPERLIQUID` | current_by_pushed_at | - | 2026-04-19T15:35:27Z |
 | `djienne/YOUTUBE_STRATEGIES_FREQTRADE` | current_by_pushed_at | - | 2025-12-22T21:37:49Z |
-| `eovie/freqtrade_strs` | current | - | 2026-07-24T22:19:13Z |
-| `flaviosiotto/freqtrade-strategy` | current | - | 2023-03-22T11:57:19Z |
-| `freqtrade/freqtrade-strategies` | ahead | 2 | 2026-09-08T16:42:47Z |
+| `eovie/freqtrade_strs` | current_by_pushed_at | - | 2026-07-24T22:19:13Z |
+| `flaviosiotto/freqtrade-strategy` | current_by_pushed_at | - | 2023-03-22T11:57:19Z |
+| `freqtrade/freqtrade-strategies` | pushed_after_local_fetch | - | 2026-09-08T16:42:47Z |
+| `frequenthippo` | not_a_repository | - | - |
 | `hamidreza07/freqai-strategy` | current_by_pushed_at | - | 2024-10-05T14:19:58Z |
 | `hippocritical/delist_scraper` | current_by_pushed_at | - | 2025-06-07T10:21:17Z |
-| `ingpawat/freqtrade-strategy-with-backtest` | current | - | 2025-09-09T08:02:12Z |
-| `iterativv/NostalgiaForInfinity` | ahead | 591 | 2026-09-14T13:47:33Z |
-| `jaredrsommer/freqtradestrategies` | current | - | 2026-05-18T19:51:14Z |
-| `jerome-benoit/freqai-strategies` | ahead | 31 | 2026-09-15T00:22:33Z |
-| `keithorange/FreqTradeCustomOrders` | current | - | 2024-08-09T14:41:49Z |
+| `ingpawat/freqtrade-strategy-with-backtest` | current_by_pushed_at | - | 2025-09-09T08:02:12Z |
+| `iterativv/NostalgiaForInfinity` | pushed_after_local_fetch | - | 2026-09-23T14:08:07Z |
+| `jaredrsommer/freqtradestrategies` | current_by_pushed_at | - | 2026-05-18T19:51:14Z |
+| `jerome-benoit/freqai-strategies` | pushed_after_local_fetch | - | 2026-09-23T23:58:02Z |
+| `keithorange/FreqTradeCustomOrders` | current_by_pushed_at | - | 2024-08-09T14:41:49Z |
 | `kemplail/freqtrade-stuff` | current_by_pushed_at | - | 2023-11-15T19:11:56Z |
-| `markdregan/FreqAI-Marcos-Lopez-De-Prado` | current | - | 2024-04-15T13:05:14Z |
-| `mikedigriz/freqtrade-strategy-mikedigriz` | current | - | 2024-11-17T09:12:11Z |
-| `miwtoo/ft-action-zone` | current | - | 2022-05-07T08:27:03Z |
-| `mlsys-io/PortfolioBench` | current | - | 2026-05-13T22:01:52Z |
+| `markdregan/FreqAI-Marcos-Lopez-De-Prado` | current_by_pushed_at | - | 2024-04-15T13:05:14Z |
+| `mikedigriz/freqtrade-strategy-mikedigriz` | current_by_pushed_at | - | 2024-11-17T09:12:11Z |
+| `miwtoo/ft-action-zone` | current_by_pushed_at | - | 2022-05-07T08:27:03Z |
+| `mlsys-io/PortfolioBench` | current_by_pushed_at | - | 2026-05-13T22:01:52Z |
 | `mmartel86/freqtrade-setup` | current_by_pushed_at | - | 2026-07-14T22:39:39Z |
-| `nateemma/strategies` | ahead | 294 | 2026-09-13T22:40:56Z |
-| `phuchust/freqtrade_strategy` | current | - | 2022-03-24T05:55:38Z |
-| `seannowotny/FlawlessVictoryPort` | current | - | 2021-04-10T14:31:40Z |
-| `shadowp2810/technical_indicators_cryptos` | current | - | 2021-12-30T22:22:19Z |
+| `nancyjimenezbnoewowo/NostalgiaForInfinity` | current_by_pushed_at | - | 2025-10-02T09:19:01Z |
+| `nateemma/strategies` | current_by_pushed_at | - | 2026-09-13T22:40:56Z |
+| `obseries/freqtrade-strategy-ichiv1` | current_by_pushed_at | - | 2023-11-26T10:51:33Z |
+| `phuchust/freqtrade_strategy` | current_by_pushed_at | - | 2022-03-24T05:55:38Z |
+| `remiotore/ccxt-freqtrade` | current_by_pushed_at | - | 2026-01-11T21:05:50Z |
+| `seannowotny/FlawlessVictoryPort` | current_by_pushed_at | - | 2021-04-10T14:31:40Z |
+| `shadowp2810/technical_indicators_cryptos` | current_by_pushed_at | - | 2021-12-30T22:22:19Z |
 | `songhuaxueyue-tech/trend-regime-transformer` | current_by_pushed_at | - | 2025-12-28T11:13:38Z |
 | `thinkong/freqtradestrategies` | current_by_pushed_at | - | 2022-11-28T07:11:49Z |
 | `titouannwtt/freqtrade-france-strategies-kac-index` | current_by_pushed_at | - | 2026-05-19T20:21:20Z |
 | `titouannwtt/freqtrade-france-strategies_simple_vwap` | current_by_pushed_at | - | 2026-05-19T20:21:16Z |
-| `titouannwtt/freqtrade-ultimate` | pushed_after_local_fetch | - | 2026-09-12T15:16:40Z |
+| `titouannwtt/freqtrade-ultimate` | pushed_after_local_fetch | - | 2026-09-22T13:43:04Z |
 | `vaskosmihaylov/nfi-custom-strategies` | current_by_pushed_at | - | 2026-08-09T09:41:43Z |
 | `webclinic017/strategies-freqtrade-` | current_by_pushed_at | - | 2024-05-01T16:33:50Z |
-| `werkkrew/freqtrade-strategies` | current | - | 2021-06-04T16:03:18Z |
+| `werkkrew/freqtrade-strategies` | current_by_pushed_at | - | 2021-06-04T16:03:18Z |
 | `yeboster/liquidity-sweep-freqtrade` | current_by_pushed_at | - | 2026-09-02T15:55:38Z |
 
-### Ahead of our capture - 4
+### Ahead of our capture - 0
 
-- `iterativv/NostalgiaForInfinity` - 591 commits ahead, pushed 2026-09-14T13:47:33Z
-- `freqtrade/freqtrade-strategies` - 2 commits ahead, pushed 2026-09-08T16:42:47Z
-- `jerome-benoit/freqai-strategies` - 31 commits ahead, pushed 2026-09-15T00:22:33Z
-- `nateemma/strategies` - 294 commits ahead, pushed 2026-09-13T22:40:56Z
+None.
 
-## Harvested but never integrated - 18
+## Harvested but never integrated - 17
 
 In `evidence/corpus_sources.json` (this project scanned it for classes at some point) but absent from `STRATEGY_STATUS.csv`'s own repo list (no canonical file from it ever reached `evidence/EXECUTION_PROFILES.csv`).
 
 | Repo | Classes found | First-occurrence classes |
 |---|---:|---:|
-| `keithorange/HUGE_FreqTrade_Strategy_Collection` | 477 | 0 |
-| `p-zombie/freqtrade` | 35 | 0 |
-| `nancyjimenezbnoewowo/NostalgiaForInfinity` | 9 | 0 |
+| `keithorange/HUGE_FreqTrade_Strategy_Collection` | 472 | 0 |
+| `p-zombie/freqtrade` | 34 | 0 |
 | `i1ya/freqtrade-strategies` | 8 | 0 |
 | `devbootstrap/optimize-trading-strategy-using-freqtrade` | 5 | 0 |
 | `hansen1015/freqtrade_strategy` | 5 | 0 |
@@ -94,8 +97,8 @@ In `evidence/corpus_sources.json` (this project scanned it for classes at some p
 | `imsatoshi/GeneTrader` | 2 | 0 |
 | `keryc/crypto-bot` | 2 | 0 |
 | `mohammadmoth/Freqtrade-Strategy` | 2 | 0 |
-| `obseries/freqtrade-strategy-ichiv1` | 2 | 0 |
 | `Netanelshoshan/freqAI-LSTM` | 1 | 0 |
+| `botenesp/freqtrade_strategies` | 1 | 0 |
 | `froggleston/cryptofrog-strategies` | 1 | 0 |
 | `freqtrade/berlinguyinca-trading-strategies` | 0 | 0 |
 | `logs` | 0 | 0 |

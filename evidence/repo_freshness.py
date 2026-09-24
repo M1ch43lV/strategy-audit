@@ -65,6 +65,15 @@ def repos_in_use():
     return sorted({row["repo"] for row in rows if row["repo"]})
 
 
+# Sources that are not GitHub repositories. `repos/frequenthippo/` holds files
+# adopted from a web page (`PIPELINE_EXTENSIONS.md` Part 5), so asking GitHub for
+# its tip answers nothing and `api_error_or_not_found` would read like a
+# vanished repository - a different and alarming thing. A new local-only source
+# belongs here in the same change that adds it, so the answer stays explicit
+# instead of being inferred per call.
+NON_GITHUB_SOURCES = {"frequenthippo"}
+
+
 def local_dir(repo):
     return os.path.join(REPOS_DIR, repo.replace("/", "_", 1))
 
@@ -135,6 +144,12 @@ def check_repo(repo):
                        .datetime.fromtimestamp(mtime, __import__("datetime").timezone.utc)
                        .isoformat() if mtime else None)})
 
+    if repo in NON_GITHUB_SOURCES:
+        # Decided before the lookup, not after a 404: this source has no
+        # upstream to be ahead of or behind, and asking GitHub for it would
+        # produce a failure that means something else.
+        row["remote_status"] = "not_a_repository"
+        return row
     meta = gh_api("repos/%s" % repo)
     if meta is None:
         row["remote_status"] = "api_error_or_not_found"
@@ -231,6 +246,10 @@ def _report(rows, unintegrated):
         "Deciding anything from a row here means a deliberate, later "
         "re-fetch of that one repo - never a silent swap of the files this "
         "audit's `canonical_sha256` values are pinned to.", "",
+        "`not_a_repository` marks a source that was never a repository "
+        "(`PIPELINE_EXTENSIONS.md` Part 5): it has no upstream that could have "
+        "moved, so it is not a drift candidate and `api_error_or_not_found` "
+        "would mean something else entirely.", "",
         "## Repos already in the corpus - %d checked" % len(rows), "",
         "| Repo | Status | Ahead by | Pushed |", "|---|---|---:|---|",
     ]

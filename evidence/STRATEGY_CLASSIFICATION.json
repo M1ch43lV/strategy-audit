@@ -1081,6 +1081,11 @@
       "timeframe": "5m",
       "timeframe_evidence": "timeframe_attr"
     },
+    "BB_RPB_TSL_RNG_V2_20211008": {
+      "strategy_type": "mean_reversion;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
     "BB_RPB_TSL_RNG_VWAP": {
       "strategy_type": "mean_reversion;scalping;volume_based",
       "timeframe": "5m",
@@ -1133,6 +1138,11 @@
     },
     "BB_RPB_TSL_c7c477d_20211030": {
       "strategy_type": "mean_reversion;scalping;trend_following;volume_based",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
+    "BB_RPB_TSL_jilv220_github_20211008": {
+      "strategy_type": "mean_reversion;scalping",
       "timeframe": "5m",
       "timeframe_evidence": "timeframe_attr"
     },

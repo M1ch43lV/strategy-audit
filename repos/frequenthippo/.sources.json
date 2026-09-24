@@ -1,0 +1,23 @@
+{
+  "adoptions": [
+    {
+      "adopted_at": "2026-09-24T04:54:52+00:00",
+      "bytes": 20833,
+      "reason": "rank 4 of the public ranking; the site published it, no repository exists",
+      "sha256": "sha256_fa4f83fdca911f7acc58bdf770707c90f956b8a1884a6ed49d53b80f073ac3f7",
+      "source": "frequenthippo",
+      "strategy": "BB_RPB_TSL_RNG_V2_20211008",
+      "url": "https://frequenthippo.ddns.net/wp-content/uploads/strategies/BB_RPB_TSL_RNG_V2_20211008.py"
+    },
+    {
+      "adopted_at": "2026-09-24T04:54:53+00:00",
+      "bytes": 19436,
+      "reason": "rank 6 of the public ranking; the site published it, no repository exists",
+      "sha256": "sha256_e72db9789907a726ede28f7dd2bfec5b75971bc0c73a02deb7a2d9fd91f10923",
+      "source": "frequenthippo",
+      "strategy": "BB_RPB_TSL_jilv220_github_20211008",
+      "url": "https://frequenthippo.ddns.net/wp-content/uploads/strategies/BB_RPB_TSL_jilv220_github_20211008.py"
+    }
+  ],
+  "schema_version": 1
+}

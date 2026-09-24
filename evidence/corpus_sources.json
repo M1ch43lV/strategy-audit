@@ -166,6 +166,11 @@
    "first": 2
   },
   {
+   "repo": "frequenthippo",
+   "classes": 2,
+   "first": 2
+  },
+  {
    "repo": "ingpawat/freqtrade-strategy-with-backtest",
    "classes": 2,
    "first": 2
@@ -411,6 +416,6 @@
    "first": 0
   }
  ],
- "unique": 2980,
- "occurrences": 5367
+ "unique": 2982,
+ "occurrences": 5369
 }

@@ -49,9 +49,15 @@ Never write a count that a command can print: counts in prose are what made the 
   `strategy_status_page --check`, `verdicts --selftest`, `pipeline_state --selftest`,
   `verdict_migration_audit --strict --quiet`, `identity_freeze --quiet`. The dispatcher's next eligible action is a
   smoke run and its queue is alphabetical, so the new rows arrive in their turn. `AlexBandSniperV10AI` still needs
-  the owner's policy call recorded below. The two leads that no repository can supply are drafted as a rule in
-  `PIPELINE_EXTENSIONS.md` Part 5 - proposed, not decided; its four open questions and the acceptance test that must
-  pass before such a file may be adopted are written there.
+  the owner's policy call recorded below.
+  - The two leads that no repository can supply are adopted: `tools/adopt_source.py` (owner decision 2026-09-24,
+    `PIPELINE_EXTENSIONS.md` Part 5) writes `repos/frequenthippo/<file>.py`, records URL and hash in
+    `repos/frequenthippo/.sources.json`, and refreshes the intake exactly as harvest does.
+    `BB_RPB_TSL_RNG_V2_20211008` and `BB_RPB_TSL_jilv220_github_20211008` are corpus rows attributed to
+    `frequenthippo` in `not_tested_in_current_runtime`.
+  - `evidence/repo_freshness.py` gained `NON_GITHUB_SOURCES`: it had asked GitHub for that folder and answered
+    `api_error_or_not_found`, which reads like a repository that vanished. It now reports `not_a_repository`, and
+    `REPO_FRESHNESS.md` says what that means.
 
 ### Previous baton entry - codex, 2026-09-23
 

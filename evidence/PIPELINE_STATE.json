@@ -1,6 +1,6 @@
 {
   "authority": "generated_read_model_not_a_verdict_store",
-  "generated_at": "2026-09-24T06:38:51",
+  "generated_at": "2026-09-24T06:57:42",
   "raw_store_policy": "Raw evidence stores retain provenance and writer ownership; read pipeline-wide state only from this file or STRATEGY_STATUS.csv.",
   "schema_version": 1,
   "strategies": {
@@ -27778,6 +27778,138 @@
       "trade_evidence": "smoke",
       "traps_n": "0"
     },
+    "BB_RPB_TSL_RNG_V2_20211008": {
+      "artifact_role": "strategy",
+      "assumed_market_regime": "range_choppy;range_quiet",
+      "assumed_market_regime_evidence": "logic(none) undecided, type(mean_reversion,scalping); direction(long_only): bear excluded",
+      "baseline_status": "",
+      "cmd_backtest": "",
+      "cmd_lookahead": "[reconstructed] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy BB_RPB_TSL_RNG_V2_20211008 --strategy-path user_data/profile_bias_strategies/BB_RPB_TSL_RNG_V2_20211008 --timerange 20200301-20200601 --no-color",
+      "cmd_recursive": "[reconstructed] freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy BB_RPB_TSL_RNG_V2_20211008 --strategy-path user_data/profile_bias_strategies/BB_RPB_TSL_RNG_V2_20211008 --timerange 20200301-20200601 --no-color",
+      "cohort": "not_tested_in_current_runtime",
+      "cost_break_even_bps": "",
+      "cost_screen_regimes_pass": "",
+      "cost_screen_status": "NA",
+      "coverage_evidence": "missing",
+      "coverage_status": "",
+      "evidence_gap": "",
+      "evidence_paths": "",
+      "evidence_resolution": {
+        "cost_screen": {
+          "break_even_slippage_bps_per_side": "",
+          "producer_store": "evidence/COST_SCREEN.json",
+          "regimes_pass": [],
+          "regimes_pass_window": "validation window from 2024-01-01, the specialist evaluation's VALIDATION_START",
+          "scope_of_status": "whole run, descriptive; does not gate",
+          "status": "NA"
+        },
+        "execution_robustness": {
+          "basis": "",
+          "producer_store": "evidence/EXECUTION_ROBUSTNESS.json",
+          "status": "NA"
+        },
+        "full_backtest": {
+          "identity_current_complete": false,
+          "producer_store": "",
+          "status": ""
+        },
+        "lookahead": {
+          "attempted": false,
+          "evidence": "missing",
+          "has_verdict": false,
+          "producer_store": "",
+          "review_store": "",
+          "status": ""
+        },
+        "measurement": {
+          "attempted": false,
+          "measured": false,
+          "observed_trades": "",
+          "producer_store": "",
+          "selected_measurement_store": "",
+          "trade_evidence": ""
+        },
+        "recursive": {
+          "attempted": false,
+          "evidence": "missing",
+          "has_verdict": false,
+          "producer_store": "",
+          "status": ""
+        },
+        "robustness_qualification": {
+          "note": "at the strategy level: PASS in at least one state",
+          "qualified": false,
+          "requires": [
+            "execution_robustness:PASS",
+            "cost_screen:PASS in the claimed ADX regime state"
+          ]
+        },
+        "verdicts": {
+          "cost_screen": {
+            "reason": "not_available",
+            "value": "NA"
+          },
+          "execution_robustness": {
+            "reason": "not_available",
+            "value": "NA"
+          },
+          "full_backtest": {
+            "reason": "missing_value",
+            "value": "UNKNOWN"
+          },
+          "lookahead": {
+            "reason": "missing_value",
+            "value": "UNKNOWN"
+          },
+          "measurement": {
+            "reason": "missing_value",
+            "value": "UNKNOWN"
+          },
+          "recursive": {
+            "reason": "missing_value",
+            "value": "UNKNOWN"
+          }
+        }
+      },
+      "exclusion_basis": "",
+      "execution_robustness_basis": "",
+      "execution_robustness_status": "NA",
+      "expansion_wave": "",
+      "full_backtest_status": "",
+      "gate_notes": "coverage absent: ",
+      "last_tested_at": "",
+      "last_tested_source": "",
+      "lookahead": "",
+      "lookahead_evidence": "missing",
+      "measured": "false",
+      "needed_no_override": "",
+      "observed_trades": "",
+      "open_work": "first_measurement_in_current_runtime;recursive_ladder_pending",
+      "primary_reason": "no run under the current runtime",
+      "recursive": "",
+      "recursive_evidence": "missing",
+      "repair_family": "",
+      "repair_settings": "",
+      "repair_verdict": "",
+      "repo": "frequenthippo",
+      "required_image": "strategy-audit-runtime:2026.7",
+      "result_archive": "",
+      "robustness_qualified": "false",
+      "run_profile": "spot_long",
+      "runtime_failure": "",
+      "settled_days": "",
+      "settled_drift_pct": "",
+      "settled_startup": "",
+      "source_file": "repos/frequenthippo/BB_RPB_TSL_RNG_V2_20211008.py",
+      "strategy_id": "BB_RPB_TSL_RNG_V2_20211008",
+      "strategy_type": "mean_reversion;scalping",
+      "technical_chain_complete": "false",
+      "test_duration_evidence": "",
+      "test_duration_s": "",
+      "timeframe": "5m",
+      "trade_evidence": "",
+      "traps_n": ""
+    },
     "BB_RPB_TSL_RNG_VWAP": {
       "artifact_role": "strategy",
       "assumed_market_regime": "range_choppy;range_quiet",
@@ -29179,6 +29311,138 @@
       "timeframe": "5m",
       "trade_evidence": "smoke",
       "traps_n": "0"
+    },
+    "BB_RPB_TSL_jilv220_github_20211008": {
+      "artifact_role": "strategy",
+      "assumed_market_regime": "range_choppy;range_quiet",
+      "assumed_market_regime_evidence": "logic(none) undecided, type(mean_reversion,scalping); direction(long_only): bear excluded",
+      "baseline_status": "",
+      "cmd_backtest": "",
+      "cmd_lookahead": "[reconstructed] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy BB_RPB_TSL_jilv220_github_20211008 --strategy-path user_data/profile_bias_strategies/BB_RPB_TSL_jilv220_github_20211008 --timerange 20200301-20200601 --no-color",
+      "cmd_recursive": "[reconstructed] freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy BB_RPB_TSL_jilv220_github_20211008 --strategy-path user_data/profile_bias_strategies/BB_RPB_TSL_jilv220_github_20211008 --timerange 20200301-20200601 --no-color",
+      "cohort": "not_tested_in_current_runtime",
+      "cost_break_even_bps": "",
+      "cost_screen_regimes_pass": "",
+      "cost_screen_status": "NA",
+      "coverage_evidence": "missing",
+      "coverage_status": "",
+      "evidence_gap": "",
+      "evidence_paths": "",
+      "evidence_resolution": {
+        "cost_screen": {
+          "break_even_slippage_bps_per_side": "",
+          "producer_store": "evidence/COST_SCREEN.json",
+          "regimes_pass": [],
+          "regimes_pass_window": "validation window from 2024-01-01, the specialist evaluation's VALIDATION_START",
+          "scope_of_status": "whole run, descriptive; does not gate",
+          "status": "NA"
+        },
+        "execution_robustness": {
+          "basis": "",
+          "producer_store": "evidence/EXECUTION_ROBUSTNESS.json",
+          "status": "NA"
+        },
+        "full_backtest": {
+          "identity_current_complete": false,
+          "producer_store": "",
+          "status": ""
+        },
+        "lookahead": {
+          "attempted": false,
+          "evidence": "missing",
+          "has_verdict": false,
+          "producer_store": "",
+          "review_store": "",
+          "status": ""
+        },
+        "measurement": {
+          "attempted": false,
+          "measured": false,
+          "observed_trades": "",
+          "producer_store": "",
+          "selected_measurement_store": "",
+          "trade_evidence": ""
+        },
+        "recursive": {
+          "attempted": false,
+          "evidence": "missing",
+          "has_verdict": false,
+          "producer_store": "",
+          "status": ""
+        },
+        "robustness_qualification": {
+          "note": "at the strategy level: PASS in at least one state",
+          "qualified": false,
+          "requires": [
+            "execution_robustness:PASS",
+            "cost_screen:PASS in the claimed ADX regime state"
+          ]
+        },
+        "verdicts": {
+          "cost_screen": {
+            "reason": "not_available",
+            "value": "NA"
+          },
+          "execution_robustness": {
+            "reason": "not_available",
+            "value": "NA"
+          },
+          "full_backtest": {
+            "reason": "missing_value",
+            "value": "UNKNOWN"
+          },
+          "lookahead": {
+            "reason": "missing_value",
+            "value": "UNKNOWN"
+          },
+          "measurement": {
+            "reason": "missing_value",
+            "value": "UNKNOWN"
+          },
+          "recursive": {
+            "reason": "missing_value",
+            "value": "UNKNOWN"
+          }
+        }
+      },
+      "exclusion_basis": "",
+      "execution_robustness_basis": "",
+      "execution_robustness_status": "NA",
+      "expansion_wave": "",
+      "full_backtest_status": "",
+      "gate_notes": "coverage absent: ",
+      "last_tested_at": "",
+      "last_tested_source": "",
+      "lookahead": "",
+      "lookahead_evidence": "missing",
+      "measured": "false",
+      "needed_no_override": "",
+      "observed_trades": "",
+      "open_work": "first_measurement_in_current_runtime;recursive_ladder_pending",
+      "primary_reason": "no run under the current runtime",
+      "recursive": "",
+      "recursive_evidence": "missing",
+      "repair_family": "",
+      "repair_settings": "",
+      "repair_verdict": "",
+      "repo": "frequenthippo",
+      "required_image": "strategy-audit-runtime:2026.7",
+      "result_archive": "",
+      "robustness_qualified": "false",
+      "run_profile": "spot_long",
+      "runtime_failure": "",
+      "settled_days": "",
+      "settled_drift_pct": "",
+      "settled_startup": "",
+      "source_file": "repos/frequenthippo/BB_RPB_TSL_jilv220_github_20211008.py",
+      "strategy_id": "BB_RPB_TSL_jilv220_github_20211008",
+      "strategy_type": "mean_reversion;scalping",
+      "technical_chain_complete": "false",
+      "test_duration_evidence": "",
+      "test_duration_s": "",
+      "timeframe": "5m",
+      "trade_evidence": "",
+      "traps_n": ""
     },
     "BB_RPB_TSL_meneguzzo": {
       "artifact_role": "strategy",
@@ -415368,7 +415632,7 @@
       "excluded": 555,
       "exclusion_unconfirmed": 8,
       "not_a_strategy": 36,
-      "not_tested_in_current_runtime": 1851,
+      "not_tested_in_current_runtime": 1853,
       "pending": 42,
       "too_few_trades": 34
     },
@@ -415386,12 +415650,12 @@
     },
     "technical_chain": {
       "next_action": {
-        "stage_1_measurement_or_repair": 1868,
+        "stage_1_measurement_or_repair": 1870,
         "stage_2_lookahead": 32,
         "unclassified_open_work": 1
       },
-      "open_strategies": 1901
+      "open_strategies": 1903
     },
-    "total_strategies": 3230
+    "total_strategies": 3232
   }
 }
