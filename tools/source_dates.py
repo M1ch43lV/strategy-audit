@@ -56,10 +56,14 @@ TOKEN_FILE = os.path.join(_ROOT, "user_data", ".github_token")
 API = "https://api.github.com"
 SITE = "https://frequenthippo.ddns.net"
 USER_AGENT = "strategy-audit-source-dates"
-# A repository whose checked files all share one commit date is an import, not
-# a history; the threshold keeps a small, genuinely uniform repository from
-# being labelled from too little evidence.
+# A repository whose dated files cluster on one day is an import even when a few
+# files were committed later, and "exactly one date" misses the largest case in
+# this corpus: 1824 of 1879 files of remiotore/ccxt-freqtrade share 2025-09-10.
+# The share is what decides, so adding more files to such a repository cannot
+# flip it back to looking like a history - which happened with PeetCrypto at 99 %
+# when a third date appeared among 386 files.
 BULK_MIN_FILES = 5
+BULK_SHARE = 0.9
 
 
 def upstream_path(row):
@@ -213,7 +217,13 @@ def write_store(store):
 
 
 def repo_kinds(records):
-    """Per repository: how many files were checked, how many dates they carry."""
+    """Per repository: how many files are dated, how the dates are spread.
+
+    `dominant` is the date the majority of the repository's dated files carry
+    and `dominant_share` says how much of it that is; `bulk_import` is set when
+    the share is at least `BULK_SHARE` over at least `BULK_MIN_FILES` files, i.e.
+    when the repository was written in one go rather than developed.
+    """
     seen = {}
     for record in records.values():
         upstream = record.get("upstream") or {}
@@ -225,9 +235,13 @@ def repo_kinds(records):
         date = upstream["date"]
         entry["dates"][date] = entry["dates"].get(date, 0) + 1
     for repo, entry in seen.items():
+        entry["checked"] = sum(entry["dates"].values())
+        dominant = max(entry["dates"].items(), key=lambda kv: kv[1])
+        entry["dominant"] = dominant[0]
+        entry["dominant_share"] = round(dominant[1] / entry["checked"], 3)
         entry["distinct_dates"] = len(entry["dates"])
-        entry["bulk_import"] = (entry["distinct_dates"] == 1
-                                and entry["checked"] >= BULK_MIN_FILES)
+        entry["bulk_import"] = (entry["checked"] >= BULK_MIN_FILES
+                                and entry["dominant_share"] >= BULK_SHARE)
     return seen
 
 
@@ -284,6 +298,14 @@ def fetch(profiles, store, kinds, limit, tok, only=None):
 
 
 def summary(store):
+    """Print the coverage, and how much of it is a date the author would recognize.
+
+    The split matters more than the total: a commit date in a repository whose
+    files were pushed in one go is the date of an import, so the interesting
+    number is how many dates are left once those are taken out - and for those,
+    which years they fall in. Both are printed here so no document has to repeat
+    them.
+    """
     records = store.get("strategies") or {}
     kinds = {"name": 0, "site": 0, "upstream": 0}
     for record in records.values():
@@ -294,15 +316,39 @@ def summary(store):
         if (record.get("upstream") or {}).get("date"):
             kinds["upstream"] += 1
     repos = repo_kinds(records)
+    if store.get("repos") and store["repos"] != repos:
+        # The repository map is derived, so a rule change leaves it behind. It is
+        # cheaper to say so than to have the page label dates by an old rule.
+        print("the stored repository map was written by an older rule: run --recompute")
     bulk = sorted(repo for repo, entry in repos.items() if entry["bulk_import"])
+    imports = 0
+    own_years = {}
+    for record in records.values():
+        upstream = record.get("upstream") or {}
+        if not upstream.get("date"):
+            continue
+        entry = repos.get(upstream.get("repo")) or {}
+        if entry.get("bulk_import") and entry.get("dominant") == upstream["date"]:
+            imports += 1
+        else:
+            year = upstream["date"][:4]
+            own_years[year] = own_years.get(year, 0) + 1
+    upstream = kinds["upstream"]
     print("strategies with a date : name %d, site %d, upstream %d (of %d recorded)"
-          % (kinds["name"], kinds["site"], kinds["upstream"], len(records)))
+          % (kinds["name"], kinds["site"], upstream, len(records)))
+    if upstream:
+        print("  of the upstream dates: %d are their repository's import date (%.0f %%), "
+              "%d are the commit that touched the file"
+              % (imports, imports * 100.0 / upstream, upstream - imports))
+        print("  years of those %d   : %s" % (upstream - imports,
+              ", ".join("%s: %d" % item for item in sorted(own_years.items()))))
     print("repositories checked   : %d, of which one import date: %d"
           % (len(repos), len(bulk)))
-    for repo in bulk[:10]:
+    for repo in bulk:
         entry = repos[repo]
-        print("  import: %-34s %d files, %s"
-              % (repo, entry["checked"], ", ".join(sorted(entry["dates"]))))
+        print("  import: %-38s %4d files, %s (%.0f%%)"
+              % (repo, entry["checked"], entry["dominant"],
+                 entry["dominant_share"] * 100))
     return kinds, repos
 
 
@@ -321,6 +367,8 @@ def main(argv=None):
     parser.add_argument("--on-page", action="store_true",
                         help="restrict to the strategies the ideas page shows")
     parser.add_argument("--summary", action="store_true", help="print coverage and exit")
+    parser.add_argument("--recompute", action="store_true",
+                        help="rewrite the derived repository map without fetching")
     parser.add_argument("--selftest", action="store_true")
     args = parser.parse_args(argv)
     if args.selftest:
@@ -328,6 +376,16 @@ def main(argv=None):
 
     profiles = load_profiles()
     store = load_store()
+    if args.recompute:
+        before = store.get("repos")
+        write_store(store)
+        after = store["repos"]
+        changed = [repo for repo in set(before or {}) | set(after)
+                   if (before or {}).get(repo) != after.get(repo)]
+        print("repository map rewritten: %d repositories, %d changed"
+              % (len(after), len(changed)))
+        summary(store)
+        return 0
     if args.summary:
         summary(store)
         return 0
@@ -392,6 +450,23 @@ def selftest():
     })
     assert kinds["m/n"]["bulk_import"] is True and kinds["o/p"]["bulk_import"] is False, kinds
     cases += 1
+    # A dominating date is enough: this is the remiotore case, where 97 % of the
+    # files share one day and 3 % were committed later.
+    many = {str(i): {"upstream": {"repo": "p/q", "date": "2025-09-10"}} for i in range(90)}
+    many["x"] = {"upstream": {"repo": "p/q", "date": "2026-01-11"}}
+    many["y"] = {"upstream": {"repo": "p/q", "date": "2026-01-11"}}
+    many["z"] = {"upstream": {"repo": "p/q", "date": "2026-01-11"}}
+    repo = repo_kinds(many)["p/q"]
+    assert repo["bulk_import"] is True and repo["dominant"] == "2025-09-10" \
+        and repo["dominant_share"] == 0.968, repo
+    # And a repository that really was developed stays a history: 11 dates over
+    # 140 files with the largest one at 59 % is webclinic017, not an import.
+    mixed = {str(i): {"upstream": {"repo": "r/s", "date": "2023-09-01"}} for i in range(59)}
+    for index, day in enumerate(("2022-12-31", "2023-06-06", "2024-03-30")):
+        for i in range(27):
+            mixed["%s-%d" % (day, i)] = {"upstream": {"repo": "r/s", "date": day}}
+    assert repo_kinds(mixed)["r/s"]["bulk_import"] is False, repo_kinds(mixed)["r/s"]
+    cases += 2
     print("source_dates selftest: PASS (%d cases)" % cases)
     return 0
 

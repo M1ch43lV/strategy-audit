@@ -441,10 +441,14 @@ def family_members(family, profiles) -> list[str]:
             if family_stem(sid) == stem and sid not in excluded]
 
 
-def bulk_repos(dates) -> dict:
-    """`{repo: is_one_import_date}` from the dates store, however it is shaped."""
-    return {repo: bool(entry.get("bulk_import"))
-            for repo, entry in (dates.get("repos") or {}).items()}
+def repo_imports(dates) -> dict:
+    """`{repo: entry}` from the dates store - what a cell needs to label a date.
+
+    The store decides which repositories are imports (`bulk_import`, from the
+    share of one date); the cell only has to ask whether *this* file carries that
+    import date or a later, individual commit.
+    """
+    return dates.get("repos") or {}
 
 
 def date_cell(strategy_id, dates) -> str:
@@ -470,9 +474,12 @@ def date_cell(strategy_id, dates) -> str:
     upstream = record.get("upstream") or {}
     if upstream.get("date"):
         repo = str(upstream.get("repo") or "")
-        label = "repo, import" if bulk_repos(dates or {}).get(repo) else "repo"
+        entry = repo_imports(dates or {}).get(repo) or {}
+        imported = (entry.get("bulk_import")
+                    and entry.get("dominant") == upstream["date"])
         parts.append("%s <span class=\"meta\">%s</span>"
-                     % (html.escape(str(upstream["date"])), label))
+                     % (html.escape(str(upstream["date"])),
+                        "repo, import" if imported else "repo"))
     elif not parts and record.get("repo") not in (None, "", "frequenthippo"):
         # The difference between "the source has no date for this" and "nobody
         # has asked the source yet" matters, so an unfetched revision says so
@@ -515,7 +522,8 @@ def render_html(profiles, ideas, stream, dates=None):
         "<em>site</em> is the published site's post date for the files taken from it, and "
         "<em>repo</em> is the last commit that touched the file in the repository it was "
         "harvested from - which is the revision's date where the repository has its own history "
-        "and the date of an import where it does not (<em>repo, import</em>). No date here is "
+        "and the date of an import where it does not (<em>repo, import</em>, when 90 % of a "
+        "repository's files share one commit date). No date here is "
         "the moment an author published a strategy unless the column says so. Dates are read "
         "from <code>evidence/SOURCE_DATES.json</code>; what is missing stays missing.</p>"
         if known else "",
@@ -729,10 +737,14 @@ def selftest():
     assert date_cell("X", only_name) == \
         "2021-10-08 <span class=\"meta\">in the name</span>", date_cell("X", only_name)
     imported = {"strategies": {"X": {"upstream": {"repo": "a/b", "date": "2025-09-10"}}},
-                "repos": {"a/b": {"bulk_import": True}}}
+                "repos": {"a/b": {"bulk_import": True, "dominant": "2025-09-10"}}}
     assert "repo, import" in date_cell("X", imported), date_cell("X", imported)
+    # A file committed later than the import keeps its own date, unlabelled.
+    later = {"strategies": {"X": {"upstream": {"repo": "a/b", "date": "2026-01-11"}}},
+             "repos": {"a/b": {"bulk_import": True, "dominant": "2025-09-10"}}}
+    assert "repo, import" not in date_cell("X", later), date_cell("X", later)
     assert date_cell("Y", {}) == "-"
-    cases += 3
+    cases += 4
     # The members of a family are derived from the corpus, not listed by hand:
     # a 39-revision family would otherwise need 39 hand-written hash entries
     # that repeat what the corpus already knows.

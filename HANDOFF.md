@@ -12,7 +12,7 @@ Never write a count that a command can print: counts in prose are what made the 
 ## Baton
 
 - Last agent: copilot
-- Last update: 2026-09-23T23:13:51+02:00
+- Last update: 2026-09-24T21:41:25+02:00
 - Stopped because: Stage 0 intake for the highest-ranked FrequentHippo leads is done and the published state is
   consistent. No benchmark was started and no runner was touched.
   - The lead list came from `python -m tools.frequenthippo_ranking` (new, review-only; a third party's score is a
@@ -69,18 +69,22 @@ Never write a count that a command can print: counts in prose are what made the 
     "largest family" means here and why the template stems in `TEMPLATE_STEMS` are excluded), bundles the facts
     (`--bundle`), renders the page (`--render`) and fails when an idea outlives its revision (`--check`); it never writes
     the store. Forty-eight families out of about 2,000 stems is a sample, and nothing here is a measurement.
-  - The ideas page now carries a **Date** column per revision, fed by `evidence/SOURCE_DATES.json`
-    (`tools/source_dates.py`). It holds three facts with the source named in every cell: a date the file
-    name carries (36 strategies in the corpus), the published site's post date for the files taken from
-    it (2), and the last commit that touched the file in the repository it was harvested from (the 48
-    readings so far). **No harvested repository keeps its own `.git`**, so an author's publication date
-    mostly does not exist in this material; where a repository's dated files all share one commit date
-    the cell says `repo, import` instead of passing an import date off as the day a strategy was written.
-    `remiotore/ccxt-freqtrade` (74 % of the corpus) shows mostly one import date. The fetch is resumable
-    and rate limited (60/h without a token, 5000/h with one, read from `GITHUB_TOKEN`, `GH_TOKEN` or the
-    gitignored `user_data/.github_token`): continue with
-    `python -m tools.source_dates --fetch --kinds upstream --only-missing`,
-    and `--summary` reports the coverage.
+  - The ideas page carries a **Date** column per revision, fed by `evidence/SOURCE_DATES.json`
+    (`tools/source_dates.py`). Every cell names which of three facts it shows: a date the file name
+    carries, the published site's post date for the files taken from it, or the last commit that touched
+    the file in the repository it was harvested from. **No harvested repository keeps its own `.git`**, so
+    an author's publication date mostly does not exist in this material, and the column says so instead of
+    implying one: where a repository's dated files cluster on one commit date (at least 90 % of at least
+    five) the cell reads `repo, import`, and a file whose commit falls outside that date keeps its own.
+    That rule is a share because a count was wrong twice - it missed `remiotore/ccxt-freqtrade` and
+    dropped `PeetCrypto/freqtrade-stuff` when a third date appeared among its files. How much of the
+    corpus that affects, and which years the remaining dates fall in, is printed by
+    `python -m tools.source_dates --summary` and deliberately not written down here. The repository map in
+    the store is derived from the records, so after a rule change
+    `python -m tools.source_dates --recompute` rewrites it, and `--summary` reports a stored map that an
+    older rule wrote. The fetch is resumable and rate limited (60/h without a token, 5000/h with one, read
+    from `GITHUB_TOKEN`, `GH_TOKEN` or the gitignored `user_data/.github_token`): continue with
+    `python -m tools.source_dates --fetch --kinds upstream --only-missing`.
 
 ### Previous baton entry - codex, 2026-09-23
 

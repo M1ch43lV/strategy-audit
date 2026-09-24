@@ -15,7 +15,10 @@ family ranking (`--rank`) that decides which families that page describes first.
 `source_dates.py` completes the set: it collects the dates that really exist per
 strategy (a date in the file name, the site's post date, the last commit in the
 repository the file came from) into `evidence/SOURCE_DATES.json`, resumable
-because the GitHub API is rate limited without a token.
+because the GitHub API is rate limited without a token. It also names the
+repositories whose files cluster on one commit date - at least 90 % of at least
+five dated files - because in those the commit date is the date of an import, not
+of a revision; that derived map is rewritten by `--recompute`.
 The remaining programs classify, triage, validate, or
 publish current evidence on demand.
 
