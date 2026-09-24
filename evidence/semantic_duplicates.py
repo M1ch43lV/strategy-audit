@@ -11,6 +11,33 @@ touch the status CSV, a benchmark input, or any file on disk beyond its own
 three JSON/MD outputs. It never deletes a source file; `tools.harvest`'s own
 `remove_semantic_duplicates()` is the only place that acts on
 `duplicate_source_files()`'s resolved paths.
+
+WHICH COMPARISON DECIDES A DUPLICATE. Code identity, never bytes, and the
+distinction is deliberate: an extra space, a comment, a reflowed line or a
+renamed class must NOT turn a copy into a second strategy. Every duplicate
+verdict in this corpus - the intake deletion in `tools.harvest`, the
+`duplicate_implementation` exclusion, the groups in this module's own outputs -
+rests on `normalized_ast_digest()` below, which hashes the executable token
+stream and neutralises exactly those differences; its own docstring lists what
+it drops and what it keeps. What it does not do is compare "similar": the test
+is exact token equality, so one changed number or one moved statement is a
+different strategy. There is no similarity threshold anywhere in this chain, by
+design.
+
+BYTE HASHES ARE NOT A DUPLICATE TEST, and the two must not be confused. The
+corpus also stores content hashes (`canonical_sha256` in the measurement
+stores, `source_sha256` in `EXECUTION_PROFILES.csv`), but they answer a
+different question: is this still the artifact a measurement ran on? There,
+byte equality is the point - a silently edited file must not keep an old
+measurement alive. The one place a byte hash touches a representation decision
+is `evidence/execution_profiles.py`'s choice of representative file, and it is
+byte-based there for the same reason: the question is which file a measurement
+ran on, not whether two files are the same strategy.
+
+Verified 2026-09-24 on a corpus file, one difference at a time: an added space
+plus a comment line, and separately a renamed class, both left the digest
+unchanged while sha256 changed; a changed digit, and a `return` dedented out of
+an `if` (valid syntax, different behaviour), changed the digest as well.
 """
 from __future__ import annotations
 
