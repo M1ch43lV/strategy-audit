@@ -1,0 +1,497 @@
+{
+  "schema_version": 1,
+  "what_this_is": "Facts extracted from each strategy's canonical file so an LLM can state its idea. Read `docstring`, `settings`, `indicators` and `signals`; do not infer beyond them.",
+  "how_to_answer": "Write evidence/STRATEGY_IDEAS.json: one entry per family with `idea` (2-3 sentences: what it trades, on which signal, how it exits), `family`, `members` (the strategy_ids it covers) and `evidence` (the code facts the sentence rests on). Bind each member to the `source_sha256` given here.",
+  "strategies": [
+    {
+      "strategy_id": "ZaratustraV31",
+      "family_stem": "Zaratustra",
+      "canonical_file": "repos/remiotore_ccxt-freqtrade/my-strategies/ZaratustraV31.py",
+      "source_sha256": "sha256_2860cc0ae18f5d1e8d8857275c0646a1bba53598ae01be4262a1f62df071e205",
+      "class": "ZaratustraV31",
+      "timeframe": "1h",
+      "canonical_measured": "true",
+      "classification": "",
+      "cluster": {
+        "direction": null,
+        "logic": null,
+        "speed": null,
+        "complexity": null,
+        "exit_style": null,
+        "dca": null,
+        "informative": null,
+        "regime_hypothesis": null
+      },
+      "cluster_why": "",
+      "docstring": "",
+      "settings": {
+        "timeframe": "'1h'",
+        "can_short": "True",
+        "minimal_roi": "{'0': 0.01}",
+        "stoploss": "-0.01",
+        "trailing_stop": "True",
+        "trailing_stop_positive": "0.001",
+        "trailing_stop_positive_offset": "0.0011"
+      },
+      "indicators": [
+        "ta.RSI(dataframe, timeperiod=7)",
+        "ta.RSI(dataframe, timeperiod=14)"
+      ],
+      "signals": {
+        "populate_indicators": [],
+        "populate_entry_trend": [],
+        "populate_exit_trend": []
+      }
+    },
+    {
+      "strategy_id": "SlopeV8",
+      "family_stem": "Slope",
+      "canonical_file": "repos/remiotore_ccxt-freqtrade/strategies/LSlopeV8.py",
+      "source_sha256": "sha256_3ed2f392d65d9321ca766e003aca39f825003ab21e14fd349fd66af5355e7cfb",
+      "class": "SlopeV8",
+      "timeframe": "15m",
+      "canonical_measured": "false",
+      "classification": "",
+      "cluster": {
+        "direction": null,
+        "logic": null,
+        "speed": null,
+        "complexity": null,
+        "exit_style": null,
+        "dca": null,
+        "informative": null,
+        "regime_hypothesis": null
+      },
+      "cluster_why": "",
+      "docstring": "",
+      "settings": {
+        "timeframe": "'15m'",
+        "can_short": "True",
+        "minimal_roi": "{'0': 1}",
+        "stoploss": "-0.999",
+        "trailing_stop": "False",
+        "max_open_trades": "-1"
+      },
+      "indicators": [],
+      "signals": {
+        "populate_indicators": [],
+        "populate_entry_trend": [
+          "enter_long = dataframe['minima'].notnull()",
+          "enter_short = dataframe['maxima'].notnull()"
+        ],
+        "populate_exit_trend": [
+          "exit_long = dataframe['maxima'].notnull()",
+          "exit_short = dataframe['minima'].notnull()"
+        ]
+      }
+    },
+    {
+      "strategy_id": "RSIBB_V4",
+      "family_stem": "RSIBB",
+      "canonical_file": "repos/remiotore_ccxt-freqtrade/my-strategies/RSIBB_V4.py",
+      "source_sha256": "sha256_6409ac625307a15405996bed56b25d18528482335d0a2f584341b6cbd576da9b",
+      "class": "RSIBB_V4",
+      "timeframe": "5m",
+      "canonical_measured": "false",
+      "classification": "",
+      "cluster": {
+        "direction": null,
+        "logic": null,
+        "speed": null,
+        "complexity": null,
+        "exit_style": null,
+        "dca": null,
+        "informative": null,
+        "regime_hypothesis": null
+      },
+      "cluster_why": "",
+      "docstring": "",
+      "settings": {
+        "timeframe": "'5m'",
+        "can_short": "True",
+        "minimal_roi": "{}",
+        "stoploss": "-0.2",
+        "trailing_stop": "True",
+        "trailing_stop_positive": "0.012",
+        "trailing_stop_positive_offset": "0.015"
+      },
+      "indicators": [
+        "qtpylib.bollinger_bands(qtpylib.typical_price(dataframe), window=20, stds=2)",
+        "qtpylib.bollinger_bands(dataframe['volume'], window=20, stds=2)",
+        "ta.NATR(dataframe, timeperiod=14)",
+        "qtpylib.typical_price(dataframe)",
+        "qtpylib.crossed_above(dataframe['close'], dataframe['bbu'])",
+        "qtpylib.crossed_above(dataframe['volume'], dataframe['vbbu'])",
+        "qtpylib.crossed_below(dataframe['close'], dataframe['bbl'])",
+        "qtpylib.crossed_below(dataframe['volume'], dataframe['vbbl'])"
+      ],
+      "signals": {
+        "populate_indicators": [],
+        "populate_entry_trend": [
+          "enter_long = qtpylib.crossed_above(dataframe['close'], dataframe['bbu']) & qtpylib.crossed_above(dataframe['volume'], dataframe['vbbu']) & (dataframe['natr_zscore'] > 1.0)",
+          "enter_short = qtpylib.crossed_below(dataframe['close'], dataframe['bbl']) & qtpylib.crossed_below(dataframe['volume'], dataframe['vbbl']) & (dataframe['natr_zscore'] > 1.0)"
+        ],
+        "populate_exit_trend": []
+      }
+    },
+    {
+      "strategy_id": "EMA_Fibonacci_V4",
+      "family_stem": "EMA_Fibonacci",
+      "canonical_file": "repos/remiotore_ccxt-freqtrade/my-strategies/EMA_Fibonacci_V4.py",
+      "source_sha256": "sha256_7d6607eac98854660b9adecee4434d76ea72e1ef4bfed651b8acac7e23d5d131",
+      "class": "EMA_Fibonacci_V4",
+      "timeframe": "5m",
+      "canonical_measured": "false",
+      "classification": "",
+      "cluster": {
+        "direction": null,
+        "logic": null,
+        "speed": null,
+        "complexity": null,
+        "exit_style": null,
+        "dca": null,
+        "informative": null,
+        "regime_hypothesis": null
+      },
+      "cluster_why": "",
+      "docstring": "",
+      "settings": {
+        "timeframe": "'5m'",
+        "can_short": "True",
+        "minimal_roi": "{}",
+        "stoploss": "-0.99",
+        "trailing_stop": "False",
+        "max_open_trades": "-1"
+      },
+      "indicators": [
+        "qtpylib.typical_price(dataframe)",
+        "ta.EMA(dataframe['typ'], 34)",
+        "ta.EMA(dataframe['typ'], 55)",
+        "ta.EMA(dataframe['typ'], 89)",
+        "ta.EMA(dataframe['typ'], 144)",
+        "ta.EMA(dataframe['typ'], 233)",
+        "ta.PLUS_DI(dataframe, 34)",
+        "ta.PLUS_DI(dataframe, 55)",
+        "ta.PLUS_DI(dataframe, 89)",
+        "ta.PLUS_DI(dataframe, 144)",
+        "ta.PLUS_DI(dataframe, 233)",
+        "ta.MINUS_DI(dataframe, 34)",
+        "ta.MINUS_DI(dataframe, 55)",
+        "ta.MINUS_DI(dataframe, 89)",
+        "ta.MINUS_DI(dataframe, 144)",
+        "ta.MINUS_DI(dataframe, 233)",
+        "qtpylib.crossed_above(dataframe['typ'], dataframe['ema_233'])",
+        "qtpylib.crossed_below(dataframe['typ'], dataframe['ema_233'])"
+      ],
+      "signals": {
+        "populate_indicators": [],
+        "populate_entry_trend": [
+          "enter_long = (dataframe['pdi_34'] > dataframe['pdi_55']) & (dataframe['pdi_55'] > dataframe['pdi_89']) & (dataframe['pdi_89'] > dataframe['pdi_144']) & (dataframe['pdi_144'] > dataframe['pdi_233']) & (dataframe['pdi_233'] > dataframe['mdi_233']) & (data ...",
+          "enter_short = (dataframe['mdi_34'] > dataframe['mdi_55']) & (dataframe['mdi_55'] > dataframe['mdi_89']) & (dataframe['mdi_89'] > dataframe['mdi_144']) & (dataframe['mdi_144'] > dataframe['mdi_233']) & (dataframe['mdi_233'] > dataframe['pdi_233']) & (data ..."
+        ],
+        "populate_exit_trend": [
+          "exit_long = qtpylib.crossed_above(dataframe['typ'], dataframe['ema_233']) | qtpylib.crossed_below(dataframe['typ'], dataframe['ema_233'])",
+          "exit_short = qtpylib.crossed_above(dataframe['typ'], dataframe['ema_233']) | qtpylib.crossed_below(dataframe['typ'], dataframe['ema_233'])"
+        ]
+      }
+    },
+    {
+      "strategy_id": "el_extrema",
+      "family_stem": "el_extrema",
+      "canonical_file": "repos/remiotore_ccxt-freqtrade/my-strategies/el_extrema.py",
+      "source_sha256": "sha256_abde98597b0293c5fa1f2edda354995008b1c13df8521cb133de254891150dbd",
+      "class": "el_extrema",
+      "timeframe": "5m",
+      "canonical_measured": "false",
+      "classification": "",
+      "cluster": {
+        "direction": null,
+        "logic": null,
+        "speed": null,
+        "complexity": null,
+        "exit_style": null,
+        "dca": null,
+        "informative": null,
+        "regime_hypothesis": null
+      },
+      "cluster_why": "",
+      "docstring": "",
+      "settings": {
+        "can_short": "True",
+        "minimal_roi": "{'0': 0.5, '60': 0.45, '120': 0.4, '240': 0.3, '360': 0.25, '720': 0.2, '1440': 0.15, '2880': 0.1, '3600': 0.05, '7200': 0.02}",
+        "stoploss": "-0.05",
+        "max_open_trades": "9",
+        "timeframe": "'5m'",
+        "process_only_new_candles": "True",
+        "use_custom_stoploss": "False",
+        "trailing_stop": "False"
+      },
+      "indicators": [
+        "ta.SMA(dataframe, timeperiod=5)",
+        "ta.SMA(dataframe, timeperiod=35)",
+        "ta.RSI(dataframe, timeperiod=14)",
+        "ta.EMA(dataframe, timeperiod=val)"
+      ],
+      "signals": {
+        "informative_pairs": [],
+        "populate_indicators": [],
+        "populate_entry_trend": [
+          "if entry_conditions:",
+          "if exit_conditions:",
+          "enter_long = reduce(lambda x, y: x | y, entry_conditions)",
+          "enter_short = reduce(lambda x, y: x | y, exit_conditions)"
+        ],
+        "populate_exit_trend": [
+          "if exit_long_conditions:",
+          "if exit_short_conditions:",
+          "exit_long = reduce(lambda x, y: x | y, exit_long_conditions)",
+          "exit_short = reduce(lambda x, y: x | y, exit_short_conditions)"
+        ]
+      }
+    },
+    {
+      "strategy_id": "RsiquiV5",
+      "family_stem": "Rsiqui",
+      "canonical_file": "repos/TheoBrigitte_freqtrade/strategies/rsiqui/RsiquiV5.py",
+      "source_sha256": "sha256_5f030f084dd930b9ed8cb004ec383f90a76a0289d2f9843969adbd7a400ba1af",
+      "class": "RsiquiV5",
+      "timeframe": "5m",
+      "canonical_measured": "true",
+      "classification": "",
+      "cluster": {
+        "direction": "long_short",
+        "logic": "mean_reversion",
+        "speed": "scalp",
+        "complexity": "simple",
+        "exit_style": "roi",
+        "dca": false,
+        "informative": false,
+        "regime_hypothesis": "bear+range"
+      },
+      "cluster_why": "{'direction': 'canonical direction_capability after applying can_short', 'speed': '5m', 'logic': 'oscillators (1) outweigh trend+momentum (0)', 'exit': 'custom_exit=False trailing=False roi=True', 'complexity': 'loc=117 indicators=1 hyperopt=False informative=False dca=False'}",
+      "docstring": "",
+      "settings": {
+        "can_short": "True",
+        "timeframe": "'5m'",
+        "minimal_roi": "{'0': 0.223, '34': 0.082, '82': 0.033, '109': 0}",
+        "stoploss": "-0.273",
+        "trailing_stop": "False",
+        "trailing_stop_positive": "None",
+        "trailing_stop_positive_offset": "0.0",
+        "max_open_trades": "-1"
+      },
+      "indicators": [
+        "ta.RSI(dataframe, timeperiod=14)",
+        "np.gradient(dataframe['rsi_ema'])",
+        "qtpylib.crossed_above(dataframe['rsi_gra'], 0)",
+        "qtpylib.crossed_below(dataframe['rsi_gra'], 0)"
+      ],
+      "signals": {
+        "populate_indicators": [],
+        "populate_entry_trend": [
+          "enter_long = (dataframe['rsi'] < self.rsi_entry_long.value) & qtpylib.crossed_above(dataframe['rsi_gra'], 0)",
+          "enter_short = (dataframe['rsi'] > self.rsi_entry_short.value) & qtpylib.crossed_below(dataframe['rsi_gra'], 0)"
+        ],
+        "populate_exit_trend": [
+          "exit_long = (dataframe['rsi'] > self.rsi_exit_long.value) & qtpylib.crossed_below(dataframe['rsi_gra'], 0)",
+          "exit_short = (dataframe['rsi'] < self.rsi_exit_short.value) & qtpylib.crossed_above(dataframe['rsi_gra'], 0)"
+        ]
+      }
+    },
+    {
+      "strategy_id": "BollingerMACD_V3",
+      "family_stem": "BollingerMACD",
+      "canonical_file": "repos/remiotore_ccxt-freqtrade/my-strategies/BollingerMACD_V3.py",
+      "source_sha256": "sha256_5447b3349ab947de31ab0698ee48444bdc45fbed7c5e8f7efa591f019bcc9a94",
+      "class": "BollingerMACD_V3",
+      "timeframe": "5m",
+      "canonical_measured": "false",
+      "classification": "",
+      "cluster": {
+        "direction": null,
+        "logic": null,
+        "speed": null,
+        "complexity": null,
+        "exit_style": null,
+        "dca": null,
+        "informative": null,
+        "regime_hypothesis": null
+      },
+      "cluster_why": "",
+      "docstring": "",
+      "settings": {
+        "timeframe": "'5m'",
+        "can_short": "True",
+        "minimal_roi": "{'0': 0.28, '22': 0.081, '68': 0.039, '90': 0}",
+        "stoploss": "-0.35",
+        "trailing_stop": "True",
+        "trailing_stop_positive": "0.12",
+        "trailing_stop_positive_offset": "0.147"
+      },
+      "indicators": [
+        "ta.MACD(dataframe)",
+        "qtpylib.bollinger_bands(qtpylib.typical_price(dataframe), window=20, stds=2)",
+        "qtpylib.typical_price(dataframe)",
+        "qtpylib.crossed_above(dataframe['close'], dataframe['bb_upperband'])",
+        "qtpylib.crossed_below(dataframe['close'], dataframe['bb_lowerband'])",
+        "qtpylib.crossed_below(dataframe['close'], dataframe['bb_upperband'])",
+        "qtpylib.crossed_above(dataframe['close'], dataframe['bb_lowerband'])"
+      ],
+      "signals": {
+        "informative_pairs": [],
+        "populate_indicators": [],
+        "populate_entry_trend": [
+          "enter_long = qtpylib.crossed_above(dataframe['close'], dataframe['bb_upperband']) & (dataframe['macd'] > 0) & (dataframe['macdsignal'] > 0) & (dataframe['volume'] > 0)",
+          "enter_short = qtpylib.crossed_below(dataframe['close'], dataframe['bb_lowerband']) & (dataframe['macd'] < 0) & (dataframe['macdsignal'] < 0) & (dataframe['volume'] > 0)"
+        ],
+        "populate_exit_trend": [
+          "exit_long = qtpylib.crossed_below(dataframe['close'], dataframe['bb_upperband']) & (dataframe['macd'] > 0) & (dataframe['macdsignal'] > 0) & (dataframe['volume'] > 0)",
+          "exit_short = qtpylib.crossed_above(dataframe['close'], dataframe['bb_lowerband']) & (dataframe['macd'] < 0) & (dataframe['macdsignal'] < 0) & (dataframe['volume'] > 0)"
+        ]
+      }
+    },
+    {
+      "strategy_id": "GnF_V2",
+      "family_stem": "GnF",
+      "canonical_file": "repos/vaskosmihaylov_nfi-custom-strategies/user_data/strategies/remiotore/GnF_V2.py",
+      "source_sha256": "sha256_3e095a5da824d1b9c58351f19265f79adc3bad47daea258b190caca6289d456d",
+      "class": "GnF_V2",
+      "timeframe": "1h",
+      "canonical_measured": "true",
+      "classification": "",
+      "cluster": {
+        "direction": null,
+        "logic": null,
+        "speed": null,
+        "complexity": null,
+        "exit_style": null,
+        "dca": null,
+        "informative": null,
+        "regime_hypothesis": null
+      },
+      "cluster_why": "",
+      "docstring": "",
+      "settings": {
+        "timeframe": "'1h'",
+        "can_short": "True",
+        "minimal_roi": "{}",
+        "stoploss": "-0.99",
+        "trailing_stop": "False"
+      },
+      "indicators": [
+        "ta.SMA(dataframe['close'], timeperiod=20)",
+        "ta.NATR(dataframe, timeperiod=14)"
+      ],
+      "signals": {
+        "populate_indicators": [],
+        "populate_entry_trend": [
+          "enter_long = (dataframe['greed_fear_index'] > 0.7) & (dataframe['volume'] > dataframe['volume_mean'])",
+          "enter_short = (dataframe['greed_fear_index'] < 0.3) & (dataframe['volume'] > dataframe['volume_mean'])"
+        ],
+        "populate_exit_trend": [
+          "exit_long = dataframe['greed_fear_index'] < 0.3",
+          "exit_short = dataframe['greed_fear_index'] > 0.7"
+        ]
+      }
+    },
+    {
+      "strategy_id": "EWOistV1",
+      "family_stem": "EWOist",
+      "canonical_file": "repos/remiotore_ccxt-freqtrade/my-strategies/EWOistV1.py",
+      "source_sha256": "sha256_cfefb9de82bd658d7944a98ef1d795853aaeaf481dc5af4620a23429ec6fe73c",
+      "class": "EWOistV1",
+      "timeframe": "5m",
+      "canonical_measured": "false",
+      "classification": "",
+      "cluster": {
+        "direction": null,
+        "logic": null,
+        "speed": null,
+        "complexity": null,
+        "exit_style": null,
+        "dca": null,
+        "informative": null,
+        "regime_hypothesis": null
+      },
+      "cluster_why": "",
+      "docstring": "",
+      "settings": {
+        "can_short": "True",
+        "timeframe": "'5m'",
+        "minimal_roi": "{}",
+        "stoploss": "-0.99",
+        "trailing_stop": "False",
+        "trailing_stop_positive": "0.005",
+        "trailing_stop_positive_offset": "0.03",
+        "max_open_trades": "-1"
+      },
+      "indicators": [
+        "ta.SMA(dataframe, timeperiod=50)",
+        "ta.SMA(dataframe, timeperiod=200)"
+      ],
+      "signals": {
+        "populate_indicators": [],
+        "populate_entry_trend": [
+          "if buy_conditions:",
+          "if sell_conditions:",
+          "enter_long = reduce(lambda x, y: x | y, buy_conditions)",
+          "enter_short = reduce(lambda x, y: x | y, sell_conditions)"
+        ],
+        "populate_exit_trend": [
+          "if exit_long_conditions:",
+          "if exit_short_conditions:",
+          "exit_long = reduce(lambda x, y: x | y, exit_long_conditions)",
+          "exit_short = reduce(lambda x, y: x | y, exit_short_conditions)"
+        ]
+      }
+    },
+    {
+      "strategy_id": "PlusMinusV1",
+      "family_stem": "PlusMinus",
+      "canonical_file": "repos/remiotore_ccxt-freqtrade/my-strategies/PlusMinusV1.py",
+      "source_sha256": "sha256_5df5b6356a620bd177485498e3af4e1211dc5ff567aa1c32995b5fb3708e9ed2",
+      "class": "PlusMinusV1",
+      "timeframe": "5m",
+      "canonical_measured": "false",
+      "classification": "",
+      "cluster": {
+        "direction": null,
+        "logic": null,
+        "speed": null,
+        "complexity": null,
+        "exit_style": null,
+        "dca": null,
+        "informative": null,
+        "regime_hypothesis": null
+      },
+      "cluster_why": "",
+      "docstring": "",
+      "settings": {
+        "timeframe": "'5m'",
+        "can_short": "True",
+        "minimal_roi": "{}",
+        "stoploss": "-0.3",
+        "trailing_stop": "False",
+        "max_open_trades": "-1"
+      },
+      "indicators": [
+        "ta.RSI(dataframe)",
+        "ta.PLUS_DI(dataframe)",
+        "ta.MINUS_DI(dataframe)",
+        "qtpylib.crossed_above(dataframe['Plus DI'], dataframe['Minus DI'])",
+        "qtpylib.crossed_above(dataframe['Minus DI'], dataframe['Plus DI'])"
+      ],
+      "signals": {
+        "populate_indicators": [],
+        "populate_entry_trend": [
+          "enter_long = (qtpylib.crossed_above(dataframe['Plus DI'], dataframe['Minus DI']) & dataframe['RSI'] > 60) | dataframe['RSI Max'].notnull() & dataframe['Plus DI Max'].notnull()",
+          "enter_short = (qtpylib.crossed_above(dataframe['Minus DI'], dataframe['Plus DI']) & dataframe['RSI'] < 15) | dataframe['RSI Min'].notnull() & dataframe['Minus DI Max'].notnull()"
+        ],
+        "populate_exit_trend": [
+          "exit_long = dataframe['RSI Max'].notnull() & dataframe['Plus DI Max'].notnull() | (qtpylib.crossed_above(dataframe['Minus DI'], dataframe['Plus DI']) & dataframe['RSI'] < 60)",
+          "exit_short = dataframe['RSI Min'].notnull() & dataframe['Minus DI Max'].notnull() | (qtpylib.crossed_above(dataframe['Plus DI'], dataframe['Minus DI']) & dataframe['RSI'] > 15)"
+        ]
+      }
+    }
+  ]
+}

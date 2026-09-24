@@ -60,6 +60,11 @@ Never write a count that a command can print: counts in prose are what made the 
   - `evidence/repo_freshness.py` gained `NON_GITHUB_SOURCES`: it had asked GitHub for that folder and answered
     `api_error_or_not_found`, which reads like a repository that vanished. It now reports `not_a_repository`, and
     `REPO_FRESHNESS.md` says what that means.
+  - New pilot artifact `strategy_ideas.html` plus its hand-written store `evidence/STRATEGY_IDEAS.json`: ten strategy
+    families described in prose that was read out of their code by an LLM session, each bound to the `source_sha256`
+    it was read from. `tools/strategy_ideas.py` bundles the facts (`--bundle`), renders the page (`--render`) and
+    fails when an idea outlives its revision (`--check`); it never writes the store. Extending the page means bundling
+    more strategies and writing more entries - the ten are deliberately a pilot, and nothing here is a measurement.
 
 ### Previous baton entry - codex, 2026-09-23
 

@@ -35,8 +35,11 @@ inventories. Writer utilities that merge these stores live here as well.
   `REGIME_PREREGISTRATION.md` in the root. `STRATEGY_STATUS.csv`, `STRATEGY_STATUS.md`, and
   `strategy_status.html` remain there because they are the published view.
 - Hand-written files in this directory: this README, `EXECUTION_PROFILES.md` (what the canonical corpus and the
-  execution profiles mean) and `ADMISSION_RECORDS.md` (results of the finished expansion waves). Every other
-  `.md` here is generated; see the list in `../README.md`.
+  execution profiles mean), `ADMISSION_RECORDS.md` (results of the finished expansion waves) and `STRATEGY_IDEAS.json`
+  (one paragraph per strategy family, read out of the code by an LLM session - a description, never a measurement).
+  Every other `.md` here is generated; see the list in `../README.md`. `tools/strategy_ideas.py` extracts the facts an
+  interpretation has to rest on and renders them, but it never writes `STRATEGY_IDEAS.json`: an idea carries the
+  `source_sha256` of the file it was read from, and `--check` fails once the corpus has moved past that revision.
 - Historical E0 files in this directory are provenance only. Current admission
   comes from active `admitted_E1` decisions.
 

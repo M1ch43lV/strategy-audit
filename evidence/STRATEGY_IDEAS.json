@@ -1,0 +1,180 @@
+{
+  "schema_version": 1,
+  "written_by": "an LLM session (GitHub Copilot), 2026-09-24",
+  "how": "Read from evidence/STRATEGY_IDEAS_INPUT.json, which tools/strategy_ideas.py extracted from each canonical file (docstring, settings, indicator calls, entry/exit conditions), plus a direct read of the five files whose conditions are built in helper variables. Every sentence names the code fact it rests on in `evidence`. Each member carries the source_sha256 it was read from; tools/strategy_ideas.py --check fails when the corpus has moved on, and the page marks such a member stale.",
+  "scope": "exemplary, ten families, latest revision of each, chosen to match the families the site publishes in its own table",
+  "families": [
+    {
+      "family": "Zaratustra",
+      "members": [
+        {
+          "strategy_id": "ZaratustraV31",
+          "source_sha256": "sha256_2860cc0ae18f5d1e8d8857275c0646a1bba53598ae01be4262a1f62df071e205",
+          "note": "highest numbered revision in the corpus"
+        }
+      ],
+      "idea": "One comparison decides everything: while RSI(7) sits above RSI(14) the strategy is long, while it sits below it is short, and each side is closed as soon as the two cross back. There is no other filter and no signal-per-candle logic - the position is a state of the RSI spread. Exits in practice come from the risk settings, which are deliberately tight: 1% stoploss, 0.1% trailing stop and a flat 1% take-profit.",
+      "caveat": "The site's own family table advertises this family as 10x with a trailing stop. This revision's leverage() returns 1, so the published description and the code in the corpus disagree about position size - the description there may belong to a different revision or to a bot configuration.",
+      "evidence": [
+        "populate_indicators: rsi7 = ta.RSI(..., timeperiod=7), rsi14 = ta.RSI(..., timeperiod=14)",
+        "populate_entry_trend: enter_long where rsi7 > rsi14 (tag 'RSI7 > RSI14'), enter_short where rsi7 < rsi14",
+        "populate_exit_trend: exit_long where rsi7 < rsi14, exit_short where rsi7 > rsi14",
+        "settings: minimal_roi {'0': 0.01}, stoploss -0.01, trailing_stop True, trailing_stop_positive 0.001",
+        "leverage(): returns 1"
+      ]
+    },
+    {
+      "family": "Slope",
+      "members": [
+        {
+          "strategy_id": "SlopeV8",
+          "source_sha256": "sha256_3ed2f392d65d9321ca766e003aca39f825003ab21e14fd349fd66af5355e7cfb",
+          "note": "revision LSlopeV8.py"
+        }
+      ],
+      "idea": "A pure swing-point reversal: scipy.signal.argrelextrema marks the local minima and maxima of the close over a rolling 64-bar window, a fresh local minimum opens a long and a fresh local maximum closes it, with the short side mirrored. There is no stoploss and no profit target in the usual sense - stoploss -0.999 and minimal_roi 1 mean the trade only ends when the opposite extreme appears.",
+      "evidence": [
+        "populate_indicators: rolling_window = 64, rolling_max/min, maxima_idx/minima_idx = argrelextrema(close, np.greater/np.less, order=5)",
+        "populate_entry_trend: enter_long where minima notnull, enter_short where maxima notnull",
+        "populate_exit_trend: exits are the mirrored columns",
+        "settings: stoploss -0.999, minimal_roi {'0': 1}, trailing_stop False"
+      ]
+    },
+    {
+      "family": "RSIBB",
+      "members": [
+        {
+          "strategy_id": "RSIBB_V4",
+          "source_sha256": "sha256_6409ac625307a15405996bed56b25d18528482335d0a2f584341b6cbd576da9b",
+          "note": "highest version of the RSIBB_V* line"
+        }
+      ],
+      "idea": "A breakout that has to be confirmed by volume and volatility: the close crossing above its upper Bollinger band together with volume crossing above its own upper band and a normalised ATR above 1.0 opens the long, the mirrored crossing below opens the short. Both parts must happen on the same candle. Entry is a single event, so the 20% stoploss and the 1.2% trailing stop carry the exit.",
+      "evidence": [
+        "indicators: qtpylib.bollinger_bands(typical_price, 20, 2), qtpylib.bollinger_bands(volume, 20, 2), ta.NATR(14), natr_zscore",
+        "populate_entry_trend: enter_long = crossed_above(close, bbu) & crossed_above(volume, vbbu) & (natr_zscore > 1.0); enter_short is the mirror below bbl",
+        "settings: stoploss -0.2, trailing_stop True, trailing_stop_positive 0.012, minimal_roi {}"
+      ]
+    },
+    {
+      "family": "EMA + Fibonacci",
+      "members": [
+        {
+          "strategy_id": "EMA_Fibonacci_V4",
+          "source_sha256": "sha256_7d6607eac98854660b9adecee4434d76ea72e1ef4bfed651b8acac7e23d5d131",
+          "note": "highest version of the EMA_Fibonacci_V* line"
+        }
+      ],
+      "idea": "Perfect trend alignment on Fibonacci-length EMAs: EMA(34/55/89/144/233) of the typical price, and the long requires the +DI series of the same lengths stacked in ascending order (34>55>89>144>233) with the last one above -DI; the short mirrors it on the -DI side. The exit throws the trade out on any cross of the price with the 233 EMA, so the strategy rides an aligned trend but leaves as soon as price loses the longest average. The 0.99 stoploss is nominal - the exit signal is the real risk control.",
+      "evidence": [
+        "indicators: ta.EMA(typ, 34/55/89/144/233), ta.PLUS_DI and ta.MINUS_DI at those same lengths",
+        "populate_entry_trend: long needs pdi_34>pdi_55>pdi_89>pdi_144>pdi_233 and pdi_233>mdi_233 (and more)",
+        "populate_exit_trend: exit on qtpylib.crossed_above/crossed_below(typ, ema_233)",
+        "settings: stoploss -0.99, minimal_roi {}, trailing_stop False"
+      ]
+    },
+    {
+      "family": "el_extrema",
+      "members": [
+        {
+          "strategy_id": "el_extrema",
+          "source_sha256": "sha256_abde98597b0293c5fa1f2edda354995008b1c13df8521cb133de254891150dbd",
+          "note": "base variant; the corpus also carries _rolling, _RL and _rsiqui derivatives"
+        }
+      ],
+      "idea": "Dip-buying at detected extrema with an EWO momentum filter: a local minimum of the close (argrelextrema, order 5) plus price below EMA(entry length) times low_offset, and then either an EWO above the high threshold with RSI below the entry level or an EWO below the low threshold, opens the long; the short side is the mirror at local maxima. Exits are the ROI ladder (50% at entry decaying to 2% after five days) plus a 5% stoploss. The offsets, EMA lengths, RSI level and both EWO thresholds are hyperopt parameters, so the revision in the corpus is one point in a search space.",
+      "evidence": [
+        "populate_indicators: ma_entry_*/ma_exit_* = ta.EMA over the parameter ranges, EWO = (SMA5 - SMA35)/close*100, rsi = ta.RSI(14), '&s-extrema' from argrelextrema(close, order=5)",
+        "populate_entry_trend: entry_conditions combine '&s-extrema' < 0 with close < ma_entry*low_offset and (EWO > ewo_high & rsi < rsi_entry) or (EWO < ewo_low)",
+        "settings: minimal_roi ladder {'0': 0.5, '60': 0.45, ... '7200': 0.02}, stoploss -0.05",
+        "Parameters: low_offset, high_offset, rsi_entry, ewo_high, ewo_low, base_nb_candles_entry/exit, cooldown_lookback"
+      ]
+    },
+    {
+      "family": "Rsiqui",
+      "members": [
+        {
+          "strategy_id": "RsiquiV5",
+          "source_sha256": "sha256_5f030f084dd930b9ed8cb004ec383f90a76a0289d2f9843969adbd7a400ba1af",
+          "note": "highest version; lives in the TheoBrigitte repository"
+        }
+      ],
+      "idea": "The trigger is the slope of an EMA-smoothed RSI, not the RSI level alone: long when RSI is below the entry level and the smoothed RSI gradient turns up, short when RSI is above the upper level and the gradient turns down; each side closes when the gradient turns against it and RSI has crossed the exit level. It is a mean-reversion scalp at 5m with hyperopt-driven thresholds (entry 30-70) and a steep ROI ladder (22% decaying to 0 after ~110 minutes) over a 27% stoploss.",
+      "evidence": [
+        "indicators: ta.RSI(14), np.gradient(dataframe['rsi_ema']), qtpylib.crossed_above/below(rsi_gra, 0)",
+        "populate_entry_trend: enter_long = (rsi < rsi_entry_long) & crossed_above(rsi_gra, 0); enter_short mirrors above rsi_entry_short",
+        "populate_exit_trend: exit_long = (rsi > rsi_exit_long) & crossed_below(rsi_gra, 0)",
+        "settings: minimal_roi {'0': 0.223, '34': 0.082, '82': 0.033, '109': 0}, stoploss -0.273",
+        "cluster store: direction long_short, logic mean_reversion, speed scalp, regime hypothesis bear+range"
+      ]
+    },
+    {
+      "family": "BollingerMACD",
+      "members": [
+        {
+          "strategy_id": "BollingerMACD_V3",
+          "source_sha256": "sha256_5447b3349ab947de31ab0698ee48444bdc45fbed7c5e8f7efa591f019bcc9a94",
+          "note": "highest version of the line"
+        }
+      ],
+      "idea": "Dual momentum confirmation: the long needs the close crossing above the upper Bollinger band and both MACD lines above zero, the short mirrors it below the lower band with both lines below zero, and a non-zero volume column is required in every branch. The exit is the opposite band cross under the same MACD agreement, so the position is held while the regime lasts; the 35% stoploss and 12% trailing stop are what actually bound the loss.",
+      "evidence": [
+        "indicators: ta.MACD(dataframe), qtpylib.bollinger_bands(typical_price, 20, 2), crossed_above/below on close vs bb_upperband/bb_lowerband",
+        "populate_entry_trend: enter_long = crossed_above(close, bbu) & (macd > 0) & (macdsignal > 0) & (volume > 0); short is the mirror",
+        "populate_exit_trend: exit_long = crossed_below(close, bbu) with the same MACD and volume conditions",
+        "settings: minimal_roi {'0': 0.28, '22': 0.081, '68': 0.039, '90': 0}, stoploss -0.35, trailing_stop True, trailing_stop_positive 0.12"
+      ]
+    },
+    {
+      "family": "GnF",
+      "members": [
+        {
+          "strategy_id": "GnF_V2",
+          "source_sha256": "sha256_3e095a5da824d1b9c58351f19265f79adc3bad47daea258b190caca6289d456d",
+          "note": "highest version; the corpus also carries the CryptoFrogNFI* variants under the same stem"
+        }
+      ],
+      "idea": "A synthetic greed/fear index decides the direction: momentum (close against SMA20), volatility (NATR14) and a volume sentiment (up-volume minus down-volume) are each min-max normalised over a 20-bar window and averaged into one 0-1 number. Above 0.7 the strategy is long, below 0.3 short, and a trade is only opened while volume exceeds its own 50-bar mean; the opposite threshold closes the side, so the index crossing the band is what turns the position.",
+      "evidence": [
+        "populate_indicators: momentum = (close - SMA20)/SMA20, volatility = ta.NATR(14), volume_up/volume_down -> volume_sentiment, each normalised over rolling(20), greed_fear_index = mean of the three",
+        "populate_entry_trend: enter_long where greed_fear_index > 0.7 and volume > volume_mean; enter_short where < 0.3",
+        "populate_exit_trend: exit_long where greed_fear_index < 0.3, exit_short where > 0.7",
+        "settings: stoploss -0.99, minimal_roi {}, trailing_stop False"
+      ]
+    },
+    {
+      "family": "EWOist",
+      "members": [
+        {
+          "strategy_id": "EWOistV1",
+          "source_sha256": "sha256_cfefb9de82bd658d7944a98ef1d795853aaeaf481dc5af4620a23429ec6fe73c",
+          "note": "only revision in the corpus"
+        }
+      ],
+      "idea": "One indicator and two thresholds: EWO = (SMA50 - SMA200)/close*100; EWO above the buy threshold opens the long, below the sell threshold closes it again, and the short side is mirrored around the same levels. Nothing else is consulted except a non-zero volume. The risk side is a 10% profit offset with a 3% trailing stop that only arms once the offset is reached.",
+      "evidence": [
+        "populate_indicators: EWO = (ta.SMA(50) - ta.SMA(200))/close*100",
+        "populate_entry_trend: enter_long where EWO > ewo_buy_low; enter_short where EWO < ewo_buy_low",
+        "populate_exit_trend: exit_long where EWO < ewo_sell_high; exit_short where EWO > ewo_sell_low",
+        "settings: exit_profit_offset 0.1, trailing_stop_positive_offset 0.03, trailing_only_offset_is_reached True, stoploss -0.99"
+      ]
+    },
+    {
+      "family": "PlusMinus",
+      "members": [
+        {
+          "strategy_id": "PlusMinusV1",
+          "source_sha256": "sha256_5df5b6356a620bd177485498e3af4e1211dc5ff567aa1c32995b5fb3708e9ed2",
+          "note": "only revision in the corpus"
+        }
+      ],
+      "idea": "A directional-indicator breakout with an RSI filter: +DI crossing above -DI while RSI is above 60 opens the long, -DI crossing above +DI while RSI is below 15 opens the short, and the same crosses close the opposite side. Each side also has a second branch that fires when a rolling maximum of RSI and of the matching DI is flagged - an exhaustion branch rather than a cross - so the strategy trades both a breakout and its reversal signal.",
+      "evidence": [
+        "indicators: ta.RSI(dataframe), ta.PLUS_DI(dataframe), ta.MINUS_DI(dataframe), crossed_above on 'Plus DI'/'Minus DI'",
+        "populate_entry_trend: enter_long = (crossed_above(Plus DI, Minus DI) & RSI > 60) OR ('RSI Max' notnull & 'Plus DI Max' notnull)",
+        "populate_exit_trend: exit_long = ('RSI Max' notnull & 'Plus DI Max' notnull) OR (crossed_above(Minus DI, Plus DI) & RSI < 60)",
+        "settings: stoploss -0.3, minimal_roi {}, trailing_stop False"
+      ]
+    }
+  ]
+}

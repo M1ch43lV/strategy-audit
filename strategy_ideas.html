@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<title>Strategy ideas</title>
+<style>
+body{font:15px/1.5 -apple-system,Segoe UI,Roboto,sans-serif;margin:2rem auto;max-width:1100px;padding:0 1rem;color:#1b1f23}
+h1{font-size:1.6rem;margin-bottom:.2rem}h2{font-size:1.15rem;margin-top:2rem}
+table{border-collapse:collapse;width:100%;margin:.6rem 0 1.2rem}
+th,td{border:1px solid #d8dee4;padding:.45rem .6rem;text-align:left;vertical-align:top}
+th{background:#f6f8fa;font-weight:600}
+code{background:#f6f8fa;padding:.05rem .25rem;border-radius:3px;font-size:.86em}
+.idea{font-size:1.02rem}
+details{margin:.4rem 0 0}summary{cursor:pointer;color:#444}
+.stale{color:#b3261e;font-weight:600}
+.meta{color:#57606a;font-size:.9rem}
+</style></head><body>
+<h1>Strategy ideas</h1>
+<p class="meta">One family per block: what the code does, read from the code. Written by an LLM from <code>evidence/STRATEGY_IDEAS_INPUT.json</code> and bound to the source hash it was read from; a family whose file has changed since is marked <span class="stale">stale</span>. This is a description, not a measurement, and it decides nothing.</p>
+<h2>Zaratustra <span class="meta">- 1 version(s)</span>
+<p class="idea">One comparison decides everything: while RSI(7) sits above RSI(14) the strategy is long, while it sits below it is short, and each side is closed as soon as the two cross back. There is no other filter and no signal-per-candle logic - the position is a state of the RSI spread. Exits in practice come from the risk settings, which are deliberately tight: 1% stoploss, 0.1% trailing stop and a flat 1% take-profit.</p>
+<p class="meta"><strong>Caveat:</strong> The site&#x27;s own family table advertises this family as 10x with a trailing stop. This revision&#x27;s leverage() returns 1, so the published description and the code in the corpus disagree about position size - the description there may belong to a different revision or to a bot configuration.</p>
+<table><tr><th>Version</th><th>Timeframe</th><th>Class</th><th>Source</th><th>State</th></tr>
+<tr><td><code>ZaratustraV31</code></td><td>1h</td><td>ZaratustraV31</td><td>repos/remiotore_ccxt-freqtrade/my-strategies/ZaratustraV31.py</td><td>current</td></tr>
+</table>
+<details><summary>what this reading rests on</summary><ul>
+<li>populate_indicators: rsi7 = ta.RSI(..., timeperiod=7), rsi14 = ta.RSI(..., timeperiod=14)</li>
+<li>populate_entry_trend: enter_long where rsi7 &gt; rsi14 (tag &#x27;RSI7 &gt; RSI14&#x27;), enter_short where rsi7 &lt; rsi14</li>
+<li>populate_exit_trend: exit_long where rsi7 &lt; rsi14, exit_short where rsi7 &gt; rsi14</li>
+<li>settings: minimal_roi {&#x27;0&#x27;: 0.01}, stoploss -0.01, trailing_stop True, trailing_stop_positive 0.001</li>
+<li>leverage(): returns 1</li>
+</ul></details>
+<h2>Slope <span class="meta">- 1 version(s)</span>
+<p class="idea">A pure swing-point reversal: scipy.signal.argrelextrema marks the local minima and maxima of the close over a rolling 64-bar window, a fresh local minimum opens a long and a fresh local maximum closes it, with the short side mirrored. There is no stoploss and no profit target in the usual sense - stoploss -0.999 and minimal_roi 1 mean the trade only ends when the opposite extreme appears.</p>
+<table><tr><th>Version</th><th>Timeframe</th><th>Class</th><th>Source</th><th>State</th></tr>
+<tr><td><code>SlopeV8</code></td><td>15m</td><td>SlopeV8</td><td>repos/remiotore_ccxt-freqtrade/strategies/LSlopeV8.py</td><td>current</td></tr>
+</table>
+<details><summary>what this reading rests on</summary><ul>
+<li>populate_indicators: rolling_window = 64, rolling_max/min, maxima_idx/minima_idx = argrelextrema(close, np.greater/np.less, order=5)</li>
+<li>populate_entry_trend: enter_long where minima notnull, enter_short where maxima notnull</li>
+<li>populate_exit_trend: exits are the mirrored columns</li>
+<li>settings: stoploss -0.999, minimal_roi {&#x27;0&#x27;: 1}, trailing_stop False</li>
+</ul></details>
+<h2>RSIBB <span class="meta">- 1 version(s)</span>
+<p class="idea">A breakout that has to be confirmed by volume and volatility: the close crossing above its upper Bollinger band together with volume crossing above its own upper band and a normalised ATR above 1.0 opens the long, the mirrored crossing below opens the short. Both parts must happen on the same candle. Entry is a single event, so the 20% stoploss and the 1.2% trailing stop carry the exit.</p>
+<table><tr><th>Version</th><th>Timeframe</th><th>Class</th><th>Source</th><th>State</th></tr>
+<tr><td><code>RSIBB_V4</code></td><td>5m</td><td>RSIBB_V4</td><td>repos/remiotore_ccxt-freqtrade/my-strategies/RSIBB_V4.py</td><td>current</td></tr>
+</table>
+<details><summary>what this reading rests on</summary><ul>
+<li>indicators: qtpylib.bollinger_bands(typical_price, 20, 2), qtpylib.bollinger_bands(volume, 20, 2), ta.NATR(14), natr_zscore</li>
+<li>populate_entry_trend: enter_long = crossed_above(close, bbu) &amp; crossed_above(volume, vbbu) &amp; (natr_zscore &gt; 1.0); enter_short is the mirror below bbl</li>
+<li>settings: stoploss -0.2, trailing_stop True, trailing_stop_positive 0.012, minimal_roi {}</li>
+</ul></details>
+<h2>EMA + Fibonacci <span class="meta">- 1 version(s)</span>
+<p class="idea">Perfect trend alignment on Fibonacci-length EMAs: EMA(34/55/89/144/233) of the typical price, and the long requires the +DI series of the same lengths stacked in ascending order (34&gt;55&gt;89&gt;144&gt;233) with the last one above -DI; the short mirrors it on the -DI side. The exit throws the trade out on any cross of the price with the 233 EMA, so the strategy rides an aligned trend but leaves as soon as price loses the longest average. The 0.99 stoploss is nominal - the exit signal is the real risk control.</p>
+<table><tr><th>Version</th><th>Timeframe</th><th>Class</th><th>Source</th><th>State</th></tr>
+<tr><td><code>EMA_Fibonacci_V4</code></td><td>5m</td><td>EMA_Fibonacci_V4</td><td>repos/remiotore_ccxt-freqtrade/my-strategies/EMA_Fibonacci_V4.py</td><td>current</td></tr>
+</table>
+<details><summary>what this reading rests on</summary><ul>
+<li>indicators: ta.EMA(typ, 34/55/89/144/233), ta.PLUS_DI and ta.MINUS_DI at those same lengths</li>
+<li>populate_entry_trend: long needs pdi_34&gt;pdi_55&gt;pdi_89&gt;pdi_144&gt;pdi_233 and pdi_233&gt;mdi_233 (and more)</li>
+<li>populate_exit_trend: exit on qtpylib.crossed_above/crossed_below(typ, ema_233)</li>
+<li>settings: stoploss -0.99, minimal_roi {}, trailing_stop False</li>
+</ul></details>
+<h2>el_extrema <span class="meta">- 1 version(s)</span>
+<p class="idea">Dip-buying at detected extrema with an EWO momentum filter: a local minimum of the close (argrelextrema, order 5) plus price below EMA(entry length) times low_offset, and then either an EWO above the high threshold with RSI below the entry level or an EWO below the low threshold, opens the long; the short side is the mirror at local maxima. Exits are the ROI ladder (50% at entry decaying to 2% after five days) plus a 5% stoploss. The offsets, EMA lengths, RSI level and both EWO thresholds are hyperopt parameters, so the revision in the corpus is one point in a search space.</p>
+<table><tr><th>Version</th><th>Timeframe</th><th>Class</th><th>Source</th><th>State</th></tr>
+<tr><td><code>el_extrema</code></td><td>5m</td><td>el_extrema</td><td>repos/remiotore_ccxt-freqtrade/my-strategies/el_extrema.py</td><td>current</td></tr>
+</table>
+<details><summary>what this reading rests on</summary><ul>
+<li>populate_indicators: ma_entry_*/ma_exit_* = ta.EMA over the parameter ranges, EWO = (SMA5 - SMA35)/close*100, rsi = ta.RSI(14), &#x27;&amp;s-extrema&#x27; from argrelextrema(close, order=5)</li>
+<li>populate_entry_trend: entry_conditions combine &#x27;&amp;s-extrema&#x27; &lt; 0 with close &lt; ma_entry*low_offset and (EWO &gt; ewo_high &amp; rsi &lt; rsi_entry) or (EWO &lt; ewo_low)</li>
+<li>settings: minimal_roi ladder {&#x27;0&#x27;: 0.5, &#x27;60&#x27;: 0.45, ... &#x27;7200&#x27;: 0.02}, stoploss -0.05</li>
+<li>Parameters: low_offset, high_offset, rsi_entry, ewo_high, ewo_low, base_nb_candles_entry/exit, cooldown_lookback</li>
+</ul></details>
+<h2>Rsiqui <span class="meta">- 1 version(s)</span>
+<p class="idea">The trigger is the slope of an EMA-smoothed RSI, not the RSI level alone: long when RSI is below the entry level and the smoothed RSI gradient turns up, short when RSI is above the upper level and the gradient turns down; each side closes when the gradient turns against it and RSI has crossed the exit level. It is a mean-reversion scalp at 5m with hyperopt-driven thresholds (entry 30-70) and a steep ROI ladder (22% decaying to 0 after ~110 minutes) over a 27% stoploss.</p>
+<table><tr><th>Version</th><th>Timeframe</th><th>Class</th><th>Source</th><th>State</th></tr>
+<tr><td><code>RsiquiV5</code></td><td>5m</td><td>RsiquiV5</td><td>repos/TheoBrigitte_freqtrade/strategies/rsiqui/RsiquiV5.py</td><td>current</td></tr>
+</table>
+<details><summary>what this reading rests on</summary><ul>
+<li>indicators: ta.RSI(14), np.gradient(dataframe[&#x27;rsi_ema&#x27;]), qtpylib.crossed_above/below(rsi_gra, 0)</li>
+<li>populate_entry_trend: enter_long = (rsi &lt; rsi_entry_long) &amp; crossed_above(rsi_gra, 0); enter_short mirrors above rsi_entry_short</li>
+<li>populate_exit_trend: exit_long = (rsi &gt; rsi_exit_long) &amp; crossed_below(rsi_gra, 0)</li>
+<li>settings: minimal_roi {&#x27;0&#x27;: 0.223, &#x27;34&#x27;: 0.082, &#x27;82&#x27;: 0.033, &#x27;109&#x27;: 0}, stoploss -0.273</li>
+<li>cluster store: direction long_short, logic mean_reversion, speed scalp, regime hypothesis bear+range</li>
+</ul></details>
+<h2>BollingerMACD <span class="meta">- 1 version(s)</span>
+<p class="idea">Dual momentum confirmation: the long needs the close crossing above the upper Bollinger band and both MACD lines above zero, the short mirrors it below the lower band with both lines below zero, and a non-zero volume column is required in every branch. The exit is the opposite band cross under the same MACD agreement, so the position is held while the regime lasts; the 35% stoploss and 12% trailing stop are what actually bound the loss.</p>
+<table><tr><th>Version</th><th>Timeframe</th><th>Class</th><th>Source</th><th>State</th></tr>
+<tr><td><code>BollingerMACD_V3</code></td><td>5m</td><td>BollingerMACD_V3</td><td>repos/remiotore_ccxt-freqtrade/my-strategies/BollingerMACD_V3.py</td><td>current</td></tr>
+</table>
+<details><summary>what this reading rests on</summary><ul>
+<li>indicators: ta.MACD(dataframe), qtpylib.bollinger_bands(typical_price, 20, 2), crossed_above/below on close vs bb_upperband/bb_lowerband</li>
+<li>populate_entry_trend: enter_long = crossed_above(close, bbu) &amp; (macd &gt; 0) &amp; (macdsignal &gt; 0) &amp; (volume &gt; 0); short is the mirror</li>
+<li>populate_exit_trend: exit_long = crossed_below(close, bbu) with the same MACD and volume conditions</li>
+<li>settings: minimal_roi {&#x27;0&#x27;: 0.28, &#x27;22&#x27;: 0.081, &#x27;68&#x27;: 0.039, &#x27;90&#x27;: 0}, stoploss -0.35, trailing_stop True, trailing_stop_positive 0.12</li>
+</ul></details>
+<h2>GnF <span class="meta">- 1 version(s)</span>
+<p class="idea">A synthetic greed/fear index decides the direction: momentum (close against SMA20), volatility (NATR14) and a volume sentiment (up-volume minus down-volume) are each min-max normalised over a 20-bar window and averaged into one 0-1 number. Above 0.7 the strategy is long, below 0.3 short, and a trade is only opened while volume exceeds its own 50-bar mean; the opposite threshold closes the side, so the index crossing the band is what turns the position.</p>
+<table><tr><th>Version</th><th>Timeframe</th><th>Class</th><th>Source</th><th>State</th></tr>
+<tr><td><code>GnF_V2</code></td><td>1h</td><td>GnF_V2</td><td>repos/vaskosmihaylov_nfi-custom-strategies/user_data/strategies/remiotore/GnF_V2.py</td><td>current</td></tr>
+</table>
+<details><summary>what this reading rests on</summary><ul>
+<li>populate_indicators: momentum = (close - SMA20)/SMA20, volatility = ta.NATR(14), volume_up/volume_down -&gt; volume_sentiment, each normalised over rolling(20), greed_fear_index = mean of the three</li>
+<li>populate_entry_trend: enter_long where greed_fear_index &gt; 0.7 and volume &gt; volume_mean; enter_short where &lt; 0.3</li>
+<li>populate_exit_trend: exit_long where greed_fear_index &lt; 0.3, exit_short where &gt; 0.7</li>
+<li>settings: stoploss -0.99, minimal_roi {}, trailing_stop False</li>
+</ul></details>
+<h2>EWOist <span class="meta">- 1 version(s)</span>
+<p class="idea">One indicator and two thresholds: EWO = (SMA50 - SMA200)/close*100; EWO above the buy threshold opens the long, below the sell threshold closes it again, and the short side is mirrored around the same levels. Nothing else is consulted except a non-zero volume. The risk side is a 10% profit offset with a 3% trailing stop that only arms once the offset is reached.</p>
+<table><tr><th>Version</th><th>Timeframe</th><th>Class</th><th>Source</th><th>State</th></tr>
+<tr><td><code>EWOistV1</code></td><td>5m</td><td>EWOistV1</td><td>repos/remiotore_ccxt-freqtrade/my-strategies/EWOistV1.py</td><td>current</td></tr>
+</table>
+<details><summary>what this reading rests on</summary><ul>
+<li>populate_indicators: EWO = (ta.SMA(50) - ta.SMA(200))/close*100</li>
+<li>populate_entry_trend: enter_long where EWO &gt; ewo_buy_low; enter_short where EWO &lt; ewo_buy_low</li>
+<li>populate_exit_trend: exit_long where EWO &lt; ewo_sell_high; exit_short where EWO &gt; ewo_sell_low</li>
+<li>settings: exit_profit_offset 0.1, trailing_stop_positive_offset 0.03, trailing_only_offset_is_reached True, stoploss -0.99</li>
+</ul></details>
+<h2>PlusMinus <span class="meta">- 1 version(s)</span>
+<p class="idea">A directional-indicator breakout with an RSI filter: +DI crossing above -DI while RSI is above 60 opens the long, -DI crossing above +DI while RSI is below 15 opens the short, and the same crosses close the opposite side. Each side also has a second branch that fires when a rolling maximum of RSI and of the matching DI is flagged - an exhaustion branch rather than a cross - so the strategy trades both a breakout and its reversal signal.</p>
+<table><tr><th>Version</th><th>Timeframe</th><th>Class</th><th>Source</th><th>State</th></tr>
+<tr><td><code>PlusMinusV1</code></td><td>5m</td><td>PlusMinusV1</td><td>repos/remiotore_ccxt-freqtrade/my-strategies/PlusMinusV1.py</td><td>current</td></tr>
+</table>
+<details><summary>what this reading rests on</summary><ul>
+<li>indicators: ta.RSI(dataframe), ta.PLUS_DI(dataframe), ta.MINUS_DI(dataframe), crossed_above on &#x27;Plus DI&#x27;/&#x27;Minus DI&#x27;</li>
+<li>populate_entry_trend: enter_long = (crossed_above(Plus DI, Minus DI) &amp; RSI &gt; 60) OR (&#x27;RSI Max&#x27; notnull &amp; &#x27;Plus DI Max&#x27; notnull)</li>
+<li>populate_exit_trend: exit_long = (&#x27;RSI Max&#x27; notnull &amp; &#x27;Plus DI Max&#x27; notnull) OR (crossed_above(Minus DI, Plus DI) &amp; RSI &lt; 60)</li>
+<li>settings: stoploss -0.3, minimal_roi {}, trailing_stop False</li>
+</ul></details>
+</body></html>
