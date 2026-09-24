@@ -62,6 +62,7 @@ CLUSTERS = os.path.join(_ROOT, "cluster", "clusters.json")
 CLASSIFICATION = os.path.join(_ROOT, "evidence", "STRATEGY_CLASSIFICATION.json")
 BUNDLE = os.path.join(_ROOT, "evidence", "STRATEGY_IDEAS_INPUT.json")
 IDEAS = os.path.join(_ROOT, "evidence", "STRATEGY_IDEAS.json")
+DATES = os.path.join(_ROOT, "evidence", "SOURCE_DATES.json")
 PAGE = os.path.join(_ROOT, "strategy_ideas.html")
 
 # Caps keep the bundle readable for a model instead of dumping a 200 KB file:
@@ -278,18 +279,13 @@ _DATE = re.compile(r"(20\d{2})[-_]?(0[1-9]|1[0-2])[-_]?(0[1-9]|[12]\d|3[01])")
 _EPOCH = re.compile(r"(?:^|[^0-9])(1[0-9]{9})(?:[^0-9]|$)")
 
 
-def version_key(strategy_id) -> str:
-    """The version the *name* claims, as written - `V31`, `v12_4`, `2023-09-15`.
+def date_in_name(strategy_id) -> str:
+    """The date the *name* carries, as ISO, or '' - a fact about the id.
 
-    A fact about the id, not a decision about order, and deliberately not a sort
-    key. The marker has to sit at the end of the name, which is why `E0V1E`
-    reports none although `V1` appears in the middle of it, and why the marker
-    is returned verbatim instead of being reformatted - `V7_2021` is what the
-    author wrote and this function does not get to decide whether the `2021` is
-    a minor version or a year. GeneTrader's generator writes a Unix timestamp
-    into the class name, so that counts as a marker too. A family without
-    markers is a family whose order the name cannot tell; the interpretation has
-    to say what it used instead.
+    Two forms appear in this corpus: eight digits written as a date
+    (`E0V1E_20230915` -> 2023-09-15, also with `_HHMM` behind it) and a Unix
+    timestamp, which is how the GeneTrader generator labels its output
+    (`gene9_1735161895_5455` -> 2024-12-25). Both are read as UTC.
     """
     dates = _DATE.findall(strategy_id)
     if dates:
@@ -298,6 +294,25 @@ def version_key(strategy_id) -> str:
     epoch = _EPOCH.search(strategy_id)
     if epoch:
         return time.strftime("%Y-%m-%d", time.gmtime(int(epoch.group(1))))
+    return ""
+
+
+def version_key(strategy_id) -> str:
+    """The version the *name* claims, as written - `V31`, `v12_4`, `2023-09-15`.
+
+    A fact about the id, not a decision about order, and deliberately not a sort
+    key. The marker has to sit at the end of the name, which is why `E0V1E`
+    reports none although `V1` appears in the middle of it, and why the marker
+    is returned verbatim instead of being reformatted - `V7_2021` is what the
+    author wrote and this function does not get to decide whether the `2021` is
+    a minor version or a year. A name that carries a date or a Unix timestamp
+    reports that instead, because it is the strongest version marker there is.
+    A family without markers is a family whose order the name cannot tell; the
+    interpretation has to say what it used instead.
+    """
+    date = date_in_name(strategy_id)
+    if date:
+        return date
     marker = _VERSION.search(strategy_id)
     return marker.group(0) if marker else ""
 
@@ -426,9 +441,47 @@ def family_members(family, profiles) -> list[str]:
             if family_stem(sid) == stem and sid not in excluded]
 
 
-def render_html(profiles, ideas, stream):
+def bulk_repos(dates) -> dict:
+    """`{repo: is_one_import_date}` from the dates store, however it is shaped."""
+    return {repo: bool(entry.get("bulk_import"))
+            for repo, entry in (dates.get("repos") or {}).items()}
+
+
+def date_cell(strategy_id, dates) -> str:
+    """The dates known for one strategy, each with the source that carries it.
+
+    The order is by how specific the statement is: a date the author wrote into
+    the name, then the site's publication date, then the last commit in the
+    repository it was harvested from. A repository whose dated files all share
+    one commit date is an import rather than a history, and that is said in the
+    cell instead of letting the date pass as the day a strategy was written.
+    `dates` is the whole store, because the repository flags live next to the
+    strategies in it rather than inside each record.
+    """
+    record = ((dates or {}).get("strategies") or {}).get(strategy_id) or {}
+    parts = []
+    if record.get("name_date"):
+        parts.append("%s <span class=\"meta\">in the name</span>"
+                     % html.escape(str(record["name_date"])))
+    site = record.get("site") or {}
+    if site.get("date"):
+        parts.append("%s <span class=\"meta\">site</span>"
+                     % html.escape(str(site["date"])))
+    upstream = record.get("upstream") or {}
+    if upstream.get("date"):
+        repo = str(upstream.get("repo") or "")
+        label = "repo, import" if bulk_repos(dates or {}).get(repo) else "repo"
+        parts.append("%s <span class=\"meta\">%s</span>"
+                     % (html.escape(str(upstream["date"])), label))
+    return "; ".join(parts) or "-"
+
+
+def render_html(profiles, ideas, stream, dates=None):
     """One section per family: the idea, what changed between revisions, its rows."""
     families = ideas.get("families") or []
+    dates = dates or {}
+    known = sum(1 for family in families for member in family_members(family, profiles)
+                if date_cell(member, dates) != "-")
     parts = [
         "<!doctype html>", '<html lang="en"><head><meta charset="utf-8">',
         "<title>Strategy ideas</title>",
@@ -444,6 +497,7 @@ def render_html(profiles, ideas, stream):
         "details{margin:.4rem 0 0}summary{cursor:pointer;color:#444}",
         ".stale{color:#b3261e;font-weight:600}",
         ".meta{color:#57606a;font-size:.9rem}",
+        "td.date{white-space:nowrap}",
         "</style></head><body>",
         "<h1>Strategy ideas</h1>",
         "<p class=\"meta\">One family per block: what the code does, read from the code, "
@@ -451,6 +505,15 @@ def render_html(profiles, ideas, stream):
         "the one revision it was read from - a family whose file has changed since is marked "
         "<span class=\"stale\">stale</span>. This is a description, not a measurement, and it "
         "decides nothing.</p>",
+        "<p class=\"meta\"><strong>The Date column is three different facts, each named:</strong> "
+        "<em>in the name</em> is a date the author or the generator wrote into the class name, "
+        "<em>site</em> is the published site's post date for the files taken from it, and "
+        "<em>repo</em> is the last commit that touched the file in the repository it was "
+        "harvested from - which is the revision's date where the repository has its own history "
+        "and the date of an import where it does not (<em>repo, import</em>). No date here is "
+        "the moment an author published a strategy unless the column says so. Dates are read "
+        "from <code>evidence/SOURCE_DATES.json</code>; what is missing stays missing.</p>"
+        if known else "",
     ]
     if not families:
         parts.append("<p>No interpretations yet: run <code>python -m tools.strategy_ideas "
@@ -493,14 +556,15 @@ def render_html(profiles, ideas, stream):
                      % (html.escape(str(strategy_id)),
                         html.escape(str(read_from.get("source_sha256", ""))[:22] + "..."),
                         state))
-        parts.append("<table><tr><th>Strategy</th><th>Timeframe</th>"
+        parts.append("<table><tr><th>Strategy</th><th>Date</th><th>Timeframe</th>"
                      "<th>Class</th><th>File</th></tr>")
         for member in members:
             member_row = profiles.get(member) or {}
             marker = " *" if member == strategy_id else ""
-            parts.append("<tr><td><code>%s</code>%s</td><td>%s</td><td>%s</td><td>%s</td>"
-                         "</tr>" % (
+            parts.append("<tr><td><code>%s</code>%s</td><td class=\"date\">%s</td><td>%s</td><td>%s</td>"
+                         "<td>%s</td></tr>" % (
                              html.escape(str(member)), marker,
+                             date_cell(member, dates),
                              html.escape(str(member_row.get("execution_timeframe") or "-")),
                              html.escape(str(member_row.get("strategy") or "-")),
                              html.escape(str(member_row.get("canonical_file") or "-"))))
@@ -564,8 +628,9 @@ def main(argv=None):
 
     if args.render:
         ideas = json.load(io.open(IDEAS, encoding="utf-8")) if os.path.exists(IDEAS) else {}
+        dates = json.load(io.open(DATES, encoding="utf-8")) if os.path.exists(DATES) else {}
         with io.open(PAGE, "w", encoding="utf-8", newline="\n") as handle:
-            render_html(profiles, ideas, handle)
+            render_html(profiles, ideas, handle, dates)
         print("wrote %s (%d families)"
               % (os.path.relpath(PAGE, _ROOT), len(ideas.get("families") or [])))
         return 0
@@ -653,6 +718,16 @@ def selftest():
     out = io.StringIO()
     render_html(profiles, ideas, out)
     assert "stale" in out.getvalue(), out.getvalue()
+    # The date cell names the source, and refuses to pass an import date off as
+    # the day a strategy was written.
+    only_name = {"strategies": {"X": {"name_date": "2021-10-08"}}}
+    assert date_cell("X", only_name) == \
+        "2021-10-08 <span class=\"meta\">in the name</span>", date_cell("X", only_name)
+    imported = {"strategies": {"X": {"upstream": {"repo": "a/b", "date": "2025-09-10"}}},
+                "repos": {"a/b": {"bulk_import": True}}}
+    assert "repo, import" in date_cell("X", imported), date_cell("X", imported)
+    assert date_cell("Y", {}) == "-"
+    cases += 3
     # The members of a family are derived from the corpus, not listed by hand:
     # a 39-revision family would otherwise need 39 hand-written hash entries
     # that repeat what the corpus already knows.

@@ -69,6 +69,18 @@ Never write a count that a command can print: counts in prose are what made the 
     "largest family" means here and why the template stems in `TEMPLATE_STEMS` are excluded), bundles the facts
     (`--bundle`), renders the page (`--render`) and fails when an idea outlives its revision (`--check`); it never writes
     the store. Forty-eight families out of about 2,000 stems is a sample, and nothing here is a measurement.
+  - The ideas page now carries a **Date** column per revision, fed by `evidence/SOURCE_DATES.json`
+    (`tools/source_dates.py`). It holds three facts with the source named in every cell: a date the file
+    name carries (36 strategies in the corpus), the published site's post date for the files taken from
+    it (2), and the last commit that touched the file in the repository it was harvested from (the 48
+    readings so far). **No harvested repository keeps its own `.git`**, so an author's publication date
+    mostly does not exist in this material; where a repository's dated files all share one commit date
+    the cell says `repo, import` instead of passing an import date off as the day a strategy was written.
+    `remiotore/ccxt-freqtrade` (74 % of the corpus) shows mostly one import date. The fetch is resumable
+    and rate limited (60/h without a token, 5000/h with one, read from `GITHUB_TOKEN`, `GH_TOKEN` or the
+    gitignored `user_data/.github_token`): continue with
+    `python -m tools.source_dates --fetch --kinds upstream --only-missing`,
+    and `--summary` reports the coverage.
 
 ### Previous baton entry - codex, 2026-09-23
 

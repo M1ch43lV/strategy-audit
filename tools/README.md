@@ -12,6 +12,10 @@ group: it turns a third party's published ranking into one rank per strategy and
 writes nothing. `strategy_ideas.py` is the other reader of its kind: it extracts
 the facts an interpretation needs, renders `strategy_ideas.html`, and prints the
 family ranking (`--rank`) that decides which families that page describes first.
+`source_dates.py` completes the set: it collects the dates that really exist per
+strategy (a date in the file name, the site's post date, the last commit in the
+repository the file came from) into `evidence/SOURCE_DATES.json`, resumable
+because the GitHub API is rate limited without a token.
 The remaining programs classify, triage, validate, or
 publish current evidence on demand.
 
