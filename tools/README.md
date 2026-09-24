@@ -2,10 +2,10 @@
 
 This directory contains maintained support programs that are not benchmark
 result stores. Corpus intake uses `harvest.py` (repositories) and
-`adopt_source.py` (one file published without a repository,
-`PIPELINE_EXTENSIONS.md` Part 5), plus `census_repos.py`, `expand.py`,
-`tfscan.py`, and the shared `harness.py`; `fetch_bulk.py` supplies archived
-Binance spot candles. `evidence.strategy_feed` is a separate, review-only
+`adopt_source.py` (one file published without a repository, agreed with the
+owner first, `PIPELINE_EXTENSIONS.md` Part 5), plus `census_repos.py`,
+`expand.py`, `tfscan.py`, and the shared `harness.py`; `fetch_bulk.py` supplies
+archived Binance spot candles. `evidence.strategy_feed` is a separate, review-only
 Stage-0 discovery scanner: it records pinned feed sources but never downloads
 them into `repos/`. `frequenthippo_ranking.py` belongs to the same review-only
 group: it turns a third party's published ranking into one rank per strategy and

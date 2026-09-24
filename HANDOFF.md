@@ -54,7 +54,9 @@ Never write a count that a command can print: counts in prose are what made the 
     `PIPELINE_EXTENSIONS.md` Part 5) writes `repos/frequenthippo/<file>.py`, records URL and hash in
     `repos/frequenthippo/.sources.json`, and refreshes the intake exactly as harvest does.
     `BB_RPB_TSL_RNG_V2_20211008` and `BB_RPB_TSL_jilv220_github_20211008` are corpus rows attributed to
-    `frequenthippo` in `not_tested_in_current_runtime`.
+    `frequenthippo` in `not_tested_in_current_runtime`. **Every further adoption needs the owner's agreement to that
+    one file**: the command refuses without `--owner-approved` and refuses before it downloads; `--dry-run` is how a
+    request is prepared.
   - `evidence/repo_freshness.py` gained `NON_GITHUB_SOURCES`: it had asked GitHub for that folder and answered
     `api_error_or_not_found`, which reads like a repository that vanished. It now reports `not_a_repository`, and
     `REPO_FRESHNESS.md` says what that means.

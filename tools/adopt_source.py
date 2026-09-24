@@ -25,6 +25,15 @@ the same path with a different hash unless `--replace` says so out loud. A class
 whose base is another local class instead of `IStrategy` is refused too; the
 corpus knows that shape (`EXTRA_SUBCLASS_STRATEGIES`) and admitting one stays an
 explicit decision rather than a side effect of a download.
+
+ONE FILE, ONE AGREEMENT. Every adoption is agreed with the owner first; there
+is no standing permission to adopt (owner, 2026-09-24). The command therefore
+refuses to run without `--owner-approved`, and it refuses *before* it fetches
+anything, so a file the owner has not agreed to is not even downloaded. What is
+passed in that argument is the agreement as it was given, and it is recorded
+with the file. `--dry-run` needs no agreement: it fetches, gated and verified,
+and writes nothing - that is how the request is prepared, and how the owner can
+be shown exactly what would be added.
 """
 from __future__ import annotations
 
@@ -137,6 +146,20 @@ def sha256(body):
     return "sha256_" + hashlib.sha256(body).hexdigest()
 
 
+def consent_error(dry_run, owner_approved):
+    """None when this call may proceed, otherwise why it may not.
+
+    Kept as a function so the rule is a test case rather than a condition buried
+    in `main()`: adoption is agreed with the owner file by file, and `--dry-run`
+    is the only way to prepare that request without the agreement.
+    """
+    if dry_run or owner_approved:
+        return None
+    return ("refusing: every adoption is agreed with the owner first - pass "
+            "--owner-approved \"<the agreement as given>\" once the owner has "
+            "agreed to this file, or --dry-run to prepare the request")
+
+
 def selftest():
     cases = 0
     target = destination("frequenthippo", "https://example.invalid/a/b/Name.py?x=1#frag")
@@ -177,6 +200,11 @@ def selftest():
     assert sha256(b"") == ("sha256_e3b0c44298fc1c149afbf4c8996fb924"
                            "27ae41e4649b934ca495991b7852b855"), sha256(b"")
     cases += 1
+    assert consent_error(True, None) is None          # preparing the request
+    assert consent_error(False, "yes, adopt it") is None
+    assert consent_error(False, None) is not None      # no standing permission
+    assert consent_error(False, "") is not None
+    cases += 4
     print("adopt_source selftest: PASS (%d cases)" % cases)
     return 0
 
@@ -190,6 +218,9 @@ def main(argv=None):
                         help="source folder under repos/ (default: %s)" % ALLOWED_SOURCES[0])
     parser.add_argument("--reason", default="",
                         help="why this file, and why no repository - recorded")
+    parser.add_argument("--owner-approved", default="",
+                        help="the owner's agreement to THIS file, as it was given; "
+                             "required unless --dry-run")
     parser.add_argument("--replace", action="store_true",
                         help="overwrite an existing file whose hash differs")
     parser.add_argument("--dry-run", action="store_true",
@@ -202,6 +233,10 @@ def main(argv=None):
         return selftest()
     if not args.url or not args.strategy:
         parser.error("--url and --strategy are required (or --selftest)")
+    denial = consent_error(args.dry_run, args.owner_approved)
+    if denial:
+        print(denial)
+        return 1
 
     target = destination(args.source, args.url)
     try:
@@ -253,6 +288,7 @@ def main(argv=None):
         "sha256": digest,
         "bytes": len(body),
         "adopted_at": datetime.now(timezone.utc).replace(microsecond=0).isoformat(),
+        "owner_approved": args.owner_approved,
         "reason": args.reason,
     })
     if args.no_refresh:

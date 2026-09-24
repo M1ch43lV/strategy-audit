@@ -1199,6 +1199,7 @@ One writer, `tools/adopt_source.py`, and one explicit command per file:
 
 ```text
 python -m tools.adopt_source --url <published file> --strategy <class it must define> \
+    --owner-approved "<the owner's agreement, as given>" \
     [--source frequenthippo] --reason "<why this file and no repository>"
 ```
 
@@ -1215,8 +1216,11 @@ sanitised.
 
 ### 5.3 The rules the command must obey
 
-1. **One file per command, with a reason.** No crawler, no "fetch the site's top 100", no feed-driven automation. The
-   command is the acquisition event, exactly as `harvest owner/repo` is one.
+1. **One file per command, agreed with the owner first.** No crawler, no "fetch the site's top 100", no feed-driven
+   automation, and no standing permission to adopt (owner, 2026-09-24): the command refuses without
+   `--owner-approved`, and it refuses *before* it fetches, so a file nobody agreed to is not even downloaded. What is
+   passed there is the agreement as it was given, and it is recorded with the file. `--dry-run` needs no agreement -
+   it fetches, gated and verified, writes nothing, and is how the request is prepared.
 2. **Scan before writing.** The intake's own predicate (`tools/malware_gate.scan_bytes()`); a hit means no file is
    written.
 3. **The named class must be there.** The downloaded text must parse and define `--strategy` as a class with an
@@ -1260,18 +1264,20 @@ sanitised.
 | # | Question | Why it matters |
 |---|---|---|
 | 1 | **Answered 2026-09-24:** an adopted strategy is admitted like any other, so Part 1's population rules apply unchanged - no separate cohort and no weaker evidence status | The owner's words: "aufgenommen wie jede andere Strategie auch" |
-| 2 | Is per-file adoption a standing path or a named exception? | It exists as a path now. Whether it may be used without a fresh owner decision per source is still open - today a new tag needs one (§5.2) |
+| 2 | **Answered 2026-09-24: there is no standing permission.** Every single adoption is agreed with the owner first; the command enforces it with a required `--owner-approved` and refuses before it downloads anything | Written after the first two files went in as one agreed pair - the rule the owner wants from here on |
 | 3 | **Answered 2026-09-24 for one source:** the folder is `repos/frequenthippo/`, so the decision names that site. Any other non-GitHub source is a new decision and a new entry in `ALLOWED_SOURCES` | A GitHub gist is a repository in harvest's sense and needs none of this; a Discord share has no author tree and no hash to pin |
-| 4 | Who may adopt - the owner only, or an agent under an explicit instruction? | Still open, and bounded by the design: one file per call, a recorded reason, and nothing automated invokes it - it writes below `repos/`, the one place Stage 0 protects hardest |
+| 4 | **Answered 2026-09-24: the owner only.** An agent may prepare an adoption with `--dry-run` and must ask; the agreement text it then passes in is recorded with the file, so the claim is checkable against the conversation | A standing permission would also be a standing writer below `repos/` |
 
 ### 5.6 What was verified when it went into use
 
 - `tools/adopt_source.py --selftest` passes over the refusal cases: a URL that does not end in one plain `.py` name, a
-  percent-escaped name, a name Windows would refuse, an undecided source tag, a file without an `IStrategy` class and
-  a file that defines the wrong class. Plus the provenance file keeping both rows when the same URL arrives twice.
+  percent-escaped name, a name Windows would refuse, an undecided source tag, a file without an `IStrategy` class, a
+  file that defines the wrong class, and a call that carries no owner agreement while not being a dry run. Plus the
+  provenance file keeping both rows when the same URL arrives twice.
 - The first two real adoptions: `BB_RPB_TSL_RNG_V2_20211008` (rank 4) and `BB_RPB_TSL_jilv220_github_20211008`
   (rank 6) are corpus rows attributed to `frequenthippo`, in `not_tested_in_current_runtime` - the same state a newly
-  harvested strategy gets.
+  harvested strategy gets. The owner agreed to both as one pair on 2026-09-24; their provenance rows predate the
+  per-file `owner_approved` field and are covered by that pair decision, not left unexplained.
 - The intake-deletion path is wired: the command passes its source folder as freshly fetched, so the rule of
   2026-09-16 can remove an adopted file that is a code-identical copy of a strategy no check has looked at. That rule
   is not new code - the harvest wave of 2026-09-23 removed 509 files by it - but the adoption case has not occurred
