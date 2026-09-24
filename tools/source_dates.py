@@ -106,6 +106,22 @@ def _get(url, tok=None, timeout=25):
         return 0, {}, str(exc)
 
 
+def rate_limit(tok=None):
+    """The API's own report on the caller's budget - this endpoint costs no quota.
+
+    It is what tells a run apart from a guess: 60 requests an hour is an
+    anonymous caller, 5000 is a token, and a token that has expired or lost its
+    grant shows up here as 60 again rather than as a failure halfway through.
+    """
+    status, _headers, text = _get("%s/rate_limit" % API, tok)
+    if status != 200:
+        return None
+    try:
+        return (json.loads(text).get("resources") or {}).get("core") or None
+    except ValueError:
+        return None
+
+
 def github_commit(repo, path, tok=None):
     """The last commit that touched `path` in `repo`, or a stated reason why not."""
     if not repo or "/" not in repo or not path:
@@ -324,8 +340,12 @@ def main(argv=None):
         wanted = [s for s in (wanted or sorted(profiles))
                   if not (store.get("strategies", {}).get(s) or {}).get("upstream")]
     tok = token()
-    print("token: %s" % ("from the environment or user_data/.github_token" if tok
-                         else "none - 60 requests an hour"))
+    print("token: %s" % ("found in the environment or user_data/.github_token" if tok
+                         else "none - 60 requests an hour, which is not enough for a corpus"))
+    limit = rate_limit(tok)
+    if limit:
+        print("github api: %s requests an hour, %s left"
+              % (limit.get("limit"), limit.get("remaining")))
     if "site" in kinds:
         # The site is not rate limited, so its own files are done in one pass and
         # only those files - the site also publishes pages about harvested
