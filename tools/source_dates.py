@@ -272,8 +272,13 @@ def fetch(profiles, store, kinds, limit, tok, only=None):
                 added["upstream"] += 1
             else:
                 failed += 1
-            if calls % 25 == 0:
-                print("  %d calls, %d repositories touched" % (calls, len(repo_kinds(records))))
+            if calls % 100 == 0:
+                # A corpus run is thousands of calls and takes half an hour; a
+                # cache that is only written at the end loses all of it when
+                # something interrupts it, which is exactly when it matters.
+                write_store(store)
+                print("  %d calls, %d repositories touched (store written)"
+                      % (calls, len(repo_kinds(records))))
         record["fetched_at"] = time.strftime("%Y-%m-%dT%H:%M:%S")
     return {"calls": calls, "added": added, "failed": failed}
 
@@ -352,8 +357,12 @@ def main(argv=None):
         # strategies, and those dates would be ours, not the author's.
         print("files taken from the site: %d"
               % len([s for s in profiles if (profiles[s].get("repo") or "") == "frequenthippo"]))
-    result = fetch(profiles, store, kinds, args.limit, tok, wanted)
-    write_store(store)
+    try:
+        result = fetch(profiles, store, kinds, args.limit, tok, wanted)
+    finally:
+        # Whatever happened - the rate limit, Ctrl-C, a dropped connection - what
+        # was fetched is kept, so the next run continues instead of starting over.
+        write_store(store)
     print("fetched: %d API calls, name %d, site %d, upstream %d, without a date %d"
           % (result["calls"], result["added"]["name"], result["added"]["site"],
              result["added"]["upstream"], result["failed"]))
