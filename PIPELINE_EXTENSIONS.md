@@ -10,6 +10,7 @@ separate plan file until 2026-09-20; the text is unchanged, only the headings mo
 | 2. Execution robustness and cost screen | 8b (after the pooled Full-Backtest) | Built and running; Amendments 2026-09-19 and 2026-09-20 are current | `EXECUTION_ROBUSTNESS_PLAN.md` |
 | 3. Validation window extension | 9 to 13 (regime, attribution, evaluation) | **On hold** (owner, 2026-09-20). Do not start, do not change `END` or `TIMERANGE` | `VALIDATION_EXTENSION_PLAN.md` |
 | 4. Regime rotation bot | none (a consumer of the results, not part of the chain) | Variants and the rule of each, written before it is run | new 2026-09-20 |
+| 5. Adopting a source that has no repository | 0 (what may enter the corpus, and how) | **Proposed 2026-09-24, not decided.** No program named here exists yet | new 2026-09-24 |
 
 Section numbers quoted inside a part (for example `section 5.1`) refer to that part. A file name inside the text of a merged part (for example `EXECUTION_ROBUSTNESS_PLAN.md`) names the file as it was then; the table "Where a former document went" in `README.md` resolves it.
 
@@ -1168,3 +1169,97 @@ Reading:
   build it.** It is a measurement, not a recommendation; the owner's decision on leverage is separate.
 - The four weeks up to 2026-09-19 were not added, as ordered. A clean test of anything above needs a window that has not
   been read; Part 3 is on hold.
+
+## 5. Adopting a source that has no repository
+
+*Proposed 2026-09-24. **Nothing in this part is a rule until the owner accepts it**, and no program it names exists
+ yet. It is written down because Stage 0 has no answer for a case that already exists twice and will recur.*
+
+### 5.1 The case
+
+The FrequentHippo ranking (`tools/frequenthippo_ranking`) named ten strategies worth a look. Eight of them resolve to
+a GitHub repository and went through `python -m tools.harvest owner/repo`. Two cannot: they exist only as the site's
+own published files under `.../wp-content/uploads/strategies/<name>.py`, and nothing about them is in any repository -
+not the file, not a commit, no author's tree. `harvest` reads the GitHub API and only the GitHub API, and Stage 0's
+rule says nothing else may write below `repos/`. So the outcomes today are "leave it a lead" or "copy it in by hand",
+and hand-copying is the one thing that rule forbids.
+
+Do not confuse this with a source that has *disappeared*: `BB_Github_mupol313_hossain__rtr__20240622_082213_dca` has
+no copy left anywhere, and reconstructing it from a third party's mirror is a different decision that this part does
+not make. Here the source is available and simply is not a repository.
+
+### 5.2 What it would add (Option A)
+
+One new writer, `tools/adopt_source.py`, with one explicit command per file:
+
+```text
+python -m tools.adopt_source --url <published file> --strategy <class it must define> \
+    --source <tag> --reason "<why this file and no repository>"
+```
+
+It writes `repos/audit-adopted_<tag>/<file>.py`. A synthetic folder under `repos/` is the smaller change, not the
+bigger one: `evidence/execution_profiles.discover()` walks `repos/`, so a corpus root outside it would change the
+corpus definition itself, and the corpus already carries one hand-authored folder there
+(`repos/audit-authored_lookahead-rewrites/`).
+
+### 5.3 The rules the command must obey
+
+1. **One file per command, with a reason.** No crawler, no "fetch the site's top 100", no feed-driven automation. The
+   command is the acquisition event, exactly as `harvest owner/repo` is one.
+2. **Scan before writing.** The intake's own predicate (`tools/malware_gate.scan_bytes()`); a hit means no file is
+   written.
+3. **The named class must be there.** The downloaded text must parse and define `--strategy` as a class with an
+   `IStrategy` base somewhere in its hierarchy, otherwise nothing is written.
+4. **Provenance is append-only** in `evidence/ADOPTED_SOURCES.json`: URL, retrieval time in UTC, SHA-256 of the stored
+   bytes, the classes found, the requested class, the tag and the reason. Adopting the same URL again with different
+   bytes adds a row; it never rewrites one. A file that changes on the server therefore shows up as two hashes.
+5. **No silent replacement.** Same hash: the command is a no-op and says so. Different hash: it refuses unless
+   `--replace` is passed, and the old hash stays in the provenance store.
+6. **The intake refresh runs afterwards, unchanged** - the same duplicate adjudication, the same representative rule
+   (amendment of 2026-09-24) and the same regeneration order Stage 0 describes for `harvest`. An adopted file that
+   duplicates a corpus strategy is removed or excluded by exactly the rules that already apply; there is no adoption
+   exemption in either direction.
+7. **"Adopted" is not a quality signal.** Part 1's populations are untouched, and the tag and the provenance store
+   must never enter an identity hash - only the bytes are identity, which is what the measurement stores already
+   assume.
+8. **The reports must not read the folder as a repository.** `tools/census_repos.py`, `evidence/repo_freshness.py`
+   and `evidence/new_repo_candidates.py` walk `repos/` and would otherwise list `audit-adopted_*` as a GitHub
+   repository that was never fetched. How they treat the existing `repos/audit-authored_lookahead-rewrites/` and the
+   non-repository folder `logs` has to be checked first and, if it is wrong, corrected in the same change.
+
+### 5.4 What it would not do
+
+- **Not a bulk path and not a mirror.** If a published file disappears, this rule does not rebuild it from someone
+  else's copy.
+- **Not an identity shortcut.** The remote file is mutable and has no commit; its identity is the hash recorded at
+  adoption. The corpus never follows a URL.
+- **Not a repair.** If an adopted strategy's imports do not resolve in the corpus as it stands, that is repair
+  triage's business (Part 1 §4), not adoption's.
+- **Not a way around an exclusion.** It may not preserve a copy the duplicate rule would remove, and it may not
+  re-admit a strategy excluded by the owner's policy.
+
+### 5.5 Open questions for the owner
+
+| # | Question | Why it matters |
+|---|---|---|
+| 1 | Does an adopted strategy count for the confirmatory `E1_expanded` population, or only as `E3_derived_exploratory`? | Part 1's estimand names "public Freqtrade implementations"; a file with no repository is public but is not a repository artifact |
+| 2 | Is per-file adoption a standing path or a named exception? | A standing path needs a wave-style record; an exception needs a stop condition |
+| 3 | Only this site's published strategies, or any non-GitHub source (a Discord share, a blog listing, a paste)? | A GitHub gist is a repository in harvest's sense and needs none of this; a Discord share has no author tree and no hash to pin |
+| 4 | Who may adopt - the owner only, or an agent under an explicit instruction? | The command writes below `repos/`, the one place Stage 0 protects hardest |
+
+### 5.6 How it would be verified before first use
+
+- A `--selftest` over the refusal cases: malware hit, missing or wrong class, changed hash without `--replace`, a
+  destination outside `repos/audit-adopted_*`.
+- One acceptance test that matters more than the rest: adopt a file that is **already** in the corpus and prove the
+  adoption ends as a duplicate (removed or excluded) instead of adding a second strategy. That is what shows the new
+  writer cannot smuggle a copy past the existing rules.
+- After a real adoption: `evidence.strategy_status --check`, `evidence.semantic_duplicates --check`,
+  `tools.strategy_status_page --check`, `evidence.pipeline_state --selftest`, `tools.identity_freeze --quiet`.
+
+### 5.7 If the owner declines
+
+Then the two files stay what they are: leads with provenance, parked under `user_data/site_sources/`, named in
+`HANDOFF.md`, never measured, never counted. That is Option B, and its point is that the answer stays explicit rather
+than becoming a hand-copy nobody can see. Option C - adopt them but forbid any benchmark from touching them - adds a
+storage rule for no measurable gain and is listed only for completeness.

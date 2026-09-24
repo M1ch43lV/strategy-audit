@@ -49,7 +49,9 @@ Never write a count that a command can print: counts in prose are what made the 
   `strategy_status_page --check`, `verdicts --selftest`, `pipeline_state --selftest`,
   `verdict_migration_audit --strict --quiet`, `identity_freeze --quiet`. The dispatcher's next eligible action is a
   smoke run and its queue is alphabetical, so the new rows arrive in their turn. `AlexBandSniperV10AI` still needs
-  the owner's policy call recorded below; the proposed intake path for non-repository sources is still unwritten.
+  the owner's policy call recorded below. The two leads that no repository can supply are drafted as a rule in
+  `PIPELINE_EXTENSIONS.md` Part 5 - proposed, not decided; its four open questions and the acceptance test that must
+  pass before such a file may be adopted are written there.
 
 ### Previous baton entry - codex, 2026-09-23
 

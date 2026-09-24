@@ -48,6 +48,7 @@ copied into a second file is the file that will be wrong first.
 | What are the regime labels and their episode counts? | [`REGIME_DATA_REPORT.md`](REGIME_DATA_REPORT.md) |
 | Results for a reader | [`regime_specialists.html`](regime_specialists.html), [`regime_gating.html`](regime_gating.html) (rebuilt by `python -m tools.regime_specialists_page`) |
 | The regime rotation bot | rule of each variant and its results: [`PIPELINE_EXTENSIONS.md`](PIPELINE_EXTENSIONS.md) Part 4; code in `bot/`, data under `results/regime/rotation_bot/` |
+| May a strategy enter the corpus without a GitHub repository, and under which rules? | [`PIPELINE_EXTENSIONS.md`](PIPELINE_EXTENSIONS.md) Part 5 - **draft, not decided**; the leads it concerns are parked in `user_data/site_sources/` |
 | Rules for the agents | [`CLAUDE.md`](CLAUDE.md), [`AGENTS.md`](AGENTS.md) |
 
 ### When two documents disagree
