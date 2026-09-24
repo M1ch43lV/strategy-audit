@@ -60,15 +60,15 @@ Never write a count that a command can print: counts in prose are what made the 
   - `evidence/repo_freshness.py` gained `NON_GITHUB_SOURCES`: it had asked GitHub for that folder and answered
     `api_error_or_not_found`, which reads like a repository that vanished. It now reports `not_a_repository`, and
     `REPO_FRESHNESS.md` says what that means.
-  - New pilot artifact `strategy_ideas.html` plus its hand-written store `evidence/STRATEGY_IDEAS.json`: nineteen strategy
-    families described in prose that was read out of their code by an LLM session - ten the published family table
-    leads with and ten of the largest stems in the corpus - each with a `versions` list saying what changed from
-    revision to revision. Each family names the one revision it was read from in `read_from`, with that revision's
-    `source_sha256`; its other rows are derived from the corpus by stem, so the store does not repeat 39 hashes to say
-    what the corpus already records. `tools/strategy_ideas.py` bundles the facts (`--bundle`), renders the page
-    (`--render`) and fails when an idea outlives its revision (`--check`); it never writes the store. Extending the
-    page means bundling more strategies and writing more entries - nineteen families out of about 2,000 stems is a
-    sample, and nothing here is a measurement.
+  - New artifact `strategy_ideas.html` plus its hand-written store `evidence/STRATEGY_IDEAS.json`: forty-eight strategy
+    families described in prose that was read out of their code by an LLM session - the ten the published family table
+    leads with plus ranks 1 to 39 of the corpus ranking - each with a `versions` list saying what changed from revision
+    to revision. Each family names the one revision it was read from in `read_from`, with that revision's
+    `source_sha256`; its other strategies are derived from the corpus by stem, so the store does not repeat hundreds of
+    hashes to say what the corpus already records. `tools/strategy_ideas.py` prints the ranking (`--rank`, which is what
+    "largest family" means here and why the template stems in `TEMPLATE_STEMS` are excluded), bundles the facts
+    (`--bundle`), renders the page (`--render`) and fails when an idea outlives its revision (`--check`); it never writes
+    the store. Forty-eight families out of about 2,000 stems is a sample, and nothing here is a measurement.
 
 ### Previous baton entry - codex, 2026-09-23
 

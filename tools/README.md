@@ -9,7 +9,10 @@ archived Binance spot candles. `evidence.strategy_feed` is a separate, review-on
 Stage-0 discovery scanner: it records pinned feed sources but never downloads
 them into `repos/`. `frequenthippo_ranking.py` belongs to the same review-only
 group: it turns a third party's published ranking into one rank per strategy and
-writes nothing. The remaining programs classify, triage, validate, or
+writes nothing. `strategy_ideas.py` is the other reader of its kind: it extracts
+the facts an interpretation needs, renders `strategy_ideas.html`, and prints the
+family ranking (`--rank`) that decides which families that page describes first.
+The remaining programs classify, triage, validate, or
 publish current evidence on demand.
 
 Run tools from the repository root. Prefer module form where supported, for

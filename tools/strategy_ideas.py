@@ -83,6 +83,45 @@ TARGET_FUNCS = ("populate_indicators", "populate_entry_trend",
                 "populate_sell_trend", "custom_stoploss", "confirm_trade_entry",
                 "adjust_trade_position", "informative_pairs")
 
+# Stems that group by the author's file naming rather than by descent, so a
+# "largest families" ranking that counted them would be measuring how often a
+# name was copied. `Strategy001` and `StrategyV3` are the freqtrade tutorial
+# files, `default_strategy_*` and `sample_strategy_*` are the framework's own
+# template harvested many times over, `newstrategy*` is the template another
+# generator writes before it is renamed. The list is kept here, with the reason,
+# so that a reader of the ranking can disagree with it - the same three facts
+# are not re-derived from the names inside a ranking function.
+TEMPLATE_STEMS = {
+    "Strategy": "the framework's tutorial classes (Strategy001 ... StrategyV3)",
+    "strategy": "the same tutorial classes under a lower-case name",
+    "default_strategy": "copies of the freqtrade template class",
+    "sample_strategy": "copies of the freqtrade sample strategy",
+    "newstrategy": "the template a generator writes before renaming it",
+}
+
+
+def family_ranking(profiles, classification=None) -> list[tuple[str, list[str]]]:
+    """Families by number of corpus strategies, largest first, ties alphabetical.
+
+    Only two things are read: the stem and the row count. `not_applicable` rows
+    are dropped because the corpus itself marks them as test or template
+    artifacts, and `TEMPLATE_STEMS` is dropped with a stated reason. Everything
+    else is a family this page may describe, and the ranking is the only thing
+    that decides which ones it describes first.
+    """
+    groups = {}
+    for strategy_id in profiles:
+        stem = family_stem(strategy_id)
+        if stem in TEMPLATE_STEMS:
+            continue
+        if classification:
+            entry = classification.get(strategy_id) or {}
+            if entry.get("strategy_type") == "not_applicable":
+                continue
+        groups.setdefault(stem, []).append(strategy_id)
+    return sorted(((stem, sorted(members)) for stem, members in groups.items()),
+                  key=lambda kv: (-len(kv[1]), kv[0]))
+
 
 def _read(path):
     return io.open(path, encoding="utf-8", errors="replace").read()
@@ -419,7 +458,7 @@ def render_html(profiles, ideas, stream):
                      "</p>")
     for family in families:
         members = family_members(family, profiles)
-        parts.append("<h2>%s <span class=\"meta\">- %d row(s) in the corpus</span>"
+        parts.append("<h2>%s <span class=\"meta\">- %d strategies in the corpus</span>"
                      % (html.escape(str(family.get("family", "?"))), len(members)))
         parts.append('<p class="idea">%s</p>' % html.escape(str(family.get("idea", ""))))
         if family.get("caveat"):
@@ -454,7 +493,7 @@ def render_html(profiles, ideas, stream):
                      % (html.escape(str(strategy_id)),
                         html.escape(str(read_from.get("source_sha256", ""))[:22] + "..."),
                         state))
-        parts.append("<table><tr><th>Row in the corpus</th><th>Timeframe</th>"
+        parts.append("<table><tr><th>Strategy</th><th>Timeframe</th>"
                      "<th>Class</th><th>File</th></tr>")
         for member in members:
             member_row = profiles.get(member) or {}
@@ -491,11 +530,23 @@ def main(argv=None):
     parser.add_argument("--limit", type=int, default=0,
                         help="with --families: how many members per family (default 1, newest)")
     parser.add_argument("--selftest", action="store_true")
+    parser.add_argument("--rank", type=int, default=0,
+                        help="print the families by size (largest first) and exit")
     args = parser.parse_args(argv)
     if args.selftest:
         return selftest()
 
     profiles = load_profiles()
+    if args.rank:
+        ranking = family_ranking(profiles, load_classification())
+        for index, (stem, members) in enumerate(ranking[:args.rank], start=1):
+            print("%4d  %-34s %3d  %s" % (index, stem, len(members),
+                                           ", ".join(members[:6])
+                                           + (" ..." if len(members) > 6 else "")))
+        print("%d families in the corpus, %d counted here; excluded by name: %s"
+              % (len({family_stem(s) for s in profiles}), len(ranking),
+                 ", ".join(sorted(TEMPLATE_STEMS))))
+        return 0
     if args.bundle:
         ids = [s.strip() for s in args.strategies.split(",") if s.strip()]
         if args.families:
