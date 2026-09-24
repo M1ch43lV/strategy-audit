@@ -34,10 +34,22 @@ Never write a count that a command can print: counts in prose are what made the 
     `BB_Github_mupol313_hossain__rtr__20240622_082213_dca`, has no source left anywhere.
   - `Combined_NFIv7_SMA_Rallipanos_20210707` and its DCA twin are known intake duplicates (representative
     `NostalgiaForInfinityV7_SMA`) and were not re-admitted.
-- Next agent should: run the machine-state commands, then put the open wave question to the owner - keep
-  `repos/remiotore_ccxt-freqtrade/` (commit corpus, stores and docs together) or revert it (delete the folder and
-  re-run the intake refresh). The dispatcher's next eligible action is a smoke run and its queue is alphabetical, so
-  the new rows arrive in their turn. `AlexBandSniperV10AI` still needs the owner's policy call recorded below.
+  - The wave also moved the *representation* of strategies that were already in the corpus: for 45 `strategy_id`s
+    whose class name existed before, the canonical file moved into the new folder, 39 of them to a different
+    revision, and 22 admitted rows lost `technical_chain_complete` without any measurement failing. Cause was
+    `discover()`'s alphabetic precedence, which knew nothing about measurements.
+  - Fixed, owner-approved, in `evidence/execution_profiles.py`: a representative that a raw measurement store names
+    by content hash cannot be displaced by a same-named copy, `EXTRA_SUBCLASS_STRATEGIES` entries join the
+    candidate list instead of being dropped, and a class name without a measurement keeps the old deterministic
+    rule. Result on the same wave: lost chains 22 -> 0, changed pre-existing rows 45 -> 19. Recorded as the
+    amendment of 2026-09-24 in `PIPELINE.md`.
+- Next agent should: run the machine-state commands, then commit the wave as one unit (corpus under
+  `repos/remiotore_ccxt-freqtrade/`, the regenerated stores and the amended documents) if the machine is idle. The
+  guard chain was green after the change: `strategy_status --check`, `semantic_duplicates --check`,
+  `strategy_status_page --check`, `verdicts --selftest`, `pipeline_state --selftest`,
+  `verdict_migration_audit --strict --quiet`, `identity_freeze --quiet`. The dispatcher's next eligible action is a
+  smoke run and its queue is alphabetical, so the new rows arrive in their turn. `AlexBandSniperV10AI` still needs
+  the owner's policy call recorded below; the proposed intake path for non-repository sources is still unwritten.
 
 ### Previous baton entry - codex, 2026-09-23
 

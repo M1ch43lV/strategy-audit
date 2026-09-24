@@ -1,18 +1,23 @@
 {
  "repos": [
   {
+   "repo": "remiotore/ccxt-freqtrade",
+   "classes": 2393,
+   "first": 1918
+  },
+  {
    "repo": "PeetCrypto/freqtrade-stuff",
-   "classes": 346,
-   "first": 311
+   "classes": 342,
+   "first": 307
   },
   {
    "repo": "davidzr/freqtrade-strategies",
-   "classes": 461,
-   "first": 166
+   "classes": 459,
+   "first": 168
   },
   {
    "repo": "TheoBrigitte/freqtrade",
-   "classes": 220,
+   "classes": 219,
    "first": 117
   },
   {
@@ -22,7 +27,7 @@
   },
   {
    "repo": "jaredrsommer/freqtradestrategies",
-   "classes": 558,
+   "classes": 553,
    "first": 61
   },
   {
@@ -31,14 +36,19 @@
    "first": 55
   },
   {
+   "repo": "vaskosmihaylov/nfi-custom-strategies",
+   "classes": 79,
+   "first": 36
+  },
+  {
    "repo": "LazyPigPig/freqtrade-grid",
    "classes": 34,
    "first": 31
   },
   {
    "repo": "Foxel05/freqtrade-stuff",
-   "classes": 31,
-   "first": 31
+   "classes": 30,
+   "first": 30
   },
   {
    "repo": "MelvynClark/Freqtrade-Strategy",
@@ -46,13 +56,8 @@
    "first": 22
   },
   {
-   "repo": "webclinic017/strategies-freqtrade-",
-   "classes": 55,
-   "first": 20
-  },
-  {
    "repo": "kemplail/freqtrade-stuff",
-   "classes": 47,
+   "classes": 45,
    "first": 16
   },
   {
@@ -62,12 +67,12 @@
   },
   {
    "repo": "markdregan/FreqAI-Marcos-Lopez-De-Prado",
-   "classes": 27,
+   "classes": 26,
    "first": 14
   },
   {
-   "repo": "werkkrew/freqtrade-strategies",
-   "classes": 50,
+   "repo": "webclinic017/strategies-freqtrade-",
+   "classes": 55,
    "first": 8
   },
   {
@@ -101,6 +106,11 @@
    "first": 6
   },
   {
+   "repo": "iterativv/NostalgiaForInfinity",
+   "classes": 11,
+   "first": 6
+  },
+  {
    "repo": "flaviosiotto/freqtrade-strategy",
    "classes": 8,
    "first": 6
@@ -111,24 +121,14 @@
    "first": 6
   },
   {
-   "repo": "iterativv/NostalgiaForInfinity",
-   "classes": 10,
-   "first": 5
-  },
-  {
    "repo": "ShahAnuj2610/my-freqtrade",
-   "classes": 5,
+   "classes": 53,
    "first": 5
   },
   {
    "repo": "Kureshi25/cryptobot",
    "classes": 5,
    "first": 4
-  },
-  {
-   "repo": "thinkong/freqtradestrategies",
-   "classes": 31,
-   "first": 3
   },
   {
    "repo": "DutchCryptoDad/FreqtradeBotStrategyDevelopmentForBeginners",
@@ -147,7 +147,7 @@
   },
   {
    "repo": "titouannwtt/freqtrade-ultimate",
-   "classes": 20,
+   "classes": 19,
    "first": 2
   },
   {
@@ -171,11 +171,6 @@
    "first": 2
   },
   {
-   "repo": "shadowp2810/technical_indicators_cryptos",
-   "classes": 2,
-   "first": 2
-  },
-  {
    "repo": "titouannwtt/freqtrade-france-strategies-kac-index",
    "classes": 2,
    "first": 2
@@ -184,6 +179,16 @@
    "repo": "yeboster/liquidity-sweep-freqtrade",
    "classes": 2,
    "first": 2
+  },
+  {
+   "repo": "werkkrew/freqtrade-strategies",
+   "classes": 50,
+   "first": 1
+  },
+  {
+   "repo": "thinkong/freqtradestrategies",
+   "classes": 31,
+   "first": 1
   },
   {
    "repo": "ShahAnuj2610/my-freqtrade-nfi-nextgen",
@@ -198,11 +203,6 @@
   {
    "repo": "Juusseli/Trade",
    "classes": 3,
-   "first": 1
-  },
-  {
-   "repo": "botenesp/freqtrade_strategies",
-   "classes": 2,
    "first": 1
   },
   {
@@ -242,6 +242,16 @@
   },
   {
    "repo": "TomtomEh/freqtrade-websocket",
+   "classes": 1,
+   "first": 1
+  },
+  {
+   "repo": "XXA222/HPRL",
+   "classes": 1,
+   "first": 1
+  },
+  {
+   "repo": "audit-authored/lookahead-rewrites",
    "classes": 1,
    "first": 1
   },
@@ -292,12 +302,12 @@
   },
   {
    "repo": "keithorange/HUGE_FreqTrade_Strategy_Collection",
-   "classes": 477,
+   "classes": 472,
    "first": 0
   },
   {
    "repo": "p-zombie/freqtrade",
-   "classes": 35,
+   "classes": 34,
    "first": 0
   },
   {
@@ -351,6 +361,11 @@
    "first": 0
   },
   {
+   "repo": "shadowp2810/technical_indicators_cryptos",
+   "classes": 2,
+   "first": 0
+  },
+  {
    "repo": "Netanelshoshan/freqAI-LSTM",
    "classes": 1,
    "first": 0
@@ -361,8 +376,18 @@
    "first": 0
   },
   {
+   "repo": "botenesp/freqtrade_strategies",
+   "classes": 1,
+   "first": 0
+  },
+  {
    "repo": "froggleston/cryptofrog-strategies",
    "classes": 1,
+   "first": 0
+  },
+  {
+   "repo": "beanbocchi/money-generator",
+   "classes": 0,
    "first": 0
   },
   {
@@ -386,6 +411,6 @@
    "first": 0
   }
  ],
- "unique": 1050,
- "occurrences": 2868
+ "unique": 2980,
+ "occurrences": 5367
 }

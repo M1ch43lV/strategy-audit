@@ -1,6 +1,76 @@
 {
   "removed": [
     {
+      "canonical_representative": "adaptive",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/adaptive_3.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "adaptive_3"
+    },
+    {
+      "canonical_representative": "ADX_15M_USDT",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/ADX_15M_STRATEGY.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "ADX_15M_STRATEGY"
+    },
+    {
+      "canonical_representative": "ADX_15M_USDT2",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/ADX_15M_STRATEGYv2.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "ADX_15M_STRATEGYv2"
+    },
+    {
+      "canonical_representative": "adxbbrsi2",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/adx_bb_rsi2.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "adx_bb_rsi2"
+    },
+    {
+      "canonical_representative": "GRIDDMIPRICEStrategySpot",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/ADX_PRICE_GRID_Strategy_Spot.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "ADX_PRICE_GRID_Strategy_Spot"
+    },
+    {
+      "canonical_representative": "WTDMIPRICEDCAStrategyFuture",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/ADX_PRICE_WTDCA_Strategy_Future.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "ADX_PRICE_WTDCA_Strategy_Future"
+    },
+    {
+      "canonical_representative": "ADXMomentum",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/ADXMomentum_745.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "ADXMomentum_745"
+    },
+    {
+      "canonical_representative": "adx_low_stop",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/adxMomentum_opt_strat.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "adxMomentum_opt_strat"
+    },
+    {
+      "canonical_representative": "AlligatorStrat",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/AlligatorStrat_222.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "AlligatorStrat_222"
+    },
+    {
+      "canonical_representative": "bonafe",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/AlligatorV4.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "AlligatorV4"
+    },
+    {
       "canonical_representative": "Anomaly",
       "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
       "note": "",
@@ -201,6 +271,34 @@
       "strategy_id": "Anomaly_swing"
     },
     {
+      "canonical_representative": "ASDTSRockwellTrading",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/ASDTSRockwellTrading_264.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "ASDTSRockwellTrading_264"
+    },
+    {
+      "canonical_representative": "Babico_SMA5xBBmid",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/Babico_SMA5xBBmid_2.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "Babico_SMA5xBBmid_2"
+    },
+    {
+      "canonical_representative": "RunStrategy",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/BackTestStrategy.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "BackTestStrategy"
+    },
+    {
+      "canonical_representative": "CombinedBinHAndClucV5",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/BandCv5.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "BandCv5"
+    },
+    {
       "canonical_representative": "_Strat",
       "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
       "note": "",
@@ -221,6 +319,48 @@
       "strategy_id": "BasketStrategy"
     },
     {
+      "canonical_representative": "BB_RPB_3c",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/BB_RPB_3c_20.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "BB_RPB_3c_20"
+    },
+    {
+      "canonical_representative": "BB_RPB_TSL_BI_v4_EWO2_v3",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/BB_RPB_TSL_BI_v4_EWO2_v3_0.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "BB_RPB_TSL_BI_v4_EWO2_v3_0"
+    },
+    {
+      "canonical_representative": "BB_RPB_TSL_RNG_2",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/BB_RPB_TSL_RNG_2_3.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "BB_RPB_TSL_RNG_2_3"
+    },
+    {
+      "canonical_representative": "BB_RPB_TSL_RNG_VWAP",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/BB_RPB_TSL_RNG_VWAP_2.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "BB_RPB_TSL_RNG_VWAP_2"
+    },
+    {
+      "canonical_representative": "BB_RPB_TSL_5",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/BB_RPB_TSL_v103.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "BB_RPB_TSL_v103"
+    },
+    {
+      "canonical_representative": "BBRSINaiveStrategy",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/bb_rsi_naive_strategy.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "bb_rsi_naive_strategy"
+    },
+    {
       "canonical_representative": "BB_RTR",
       "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
       "file_present_again_at": "2026-09-16",
@@ -232,6 +372,104 @@
       "removed_at": "2026-09-16T14:59:36.982686+00:00",
       "retained_reason": "source file also defines live kept strategy class(es) BB_RTR and was restored whole by the Phase 17 recovery - a file cannot come back in part. Deleting it again would destroy those classes, which is the bug that lost 11 strategies, so this exclusion stays evidence-only and the file is kept.",
       "strategy_id": "BB_RTR_dca"
+    },
+    {
+      "canonical_representative": "BbandRsi",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/bband_rsi.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "bband_rsi"
+    },
+    {
+      "canonical_representative": "bbandrsi",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/bbandrsi_124.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "bbandrsi_124"
+    },
+    {
+      "canonical_representative": "BbandRsi",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/BbandRsi_283.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "BbandRsi_283"
+    },
+    {
+      "canonical_representative": "BbandRsiRolling",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/BbandRsiRolling_332.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "BbandRsiRolling_332"
+    },
+    {
+      "canonical_representative": "BBlower",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/bblower.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "bblower"
+    },
+    {
+      "canonical_representative": "BBRSI2",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/bbrsi2.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "bbrsi2"
+    },
+    {
+      "canonical_representative": "BBRSI21",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/BBRSI21_2.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "BBRSI21_2"
+    },
+    {
+      "canonical_representative": "bbrsi",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/bbrsi_24.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "bbrsi_24"
+    },
+    {
+      "canonical_representative": "BBRSIoriginal",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/bbrsi_544.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "bbrsi_544"
+    },
+    {
+      "canonical_representative": "bbrsi_naive",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/bbrsi_naive_strategy.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "bbrsi_naive_strategy"
+    },
+    {
+      "canonical_representative": "bb_rsi_opt_new",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/bbrsi_new.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "bbrsi_new"
+    },
+    {
+      "canonical_representative": "BBRSIOptim2020Strategy",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/bbrsi_optimized2020_strategy.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "bbrsi_optimized2020_strategy"
+    },
+    {
+      "canonical_representative": "BBRSIOptimStrategy",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/bbrsi_optimized_strategy_679.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "bbrsi_optimized_strategy_679"
+    },
+    {
+      "canonical_representative": "BBRSIStrategy",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/bbrsi_strategy.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "bbrsi_strategy"
     },
     {
       "canonical_representative": "BBRSITV",
@@ -303,6 +541,34 @@
       "strategy_id": "BBRSITV5"
     },
     {
+      "canonical_representative": "bestV2",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/bestV2_3.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "bestV2_3"
+    },
+    {
+      "canonical_representative": "BigZ04_TSL3",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/big.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "big"
+    },
+    {
+      "canonical_representative": "BigDrop",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/BigDrop_3.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "BigDrop_3"
+    },
+    {
+      "canonical_representative": "BigZ04_TSL4_24",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/BigZ04_TSL4_761.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "BigZ04_TSL4_761"
+    },
+    {
       "canonical_representative": "BinClucMadv1",
       "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
       "file_present_again_at": "2026-09-16",
@@ -341,6 +607,13 @@
       "strategy_id": "BinClucMadv1"
     },
     {
+      "canonical_representative": "BinClucMadV1",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/BinClucMadV1_190.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "BinClucMadV1_190"
+    },
+    {
       "canonical_representative": "BinClucMadv1",
       "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
       "file_present_again_at": "2026-09-16",
@@ -355,6 +628,69 @@
       "strategy_id": "BinClucMadv2"
     },
     {
+      "canonical_representative": "BinHV27",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/BinHV27_214.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "BinHV27_214"
+    },
+    {
+      "canonical_representative": "BinHV27",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/BinHV27_31.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "BinHV27_31"
+    },
+    {
+      "canonical_representative": "BinHV27_short_7",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/BinHV27_short_9.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "BinHV27_short_9"
+    },
+    {
+      "canonical_representative": "BinHV27_combined",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/BinHV27JP.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "BinHV27JP"
+    },
+    {
+      "canonical_representative": "BinHV45_kanaxe",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/BinHV45_431.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "BinHV45_431"
+    },
+    {
+      "canonical_representative": "BinHV45_142",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/BinHV45_439.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "BinHV45_439"
+    },
+    {
+      "canonical_representative": "BinHV45",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/BinHV45_75.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "BinHV45_75"
+    },
+    {
+      "canonical_representative": "BinHV45_werkkrew",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/BinHV45_755.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "BinHV45_755"
+    },
+    {
+      "canonical_representative": "BinHV45_stash",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/BinHV45_987.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "BinHV45_987"
+    },
+    {
       "canonical_representative": "CppiBasket",
       "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
       "note": "",
@@ -363,6 +699,55 @@
       "recovered_note": "Re-fetched 2026-09-16. The kept representative was a differently-named file in this same author's own repository, so this was never a copy of another repo's strategy. Owner's rule: a strategy in its own source repo is kept, and a duplicate finding against it excludes it without removing the file.",
       "removed_at": "2026-09-16T14:59:36.982686+00:00",
       "strategy_id": "BlendBasket"
+    },
+    {
+      "canonical_representative": "BollingerBounce",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/BollingerBounce_3.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "BollingerBounce_3"
+    },
+    {
+      "canonical_representative": "BuyDips",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/BuyDips_3.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "BuyDips_3"
+    },
+    {
+      "canonical_representative": "CCIStrategy_5",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/CCIStrategy_263.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "CCIStrategy_263"
+    },
+    {
+      "canonical_representative": "CCIStrategy",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/CCIStrategy_412.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "CCIStrategy_412"
+    },
+    {
+      "canonical_representative": "Cenderawasih_freqai",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/Cenderawasih_freqai_2.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "Cenderawasih_freqai_2"
+    },
+    {
+      "canonical_representative": "Chandem",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/chandem.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "chandem"
+    },
+    {
+      "canonical_representative": "Chandemtwo",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/chandem_two.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "chandem_two"
     },
     {
       "canonical_representative": "Chispei",
@@ -498,6 +883,13 @@
       "strategy_id": "ClucHAnix"
     },
     {
+      "canonical_representative": "ClucHAnix_5m1",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/ClucHAnix_5gh.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "ClucHAnix_5gh"
+    },
+    {
       "canonical_representative": "Cluc5mDCA",
       "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
       "file_present_again_at": "2026-09-16",
@@ -507,6 +899,69 @@
       "removed_at": "2026-09-16T15:05:51.011635+00:00",
       "retained_reason": "source file defines no other class and returned via a repository re-download, not the recovery; deletion is safe and the next harvest removes it again.",
       "strategy_id": "ClucHAnix_5m"
+    },
+    {
+      "canonical_representative": "ClucHAnix_5m",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/ClucHAnix_5m_4.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "ClucHAnix_5m_4"
+    },
+    {
+      "canonical_representative": "ClucHAnix",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/ClucHAnix_6.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "ClucHAnix_6"
+    },
+    {
+      "canonical_representative": "ClucHAnix_BB_RPB",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/ClucHAnix_BB_RPB_215.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "ClucHAnix_BB_RPB_215"
+    },
+    {
+      "canonical_representative": "ClucHAnix_BB_RPB",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/ClucHAnix_BB_RPB_579.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "ClucHAnix_BB_RPB_579"
+    },
+    {
+      "canonical_representative": "ClucHAnix_BB_RPB_3",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/ClucHAnix_BB_RPB_757.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "ClucHAnix_BB_RPB_757"
+    },
+    {
+      "canonical_representative": "ClucHAnix_BB_RPB_MOD2",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/ClucHAnix_BB_RPB_MOD2_3.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "ClucHAnix_BB_RPB_MOD2_3"
+    },
+    {
+      "canonical_representative": "ClucHAnix_BB_RPB_MOD2",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/ClucHAnix_BB_RPB_MOD_20240911.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "ClucHAnix_BB_RPB_MOD_20240911"
+    },
+    {
+      "canonical_representative": "ClucHAnix_BB_RPB_3",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/ClucHAnix_BB_RPB_MOD_712.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "ClucHAnix_BB_RPB_MOD_712"
+    },
+    {
+      "canonical_representative": "ClucHAnix_BB_RPB_MOD_trailing_buy",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/ClucHAnix_BB_RPB_MOD_trailing_buy_268.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "ClucHAnix_BB_RPB_MOD_trailing_buy_268"
     },
     {
       "canonical_representative": "ClucDCA",
@@ -585,6 +1040,34 @@
       "strategy_id": "ClucHAwerk_USD"
     },
     {
+      "canonical_representative": "ClucMay72018",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/ClucMay72018_125.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "ClucMay72018_125"
+    },
+    {
+      "canonical_representative": "CMCWinner",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/CMCWinner_255.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "CMCWinner_255"
+    },
+    {
+      "canonical_representative": "CMCWinner",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/CMCWinner_420.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "CMCWinner_420"
+    },
+    {
+      "canonical_representative": "CofiBitStrategy",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/CofiBitStrategy_411.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "CofiBitStrategy_411"
+    },
+    {
       "canonical_representative": "NostalgiaForInfinityV7_SMA",
       "evidence_rule": "normalized_code_and_identical_full_backtest_trades_v1",
       "original_file": "repos/jaredrsommer_freqtradestrategies/HUGE_FreqTrade_Strategy_Collection/Combined_NFIv7_SMA_bAdBoY_20211204.py",
@@ -601,6 +1084,55 @@
       "strategy_id": "Combined_NFIv7_SMA_Rallipanos_20210707"
     },
     {
+      "canonical_representative": "Combined_Indicators",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/CombinedBinHAndCluc_217.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "CombinedBinHAndCluc_217"
+    },
+    {
+      "canonical_representative": "CombinedBinHAndCluc",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/CombinedBinHAndCluc_252.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "CombinedBinHAndCluc_252"
+    },
+    {
+      "canonical_representative": "CombinedBinHAndCluc",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/CombinedBinHAndCluc_406.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "CombinedBinHAndCluc_406"
+    },
+    {
+      "canonical_representative": "CombinedBinHAndClucV4",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/CombinedBinHAndClucV4_381.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "CombinedBinHAndClucV4_381"
+    },
+    {
+      "canonical_representative": "CombinedBinHAndClucV8",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/CombinedBinHAndClucV8_622.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "CombinedBinHAndClucV8_622"
+    },
+    {
+      "canonical_representative": "CombinedBinHClucAndMADV9",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/CombinedBinHClucAndMADV9_269.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "CombinedBinHClucAndMADV9_269"
+    },
+    {
+      "canonical_representative": "conny",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/consensus_strat.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "consensus_strat"
+    },
+    {
       "canonical_representative": "CppiBasket",
       "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
       "note": "",
@@ -609,6 +1141,1917 @@
       "recovered_note": "Re-fetched 2026-09-16. The kept representative was a differently-named file in this same author's own repository, so this was never a copy of another repo's strategy. Owner's rule: a strategy in its own source repo is kept, and a duplicate finding against it excludes it without removing the file.",
       "removed_at": "2026-09-16T14:59:36.982686+00:00",
       "strategy_id": "ConstantMixBasket"
+    },
+    {
+      "canonical_representative": "CrazyThursdayJP",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/CrazyThursdayPublic.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "CrazyThursdayPublic"
+    },
+    {
+      "canonical_representative": "custom_stoploss_with_psar_159",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/custom_stoploss_with_psar_215.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "custom_stoploss_with_psar_215"
+    },
+    {
+      "canonical_representative": "default_strategy_6",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/default_strategy_111.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "default_strategy_111"
+    },
+    {
+      "canonical_representative": "default_strategy_36",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/default_strategy_406.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "default_strategy_406"
+    },
+    {
+      "canonical_representative": "DoesNothingStrategy",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/DoesNothingStrategy_248.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "DoesNothingStrategy_248"
+    },
+    {
+      "canonical_representative": "DoesNothingStrategy",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/DoesNothingStrategy_28.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "DoesNothingStrategy_28"
+    },
+    {
+      "canonical_representative": "RunStrategy",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/DryRunStrategy.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "DryRunStrategy"
+    },
+    {
+      "canonical_representative": "E0V1E_20231014_0847",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20231004_085308.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20231004_085308"
+    },
+    {
+      "canonical_representative": "E0V1E_20231014_0847",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20231013_172149.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20231013_172149"
+    },
+    {
+      "canonical_representative": "E0V1E_20231014_0847",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20231016_1325.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20231016_1325"
+    },
+    {
+      "canonical_representative": "E0V1E_20231014_0847",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20231017_0502.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20231017_0502"
+    },
+    {
+      "canonical_representative": "E0V1E_20231019_1032",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20231025_0106.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20231025_0106"
+    },
+    {
+      "canonical_representative": "E0V1E_20231019_1032",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20231026_1225.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20231026_1225"
+    },
+    {
+      "canonical_representative": "E0V1E_20231019_1032",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20231028_0333.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20231028_0333"
+    },
+    {
+      "canonical_representative": "E0V1E_20231019_1032",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20231029_0938.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20231029_0938"
+    },
+    {
+      "canonical_representative": "E0V1E_20231019_1032",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20231029_1251.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20231029_1251"
+    },
+    {
+      "canonical_representative": "E0V1E_20231019_1032",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20231031_1143.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20231031_1143"
+    },
+    {
+      "canonical_representative": "E0V1E_20231019_1032",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20231102_0416.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20231102_0416"
+    },
+    {
+      "canonical_representative": "E0V1E_20231019_1032",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20231103_1754.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20231103_1754"
+    },
+    {
+      "canonical_representative": "E0V1E_20231019_1032",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20231105_1716.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20231105_1716"
+    },
+    {
+      "canonical_representative": "E0V1E_20231019_1032",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20231107_1044.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20231107_1044"
+    },
+    {
+      "canonical_representative": "E0V1E_20231019_1032",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20231109_0108.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20231109_0108"
+    },
+    {
+      "canonical_representative": "E0V1E_20231019_1032",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20231110_1905.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20231110_1905"
+    },
+    {
+      "canonical_representative": "E0V1E_20231019_1032",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20231112_1531.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20231112_1531"
+    },
+    {
+      "canonical_representative": "E0V1E_20231019_1032",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20231113_0651.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20231113_0651"
+    },
+    {
+      "canonical_representative": "E0V1E_20231019_1032",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20231114_1913.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20231114_1913"
+    },
+    {
+      "canonical_representative": "E0V1E_20231019_1032",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20231116_1318.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20231116_1318"
+    },
+    {
+      "canonical_representative": "E0V1E_20231019_1032",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20231118_0324.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20231118_0324"
+    },
+    {
+      "canonical_representative": "E0V1E_20231019_1032",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20231119_2216.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20231119_2216"
+    },
+    {
+      "canonical_representative": "E0V1E_20231019_1032",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20231121_0740.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20231121_0740"
+    },
+    {
+      "canonical_representative": "E0V1E_20231019_1032",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20231123_1120.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20231123_1120"
+    },
+    {
+      "canonical_representative": "E0V1E_20231019_1032",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20231125_1107.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20231125_1107"
+    },
+    {
+      "canonical_representative": "E0V1E_20231019_1032",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20231128_0712.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20231128_0712"
+    },
+    {
+      "canonical_representative": "E0V1E_20231019_1032",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20231130_0104.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20231130_0104"
+    },
+    {
+      "canonical_representative": "E0V1E_20231019_1032",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20231201_1539.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20231201_1539"
+    },
+    {
+      "canonical_representative": "E0V1E_20231019_1032",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20231203_0503.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20231203_0503"
+    },
+    {
+      "canonical_representative": "E0V1E_20231019_1032",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20231204_2129.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20231204_2129"
+    },
+    {
+      "canonical_representative": "E0V1E_20231019_1032",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20231206_0747.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20231206_0747"
+    },
+    {
+      "canonical_representative": "E0V1E_20231019_1032",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20231208_0232.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20231208_0232"
+    },
+    {
+      "canonical_representative": "E0V1E_20231019_1032",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20231209_1945.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20231209_1945"
+    },
+    {
+      "canonical_representative": "E0V1E_20231019_1032",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20231211_1713.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20231211_1713"
+    },
+    {
+      "canonical_representative": "E0V1E_20231019_1032",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20231213_0538.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20231213_0538"
+    },
+    {
+      "canonical_representative": "E0V1E_20231019_1032",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20231215_0902.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20231215_0902"
+    },
+    {
+      "canonical_representative": "E0V1E_20231019_1032",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20231217_0403.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20231217_0403"
+    },
+    {
+      "canonical_representative": "E0V1E_20231019_1032",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20231218_1653.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20231218_1653"
+    },
+    {
+      "canonical_representative": "E0V1E_20231019_1032",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20231220_1549.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20231220_1549"
+    },
+    {
+      "canonical_representative": "E0V1E_20231019_1032",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20231222_0709.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20231222_0709"
+    },
+    {
+      "canonical_representative": "E0V1E_20231019_1032",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20231223_1908.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20231223_1908"
+    },
+    {
+      "canonical_representative": "E0V1E_20231019_1032",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20240101_2031.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20240101_2031"
+    },
+    {
+      "canonical_representative": "E0V1E_20240111_1625",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20240122_0151.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20240122_0151"
+    },
+    {
+      "canonical_representative": "E0V1E_40",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20240128_1258.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20240128_1258"
+    },
+    {
+      "canonical_representative": "E0V1E_40",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20240131_1023.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20240131_1023"
+    },
+    {
+      "canonical_representative": "E0V1E_40",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20240204_0311.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20240204_0311"
+    },
+    {
+      "canonical_representative": "E0V1E_40",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20240208_0652.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20240208_0652"
+    },
+    {
+      "canonical_representative": "E0V1E_40",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20240210_1237.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20240210_1237"
+    },
+    {
+      "canonical_representative": "E0V1E_40",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20240213_1039.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20240213_1039"
+    },
+    {
+      "canonical_representative": "E0V1E_40",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20240218_1531.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20240218_1531"
+    },
+    {
+      "canonical_representative": "E0V1E_40",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20240221_0733.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20240221_0733"
+    },
+    {
+      "canonical_representative": "E0V1E_40",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20240224_0239.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20240224_0239"
+    },
+    {
+      "canonical_representative": "E0V1E_40",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20240228_1522.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20240228_1522"
+    },
+    {
+      "canonical_representative": "E0V1E_40",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20240302_1934.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20240302_1934"
+    },
+    {
+      "canonical_representative": "E0V1E_40",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20240305_2004.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20240305_2004"
+    },
+    {
+      "canonical_representative": "E0V1E_40",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20240309_0503.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20240309_0503"
+    },
+    {
+      "canonical_representative": "E0V1E_40",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20240315_0516.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20240315_0516"
+    },
+    {
+      "canonical_representative": "E0V1E_40",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20240318_0216.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20240318_0216"
+    },
+    {
+      "canonical_representative": "E0V1E_40",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20240318_2125.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20240318_2125"
+    },
+    {
+      "canonical_representative": "E0V1E_40",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20240319_0917.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20240319_0917"
+    },
+    {
+      "canonical_representative": "E0V1E_40",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20240319_2126.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20240319_2126"
+    },
+    {
+      "canonical_representative": "E0V1E_40",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20240320_2054.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20240320_2054"
+    },
+    {
+      "canonical_representative": "E0V1E_40",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20240321_1308.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20240321_1308"
+    },
+    {
+      "canonical_representative": "E0V1E_40",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20240322_1315.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20240322_1315"
+    },
+    {
+      "canonical_representative": "E0V1E_40",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20240323_0216.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20240323_0216"
+    },
+    {
+      "canonical_representative": "E0V1E_40",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20240323_1452.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20240323_1452"
+    },
+    {
+      "canonical_representative": "E0V1E_40",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20240324_0303.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20240324_0303"
+    },
+    {
+      "canonical_representative": "E0V1E_40",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20240324_1349.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20240324_1349"
+    },
+    {
+      "canonical_representative": "E0V1E_40",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20240325_0548.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20240325_0548"
+    },
+    {
+      "canonical_representative": "E0V1E_40",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20240325_2024.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20240325_2024"
+    },
+    {
+      "canonical_representative": "E0V1E_40",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20240326_1100.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20240326_1100"
+    },
+    {
+      "canonical_representative": "E0V1E_40",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20240326_2044.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20240326_2044"
+    },
+    {
+      "canonical_representative": "E0V1E_40",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20240327_1619.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20240327_1619"
+    },
+    {
+      "canonical_representative": "E0V1E_40",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20240328_1217.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20240328_1217"
+    },
+    {
+      "canonical_representative": "E0V1E_40",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20240328_2338.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20240328_2338"
+    },
+    {
+      "canonical_representative": "E0V1E_40",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20240329_1107.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20240329_1107"
+    },
+    {
+      "canonical_representative": "E0V1E_40",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20240330_0312.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20240330_0312"
+    },
+    {
+      "canonical_representative": "E0V1E_40",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20240330_2028.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20240330_2028"
+    },
+    {
+      "canonical_representative": "E0V1E_40",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20240331_1547.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20240331_1547"
+    },
+    {
+      "canonical_representative": "E0V1E_40",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20240401_2229.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20240401_2229"
+    },
+    {
+      "canonical_representative": "E0V1E_40",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20240402_1437.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20240402_1437"
+    },
+    {
+      "canonical_representative": "E0V1E_40",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20240403_0049.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20240403_0049"
+    },
+    {
+      "canonical_representative": "E0V1E_40",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20240403_1147.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20240403_1147"
+    },
+    {
+      "canonical_representative": "E0V1E_40",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20240404_0149.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20240404_0149"
+    },
+    {
+      "canonical_representative": "E0V1E_40",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20240404_2031.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20240404_2031"
+    },
+    {
+      "canonical_representative": "E0V1E_40",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20240405_0854.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20240405_0854"
+    },
+    {
+      "canonical_representative": "E0V1E_40",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20240405_2113.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20240405_2113"
+    },
+    {
+      "canonical_representative": "E0V1E_40",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20240406_1015.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20240406_1015"
+    },
+    {
+      "canonical_representative": "E0V1E_40",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20240407_0642.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20240407_0642"
+    },
+    {
+      "canonical_representative": "E0V1E_40",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20240407_1536.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20240407_1536"
+    },
+    {
+      "canonical_representative": "E0V1E_40",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20240408_0459.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20240408_0459"
+    },
+    {
+      "canonical_representative": "E0V1E_40",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20240408_1911.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20240408_1911"
+    },
+    {
+      "canonical_representative": "E0V1E_40",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20240409_1222.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20240409_1222"
+    },
+    {
+      "canonical_representative": "E0V1E_40",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20240409_2337.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20240409_2337"
+    },
+    {
+      "canonical_representative": "E0V1E_40",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20240410_1439.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20240410_1439"
+    },
+    {
+      "canonical_representative": "E0V1E_40",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20240411_0145.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20240411_0145"
+    },
+    {
+      "canonical_representative": "E0V1E_40",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20240411_1558.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20240411_1558"
+    },
+    {
+      "canonical_representative": "E0V1E_40",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20240412_1159.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20240412_1159"
+    },
+    {
+      "canonical_representative": "E0V1E_40",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20240413_0255.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20240413_0255"
+    },
+    {
+      "canonical_representative": "E0V1E_40",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20240414_1537.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20240414_1537"
+    },
+    {
+      "canonical_representative": "E0V1E_40",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20240415_0639.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20240415_0639"
+    },
+    {
+      "canonical_representative": "E0V1E_40",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20240415_1645.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20240415_1645"
+    },
+    {
+      "canonical_representative": "E0V1E_40",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20240416_0456.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20240416_0456"
+    },
+    {
+      "canonical_representative": "E0V1E_40",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20240416_1938.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20240416_1938"
+    },
+    {
+      "canonical_representative": "E0V1E_40",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20240417_1033.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20240417_1033"
+    },
+    {
+      "canonical_representative": "E0V1E_40",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20240418_0432.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20240418_0432"
+    },
+    {
+      "canonical_representative": "E0V1E_40",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20240418_2253.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20240418_2253"
+    },
+    {
+      "canonical_representative": "E0V1E_40",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20240422_0827.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20240422_0827"
+    },
+    {
+      "canonical_representative": "E0V1E_40",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20240422_2203.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20240422_2203"
+    },
+    {
+      "canonical_representative": "E0V1E_40",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20240424_0742.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20240424_0742"
+    },
+    {
+      "canonical_representative": "E0V1E_40",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20240424_2230.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20240424_2230"
+    },
+    {
+      "canonical_representative": "E0V1E_40",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20240425_1123.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20240425_1123"
+    },
+    {
+      "canonical_representative": "E0V1E_40",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20240425_2353.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20240425_2353"
+    },
+    {
+      "canonical_representative": "E0V1E_40",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20240426_1116.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20240426_1116"
+    },
+    {
+      "canonical_representative": "E0V1E_40",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20240427_1522.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20240427_1522"
+    },
+    {
+      "canonical_representative": "E0V1E_40",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20240428_0647.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20240428_0647"
+    },
+    {
+      "canonical_representative": "E0V1E_40",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20240428_1633.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20240428_1633"
+    },
+    {
+      "canonical_representative": "E0V1E_40",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20240429_0600.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20240429_0600"
+    },
+    {
+      "canonical_representative": "E0V1E_40",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20240429_2003.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20240429_2003"
+    },
+    {
+      "canonical_representative": "E0V1E_40",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20240430_1009.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20240430_1009"
+    },
+    {
+      "canonical_representative": "E0V1E_40",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20240501_0055_4.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20240501_0055_4"
+    },
+    {
+      "canonical_representative": "E0V1E_40",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20240501_1359.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20240501_1359"
+    },
+    {
+      "canonical_representative": "E0V1E_40",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20240502_0203.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20240502_0203"
+    },
+    {
+      "canonical_representative": "E0V1E_40",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20240502_2134.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20240502_2134"
+    },
+    {
+      "canonical_representative": "E0V1E_40",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20240503_0926.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20240503_0926"
+    },
+    {
+      "canonical_representative": "E0V1E_40",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20240504_1704.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20240504_1704"
+    },
+    {
+      "canonical_representative": "E0V1E_40",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20240505_0331.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20240505_0331"
+    },
+    {
+      "canonical_representative": "E0V1E_40",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20240505_1441.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20240505_1441"
+    },
+    {
+      "canonical_representative": "E0V1E_40",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20240506_1207.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20240506_1207"
+    },
+    {
+      "canonical_representative": "E0V1E_40",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20240507_2044.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20240507_2044"
+    },
+    {
+      "canonical_representative": "E0V1E_40",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20240508_0915.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20240508_0915"
+    },
+    {
+      "canonical_representative": "E0V1E_40",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20240509_0027.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20240509_0027"
+    },
+    {
+      "canonical_representative": "E0V1E_40",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20240509_0958.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20240509_0958"
+    },
+    {
+      "canonical_representative": "E0V1E_40",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20240510_1351.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20240510_1351"
+    },
+    {
+      "canonical_representative": "E0V1E_40",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20240511_0303.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20240511_0303"
+    },
+    {
+      "canonical_representative": "E0V1E_40",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20240511_1153.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20240511_1153"
+    },
+    {
+      "canonical_representative": "E0V1E_40",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20240511_2026.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20240511_2026"
+    },
+    {
+      "canonical_representative": "E0V1E_40",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20240512_0905.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20240512_0905"
+    },
+    {
+      "canonical_representative": "E0V1E_40",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20240512_1854.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20240512_1854"
+    },
+    {
+      "canonical_representative": "E0V1E_40",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20240513_1222.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20240513_1222"
+    },
+    {
+      "canonical_representative": "E0V1E_40",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20240514_1111.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20240514_1111"
+    },
+    {
+      "canonical_representative": "E0V1E_40",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20240515_0446.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20240515_0446"
+    },
+    {
+      "canonical_representative": "E0V1E_40",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20240515_1710.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20240515_1710"
+    },
+    {
+      "canonical_representative": "E0V1E_40",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20240516_0925.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20240516_0925"
+    },
+    {
+      "canonical_representative": "E0V1E_40",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20240516_2355.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20240516_2355"
+    },
+    {
+      "canonical_representative": "E0V1E_40",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20240517_2318.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20240517_2318"
+    },
+    {
+      "canonical_representative": "E0V1E_40",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20240518_0929.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20240518_0929"
+    },
+    {
+      "canonical_representative": "E0V1E_40",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20240519_0300.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20240519_0300"
+    },
+    {
+      "canonical_representative": "E0V1E_40",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20240519_1653.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20240519_1653"
+    },
+    {
+      "canonical_representative": "E0V1E_40",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20240520_0906.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20240520_0906"
+    },
+    {
+      "canonical_representative": "E0V1E_40",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20240521_0046.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20240521_0046"
+    },
+    {
+      "canonical_representative": "E0V1E_40",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20240521_1140.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20240521_1140"
+    },
+    {
+      "canonical_representative": "E0V1E_40",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20240521_2235.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20240521_2235"
+    },
+    {
+      "canonical_representative": "E0V1E_40",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20240522_1343.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20240522_1343"
+    },
+    {
+      "canonical_representative": "E0V1E_40",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20240523_0919.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20240523_0919"
+    },
+    {
+      "canonical_representative": "E0V1E_40",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20240523_1950.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20240523_1950"
+    },
+    {
+      "canonical_representative": "E0V1E_40",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20240524_1441.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20240524_1441"
+    },
+    {
+      "canonical_representative": "E0V1E_40",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20240525_0440.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20240525_0440"
+    },
+    {
+      "canonical_representative": "E0V1E_40",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20240525_1749.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20240525_1749"
+    },
+    {
+      "canonical_representative": "E0V1E_40",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20240526_0127.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20240526_0127"
+    },
+    {
+      "canonical_representative": "E0V1E_40",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20240526_1936.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20240526_1936"
+    },
+    {
+      "canonical_representative": "E0V1E_40",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20240527_1057.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20240527_1057"
+    },
+    {
+      "canonical_representative": "E0V1E_40",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20240527_2339.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20240527_2339"
+    },
+    {
+      "canonical_representative": "E0V1E_40",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20240528_1005.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20240528_1005"
+    },
+    {
+      "canonical_representative": "E0V1E_40",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20240528_1007.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20240528_1007"
+    },
+    {
+      "canonical_representative": "E0V1E_40",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20240529_0326.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20240529_0326"
+    },
+    {
+      "canonical_representative": "E0V1E_40",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20240530_1937.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20240530_1937"
+    },
+    {
+      "canonical_representative": "E0V1E_40",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20240531_1300.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20240531_1300"
+    },
+    {
+      "canonical_representative": "E0V1E_40",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20240601_0225.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20240601_0225"
+    },
+    {
+      "canonical_representative": "E0V1E_40",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20240601_2024.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20240601_2024"
+    },
+    {
+      "canonical_representative": "E0V1E_40",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20240602_0911.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20240602_0911"
+    },
+    {
+      "canonical_representative": "E0V1E_40",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20240602_2201.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20240602_2201"
+    },
+    {
+      "canonical_representative": "E0V1E_40",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20240603_1818.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20240603_1818"
+    },
+    {
+      "canonical_representative": "E0V1E_40",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20240604_0655.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20240604_0655"
+    },
+    {
+      "canonical_representative": "E0V1E_40",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20240604_1833.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20240604_1833"
+    },
+    {
+      "canonical_representative": "E0V1E_40",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20240605_1316.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20240605_1316"
+    },
+    {
+      "canonical_representative": "E0V1E_40",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20240606_0331.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20240606_0331"
+    },
+    {
+      "canonical_representative": "E0V1E_40",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20240607_0011.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20240607_0011"
+    },
+    {
+      "canonical_representative": "E0V1E_40",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20240607_1515.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20240607_1515"
+    },
+    {
+      "canonical_representative": "E0V1E_40",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20240609_0145.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20240609_0145"
+    },
+    {
+      "canonical_representative": "E0V1E_40",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20240609_1628.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20240609_1628"
+    },
+    {
+      "canonical_representative": "E0V1E_40",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20240610_1538.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20240610_1538"
+    },
+    {
+      "canonical_representative": "E0V1E_40",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20240611_0535.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20240611_0535"
+    },
+    {
+      "canonical_representative": "E0V1E_40",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20240611_1457.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20240611_1457"
+    },
+    {
+      "canonical_representative": "E0V1E_40",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20240612_0133.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20240612_0133"
+    },
+    {
+      "canonical_representative": "E0V1E_40",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20240612_1404.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20240612_1404"
+    },
+    {
+      "canonical_representative": "E0V1E_40",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20240612_2228.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20240612_2228"
+    },
+    {
+      "canonical_representative": "E0V1E_40",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20240613_0659.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20240613_0659"
+    },
+    {
+      "canonical_representative": "E0V1E_40",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20240613_1405.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20240613_1405"
+    },
+    {
+      "canonical_representative": "E0V1E_40",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20240613_2251.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20240613_2251"
+    },
+    {
+      "canonical_representative": "E0V1E_40",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20240614_1302.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20240614_1302"
+    },
+    {
+      "canonical_representative": "E0V1E_40",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20240615_0006.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20240615_0006"
+    },
+    {
+      "canonical_representative": "E0V1E_40",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20240615_0908.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20240615_0908"
+    },
+    {
+      "canonical_representative": "E0V1E_40",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20240615_2001.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20240615_2001"
+    },
+    {
+      "canonical_representative": "E0V1E_40",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20240616_0713.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20240616_0713"
+    },
+    {
+      "canonical_representative": "E0V1E_40",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20240616_1421.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20240616_1421"
+    },
+    {
+      "canonical_representative": "E0V1E_40",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20240616_2342.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20240616_2342"
+    },
+    {
+      "canonical_representative": "E0V1E_40",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20240617_1122.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20240617_1122"
+    },
+    {
+      "canonical_representative": "E0V1E_40",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20240617_2052.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20240617_2052"
+    },
+    {
+      "canonical_representative": "E0V1E_40",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20240618_0843.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20240618_0843"
+    },
+    {
+      "canonical_representative": "E0V1E_40",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20240618_2042.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20240618_2042"
+    },
+    {
+      "canonical_representative": "E0V1E_40",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20240619_0728.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20240619_0728"
+    },
+    {
+      "canonical_representative": "E0V1E_40",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20240619_1844.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20240619_1844"
+    },
+    {
+      "canonical_representative": "E0V1E_40",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20240620_0510.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20240620_0510"
+    },
+    {
+      "canonical_representative": "E0V1E_40",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20240620_1430.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20240620_1430"
+    },
+    {
+      "canonical_representative": "E0V1E_40",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20240620_2104.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20240620_2104"
+    },
+    {
+      "canonical_representative": "E0V1E_40",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20240621_0130.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20240621_0130"
+    },
+    {
+      "canonical_representative": "E0V1E_40",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20240621_0432.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20240621_0432"
+    },
+    {
+      "canonical_representative": "E0V1E_40",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20240621_0641.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20240621_0641"
+    },
+    {
+      "canonical_representative": "E0V1E_40",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20240621_0837.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20240621_0837"
+    },
+    {
+      "canonical_representative": "E0V1E_40",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20240621_1006.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20240621_1006"
+    },
+    {
+      "canonical_representative": "E0V1E_40",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20240621_1118.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20240621_1118"
+    },
+    {
+      "canonical_representative": "E0V1E_40",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20240621_1220.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20240621_1220"
+    },
+    {
+      "canonical_representative": "E0V1E_40",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20240621_1323.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20240621_1323"
+    },
+    {
+      "canonical_representative": "E0V1E_40",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20240621_1404.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20240621_1404"
+    },
+    {
+      "canonical_representative": "E0V1E_25",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20240814_0713.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20240814_0713"
+    },
+    {
+      "canonical_representative": "E0V1E_25",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20240816_0035.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20240816_0035"
+    },
+    {
+      "canonical_representative": "E0V1E_25",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20240817_0748.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20240817_0748"
+    },
+    {
+      "canonical_representative": "E0V1E_25",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20240818_1123.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20240818_1123"
+    },
+    {
+      "canonical_representative": "E0V1E_25",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20240819_0722.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20240819_0722"
+    },
+    {
+      "canonical_representative": "E0V1E_25",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20240820_1116.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20240820_1116"
+    },
+    {
+      "canonical_representative": "E0V1E_25",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20240820_2054.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20240820_2054"
+    },
+    {
+      "canonical_representative": "E0V1E_25",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20240821_1411.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20240821_1411"
+    },
+    {
+      "canonical_representative": "E0V1E_25",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20240822_2351.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20240822_2351"
+    },
+    {
+      "canonical_representative": "E0V1E_25",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20240824_1618.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20240824_1618"
+    },
+    {
+      "canonical_representative": "E0V1E_25",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20240825_0216.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20240825_0216"
+    },
+    {
+      "canonical_representative": "E0V1E_25",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20240825_1217.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20240825_1217"
+    },
+    {
+      "canonical_representative": "E0V1E_25",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20240826_0105.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20240826_0105"
+    },
+    {
+      "canonical_representative": "E0V1E_25",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20240826_1218.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20240826_1218"
+    },
+    {
+      "canonical_representative": "E0V1E_25",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20240826_2130.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20240826_2130"
+    },
+    {
+      "canonical_representative": "E0V1E_25",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20240827_1042.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20240827_1042"
+    },
+    {
+      "canonical_representative": "E0V1E_25",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20240828_0127.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20240828_0127"
+    },
+    {
+      "canonical_representative": "E0V1E_25",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20240828_1406.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20240828_1406"
+    },
+    {
+      "canonical_representative": "E0V1E_25",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20240829_0250.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20240829_0250"
+    },
+    {
+      "canonical_representative": "E0V1E_25",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20240829_1844.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20240829_1844"
+    },
+    {
+      "canonical_representative": "E0V1E_25",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20240830_0515.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20240830_0515"
+    },
+    {
+      "canonical_representative": "E0V1E_25",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20240830_1556.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20240830_1556"
+    },
+    {
+      "canonical_representative": "E0V1E_25",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20240831_0551.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20240831_0551"
+    },
+    {
+      "canonical_representative": "E0V1E_25",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20240901_0801.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20240901_0801"
+    },
+    {
+      "canonical_representative": "E0V1E_25",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20240901_2011.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20240901_2011"
+    },
+    {
+      "canonical_representative": "E0V1E_25",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20240902_0952.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20240902_0952"
+    },
+    {
+      "canonical_representative": "E0V1E_25",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20240902_1858.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20240902_1858"
+    },
+    {
+      "canonical_representative": "E0V1E_25",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20240903_0801.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20240903_0801"
+    },
+    {
+      "canonical_representative": "E0V1E_25",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20240903_2329.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20240903_2329"
+    },
+    {
+      "canonical_representative": "E0V1E_25",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20240904_1051.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20240904_1051"
+    },
+    {
+      "canonical_representative": "E0V1E_25",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20240905_0033.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20240905_0033"
+    },
+    {
+      "canonical_representative": "E0V1E_25",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20240905_1250.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20240905_1250"
+    },
+    {
+      "canonical_representative": "E0V1E_25",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20240906_0026.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20240906_0026"
+    },
+    {
+      "canonical_representative": "E0V1E_25",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20240906_1115.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20240906_1115"
+    },
+    {
+      "canonical_representative": "E0V1E_25",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20240907_0029.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20240907_0029"
+    },
+    {
+      "canonical_representative": "E0V1E_25",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20240907_1555.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20240907_1555"
+    },
+    {
+      "canonical_representative": "E0V1E_25",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20240908_0536.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20240908_0536"
+    },
+    {
+      "canonical_representative": "E0V1E_25",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20240908_2101.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20240908_2101"
+    },
+    {
+      "canonical_representative": "E0V1E_25",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20240909_0854.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20240909_0854"
+    },
+    {
+      "canonical_representative": "E0V1E_25",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20240909_2103.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20240909_2103"
+    },
+    {
+      "canonical_representative": "E0V1E_25",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20240910_1324.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20240910_1324"
+    },
+    {
+      "canonical_representative": "E0V1E_25",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20240911_0218.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20240911_0218"
+    },
+    {
+      "canonical_representative": "E0V1E_25",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20240911_1621.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20240911_1621"
+    },
+    {
+      "canonical_representative": "E0V1E_25",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20240912_0737.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20240912_0737"
+    },
+    {
+      "canonical_representative": "E0V1E_25",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20240912_1913.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20240912_1913"
+    },
+    {
+      "canonical_representative": "E0V1E_25",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20241101_0005.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_20241101_0005"
+    },
+    {
+      "canonical_representative": "E0V1E_50",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_45_2.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_45_2"
+    },
+    {
+      "canonical_representative": "E0V1E_51",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_49_2.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_49_2"
+    },
+    {
+      "canonical_representative": "E0V1E_25",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_52.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_52"
+    },
+    {
+      "canonical_representative": "E0V1E_47",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/E0V1E_57.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "E0V1E_57"
+    },
+    {
+      "canonical_representative": "EasyInEasyOut",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/EasyInEasyOut_2.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "EasyInEasyOut_2"
     },
     {
       "canonical_representative": "EI3v2_tag_cofi_green",
@@ -622,6 +3065,62 @@
       "removed_at": "2026-09-16T14:59:36.982686+00:00",
       "retained_reason": "source file also defines live kept strategy class(es) EI3v2_tag_cofi_green and was restored whole by the Phase 17 recovery - a file cannot come back in part. Deleting it again would destroy those classes, which is the bug that lost 11 strategies, so this exclusion stays evidence-only and the file is kept.",
       "strategy_id": "EI3v2_tag_cofi_dca_green"
+    },
+    {
+      "canonical_representative": "el",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/el_3.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "el_3"
+    },
+    {
+      "canonical_representative": "ElliotV5HO",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/ElliotV5HO_264.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "ElliotV5HO_264"
+    },
+    {
+      "canonical_representative": "Elliotv8",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/ElliotV8_334.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "ElliotV8_334"
+    },
+    {
+      "canonical_representative": "ElliotV8_original",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/ElliotV8_original_2.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "ElliotV8_original_2"
+    },
+    {
+      "canonical_representative": "ElliotV8_original_ichiv2_3",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/ElliotV8_original_ichiv2_307.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "ElliotV8_original_ichiv2_307"
+    },
+    {
+      "canonical_representative": "ElliotV8HO",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/ElliotV8HO_2.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "ElliotV8HO_2"
+    },
+    {
+      "canonical_representative": "EMA003",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/EMA003_3.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "EMA003_3"
+    },
+    {
+      "canonical_representative": "EMASkipPump",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/EMASkipPump_381.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "EMASkipPump_381"
     },
     {
       "canonical_representative": "",
@@ -647,6 +3146,13 @@
       "strategy_id": "Enchilada_Slow"
     },
     {
+      "canonical_representative": "FrostAuraRandomStrategy",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/fa_random_strategy.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "fa_random_strategy"
+    },
+    {
       "canonical_representative": "FastSupertrend_optim3_rsi_75",
       "evidence_rule": "normalized_code_and_identical_full_backtest_trades_v1",
       "note": "",
@@ -657,6 +3163,111 @@
       "strategy_id": "FastSupertrend_optim3_rsi_75fix"
     },
     {
+      "canonical_representative": "DD",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/firstpython.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "firstpython"
+    },
+    {
+      "canonical_representative": "FisherHull",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/FisherHull_2.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "FisherHull_2"
+    },
+    {
+      "canonical_representative": "FixedRiskRewardLoss",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/fixed_riskreward_loss_424.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "fixed_riskreward_loss_424"
+    },
+    {
+      "canonical_representative": "FlawlessVictory",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/flawless_victory_v1.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "flawless_victory_v1"
+    },
+    {
+      "canonical_representative": "FrankenStrat",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/FrankenStrat_259.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "FrankenStrat_259"
+    },
+    {
+      "canonical_representative": "Freqtrade_backtest_validation_freqtrade1_254",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/Freqtrade_backtest_validation_freqtrade1_424.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "Freqtrade_backtest_validation_freqtrade1_424"
+    },
+    {
+      "canonical_representative": "FSampleStrategys",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/FSampleStrategy_1.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "FSampleStrategy_1"
+    },
+    {
+      "canonical_representative": "s06",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/GodStra_145.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "GodStra_145"
+    },
+    {
+      "canonical_representative": "GodStra_2",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/GodStra_282.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "GodStra_282"
+    },
+    {
+      "canonical_representative": "s06",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/GodStra_416.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "GodStra_416"
+    },
+    {
+      "canonical_representative": "GodStraNew",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/GodStra_691.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "GodStra_691"
+    },
+    {
+      "canonical_representative": "GodStraQuick",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/GodStraNew_159.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "GodStraNew_159"
+    },
+    {
+      "canonical_representative": "GodStra",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/GodStraNew_683.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "GodStraNew_683"
+    },
+    {
+      "canonical_representative": "GodStraNew_SMAonly_2",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/GodStraNew_SMAonly_4.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "GodStraNew_SMAonly_4"
+    },
+    {
+      "canonical_representative": "Gumbo1",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/gumbo1.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "gumbo1"
+    },
+    {
       "canonical_representative": "Hacklemore",
       "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
       "note": "",
@@ -665,6 +3276,27 @@
       "recovered_note": "Re-fetched 2026-09-16. The kept representative was a differently-named file in this same author's own repository, so this was never a copy of another repo's strategy. Owner's rule: a strategy in its own source repo is kept, and a duplicate finding against it excludes it without removing the file.",
       "removed_at": "2026-09-16T14:59:36.982686+00:00",
       "strategy_id": "Hacklemore_Slow"
+    },
+    {
+      "canonical_representative": "Heracles",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/Heracles_128.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "Heracles_128"
+    },
+    {
+      "canonical_representative": "Heracles",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/Heracles_173.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "Heracles_173"
+    },
+    {
+      "canonical_representative": "Heracles_5",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/Heracles_323.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "Heracles_323"
     },
     {
       "canonical_representative": "StrategyTestV2",
@@ -684,6 +3316,97 @@
       "strategy_id": "HyperStra_GSN_SMAOnly"
     },
     {
+      "canonical_representative": "HyperStra_SMAOnly",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/HyperStra_GSN_SMAOnly_2.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "HyperStra_GSN_SMAOnly_2"
+    },
+    {
+      "canonical_representative": "Ichimoku_v30",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/Ichimoku_v30_DojiStar.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "Ichimoku_v30_DojiStar"
+    },
+    {
+      "canonical_representative": "Ichimoku_v31",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/Ichimoku_v31_Heikin.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "Ichimoku_v31_Heikin"
+    },
+    {
+      "canonical_representative": "Ichimoku_v32",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/Ichimoku_v32_HeikinAshi.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "Ichimoku_v32_HeikinAshi"
+    },
+    {
+      "canonical_representative": "Ichimoku_v33",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/Ichimoku_v33_SAR.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "Ichimoku_v33_SAR"
+    },
+    {
+      "canonical_representative": "Ichimoku_v37",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/Ichimoku_v37_HeikinAshi.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "Ichimoku_v37_HeikinAshi"
+    },
+    {
+      "canonical_representative": "Ichimoku_v37",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/Ichimoku_v37_HeikinAshi_2.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "Ichimoku_v37_HeikinAshi_2"
+    },
+    {
+      "canonical_representative": "ichiV1",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/IchisV1.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "IchisV1"
+    },
+    {
+      "canonical_representative": "ichiV1",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/ichiSV2.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "ichiSV2"
+    },
+    {
+      "canonical_representative": "ichiV1",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/ichiv111.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "ichiV111"
+    },
+    {
+      "canonical_representative": "naruto",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/ichiV1_5.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "ichiV1_5"
+    },
+    {
+      "canonical_representative": "macd19",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/ImpulseMACD.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "ImpulseMACD"
+    },
+    {
+      "canonical_representative": "InformativeSample",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/InformativeSample_688.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "InformativeSample_688"
+    },
+    {
       "canonical_representative": "CppiBasket",
       "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
       "note": "",
@@ -692,6 +3415,41 @@
       "recovered_note": "Re-fetched 2026-09-16. The kept representative was a differently-named file in this same author's own repository, so this was never a copy of another repo's strategy. Owner's rule: a strategy in its own source repo is kept, and a duplicate finding against it excludes it without removing the file.",
       "removed_at": "2026-09-16T14:59:36.982686+00:00",
       "strategy_id": "InverseVolBasket"
+    },
+    {
+      "canonical_representative": "KAMACCIRSI",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/KAMACCIRSI_290.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "KAMACCIRSI_290"
+    },
+    {
+      "canonical_representative": "KamaFama_2025",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/KamaFama_20250225.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "KamaFama_20250225"
+    },
+    {
+      "canonical_representative": "keltnerchannel",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/keltnerchannel_3.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "keltnerchannel_3"
+    },
+    {
+      "canonical_representative": "KeltnerChannels",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/KeltnerChannels_3.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "KeltnerChannels_3"
+    },
+    {
+      "canonical_representative": "keltnerchannel",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/KeltnerRSI_BTC_6h.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "KeltnerRSI_BTC_6h"
     },
     {
       "canonical_representative": "",
@@ -715,6 +3473,20 @@
       "removed_at": "2026-09-16T14:59:36.982686+00:00",
       "retained_reason": "source file also defines live kept strategy class(es) Lateralus and was restored whole by the Phase 17 recovery - a file cannot come back in part. Deleting it again would destroy those classes, which is the bug that lost 11 strategies, so this exclusion stays evidence-only and the file is kept.",
       "strategy_id": "Lateralus_Slow"
+    },
+    {
+      "canonical_representative": "legacy_strategy_v1",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/legacy_strategy_699.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "legacy_strategy_699"
+    },
+    {
+      "canonical_representative": "legacy_strategy_v1",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/legacy_strategy_844.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "legacy_strategy_844"
     },
     {
       "canonical_representative": "LitmusBBStrategy",
@@ -800,6 +3572,76 @@
       "strategy_id": "LmaoStoplossClusterOpt"
     },
     {
+      "canonical_representative": "LookaheadStrategy",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/lookahead_strategy_2.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "lookahead_strategy_2"
+    },
+    {
+      "canonical_representative": "Low_BB",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/Low_BB_432.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "Low_BB_432"
+    },
+    {
+      "canonical_representative": "mabStra",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/mabStra_3.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "mabStra_3"
+    },
+    {
+      "canonical_representative": "macd_recovery",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/macd_rec.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "macd_rec"
+    },
+    {
+      "canonical_representative": "MACDCCI",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/MACDCCI_234.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "MACDCCI_234"
+    },
+    {
+      "canonical_representative": "ema",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/Maro4h_bb_Adx.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "Maro4h_bb_Adx"
+    },
+    {
+      "canonical_representative": "Maro4hMacdSd",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/Maro4h_Macd_Sd.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "Maro4h_Macd_Sd"
+    },
+    {
+      "canonical_representative": "MFI2",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/MFI2_3.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "MFI2_3"
+    },
+    {
+      "canonical_representative": "MFIRSICross",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/MFIRSICross_3.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "MFIRSICross_3"
+    },
+    {
+      "canonical_representative": "Minmax",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/MinMaxF.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "MinmaxF"
+    },
+    {
       "canonical_representative": "CppiBasket",
       "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
       "note": "",
@@ -808,6 +3650,13 @@
       "recovered_note": "Re-fetched 2026-09-16. The kept representative was a differently-named file in this same author's own repository, so this was never a copy of another repo's strategy. Owner's rule: a strategy in its own source repo is kept, and a duplicate finding against it excludes it without removing the file.",
       "removed_at": "2026-09-16T14:59:36.982686+00:00",
       "strategy_id": "MinVarianceBasket"
+    },
+    {
+      "canonical_representative": "Momentumv2",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/momentum_v2.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "momentum_v2"
     },
     {
       "canonical_representative": "CppiBasket",
@@ -828,6 +3677,41 @@
       "recovered_note": "Re-fetched 2026-09-16. The kept representative was a differently-named file in this same author's own repository, so this was never a copy of another repo's strategy. Owner's rule: a strategy in its own source repo is kept, and a duplicate finding against it excludes it without removing the file.",
       "removed_at": "2026-09-16T14:59:36.982686+00:00",
       "strategy_id": "MomentumRegimeBasket15mFast"
+    },
+    {
+      "canonical_representative": "MontrealStrategy",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/Montrealstrategy.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "Montrealstrategy"
+    },
+    {
+      "canonical_representative": "s13",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/MultiMa_408.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "MultiMa_408"
+    },
+    {
+      "canonical_representative": "MultiRSI_3",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/MultiRSI_36.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "MultiRSI_36"
+    },
+    {
+      "canonical_representative": "MultiRSI_3",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/MultiRSI_4.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "MultiRSI_4"
+    },
+    {
+      "canonical_representative": "MultiRSI_3",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/MultiRSI_448.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "MultiRSI_448"
     },
     {
       "canonical_representative": "NostalgiaForInfinityV7",
@@ -875,6 +3759,139 @@
       "strategy_id": "NASOSv5SL"
     },
     {
+      "canonical_representative": "NDrop",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/NDrop_3.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "NDrop_3"
+    },
+    {
+      "canonical_representative": "roger",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/newNewStrategy.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "newNewStrategy"
+    },
+    {
+      "canonical_representative": "NFI5MOHO_WIP_2",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/NFI5MOHO_WIP_153.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "NFI5MOHO_WIP_153"
+    },
+    {
+      "canonical_representative": "NFI5MOHO_WIP",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/NFI5MOHO_WIP_479.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "NFI5MOHO_WIP_479"
+    },
+    {
+      "canonical_representative": "NFI5MOHO_WIP_1",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/NFI5MOHO_WIP_71.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "NFI5MOHO_WIP_71"
+    },
+    {
+      "canonical_representative": "NostalgiaForInfinityNextGen",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/NFINextGen.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "NFINextGen"
+    },
+    {
+      "canonical_representative": "NFIV7_SMA",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/NFIV7_SMA_2.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "NFIV7_SMA_2"
+    },
+    {
+      "canonical_representative": "NormalizerStrategy",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/normalizer_451.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "normalizer_451"
+    },
+    {
+      "canonical_representative": "NostalgiaForInfinityNext_272",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/NostalgiaForInfinityNext_548.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "NostalgiaForInfinityNext_548"
+    },
+    {
+      "canonical_representative": "NostalgiaForInfinityNext_272",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/NostalgiaForInfinityNext_744.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "NostalgiaForInfinityNext_744"
+    },
+    {
+      "canonical_representative": "NostalgiaForInfinity_7_13_0",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/NostalgiaForInfinityNext_7_13_0.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "NostalgiaForInfinityNext_7_13_0"
+    },
+    {
+      "canonical_representative": "NFI7_7_2",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/NostalgiaForInfinityNext_v772.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "NostalgiaForInfinityNext_v772"
+    },
+    {
+      "canonical_representative": "NostalgiaForInfinityNextGen",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/NostalgiaForInfinityNextGen_142.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "NostalgiaForInfinityNextGen_142"
+    },
+    {
+      "canonical_representative": "NostalgiaForInfinityNextGen",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/NostalgiaForInfinityNextGen_295.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "NostalgiaForInfinityNextGen_295"
+    },
+    {
+      "canonical_representative": "NostalgiaForInfinityNextGen",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/NostalgiaForInfinityNextGen_637.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "NostalgiaForInfinityNextGen_637"
+    },
+    {
+      "canonical_representative": "NostalgiaForInfinityNextGen",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/NostalgiaForInfinityNextGen_742.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "NostalgiaForInfinityNextGen_742"
+    },
+    {
+      "canonical_representative": "NostalgiaForInfinityV4",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/NostalgiaForInfinityV4_774.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "NostalgiaForInfinityV4_774"
+    },
+    {
+      "canonical_representative": "NostalgiaForInfinityV5",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/NostalgiaForInfinityV5_856.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "NostalgiaForInfinityV5_856"
+    },
+    {
+      "canonical_representative": "NostalgiaForInfinityV6",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/NostalgiaForInfinityV6_2.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "NostalgiaForInfinityV6_2"
+    },
+    {
       "canonical_representative": "MyStratV1",
       "evidence_rule": "normalized_code_and_identical_full_backtest_trades_v1",
       "file_present_again_at": "2026-09-16",
@@ -886,6 +3903,20 @@
       "strategy_id": "NostalgiaForInfinityV7"
     },
     {
+      "canonical_representative": "NostalgiaForInfinityV7",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/NostalgiaForInfinityV7_974.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "NostalgiaForInfinityV7_974"
+    },
+    {
+      "canonical_representative": "Combined_NFIv7_SMA",
+      "evidence_rule": "normalized_code_and_identical_full_backtest_trades_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/NostalgiaForInfinityV7_SMA_174.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "NostalgiaForInfinityV7_SMA_174"
+    },
+    {
       "canonical_representative": "Combined_NFIv7_SMA",
       "evidence_rule": "normalized_code_and_identical_full_backtest_trades_v1",
       "file_present_again_at": "2026-09-16",
@@ -893,6 +3924,83 @@
       "removed_at": "2026-09-16T15:05:51.011635+00:00",
       "retained_reason": "source file defines no other class and returned via a repository re-download, not the recovery; deletion is safe and the next harvest removes it again.",
       "strategy_id": "NostalgiaForInfinityV7_SMAv2"
+    },
+    {
+      "canonical_representative": "Combined_NFIv7_SMA",
+      "evidence_rule": "normalized_code_and_identical_full_backtest_trades_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/NostalgiaForInfinityV7_SMAv22.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "NostalgiaForInfinityV7_SMAv22"
+    },
+    {
+      "canonical_representative": "NostalgiaForInfinityV7_SMAv2_1",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/NostalgiaForInfinityV7_SMAv2_12.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "NostalgiaForInfinityV7_SMAv2_12"
+    },
+    {
+      "canonical_representative": "NostalgiaForInfinityX2_5",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/NostalgiaForInfinityX2_6.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "NostalgiaForInfinityX2_6"
+    },
+    {
+      "canonical_representative": "NotAnotherSMAOffsetStrategyHOv3_2",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/NotAnotherSMAOffsetStrategyHOv3_3.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "NotAnotherSMAOffsetStrategyHOv3_3"
+    },
+    {
+      "canonical_representative": "NSeq",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/NSeq_3.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "NSeq_3"
+    },
+    {
+      "canonical_representative": "Obelisk_3EMA_StochRSI_ATR_259",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/Obelisk_3EMA_StochRSI_ATR_860.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "Obelisk_3EMA_StochRSI_ATR_860"
+    },
+    {
+      "canonical_representative": "Obelisk_TradePro_Ichi_v1_1",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/Obelisk_TradePro_Ichi_v1_1_209.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "Obelisk_TradePro_Ichi_v1_1_209"
+    },
+    {
+      "canonical_representative": "Obelisk_TradePro_Ichi_v2_2",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/Obelisk_TradePro_Ichi_v2_2_667.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "Obelisk_TradePro_Ichi_v2_2_667"
+    },
+    {
+      "canonical_representative": "Obelisk_TradePro_Ichi_v2",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/Obelisk_TradePro_Ichi_v2_672.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "Obelisk_TradePro_Ichi_v2_672"
+    },
+    {
+      "canonical_representative": "ONUR",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/onur_bbrsi_159.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "onur_bbrsi_159"
+    },
+    {
+      "canonical_representative": "Patterns2",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/Patterns2_3.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "Patterns2_3"
     },
     {
       "canonical_representative": "PCA",
@@ -1035,6 +4143,97 @@
       "strategy_id": "PCA_swing"
     },
     {
+      "canonical_representative": "percentileRSI",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/percentileStratv2.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "percentileStratv2"
+    },
+    {
+      "canonical_representative": "ReinforcedQuickie",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/ReinforcedQuickie_253.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "ReinforcedQuickie_253"
+    },
+    {
+      "canonical_representative": "ReinforcedSmoothScalp_97",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/ReinforcedSmoothScalp_429.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "ReinforcedSmoothScalp_429"
+    },
+    {
+      "canonical_representative": "Roth03",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/Roth03_2.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "Roth03_2"
+    },
+    {
+      "canonical_representative": "RSI_BB",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/RSI_BB_2.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "RSI_BB_2"
+    },
+    {
+      "canonical_representative": "RSIBB02",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/rsibb02.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "rsibb02"
+    },
+    {
+      "canonical_representative": "RSIDivTirail",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/RSIDivergence.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "RSIDivergence"
+    },
+    {
+      "canonical_representative": "SafeCluc",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/SafeCluc_2.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "SafeCluc_2"
+    },
+    {
+      "canonical_representative": "NostalgiaForInfinityV7",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/sample_strategy_129.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "sample_strategy_129"
+    },
+    {
+      "canonical_representative": "MeoMeo99",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/sample_strategy_168.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "sample_strategy_168"
+    },
+    {
+      "canonical_representative": "sample_strategy_182",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/sample_strategy_284.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "sample_strategy_284"
+    },
+    {
+      "canonical_representative": "sample_strategy_2",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/sample_strategy_56.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "sample_strategy_56"
+    },
+    {
+      "canonical_representative": "Scalp",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/Scalp_306.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "Scalp_306"
+    },
+    {
       "canonical_representative": "Schism3",
       "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
       "file_present_again_at": "2026-09-16",
@@ -1139,6 +4338,20 @@
       "strategy_id": "Schism6_ETH"
     },
     {
+      "canonical_representative": "Simple",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/Simple_197.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "Simple_197"
+    },
+    {
+      "canonical_representative": "SimpleBollinger",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/SimpleBollinger_3.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "SimpleBollinger_3"
+    },
+    {
       "canonical_representative": "_Strat",
       "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
       "note": "",
@@ -1147,6 +4360,41 @@
       "recovered_note": "Re-fetched 2026-09-16. The kept representative was a differently-named file in this same author's own repository, so this was never a copy of another repo's strategy. Owner's rule: a strategy in its own source repo is kept, and a duplicate finding against it excludes it without removing the file.",
       "removed_at": "2026-09-16T14:59:36.982686+00:00",
       "strategy_id": "SimpleStrategy"
+    },
+    {
+      "canonical_representative": "BadoV1",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/my-strategies/SlopeV8.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "SlopeV8"
+    },
+    {
+      "canonical_representative": "Slowbro",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/Slowbro_2.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "Slowbro_2"
+    },
+    {
+      "canonical_representative": "SMAIP3",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/SMAIP3_788.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "SMAIP3_788"
+    },
+    {
+      "canonical_representative": "SMAIP3v2",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/SMAIP3v2_134.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "SMAIP3v2_134"
+    },
+    {
+      "canonical_representative": "SMAOffsetProtectOpt",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/SMAOffsetProtectOpt_420.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "SMAOffsetProtectOpt_420"
     },
     {
       "canonical_representative": "",
@@ -1160,6 +4408,62 @@
       "removed_at": "2026-09-16T14:59:36.982686+00:00",
       "retained_reason": "source file also defines live kept strategy class(es) SMAOffsetProtectOptV1_kkeue_20210619 and was restored whole by the Phase 17 recovery - a file cannot come back in part. Deleting it again would destroy those classes, which is the bug that lost 11 strategies, so this exclusion stays evidence-only and the file is kept.",
       "strategy_id": "SMAOffsetProtectOptV1_1"
+    },
+    {
+      "canonical_representative": "SMAOffsetProtectOptV1",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/SMAOffsetProtectOptV1_336.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "SMAOffsetProtectOptV1_336"
+    },
+    {
+      "canonical_representative": "SMAOffsetProtectOptV1_830",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/SMAOffsetProtectOptV1_835.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "SMAOffsetProtectOptV1_835"
+    },
+    {
+      "canonical_representative": "SMAOffsetProtectOptV1Mod2",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/SMAOffsetProtectOptV1Mod2v.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "SMAOffsetProtectOptV1Mod2v"
+    },
+    {
+      "canonical_representative": "SMAOffsetProtectOptV1_830",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/SMAOffsetProtectOptV1testing.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "SMAOffsetProtectOptV1testing"
+    },
+    {
+      "canonical_representative": "SmoothOperator",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/SmoothOperator_213.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "SmoothOperator_213"
+    },
+    {
+      "canonical_representative": "SmoothScalp",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/SmoothScalp_256.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "SmoothScalp_256"
+    },
+    {
+      "canonical_representative": "SqueezeOff",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/SqueezeOff_3.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "SqueezeOff_3"
+    },
+    {
+      "canonical_representative": "Goose1",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/SRChartCandleStrat.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "SRChartCandleStrat"
     },
     {
       "canonical_representative": "StarRise",
@@ -1204,6 +4508,104 @@
       "strategy_id": "strat_dca"
     },
     {
+      "canonical_representative": "GodCard",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/strat_online.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "strat_online"
+    },
+    {
+      "canonical_representative": "Strategy001_419",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/Strategy001_888.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "Strategy001_888"
+    },
+    {
+      "canonical_representative": "Strategy001_custom_sell",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/Strategy001_custom_sell_231.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "Strategy001_custom_sell_231"
+    },
+    {
+      "canonical_representative": "Strategy001_custom_sell_3",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/Strategy001_custom_sell_4.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "Strategy001_custom_sell_4"
+    },
+    {
+      "canonical_representative": "RunStrategy",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/strategy002_4.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "strategy002_4"
+    },
+    {
+      "canonical_representative": "Strategy002_155",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/Strategy002_409.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "Strategy002_409"
+    },
+    {
+      "canonical_representative": "Strategy002_621",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/Strategy002_793.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "Strategy002_793"
+    },
+    {
+      "canonical_representative": "redditMA",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/Strategy005_26.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "Strategy005_26"
+    },
+    {
+      "canonical_representative": "bbrsi4Freq",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/strategy_04_bb_rsi.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "strategy_04_bb_rsi"
+    },
+    {
+      "canonical_representative": "Strategy",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/Strategy_9.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "Strategy_9"
+    },
+    {
+      "canonical_representative": "EMA_CROSSOVER_STRATEGY",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/STRATEGY_EMA_CROSSOVER.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "STRATEGY_EMA_CROSSOVER"
+    },
+    {
+      "canonical_representative": "EXPERIMENTAL_STRATEGY",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/STRATEGY_EXPERIMENTAL.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "STRATEGY_EXPERIMENTAL"
+    },
+    {
+      "canonical_representative": "StrategyAnalysis",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/StrategyAnalysis_3.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "StrategyAnalysis_3"
+    },
+    {
+      "canonical_representative": "StrategyScalpingFast2",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/StrategyScalpingFast2_288.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "StrategyScalpingFast2_288"
+    },
+    {
       "canonical_representative": "StrategyTestV3",
       "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
       "file_present_again_at": "2026-09-16",
@@ -1238,6 +4640,104 @@
       "removed_at": "2026-09-16T14:59:36.982686+00:00",
       "retained_reason": "source file also defines live kept strategy class(es) SuperReversal_mtf and was restored whole by the Phase 17 recovery - a file cannot come back in part. Deleting it again would destroy those classes, which is the bug that lost 11 strategies, so this exclusion stays evidence-only and the file is kept.",
       "strategy_id": "SuperReversal_mtf_5min"
+    },
+    {
+      "canonical_representative": "Supertrend_151",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/Supertrend_388.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "Supertrend_388"
+    },
+    {
+      "canonical_representative": "Supertrend_151",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/Supertrend_871.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "Supertrend_871"
+    },
+    {
+      "canonical_representative": "SwingHighToSky",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/Swing_High_To_Sky_273.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "Swing_High_To_Sky_273"
+    },
+    {
+      "canonical_representative": "SwingHighToSky",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/Swing_High_To_Sky_321.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "Swing_High_To_Sky_321"
+    },
+    {
+      "canonical_representative": "TDSequentialStrategy",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/TDSequentialStrategy_602.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "TDSequentialStrategy_602"
+    },
+    {
+      "canonical_representative": "TechnicalExampleStrategy",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/TechnicalExampleStrategy_258.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "TechnicalExampleStrategy_258"
+    },
+    {
+      "canonical_representative": "TechnicalExampleStrategy",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/TechnicalExampleStrategy_406.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "TechnicalExampleStrategy_406"
+    },
+    {
+      "canonical_representative": "TemaMaster",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/tema_master.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "tema_master"
+    },
+    {
+      "canonical_representative": "TemaMaster3",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/tema_master_v3.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "tema_master_v3"
+    },
+    {
+      "canonical_representative": "TemaPure",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/tema_pure.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "tema_pure"
+    },
+    {
+      "canonical_representative": "TemaPureNeat",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/tema_pure_neat.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "tema_pure_neat"
+    },
+    {
+      "canonical_representative": "TemaPureTwo",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/tema_pure_two.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "tema_pure_two"
+    },
+    {
+      "canonical_representative": "true_lambo",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/tesla_1.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "tesla_1"
+    },
+    {
+      "canonical_representative": "BBRSI3366",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/testchild.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "testchild"
     },
     {
       "canonical_representative": "TestStrategyNoImplements",
@@ -1295,6 +4795,13 @@
       "strategy_id": "TestStrategyNoImplementSell"
     },
     {
+      "canonical_representative": "ThreeCommasStrategy",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/ThreeCommasStrategy_2.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "ThreeCommasStrategy_2"
+    },
+    {
       "canonical_representative": "",
       "evidence_rule": "reconstructed_unattributed_2026-09-16",
       "file_present_again_at": "2026-09-16",
@@ -1307,6 +4814,20 @@
       "removed_at": "2026-09-16T14:59:36.982686+00:00",
       "retained_reason": "source file also defines live kept strategy class(es) NASOSv5HO, NASOSv5_mod1 and was restored whole by the Phase 17 recovery - a file cannot come back in part. Deleting it again would destroy those classes, which is the bug that lost 11 strategies, so this exclusion stays evidence-only and the file is kept.",
       "strategy_id": "TrailingBuyStrat"
+    },
+    {
+      "canonical_representative": "TrixStrategy",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/TrixStrategy_708.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "TrixStrategy_708"
+    },
+    {
+      "canonical_representative": "TryEverything",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/TryEverything_3.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "TryEverything_3"
     },
     {
       "canonical_representative": "TS_Gain",
@@ -1327,6 +4848,34 @@
       "recovered_note": "Re-fetched 2026-09-16. The kept representative was a differently-named file in this same author's own repository, so this was never a copy of another repo's strategy. Owner's rule: a strategy in its own source repo is kept, and a duplicate finding against it excludes it without removing the file.",
       "removed_at": "2026-09-16T14:59:36.982686+00:00",
       "strategy_id": "TS_Wavelet"
+    },
+    {
+      "canonical_representative": "TuplaBollinger",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/TuplaBollinger_345.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "TuplaBollinger_345"
+    },
+    {
+      "canonical_representative": "turbov8",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/turbov8_2.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "turbov8_2"
+    },
+    {
+      "canonical_representative": "UpSliceStrategy",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/UpSliceStrategy_292.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "UpSliceStrategy_292"
+    },
+    {
+      "canonical_representative": "Usdcmbespot",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/UsdcmbeSpot2403.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "UsdcmbeSpot2403"
     },
     {
       "canonical_representative": "",
@@ -1451,6 +5000,20 @@
       "recovered_note": "Re-fetched 2026-09-16. The kept representative was a differently-named file in this same author's own repository, so this was never a copy of another repo's strategy. Owner's rule: a strategy in its own source repo is kept, and a duplicate finding against it excludes it without removing the file.",
       "removed_at": "2026-09-16T14:59:36.982686+00:00",
       "strategy_id": "VolTargetBasket"
+    },
+    {
+      "canonical_representative": "VWAP",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/VWAP_4.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "VWAP_4"
+    },
+    {
+      "canonical_representative": "VWAPStrategy_06",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "original_file": "repos/remiotore_ccxt-freqtrade/strategies/VWAPStrategy_07.py",
+      "removed_at": "2026-09-23T21:08:57.434059+00:00",
+      "strategy_id": "VWAPStrategy_07"
     }
   ],
   "schema_version": 1

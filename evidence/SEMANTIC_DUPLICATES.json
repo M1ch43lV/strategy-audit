@@ -3,6 +3,40 @@
     {
       "condition_conflict": false,
       "evidence_status": "code_equivalent_only",
+      "hashes_by_condition": {},
+      "identical_condition_disagreement": false,
+      "measured_members": 0,
+      "members": [
+        {
+          "canonical_file": "repos/PeetCrypto_freqtrade-stuff/Ichimoku_v35_SAR_1d.py",
+          "condition": "",
+          "full_backtest_status": "not_run",
+          "repo": "PeetCrypto/freqtrade-stuff",
+          "run_profile": "spot_long",
+          "strategy_id": "Ichimoku_v35",
+          "timerange": "",
+          "trades": "",
+          "trades_sha256": ""
+        },
+        {
+          "canonical_file": "repos/remiotore_ccxt-freqtrade/strategies/Ichimoku_v35_SAR_1d.py",
+          "condition": "",
+          "full_backtest_status": "not_run",
+          "repo": "remiotore/ccxt-freqtrade",
+          "run_profile": "spot_long",
+          "strategy_id": "Ichimoku_v35_SAR_1d",
+          "timerange": "",
+          "trades": "",
+          "trades_sha256": ""
+        }
+      ],
+      "normalized_ast_sha256": "sha256_09e230b4a0dbc36d17a0fc94ab5e0b6bc5ec5f6fa211561938231396193cc072",
+      "remeasure_owed": [],
+      "trade_hashes": []
+    },
+    {
+      "condition_conflict": false,
+      "evidence_status": "code_equivalent_only",
       "hashes_by_condition": {
         "spot_long|20200401-20260821|sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9": [
           "sha256_158305dde7d52e116c4c7c5178d979a867e8293f68171207d9b55983437e797d"
@@ -32,6 +66,17 @@
           "timerange": "",
           "trades": "",
           "trades_sha256": ""
+        },
+        {
+          "canonical_file": "repos/remiotore_ccxt-freqtrade/strategies/BBMod_7.py",
+          "condition": "",
+          "full_backtest_status": "not_run",
+          "repo": "remiotore/ccxt-freqtrade",
+          "run_profile": "spot_long",
+          "strategy_id": "BBMod_7",
+          "timerange": "",
+          "trades": "",
+          "trades_sha256": ""
         }
       ],
       "normalized_ast_sha256": "sha256_0b1a751b23c355859aed98b0cfc5341998c3666454fd99419f150123b485ecee",
@@ -39,6 +84,40 @@
       "trade_hashes": [
         "sha256_158305dde7d52e116c4c7c5178d979a867e8293f68171207d9b55983437e797d"
       ]
+    },
+    {
+      "condition_conflict": false,
+      "evidence_status": "code_equivalent_only",
+      "hashes_by_condition": {},
+      "identical_condition_disagreement": false,
+      "measured_members": 0,
+      "members": [
+        {
+          "canonical_file": "repos/Foxel05_freqtrade-stuff/strategies/macd.py",
+          "condition": "",
+          "full_backtest_status": "not_run",
+          "repo": "Foxel05/freqtrade-stuff",
+          "run_profile": "spot_long",
+          "strategy_id": "Macd",
+          "timerange": "",
+          "trades": "",
+          "trades_sha256": ""
+        },
+        {
+          "canonical_file": "repos/remiotore_ccxt-freqtrade/strategies/MACD.py",
+          "condition": "",
+          "full_backtest_status": "not_run",
+          "repo": "remiotore/ccxt-freqtrade",
+          "run_profile": "spot_long",
+          "strategy_id": "macd",
+          "timerange": "",
+          "trades": "",
+          "trades_sha256": ""
+        }
+      ],
+      "normalized_ast_sha256": "sha256_0bf2edae7852d78b9feb82906c2339fe3ea5ae7aa74383a7ebe2fc3a71de7116",
+      "remeasure_owed": [],
+      "trade_hashes": []
     },
     {
       "condition_conflict": false,
@@ -911,6 +990,80 @@
     },
     {
       "condition_conflict": false,
+      "evidence_status": "code_equivalent_only",
+      "hashes_by_condition": {},
+      "identical_condition_disagreement": false,
+      "measured_members": 0,
+      "members": [
+        {
+          "canonical_file": "repos/webclinic017_strategies-freqtrade-/archived/BTCEMABounce.py",
+          "condition": "",
+          "full_backtest_status": "not_run",
+          "repo": "webclinic017/strategies-freqtrade-",
+          "run_profile": "spot_long",
+          "strategy_id": "BTCEMABounce",
+          "timerange": "",
+          "trades": "",
+          "trades_sha256": ""
+        },
+        {
+          "canonical_file": "repos/remiotore_ccxt-freqtrade/strategies/BTCEMABounce_2.py",
+          "condition": "",
+          "full_backtest_status": "not_run",
+          "repo": "remiotore/ccxt-freqtrade",
+          "run_profile": "spot_long",
+          "strategy_id": "BTCEMABounce_2",
+          "timerange": "",
+          "trades": "",
+          "trades_sha256": ""
+        }
+      ],
+      "normalized_ast_sha256": "sha256_0fe633d9b092b29952bee515fc55b9a92e072953b9f76ed1fc5d518b258f2d1c",
+      "remeasure_owed": [],
+      "trade_hashes": []
+    },
+    {
+      "condition_conflict": false,
+      "evidence_status": "code_equivalent_only",
+      "hashes_by_condition": {
+        "spot_long|20200401-20260821|sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9": [
+          "sha256_9d1351de18cae5d075ae290e1c80a908cfab710713e478e637ff599cd85818dd"
+        ]
+      },
+      "identical_condition_disagreement": false,
+      "measured_members": 1,
+      "members": [
+        {
+          "canonical_file": "repos/PeetCrypto_freqtrade-stuff/NotAnotherSMAOffsetStrategyX1.py",
+          "condition": "spot_long|20200401-20260821|sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+          "full_backtest_status": "measured",
+          "repo": "PeetCrypto/freqtrade-stuff",
+          "run_profile": "spot_long",
+          "strategy_id": "NotAnotherSMAOffsetStrategyX1",
+          "timerange": "20200401-20260821",
+          "trades": 483,
+          "trades_sha256": "sha256_9d1351de18cae5d075ae290e1c80a908cfab710713e478e637ff599cd85818dd"
+        },
+        {
+          "canonical_file": "repos/remiotore_ccxt-freqtrade/strategies/NotAnotherSMAOffsetStrategyX1_176.py",
+          "condition": "",
+          "full_backtest_status": "not_run",
+          "repo": "remiotore/ccxt-freqtrade",
+          "run_profile": "spot_long",
+          "strategy_id": "NotAnotherSMAOffsetStrategyX1_176",
+          "timerange": "",
+          "trades": "",
+          "trades_sha256": ""
+        }
+      ],
+      "normalized_ast_sha256": "sha256_11ca646d75672c256b0ee4d8b0ddd2a6546446b660308e13974acf85567de16a",
+      "remeasure_owed": [],
+      "trade_hashes": [
+        "sha256_9d1351de18cae5d075ae290e1c80a908cfab710713e478e637ff599cd85818dd"
+      ]
+    },
+    {
+      "condition_conflict": false,
       "evidence_status": "confirmed_same_trades",
       "hashes_by_condition": {
         "spot_long|20200401-20260821|sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9": [
@@ -991,6 +1144,74 @@
         }
       ],
       "normalized_ast_sha256": "sha256_1c8673b7a300a2ed6de862a449147ced47d7b30c36dc1cc62343e7d34d624e68",
+      "remeasure_owed": [],
+      "trade_hashes": []
+    },
+    {
+      "condition_conflict": false,
+      "evidence_status": "code_equivalent_only",
+      "hashes_by_condition": {},
+      "identical_condition_disagreement": false,
+      "measured_members": 0,
+      "members": [
+        {
+          "canonical_file": "repos/kemplail_freqtrade-stuff/strategies/interface_futures_binance.py",
+          "condition": "",
+          "full_backtest_status": "not_run",
+          "repo": "kemplail/freqtrade-stuff",
+          "run_profile": "unknown",
+          "strategy_id": "IFutures",
+          "timerange": "",
+          "trades": "",
+          "trades_sha256": ""
+        },
+        {
+          "canonical_file": "repos/remiotore_ccxt-freqtrade/strategies/interface_futures_binance.py",
+          "condition": "",
+          "full_backtest_status": "not_run",
+          "repo": "remiotore/ccxt-freqtrade",
+          "run_profile": "unknown",
+          "strategy_id": "interface_futures_binance",
+          "timerange": "",
+          "trades": "",
+          "trades_sha256": ""
+        }
+      ],
+      "normalized_ast_sha256": "sha256_1d2fea020bc49314f8268f021832878edec1fd57c90df383bb84bae068e1d657",
+      "remeasure_owed": [],
+      "trade_hashes": []
+    },
+    {
+      "condition_conflict": false,
+      "evidence_status": "code_equivalent_only",
+      "hashes_by_condition": {},
+      "identical_condition_disagreement": false,
+      "measured_members": 0,
+      "members": [
+        {
+          "canonical_file": "repos/remiotore_ccxt-freqtrade/strategies/ADX_PRICE_GRID_Strategy_Future_v7.py",
+          "condition": "",
+          "full_backtest_status": "not_run",
+          "repo": "remiotore/ccxt-freqtrade",
+          "run_profile": "futures_long_short",
+          "strategy_id": "ADX_PRICE_GRID_Strategy_Future_v7",
+          "timerange": "",
+          "trades": "",
+          "trades_sha256": ""
+        },
+        {
+          "canonical_file": "repos/LazyPigPig_freqtrade-grid/user_data/strategies/ADX_PRICE_GRID_Strategy_Future_v7.py",
+          "condition": "",
+          "full_backtest_status": "resource_inconclusive",
+          "repo": "LazyPigPig/freqtrade-grid",
+          "run_profile": "futures_long_short",
+          "strategy_id": "GRIDDMIPRICEStrategyFutureV7",
+          "timerange": "",
+          "trades": "",
+          "trades_sha256": ""
+        }
+      ],
+      "normalized_ast_sha256": "sha256_216f6c42d576f8b659fbcb9120c8d5534f7cc21a74b07db27a7ef8cbe8260de2",
       "remeasure_owed": [],
       "trade_hashes": []
     },
@@ -1122,6 +1343,40 @@
         }
       ],
       "normalized_ast_sha256": "sha256_25b5c4a90ba8f1703cc6e539a56cd037a57303e554820dc11556f943ebb7d613",
+      "remeasure_owed": [],
+      "trade_hashes": []
+    },
+    {
+      "condition_conflict": false,
+      "evidence_status": "code_equivalent_only",
+      "hashes_by_condition": {},
+      "identical_condition_disagreement": false,
+      "measured_members": 0,
+      "members": [
+        {
+          "canonical_file": "repos/webclinic017_strategies-freqtrade-/archived/BTCBigDrop.py",
+          "condition": "",
+          "full_backtest_status": "failed",
+          "repo": "webclinic017/strategies-freqtrade-",
+          "run_profile": "spot_long",
+          "strategy_id": "BTCBigDrop",
+          "timerange": "",
+          "trades": "",
+          "trades_sha256": ""
+        },
+        {
+          "canonical_file": "repos/remiotore_ccxt-freqtrade/strategies/BTCBigDrop_2.py",
+          "condition": "",
+          "full_backtest_status": "not_run",
+          "repo": "remiotore/ccxt-freqtrade",
+          "run_profile": "spot_long",
+          "strategy_id": "BTCBigDrop_2",
+          "timerange": "",
+          "trades": "",
+          "trades_sha256": ""
+        }
+      ],
+      "normalized_ast_sha256": "sha256_28e4ff95d7efbe7c0fa22c71430275893506c69f59ac651c53090e1e14e2e9e0",
       "remeasure_owed": [],
       "trade_hashes": []
     },
@@ -1540,6 +1795,80 @@
       "measured_members": 0,
       "members": [
         {
+          "canonical_file": "repos/webclinic017_strategies-freqtrade-/archived/BTCMACDCross.py",
+          "condition": "",
+          "full_backtest_status": "not_run",
+          "repo": "webclinic017/strategies-freqtrade-",
+          "run_profile": "spot_long",
+          "strategy_id": "BTCMACDCross",
+          "timerange": "",
+          "trades": "",
+          "trades_sha256": ""
+        },
+        {
+          "canonical_file": "repos/remiotore_ccxt-freqtrade/strategies/BTCMACDCross_2.py",
+          "condition": "",
+          "full_backtest_status": "not_run",
+          "repo": "remiotore/ccxt-freqtrade",
+          "run_profile": "spot_long",
+          "strategy_id": "BTCMACDCross_2",
+          "timerange": "",
+          "trades": "",
+          "trades_sha256": ""
+        }
+      ],
+      "normalized_ast_sha256": "sha256_30e910db48ea9976ef55ba71bce575edcbf611453014882140a42015f67cb3ab",
+      "remeasure_owed": [],
+      "trade_hashes": []
+    },
+    {
+      "condition_conflict": false,
+      "evidence_status": "code_equivalent_only",
+      "hashes_by_condition": {
+        "spot_long|20200401-20260821|sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9": [
+          "sha256_7371d1277e9a90c180e967de915c861ffbccc1765d849bbe8476bb0fc41ca36a"
+        ]
+      },
+      "identical_condition_disagreement": false,
+      "measured_members": 1,
+      "members": [
+        {
+          "canonical_file": "repos/werkkrew_freqtrade-strategies/strategies/archived/Ichis.py",
+          "condition": "spot_long|20200401-20260821|sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+          "full_backtest_status": "measured",
+          "repo": "werkkrew/freqtrade-strategies",
+          "run_profile": "spot_long",
+          "strategy_id": "ichi",
+          "timerange": "20200401-20260821",
+          "trades": 5078,
+          "trades_sha256": "sha256_7371d1277e9a90c180e967de915c861ffbccc1765d849bbe8476bb0fc41ca36a"
+        },
+        {
+          "canonical_file": "repos/remiotore_ccxt-freqtrade/strategies/Ichis.py",
+          "condition": "",
+          "full_backtest_status": "not_run",
+          "repo": "remiotore/ccxt-freqtrade",
+          "run_profile": "spot_long",
+          "strategy_id": "Ichis",
+          "timerange": "",
+          "trades": "",
+          "trades_sha256": ""
+        }
+      ],
+      "normalized_ast_sha256": "sha256_39047bcd3f10c6ad6fb32fef6165b441e165cc015c2cf0b5d9c465506ba8e5fa",
+      "remeasure_owed": [],
+      "trade_hashes": [
+        "sha256_7371d1277e9a90c180e967de915c861ffbccc1765d849bbe8476bb0fc41ca36a"
+      ]
+    },
+    {
+      "condition_conflict": false,
+      "evidence_status": "code_equivalent_only",
+      "hashes_by_condition": {},
+      "identical_condition_disagreement": false,
+      "measured_members": 0,
+      "members": [
+        {
           "canonical_file": "repair/patched/repos/PeetCrypto_freqtrade-stuff/Stinkfist.py",
           "condition": "",
           "full_backtest_status": "not_run",
@@ -1659,6 +1988,40 @@
         }
       ],
       "normalized_ast_sha256": "sha256_468dc5afd517a8d34d12447ecb3aa0b3244dff6ee322510df7596b7d0fd217ef",
+      "remeasure_owed": [],
+      "trade_hashes": []
+    },
+    {
+      "condition_conflict": false,
+      "evidence_status": "code_equivalent_only",
+      "hashes_by_condition": {},
+      "identical_condition_disagreement": false,
+      "measured_members": 0,
+      "members": [
+        {
+          "canonical_file": "repos/Foxel05_freqtrade-stuff/strategies/NotAnotherSMAOffSetStrategy_V2.py",
+          "condition": "",
+          "full_backtest_status": "not_run",
+          "repo": "Foxel05/freqtrade-stuff",
+          "run_profile": "spot_long",
+          "strategy_id": "NotAnotherSMAOffSetStrategy_V2",
+          "timerange": "",
+          "trades": "",
+          "trades_sha256": ""
+        },
+        {
+          "canonical_file": "repos/remiotore_ccxt-freqtrade/strategies/NotAnotherSMAOffSetStrategy_V2_577.py",
+          "condition": "",
+          "full_backtest_status": "not_run",
+          "repo": "remiotore/ccxt-freqtrade",
+          "run_profile": "spot_long",
+          "strategy_id": "NotAnotherSMAOffSetStrategy_V2_577",
+          "timerange": "",
+          "trades": "",
+          "trades_sha256": ""
+        }
+      ],
+      "normalized_ast_sha256": "sha256_46d106704c24352d72a75668bb145184d74942a3d492d215bf4dd3b0b1068aa0",
       "remeasure_owed": [],
       "trade_hashes": []
     },
@@ -1862,6 +2225,40 @@
       "measured_members": 0,
       "members": [
         {
+          "canonical_file": "repos/webclinic017_strategies-freqtrade-/archived/BTCNSeq.py",
+          "condition": "",
+          "full_backtest_status": "failed",
+          "repo": "webclinic017/strategies-freqtrade-",
+          "run_profile": "spot_long",
+          "strategy_id": "BTCNSeq",
+          "timerange": "",
+          "trades": "",
+          "trades_sha256": ""
+        },
+        {
+          "canonical_file": "repos/remiotore_ccxt-freqtrade/strategies/BTCNSeq_2.py",
+          "condition": "",
+          "full_backtest_status": "not_run",
+          "repo": "remiotore/ccxt-freqtrade",
+          "run_profile": "spot_long",
+          "strategy_id": "BTCNSeq_2",
+          "timerange": "",
+          "trades": "",
+          "trades_sha256": ""
+        }
+      ],
+      "normalized_ast_sha256": "sha256_57872066063b121c70edddbf5dcc16c2e60416b0be0859d1f1493acf35652513",
+      "remeasure_owed": [],
+      "trade_hashes": []
+    },
+    {
+      "condition_conflict": false,
+      "evidence_status": "code_equivalent_only",
+      "hashes_by_condition": {},
+      "identical_condition_disagreement": false,
+      "measured_members": 0,
+      "members": [
+        {
           "canonical_file": "repos/LazyPigPig_freqtrade-grid/tests/strategy/strats/broken_strats/broken_futures_strategies.py",
           "condition": "",
           "full_backtest_status": "not_run",
@@ -1986,6 +2383,40 @@
       "measured_members": 0,
       "members": [
         {
+          "canonical_file": "repos/webclinic017_strategies-freqtrade-/archived/BTCNDrop.py",
+          "condition": "",
+          "full_backtest_status": "failed",
+          "repo": "webclinic017/strategies-freqtrade-",
+          "run_profile": "spot_long",
+          "strategy_id": "BTCNDrop",
+          "timerange": "",
+          "trades": "",
+          "trades_sha256": ""
+        },
+        {
+          "canonical_file": "repos/remiotore_ccxt-freqtrade/strategies/BTCNDrop_2.py",
+          "condition": "",
+          "full_backtest_status": "not_run",
+          "repo": "remiotore/ccxt-freqtrade",
+          "run_profile": "spot_long",
+          "strategy_id": "BTCNDrop_2",
+          "timerange": "",
+          "trades": "",
+          "trades_sha256": ""
+        }
+      ],
+      "normalized_ast_sha256": "sha256_69c224571e715d6cd087bf8069252d93ae7e71909c88489890a7e6c4fc82ce94",
+      "remeasure_owed": [],
+      "trade_hashes": []
+    },
+    {
+      "condition_conflict": false,
+      "evidence_status": "code_equivalent_only",
+      "hashes_by_condition": {},
+      "identical_condition_disagreement": false,
+      "measured_members": 0,
+      "members": [
+        {
           "canonical_file": "repos/PeetCrypto_freqtrade-stuff/Solipsis-v2.6.py",
           "condition": "",
           "full_backtest_status": "not_run",
@@ -2022,6 +2453,80 @@
       "normalized_ast_sha256": "sha256_6f1198746f53f125bb1ff5247af3ba92a517dea1fafab4920913a2f5fd154087",
       "remeasure_owed": [],
       "trade_hashes": []
+    },
+    {
+      "condition_conflict": false,
+      "evidence_status": "code_equivalent_only",
+      "hashes_by_condition": {},
+      "identical_condition_disagreement": false,
+      "measured_members": 0,
+      "members": [
+        {
+          "canonical_file": "repos/hamidreza07_freqai-strategy/startegy test/5/_BBBHold/BBBHold.py",
+          "condition": "",
+          "full_backtest_status": "not_run",
+          "repo": "hamidreza07/freqai-strategy",
+          "run_profile": "spot_long",
+          "strategy_id": "BBBHold",
+          "timerange": "",
+          "trades": "",
+          "trades_sha256": ""
+        },
+        {
+          "canonical_file": "repos/remiotore_ccxt-freqtrade/strategies/BBBHold_3.py",
+          "condition": "",
+          "full_backtest_status": "not_run",
+          "repo": "remiotore/ccxt-freqtrade",
+          "run_profile": "spot_long",
+          "strategy_id": "BBBHold_3",
+          "timerange": "",
+          "trades": "",
+          "trades_sha256": ""
+        }
+      ],
+      "normalized_ast_sha256": "sha256_6f48272317349e8314211f3ae00182266f4d19a2b067aa6258e4fcd1e3e2077d",
+      "remeasure_owed": [],
+      "trade_hashes": []
+    },
+    {
+      "condition_conflict": false,
+      "evidence_status": "code_equivalent_only",
+      "hashes_by_condition": {
+        "spot_long|20200401-20260821|sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9": [
+          "sha256_ffd4a741e46ba9c634d20cb5d66da67cf7b483fd2ea2a7076c1aa47355cb0314"
+        ]
+      },
+      "identical_condition_disagreement": false,
+      "measured_members": 1,
+      "members": [
+        {
+          "canonical_file": "repos/brookmiles_freqtrade-stuff/strategies/Obelisk_Ichimoku_Slow_v1.py",
+          "condition": "spot_long|20200401-20260821|sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+          "full_backtest_status": "measured",
+          "repo": "brookmiles/freqtrade-stuff",
+          "run_profile": "spot_long",
+          "strategy_id": "Obelisk_Ichimoku_Slow_v1",
+          "timerange": "20200401-20260821",
+          "trades": 2896,
+          "trades_sha256": "sha256_ffd4a741e46ba9c634d20cb5d66da67cf7b483fd2ea2a7076c1aa47355cb0314"
+        },
+        {
+          "canonical_file": "repos/remiotore_ccxt-freqtrade/strategies/Obelisk_Ichimoku_Slow_v1_671.py",
+          "condition": "",
+          "full_backtest_status": "not_run",
+          "repo": "remiotore/ccxt-freqtrade",
+          "run_profile": "spot_long",
+          "strategy_id": "Obelisk_Ichimoku_Slow_v1_671",
+          "timerange": "",
+          "trades": "",
+          "trades_sha256": ""
+        }
+      ],
+      "normalized_ast_sha256": "sha256_74b7fe3cbae3221493c68e3894db46274039cb5fb1247795e387b3560db04948",
+      "remeasure_owed": [],
+      "trade_hashes": [
+        "sha256_ffd4a741e46ba9c634d20cb5d66da67cf7b483fd2ea2a7076c1aa47355cb0314"
+      ]
     },
     {
       "condition_conflict": false,
@@ -2077,6 +2582,80 @@
     {
       "condition_conflict": false,
       "evidence_status": "code_equivalent_only",
+      "hashes_by_condition": {
+        "spot_long|20200401-20260821|sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9": [
+          "sha256_735f50ded7e9c8172dceff493ab6ad350a1a9ba2dc5927b31633e221aed459b1"
+        ]
+      },
+      "identical_condition_disagreement": false,
+      "measured_members": 1,
+      "members": [
+        {
+          "canonical_file": "repos/Foxel05_freqtrade-stuff/strategies/NotAnotherSMAOffsetStrategyHOv3_b.py",
+          "condition": "spot_long|20200401-20260821|sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+          "full_backtest_status": "measured",
+          "repo": "Foxel05/freqtrade-stuff",
+          "run_profile": "spot_long",
+          "strategy_id": "NotAnotherSMAOffsetStrategyHOv3",
+          "timerange": "20200401-20260821",
+          "trades": 650,
+          "trades_sha256": "sha256_735f50ded7e9c8172dceff493ab6ad350a1a9ba2dc5927b31633e221aed459b1"
+        },
+        {
+          "canonical_file": "repos/remiotore_ccxt-freqtrade/strategies/NotAnotherSMAOffsetStrategyHOv3_b.py",
+          "condition": "",
+          "full_backtest_status": "not_run",
+          "repo": "remiotore/ccxt-freqtrade",
+          "run_profile": "spot_long",
+          "strategy_id": "NotAnotherSMAOffsetStrategyHOv3_b",
+          "timerange": "",
+          "trades": "",
+          "trades_sha256": ""
+        }
+      ],
+      "normalized_ast_sha256": "sha256_78ef8913eb9e0b52032f8980c1f07972ec948952a2bae9e8ed3b7c014b2506c3",
+      "remeasure_owed": [],
+      "trade_hashes": [
+        "sha256_735f50ded7e9c8172dceff493ab6ad350a1a9ba2dc5927b31633e221aed459b1"
+      ]
+    },
+    {
+      "condition_conflict": false,
+      "evidence_status": "code_equivalent_only",
+      "hashes_by_condition": {},
+      "identical_condition_disagreement": false,
+      "measured_members": 0,
+      "members": [
+        {
+          "canonical_file": "repos/PeetCrypto_freqtrade-stuff/LongShortRangeTradingMachetesV1-1.py",
+          "condition": "",
+          "full_backtest_status": "not_run",
+          "repo": "PeetCrypto/freqtrade-stuff",
+          "run_profile": "spot_long",
+          "strategy_id": "LongShortRangeTradingMachetesV1",
+          "timerange": "",
+          "trades": "",
+          "trades_sha256": ""
+        },
+        {
+          "canonical_file": "repos/remiotore_ccxt-freqtrade/strategies/LongShortRangeTradingMachetesV1_1.py",
+          "condition": "",
+          "full_backtest_status": "not_run",
+          "repo": "remiotore/ccxt-freqtrade",
+          "run_profile": "spot_long",
+          "strategy_id": "LongShortRangeTradingMachetesV1_1",
+          "timerange": "",
+          "trades": "",
+          "trades_sha256": ""
+        }
+      ],
+      "normalized_ast_sha256": "sha256_7bc17f1faa514578cb1ea101a4f83ca08c7f29bf5fc195f38dda7898f879aafd",
+      "remeasure_owed": [],
+      "trade_hashes": []
+    },
+    {
+      "condition_conflict": false,
+      "evidence_status": "code_equivalent_only",
       "hashes_by_condition": {},
       "identical_condition_disagreement": false,
       "measured_members": 0,
@@ -2122,6 +2701,46 @@
     {
       "condition_conflict": false,
       "evidence_status": "code_equivalent_only",
+      "hashes_by_condition": {
+        "spot_long|20200401-20260821|sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9": [
+          "sha256_bc4873f85f0eba4d48935f91272bf5c5dc51c321a7d4c5a2e66d9e525a556be3"
+        ]
+      },
+      "identical_condition_disagreement": false,
+      "measured_members": 1,
+      "members": [
+        {
+          "canonical_file": "repos/MMR-19_freqtrade-strategies/strategies/NotAnotherSMAOffSetStrategyHO.py",
+          "condition": "spot_long|20200401-20260821|sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+          "full_backtest_status": "measured",
+          "repo": "MMR-19/freqtrade-strategies",
+          "run_profile": "spot_long",
+          "strategy_id": "NotAnotherSMAOffsetStrategyHO",
+          "timerange": "20200401-20260821",
+          "trades": 695,
+          "trades_sha256": "sha256_bc4873f85f0eba4d48935f91272bf5c5dc51c321a7d4c5a2e66d9e525a556be3"
+        },
+        {
+          "canonical_file": "repos/remiotore_ccxt-freqtrade/strategies/NotAnotherSMAOffsetStrategyHO_113.py",
+          "condition": "",
+          "full_backtest_status": "not_run",
+          "repo": "remiotore/ccxt-freqtrade",
+          "run_profile": "spot_long",
+          "strategy_id": "NotAnotherSMAOffsetStrategyHO_113",
+          "timerange": "",
+          "trades": "",
+          "trades_sha256": ""
+        }
+      ],
+      "normalized_ast_sha256": "sha256_81b7d172e6e6f885b4a776751a24323a0feba3d0c8fd18ded27fd42c177132f5",
+      "remeasure_owed": [],
+      "trade_hashes": [
+        "sha256_bc4873f85f0eba4d48935f91272bf5c5dc51c321a7d4c5a2e66d9e525a556be3"
+      ]
+    },
+    {
+      "condition_conflict": false,
+      "evidence_status": "code_equivalent_only",
       "hashes_by_condition": {},
       "identical_condition_disagreement": false,
       "measured_members": 0,
@@ -2133,6 +2752,17 @@
           "repo": "TomtomEh/freqtrade-websocket",
           "run_profile": "spot_long",
           "strategy_id": "BinanceStream",
+          "timerange": "",
+          "trades": "",
+          "trades_sha256": ""
+        },
+        {
+          "canonical_file": "repos/remiotore_ccxt-freqtrade/strategies/BinanceStream_209.py",
+          "condition": "",
+          "full_backtest_status": "not_run",
+          "repo": "remiotore/ccxt-freqtrade",
+          "run_profile": "spot_long",
+          "strategy_id": "BinanceStream_209",
           "timerange": "",
           "trades": "",
           "trades_sha256": ""
@@ -2261,6 +2891,40 @@
         }
       ],
       "normalized_ast_sha256": "sha256_84aae80356007e94df3afdd422df1653e1a2411db044a64e99adbdbdec04f1f0",
+      "remeasure_owed": [],
+      "trade_hashes": []
+    },
+    {
+      "condition_conflict": false,
+      "evidence_status": "code_equivalent_only",
+      "hashes_by_condition": {},
+      "identical_condition_disagreement": false,
+      "measured_members": 0,
+      "members": [
+        {
+          "canonical_file": "repos/markdregan_FreqAI-Marcos-Lopez-De-Prado/tests/strategy/strats/strategy_test_v3.py",
+          "condition": "",
+          "full_backtest_status": "not_run",
+          "repo": "markdregan/FreqAI-Marcos-Lopez-De-Prado",
+          "run_profile": "futures_long",
+          "strategy_id": "StrategyTestV3",
+          "timerange": "",
+          "trades": "",
+          "trades_sha256": ""
+        },
+        {
+          "canonical_file": "repos/LazyPigPig_freqtrade-grid/tests/strategy/strats/strategy_test_v3.py",
+          "condition": "",
+          "full_backtest_status": "not_run",
+          "repo": "LazyPigPig/freqtrade-grid",
+          "run_profile": "futures_long",
+          "strategy_id": "StrategyTestV3Futures",
+          "timerange": "",
+          "trades": "",
+          "trades_sha256": ""
+        }
+      ],
+      "normalized_ast_sha256": "sha256_86aa50dd41bc678c07aaed535059e824525d3d506306b0b18fdf7000970ea8aa",
       "remeasure_owed": [],
       "trade_hashes": []
     },
@@ -2484,6 +3148,74 @@
     },
     {
       "condition_conflict": false,
+      "evidence_status": "code_equivalent_only",
+      "hashes_by_condition": {},
+      "identical_condition_disagreement": false,
+      "measured_members": 0,
+      "members": [
+        {
+          "canonical_file": "repos/remiotore_ccxt-freqtrade/strategies/Hacklemore.py",
+          "condition": "",
+          "full_backtest_status": "performance_limited",
+          "repo": "remiotore/ccxt-freqtrade",
+          "run_profile": "spot_long",
+          "strategy_id": "Hacklemore",
+          "timerange": "",
+          "trades": "",
+          "trades_sha256": ""
+        },
+        {
+          "canonical_file": "repos/werkkrew_freqtrade-strategies/strategies/archived/Hacklemore.py",
+          "condition": "",
+          "full_backtest_status": "not_run",
+          "repo": "werkkrew/freqtrade-strategies",
+          "run_profile": "spot_long",
+          "strategy_id": "Hacklemore_Slow",
+          "timerange": "",
+          "trades": "",
+          "trades_sha256": ""
+        }
+      ],
+      "normalized_ast_sha256": "sha256_9147ec0cd807adb2fa4c2878c542ee2716d7fdda18fefe0ba18deb3576b6abc5",
+      "remeasure_owed": [],
+      "trade_hashes": []
+    },
+    {
+      "condition_conflict": false,
+      "evidence_status": "code_equivalent_only",
+      "hashes_by_condition": {},
+      "identical_condition_disagreement": false,
+      "measured_members": 0,
+      "members": [
+        {
+          "canonical_file": "repos/PeetCrypto_freqtrade-stuff/Prediction_Strategy.py",
+          "condition": "",
+          "full_backtest_status": "not_run",
+          "repo": "PeetCrypto/freqtrade-stuff",
+          "run_profile": "spot_long",
+          "strategy_id": "Prediction_Strategy",
+          "timerange": "",
+          "trades": "",
+          "trades_sha256": ""
+        },
+        {
+          "canonical_file": "repos/remiotore_ccxt-freqtrade/strategies/PS.py",
+          "condition": "",
+          "full_backtest_status": "not_run",
+          "repo": "remiotore/ccxt-freqtrade",
+          "run_profile": "spot_long",
+          "strategy_id": "PS",
+          "timerange": "",
+          "trades": "",
+          "trades_sha256": ""
+        }
+      ],
+      "normalized_ast_sha256": "sha256_915d8724504c5d5f0bba976b47d8619cfb4f95e99eac1112627530ea55f272b3",
+      "remeasure_owed": [],
+      "trade_hashes": []
+    },
+    {
+      "condition_conflict": false,
       "evidence_status": "confirmed_same_trades",
       "hashes_by_condition": {
         "spot_long|20200401-20260821|sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9": [
@@ -2537,6 +3269,46 @@
       "condition_conflict": false,
       "evidence_status": "code_equivalent_only",
       "hashes_by_condition": {
+        "spot_long|20200401-20260821|sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9": [
+          "sha256_96041d2d1daf26d4b8862b5a5be95776d8593aa22e73fa351a3bbf46b9e0ae8a"
+        ]
+      },
+      "identical_condition_disagreement": false,
+      "measured_members": 1,
+      "members": [
+        {
+          "canonical_file": "repos/webclinic017_strategies-freqtrade-/archived/EMABounce.py",
+          "condition": "spot_long|20200401-20260821|sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+          "full_backtest_status": "measured",
+          "repo": "webclinic017/strategies-freqtrade-",
+          "run_profile": "spot_long",
+          "strategy_id": "EMABounce",
+          "timerange": "20200401-20260821",
+          "trades": 45,
+          "trades_sha256": "sha256_96041d2d1daf26d4b8862b5a5be95776d8593aa22e73fa351a3bbf46b9e0ae8a"
+        },
+        {
+          "canonical_file": "repos/remiotore_ccxt-freqtrade/strategies/EMABounce_2.py",
+          "condition": "",
+          "full_backtest_status": "not_run",
+          "repo": "remiotore/ccxt-freqtrade",
+          "run_profile": "spot_long",
+          "strategy_id": "EMABounce_2",
+          "timerange": "",
+          "trades": "",
+          "trades_sha256": ""
+        }
+      ],
+      "normalized_ast_sha256": "sha256_939748c571bfdf613ef3a2fa4eb73cab8540393816353e06ea894915bed35c00",
+      "remeasure_owed": [],
+      "trade_hashes": [
+        "sha256_96041d2d1daf26d4b8862b5a5be95776d8593aa22e73fa351a3bbf46b9e0ae8a"
+      ]
+    },
+    {
+      "condition_conflict": false,
+      "evidence_status": "code_equivalent_only",
+      "hashes_by_condition": {
         "spot_long|20200301-20260821|sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9": [
           "sha256_6862f8142b5a0fecd0580c2d3e3dffa13f1fe5ff55ca047bbf8170686e415494"
         ]
@@ -2580,6 +3352,46 @@
       "evidence_status": "code_equivalent_only",
       "hashes_by_condition": {
         "spot_long|20200401-20260821|sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9": [
+          "sha256_69a52959ade9fcc6a42ccad15621b16338c781926cb1332395a8169d209323e8"
+        ]
+      },
+      "identical_condition_disagreement": false,
+      "measured_members": 1,
+      "members": [
+        {
+          "canonical_file": "repos/PeetCrypto_freqtrade-stuff/CryptoFrog.py",
+          "condition": "spot_long|20200401-20260821|sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+          "full_backtest_status": "measured",
+          "repo": "PeetCrypto/freqtrade-stuff",
+          "run_profile": "spot_long",
+          "strategy_id": "CryptoFrog",
+          "timerange": "20200401-20260821",
+          "trades": 8620,
+          "trades_sha256": "sha256_69a52959ade9fcc6a42ccad15621b16338c781926cb1332395a8169d209323e8"
+        },
+        {
+          "canonical_file": "repos/remiotore_ccxt-freqtrade/strategies/CryptoFrog_205.py",
+          "condition": "",
+          "full_backtest_status": "not_run",
+          "repo": "remiotore/ccxt-freqtrade",
+          "run_profile": "spot_long",
+          "strategy_id": "CryptoFrog_205",
+          "timerange": "",
+          "trades": "",
+          "trades_sha256": ""
+        }
+      ],
+      "normalized_ast_sha256": "sha256_9b7cc98267b09a623e56b0e581a72bdb9892a1ec2f4ad376e48e40a1c13f8f03",
+      "remeasure_owed": [],
+      "trade_hashes": [
+        "sha256_69a52959ade9fcc6a42ccad15621b16338c781926cb1332395a8169d209323e8"
+      ]
+    },
+    {
+      "condition_conflict": false,
+      "evidence_status": "code_equivalent_only",
+      "hashes_by_condition": {
+        "spot_long|20200401-20260821|sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9": [
           "sha256_47e39a8e570161a04c446a5dcc39bd51aaee21056f6155170f35e65ea125f6ef"
         ]
       },
@@ -2613,6 +3425,46 @@
       "remeasure_owed": [],
       "trade_hashes": [
         "sha256_47e39a8e570161a04c446a5dcc39bd51aaee21056f6155170f35e65ea125f6ef"
+      ]
+    },
+    {
+      "condition_conflict": false,
+      "evidence_status": "code_equivalent_only",
+      "hashes_by_condition": {
+        "spot_long|20200401-20260821|sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9": [
+          "sha256_b1ad69eab503b3f741e99eae9fd18628577321131e4088078142d04ef0d7a375"
+        ]
+      },
+      "identical_condition_disagreement": false,
+      "measured_members": 1,
+      "members": [
+        {
+          "canonical_file": "repos/webclinic017_strategies-freqtrade-/archived/DonchianBounce.py",
+          "condition": "spot_long|20200401-20260821|sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+          "full_backtest_status": "measured",
+          "repo": "webclinic017/strategies-freqtrade-",
+          "run_profile": "spot_long",
+          "strategy_id": "DonchianBounce",
+          "timerange": "20200401-20260821",
+          "trades": 32,
+          "trades_sha256": "sha256_b1ad69eab503b3f741e99eae9fd18628577321131e4088078142d04ef0d7a375"
+        },
+        {
+          "canonical_file": "repos/remiotore_ccxt-freqtrade/strategies/DonchianBounce_2.py",
+          "condition": "",
+          "full_backtest_status": "not_run",
+          "repo": "remiotore/ccxt-freqtrade",
+          "run_profile": "spot_long",
+          "strategy_id": "DonchianBounce_2",
+          "timerange": "",
+          "trades": "",
+          "trades_sha256": ""
+        }
+      ],
+      "normalized_ast_sha256": "sha256_9e6c749414ed3190cc76ae4de992974e728876a6cd8046681b707d98819ec2e1",
+      "remeasure_owed": [],
+      "trade_hashes": [
+        "sha256_b1ad69eab503b3f741e99eae9fd18628577321131e4088078142d04ef0d7a375"
       ]
     },
     {
@@ -2833,36 +3685,82 @@
     {
       "condition_conflict": false,
       "evidence_status": "code_equivalent_only",
-      "hashes_by_condition": {},
+      "hashes_by_condition": {
+        "spot_long|20200401-20260821|sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9": [
+          "sha256_fb9cce54459db0155b0bcacfe851c126e43500e81bca0ea722b261b7c457a73a"
+        ]
+      },
       "identical_condition_disagreement": false,
-      "measured_members": 0,
+      "measured_members": 1,
       "members": [
         {
-          "canonical_file": "repos/LazyPigPig_freqtrade-grid/tests/strategy/strats/strategy_test_v3.py",
-          "condition": "",
-          "full_backtest_status": "not_run",
-          "repo": "LazyPigPig/freqtrade-grid",
-          "run_profile": "futures_long",
-          "strategy_id": "StrategyTestV3",
-          "timerange": "",
-          "trades": "",
-          "trades_sha256": ""
+          "canonical_file": "repos/Juusseli_Trade/NotAnotherSMAOffsetStrategy.py",
+          "condition": "spot_long|20200401-20260821|sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+          "full_backtest_status": "measured",
+          "repo": "Juusseli/Trade",
+          "run_profile": "spot_long",
+          "strategy_id": "NotAnotherSMAOffsetStrategy",
+          "timerange": "20200401-20260821",
+          "trades": 700,
+          "trades_sha256": "sha256_fb9cce54459db0155b0bcacfe851c126e43500e81bca0ea722b261b7c457a73a"
         },
         {
-          "canonical_file": "repos/LazyPigPig_freqtrade-grid/tests/strategy/strats/strategy_test_v3.py",
+          "canonical_file": "repos/remiotore_ccxt-freqtrade/strategies/NotAnotherSMAOffsetStrategy_199.py",
           "condition": "",
           "full_backtest_status": "not_run",
-          "repo": "LazyPigPig/freqtrade-grid",
-          "run_profile": "futures_long",
-          "strategy_id": "StrategyTestV3Futures",
+          "repo": "remiotore/ccxt-freqtrade",
+          "run_profile": "spot_long",
+          "strategy_id": "NotAnotherSMAOffsetStrategy_199",
           "timerange": "",
           "trades": "",
           "trades_sha256": ""
         }
       ],
-      "normalized_ast_sha256": "sha256_aabc12d6f3569e9be6a07ef76f0a644daadb765fdbcc77f302824ee5ae7c4bd8",
+      "normalized_ast_sha256": "sha256_aeae8c2e029afabf9291594697006a3f44a81db80aba7a2d84f7b79aaef4f701",
       "remeasure_owed": [],
-      "trade_hashes": []
+      "trade_hashes": [
+        "sha256_fb9cce54459db0155b0bcacfe851c126e43500e81bca0ea722b261b7c457a73a"
+      ]
+    },
+    {
+      "condition_conflict": false,
+      "evidence_status": "code_equivalent_only",
+      "hashes_by_condition": {
+        "spot_long|20200401-20260821|sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9": [
+          "sha256_fcc6c84be9117b99dc03985015d03f1fce52f2712a40d73e16545a98fc4c9ae2"
+        ]
+      },
+      "identical_condition_disagreement": false,
+      "measured_members": 1,
+      "members": [
+        {
+          "canonical_file": "repos/webclinic017_strategies-freqtrade-/archived/TEMABounce.py",
+          "condition": "spot_long|20200401-20260821|sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+          "full_backtest_status": "measured",
+          "repo": "webclinic017/strategies-freqtrade-",
+          "run_profile": "spot_long",
+          "strategy_id": "TEMABounce",
+          "timerange": "20200401-20260821",
+          "trades": 10,
+          "trades_sha256": "sha256_fcc6c84be9117b99dc03985015d03f1fce52f2712a40d73e16545a98fc4c9ae2"
+        },
+        {
+          "canonical_file": "repos/remiotore_ccxt-freqtrade/strategies/TEMABounce_2.py",
+          "condition": "",
+          "full_backtest_status": "not_run",
+          "repo": "remiotore/ccxt-freqtrade",
+          "run_profile": "spot_long",
+          "strategy_id": "TEMABounce_2",
+          "timerange": "",
+          "trades": "",
+          "trades_sha256": ""
+        }
+      ],
+      "normalized_ast_sha256": "sha256_b41fe0d356ab38a8bf5edf11a76c8a2e03f45a2ec930b9d4dc9e713a14586100",
+      "remeasure_owed": [],
+      "trade_hashes": [
+        "sha256_fcc6c84be9117b99dc03985015d03f1fce52f2712a40d73e16545a98fc4c9ae2"
+      ]
     },
     {
       "condition_conflict": false,
@@ -2991,10 +3889,10 @@
       "measured_members": 0,
       "members": [
         {
-          "canonical_file": "repos/werkkrew_freqtrade-strategies/strategies/archived/Enchilada.py",
+          "canonical_file": "repos/remiotore_ccxt-freqtrade/strategies/Enchilada.py",
           "condition": "",
           "full_backtest_status": "not_run",
-          "repo": "werkkrew/freqtrade-strategies",
+          "repo": "remiotore/ccxt-freqtrade",
           "run_profile": "spot_long",
           "strategy_id": "Enchilada",
           "timerange": "",
@@ -3020,36 +3918,53 @@
     {
       "condition_conflict": false,
       "evidence_status": "code_equivalent_only",
-      "hashes_by_condition": {},
+      "hashes_by_condition": {
+        "spot_long|20200401-20260821|sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9": [
+          "sha256_ffd4a741e46ba9c634d20cb5d66da67cf7b483fd2ea2a7076c1aa47355cb0314"
+        ]
+      },
       "identical_condition_disagreement": false,
-      "measured_members": 0,
+      "measured_members": 1,
       "members": [
         {
-          "canonical_file": "repos/werkkrew_freqtrade-strategies/strategies/archived/Hacklemore.py",
-          "condition": "",
-          "full_backtest_status": "performance_limited",
-          "repo": "werkkrew/freqtrade-strategies",
+          "canonical_file": "repos/brookmiles_freqtrade-stuff/strategies/Obelisk_Ichimoku_Slow_v1_1.py",
+          "condition": "spot_long|20200401-20260821|sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+          "full_backtest_status": "measured",
+          "repo": "brookmiles/freqtrade-stuff",
           "run_profile": "spot_long",
-          "strategy_id": "Hacklemore",
+          "strategy_id": "Obelisk_Ichimoku_Slow_v1_1",
+          "timerange": "20200401-20260821",
+          "trades": 2896,
+          "trades_sha256": "sha256_ffd4a741e46ba9c634d20cb5d66da67cf7b483fd2ea2a7076c1aa47355cb0314"
+        },
+        {
+          "canonical_file": "repos/remiotore_ccxt-freqtrade/strategies/Obelisk_Ichimoku_Slow_v1_1_370.py",
+          "condition": "",
+          "full_backtest_status": "not_run",
+          "repo": "remiotore/ccxt-freqtrade",
+          "run_profile": "spot_long",
+          "strategy_id": "Obelisk_Ichimoku_Slow_v1_1_370",
           "timerange": "",
           "trades": "",
           "trades_sha256": ""
         },
         {
-          "canonical_file": "repos/werkkrew_freqtrade-strategies/strategies/archived/Hacklemore.py",
+          "canonical_file": "repos/remiotore_ccxt-freqtrade/strategies/Obelisk_Ichimoku_Slow_v1_1_674.py",
           "condition": "",
           "full_backtest_status": "not_run",
-          "repo": "werkkrew/freqtrade-strategies",
+          "repo": "remiotore/ccxt-freqtrade",
           "run_profile": "spot_long",
-          "strategy_id": "Hacklemore_Slow",
+          "strategy_id": "Obelisk_Ichimoku_Slow_v1_1_674",
           "timerange": "",
           "trades": "",
           "trades_sha256": ""
         }
       ],
-      "normalized_ast_sha256": "sha256_c3949e8d9c2f7f1b855654fbdb8a21e23dbafcd6b941eaf64294f47b31ad5abb",
+      "normalized_ast_sha256": "sha256_c2b5303fa7889c59d0c014d9e810302c2b90acae01eca01a686f1f816e5809df",
       "remeasure_owed": [],
-      "trade_hashes": []
+      "trade_hashes": [
+        "sha256_ffd4a741e46ba9c634d20cb5d66da67cf7b483fd2ea2a7076c1aa47355cb0314"
+      ]
     },
     {
       "condition_conflict": false,
@@ -3598,6 +4513,74 @@
       "measured_members": 0,
       "members": [
         {
+          "canonical_file": "repos/TheoBrigitte_freqtrade/strategies/notankai/NOTankAi_15.py",
+          "condition": "",
+          "full_backtest_status": "not_run",
+          "repo": "TheoBrigitte/freqtrade",
+          "run_profile": "futures_long",
+          "strategy_id": "NOTankAi_15",
+          "timerange": "",
+          "trades": "",
+          "trades_sha256": ""
+        },
+        {
+          "canonical_file": "repos/remiotore_ccxt-freqtrade/strategies/NOTankAi_15_2.py",
+          "condition": "",
+          "full_backtest_status": "not_run",
+          "repo": "remiotore/ccxt-freqtrade",
+          "run_profile": "futures_long",
+          "strategy_id": "NOTankAi_15_2",
+          "timerange": "",
+          "trades": "",
+          "trades_sha256": ""
+        }
+      ],
+      "normalized_ast_sha256": "sha256_e027ba65e598203d2e8b12e45779799011db607f41aec8ec5215099dc9ff0001",
+      "remeasure_owed": [],
+      "trade_hashes": []
+    },
+    {
+      "condition_conflict": false,
+      "evidence_status": "code_equivalent_only",
+      "hashes_by_condition": {},
+      "identical_condition_disagreement": false,
+      "measured_members": 0,
+      "members": [
+        {
+          "canonical_file": "repos/davidzr_freqtrade-strategies/strategies/flawless_lambo/flawless_lambo.py",
+          "condition": "",
+          "full_backtest_status": "not_run",
+          "repo": "davidzr/freqtrade-strategies",
+          "run_profile": "spot_long",
+          "strategy_id": "flawless_lambo",
+          "timerange": "",
+          "trades": "",
+          "trades_sha256": ""
+        },
+        {
+          "canonical_file": "repos/remiotore_ccxt-freqtrade/strategies/flawless_lambo_0.py",
+          "condition": "",
+          "full_backtest_status": "not_run",
+          "repo": "remiotore/ccxt-freqtrade",
+          "run_profile": "spot_long",
+          "strategy_id": "flawless_lambo_0",
+          "timerange": "",
+          "trades": "",
+          "trades_sha256": ""
+        }
+      ],
+      "normalized_ast_sha256": "sha256_e2be02eba7a325dd84e958cbf211e882465b6d5340b39ef61d6ee327e3e16105",
+      "remeasure_owed": [],
+      "trade_hashes": []
+    },
+    {
+      "condition_conflict": false,
+      "evidence_status": "code_equivalent_only",
+      "hashes_by_condition": {},
+      "identical_condition_disagreement": false,
+      "measured_members": 0,
+      "members": [
+        {
           "canonical_file": "repos/hamidreza07_freqai-strategy/startegy test/5/__NNPredict/NNPredict.py",
           "condition": "",
           "full_backtest_status": "not_run",
@@ -3852,6 +4835,74 @@
       "measured_members": 0,
       "members": [
         {
+          "canonical_file": "repos/remiotore_ccxt-freqtrade/strategies/file_loading_strategy_5.py",
+          "condition": "",
+          "full_backtest_status": "not_run",
+          "repo": "remiotore/ccxt-freqtrade",
+          "run_profile": "spot_long",
+          "strategy_id": "file_loading_strategy_5",
+          "timerange": "",
+          "trades": "",
+          "trades_sha256": ""
+        },
+        {
+          "canonical_file": "repos/keithorange_FreqTradeCustomOrders/file_loading_strategy.py",
+          "condition": "",
+          "full_backtest_status": "not_run",
+          "repo": "keithorange/FreqTradeCustomOrders",
+          "run_profile": "spot_long",
+          "strategy_id": "FileLoadingStrategy",
+          "timerange": "",
+          "trades": "",
+          "trades_sha256": ""
+        }
+      ],
+      "normalized_ast_sha256": "sha256_f3acbc818795fa5527c67f95f174e00fb35f52f81c94a5f5f43a9c1432481de1",
+      "remeasure_owed": [],
+      "trade_hashes": []
+    },
+    {
+      "condition_conflict": false,
+      "evidence_status": "code_equivalent_only",
+      "hashes_by_condition": {},
+      "identical_condition_disagreement": false,
+      "measured_members": 0,
+      "members": [
+        {
+          "canonical_file": "repos/remiotore_ccxt-freqtrade/strategies/BadoV1.py",
+          "condition": "",
+          "full_backtest_status": "not_run",
+          "repo": "remiotore/ccxt-freqtrade",
+          "run_profile": "futures_long_short",
+          "strategy_id": "BadoV1",
+          "timerange": "",
+          "trades": "",
+          "trades_sha256": ""
+        },
+        {
+          "canonical_file": "repos/remiotore_ccxt-freqtrade/strategies/LSlopeV8.py",
+          "condition": "",
+          "full_backtest_status": "not_run",
+          "repo": "remiotore/ccxt-freqtrade",
+          "run_profile": "futures_long_short",
+          "strategy_id": "SlopeV8",
+          "timerange": "",
+          "trades": "",
+          "trades_sha256": ""
+        }
+      ],
+      "normalized_ast_sha256": "sha256_f4d356c84747a82d7a88b9f7d94952fdf23ead707c4cf4ba198398f65029f626",
+      "remeasure_owed": [],
+      "trade_hashes": []
+    },
+    {
+      "condition_conflict": false,
+      "evidence_status": "code_equivalent_only",
+      "hashes_by_condition": {},
+      "identical_condition_disagreement": false,
+      "measured_members": 0,
+      "members": [
+        {
           "canonical_file": "repos/beanbocchi_money-generator/overlay/NFIX7Risk.py",
           "condition": "",
           "full_backtest_status": "not_run",
@@ -3875,6 +4926,40 @@
         }
       ],
       "normalized_ast_sha256": "sha256_f8eb30739282885d6bdc5e1ac8e8decdc33be13ef9bbf3d8df9cf61a71dbf073",
+      "remeasure_owed": [],
+      "trade_hashes": []
+    },
+    {
+      "condition_conflict": false,
+      "evidence_status": "code_equivalent_only",
+      "hashes_by_condition": {},
+      "identical_condition_disagreement": false,
+      "measured_members": 0,
+      "members": [
+        {
+          "canonical_file": "repos/MMR-19_freqtrade-strategies/strategies/Tesla4.py",
+          "condition": "",
+          "full_backtest_status": "not_run",
+          "repo": "MMR-19/freqtrade-strategies",
+          "run_profile": "spot_long",
+          "strategy_id": "tesla4",
+          "timerange": "",
+          "trades": "",
+          "trades_sha256": ""
+        },
+        {
+          "canonical_file": "repos/remiotore_ccxt-freqtrade/strategies/Tesla4_2.py",
+          "condition": "",
+          "full_backtest_status": "not_run",
+          "repo": "remiotore/ccxt-freqtrade",
+          "run_profile": "spot_long",
+          "strategy_id": "Tesla4_2",
+          "timerange": "",
+          "trades": "",
+          "trades_sha256": ""
+        }
+      ],
+      "normalized_ast_sha256": "sha256_fdabab0172f299ca5f50d2abd7b3cbc74e882164ae10cbf5c32096df53e8f554",
       "remeasure_owed": [],
       "trade_hashes": []
     }

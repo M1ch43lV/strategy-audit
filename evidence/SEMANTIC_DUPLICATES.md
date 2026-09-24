@@ -9,12 +9,27 @@ runtime config).  A group marked below as measured under different
 conditions names the members that owe a re-measure: their difference is
 not evidence about equivalence, and the window repeat is already theirs.
 
+## `sha256_09e230b4a0dbc36d17a0fc94ab5e0b6bc5ec5f6fa211561938231396193cc072` - code_equivalent_only
+
+| Strategy | Full backtest | Trades | Window | Trade hash |
+|---|---|---:|---|---|
+| `Ichimoku_v35` | `not_run` | - | - | `-` |
+| `Ichimoku_v35_SAR_1d` | `not_run` | - | - | `-` |
+
 ## `sha256_0b1a751b23c355859aed98b0cfc5341998c3666454fd99419f150123b485ecee` - code_equivalent_only
 
 | Strategy | Full backtest | Trades | Window | Trade hash |
 |---|---|---:|---|---|
 | `BBMod` | `measured` | 6101 | 20200401-20260821 | `sha256_158305dde7d52e116c4c7c5178d979a867e8293f68171207d9b55983437e797d` |
 | `BBMod1DCA` | `not_run` | - | - | `-` |
+| `BBMod_7` | `not_run` | - | - | `-` |
+
+## `sha256_0bf2edae7852d78b9feb82906c2339fe3ea5ae7aa74383a7ebe2fc3a71de7116` - code_equivalent_only
+
+| Strategy | Full backtest | Trades | Window | Trade hash |
+|---|---|---:|---|---|
+| `Macd` | `not_run` | - | - | `-` |
+| `macd` | `not_run` | - | - | `-` |
 
 ## `sha256_0cbd34f89d4aa0a2474ebd9e1ea22a497e395c85a71b3b4ffd1d791ba9783598` - code_equivalent_only
 
@@ -109,6 +124,20 @@ not evidence about equivalence, and the window repeat is already theirs.
 | `Schism2_BTC` | `measured` | 7133 | 20200401-20260821 | `sha256_5c92c5c4cad4ce02ce47dca922f14f06d8269c07fc9cbb68a5dbe45e61b83729` |
 | `Schism2_ETH` | `measured` | 8854 | 20200401-20260821 | `sha256_57045540e69987196a9b40430a109de650bf67dc085b300fa9281f365479ea42` |
 
+## `sha256_0fe633d9b092b29952bee515fc55b9a92e072953b9f76ed1fc5d518b258f2d1c` - code_equivalent_only
+
+| Strategy | Full backtest | Trades | Window | Trade hash |
+|---|---|---:|---|---|
+| `BTCEMABounce` | `not_run` | - | - | `-` |
+| `BTCEMABounce_2` | `not_run` | - | - | `-` |
+
+## `sha256_11ca646d75672c256b0ee4d8b0ddd2a6546446b660308e13974acf85567de16a` - code_equivalent_only
+
+| Strategy | Full backtest | Trades | Window | Trade hash |
+|---|---|---:|---|---|
+| `NotAnotherSMAOffsetStrategyX1` | `measured` | 483 | 20200401-20260821 | `sha256_9d1351de18cae5d075ae290e1c80a908cfab710713e478e637ff599cd85818dd` |
+| `NotAnotherSMAOffsetStrategyX1_176` | `not_run` | - | - | `-` |
+
 ## `sha256_1251db314cc4119a64a5de58d561a5b1ed336ea7fde858b419981bf6e3a892ac` - confirmed_same_trades
 
 | Strategy | Full backtest | Trades | Window | Trade hash |
@@ -123,6 +152,20 @@ not evidence about equivalence, and the window repeat is already theirs.
 | `ClucCrypROI` | `not_run` | - | - | `-` |
 | `ClucCrypROI_BTC` | `not_run` | - | - | `-` |
 | `ClucCrypROI_ETH` | `not_run` | - | - | `-` |
+
+## `sha256_1d2fea020bc49314f8268f021832878edec1fd57c90df383bb84bae068e1d657` - code_equivalent_only
+
+| Strategy | Full backtest | Trades | Window | Trade hash |
+|---|---|---:|---|---|
+| `IFutures` | `not_run` | - | - | `-` |
+| `interface_futures_binance` | `not_run` | - | - | `-` |
+
+## `sha256_216f6c42d576f8b659fbcb9120c8d5534f7cc21a74b07db27a7ef8cbe8260de2` - code_equivalent_only
+
+| Strategy | Full backtest | Trades | Window | Trade hash |
+|---|---|---:|---|---|
+| `ADX_PRICE_GRID_Strategy_Future_v7` | `not_run` | - | - | `-` |
+| `GRIDDMIPRICEStrategyFutureV7` | `resource_inconclusive` | - | - | `-` |
 
 ## `sha256_24e826bf3a953bb43f1974f8e40482c1a82b1b4219b0b59d56eb994450138ad3` - code_equivalent_only
 
@@ -149,6 +192,13 @@ not evidence about equivalence, and the window repeat is already theirs.
 |---|---|---:|---|---|
 | `HyperStra_GSN_SMAOnly` | `not_run` | - | - | `-` |
 | `HyperStra_SMAOnly` | `not_run` | - | - | `-` |
+
+## `sha256_28e4ff95d7efbe7c0fa22c71430275893506c69f59ac651c53090e1e14e2e9e0` - code_equivalent_only
+
+| Strategy | Full backtest | Trades | Window | Trade hash |
+|---|---|---:|---|---|
+| `BTCBigDrop` | `failed` | - | - | `-` |
+| `BTCBigDrop_2` | `not_run` | - | - | `-` |
 
 ## `sha256_2a86331a6ac229f4b3ddacae05fc2ea52b24bc13903a19376da2b5b4bc45fdd5` - code_equivalent_only
 
@@ -206,6 +256,20 @@ not evidence about equivalence, and the window repeat is already theirs.
 | `PCA_stochastic` | `not_run` | - | - | `-` |
 | `PCA_swing` | `not_run` | - | - | `-` |
 
+## `sha256_30e910db48ea9976ef55ba71bce575edcbf611453014882140a42015f67cb3ab` - code_equivalent_only
+
+| Strategy | Full backtest | Trades | Window | Trade hash |
+|---|---|---:|---|---|
+| `BTCMACDCross` | `not_run` | - | - | `-` |
+| `BTCMACDCross_2` | `not_run` | - | - | `-` |
+
+## `sha256_39047bcd3f10c6ad6fb32fef6165b441e165cc015c2cf0b5d9c465506ba8e5fa` - code_equivalent_only
+
+| Strategy | Full backtest | Trades | Window | Trade hash |
+|---|---|---:|---|---|
+| `ichi` | `measured` | 5078 | 20200401-20260821 | `sha256_7371d1277e9a90c180e967de915c861ffbccc1765d849bbe8476bb0fc41ca36a` |
+| `Ichis` | `not_run` | - | - | `-` |
+
 ## `sha256_3dc311837007edf3666a8a741c8803efa57d9314263a6a0f9064b145fe0108be` - code_equivalent_only
 
 | Strategy | Full backtest | Trades | Window | Trade hash |
@@ -228,6 +292,13 @@ not evidence about equivalence, and the window repeat is already theirs.
 | `ClucCrypSlow` | `not_run` | - | - | `-` |
 | `ClucCrypSlow_BTC` | `not_run` | - | - | `-` |
 | `ClucCrypSlow_ETH` | `not_run` | - | - | `-` |
+
+## `sha256_46d106704c24352d72a75668bb145184d74942a3d492d215bf4dd3b0b1068aa0` - code_equivalent_only
+
+| Strategy | Full backtest | Trades | Window | Trade hash |
+|---|---|---:|---|---|
+| `NotAnotherSMAOffSetStrategy_V2` | `not_run` | - | - | `-` |
+| `NotAnotherSMAOffSetStrategy_V2_577` | `not_run` | - | - | `-` |
 
 ## `sha256_486af07b99f373eebd0f1737f821a1ce79af77e0bcf6ce682c5d7d62f1dff7e1` - code_equivalent_only
 
@@ -256,6 +327,13 @@ not evidence about equivalence, and the window repeat is already theirs.
 | `Cluc5mDCA` | `not_run` | - | - | `-` |
 | `ClucHAnix_5m` | `measured` | 2288 | 20200401-20260821 | `sha256_c85f3537335d7aef47f01b8f7c91d9006b7089c097092ba57b703982fc09af35` |
 
+## `sha256_57872066063b121c70edddbf5dcc16c2e60416b0be0859d1f1493acf35652513` - code_equivalent_only
+
+| Strategy | Full backtest | Trades | Window | Trade hash |
+|---|---|---:|---|---|
+| `BTCNSeq` | `failed` | - | - | `-` |
+| `BTCNSeq_2` | `not_run` | - | - | `-` |
+
 ## `sha256_59259dd314c3b27e2091698c80f59241c4970a48ed8016f77d9352f3567dcfa9` - code_equivalent_only
 
 | Strategy | Full backtest | Trades | Window | Trade hash |
@@ -279,6 +357,13 @@ not evidence about equivalence, and the window repeat is already theirs.
 | `Solipsis4_BTC` | `not_run` | - | - | `-` |
 | `Solipsis4_ETH` | `not_run` | - | - | `-` |
 
+## `sha256_69c224571e715d6cd087bf8069252d93ae7e71909c88489890a7e6c4fc82ce94` - code_equivalent_only
+
+| Strategy | Full backtest | Trades | Window | Trade hash |
+|---|---|---:|---|---|
+| `BTCNDrop` | `failed` | - | - | `-` |
+| `BTCNDrop_2` | `not_run` | - | - | `-` |
+
 ## `sha256_6f1198746f53f125bb1ff5247af3ba92a517dea1fafab4920913a2f5fd154087` - code_equivalent_only
 
 | Strategy | Full backtest | Trades | Window | Trade hash |
@@ -286,6 +371,20 @@ not evidence about equivalence, and the window repeat is already theirs.
 | `Solipsis6` | `not_run` | - | - | `-` |
 | `Solipsis6_BTC` | `not_run` | - | - | `-` |
 | `Solipsis6_ETH` | `not_run` | - | - | `-` |
+
+## `sha256_6f48272317349e8314211f3ae00182266f4d19a2b067aa6258e4fcd1e3e2077d` - code_equivalent_only
+
+| Strategy | Full backtest | Trades | Window | Trade hash |
+|---|---|---:|---|---|
+| `BBBHold` | `not_run` | - | - | `-` |
+| `BBBHold_3` | `not_run` | - | - | `-` |
+
+## `sha256_74b7fe3cbae3221493c68e3894db46274039cb5fb1247795e387b3560db04948` - code_equivalent_only
+
+| Strategy | Full backtest | Trades | Window | Trade hash |
+|---|---|---:|---|---|
+| `Obelisk_Ichimoku_Slow_v1` | `measured` | 2896 | 20200401-20260821 | `sha256_ffd4a741e46ba9c634d20cb5d66da67cf7b483fd2ea2a7076c1aa47355cb0314` |
+| `Obelisk_Ichimoku_Slow_v1_671` | `not_run` | - | - | `-` |
 
 ## `sha256_74d380aa240d44b18aac4f7327769e0010db32e07c023215bea790216ea92a59` - code_equivalent_only
 
@@ -295,6 +394,20 @@ not evidence about equivalence, and the window repeat is already theirs.
 | `Schism4_BTC` | `not_run` | - | - | `-` |
 | `Schism4_ETH` | `not_run` | - | - | `-` |
 
+## `sha256_78ef8913eb9e0b52032f8980c1f07972ec948952a2bae9e8ed3b7c014b2506c3` - code_equivalent_only
+
+| Strategy | Full backtest | Trades | Window | Trade hash |
+|---|---|---:|---|---|
+| `NotAnotherSMAOffsetStrategyHOv3` | `measured` | 650 | 20200401-20260821 | `sha256_735f50ded7e9c8172dceff493ab6ad350a1a9ba2dc5927b31633e221aed459b1` |
+| `NotAnotherSMAOffsetStrategyHOv3_b` | `not_run` | - | - | `-` |
+
+## `sha256_7bc17f1faa514578cb1ea101a4f83ca08c7f29bf5fc195f38dda7898f879aafd` - code_equivalent_only
+
+| Strategy | Full backtest | Trades | Window | Trade hash |
+|---|---|---:|---|---|
+| `LongShortRangeTradingMachetesV1` | `not_run` | - | - | `-` |
+| `LongShortRangeTradingMachetesV1_1` | `not_run` | - | - | `-` |
+
 ## `sha256_7bd5a70b718e03ad86334c76dde9c1f3f07b85273360f8ee68f04debbf71bb0b` - code_equivalent_only
 
 | Strategy | Full backtest | Trades | Window | Trade hash |
@@ -303,11 +416,19 @@ not evidence about equivalence, and the window repeat is already theirs.
 | `Schism5_BTC` | `not_run` | - | - | `-` |
 | `Schism5_ETH` | `not_run` | - | - | `-` |
 
+## `sha256_81b7d172e6e6f885b4a776751a24323a0feba3d0c8fd18ded27fd42c177132f5` - code_equivalent_only
+
+| Strategy | Full backtest | Trades | Window | Trade hash |
+|---|---|---:|---|---|
+| `NotAnotherSMAOffsetStrategyHO` | `measured` | 695 | 20200401-20260821 | `sha256_bc4873f85f0eba4d48935f91272bf5c5dc51c321a7d4c5a2e66d9e525a556be3` |
+| `NotAnotherSMAOffsetStrategyHO_113` | `not_run` | - | - | `-` |
+
 ## `sha256_82a6db849b25eb2be2dc2a5b692c2ac5b5dceb49efb66e4f1ee2908a607fa13f` - code_equivalent_only
 
 | Strategy | Full backtest | Trades | Window | Trade hash |
 |---|---|---:|---|---|
 | `BinanceStream` | `not_run` | - | - | `-` |
+| `BinanceStream_209` | `not_run` | - | - | `-` |
 | `CombinedBinHAndClucV4WS` | `not_run` | - | - | `-` |
 | `OBOnlyWSv2bband` | `not_run` | - | - | `-` |
 
@@ -323,6 +444,13 @@ not evidence about equivalence, and the window repeat is already theirs.
 | `MinVarianceBasket` | `not_run` | - | - | `-` |
 | `MomentumBasket` | `not_run` | - | - | `-` |
 | `VolTargetBasket` | `not_run` | - | - | `-` |
+
+## `sha256_86aa50dd41bc678c07aaed535059e824525d3d506306b0b18fdf7000970ea8aa` - code_equivalent_only
+
+| Strategy | Full backtest | Trades | Window | Trade hash |
+|---|---|---:|---|---|
+| `StrategyTestV3` | `not_run` | - | - | `-` |
+| `StrategyTestV3Futures` | `not_run` | - | - | `-` |
 
 ## `sha256_8ab198b5f0af115441962cae49ace834f33fca76065b8376cbf3531c174287b1` - code_equivalent_only
 
@@ -358,6 +486,20 @@ not evidence about equivalence, and the window repeat is already theirs.
 | `ClucHAwerk_ETH` | `not_run` | - | - | `-` |
 | `ClucHAwerk_USD` | `not_run` | - | - | `-` |
 
+## `sha256_9147ec0cd807adb2fa4c2878c542ee2716d7fdda18fefe0ba18deb3576b6abc5` - code_equivalent_only
+
+| Strategy | Full backtest | Trades | Window | Trade hash |
+|---|---|---:|---|---|
+| `Hacklemore` | `performance_limited` | - | - | `-` |
+| `Hacklemore_Slow` | `not_run` | - | - | `-` |
+
+## `sha256_915d8724504c5d5f0bba976b47d8619cfb4f95e99eac1112627530ea55f272b3` - code_equivalent_only
+
+| Strategy | Full backtest | Trades | Window | Trade hash |
+|---|---|---:|---|---|
+| `Prediction_Strategy` | `not_run` | - | - | `-` |
+| `PS` | `not_run` | - | - | `-` |
+
 ## `sha256_92eeebcf73cb5b3b9c61e245f402cf988a97a022149144e3817ffb5dd488f3d5` - confirmed_same_trades
 
 | Strategy | Full backtest | Trades | Window | Trade hash |
@@ -366,6 +508,13 @@ not evidence about equivalence, and the window repeat is already theirs.
 | `SuperHV27_BTC` | `measured` | 4127 | 20200401-20260821 | `sha256_738002527f5439ff19ae02b36e3c03ad7ce7a34bfd90a3ed068dbc330ca8ff6e` |
 | `SuperHV27_ETH` | `measured` | 4127 | 20200401-20260821 | `sha256_738002527f5439ff19ae02b36e3c03ad7ce7a34bfd90a3ed068dbc330ca8ff6e` |
 
+## `sha256_939748c571bfdf613ef3a2fa4eb73cab8540393816353e06ea894915bed35c00` - code_equivalent_only
+
+| Strategy | Full backtest | Trades | Window | Trade hash |
+|---|---|---:|---|---|
+| `EMABounce` | `measured` | 45 | 20200401-20260821 | `sha256_96041d2d1daf26d4b8862b5a5be95776d8593aa22e73fa351a3bbf46b9e0ae8a` |
+| `EMABounce_2` | `not_run` | - | - | `-` |
+
 ## `sha256_9761bd11bb0d19621cc4b6fa657bf9012b8dff70d000896bf09ac13230633699` - code_equivalent_only
 
 | Strategy | Full backtest | Trades | Window | Trade hash |
@@ -373,12 +522,26 @@ not evidence about equivalence, and the window repeat is already theirs.
 | `Cluc4werk` | `measured` | 3988 | 20200301-20260821 | `sha256_6862f8142b5a0fecd0580c2d3e3dffa13f1fe5ff55ca047bbf8170686e415494` |
 | `Cluc4werk_ETH` | `not_run` | - | - | `-` |
 
+## `sha256_9b7cc98267b09a623e56b0e581a72bdb9892a1ec2f4ad376e48e40a1c13f8f03` - code_equivalent_only
+
+| Strategy | Full backtest | Trades | Window | Trade hash |
+|---|---|---:|---|---|
+| `CryptoFrog` | `measured` | 8620 | 20200401-20260821 | `sha256_69a52959ade9fcc6a42ccad15621b16338c781926cb1332395a8169d209323e8` |
+| `CryptoFrog_205` | `not_run` | - | - | `-` |
+
 ## `sha256_9e470b22ff859bb019d33311dbd82f617389746464ec5288a8403f66be3ceeb8` - code_equivalent_only
 
 | Strategy | Full backtest | Trades | Window | Trade hash |
 |---|---|---:|---|---|
 | `Lateralus` | `measured` | 2936 | 20200401-20260821 | `sha256_47e39a8e570161a04c446a5dcc39bd51aaee21056f6155170f35e65ea125f6ef` |
 | `Lateralus_Slow` | `not_run` | - | - | `-` |
+
+## `sha256_9e6c749414ed3190cc76ae4de992974e728876a6cd8046681b707d98819ec2e1` - code_equivalent_only
+
+| Strategy | Full backtest | Trades | Window | Trade hash |
+|---|---|---:|---|---|
+| `DonchianBounce` | `measured` | 32 | 20200401-20260821 | `sha256_b1ad69eab503b3f741e99eae9fd18628577321131e4088078142d04ef0d7a375` |
+| `DonchianBounce_2` | `not_run` | - | - | `-` |
 
 ## `sha256_a0d2c464e0dcd422ea3b71dd96adb61d94e10f8867995afea69a001499832301` - code_equivalent_only
 
@@ -418,12 +581,19 @@ not evidence about equivalence, and the window repeat is already theirs.
 | `Solipsis5_BTC` | `not_run` | - | - | `-` |
 | `Solipsis5_ETH` | `not_run` | - | - | `-` |
 
-## `sha256_aabc12d6f3569e9be6a07ef76f0a644daadb765fdbcc77f302824ee5ae7c4bd8` - code_equivalent_only
+## `sha256_aeae8c2e029afabf9291594697006a3f44a81db80aba7a2d84f7b79aaef4f701` - code_equivalent_only
 
 | Strategy | Full backtest | Trades | Window | Trade hash |
 |---|---|---:|---|---|
-| `StrategyTestV3` | `not_run` | - | - | `-` |
-| `StrategyTestV3Futures` | `not_run` | - | - | `-` |
+| `NotAnotherSMAOffsetStrategy` | `measured` | 700 | 20200401-20260821 | `sha256_fb9cce54459db0155b0bcacfe851c126e43500e81bca0ea722b261b7c457a73a` |
+| `NotAnotherSMAOffsetStrategy_199` | `not_run` | - | - | `-` |
+
+## `sha256_b41fe0d356ab38a8bf5edf11a76c8a2e03f45a2ec930b9d4dc9e713a14586100` - code_equivalent_only
+
+| Strategy | Full backtest | Trades | Window | Trade hash |
+|---|---|---:|---|---|
+| `TEMABounce` | `measured` | 10 | 20200401-20260821 | `sha256_fcc6c84be9117b99dc03985015d03f1fce52f2712a40d73e16545a98fc4c9ae2` |
+| `TEMABounce_2` | `not_run` | - | - | `-` |
 
 ## `sha256_b5a1bebdf52e52189811b4871dae272aa79b9c696efbcfe59fcf11ea9f9822ad` - code_equivalent_only
 
@@ -454,12 +624,13 @@ not evidence about equivalence, and the window repeat is already theirs.
 | `Enchilada` | `not_run` | - | - | `-` |
 | `Enchilada_Slow` | `not_run` | - | - | `-` |
 
-## `sha256_c3949e8d9c2f7f1b855654fbdb8a21e23dbafcd6b941eaf64294f47b31ad5abb` - code_equivalent_only
+## `sha256_c2b5303fa7889c59d0c014d9e810302c2b90acae01eca01a686f1f816e5809df` - code_equivalent_only
 
 | Strategy | Full backtest | Trades | Window | Trade hash |
 |---|---|---:|---|---|
-| `Hacklemore` | `performance_limited` | - | - | `-` |
-| `Hacklemore_Slow` | `not_run` | - | - | `-` |
+| `Obelisk_Ichimoku_Slow_v1_1` | `measured` | 2896 | 20200401-20260821 | `sha256_ffd4a741e46ba9c634d20cb5d66da67cf7b483fd2ea2a7076c1aa47355cb0314` |
+| `Obelisk_Ichimoku_Slow_v1_1_370` | `not_run` | - | - | `-` |
+| `Obelisk_Ichimoku_Slow_v1_1_674` | `not_run` | - | - | `-` |
 
 ## `sha256_c51c299e80748a7b2122c752ee3957d5f7e78d508502a472dbde0feb212a085e` - code_equivalent_only
 
@@ -532,6 +703,20 @@ not evidence about equivalence, and the window repeat is already theirs.
 | `ViNSellRiseCorrFall` | `not_run` | - | - | `-` |
 | `ViNSellRiseFall` | `not_run` | - | - | `-` |
 
+## `sha256_e027ba65e598203d2e8b12e45779799011db607f41aec8ec5215099dc9ff0001` - code_equivalent_only
+
+| Strategy | Full backtest | Trades | Window | Trade hash |
+|---|---|---:|---|---|
+| `NOTankAi_15` | `not_run` | - | - | `-` |
+| `NOTankAi_15_2` | `not_run` | - | - | `-` |
+
+## `sha256_e2be02eba7a325dd84e958cbf211e882465b6d5340b39ef61d6ee327e3e16105` - code_equivalent_only
+
+| Strategy | Full backtest | Trades | Window | Trade hash |
+|---|---|---:|---|---|
+| `flawless_lambo` | `not_run` | - | - | `-` |
+| `flawless_lambo_0` | `not_run` | - | - | `-` |
+
 ## `sha256_edbc7cf1bec447a06d47948402c3ccab4cc6cbd37cdc68ffd31751a800e4f997` - code_equivalent_only
 
 | Strategy | Full backtest | Trades | Window | Trade hash |
@@ -559,10 +744,31 @@ not evidence about equivalence, and the window repeat is already theirs.
 | `NNPredict_Wavenet` | `not_run` | - | - | `-` |
 | `NNPredict_Wavenet2` | `not_run` | - | - | `-` |
 
+## `sha256_f3acbc818795fa5527c67f95f174e00fb35f52f81c94a5f5f43a9c1432481de1` - code_equivalent_only
+
+| Strategy | Full backtest | Trades | Window | Trade hash |
+|---|---|---:|---|---|
+| `file_loading_strategy_5` | `not_run` | - | - | `-` |
+| `FileLoadingStrategy` | `not_run` | - | - | `-` |
+
+## `sha256_f4d356c84747a82d7a88b9f7d94952fdf23ead707c4cf4ba198398f65029f626` - code_equivalent_only
+
+| Strategy | Full backtest | Trades | Window | Trade hash |
+|---|---|---:|---|---|
+| `BadoV1` | `not_run` | - | - | `-` |
+| `SlopeV8` | `not_run` | - | - | `-` |
+
 ## `sha256_f8eb30739282885d6bdc5e1ac8e8decdc33be13ef9bbf3d8df9cf61a71dbf073` - code_equivalent_only
 
 | Strategy | Full backtest | Trades | Window | Trade hash |
 |---|---|---:|---|---|
 | `NFIX7Risk` | `not_run` | - | - | `-` |
 | `NostalgiaForInfinityX7` | `not_run` | - | - | `-` |
+
+## `sha256_fdabab0172f299ca5f50d2abd7b3cbc74e882164ae10cbf5c32096df53e8f554` - code_equivalent_only
+
+| Strategy | Full backtest | Trades | Window | Trade hash |
+|---|---|---:|---|---|
+| `tesla4` | `not_run` | - | - | `-` |
+| `Tesla4_2` | `not_run` | - | - | `-` |
 

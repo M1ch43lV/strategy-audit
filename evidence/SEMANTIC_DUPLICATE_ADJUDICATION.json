@@ -233,6 +233,38 @@
       "trades_sha256": ""
     },
     {
+      "canonical_representative": "BTCBigDrop",
+      "decision": "excluded_duplicate_implementation",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "normalized_ast_sha256": "sha256_28e4ff95d7efbe7c0fa22c71430275893506c69f59ac651c53090e1e14e2e9e0",
+      "strategy_id": "BTCBigDrop_2",
+      "trades_sha256": ""
+    },
+    {
+      "canonical_representative": "BTCEMABounce",
+      "decision": "excluded_duplicate_implementation",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "normalized_ast_sha256": "sha256_0fe633d9b092b29952bee515fc55b9a92e072953b9f76ed1fc5d518b258f2d1c",
+      "strategy_id": "BTCEMABounce_2",
+      "trades_sha256": ""
+    },
+    {
+      "canonical_representative": "BTCNDrop",
+      "decision": "excluded_duplicate_implementation",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "normalized_ast_sha256": "sha256_69c224571e715d6cd087bf8069252d93ae7e71909c88489890a7e6c4fc82ce94",
+      "strategy_id": "BTCNDrop_2",
+      "trades_sha256": ""
+    },
+    {
+      "canonical_representative": "BTCNSeq",
+      "decision": "excluded_duplicate_implementation",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "normalized_ast_sha256": "sha256_57872066063b121c70edddbf5dcc16c2e60416b0be0859d1f1493acf35652513",
+      "strategy_id": "BTCNSeq_2",
+      "trades_sha256": ""
+    },
+    {
       "canonical_representative": "Cluc4werk",
       "decision": "excluded_duplicate_implementation",
       "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
@@ -369,6 +401,14 @@
       "trades_sha256": ""
     },
     {
+      "canonical_representative": "EMABounce",
+      "decision": "excluded_duplicate_implementation",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "normalized_ast_sha256": "sha256_939748c571bfdf613ef3a2fa4eb73cab8540393816353e06ea894915bed35c00",
+      "strategy_id": "EMABounce_2",
+      "trades_sha256": ""
+    },
+    {
       "canonical_representative": "Enchilada",
       "decision": "excluded_duplicate_implementation",
       "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
@@ -385,10 +425,18 @@
       "trades_sha256": "sha256_a0e5fc882c01d6730096b9d78ba77b4ec3d41e42c1ddf517d4d6200f86380f13"
     },
     {
+      "canonical_representative": "ADX_PRICE_GRID_Strategy_Future_v7",
+      "decision": "excluded_duplicate_implementation",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "normalized_ast_sha256": "sha256_216f6c42d576f8b659fbcb9120c8d5534f7cc21a74b07db27a7ef8cbe8260de2",
+      "strategy_id": "GRIDDMIPRICEStrategyFutureV7",
+      "trades_sha256": ""
+    },
+    {
       "canonical_representative": "Hacklemore",
       "decision": "excluded_duplicate_implementation",
       "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
-      "normalized_ast_sha256": "sha256_c3949e8d9c2f7f1b855654fbdb8a21e23dbafcd6b941eaf64294f47b31ad5abb",
+      "normalized_ast_sha256": "sha256_9147ec0cd807adb2fa4c2878c542ee2716d7fdda18fefe0ba18deb3576b6abc5",
       "strategy_id": "Hacklemore_Slow",
       "trades_sha256": ""
     },
@@ -398,6 +446,22 @@
       "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
       "normalized_ast_sha256": "sha256_25b5c4a90ba8f1703cc6e539a56cd037a57303e554820dc11556f943ebb7d613",
       "strategy_id": "HyperStra_GSN_SMAOnly",
+      "trades_sha256": ""
+    },
+    {
+      "canonical_representative": "ichi",
+      "decision": "excluded_duplicate_implementation",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "normalized_ast_sha256": "sha256_39047bcd3f10c6ad6fb32fef6165b441e165cc015c2cf0b5d9c465506ba8e5fa",
+      "strategy_id": "Ichis",
+      "trades_sha256": ""
+    },
+    {
+      "canonical_representative": "interface_futures_binance",
+      "decision": "excluded_duplicate_implementation",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "normalized_ast_sha256": "sha256_1d2fea020bc49314f8268f021832878edec1fd57c90df383bb84bae068e1d657",
+      "strategy_id": "IFutures",
       "trades_sha256": ""
     },
     {
@@ -633,6 +697,14 @@
       "trades_sha256": ""
     },
     {
+      "canonical_representative": "BadoV1",
+      "decision": "excluded_duplicate_implementation",
+      "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
+      "normalized_ast_sha256": "sha256_f4d356c84747a82d7a88b9f7d94952fdf23ead707c4cf4ba198398f65029f626",
+      "strategy_id": "SlopeV8",
+      "trades_sha256": ""
+    },
+    {
       "canonical_representative": "SMAOffsetProtectOptV1_kkeue_20210619",
       "decision": "excluded_duplicate_implementation",
       "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
@@ -660,7 +732,7 @@
       "canonical_representative": "StrategyTestV3",
       "decision": "excluded_duplicate_implementation",
       "evidence_rule": "normalized_code_match_no_config_overlay_either_side_v1",
-      "normalized_ast_sha256": "sha256_aabc12d6f3569e9be6a07ef76f0a644daadb765fdbcc77f302824ee5ae7c4bd8",
+      "normalized_ast_sha256": "sha256_86aa50dd41bc678c07aaed535059e824525d3d506306b0b18fdf7000970ea8aa",
       "strategy_id": "StrategyTestV3Futures",
       "trades_sha256": ""
     },

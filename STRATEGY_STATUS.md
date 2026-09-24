@@ -1,6 +1,6 @@
-# Strategy status - current evidence for all 1357 rows
+# Strategy status - current evidence for all 3230 rows
 
-**Generated 2026-09-23 22:04:08 by `evidence/strategy_status.py`.** Regenerate it rather than editing it.
+**Generated 2026-09-24 06:38:51 by `evidence/strategy_status.py`.** Regenerate it rather than editing it.
 
 **This table decides nothing.** Admission happens only in
 `evidence/eligibility_expansion_adjudicate.py`; this is a reading of what has
@@ -39,14 +39,14 @@ reason to skip a check.
 records, so `last_tested_at` is recovered from what they leave behind:
 a result archive's filename, which carries the run's own clock, or
 failing that a log file's modification time, which is close but is the
-file's time and is labelled `log_mtime` for that reason. 100 of 1357 rows
+file's time and is labelled `log_mtime` for that reason. 1973 of 3230 rows
 have neither and are left empty rather than given an invented time.
 
 ## Measurement
 
 | | Strategies |
 |---|---:|
-| in the manifest | 1357 |
+| in the manifest | 3230 |
 | measured at all | 1254 |
 | produced trades | 1019 |
 | carrying a run time | 1257 |
@@ -55,11 +55,12 @@ have neither and are left empty rather than given an invented time.
 
 | Cohort | Strategies |
 |---|---:|
+| `not_tested_in_current_runtime` | 1851 |
 | `E1_expanded` | 703 |
-| `excluded` | 546 |
+| `excluded` | 555 |
 | `pending` | 42 |
+| `not_a_strategy` | 36 |
 | `too_few_trades` | 34 |
-| `not_a_strategy` | 23 |
 | `exclusion_unconfirmed` | 8 |
 | `convergence_candidate` | 1 |
 
@@ -67,49 +68,54 @@ have neither and are left empty rather than given an invented time.
 
 Both read from the strategy's own source by `strategy_classification.py`,
 not measured - see that module's docstring for the marker table and its
-limits. `timeframe` is blank on 46 rows the source does not state it for. `strategy_type` can be more than one label - most rows carry two or three - and is blank on 0 rows where no marker matched at all, so its counts below add up to more than 1357.
+limits. `timeframe` is blank on 165 rows the source does not state it for. `strategy_type` can be more than one label - most rows carry two or three - and is blank on 0 rows where no marker matched at all, so its counts below add up to more than 3230.
 
 ### Timeframe
 
 | Timeframe | Strategies |
 |---|---:|
-| `5m` | 779 |
-| `1h` | 193 |
-| `15m` | 111 |
-| `1m` | 100 |
-| `4h` | 58 |
-| `1d` | 34 |
-| `3m` | 18 |
-| `30m` | 9 |
-| `6h` | 3 |
-| `12h` | 2 |
+| `5m` | 1814 |
+| `1h` | 392 |
+| `15m` | 292 |
+| `1m` | 226 |
+| `4h` | 150 |
+| `1d` | 77 |
+| `30m` | 47 |
+| `3m` | 30 |
+| `12h` | 16 |
+| `6h` | 5 |
+| `1w` | 4 |
+| `8h` | 3 |
+| `5t` | 2 |
 | `2h` | 2 |
+| `timeframe_value` | 2 |
+| `1t` | 1 |
 | `5h` | 1 |
-| `1w` | 1 |
+| `10m` | 1 |
 
 ### Signal family
 
 | Type | Strategies |
 |---|---:|
-| `scalping` | 657 |
-| `mean_reversion` | 575 |
-| `momentum` | 566 |
-| `trend_following` | 314 |
-| `volatility_breakout` | 251 |
-| `ml_ai` | 204 |
-| `grid_dca` | 141 |
-| `volume_based` | 139 |
-| `unclassified` | 35 |
-| `not_applicable` | 23 |
-| `always_in_market` | 18 |
-| `stat_arb` | 12 |
+| `scalping` | 1825 |
+| `mean_reversion` | 1598 |
+| `momentum` | 1505 |
+| `trend_following` | 747 |
+| `volatility_breakout` | 661 |
+| `volume_based` | 399 |
+| `grid_dca` | 271 |
+| `ml_ai` | 247 |
+| `unclassified` | 78 |
+| `not_applicable` | 36 |
+| `always_in_market` | 20 |
+| `stat_arb` | 18 |
+| `multi_indicator` | 8 |
+| `ensemble` | 5 |
+| `pattern_based` | 5 |
 | `portfolio_rotation` | 4 |
-| `ensemble` | 4 |
 | `cycle_based` | 4 |
-| `multi_indicator` | 3 |
-| `pattern_based` | 3 |
-| `time_based` | 2 |
-| `external_signal` | 1 |
+| `time_based` | 3 |
+| `external_signal` | 2 |
 | `no_entry_signal` | 1 |
 | `arbitrage` | 1 |
 
@@ -130,16 +136,16 @@ preregistration OPEN item 6; the amendment records it.
 
 | Phase | Market-side rule | Strategies predicted |
 |---|---|---:|
-| `bear_trend` | `coin_adx >= 25 and coin_minus_di > coin_plus_di` | 78 |
-| `bull_trend` | `coin_adx >= 25 and coin_plus_di > coin_minus_di` | 678 |
-| `high_vol_shock` | `coin_realized_vol_30d >= 1.291, whatever the DMI state` | 97 |
-| `range_choppy` | `coin_adx < 20 and coin_realized_vol_30d >= 0.623` | 424 |
-| `range_quiet` | `coin_adx < 20 and coin_realized_vol_30d < 0.623` | 375 |
-| `transition` | `20 <= coin_adx < 25` | 78 |
+| `bear_trend` | `coin_adx >= 25 and coin_minus_di > coin_plus_di` | 219 |
+| `bull_trend` | `coin_adx >= 25 and coin_plus_di > coin_minus_di` | 1828 |
+| `high_vol_shock` | `coin_realized_vol_30d >= 1.291, whatever the DMI state` | 507 |
+| `range_choppy` | `coin_adx < 20 and coin_realized_vol_30d >= 0.623` | 1496 |
+| `range_quiet` | `coin_adx < 20 and coin_realized_vol_30d < 0.623` | 1404 |
+| `transition` | `20 <= coin_adx < 25` | 488 |
 
-A row may carry more than one phase, and 331 carry none: 209 are model-driven, where the indicators are features of a model and say nothing about which phase it favours, and 122 name no phase-bearing marker at all. Both are left blank rather than given an invented prior - a blank is itself testable, as the prediction that the row is phase-neutral.
+A row may carry more than one phase, and 504 carry none: 251 are model-driven, where the indicators are features of a model and say nothing about which phase it favours, and 253 name no phase-bearing marker at all. Both are left blank rather than given an invented prior - a blank is itself testable, as the prediction that the row is phase-neutral.
 
-`bear_trend` is rare by construction: 1201 of 1357 rows are long-only and a long-only strategy cannot earn in a sustained downtrend, so the direction gate removes it whatever the indicators suggest.
+`bear_trend` is rare by construction: 2844 of 3230 rows are long-only and a long-only strategy cannot earn in a sustained downtrend, so the direction gate removes it whatever the indicators suggest.
 
 ## Test duration
 
@@ -149,7 +155,7 @@ look-ahead/recursion pair, a later native look-ahead
 re-measurement, the warm-up ladder, a wave B recursion attempt, and
 the eight-pair full-window backtest actually ran for it - see
 `test_duration` in evidence/strategy_status.py for why this is a sum rather
-than a pick-one-source figure. 85 of 1357 rows carry no stamp at all,
+than a pick-one-source figure. 1958 of 3230 rows carry no stamp at all,
 either because nothing has run yet or because no runner on that
 path records its own time.
 
@@ -297,7 +303,7 @@ carries the command it was produced by. **`recorded`** is the argv that
 actually ran. **`reconstructed`** is derived from the run profile and
 the window, because nothing stored the call before 2026-09-01; it is
 labelled because a reconstruction is a different claim from a
-recording. 2534 of 3984 commands are recorded so far, and every new run
+recording. 2534 of 7730 commands are recorded so far, and every new run
 adds one.
 
 There is one column per gate, not one per row. A row can carry three
@@ -2749,7 +2755,7 @@ The calls behind each, one per gate:
   ```
 - `Hacklemore`
   ```
-  backtest   [reconstructed] freqtrade backtesting --config user_data/config.json --strategy Hacklemore --strategy-path repos/werkkrew_freqtrade-strategies/strategies/archived --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/Hacklemore --cache none
+  backtest   [reconstructed] freqtrade backtesting --config user_data/config.json --strategy Hacklemore --strategy-path repos/remiotore_ccxt-freqtrade/strategies --timerange 20200301-20200401 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/Hacklemore --cache none
   lookahead  [recorded] freqtrade lookahead-analysis --config user_data/profile_configs/Hacklemore_gate.json --strategy Hacklemore --strategy-path user_data/profile_bias_strategies/Hacklemore --timerange 20190101-20190401 --no-color
   recursive  [recorded] freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy Hacklemore --strategy-path user_data/profile_bias_strategies/Hacklemore --timerange 20190101-20190401 --no-color --startup-candle 288 576 2016 4032
   ```
@@ -5277,6 +5283,1869 @@ neither a pass nor a fail.
 `ViNBuyVws`, `degen`, `el_extrema_RL`, `epretrace`
 `haGradient`, `tbedit`
 
+## Attempted, no measurement - 1851 strategies
+
+No run under the current pipeline is recorded for these. The
+original corpus sweep did attempt every row, but it ran in an
+environment that did not establish the preconditions this audit
+requires - which is the whole reason the pre-checks are being
+redone - so its outcome is a hint about what to expect and never a
+verdict. Where such a hint exists it is shown in brackets.
+
+| Strategy | Wave | Status |
+|---|---|---|
+| `ADXDM_2` | `-` | `no run under the current runtime` |
+| `ADXMomentumOtimizeHyperOpt` | `-` | `no run under the current runtime` |
+| `ADXMomentum_3` | `-` | `no run under the current runtime` |
+| `ADXMomentum_4` | `-` | `no run under the current runtime` |
+| `ADXMomentum_416` | `-` | `no run under the current runtime` |
+| `ADXMomentum_430` | `-` | `no run under the current runtime` |
+| `ADXStochastic` | `-` | `no run under the current runtime` |
+| `ADX_Boll_Strategy` | `-` | `no run under the current runtime` |
+| `ADX_PRICE_GRID_Strategy_Future_v7` | `-` | `no run under the current runtime` |
+| `ADX_RSI` | `-` | `no run under the current runtime` |
+| `AEMA` | `-` | `no run under the current runtime` |
+| `ASDTSRockwellTrading_2` | `-` | `no run under the current runtime` |
+| `ASDTSRockwellTrading_3` | `-` | `no run under the current runtime` |
+| `ASDTSRockwellTrading_97` | `-` | `no run under the current runtime` |
+| `AdaptiveStrategy` | `-` | `no run under the current runtime` |
+| `AdvancedFuturesStrategy` | `-` | `no run under the current runtime` |
+| `AdvancedMultiIndicatorStrategy` | `-` | `no run under the current runtime` |
+| `AdvancedMultiIndicatorStrategy2` | `-` | `no run under the current runtime` |
+| `AdvancedMultiStrategy` | `-` | `no run under the current runtime` |
+| `AdvancedScalpingStrategy` | `-` | `no run under the current runtime` |
+| `Advanced_Ichimoku` | `-` | `no run under the current runtime` |
+| `Advanced_Ichimoku_4` | `-` | `no run under the current runtime` |
+| `AdxSmasSCSL` | `-` | `no run under the current runtime` |
+| `AdxSmasS_v2` | `-` | `no run under the current runtime` |
+| `AdxSmasS_v3` | `-` | `no run under the current runtime` |
+| `AdxSmasS_v4` | `-` | `no run under the current runtime` |
+| `AdxSmasS_v5` | `-` | `no run under the current runtime` |
+| `AdxSmasS_v6` | `-` | `no run under the current runtime` |
+| `AdxSmasS_v7` | `-` | `no run under the current runtime` |
+| `AdxSmasS_v7_long_and_short` | `-` | `no run under the current runtime` |
+| `AdxSmas_2` | `-` | `no run under the current runtime` |
+| `AdxSmas_213` | `-` | `no run under the current runtime` |
+| `AdxSmas_3` | `-` | `no run under the current runtime` |
+| `AdxSmas_850` | `-` | `no run under the current runtime` |
+| `AlgoXStrategy` | `-` | `no run under the current runtime` |
+| `AllCandlestickPatternsStrategyHyperoptv7` | `-` | `no run under the current runtime` |
+| `AlphaMA` | `-` | `no run under the current runtime` |
+| `AlphaMomentumStrategy` | `-` | `no run under the current runtime` |
+| `AlphaTrend` | `-` | `no run under the current runtime` |
+| `AltcoinBreakoutStrategy` | `-` | `no run under the current runtime` |
+| `AlvinchenV1` | `-` | `no run under the current runtime` |
+| `AnomalyDetectorv2` | `-` | `no run under the current runtime` |
+| `AnomalyDetectorv2_2` | `-` | `no run under the current runtime` |
+| `Apollo11_162` | `-` | `no run under the current runtime` |
+| `Apollo13` | `-` | `no run under the current runtime` |
+| `Apoxkurd_1` | `-` | `no run under the current runtime` |
+| `Aquma1` | `-` | `no run under the current runtime` |
+| `Aquma7` | `-` | `no run under the current runtime` |
+| `AverageStrategyMario69` | `-` | `no run under the current runtime` |
+| `AverageStrategy_2` | `-` | `no run under the current runtime` |
+| `AverageStrategy_3` | `-` | `no run under the current runtime` |
+| `AverageStrategy_391` | `-` | `no run under the current runtime` |
+| `AwesomeMacd_131` | `-` | `no run under the current runtime` |
+| `AwesomeMacd_2` | `-` | `no run under the current runtime` |
+| `AwesomeMacd_215` | `-` | `no run under the current runtime` |
+| `AwesomeMacd_3` | `-` | `no run under the current runtime` |
+| `AwesomeStrategy` | `-` | `no run under the current runtime` |
+| `AwesomeStrategy20240418` | `-` | `no run under the current runtime` |
+| `BATS_contest` | `-` | `no run under the current runtime` |
+| `BBBHold_2` | `-` | `no run under the current runtime` |
+| `BBBHold_3` | `-` | `no run under the current runtime` |
+| `BBL3H1Strategy` | `-` | `no run under the current runtime` |
+| `BBMod1_0` | `-` | `no run under the current runtime` |
+| `BBMod1_2` | `-` | `no run under the current runtime` |
+| `BBMod1_3` | `-` | `no run under the current runtime` |
+| `BBModCE` | `-` | `no run under the current runtime` |
+| `BBModCEV1` | `-` | `no run under the current runtime` |
+| `BBModCE_2` | `-` | `no run under the current runtime` |
+| `BBModCE_3` | `-` | `no run under the current runtime` |
+| `BBModCE_5` | `-` | `no run under the current runtime` |
+| `BBMod_0` | `-` | `no run under the current runtime` |
+| `BBMod_1` | `-` | `no run under the current runtime` |
+| `BBMod_2` | `-` | `no run under the current runtime` |
+| `BBMod_3` | `-` | `no run under the current runtime` |
+| `BBMod_4` | `-` | `no run under the current runtime` |
+| `BBMod_5` | `-` | `no run under the current runtime` |
+| `BBMod_6` | `-` | `no run under the current runtime` |
+| `BBMod_7` | `-` | `no run under the current runtime` |
+| `BBRSIHyperStrategy` | `-` | `no run under the current runtime` |
+| `BBRSILeveraged` | `-` | `no run under the current runtime` |
+| `BBRSIStochHyperStrategy` | `-` | `no run under the current runtime` |
+| `BBRSITV_239` | `-` | `no run under the current runtime` |
+| `BBRSITV_542` | `-` | `no run under the current runtime` |
+| `BBRSI_648` | `-` | `no run under the current runtime` |
+| `BBRSI_815` | `-` | `no run under the current runtime` |
+| `BB_DCAv2` | `-` | `no run under the current runtime` |
+| `BB_RPB` | `-` | `no run under the current runtime` |
+| `BB_RPB_3c_dca` | `-` | `no run under the current runtime` |
+| `BB_RPB_TSL_140` | `-` | `no run under the current runtime` |
+| `BB_RPB_TSL_221` | `-` | `no run under the current runtime` |
+| `BB_RPB_TSL_2_2` | `-` | `no run under the current runtime` |
+| `BB_RPB_TSL_3` | `-` | `no run under the current runtime` |
+| `BB_RPB_TSL_4` | `-` | `no run under the current runtime` |
+| `BB_RPB_TSL_5` | `-` | `no run under the current runtime` |
+| `BB_RPB_TSL_600` | `-` | `no run under the current runtime` |
+| `BB_RPB_TSL_BI_2` | `-` | `no run under the current runtime` |
+| `BB_RPB_TSL_BI_3` | `-` | `no run under the current runtime` |
+| `BB_RPB_TSL_BI_v4_EWO2_v3` | `-` | `no run under the current runtime` |
+| `BB_RPB_TSL_ClucHAnix_BB_RPB_MOD_CTT_Dynamic_Offsets_COMBINED_MOD_TraNz_1` | `-` | `no run under the current runtime` |
+| `BB_RPB_TSL_RNG_2_0` | `-` | `no run under the current runtime` |
+| `BB_RPB_TSL_RNG_2_2` | `-` | `no run under the current runtime` |
+| `BB_RPB_TSL_RNG_2_4` | `-` | `no run under the current runtime` |
+| `BB_RPB_TSL_RNG_3` | `-` | `no run under the current runtime` |
+| `BB_RPB_TSL_RNG_5` | `-` | `no run under the current runtime` |
+| `BB_RPB_TSL_RNG_724` | `-` | `no run under the current runtime` |
+| `BB_RPB_TSL_RNG_VWAP_0` | `-` | `no run under the current runtime` |
+| `BB_RPB_TSL_SMA_Tranz_1` | `-` | `no run under the current runtime` |
+| `BB_RPB_TSL_SMA_Tranz_1_5_2_MAIN` | `-` | `no run under the current runtime` |
+| `BB_RPB_TSL_meneguzzo` | `-` | `no run under the current runtime` |
+| `BB_RPB_TSL_v102` | `-` | `no run under the current runtime` |
+| `BB_RPB_TSL_v104` | `-` | `no run under the current runtime` |
+| `BB_RPB_TSLmeneguzzo_3` | `-` | `no run under the current runtime` |
+| `BB_RPB_TSLmeneguzzo_3_2` | `-` | `no run under the current runtime` |
+| `BB_RTR3c` | `-` | `no run under the current runtime` |
+| `BB_RTR_2` | `-` | `no run under the current runtime` |
+| `BB_RTR_dca_0` | `-` | `no run under the current runtime` |
+| `BB_RTR_dca_1` | `-` | `no run under the current runtime` |
+| `BB_RTR_dca_157` | `-` | `no run under the current runtime` |
+| `BBandsRSI_303` | `-` | `no run under the current runtime` |
+| `BBandsRSI_63` | `-` | `no run under the current runtime` |
+| `BNBArbitrage` | `-` | `no run under the current runtime` |
+| `BOAV1` | `-` | `no run under the current runtime` |
+| `BOLT` | `-` | `no run under the current runtime` |
+| `BR7` | `-` | `no run under the current runtime` |
+| `BSS2` | `-` | `no run under the current runtime` |
+| `BSS2b` | `-` | `no run under the current runtime` |
+| `BTCMACDCross_2` | `-` | `no run under the current runtime` |
+| `BadoV1` | `-` | `no run under the current runtime` |
+| `BandRSI6` | `-` | `no run under the current runtime` |
+| `Bandtastic_2` | `-` | `no run under the current runtime` |
+| `BbStage` | `-` | `no run under the current runtime` |
+| `Bb_3` | `-` | `no run under the current runtime` |
+| `BbandRsiHO` | `-` | `no run under the current runtime` |
+| `BbandRsi_125` | `-` | `no run under the current runtime` |
+| `BbandRsi_2` | `-` | `no run under the current runtime` |
+| `BbandRsi_3` | `-` | `no run under the current runtime` |
+| `BbandRsi_825` | `-` | `no run under the current runtime` |
+| `BbandRsi_852` | `-` | `no run under the current runtime` |
+| `BbandRsiv1` | `-` | `no run under the current runtime` |
+| `BcmbigzDevelop_199` | `-` | `no run under the current runtime` |
+| `BearBull3` | `-` | `no run under the current runtime` |
+| `Bebop` | `-` | `no run under the current runtime` |
+| `BestProfitable5MinStrategy` | `-` | `no run under the current runtime` |
+| `BestSpot` | `-` | `no run under the current runtime` |
+| `BigDrop_2` | `-` | `no run under the current runtime` |
+| `BigPeteBU` | `-` | `no run under the current runtime` |
+| `BigZ04NextHO` | `-` | `no run under the current runtime` |
+| `BigZ04_2` | `-` | `no run under the current runtime` |
+| `BigZ04_4` | `-` | `no run under the current runtime` |
+| `BigZ04_845` | `-` | `no run under the current runtime` |
+| `BigZ04_TSL1` | `-` | `no run under the current runtime` |
+| `BigZ04_TSL2` | `-` | `no run under the current runtime` |
+| `BigZ04_TSL3_2` | `-` | `no run under the current runtime` |
+| `BigZ04_TSL3a` | `-` | `no run under the current runtime` |
+| `BigZ04_TSL4_2` | `-` | `no run under the current runtime` |
+| `BigZ04_TSL4_24` | `-` | `no run under the current runtime` |
+| `BigZ04_TSL4_69` | `-` | `no run under the current runtime` |
+| `BinClucMadDevelop_197` | `-` | `no run under the current runtime` |
+| `BinClucMadDevelop_2` | `-` | `no run under the current runtime` |
+| `BinClucMadDevelop_99` | `-` | `no run under the current runtime` |
+| `BinClucMadSMA` | `-` | `no run under the current runtime` |
+| `BinClucMadSMACore` | `-` | `no run under the current runtime` |
+| `BinClucMadSMADevelop_100` | `-` | `no run under the current runtime` |
+| `BinClucMadSMADevelop_2` | `-` | `no run under the current runtime` |
+| `BinClucMadSMA_2` | `-` | `no run under the current runtime` |
+| `BinClucMadSMA_v3` | `-` | `no run under the current runtime` |
+| `BinHModWhiteHOV0` | `-` | `no run under the current runtime` |
+| `BinHV27CombinedStrategy` | `-` | `no run under the current runtime` |
+| `BinHV27F_2` | `-` | `no run under the current runtime` |
+| `BinHV27V1` | `-` | `no run under the current runtime` |
+| `BinHV27_1` | `-` | `no run under the current runtime` |
+| `BinHV27_104` | `-` | `no run under the current runtime` |
+| `BinHV27_2` | `-` | `no run under the current runtime` |
+| `BinHV27_253` | `-` | `no run under the current runtime` |
+| `BinHV27_254` | `-` | `no run under the current runtime` |
+| `BinHV27_3` | `-` | `no run under the current runtime` |
+| `BinHV27_32` | `-` | `no run under the current runtime` |
+| `BinHV27_387` | `-` | `no run under the current runtime` |
+| `BinHV27_4` | `-` | `no run under the current runtime` |
+| `BinHV27_5` | `-` | `no run under the current runtime` |
+| `BinHV27_747` | `-` | `no run under the current runtime` |
+| `BinHV27_823` | `-` | `no run under the current runtime` |
+| `BinHV27_long` | `-` | `no run under the current runtime` |
+| `BinHV27_short_10` | `-` | `no run under the current runtime` |
+| `BinHV27_short_2` | `-` | `no run under the current runtime` |
+| `BinHV27_short_7` | `-` | `no run under the current runtime` |
+| `BinHV27_short_8` | `-` | `no run under the current runtime` |
+| `BinHV45HyperOpted` | `-` | `no run under the current runtime` |
+| `BinHV45_142` | `-` | `no run under the current runtime` |
+| `BinHV45_2` | `-` | `no run under the current runtime` |
+| `BinHV45_3` | `-` | `no run under the current runtime` |
+| `BinHV45_343` | `-` | `no run under the current runtime` |
+| `BinHV45_4` | `-` | `no run under the current runtime` |
+| `BinHV45_422` | `-` | `no run under the current runtime` |
+| `BinHV45_613` | `-` | `no run under the current runtime` |
+| `BinMfiBTCv4` | `-` | `no run under the current runtime` |
+| `BinanceStream_209` | `-` | `no run under the current runtime` |
+| `BlueSeaTik` | `-` | `no run under the current runtime` |
+| `Boll` | `-` | `no run under the current runtime` |
+| `BollingerBounce_2` | `-` | `no run under the current runtime` |
+| `BollingerMACD_Reverse_signal` | `-` | `no run under the current runtime` |
+| `BollingerMACD_V1` | `-` | `no run under the current runtime` |
+| `BollingerMACD_V2` | `-` | `no run under the current runtime` |
+| `BollingerMACD_V3` | `-` | `no run under the current runtime` |
+| `BoomBasticStrategy` | `-` | `no run under the current runtime` |
+| `BoomBasticStrategyV2` | `-` | `no run under the current runtime` |
+| `BotE` | `-` | `no run under the current runtime` |
+| `BreakStrategy` | `-` | `no run under the current runtime` |
+| `BreakoutFlash` | `-` | `no run under the current runtime` |
+| `BreakoutSpecialist` | `-` | `no run under the current runtime` |
+| `BuyDips_2` | `-` | `no run under the current runtime` |
+| `BuyNStoploss` | `-` | `no run under the current runtime` |
+| `BuyNStoplossNProfit` | `-` | `no run under the current runtime` |
+| `BuzzzMoneyV1` | `-` | `no run under the current runtime` |
+| `Bzed` | `-` | `no run under the current runtime` |
+| `CCDeltaHyperopt` | `-` | `no run under the current runtime` |
+| `CCIStrategy_2` | `-` | `no run under the current runtime` |
+| `CCIStrategy_3` | `-` | `no run under the current runtime` |
+| `CCIStrategy_4` | `-` | `no run under the current runtime` |
+| `CCIStrategy_5` | `-` | `no run under the current runtime` |
+| `CHTP_vtest` | `-` | `no run under the current runtime` |
+| `Canals` | `-` | `no run under the current runtime` |
+| `Cenderawasih_1b` | `-` | `no run under the current runtime` |
+| `Cenderawasih_2_kucoin` | `-` | `no run under the current runtime` |
+| `Cenderawasih_3` | `-` | `no run under the current runtime` |
+| `Chopchop` | `-` | `no run under the current runtime` |
+| `Circles` | `-` | `no run under the current runtime` |
+| `Cluc6werk` | `-` | `no run under the current runtime` |
+| `ClucHAnix2` | `-` | `no run under the current runtime` |
+| `ClucHAnix2_562` | `-` | `no run under the current runtime` |
+| `ClucHAnix5m_interface_v3` | `-` | `no run under the current runtime` |
+| `ClucHAnixE01VEOffsets` | `-` | `no run under the current runtime` |
+| `ClucHAnixV1` | `-` | `no run under the current runtime` |
+| `ClucHAnixV2_267` | `-` | `no run under the current runtime` |
+| `ClucHAnix_0` | `-` | `no run under the current runtime` |
+| `ClucHAnix_11` | `-` | `no run under the current runtime` |
+| `ClucHAnix_2` | `-` | `no run under the current runtime` |
+| `ClucHAnix_231` | `-` | `no run under the current runtime` |
+| `ClucHAnix_3` | `-` | `no run under the current runtime` |
+| `ClucHAnix_5m1c` | `-` | `no run under the current runtime` |
+| `ClucHAnix_5mTB1_2` | `-` | `no run under the current runtime` |
+| `ClucHAnix_5mTB1_3` | `-` | `no run under the current runtime` |
+| `ClucHAnix_5mTB1_711` | `-` | `no run under the current runtime` |
+| `ClucHAnix_5mTB1_733` | `-` | `no run under the current runtime` |
+| `ClucHAnix_5m_0` | `-` | `no run under the current runtime` |
+| `ClucHAnix_5m_268` | `-` | `no run under the current runtime` |
+| `ClucHAnix_5m_5` | `-` | `no run under the current runtime` |
+| `ClucHAnix_5m_7` | `-` | `no run under the current runtime` |
+| `ClucHAnix_5m_736` | `-` | `no run under the current runtime` |
+| `ClucHAnix_5m_8` | `-` | `no run under the current runtime` |
+| `ClucHAnix_748` | `-` | `no run under the current runtime` |
+| `ClucHAnix_8` | `-` | `no run under the current runtime` |
+| `ClucHAnix_932` | `-` | `no run under the current runtime` |
+| `ClucHAnix_BB_RPB_2` | `-` | `no run under the current runtime` |
+| `ClucHAnix_BB_RPB_3` | `-` | `no run under the current runtime` |
+| `ClucHAnix_BB_RPB_5M_MOD2_DYNAMIC_TB` | `-` | `no run under the current runtime` |
+| `ClucHAnix_BB_RPB_MOD2` | `-` | `no run under the current runtime` |
+| `ClucHAnix_BB_RPB_MOD2_2` | `-` | `no run under the current runtime` |
+| `ClucHAnix_BB_RPB_MOD2_DYNAMIC_TB` | `-` | `no run under the current runtime` |
+| `ClucHAnix_BB_RPB_MOD2_TB` | `-` | `no run under the current runtime` |
+| `ClucHAnix_BB_RPB_MOD2_fixed` | `-` | `no run under the current runtime` |
+| `ClucHAnix_BB_RPB_MOD_2` | `-` | `no run under the current runtime` |
+| `ClucHAnix_BB_RPB_MOD_E0V1E_DYNAMIC_TB1` | `-` | `no run under the current runtime` |
+| `ClucHAnix_BB_RPB_MOD_E0V1E_ROI_3` | `-` | `no run under the current runtime` |
+| `ClucHAnix_hhll_66` | `-` | `no run under the current runtime` |
+| `ClucHAnix_hhll_714` | `-` | `no run under the current runtime` |
+| `ClucHAnix_hhll_Futures_2` | `-` | `no run under the current runtime` |
+| `ClucHAnix_hhll_Futures_2_2` | `-` | `no run under the current runtime` |
+| `ClucMay72018_2` | `-` | `no run under the current runtime` |
+| `ClucMay72018_3` | `-` | `no run under the current runtime` |
+| `ClucMay72018_4` | `-` | `no run under the current runtime` |
+| `ClucModDCA` | `-` | `no run under the current runtime` |
+| `ClucV5M1` | `-` | `no run under the current runtime` |
+| `Cnn_Lstm_multivarie_regression_leneaire_canaux_strategie_py` | `-` | `no run under the current runtime` |
+| `CofiBitStrategy_126` | `-` | `no run under the current runtime` |
+| `CofiBitStrategy_3` | `-` | `no run under the current runtime` |
+| `CofiBitStrategy_4` | `-` | `no run under the current runtime` |
+| `CofiBitStrategy_5` | `-` | `no run under the current runtime` |
+| `CofiBitStrategy_838` | `-` | `no run under the current runtime` |
+| `Comb_ho4_7_H9` | `-` | `no run under the current runtime` |
+| `Comb_ho4_7_H9_2` | `-` | `no run under the current runtime` |
+| `CombinedBinHAndClucHyperStrategy` | `-` | `no run under the current runtime` |
+| `CombinedBinHAndClucV2_326` | `-` | `no run under the current runtime` |
+| `CombinedBinHAndClucV6H_589` | `-` | `no run under the current runtime` |
+| `CombinedBinHAndClucV6_2` | `-` | `no run under the current runtime` |
+| `CombinedBinHAndClucV7_702` | `-` | `no run under the current runtime` |
+| `CombinedBinHAndClucV8Hyper_2` | `-` | `no run under the current runtime` |
+| `CombinedBinHAndClucV8_1` | `-` | `no run under the current runtime` |
+| `CombinedBinHAndClucV8_2` | `-` | `no run under the current runtime` |
+| `CombinedBinHAndClucV8_3` | `-` | `no run under the current runtime` |
+| `CombinedBinHAndClucV8_4` | `-` | `no run under the current runtime` |
+| `CombinedBinHAndClucV8_5` | `-` | `no run under the current runtime` |
+| `CombinedBinHAndCluc_2` | `-` | `no run under the current runtime` |
+| `CombinedBinHAndCluc_219` | `-` | `no run under the current runtime` |
+| `CombinedBinHAndCluc_453` | `-` | `no run under the current runtime` |
+| `CombinedBinHAndCluc_455` | `-` | `no run under the current runtime` |
+| `CombinedBinHAndCluc_783` | `-` | `no run under the current runtime` |
+| `CombinedBinHClucAndMADV3_2` | `-` | `no run under the current runtime` |
+| `CombinedBinHClucAndMADV5_2` | `-` | `no run under the current runtime` |
+| `CombinedBinHClucAndMADV6_3` | `-` | `no run under the current runtime` |
+| `CombinedBinHClucAndMADV9_5` | `-` | `no run under the current runtime` |
+| `CombinedBinHClucAndMADV9_8` | `-` | `no run under the current runtime` |
+| `CombinedBinHClucAndMADV9_858` | `-` | `no run under the current runtime` |
+| `CombinedBinHClucAndSMAOffset_2` | `-` | `no run under the current runtime` |
+| `CombinedOptimizedStrategy` | `-` | `no run under the current runtime` |
+| `CombinedStrategy` | `-` | `no run under the current runtime` |
+| `Combined_NFIv6_SMA_3` | `-` | `no run under the current runtime` |
+| `Combined_NFIv6_SMA_863` | `-` | `no run under the current runtime` |
+| `Combined_NFIv7_SMA_bAdBoY_20211030` | `-` | `no run under the current runtime` |
+| `ConsecutiveDipFuturesStrategyFutures` | `-` | `no run under the current runtime` |
+| `ConsensusShort_2` | `-` | `no run under the current runtime` |
+| `ConsensusShort_3` | `-` | `no run under the current runtime` |
+| `Consumer` | `-` | `no run under the current runtime` |
+| `Consumer5` | `-` | `no run under the current runtime` |
+| `Conviction_Adaptive_Scalper` | `-` | `no run under the current runtime` |
+| `CrazyThursdayJP` | `-` | `no run under the current runtime` |
+| `CrazyThursdayJP1h` | `-` | `no run under the current runtime` |
+| `CrazyThursdayJP30m` | `-` | `no run under the current runtime` |
+| `CrossEMA` | `-` | `no run under the current runtime` |
+| `CryptoFrog1` | `-` | `no run under the current runtime` |
+| `CryptoFrog_205` | `-` | `no run under the current runtime` |
+| `CryptoFuturesStrategy` | `-` | `no run under the current runtime` |
+| `CryptosRejectBitcoin` | `-` | `no run under the current runtime` |
+| `Cuncontrading` | `-` | `no run under the current runtime` |
+| `CusTrend_coralTrend_Adx_EMA_Oct_1h` | `-` | `no run under the current runtime` |
+| `CustomAlligatorV0` | `-` | `no run under the current runtime` |
+| `CustomMACDStrategy` | `-` | `no run under the current runtime` |
+| `CustomStrategy` | `-` | `no run under the current runtime` |
+| `CustomStrategy2` | `-` | `no run under the current runtime` |
+| `CustomStrategy3` | `-` | `no run under the current runtime` |
+| `CustomStrategy4` | `-` | `no run under the current runtime` |
+| `DCA` | `-` | `no run under the current runtime` |
+| `DCATest1` | `-` | `no run under the current runtime` |
+| `DCATest2_fixed` | `-` | `no run under the current runtime` |
+| `DCAbyGrok3Adapt_100_new` | `-` | `no run under the current runtime` |
+| `DIV_v2` | `-` | `no run under the current runtime` |
+| `DNSAlarm` | `-` | `no run under the current runtime` |
+| `DNSAlarm2` | `-` | `no run under the current runtime` |
+| `DNSAlarmDay` | `-` | `no run under the current runtime` |
+| `DNSAlarmMulti` | `-` | `no run under the current runtime` |
+| `DNSAlarmReporter` | `-` | `no run under the current runtime` |
+| `DNSAlarmReporterBTCRedLines` | `-` | `no run under the current runtime` |
+| `DNSAlarmReporterETHRedLines` | `-` | `no run under the current runtime` |
+| `DNSAlarmWeek` | `-` | `no run under the current runtime` |
+| `DNSClosed` | `-` | `no run under the current runtime` |
+| `DNSTrader` | `-` | `no run under the current runtime` |
+| `DNSTraderBTCMACD` | `-` | `no run under the current runtime` |
+| `DNSTraderBTCRSI` | `-` | `no run under the current runtime` |
+| `DS_Green_5m` | `-` | `no run under the current runtime` |
+| `DS_Green_5m_Bull` | `-` | `no run under the current runtime` |
+| `DS_Green_5mv2` | `-` | `no run under the current runtime` |
+| `DS_Green_5mv3` | `-` | `no run under the current runtime` |
+| `DS_Green_5mv5` | `-` | `no run under the current runtime` |
+| `DT_250102_01` | `-` | `no run under the current runtime` |
+| `DailyBuyStrategy3` | `-` | `no run under the current runtime` |
+| `DailyCandleStrategy` | `-` | `no run under the current runtime` |
+| `Darq` | `-` | `no run under the current runtime` |
+| `DarqV2` | `-` | `no run under the current runtime` |
+| `DcaBitcoin` | `-` | `no run under the current runtime` |
+| `DcaTpShort_3` | `-` | `no run under the current runtime` |
+| `DefaultStrategy` | `-` | `no run under the current runtime` |
+| `DefaultStrategy_0` | `-` | `no run under the current runtime` |
+| `DevilStra2` | `-` | `no run under the current runtime` |
+| `DevilStra_2` | `-` | `no run under the current runtime` |
+| `DevilStra_679` | `-` | `no run under the current runtime` |
+| `DevilStra_866` | `-` | `no run under the current runtime` |
+| `Diamond_2` | `-` | `no run under the current runtime` |
+| `Diamond_7` | `-` | `no run under the current runtime` |
+| `DiscoveredAlphaV2` | `-` | `no run under the current runtime` |
+| `DivergenceStrategy` | `-` | `no run under the current runtime` |
+| `Do` | `-` | `no run under the current runtime` |
+| `DoesNothing` | `-` | `no run under the current runtime` |
+| `DoesNothingStrategyLog` | `-` | `no run under the current runtime` |
+| `DoesNothingStrategy_10` | `-` | `no run under the current runtime` |
+| `DoesNothingStrategy_2` | `-` | `no run under the current runtime` |
+| `DoesNothingStrategy_3` | `-` | `no run under the current runtime` |
+| `Doge` | `-` | `no run under the current runtime` |
+| `DonchianBounce_2` | `-` | `no run under the current runtime` |
+| `DonchianChannel_2` | `-` | `no run under the current runtime` |
+| `DoubleBollingerStrategy` | `-` | `no run under the current runtime` |
+| `DoubleEMACrossoverWithTrend_158` | `-` | `no run under the current runtime` |
+| `DoubleEMACrossoverWithTrend_197` | `-` | `no run under the current runtime` |
+| `DoubleEMACrossoverWithTrend_37` | `-` | `no run under the current runtime` |
+| `DuperFivish` | `-` | `no run under the current runtime` |
+| `E0V1EFt` | `-` | `no run under the current runtime` |
+| `E0V1E_13` | `-` | `no run under the current runtime` |
+| `E0V1E_14` | `-` | `no run under the current runtime` |
+| `E0V1E_15` | `-` | `no run under the current runtime` |
+| `E0V1E_16` | `-` | `no run under the current runtime` |
+| `E0V1E_17` | `-` | `no run under the current runtime` |
+| `E0V1E_18` | `-` | `no run under the current runtime` |
+| `E0V1E_20` | `-` | `no run under the current runtime` |
+| `E0V1E_20230915` | `-` | `no run under the current runtime` |
+| `E0V1E_20231014_0847` | `-` | `no run under the current runtime` |
+| `E0V1E_20231017_1059` | `-` | `no run under the current runtime` |
+| `E0V1E_20231019_1032` | `-` | `no run under the current runtime` |
+| `E0V1E_20240111_1625` | `-` | `no run under the current runtime` |
+| `E0V1E_2024_2` | `-` | `no run under the current runtime` |
+| `E0V1E_22` | `-` | `no run under the current runtime` |
+| `E0V1E_23` | `-` | `no run under the current runtime` |
+| `E0V1E_24` | `-` | `no run under the current runtime` |
+| `E0V1E_25` | `-` | `no run under the current runtime` |
+| `E0V1E_26` | `-` | `no run under the current runtime` |
+| `E0V1E_27` | `-` | `no run under the current runtime` |
+| `E0V1E_28` | `-` | `no run under the current runtime` |
+| `E0V1E_30` | `-` | `no run under the current runtime` |
+| `E0V1E_35` | `-` | `no run under the current runtime` |
+| `E0V1E_4` | `-` | `no run under the current runtime` |
+| `E0V1E_40` | `-` | `no run under the current runtime` |
+| `E0V1E_41` | `-` | `no run under the current runtime` |
+| `E0V1E_45` | `-` | `no run under the current runtime` |
+| `E0V1E_47` | `-` | `no run under the current runtime` |
+| `E0V1E_48` | `-` | `no run under the current runtime` |
+| `E0V1E_49` | `-` | `no run under the current runtime` |
+| `E0V1E_50` | `-` | `no run under the current runtime` |
+| `E0V1E_51` | `-` | `no run under the current runtime` |
+| `E0V1E_53` | `-` | `no run under the current runtime` |
+| `E0V1E_53_Sharpe` | `-` | `no run under the current runtime` |
+| `E0V1E_55` | `-` | `no run under the current runtime` |
+| `E0V1E_56` | `-` | `no run under the current runtime` |
+| `E0V1E_6` | `-` | `no run under the current runtime` |
+| `E0v1e_99` | `-` | `no run under the current runtime` |
+| `E4ber` | `-` | `no run under the current runtime` |
+| `EI1_t4c0s` | `-` | `no run under the current runtime` |
+| `EI3v2_kalidem` | `-` | `no run under the current runtime` |
+| `EI3v2_tag_cofi_green_2` | `-` | `no run under the current runtime` |
+| `EI3v2_tag_cofi_green_2_2` | `-` | `no run under the current runtime` |
+| `EI3v2_tag_cofi_green_2_3` | `-` | `no run under the current runtime` |
+| `EI3v2_tag_cofi_green_2_4` | `-` | `no run under the current runtime` |
+| `EI3v2_tag_cofi_green_2_5` | `-` | `no run under the current runtime` |
+| `EI3v2_tag_cofi_green_3` | `-` | `no run under the current runtime` |
+| `EI3v2_tag_cofi_green_3474790687` | `-` | `no run under the current runtime` |
+| `EI3v2_tag_cofi_green_3474790687_1999` | `-` | `no run under the current runtime` |
+| `EI3v2_tag_cofi_green_3474790687_interface_v3` | `-` | `no run under the current runtime` |
+| `EI3v2_tag_cofi_green_3474790687_mod7` | `-` | `no run under the current runtime` |
+| `EI3v2_tag_cofi_green_3474790687_mod7_dema` | `-` | `no run under the current runtime` |
+| `EI3v2_tag_cofi_green_3474790687_mod7_dema_interface_v3` | `-` | `no run under the current runtime` |
+| `EI3v2_tag_cofi_green_3474790687_mod7_zema` | `-` | `no run under the current runtime` |
+| `EI3v2_tag_cofi_green_4` | `-` | `no run under the current runtime` |
+| `EI3v2_tag_cofi_green_5` | `-` | `no run under the current runtime` |
+| `EI3v2_tag_cofi_green_7` | `-` | `no run under the current runtime` |
+| `EI3v2_tag_cofi_green_Future_Long_2` | `-` | `no run under the current runtime` |
+| `EI3v2_tag_cofi_green_Future_Long_3` | `-` | `no run under the current runtime` |
+| `EI3v2_tag_cofi_green_Short` | `-` | `no run under the current runtime` |
+| `EI3v2_tag_cofi_green_mod7_dema2` | `-` | `no run under the current runtime` |
+| `EI3v2_tag_cofi_green_remod2_zema` | `-` | `no run under the current runtime` |
+| `EI3v2_tag_cofi_green_rknfish` | `-` | `no run under the current runtime` |
+| `EMA003_2` | `-` | `no run under the current runtime` |
+| `EMA50H4` | `-` | `no run under the current runtime` |
+| `EMABreakout_2` | `-` | `no run under the current runtime` |
+| `EMAMA` | `-` | `no run under the current runtime` |
+| `EMARibbonStrategy` | `-` | `no run under the current runtime` |
+| `EMASkipPump_128` | `-` | `no run under the current runtime` |
+| `EMASkipPump_2` | `-` | `no run under the current runtime` |
+| `EMASkipPump_3` | `-` | `no run under the current runtime` |
+| `EMASkipPump_4` | `-` | `no run under the current runtime` |
+| `EMASkipPump_711` | `-` | `no run under the current runtime` |
+| `EMA_Fibbonaci` | `-` | `no run under the current runtime` |
+| `EMA_Fibonacci_V2` | `-` | `no run under the current runtime` |
+| `EMA_Fibonacci_V3` | `-` | `no run under the current runtime` |
+| `EMA_Fibonacci_V4` | `-` | `no run under the current runtime` |
+| `EMAcrossover` | `-` | `no run under the current runtime` |
+| `EMAsStochastic` | `-` | `no run under the current runtime` |
+| `EVA1` | `-` | `no run under the current runtime` |
+| `EVA1_2` | `-` | `no run under the current runtime` |
+| `EVA1_Optimized` | `-` | `no run under the current runtime` |
+| `EVA2` | `-` | `no run under the current runtime` |
+| `EVA2_2` | `-` | `no run under the current runtime` |
+| `EWOistV1` | `-` | `no run under the current runtime` |
+| `EllijahStrategy` | `-` | `no run under the current runtime` |
+| `ElliotV2_1` | `-` | `no run under the current runtime` |
+| `ElliotV2_2` | `-` | `no run under the current runtime` |
+| `ElliotV3_983` | `-` | `no run under the current runtime` |
+| `ElliotV4Changed` | `-` | `no run under the current runtime` |
+| `ElliotV4ChangedWithtrailstoploss` | `-` | `no run under the current runtime` |
+| `ElliotV4_961` | `-` | `no run under the current runtime` |
+| `ElliotV4_984` | `-` | `no run under the current runtime` |
+| `ElliotV5HOMod1` | `-` | `no run under the current runtime` |
+| `ElliotV5_309` | `-` | `no run under the current runtime` |
+| `ElliotV5_SMA_AI` | `-` | `no run under the current runtime` |
+| `ElliotV6` | `-` | `no run under the current runtime` |
+| `ElliotV7_2` | `-` | `no run under the current runtime` |
+| `ElliotV7_392` | `-` | `no run under the current runtime` |
+| `ElliotV7_392_Optimized` | `-` | `no run under the current runtime` |
+| `ElliotV7_392_X2` | `-` | `no run under the current runtime` |
+| `ElliotV8_3` | `-` | `no run under the current runtime` |
+| `ElliotV8_IF3_futlo` | `-` | `no run under the current runtime` |
+| `ElliotV8_IF3_futlo_02` | `-` | `no run under the current runtime` |
+| `ElliotV8_IF3_futlo_03` | `-` | `no run under the current runtime` |
+| `ElliotV8_orginal` | `-` | `no run under the current runtime` |
+| `ElliotV8_original_ichiv2_2` | `-` | `no run under the current runtime` |
+| `ElliotV8_original_ichiv2_3` | `-` | `no run under the current runtime` |
+| `ElliotV8_original_ichiv3_2` | `-` | `no run under the current runtime` |
+| `ElliotV8_original_ichiv3_224` | `-` | `no run under the current runtime` |
+| `ElliotV8_original_ichiv3_465` | `-` | `no run under the current runtime` |
+| `ElliotV8_original_ichiv3_5` | `-` | `no run under the current runtime` |
+| `ElliotV8_original_ichiv3_7` | `-` | `no run under the current runtime` |
+| `ElliotV8_original_ichiv3_855` | `-` | `no run under the current runtime` |
+| `ElliotV8_original_ichiv3_roi` | `-` | `no run under the current runtime` |
+| `ElliotV9_exit` | `-` | `no run under the current runtime` |
+| `Elliotoa` | `-` | `no run under the current runtime` |
+| `EmaClose` | `-` | `no run under the current runtime` |
+| `EmaRsiBounce` | `-` | `no run under the current runtime` |
+| `EnhancedCandlestickStrategy` | `-` | `no run under the current runtime` |
+| `EnhancedLimitedEntryDCA` | `-` | `no run under the current runtime` |
+| `EnsembleStrategy_2` | `-` | `no run under the current runtime` |
+| `Etcg` | `-` | `no run under the current runtime` |
+| `EuroEdge` | `-` | `no run under the current runtime` |
+| `Ewt2` | `-` | `no run under the current runtime` |
+| `Ewt3` | `-` | `no run under the current runtime` |
+| `Example_Strat_With_FileLogging` | `-` | `no run under the current runtime` |
+| `FRAYSTRAT_BTCUSDT_1H` | `-` | `no run under the current runtime` |
+| `FRandomWalk` | `-` | `no run under the current runtime` |
+| `FSampleStrategyChat` | `-` | `no run under the current runtime` |
+| `FSampleStrategys` | `-` | `no run under the current runtime` |
+| `FastSupertrendOpt_2` | `-` | `no run under the current runtime` |
+| `FastSupertrend_2` | `-` | `no run under the current runtime` |
+| `Fengzi_v1` | `-` | `no run under the current runtime` |
+| `FiboSmaEmaRsi` | `-` | `no run under the current runtime` |
+| `FibonacciGoldenPocketRSIStrategy` | `-` | `no run under the current runtime` |
+| `Finder` | `-` | `no run under the current runtime` |
+| `FishTest` | `-` | `no run under the current runtime` |
+| `FisherTrendStrategy` | `-` | `no run under the current runtime` |
+| `Flawless_Lambov2` | `-` | `no run under the current runtime` |
+| `Flow` | `-` | `no run under the current runtime` |
+| `FractalDimensionStrategy` | `-` | `no run under the current runtime` |
+| `Fractals` | `-` | `no run under the current runtime` |
+| `FrankenStrat` | `-` | `no run under the current runtime` |
+| `FreqGym_2` | `-` | `no run under the current runtime` |
+| `FreqGym_normalized` | `-` | `no run under the current runtime` |
+| `FreqGym_normalized_0` | `-` | `no run under the current runtime` |
+| `FreqGym_normalized_2` | `-` | `no run under the current runtime` |
+| `FreqGym_normalized_3` | `-` | `no run under the current runtime` |
+| `FreqGym_normalized_412` | `-` | `no run under the current runtime` |
+| `FreqGym_rscaler` | `-` | `no run under the current runtime` |
+| `FreqGym_rscaler_2` | `-` | `no run under the current runtime` |
+| `FreqSignalsWebhookDataProvider` | `-` | `no run under the current runtime` |
+| `FreqaiExampleStrategy_2` | `-` | `no run under the current runtime` |
+| `FreqaiExampleStrategy_5` | `-` | `no run under the current runtime` |
+| `Freqtrade_backtest_validation_freqtrade1_254` | `-` | `no run under the current runtime` |
+| `Futures10PercentStrategy` | `-` | `no run under the current runtime` |
+| `FuturesStrat8` | `-` | `no run under the current runtime` |
+| `FuturesStrategy1` | `-` | `no run under the current runtime` |
+| `GGShotStrategy` | `-` | `no run under the current runtime` |
+| `GPTStrategy` | `-` | `no run under the current runtime` |
+| `GeneTrader_gen10_1734717133_4618` | `-` | `no run under the current runtime` |
+| `GeneTrader_gen10_1734726148_6020` | `-` | `no run under the current runtime` |
+| `GeneTrader_gen10_1734895087_6007_2` | `-` | `no run under the current runtime` |
+| `GeneTrader_gen1_1733508206_5694` | `-` | `no run under the current runtime` |
+| `GeneTrader_gen1_1734730112_1242` | `-` | `no run under the current runtime` |
+| `GeneTrader_gen1_1734734787_5835` | `-` | `no run under the current runtime` |
+| `GeneTrader_gen30_1727304467_5789` | `-` | `no run under the current runtime` |
+| `GeneTrader_gen3_1726920341_8194` | `-` | `no run under the current runtime` |
+| `GeneTrader_gen3_1734727320_9082` | `-` | `no run under the current runtime` |
+| `GeneTrader_gen5_1726907875_9248` | `-` | `no run under the current runtime` |
+| `GeneTrader_gen5_1734993636_5978` | `-` | `no run under the current runtime` |
+| `GeneTrader_gen6_1734976897_7418` | `-` | `no run under the current runtime` |
+| `GeneTrader_gen6_1735035146_3706` | `-` | `no run under the current runtime` |
+| `GeneTrader_gen7_1734720513_4206` | `-` | `no run under the current runtime` |
+| `GeneTrader_gen8_1734713146_5730` | `-` | `no run under the current runtime` |
+| `GeneTrader_gen8_1734741843_6073` | `-` | `no run under the current runtime` |
+| `GeneTrader_gen9_1735161895_5455` | `-` | `no run under the current runtime` |
+| `GnF` | `-` | `no run under the current runtime` |
+| `GodStraNew7` | `-` | `no run under the current runtime` |
+| `GodStraNewFTX5000` | `-` | `no run under the current runtime` |
+| `GodStraNewOpt` | `-` | `no run under the current runtime` |
+| `GodStraNewOpt2` | `-` | `no run under the current runtime` |
+| `GodStraNewOpt3` | `-` | `no run under the current runtime` |
+| `GodStraNewOpt4` | `-` | `no run under the current runtime` |
+| `GodStraNewOpt500016` | `-` | `no run under the current runtime` |
+| `GodStraNewOptQuick` | `-` | `no run under the current runtime` |
+| `GodStraNewOpt_2` | `-` | `no run under the current runtime` |
+| `GodStraNew_414` | `-` | `no run under the current runtime` |
+| `GodStraNew_56` | `-` | `no run under the current runtime` |
+| `GodStraNew_800` | `-` | `no run under the current runtime` |
+| `GodStraNew_SMAonly_2` | `-` | `no run under the current runtime` |
+| `GodStraNew_SMAonly_3` | `-` | `no run under the current runtime` |
+| `GodStraOpt` | `-` | `no run under the current runtime` |
+| `GodStraOpt2` | `-` | `no run under the current runtime` |
+| `GodStraQuick` | `-` | `no run under the current runtime` |
+| `GodStra_193` | `-` | `no run under the current runtime` |
+| `GodStra_2` | `-` | `no run under the current runtime` |
+| `GodStra_23` | `-` | `no run under the current runtime` |
+| `GodStra_4` | `-` | `no run under the current runtime` |
+| `GodStra_402` | `-` | `no run under the current runtime` |
+| `GodStra_410` | `-` | `no run under the current runtime` |
+| `GodStra_5` | `-` | `no run under the current runtime` |
+| `GodStra_969` | `-` | `no run under the current runtime` |
+| `GodStra_All_Indicator` | `-` | `no run under the current runtime` |
+| `GodStra_v2_EAI` | `-` | `no run under the current runtime` |
+| `GodStra_v3` | `-` | `no run under the current runtime` |
+| `GodStra_v4` | `-` | `no run under the current runtime` |
+| `Godie` | `-` | `no run under the current runtime` |
+| `Gold7` | `-` | `no run under the current runtime` |
+| `Gold8` | `-` | `no run under the current runtime` |
+| `Goose1` | `-` | `no run under the current runtime` |
+| `GreenRedCandle` | `-` | `no run under the current runtime` |
+| `GuruSkippyasurmuni` | `-` | `no run under the current runtime` |
+| `GuruSkippyasurmuni_strategy` | `-` | `no run under the current runtime` |
+| `GuruSkippyasurmuni_strategy_3` | `-` | `no run under the current runtime` |
+| `GuruSkippyasurmuni_strategy_4` | `-` | `no run under the current runtime` |
+| `GymStrategy_2` | `-` | `no run under the current runtime` |
+| `HA` | `-` | `no run under the current runtime` |
+| `HLMSuperSmoth7` | `-` | `no run under the current runtime` |
+| `HPSDivergence` | `-` | `no run under the current runtime` |
+| `HPStrategy` | `-` | `no run under the current runtime` |
+| `HPStrategyLeverage` | `-` | `no run under the current runtime` |
+| `HPStrategyNGV1` | `-` | `no run under the current runtime` |
+| `HPStrategyTFJPAConfirmV1` | `-` | `no run under the current runtime` |
+| `HPStrategyTFJPAConfirmV1_3` | `-` | `no run under the current runtime` |
+| `HPStrategyTFJPAConfirmV3` | `-` | `no run under the current runtime` |
+| `HPStrategyTFJPAConfirmV3T` | `-` | `no run under the current runtime` |
+| `HPStrategyTFJPAConfirmV3_9` | `-` | `no run under the current runtime` |
+| `HPStrategyV6` | `-` | `no run under the current runtime` |
+| `HPStrategyV7UltraDCACSL_Kucoin` | `-` | `no run under the current runtime` |
+| `HPStrategyV8UltraDCACSL` | `-` | `no run under the current runtime` |
+| `HPStrategy_19` | `-` | `no run under the current runtime` |
+| `HacklemoreX` | `-` | `no run under the current runtime` |
+| `HamstringScalper` | `-` | `no run under the current runtime` |
+| `HarmonicDivergenceCaoCao` | `-` | `no run under the current runtime` |
+| `HarmonicDivergence_0_2_0_075_01` | `-` | `no run under the current runtime` |
+| `HarmonicDivergence_test` | `-` | `no run under the current runtime` |
+| `HarmonicDivergence_test_92` | `-` | `no run under the current runtime` |
+| `HedgeStrategy` | `-` | `no run under the current runtime` |
+| `HeikinAshi` | `-` | `no run under the current runtime` |
+| `HeraclesOpt2` | `-` | `no run under the current runtime` |
+| `HeraclesOptimize` | `-` | `no run under the current runtime` |
+| `Heracles_2` | `-` | `no run under the current runtime` |
+| `Heracles_281` | `-` | `no run under the current runtime` |
+| `Heracles_3` | `-` | `no run under the current runtime` |
+| `Heracles_4` | `-` | `no run under the current runtime` |
+| `Heracles_5` | `-` | `no run under the current runtime` |
+| `Heracles_516` | `-` | `no run under the current runtime` |
+| `Heracles_83` | `-` | `no run under the current runtime` |
+| `Heracles_942` | `-` | `no run under the current runtime` |
+| `HighLeverageTrendFollowing` | `-` | `no run under the current runtime` |
+| `Horizon_2` | `-` | `no run under the current runtime` |
+| `HourBasedStrategy_417` | `-` | `no run under the current runtime` |
+| `IMTestOpt` | `-` | `no run under the current runtime` |
+| `I_DONT_WANT_TO_WORK_FINAL` | `-` | `no run under the current runtime` |
+| `IchiV1_Fixed` | `-` | `no run under the current runtime` |
+| `IchiV1_Marius_fixed_2` | `-` | `no run under the current runtime` |
+| `IchiVSOptimized` | `-` | `no run under the current runtime` |
+| `Ichi_trigger` | `-` | `no run under the current runtime` |
+| `Ichi_trigger_v2` | `-` | `no run under the current runtime` |
+| `Ichimoku_v1` | `-` | `no run under the current runtime` |
+| `Ichimoku_v10` | `-` | `no run under the current runtime` |
+| `Ichimoku_v11` | `-` | `no run under the current runtime` |
+| `Ichimoku_v12_4` | `-` | `no run under the current runtime` |
+| `Ichimoku_v13` | `-` | `no run under the current runtime` |
+| `Ichimoku_v15_1d` | `-` | `no run under the current runtime` |
+| `Ichimoku_v16_1d` | `-` | `no run under the current runtime` |
+| `Ichimoku_v17` | `-` | `no run under the current runtime` |
+| `Ichimoku_v18` | `-` | `no run under the current runtime` |
+| `Ichimoku_v19` | `-` | `no run under the current runtime` |
+| `Ichimoku_v2` | `-` | `no run under the current runtime` |
+| `Ichimoku_v20` | `-` | `no run under the current runtime` |
+| `Ichimoku_v21` | `-` | `no run under the current runtime` |
+| `Ichimoku_v22` | `-` | `no run under the current runtime` |
+| `Ichimoku_v23` | `-` | `no run under the current runtime` |
+| `Ichimoku_v24` | `-` | `no run under the current runtime` |
+| `Ichimoku_v25` | `-` | `no run under the current runtime` |
+| `Ichimoku_v26_1d` | `-` | `no run under the current runtime` |
+| `Ichimoku_v27_1d` | `-` | `no run under the current runtime` |
+| `Ichimoku_v28_1d` | `-` | `no run under the current runtime` |
+| `Ichimoku_v29_1d` | `-` | `no run under the current runtime` |
+| `Ichimoku_v3` | `-` | `no run under the current runtime` |
+| `Ichimoku_v31_Heikin_227` | `-` | `no run under the current runtime` |
+| `Ichimoku_v34` | `-` | `no run under the current runtime` |
+| `Ichimoku_v35_SAR_1d` | `-` | `no run under the current runtime` |
+| `Ichimoku_v36_SAR_1s` | `-` | `no run under the current runtime` |
+| `Ichimoku_v38_HeikinAshi` | `-` | `no run under the current runtime` |
+| `Ichimoku_v4` | `-` | `no run under the current runtime` |
+| `Ichimoku_v5` | `-` | `no run under the current runtime` |
+| `Ichimoku_v6` | `-` | `no run under the current runtime` |
+| `Ichimoku_v7` | `-` | `no run under the current runtime` |
+| `Ichimoku_v8` | `-` | `no run under the current runtime` |
+| `Ichimoku_v9` | `-` | `no run under the current runtime` |
+| `IchisV1_2` | `-` | `no run under the current runtime` |
+| `ImprovedSampleStrategy` | `-` | `no run under the current runtime` |
+| `ImprovedTVStrategy` | `-` | `no run under the current runtime` |
+| `ImprovedTrader` | `-` | `no run under the current runtime` |
+| `ImpulseMACDVolumeStrategy` | `-` | `no run under the current runtime` |
+| `IndicatorforRL` | `-` | `no run under the current runtime` |
+| `IndividualCrossSMA` | `-` | `no run under the current runtime` |
+| `Infinite_ROI` | `-` | `no run under the current runtime` |
+| `Infinity` | `-` | `no run under the current runtime` |
+| `Infinity_0` | `-` | `no run under the current runtime` |
+| `Infinity_1` | `-` | `no run under the current runtime` |
+| `Insomnia` | `-` | `no run under the current runtime` |
+| `JT_V04` | `-` | `no run under the current runtime` |
+| `JohnisHyperOpt` | `-` | `no run under the current runtime` |
+| `JohnisHyperOpt2` | `-` | `no run under the current runtime` |
+| `JohnisHyperOpt3` | `-` | `no run under the current runtime` |
+| `KamaFama_2025` | `-` | `no run under the current runtime` |
+| `KamaFama_3_1` | `-` | `no run under the current runtime` |
+| `KamaFama_3_3` | `-` | `no run under the current runtime` |
+| `KamaRsi2` | `-` | `no run under the current runtime` |
+| `Kdj` | `-` | `no run under the current runtime` |
+| `KeltnerBounce_2` | `-` | `no run under the current runtime` |
+| `KeltnerChannels_2` | `-` | `no run under the current runtime` |
+| `KeltnerRSI` | `-` | `no run under the current runtime` |
+| `KeltnerRSI_USDT_8h` | `-` | `no run under the current runtime` |
+| `KeltnerRSIdos` | `-` | `no run under the current runtime` |
+| `Kj73` | `-` | `no run under the current runtime` |
+| `Klassi` | `-` | `no run under the current runtime` |
+| `LSV1` | `-` | `no run under the current runtime` |
+| `LSV2` | `-` | `no run under the current runtime` |
+| `LSv3` | `-` | `no run under the current runtime` |
+| `LSv3_Full` | `-` | `no run under the current runtime` |
+| `LetsWinStratv3` | `-` | `no run under the current runtime` |
+| `LightningScalper` | `-` | `no run under the current runtime` |
+| `LimitedDCAStrategy` | `-` | `no run under the current runtime` |
+| `LimitedEntryDCAStrategy` | `-` | `no run under the current runtime` |
+| `LoadRLModel` | `-` | `no run under the current runtime` |
+| `Long` | `-` | `no run under the current runtime` |
+| `LongShortRangeTradingMachetesV1_1` | `-` | `no run under the current runtime` |
+| `LowSeason` | `-` | `no run under the current runtime` |
+| `Low_BBHO` | `-` | `no run under the current runtime` |
+| `Low_BBHO2` | `-` | `no run under the current runtime` |
+| `Low_BB_126` | `-` | `no run under the current runtime` |
+| `Low_BB_2` | `-` | `no run under the current runtime` |
+| `Low_BB_3` | `-` | `no run under the current runtime` |
+| `M5FftRsi` | `-` | `no run under the current runtime` |
+| `MA` | `-` | `no run under the current runtime` |
+| `MACD` | `-` | `no run under the current runtime` |
+| `MACD00001Strategy` | `-` | `no run under the current runtime` |
+| `MACD003_2` | `-` | `no run under the current runtime` |
+| `MACDCross_2` | `-` | `no run under the current runtime` |
+| `MACDEMA200` | `-` | `no run under the current runtime` |
+| `MACDPeakStrategy` | `-` | `no run under the current runtime` |
+| `MACDRSI` | `-` | `no run under the current runtime` |
+| `MACDSMA200hyperopt2` | `-` | `no run under the current runtime` |
+| `MACDStrategy_127` | `-` | `no run under the current runtime` |
+| `MACDStrategy_3` | `-` | `no run under the current runtime` |
+| `MACDStrategy_4` | `-` | `no run under the current runtime` |
+| `MACDStrategy_5` | `-` | `no run under the current runtime` |
+| `MACDStrategy_crossed_102` | `-` | `no run under the current runtime` |
+| `MACDStrategy_crossed_419` | `-` | `no run under the current runtime` |
+| `MACDStrategyv01` | `-` | `no run under the current runtime` |
+| `MACDTurn_2` | `-` | `no run under the current runtime` |
+| `MACD_BB_Volume` | `-` | `no run under the current runtime` |
+| `MACDcross` | `-` | `no run under the current runtime` |
+| `MAC_0` | `-` | `no run under the current runtime` |
+| `MALinearRegressionStrategy` | `-` | `no run under the current runtime` |
+| `MAOffsetsCombinedV0` | `-` | `no run under the current runtime` |
+| `MFI2_2` | `-` | `no run under the current runtime` |
+| `MFIRSICross_2` | `-` | `no run under the current runtime` |
+| `MFIStrategy` | `-` | `no run under the current runtime` |
+| `MKPmaxDcaStrategyV1_0` | `-` | `no run under the current runtime` |
+| `MLStrategy` | `-` | `no run under the current runtime` |
+| `MLStrategy2` | `-` | `no run under the current runtime` |
+| `MOY_NASOSv4` | `-` | `no run under the current runtime` |
+| `MQALYY` | `-` | `no run under the current runtime` |
+| `MR_V1` | `-` | `no run under the current runtime` |
+| `MSlopeV8` | `-` | `no run under the current runtime` |
+| `MVA` | `-` | `no run under the current runtime` |
+| `MaXTrend` | `-` | `no run under the current runtime` |
+| `Macd_2` | `-` | `no run under the current runtime` |
+| `MadV9HO` | `-` | `no run under the current runtime` |
+| `MarioAIS` | `-` | `no run under the current runtime` |
+| `MarketModeStrategy` | `-` | `no run under the current runtime` |
+| `Markov` | `-` | `no run under the current runtime` |
+| `MarkovV2` | `-` | `no run under the current runtime` |
+| `MarkovV4` | `-` | `no run under the current runtime` |
+| `MarkowitzPortfolioStrategy` | `-` | `no run under the current runtime` |
+| `Maro4h_Macd_Adx` | `-` | `no run under the current runtime` |
+| `Maro4h_bb_macd_adx` | `-` | `no run under the current runtime` |
+| `MarwoHeiken` | `-` | `no run under the current runtime` |
+| `Marwo_heiken_pure` | `-` | `no run under the current runtime` |
+| `Matoa` | `-` | `no run under the current runtime` |
+| `McQueen1` | `-` | `no run under the current runtime` |
+| `Mean1h` | `-` | `no run under the current runtime` |
+| `MeanV1` | `-` | `no run under the current runtime` |
+| `MemecoinAggressiveStrategy` | `-` | `no run under the current runtime` |
+| `MenOfSteel` | `-` | `no run under the current runtime` |
+| `MeoMeo99` | `-` | `no run under the current runtime` |
+| `MergedStrategy` | `-` | `no run under the current runtime` |
+| `Mid` | `-` | `no run under the current runtime` |
+| `Mimic_F` | `-` | `no run under the current runtime` |
+| `MiniLambo2` | `-` | `no run under the current runtime` |
+| `MomentumMeanReversionV1` | `-` | `no run under the current runtime` |
+| `Monday2Friday` | `-` | `no run under the current runtime` |
+| `Money` | `-` | `no run under the current runtime` |
+| `Money_m5` | `-` | `no run under the current runtime` |
+| `MovingGridStrategy` | `-` | `no run under the current runtime` |
+| `MultiMA_TSL_138` | `-` | `no run under the current runtime` |
+| `MultiMA_TSL_461` | `-` | `no run under the current runtime` |
+| `MultiMA_TSL_618` | `-` | `no run under the current runtime` |
+| `MultiMA_TSL_76` | `-` | `no run under the current runtime` |
+| `MultiMA_TSLho` | `-` | `no run under the current runtime` |
+| `MultiMA_TSLk` | `-` | `no run under the current runtime` |
+| `MultiMaX` | `-` | `no run under the current runtime` |
+| `MultiMa_2` | `-` | `no run under the current runtime` |
+| `MultiMa_544` | `-` | `no run under the current runtime` |
+| `MultiRSI2` | `-` | `no run under the current runtime` |
+| `MultiRSIBBand` | `-` | `no run under the current runtime` |
+| `MultiRSICMF` | `-` | `no run under the current runtime` |
+| `MultiRSIVfi` | `-` | `no run under the current runtime` |
+| `MultiRSI_136` | `-` | `no run under the current runtime` |
+| `MultiRSI_2` | `-` | `no run under the current runtime` |
+| `MultiRSI_211` | `-` | `no run under the current runtime` |
+| `MultiRSI_3` | `-` | `no run under the current runtime` |
+| `MultiTimeframeStrategy_v1` | `-` | `no run under the current runtime` |
+| `MultiVARDivergence` | `-` | `no run under the current runtime` |
+| `MyAwesomeStrategy` | `-` | `no run under the current runtime` |
+| `MyAwesomeStrategy_262` | `-` | `no run under the current runtime` |
+| `MyExampleLSTMStrategy` | `-` | `no run under the current runtime` |
+| `MyNewStrategy` | `-` | `no run under the current runtime` |
+| `MyStrategy` | `-` | `no run under the current runtime` |
+| `MyTestStrategy` | `-` | `no run under the current runtime` |
+| `My_Custom_Strategy` | `-` | `no run under the current runtime` |
+| `My_Updated_Strategy` | `-` | `no run under the current runtime` |
+| `My_div` | `-` | `no run under the current runtime` |
+| `NASOSRv6` | `-` | `no run under the current runtime` |
+| `NASOSv4Futures` | `-` | `no run under the current runtime` |
+| `NASOSv4HO` | `-` | `no run under the current runtime` |
+| `NASOSv4_2` | `-` | `no run under the current runtime` |
+| `NASOSv4_3` | `-` | `no run under the current runtime` |
+| `NASOSv4_563` | `-` | `no run under the current runtime` |
+| `NASOSv4_BOTH` | `-` | `no run under the current runtime` |
+| `NASOSv4_SMA` | `-` | `no run under the current runtime` |
+| `NASOSv4_SMA_interface_v3` | `-` | `no run under the current runtime` |
+| `NASOSv4customexit2` | `-` | `no run under the current runtime` |
+| `NASOSv5_16` | `-` | `no run under the current runtime` |
+| `NASOSv5_antipump_625` | `-` | `no run under the current runtime` |
+| `NASOSv6` | `-` | `no run under the current runtime` |
+| `NASOSv7` | `-` | `no run under the current runtime` |
+| `NASOSv7LongShort` | `-` | `no run under the current runtime` |
+| `NASOSvSH1` | `-` | `no run under the current runtime` |
+| `NDrop_2` | `-` | `no run under the current runtime` |
+| `NFI46OffsetHOA1_222` | `-` | `no run under the current runtime` |
+| `NFI46Z_212` | `-` | `no run under the current runtime` |
+| `NFI46_217` | `-` | `no run under the current runtime` |
+| `NFI47` | `-` | `no run under the current runtime` |
+| `NFI5MOHO_WIP_118` | `-` | `no run under the current runtime` |
+| `NFI5MOHO_WIP_mod1` | `-` | `no run under the current runtime` |
+| `NFI7HO2` | `-` | `no run under the current runtime` |
+| `NFI7_7_2` | `-` | `no run under the current runtime` |
+| `NFIV5HYPERALL` | `-` | `no run under the current runtime` |
+| `NFIV6HYPER` | `-` | `no run under the current runtime` |
+| `NFIV7_SMA` | `-` | `no run under the current runtime` |
+| `NFIV8_SMA` | `-` | `no run under the current runtime` |
+| `NFIX_BB_RPB_v103` | `-` | `no run under the current runtime` |
+| `NFi_772_KC` | `-` | `no run under the current runtime` |
+| `NOTankAi15` | `-` | `no run under the current runtime` |
+| `NOTankAi_15_2` | `-` | `no run under the current runtime` |
+| `NOTankAi_Futures` | `-` | `no run under the current runtime` |
+| `NOTankAi_Futures_Improved` | `-` | `no run under the current runtime` |
+| `NSeq_2` | `-` | `no run under the current runtime` |
+| `Napoli` | `-` | `no run under the current runtime` |
+| `Neat_RL` | `-` | `no run under the current runtime` |
+| `Nemesis4` | `-` | `no run under the current runtime` |
+| `NewStrategy` | `-` | `no run under the current runtime` |
+| `NimmV20` | `-` | `no run under the current runtime` |
+| `NostalgiaForInfinityNext1` | `-` | `no run under the current runtime` |
+| `NostalgiaForInfinityNext1_327` | `-` | `no run under the current runtime` |
+| `NostalgiaForInfinityNext2` | `-` | `no run under the current runtime` |
+| `NostalgiaForInfinityNext2_0` | `-` | `no run under the current runtime` |
+| `NostalgiaForInfinityNext7_15_5` | `-` | `no run under the current runtime` |
+| `NostalgiaForInfinityNextGen_141` | `-` | `no run under the current runtime` |
+| `NostalgiaForInfinityNextGen_2` | `-` | `no run under the current runtime` |
+| `NostalgiaForInfinityNextGen_3` | `-` | `no run under the current runtime` |
+| `NostalgiaForInfinityNextW` | `-` | `no run under the current runtime` |
+| `NostalgiaForInfinityNext_0` | `-` | `no run under the current runtime` |
+| `NostalgiaForInfinityNext_105` | `-` | `no run under the current runtime` |
+| `NostalgiaForInfinityNext_134` | `-` | `no run under the current runtime` |
+| `NostalgiaForInfinityNext_2` | `-` | `no run under the current runtime` |
+| `NostalgiaForInfinityNext_223` | `-` | `no run under the current runtime` |
+| `NostalgiaForInfinityNext_272` | `-` | `no run under the current runtime` |
+| `NostalgiaForInfinityNext_75` | `-` | `no run under the current runtime` |
+| `NostalgiaForInfinityNext_76` | `-` | `no run under the current runtime` |
+| `NostalgiaForInfinityNext_772SLMod` | `-` | `no run under the current runtime` |
+| `NostalgiaForInfinityNext_818` | `-` | `no run under the current runtime` |
+| `NostalgiaForInfinityNext_919` | `-` | `no run under the current runtime` |
+| `NostalgiaForInfinityNext_960` | `-` | `no run under the current runtime` |
+| `NostalgiaForInfinityNext_98` | `-` | `no run under the current runtime` |
+| `NostalgiaForInfinityNext_ChangeToTower_V2` | `-` | `no run under the current runtime` |
+| `NostalgiaForInfinityV3_2` | `-` | `no run under the current runtime` |
+| `NostalgiaForInfinityV6_911` | `-` | `no run under the current runtime` |
+| `NostalgiaForInfinityV7_2` | `-` | `no run under the current runtime` |
+| `NostalgiaForInfinityV7_476` | `-` | `no run under the current runtime` |
+| `NostalgiaForInfinityV7_7` | `-` | `no run under the current runtime` |
+| `NostalgiaForInfinityV8` | `-` | `no run under the current runtime` |
+| `NostalgiaForInfinityV8_9_1` | `-` | `no run under the current runtime` |
+| `NostalgiaForInfinityX2_11` | `-` | `no run under the current runtime` |
+| `NostalgiaForInfinityX2_13` | `-` | `no run under the current runtime` |
+| `NostalgiaForInfinityX2_14` | `-` | `no run under the current runtime` |
+| `NostalgiaForInfinityX2_2` | `-` | `no run under the current runtime` |
+| `NostalgiaForInfinityX2_234` | `-` | `no run under the current runtime` |
+| `NostalgiaForInfinityX2_237` | `-` | `no run under the current runtime` |
+| `NostalgiaForInfinityX2_3` | `-` | `no run under the current runtime` |
+| `NostalgiaForInfinityX2_4` | `-` | `no run under the current runtime` |
+| `NostalgiaForInfinityX2_5` | `-` | `no run under the current runtime` |
+| `NostalgiaForInfinityX2_8` | `-` | `no run under the current runtime` |
+| `NostalgiaForInfinityX2_92` | `-` | `no run under the current runtime` |
+| `NostalgiaForInfinityX2_93` | `-` | `no run under the current runtime` |
+| `NostalgiaForInfinityX_2` | `-` | `no run under the current runtime` |
+| `NostalgiaForInfinity_7_13_0` | `-` | `no run under the current runtime` |
+| `NostalgiaForSimplicity` | `-` | `no run under the current runtime` |
+| `NostalgiaVIP` | `-` | `no run under the current runtime` |
+| `Nostalgia_2` | `-` | `no run under the current runtime` |
+| `NotAnotherSMAOffSetStrategy_V2_3` | `-` | `no run under the current runtime` |
+| `NotAnotherSMAOffSetStrategy_V2_577` | `-` | `no run under the current runtime` |
+| `NotAnotherSMAOffsetStrategyHO_113` | `-` | `no run under the current runtime` |
+| `NotAnotherSMAOffsetStrategyHO_113S` | `-` | `no run under the current runtime` |
+| `NotAnotherSMAOffsetStrategyHO_2` | `-` | `no run under the current runtime` |
+| `NotAnotherSMAOffsetStrategyHOv3_2` | `-` | `no run under the current runtime` |
+| `NotAnotherSMAOffsetStrategyHOv3_akiva` | `-` | `no run under the current runtime` |
+| `NotAnotherSMAOffsetStrategyHOv3_b` | `-` | `no run under the current runtime` |
+| `NotAnotherSMAOffsetStrategyHOv3_b_81` | `-` | `no run under the current runtime` |
+| `NotAnotherSMAOffsetStrategyHOv3_b_interface_v3` | `-` | `no run under the current runtime` |
+| `NotAnotherSMAOffsetStrategyX1_176` | `-` | `no run under the current runtime` |
+| `NotAnotherSMAOffsetStrategy_199` | `-` | `no run under the current runtime` |
+| `NotAnotherSMAOffsetStrategy_2` | `-` | `no run under the current runtime` |
+| `NotAnotherSMAOffsetStrategy_3` | `-` | `no run under the current runtime` |
+| `NotAnotherSMAOffsetStrategy_970` | `-` | `no run under the current runtime` |
+| `NotAnotherSMAOffsetStrategy_uzi2` | `-` | `no run under the current runtime` |
+| `NotAnotherSMAOffsetStrategy_uzi3ho` | `-` | `no run under the current runtime` |
+| `Notank_unbiased` | `-` | `no run under the current runtime` |
+| `Notank_unbiased_no_freqai` | `-` | `no run under the current runtime` |
+| `NowotnyIchimokuV1` | `-` | `no run under the current runtime` |
+| `Nst53` | `-` | `no run under the current runtime` |
+| `OBOnly` | `-` | `no run under the current runtime` |
+| `OBOnlyV3` | `-` | `no run under the current runtime` |
+| `OBOnlyV4` | `-` | `no run under the current runtime` |
+| `Obelisk` | `-` | `no run under the current runtime` |
+| `ObeliskRSI_v6_1_319` | `-` | `no run under the current runtime` |
+| `ObeliskRSI_v6_1_375` | `-` | `no run under the current runtime` |
+| `ObeliskRSI_v6_1_668` | `-` | `no run under the current runtime` |
+| `Obelisk_3EMA_StochRSI_ATR_259` | `-` | `no run under the current runtime` |
+| `Obelisk_Ichimoku_Slow_v1_1_370` | `-` | `no run under the current runtime` |
+| `Obelisk_Ichimoku_Slow_v1_1_674` | `-` | `no run under the current runtime` |
+| `Obelisk_Ichimoku_Slow_v1_3_338` | `-` | `no run under the current runtime` |
+| `Obelisk_Ichimoku_Slow_v1_671` | `-` | `no run under the current runtime` |
+| `Obelisk_Ichimoku_ZEMA_v1_555` | `-` | `no run under the current runtime` |
+| `Obelisk_TradePro_Ichi_v1_1_673` | `-` | `no run under the current runtime` |
+| `OptimalStrategy` | `-` | `no run under the current runtime` |
+| `OptimizedIchimokuStrategy` | `-` | `no run under the current runtime` |
+| `OptimizedKamaFama_2` | `-` | `no run under the current runtime` |
+| `OptimizedStrategy` | `-` | `no run under the current runtime` |
+| `OptimizedSupertrend` | `-` | `no run under the current runtime` |
+| `OrderBook` | `-` | `no run under the current runtime` |
+| `OttTDSeqMultiTimeframeStrategy` | `-` | `no run under the current runtime` |
+| `PCA301` | `-` | `no run under the current runtime` |
+| `PCA3_shortberk` | `-` | `no run under the current runtime` |
+| `PMAXStrategy` | `-` | `no run under the current runtime` |
+| `PS` | `-` | `no run under the current runtime` |
+| `ParabolicSAR` | `-` | `no run under the current runtime` |
+| `Patterns2_2` | `-` | `no run under the current runtime` |
+| `Peekaboo` | `-` | `no run under the current runtime` |
+| `Pivot7` | `-` | `no run under the current runtime` |
+| `Pivot7Improved` | `-` | `no run under the current runtime` |
+| `Pivot_tuned` | `-` | `no run under the current runtime` |
+| `PivotsBBEMAStrategy` | `-` | `no run under the current runtime` |
+| `PlusMinusV1` | `-` | `no run under the current runtime` |
+| `PlutoTrendFollower1` | `-` | `no run under the current runtime` |
+| `Pmax_01` | `-` | `no run under the current runtime` |
+| `Pmax_02` | `-` | `no run under the current runtime` |
+| `PriceActionEngulfingStrategy` | `-` | `no run under the current runtime` |
+| `PriceAlertShort` | `-` | `no run under the current runtime` |
+| `PrintMoney_v1` | `-` | `no run under the current runtime` |
+| `PunkAlgoStrategy` | `-` | `no run under the current runtime` |
+| `QBitrain` | `-` | `no run under the current runtime` |
+| `QWQ` | `-` | `no run under the current runtime` |
+| `QuickAdapterV35` | `-` | `no run under the current runtime` |
+| `QuickAdapterV35_2` | `-` | `no run under the current runtime` |
+| `QuickAdapterV3_2` | `-` | `no run under the current runtime` |
+| `QuickAdapterV4` | `-` | `no run under the current runtime` |
+| `QuickAdapterV4_2` | `-` | `no run under the current runtime` |
+| `QuickBuyStrategy_futures` | `-` | `no run under the current runtime` |
+| `QuickGainLowLoss` | `-` | `no run under the current runtime` |
+| `QuickieHyperStrategy` | `-` | `no run under the current runtime` |
+| `Quickie_2` | `-` | `no run under the current runtime` |
+| `Quickie_21` | `-` | `no run under the current runtime` |
+| `Quickie_3` | `-` | `no run under the current runtime` |
+| `Quickie_4` | `-` | `no run under the current runtime` |
+| `RBreakerStrategy` | `-` | `no run under the current runtime` |
+| `REMORABB` | `-` | `no run under the current runtime` |
+| `RHComb_v1` | `-` | `no run under the current runtime` |
+| `RMB` | `-` | `no run under the current runtime` |
+| `ROCnRoll` | `-` | `no run under the current runtime` |
+| `RSIBB_V1` | `-` | `no run under the current runtime` |
+| `RSIBB_V2` | `-` | `no run under the current runtime` |
+| `RSIBB_V3` | `-` | `no run under the current runtime` |
+| `RSIBB_V4` | `-` | `no run under the current runtime` |
+| `RSIBouncer` | `-` | `no run under the current runtime` |
+| `RSICryptoStrategy` | `-` | `no run under the current runtime` |
+| `RSIDip` | `-` | `no run under the current runtime` |
+| `RSIDivergence_2` | `-` | `no run under the current runtime` |
+| `RSIDivergence_238` | `-` | `no run under the current runtime` |
+| `RSIDivergence_758` | `-` | `no run under the current runtime` |
+| `RSIDrop` | `-` | `no run under the current runtime` |
+| `RSIDropDNS` | `-` | `no run under the current runtime` |
+| `RSIDropDNSTrader` | `-` | `no run under the current runtime` |
+| `RSIDropDNSTraderBTCMACD` | `-` | `no run under the current runtime` |
+| `RSIDropDNSTraderBTCRSI` | `-` | `no run under the current runtime` |
+| `RSIDropDNSTraderBTCVWAP` | `-` | `no run under the current runtime` |
+| `RSIResampleV2` | `-` | `no run under the current runtime` |
+| `RSIResampleV3` | `-` | `no run under the current runtime` |
+| `RSITrailingStopScalper` | `-` | `no run under the current runtime` |
+| `RSI_F` | `-` | `no run under the current runtime` |
+| `RSI_MFI` | `-` | `no run under the current runtime` |
+| `RSI_MFI_2` | `-` | `no run under the current runtime` |
+| `RSI_hyper` | `-` | `no run under the current runtime` |
+| `RalliV1_2` | `-` | `no run under the current runtime` |
+| `RalliV1_disable56_2` | `-` | `no run under the current runtime` |
+| `RangeTrader` | `-` | `no run under the current runtime` |
+| `RapidBuyTrailing` | `-` | `no run under the current runtime` |
+| `ReCoredV1` | `-` | `no run under the current runtime` |
+| `ReDeCoredV1StoplossAdjusted` | `-` | `no run under the current runtime` |
+| `ReinforcedAverageStrategy_3` | `-` | `no run under the current runtime` |
+| `ReinforcedAverageStrategy_4` | `-` | `no run under the current runtime` |
+| `ReinforcedAverageStrategy_6` | `-` | `no run under the current runtime` |
+| `ReinforcedAverageStrategy_92` | `-` | `no run under the current runtime` |
+| `ReinforcedQuickieHyperStrategy` | `-` | `no run under the current runtime` |
+| `ReinforcedQuickie_2` | `-` | `no run under the current runtime` |
+| `ReinforcedQuickie_3` | `-` | `no run under the current runtime` |
+| `ReinforcedQuickie_86` | `-` | `no run under the current runtime` |
+| `ReinforcedQuickie_v2` | `-` | `no run under the current runtime` |
+| `ReinforcedSmoothScalp2` | `-` | `no run under the current runtime` |
+| `ReinforcedSmoothScalp_117` | `-` | `no run under the current runtime` |
+| `ReinforcedSmoothScalp_2` | `-` | `no run under the current runtime` |
+| `ReinforcedSmoothScalp_3` | `-` | `no run under the current runtime` |
+| `ReinforcedSmoothScalp_4` | `-` | `no run under the current runtime` |
+| `ReinforcedSmoothScalp_450` | `-` | `no run under the current runtime` |
+| `ReinforcedSmoothScalp_5` | `-` | `no run under the current runtime` |
+| `ReinforcedSmoothScalp_97` | `-` | `no run under the current runtime` |
+| `Renco1` | `-` | `no run under the current runtime` |
+| `RingRongv2` | `-` | `no run under the current runtime` |
+| `Rockwell` | `-` | `no run under the current runtime` |
+| `RotatorTSLearn` | `-` | `no run under the current runtime` |
+| `Roth02` | `-` | `no run under the current runtime` |
+| `RsiQuickStrat` | `-` | `no run under the current runtime` |
+| `RsiStrategy` | `-` | `no run under the current runtime` |
+| `RsiquiV3` | `-` | `no run under the current runtime` |
+| `RsiquiV3_2` | `-` | `no run under the current runtime` |
+| `RsiquiV4` | `-` | `no run under the current runtime` |
+| `RsiquiV5_2` | `-` | `no run under the current runtime` |
+| `RunStrategy` | `-` | `no run under the current runtime` |
+| `S096` | `-` | `no run under the current runtime` |
+| `SARCross_2` | `-` | `no run under the current runtime` |
+| `SAR_and_BB` | `-` | `no run under the current runtime` |
+| `SMA` | `-` | `no run under the current runtime` |
+| `SMA1CTE2` | `-` | `no run under the current runtime` |
+| `SMA1Sell` | `-` | `no run under the current runtime` |
+| `SMAOG_273` | `-` | `no run under the current runtime` |
+| `SMAOG_706` | `-` | `no run under the current runtime` |
+| `SMAOG_821` | `-` | `no run under the current runtime` |
+| `SMAOPv1_TTF_2` | `-` | `no run under the current runtime` |
+| `SMAOffsetBZed` | `-` | `no run under the current runtime` |
+| `SMAOffsetMod1BTC` | `-` | `no run under the current runtime` |
+| `SMAOffsetOptV1` | `-` | `no run under the current runtime` |
+| `SMAOffsetPlusDemon` | `-` | `no run under the current runtime` |
+| `SMAOffsetProtectOptV1_0` | `-` | `no run under the current runtime` |
+| `SMAOffsetProtectOptV1_2` | `-` | `no run under the current runtime` |
+| `SMAOffsetProtectOptV1_3` | `-` | `no run under the current runtime` |
+| `SMAOffsetProtectOptV1_356` | `-` | `no run under the current runtime` |
+| `SMAOffsetProtectOptV1_560` | `-` | `no run under the current runtime` |
+| `SMAOffsetProtectOptV1_7` | `-` | `no run under the current runtime` |
+| `SMAOffsetProtectOptV1_830` | `-` | `no run under the current runtime` |
+| `SMAOffsetProtectOptV1_973` | `-` | `no run under the current runtime` |
+| `SMAOffsetProtectOptV1_984` | `-` | `no run under the current runtime` |
+| `SMAOffsetProtectOpt_2` | `-` | `no run under the current runtime` |
+| `SMAOffset_2` | `-` | `no run under the current runtime` |
+| `SMAOffset_3` | `-` | `no run under the current runtime` |
+| `SMAOffset_4` | `-` | `no run under the current runtime` |
+| `SOMY` | `-` | `no run under the current runtime` |
+| `SOPOV1` | `-` | `no run under the current runtime` |
+| `SRFuturesStrategy2` | `-` | `no run under the current runtime` |
+| `SSL_ATR_ADX_VOL` | `-` | `no run under the current runtime` |
+| `STRATEGY_002_STOCHASTIC_CDLHAMMER` | `-` | `no run under the current runtime` |
+| `STRATEGY_003_RSI_MFI_FISHERRSI` | `-` | `no run under the current runtime` |
+| `STRATEGY_005_FASTSTOCH_RSI` | `-` | `no run under the current runtime` |
+| `STRATEGY_CORAL_AND_WAVETREND` | `-` | `no run under the current runtime` |
+| `STRATEGY_DEFAULT` | `-` | `no run under the current runtime` |
+| `STRATEGY_SMOOTHED` | `-` | `no run under the current runtime` |
+| `SUI_MeanReversion_Optimized` | `-` | `no run under the current runtime` |
+| `SafeCluc` | `-` | `no run under the current runtime` |
+| `SafeMaxStrategy` | `-` | `no run under the current runtime` |
+| `SampleROITables` | `-` | `no run under the current runtime` |
+| `Saturn5_1` | `-` | `no run under the current runtime` |
+| `SaulusStrategia` | `-` | `no run under the current runtime` |
+| `SaulusStrategiaOtimizeHyperOpt` | `-` | `no run under the current runtime` |
+| `ScalpAvalon` | `-` | `no run under the current runtime` |
+| `ScalpV1` | `-` | `no run under the current runtime` |
+| `Scalp_2` | `-` | `no run under the current runtime` |
+| `Scalp_3` | `-` | `no run under the current runtime` |
+| `Scalp_4` | `-` | `no run under the current runtime` |
+| `Scalp_6` | `-` | `no run under the current runtime` |
+| `Scalp_7` | `-` | `no run under the current runtime` |
+| `Scalping2` | `-` | `no run under the current runtime` |
+| `ScalpingCCI_325` | `-` | `no run under the current runtime` |
+| `ScalpingMomentsStrategyV6` | `-` | `no run under the current runtime` |
+| `ScalpingStrategy` | `-` | `no run under the current runtime` |
+| `SchismLess` | `-` | `no run under the current runtime` |
+| `SchismLess_v2` | `-` | `no run under the current runtime` |
+| `Schism_0318` | `-` | `no run under the current runtime` |
+| `Schism_Badstreak` | `-` | `no run under the current runtime` |
+| `Schism_Badstreak2` | `-` | `no run under the current runtime` |
+| `Schism_v1` | `-` | `no run under the current runtime` |
+| `Schism_v1_4` | `-` | `no run under the current runtime` |
+| `Schism_v1_5` | `-` | `no run under the current runtime` |
+| `Schism_v1_6` | `-` | `no run under the current runtime` |
+| `Schism_v2` | `-` | `no run under the current runtime` |
+| `SeeYouLaterTSL` | `-` | `no run under the current runtime` |
+| `SeeYouLater_68` | `-` | `no run under the current runtime` |
+| `ShaneBitty` | `-` | `no run under the current runtime` |
+| `SimpleBollinger_2` | `-` | `no run under the current runtime` |
+| `SimpleMAStrategy` | `-` | `no run under the current runtime` |
+| `Simple_18` | `-` | `no run under the current runtime` |
+| `Simple_3` | `-` | `no run under the current runtime` |
+| `Simple_4` | `-` | `no run under the current runtime` |
+| `Simple_5` | `-` | `no run under the current runtime` |
+| `Simple_98` | `-` | `no run under the current runtime` |
+| `Simple_ichi` | `-` | `no run under the current runtime` |
+| `SlingShot1` | `-` | `no run under the current runtime` |
+| `SlopeIsDope` | `-` | `no run under the current runtime` |
+| `SlopeV1` | `-` | `no run under the current runtime` |
+| `SlopeV2` | `-` | `no run under the current runtime` |
+| `SlopeV3` | `-` | `no run under the current runtime` |
+| `SlopeV4` | `-` | `no run under the current runtime` |
+| `SlopeV5` | `-` | `no run under the current runtime` |
+| `SlopeV6` | `-` | `no run under the current runtime` |
+| `SlowPotato_358` | `-` | `no run under the current runtime` |
+| `SmaCrossStrategy` | `-` | `no run under the current runtime` |
+| `SmaRsi` | `-` | `no run under the current runtime` |
+| `SmaRsiStrategy_386` | `-` | `no run under the current runtime` |
+| `SmaRsiStrategy_59` | `-` | `no run under the current runtime` |
+| `SmaRsiStrategy_plot` | `-` | `no run under the current runtime` |
+| `Smart5MinStrategy` | `-` | `no run under the current runtime` |
+| `SmartMoneyConceptsFreqAI` | `-` | `no run under the current runtime` |
+| `SmidoltStrategy` | `-` | `no run under the current runtime` |
+| `SmoothOperator_10` | `-` | `no run under the current runtime` |
+| `SmoothOperator_2` | `-` | `no run under the current runtime` |
+| `SmoothOperator_3` | `-` | `no run under the current runtime` |
+| `SmoothOperator_4` | `-` | `no run under the current runtime` |
+| `SmoothScalp_121` | `-` | `no run under the current runtime` |
+| `SmoothScalp_2` | `-` | `no run under the current runtime` |
+| `SmoothScalp_3` | `-` | `no run under the current runtime` |
+| `SmoothScalp_321` | `-` | `no run under the current runtime` |
+| `SmoothScalp_386` | `-` | `no run under the current runtime` |
+| `SmoothScalp_4` | `-` | `no run under the current runtime` |
+| `SmoothScalp_476` | `-` | `no run under the current runtime` |
+| `SmoothScalp_831` | `-` | `no run under the current runtime` |
+| `Solipsis_tradedbexp` | `-` | `no run under the current runtime` |
+| `Solipsis_v1` | `-` | `no run under the current runtime` |
+| `Solipsis_v2` | `-` | `no run under the current runtime` |
+| `Solipsis_v2_4` | `-` | `no run under the current runtime` |
+| `Solipsis_v2_5` | `-` | `no run under the current runtime` |
+| `Solipsis_v2_6` | `-` | `no run under the current runtime` |
+| `Solipsis_v3` | `-` | `no run under the current runtime` |
+| `Solipsis_v3_fuck` | `-` | `no run under the current runtime` |
+| `Solipsis_v4_2` | `-` | `no run under the current runtime` |
+| `Solipsis_v4_3` | `-` | `no run under the current runtime` |
+| `Solipsis_v5` | `-` | `no run under the current runtime` |
+| `SpringAlarm` | `-` | `no run under the current runtime` |
+| `Squeeze001_2` | `-` | `no run under the current runtime` |
+| `Squeeze002_2` | `-` | `no run under the current runtime` |
+| `SqueezeMomentum_2` | `-` | `no run under the current runtime` |
+| `SqueezeMomentum_3` | `-` | `no run under the current runtime` |
+| `SqueezeOff_2` | `-` | `no run under the current runtime` |
+| `StandardStrategy` | `-` | `no run under the current runtime` |
+| `Stavix` | `-` | `no run under the current runtime` |
+| `Stavix5` | `-` | `no run under the current runtime` |
+| `SteveLava` | `-` | `no run under the current runtime` |
+| `Stoch` | `-` | `no run under the current runtime` |
+| `Strat` | `-` | `no run under the current runtime` |
+| `Strategy001_419` | `-` | `no run under the current runtime` |
+| `Strategy001_426` | `-` | `no run under the current runtime` |
+| `Strategy001_custom_sell_2` | `-` | `no run under the current runtime` |
+| `Strategy001_custom_sell_3` | `-` | `no run under the current runtime` |
+| `Strategy001_custom_sell_857` | `-` | `no run under the current runtime` |
+| `Strategy002_155` | `-` | `no run under the current runtime` |
+| `Strategy002_439` | `-` | `no run under the current runtime` |
+| `Strategy002_621` | `-` | `no run under the current runtime` |
+| `Strategy002_64` | `-` | `no run under the current runtime` |
+| `Strategy003_13` | `-` | `no run under the current runtime` |
+| `Strategy003_2` | `-` | `no run under the current runtime` |
+| `Strategy003_74` | `-` | `no run under the current runtime` |
+| `Strategy003_869` | `-` | `no run under the current runtime` |
+| `Strategy004_302` | `-` | `no run under the current runtime` |
+| `Strategy004_395` | `-` | `no run under the current runtime` |
+| `Strategy004_955` | `-` | `no run under the current runtime` |
+| `Strategy004_957` | `-` | `no run under the current runtime` |
+| `Strategy005_133` | `-` | `no run under the current runtime` |
+| `Strategy005_496` | `-` | `no run under the current runtime` |
+| `Strategy041_2` | `-` | `no run under the current runtime` |
+| `StrategyDoubleScalper` | `-` | `no run under the current runtime` |
+| `StrategyTrendReversal` | `-` | `no run under the current runtime` |
+| `StrategyV3` | `-` | `no run under the current runtime` |
+| `StrategyV4` | `-` | `no run under the current runtime` |
+| `Strategy_38` | `-` | `no run under the current runtime` |
+| `Super` | `-` | `no run under the current runtime` |
+| `Super3` | `-` | `no run under the current runtime` |
+| `SuperAi_1m` | `-` | `no run under the current runtime` |
+| `SuperBB` | `-` | `no run under the current runtime` |
+| `SuperBoost` | `-` | `no run under the current runtime` |
+| `SuperIchi` | `-` | `no run under the current runtime` |
+| `SuperMacd` | `-` | `no run under the current runtime` |
+| `SuperTrendPure_583` | `-` | `no run under the current runtime` |
+| `SuperTrend_154` | `-` | `no run under the current runtime` |
+| `SupertrendStrategy_713` | `-` | `no run under the current runtime` |
+| `Supertrend_151` | `-` | `no run under the current runtime` |
+| `Supertrend_2` | `-` | `no run under the current runtime` |
+| `Supertrend_296` | `-` | `no run under the current runtime` |
+| `Supertrend_3` | `-` | `no run under the current runtime` |
+| `Supertrend_4` | `-` | `no run under the current runtime` |
+| `Supertrend_460` | `-` | `no run under the current runtime` |
+| `Supertrend_6` | `-` | `no run under the current runtime` |
+| `Supertrend_771` | `-` | `no run under the current runtime` |
+| `Supertrend_ORIG` | `-` | `no run under the current runtime` |
+| `Supertrend_mod1` | `-` | `no run under the current runtime` |
+| `SwingTradingDmiStrategy` | `-` | `no run under the current runtime` |
+| `Swing_High_To_Sky` | `-` | `no run under the current runtime` |
+| `Swing_High_To_Sky_629` | `-` | `no run under the current runtime` |
+| `Swing_High_To_Sky_865` | `-` | `no run under the current runtime` |
+| `TAD` | `-` | `no run under the current runtime` |
+| `TA_Collector_v1` | `-` | `no run under the current runtime` |
+| `TA_Collector_v1_0` | `-` | `no run under the current runtime` |
+| `TA_Collector_v1_2` | `-` | `no run under the current runtime` |
+| `TDSequentialStrategy_2` | `-` | `no run under the current runtime` |
+| `TDSequentialStrategy_867` | `-` | `no run under the current runtime` |
+| `TEMABounce_2` | `-` | `no run under the current runtime` |
+| `TM3ExtremumHunter` | `-` | `no run under the current runtime` |
+| `TM5QuickAdapterV4` | `-` | `no run under the current runtime` |
+| `TN` | `-` | `no run under the current runtime` |
+| `TR5m` | `-` | `no run under the current runtime` |
+| `TRIWAVE_2` | `-` | `no run under the current runtime` |
+| `TRSI` | `-` | `no run under the current runtime` |
+| `TR_default` | `-` | `no run under the current runtime` |
+| `TSIHULLBOT` | `-` | `no run under the current runtime` |
+| `TS_default` | `-` | `no run under the current runtime` |
+| `TVdatafeed_exemple` | `-` | `no run under the current runtime` |
+| `TaLevelB15m` | `-` | `no run under the current runtime` |
+| `TaLevelB5m` | `-` | `no run under the current runtime` |
+| `TaSearch1m` | `-` | `no run under the current runtime` |
+| `TaSearch1mBTC` | `-` | `no run under the current runtime` |
+| `TaSearch30m` | `-` | `no run under the current runtime` |
+| `TaSearch30m_6` | `-` | `no run under the current runtime` |
+| `TaSearch30m_8` | `-` | `no run under the current runtime` |
+| `TaSearch30m_9` | `-` | `no run under the current runtime` |
+| `TaSearch5m` | `-` | `no run under the current runtime` |
+| `TaSearch5mL` | `-` | `no run under the current runtime` |
+| `TaSearch5m_2` | `-` | `no run under the current runtime` |
+| `TaSearch5m_4` | `-` | `no run under the current runtime` |
+| `TaSearch5m_5` | `-` | `no run under the current runtime` |
+| `TaSearchDynamic30m` | `-` | `no run under the current runtime` |
+| `TaSearchDynamic30m_2` | `-` | `no run under the current runtime` |
+| `TaSearchDynamic5m` | `-` | `no run under the current runtime` |
+| `TaSearchDynamic5m_3` | `-` | `no run under the current runtime` |
+| `TaSearchLevelB30m` | `-` | `no run under the current runtime` |
+| `TaSearchLevelC30m` | `-` | `no run under the current runtime` |
+| `TaSearchLevelG15mv` | `-` | `no run under the current runtime` |
+| `TaSearchLevelH15m` | `-` | `no run under the current runtime` |
+| `TaSearchLevelH15m_2` | `-` | `no run under the current runtime` |
+| `TaSearchLevelJ15m` | `-` | `no run under the current runtime` |
+| `TakeprofitThenTrail` | `-` | `no run under the current runtime` |
+| `Tank5HurstDCAV1` | `-` | `no run under the current runtime` |
+| `Tank5HurstDCAV3` | `-` | `no run under the current runtime` |
+| `TapolV1` | `-` | `no run under the current runtime` |
+| `TechnicalExampleStrategy_2` | `-` | `no run under the current runtime` |
+| `Tesla4_2` | `-` | `no run under the current runtime` |
+| `Test4` | `-` | `no run under the current runtime` |
+| `Test5` | `-` | `no run under the current runtime` |
+| `TestCandles11` | `-` | `no run under the current runtime` |
+| `TestPair` | `-` | `no run under the current runtime` |
+| `TestStrategy` | `-` | `no run under the current runtime` |
+| `Testing` | `-` | `no run under the current runtime` |
+| `TheForceOptimized` | `-` | `no run under the current runtime` |
+| `TheForceOptimizedV2` | `-` | `no run under the current runtime` |
+| `TheForceOptimizedV3` | `-` | `no run under the current runtime` |
+| `TheForceOptimizedV4` | `-` | `no run under the current runtime` |
+| `TheForceV4` | `-` | `no run under the current runtime` |
+| `TheForceV7` | `-` | `no run under the current runtime` |
+| `TheMessenger` | `-` | `no run under the current runtime` |
+| `TheRealPullbackV2_220` | `-` | `no run under the current runtime` |
+| `TheSimpleStrategy` | `-` | `no run under the current runtime` |
+| `ThreeSmaCrossStrategy` | `-` | `no run under the current runtime` |
+| `Top100TrendStrategy` | `-` | `no run under the current runtime` |
+| `Trader_4` | `-` | `no run under the current runtime` |
+| `Trader_4_1726727454_3078` | `-` | `no run under the current runtime` |
+| `TrailingBuyStratClucBBRPBMODE_167` | `-` | `no run under the current runtime` |
+| `TrailingBuyStratCluc_172` | `-` | `no run under the current runtime` |
+| `TrailingBuy_ClucHAnix_5m_E0V1E_by_TraNz` | `-` | `no run under the current runtime` |
+| `TrailingBuy_ClucHAnix_5m_E0V1E_by_TraNz201` | `-` | `no run under the current runtime` |
+| `Trend23t` | `-` | `no run under the current runtime` |
+| `TrendFollowingStrategy_2` | `-` | `no run under the current runtime` |
+| `TrendFollowingStrategy_4` | `-` | `no run under the current runtime` |
+| `Trend_Strength_Directional_2` | `-` | `no run under the current runtime` |
+| `Trend_grid` | `-` | `no run under the current runtime` |
+| `Trend_grid_v1` | `-` | `no run under the current runtime` |
+| `Trendhere2` | `-` | `no run under the current runtime` |
+| `TripleSuperTrendADXRSIK1` | `-` | `no run under the current runtime` |
+| `Turtle` | `-` | `no run under the current runtime` |
+| `TurtlePyramidingStrategy` | `-` | `no run under the current runtime` |
+| `TwoMovingAveragesStrategy` | `-` | `no run under the current runtime` |
+| `UltimateHighProbFutures` | `-` | `no run under the current runtime` |
+| `UniversalTrendStrategy` | `-` | `no run under the current runtime` |
+| `Usdcmbespot` | `-` | `no run under the current runtime` |
+| `V87XH` | `-` | `no run under the current runtime` |
+| `VMCipherBDivergencesStrategy` | `-` | `no run under the current runtime` |
+| `VWAPAlarm` | `-` | `no run under the current runtime` |
+| `VWAPAlarm5M` | `-` | `no run under the current runtime` |
+| `VWAPAlarmPositive` | `-` | `no run under the current runtime` |
+| `VWAPStrategy` | `-` | `no run under the current runtime` |
+| `VWAPStrategy_03` | `-` | `no run under the current runtime` |
+| `VWAPStrategy_04` | `-` | `no run under the current runtime` |
+| `VWAPStrategy_05` | `-` | `no run under the current runtime` |
+| `VWAPStrategy_06` | `-` | `no run under the current runtime` |
+| `VWAPStrategy_08` | `-` | `no run under the current runtime` |
+| `VWAPStrategy_09` | `-` | `no run under the current runtime` |
+| `VWAPStrategy_1` | `-` | `no run under the current runtime` |
+| `VWAPStrategy_10` | `-` | `no run under the current runtime` |
+| `VWAPStrategy_11` | `-` | `no run under the current runtime` |
+| `VWAPStrategy_12` | `-` | `no run under the current runtime` |
+| `VWAPStrategy_13` | `-` | `no run under the current runtime` |
+| `VWAPStrategy_14` | `-` | `no run under the current runtime` |
+| `VWAPStrategy_15` | `-` | `no run under the current runtime` |
+| `VWAPStrategy_16` | `-` | `no run under the current runtime` |
+| `VWAPStrategy_17` | `-` | `no run under the current runtime` |
+| `VWAPStrategy_18` | `-` | `no run under the current runtime` |
+| `VWAPStrategy_2` | `-` | `no run under the current runtime` |
+| `VWAP_1` | `-` | `no run under the current runtime` |
+| `VWAP_2` | `-` | `no run under the current runtime` |
+| `VWAP_266` | `-` | `no run under the current runtime` |
+| `VWAP_319` | `-` | `no run under the current runtime` |
+| `VWAPstratATR5` | `-` | `no run under the current runtime` |
+| `Vail2` | `-` | `no run under the current runtime` |
+| `Vail6` | `-` | `no run under the current runtime` |
+| `Vail61` | `-` | `no run under the current runtime` |
+| `Vail62` | `-` | `no run under the current runtime` |
+| `Vedat22OcatRevized` | `-` | `no run under the current runtime` |
+| `ViTradeTuned` | `-` | `no run under the current runtime` |
+| `VolBreak_RSI_Adaptive` | `-` | `no run under the current runtime` |
+| `VolatimImproved` | `-` | `no run under the current runtime` |
+| `VolatimStrategy` | `-` | `no run under the current runtime` |
+| `VolatimStrategyOptimized` | `-` | `no run under the current runtime` |
+| `VolumeEMA_Strategy` | `-` | `no run under the current runtime` |
+| `VolumeSupertrendStrategy` | `-` | `no run under the current runtime` |
+| `WaveTrendStra_v0` | `-` | `no run under the current runtime` |
+| `WenRarri` | `-` | `no run under the current runtime` |
+| `WhaleSupertrend` | `-` | `no run under the current runtime` |
+| `WhenLambo` | `-` | `no run under the current runtime` |
+| `WyckoffStrategygpt` | `-` | `no run under the current runtime` |
+| `XMRMultiTimeframeStrategy` | `-` | `no run under the current runtime` |
+| `XebTradeStrat_638` | `-` | `no run under the current runtime` |
+| `YorganStrategy` | `-` | `no run under the current runtime` |
+| `YorganStrategy_2` | `-` | `no run under the current runtime` |
+| `YouPig` | `-` | `no run under the current runtime` |
+| `YoyoActionStrategy` | `-` | `no run under the current runtime` |
+| `ZTV16X` | `-` | `no run under the current runtime` |
+| `ZZZ_test1` | `-` | `no run under the current runtime` |
+| `ZarTest` | `-` | `no run under the current runtime` |
+| `ZarTest02` | `-` | `no run under the current runtime` |
+| `Zaratustra` | `-` | `no run under the current runtime` |
+| `ZaratustraDCA2_063` | `-` | `no run under the current runtime` |
+| `ZaratustraV10` | `-` | `no run under the current runtime` |
+| `ZaratustraV11` | `-` | `no run under the current runtime` |
+| `ZaratustraV12` | `-` | `no run under the current runtime` |
+| `ZaratustraV13` | `-` | `no run under the current runtime` |
+| `ZaratustraV14` | `-` | `no run under the current runtime` |
+| `ZaratustraV15` | `-` | `no run under the current runtime` |
+| `ZaratustraV16` | `-` | `no run under the current runtime` |
+| `ZaratustraV17` | `-` | `no run under the current runtime` |
+| `ZaratustraV18` | `-` | `no run under the current runtime` |
+| `ZaratustraV19` | `-` | `no run under the current runtime` |
+| `ZaratustraV20` | `-` | `no run under the current runtime` |
+| `ZaratustraV21` | `-` | `no run under the current runtime` |
+| `ZaratustraV22` | `-` | `no run under the current runtime` |
+| `ZaratustraV23` | `-` | `no run under the current runtime` |
+| `ZaratustraV24` | `-` | `no run under the current runtime` |
+| `ZaratustraV25` | `-` | `no run under the current runtime` |
+| `ZaratustraV26` | `-` | `no run under the current runtime` |
+| `ZaratustraV27` | `-` | `no run under the current runtime` |
+| `ZaratustraV28` | `-` | `no run under the current runtime` |
+| `ZaratustraV29` | `-` | `no run under the current runtime` |
+| `ZaratustraV3` | `-` | `no run under the current runtime` |
+| `ZaratustraV4` | `-` | `no run under the current runtime` |
+| `ZaratustraV5` | `-` | `no run under the current runtime` |
+| `ZaratustraV6` | `-` | `no run under the current runtime` |
+| `ZaratustraV8` | `-` | `no run under the current runtime` |
+| `ZaratustraV9` | `-` | `no run under the current runtime` |
+| `Zeus1` | `-` | `no run under the current runtime` |
+| `Zeus_208` | `-` | `no run under the current runtime` |
+| `Zeus_257` | `-` | `no run under the current runtime` |
+| `Zeus_569` | `-` | `no run under the current runtime` |
+| `Zeus_672` | `-` | `no run under the current runtime` |
+| `Zeus_862` | `-` | `no run under the current runtime` |
+| `Zone1` | `-` | `no run under the current runtime` |
+| `abbas1` | `-` | `no run under the current runtime` |
+| `abbas10` | `-` | `no run under the current runtime` |
+| `abbas94` | `-` | `no run under the current runtime` |
+| `abbasPublic` | `-` | `no run under the current runtime` |
+| `abeille` | `-` | `no run under the current runtime` |
+| `abydon_keltner` | `-` | `no run under the current runtime` |
+| `abydon_macd` | `-` | `no run under the current runtime` |
+| `abydon_template01` | `-` | `no run under the current runtime` |
+| `abydon_wbtc` | `-` | `no run under the current runtime` |
+| `abydon_wbtc_ver1_0` | `-` | `no run under the current runtime` |
+| `adaptive_390` | `-` | `no run under the current runtime` |
+| `advanced_strategy` | `-` | `no run under the current runtime` |
+| `adx` | `-` | `no run under the current runtime` |
+| `adxMomentum` | `-` | `no run under the current runtime` |
+| `adx_low_stop` | `-` | `no run under the current runtime` |
+| `adx_momentum` | `-` | `no run under the current runtime` |
+| `akiva6` | `-` | `no run under the current runtime` |
+| `alma` | `-` | `no run under the current runtime` |
+| `aquma3` | `-` | `no run under the current runtime` |
+| `asahyp3` | `-` | `no run under the current runtime` |
+| `asd` | `-` | `no run under the current runtime` |
+| `asem1` | `-` | `no run under the current runtime` |
+| `basic_bollinger_bands` | `-` | `no run under the current runtime` |
+| `bb_riding` | `-` | `no run under the current runtime` |
+| `bb_riding_strat` | `-` | `no run under the current runtime` |
+| `bb_rsi` | `-` | `no run under the current runtime (historical hint: Timeframe needs to be set in either configuration or as cli argument `--timeframe 5m`)` |
+| `bb_rsi_830` | `-` | `no run under the current runtime` |
+| `bb_rsi_opt` | `-` | `no run under the current runtime` |
+| `bb_rsi_optimized_strategy` | `-` | `no run under the current runtime` |
+| `bbandrsi_0` | `-` | `no run under the current runtime` |
+| `bbandrsi_778` | `-` | `no run under the current runtime` |
+| `bbbrsi_naive_strategy` | `-` | `no run under the current runtime` |
+| `bbl3h1` | `-` | `no run under the current runtime` |
+| `bbl3h1rsi` | `-` | `no run under the current runtime` |
+| `bbl3h2rsistd` | `-` | `no run under the current runtime` |
+| `bbl3h3rsisharpe` | `-` | `no run under the current runtime` |
+| `bbl3rsih2` | `-` | `no run under the current runtime` |
+| `bbrsi_102` | `-` | `no run under the current runtime` |
+| `bbrsi_116` | `-` | `no run under the current runtime` |
+| `bbrsi_176` | `-` | `no run under the current runtime` |
+| `bbrsi_2` | `-` | `no run under the current runtime` |
+| `bbrsi_286` | `-` | `no run under the current runtime` |
+| `bbrsi_350` | `-` | `no run under the current runtime` |
+| `bbrsi_410` | `-` | `no run under the current runtime` |
+| `bbrsi_5` | `-` | `no run under the current runtime` |
+| `bbrsi_809` | `-` | `no run under the current runtime` |
+| `bbrsi_924` | `-` | `no run under the current runtime` |
+| `bbrsi_941` | `-` | `no run under the current runtime` |
+| `bbrsi_bcd` | `-` | `no run under the current runtime` |
+| `bbrsi_final` | `-` | `no run under the current runtime` |
+| `bbrsi_for_hyperopts` | `-` | `no run under the current runtime` |
+| `bbrsi_naive` | `-` | `no run under the current runtime` |
+| `bbrsi_naive_strategy_904` | `-` | `no run under the current runtime` |
+| `bbrsi_optimized_strategy` | `-` | `no run under the current runtime` |
+| `bbrsi_optimized_strategy_286` | `-` | `no run under the current runtime` |
+| `bbrsi_optimized_strategy_635` | `-` | `no run under the current runtime` |
+| `bbrsi_optimized_strategy_905` | `-` | `no run under the current runtime` |
+| `bbrsi_train` | `-` | `no run under the current runtime` |
+| `bbrsi_v2` | `-` | `no run under the current runtime` |
+| `bbrsi_v3` | `-` | `no run under the current runtime` |
+| `bbrsis` | `-` | `no run under the current runtime (historical hint: Timeframe needs to be set in either configuration or as cli argument `--timeframe 5m`)` |
+| `bbrsittfv1` | `-` | `no run under the current runtime` |
+| `binances` | `-` | `no run under the current runtime` |
+| `bis` | `-` | `no run under the current runtime` |
+| `bollinger` | `-` | `no run under the current runtime` |
+| `bollinger_reversal` | `-` | `no run under the current runtime` |
+| `bollinger_talib_keep` | `-` | `no run under the current runtime` |
+| `bonafe` | `-` | `no run under the current runtime` |
+| `botMain` | `-` | `no run under the current runtime` |
+| `brain` | `-` | `no run under the current runtime` |
+| `brawbot` | `-` | `no run under the current runtime` |
+| `brawbot2` | `-` | `no run under the current runtime` |
+| `brawbot2back` | `-` | `no run under the current runtime` |
+| `brideofcluckie` | `-` | `no run under the current runtime` |
+| `brideofcluckie5` | `-` | `no run under the current runtime` |
+| `buysell` | `-` | `no run under the current runtime` |
+| `candlestickSD` | `-` | `no run under the current runtime` |
+| `ch` | `-` | `no run under the current runtime` |
+| `chatgpt3` | `-` | `no run under the current runtime` |
+| `chl` | `-` | `no run under the current runtime` |
+| `cipher5m` | `-` | `no run under the current runtime` |
+| `combined_strategy` | `-` | `no run under the current runtime` |
+| `conductor` | `-` | `no run under the current runtime` |
+| `cqq_Green_5mv2` | `-` | `no run under the current runtime` |
+| `cqq_Green_5mv3` | `-` | `no run under the current runtime` |
+| `crossAboveStrategy` | `-` | `no run under the current runtime` |
+| `crossAboveStrategy15` | `-` | `no run under the current runtime` |
+| `custom_stoploss_with_psar` | `-` | `no run under the current runtime` |
+| `custom_stoploss_with_psar_159` | `-` | `no run under the current runtime` |
+| `custom_stoploss_with_psar_2` | `-` | `no run under the current runtime` |
+| `custom_stoploss_with_psar_3` | `-` | `no run under the current runtime` |
+| `darphane_501_v3` | `-` | `no run under the current runtime` |
+| `default_strategy` | `-` | `no run under the current runtime` |
+| `default_strategy_123` | `-` | `no run under the current runtime` |
+| `default_strategy_132` | `-` | `no run under the current runtime` |
+| `default_strategy_15` | `-` | `no run under the current runtime` |
+| `default_strategy_189` | `-` | `no run under the current runtime` |
+| `default_strategy_2` | `-` | `no run under the current runtime` |
+| `default_strategy_23` | `-` | `no run under the current runtime` |
+| `default_strategy_278` | `-` | `no run under the current runtime` |
+| `default_strategy_280` | `-` | `no run under the current runtime` |
+| `default_strategy_3` | `-` | `no run under the current runtime` |
+| `default_strategy_36` | `-` | `no run under the current runtime` |
+| `default_strategy_4` | `-` | `no run under the current runtime` |
+| `default_strategy_470` | `-` | `no run under the current runtime` |
+| `default_strategy_5` | `-` | `no run under the current runtime` |
+| `default_strategy_51` | `-` | `no run under the current runtime` |
+| `default_strategy_6` | `-` | `no run under the current runtime` |
+| `default_strategy_7` | `-` | `no run under the current runtime` |
+| `default_strategy_8` | `-` | `no run under the current runtime` |
+| `default_strategy_9` | `-` | `no run under the current runtime` |
+| `deneme` | `-` | `no run under the current runtime` |
+| `dip` | `-` | `no run under the current runtime` |
+| `discordsocialist` | `-` | `no run under the current runtime` |
+| `donchian` | `-` | `no run under the current runtime` |
+| `dualwave_2` | `-` | `no run under the current runtime` |
+| `e0v1e_dca_temp` | `-` | `no run under the current runtime` |
+| `eddies` | `-` | `no run under the current runtime` |
+| `el` | `-` | `no run under the current runtime` |
+| `el_2` | `-` | `no run under the current runtime` |
+| `el_extrema` | `-` | `no run under the current runtime` |
+| `el_extrema_rolling` | `-` | `no run under the current runtime` |
+| `el_extrema_rolling_2` | `-` | `no run under the current runtime` |
+| `el_extrema_rsiqui` | `-` | `no run under the current runtime` |
+| `el_extrema_rsiqui_2` | `-` | `no run under the current runtime` |
+| `el_rsiqui` | `-` | `no run under the current runtime` |
+| `el_rsiqui_2` | `-` | `no run under the current runtime` |
+| `el_rsiqui_unbiased` | `-` | `no run under the current runtime` |
+| `emaSignalStrategy` | `-` | `no run under the current runtime` |
+| `ema_2` | `-` | `no run under the current runtime` |
+| `ema_9_18` | `-` | `no run under the current runtime` |
+| `ema_strat_15m_prod` | `-` | `no run under the current runtime` |
+| `emacross` | `-` | `no run under the current runtime` |
+| `emacrossover` | `-` | `no run under the current runtime` |
+| `epsvjedi` | `-` | `no run under the current runtime` |
+| `evil` | `-` | `no run under the current runtime` |
+| `expired_v2` | `-` | `no run under the current runtime` |
+| `f_ott_strategy` | `-` | `no run under the current runtime` |
+| `f_scalp2` | `-` | `no run under the current runtime` |
+| `f_supertrend_strategy` | `-` | `no run under the current runtime` |
+| `f_supertrend_strategy_2` | `-` | `no run under the current runtime` |
+| `fa_01_strategy` | `-` | `no run under the current runtime` |
+| `fa_bifrost_strategy` | `-` | `no run under the current runtime` |
+| `fa_m8_strategy` | `-` | `no run under the current runtime` |
+| `fa_m8_strategy_193` | `-` | `no run under the current runtime` |
+| `fahmibah_270` | `-` | `no run under the current runtime` |
+| `fast` | `-` | `no run under the current runtime` |
+| `fast_supertrend` | `-` | `no run under the current runtime` |
+| `file_loading_strategy` | `-` | `no run under the current runtime` |
+| `file_loading_strategy_3` | `-` | `no run under the current runtime` |
+| `file_loading_strategy_5` | `-` | `no run under the current runtime` |
+| `fixed_riskreward_loss` | `-` | `no run under the current runtime` |
+| `flawless_lambo_0` | `-` | `no run under the current runtime` |
+| `futures_testv1` | `-` | `no run under the current runtime` |
+| `g1` | `-` | `no run under the current runtime` |
+| `godstrat` | `-` | `no run under the current runtime` |
+| `hacimlifit1` | `-` | `no run under the current runtime` |
+| `hacker_noon` | `-` | `no run under the current runtime` |
+| `hacker_noon1` | `-` | `no run under the current runtime` |
+| `hansen` | `-` | `no run under the current runtime` |
+| `harvester` | `-` | `no run under the current runtime` |
+| `heikin_419` | `-` | `no run under the current runtime` |
+| `helkin` | `-` | `no run under the current runtime` |
+| `heraclesBTCBULL` | `-` | `no run under the current runtime` |
+| `heraclesDOGEBTCBULL` | `-` | `no run under the current runtime` |
+| `hlhb_423` | `-` | `no run under the current runtime` |
+| `hlhb_946` | `-` | `no run under the current runtime` |
+| `hodl` | `-` | `no run under the current runtime` |
+| `hodl_2` | `-` | `no run under the current runtime` |
+| `hungry2` | `-` | `no run under the current runtime` |
+| `hyperoptable_strategy_5` | `-` | `no run under the current runtime` |
+| `hyperoptforrsi` | `-` | `no run under the current runtime` |
+| `iRNWE_dca` | `-` | `no run under the current runtime` |
+| `ichiV1_3` | `-` | `no run under the current runtime` |
+| `ichiV1_4` | `-` | `no run under the current runtime` |
+| `ichiV1_6` | `-` | `no run under the current runtime` |
+| `ichiV1_Marius_fixed` | `-` | `no run under the current runtime` |
+| `ichiV1_n1` | `-` | `no run under the current runtime` |
+| `ichiV1_pro2` | `-` | `no run under the current runtime` |
+| `ichiV1_trailing` | `-` | `no run under the current runtime` |
+| `ichiV2_1` | `-` | `no run under the current runtime` |
+| `ichiV2_2` | `-` | `no run under the current runtime` |
+| `ichiV2_5` | `-` | `no run under the current runtime` |
+| `ichiV3` | `-` | `no run under the current runtime` |
+| `ichiV3_1` | `-` | `no run under the current runtime` |
+| `ichi_v1` | `-` | `no run under the current runtime` |
+| `ichi_v1hyperopt` | `-` | `no run under the current runtime` |
+| `ichi_v1new2` | `-` | `no run under the current runtime` |
+| `ichi_v2` | `-` | `no run under the current runtime` |
+| `ichimoku` | `-` | `no run under the current runtime` |
+| `ichimoku_2` | `-` | `no run under the current runtime` |
+| `ichimoku_638` | `-` | `no run under the current runtime` |
+| `ichimoku_strategy_2` | `-` | `no run under the current runtime` |
+| `ichitest` | `-` | `no run under the current runtime` |
+| `im_test` | `-` | `no run under the current runtime` |
+| `indicator_mix` | `-` | `no run under the current runtime` |
+| `indicator_mix_2` | `-` | `no run under the current runtime` |
+| `informative_decorator_strategy` | `-` | `no run under the current runtime` |
+| `informative_decorator_strategy_11` | `-` | `no run under the current runtime` |
+| `informative_decorator_strategy_247` | `-` | `no run under the current runtime` |
+| `inkkerslower_strategy` | `-` | `no run under the current runtime` |
+| `kac_index_v2_10x` | `-` | `no run under the current runtime` |
+| `kcx_strat_prod_plot_36` | `-` | `no run under the current runtime` |
+| `keltner` | `-` | `no run under the current runtime` |
+| `keltnerchannel_0` | `-` | `no run under the current runtime` |
+| `keltnerchannelrsi` | `-` | `no run under the current runtime` |
+| `keltnerhopt` | `-` | `no run under the current runtime` |
+| `keltnerhopt_0` | `-` | `no run under the current runtime` |
+| `keltnerhopt_4` | `-` | `no run under the current runtime` |
+| `koala` | `-` | `no run under the current runtime` |
+| `lafuria` | `-` | `no run under the current runtime` |
+| `lapin` | `-` | `no run under the current runtime` |
+| `laughing_ritchie` | `-` | `no run under the current runtime` |
+| `legacy_strategy` | `-` | `no run under the current runtime` |
+| `legacy_strategy_28` | `-` | `no run under the current runtime` |
+| `legacy_strategy_60` | `-` | `no run under the current runtime` |
+| `legacy_strategy_v1` | `-` | `no run under the current runtime` |
+| `legacy_strategy_v1_8` | `-` | `no run under the current runtime` |
+| `lookahead_strategy` | `-` | `no run under the current runtime` |
+| `low_bb` | `-` | `no run under the current runtime` |
+| `m` | `-` | `no run under the current runtime` |
+| `ma_crossover` | `-` | `no run under the current runtime` |
+| `ma_super_strategy` | `-` | `no run under the current runtime` |
+| `mabStra_2` | `-` | `no run under the current runtime` |
+| `mabStra_309` | `-` | `no run under the current runtime` |
+| `mabStra_353` | `-` | `no run under the current runtime` |
+| `mabStra_425` | `-` | `no run under the current runtime` |
+| `mabStra_979` | `-` | `no run under the current runtime` |
+| `macd` | `-` | `no run under the current runtime` |
+| `macd19` | `-` | `no run under the current runtime` |
+| `macdPlus` | `-` | `no run under the current runtime` |
+| `macd_strategy` | `-` | `no run under the current runtime` |
+| `mad` | `-` | `no run under the current runtime` |
+| `madridImpro` | `-` | `no run under the current runtime` |
+| `madrid_ribbon` | `-` | `no run under the current runtime` |
+| `madrid_ribbon_1h` | `-` | `no run under the current runtime` |
+| `madrid_ribbon_4h` | `-` | `no run under the current runtime` |
+| `madrid_ribbon_8h` | `-` | `no run under the current runtime` |
+| `main` | `-` | `no run under the current runtime` |
+| `main2` | `-` | `no run under the current runtime` |
+| `maninew` | `-` | `no run under the current runtime` |
+| `many` | `-` | `no run under the current runtime` |
+| `manybtc` | `-` | `no run under the current runtime` |
+| `manytest` | `-` | `no run under the current runtime` |
+| `maqun888` | `-` | `no run under the current runtime` |
+| `maqun999` | `-` | `no run under the current runtime` |
+| `marketciphertest` | `-` | `no run under the current runtime` |
+| `min5v5` | `-` | `no run under the current runtime` |
+| `ml_strategy` | `-` | `no run under the current runtime` |
+| `ml_strategy_473` | `-` | `no run under the current runtime` |
+| `mm6k_strategy` | `-` | `no run under the current runtime` |
+| `mokuStrat` | `-` | `no run under the current runtime` |
+| `mp` | `-` | `no run under the current runtime` |
+| `mq20241227` | `-` | `no run under the current runtime` |
+| `multmatsl` | `-` | `no run under the current runtime` |
+| `my_gym` | `-` | `no run under the current runtime` |
+| `my_gym2` | `-` | `no run under the current runtime` |
+| `my_gym3` | `-` | `no run under the current runtime` |
+| `my_gym4` | `-` | `no run under the current runtime` |
+| `my_gym_2` | `-` | `no run under the current runtime` |
+| `my_gym_cnn` | `-` | `no run under the current runtime` |
+| `my_strategy_example` | `-` | `no run under the current runtime` |
+| `mycustom` | `-` | `no run under the current runtime` |
+| `myshortingstrategiembe1` | `-` | `no run under the current runtime` |
+| `myshortingstrategiembe2` | `-` | `no run under the current runtime` |
+| `nado_to_the_moon` | `-` | `no run under the current runtime` |
+| `naruto` | `-` | `no run under the current runtime` |
+| `nasosv5` | `-` | `no run under the current runtime` |
+| `new` | `-` | `no run under the current runtime` |
+| `new30minStrategy` | `-` | `no run under the current runtime` |
+| `new5minStrat` | `-` | `no run under the current runtime` |
+| `new5minStrategy` | `-` | `no run under the current runtime` |
+| `newIchimokuStrategy` | `-` | `no run under the current runtime` |
+| `newPercentileStrategy` | `-` | `no run under the current runtime` |
+| `newVWAPstrat` | `-` | `no run under the current runtime` |
+| `newVWAPstrat4` | `-` | `no run under the current runtime` |
+| `new_strat` | `-` | `no run under the current runtime` |
+| `new_strat_1616` | `-` | `no run under the current runtime` |
+| `newstrategy4_dca_2` | `-` | `no run under the current runtime` |
+| `newstrategy4_yuanshi` | `-` | `no run under the current runtime` |
+| `newstrategy53_2` | `-` | `no run under the current runtime` |
+| `newstrategy53_23` | `-` | `no run under the current runtime` |
+| `newstrategy53_24` | `-` | `no run under the current runtime` |
+| `newstrategy53_26` | `-` | `no run under the current runtime` |
+| `newstrategy53_27` | `-` | `no run under the current runtime` |
+| `newstrategy53_test` | `-` | `no run under the current runtime` |
+| `newstrategy5_1` | `-` | `no run under the current runtime` |
+| `newstrategy5_1_2` | `-` | `no run under the current runtime` |
+| `newstrategy_modify_support` | `-` | `no run under the current runtime` |
+| `newstrategy_modify_support_fin` | `-` | `no run under the current runtime` |
+| `newstrategy_modify_support_ft` | `-` | `no run under the current runtime` |
+| `nexuslite` | `-` | `no run under the current runtime` |
+| `nexuslite_btc` | `-` | `no run under the current runtime` |
+| `nfl` | `-` | `no run under the current runtime` |
+| `nostaljiaforinfinitynext` | `-` | `no run under the current runtime` |
+| `one` | `-` | `no run under the current runtime` |
+| `ours` | `-` | `no run under the current runtime` |
+| `percentileRSI` | `-` | `no run under the current runtime` |
+| `percentileStrat` | `-` | `no run under the current runtime` |
+| `picasso15m` | `-` | `no run under the current runtime` |
+| `picasso5mSL15` | `-` | `no run under the current runtime` |
+| `piravlos0` | `-` | `no run under the current runtime` |
+| `piravlos1` | `-` | `no run under the current runtime` |
+| `piravlos2` | `-` | `no run under the current runtime` |
+| `plasma_cutter` | `-` | `no run under the current runtime` |
+| `pol313` | `-` | `no run under the current runtime` |
+| `powerx_tpsl` | `-` | `no run under the current runtime` |
+| `powerxhopt_2` | `-` | `no run under the current runtime` |
+| `price_down_latest_v25` | `-` | `no run under the current runtime` |
+| `prime` | `-` | `no run under the current runtime` |
+| `pso` | `-` | `no run under the current runtime` |
+| `quantum_hybrid_strategy` | `-` | `no run under the current runtime` |
+| `quick_buy_strategy` | `-` | `no run under the current runtime` |
+| `quick_buy_strategy_2` | `-` | `no run under the current runtime` |
+| `rad_testing` | `-` | `no run under the current runtime` |
+| `radtest` | `-` | `no run under the current runtime` |
+| `red` | `-` | `no run under the current runtime` |
+| `reinforced_scalp` | `-` | `no run under the current runtime` |
+| `roger` | `-` | `no run under the current runtime` |
+| `roger10` | `-` | `no run under the current runtime` |
+| `roger12` | `-` | `no run under the current runtime` |
+| `roger14` | `-` | `no run under the current runtime` |
+| `roger15` | `-` | `no run under the current runtime` |
+| `roger16` | `-` | `no run under the current runtime` |
+| `roger17` | `-` | `no run under the current runtime` |
+| `roger18` | `-` | `no run under the current runtime` |
+| `roger19` | `-` | `no run under the current runtime` |
+| `roger2` | `-` | `no run under the current runtime` |
+| `roger20` | `-` | `no run under the current runtime` |
+| `roger21` | `-` | `no run under the current runtime` |
+| `roger22` | `-` | `no run under the current runtime` |
+| `roger27` | `-` | `no run under the current runtime` |
+| `roger3` | `-` | `no run under the current runtime` |
+| `roger4` | `-` | `no run under the current runtime` |
+| `roger6` | `-` | `no run under the current runtime` |
+| `roger7` | `-` | `no run under the current runtime` |
+| `roger8` | `-` | `no run under the current runtime` |
+| `roger9` | `-` | `no run under the current runtime` |
+| `rsibb` | `-` | `no run under the current runtime` |
+| `rsibb01` | `-` | `no run under the current runtime` |
+| `rsimacdadx` | `-` | `no run under the current runtime` |
+| `rsistochastics` | `-` | `no run under the current runtime` |
+| `rtr` | `-` | `no run under the current runtime` |
+| `s06` | `-` | `no run under the current runtime` |
+| `s10lchimoku_zema_hyper` | `-` | `no run under the current runtime` |
+| `s13` | `-` | `no run under the current runtime` |
+| `sample_strategy` | `-` | `no run under the current runtime` |
+| `sample_strategy3` | `-` | `no run under the current runtime` |
+| `sample_strategy4` | `-` | `no run under the current runtime` |
+| `sample_strategy5` | `-` | `no run under the current runtime` |
+| `sample_strategy6` | `-` | `no run under the current runtime` |
+| `sample_strategy_151` | `-` | `no run under the current runtime` |
+| `sample_strategy_170` | `-` | `no run under the current runtime` |
+| `sample_strategy_182` | `-` | `no run under the current runtime` |
+| `sample_strategy_193` | `-` | `no run under the current runtime` |
+| `sample_strategy_2` | `-` | `no run under the current runtime` |
+| `sample_strategy_20` | `-` | `no run under the current runtime` |
+| `sample_strategy_215` | `-` | `no run under the current runtime` |
+| `sample_strategy_3` | `-` | `no run under the current runtime` |
+| `sample_strategy_34` | `-` | `no run under the current runtime` |
+| `sample_strategy_47` | `-` | `no run under the current runtime` |
+| `sample_strategy_643` | `-` | `no run under the current runtime` |
+| `sample_strategy_701` | `-` | `no run under the current runtime` |
+| `sample_strategy_902` | `-` | `no run under the current runtime` |
+| `scalping` | `-` | `no run under the current runtime` |
+| `slope_is_dope` | `-` | `no run under the current runtime` |
+| `slow_fast_ma_cross` | `-` | `no run under the current runtime` |
+| `sma` | `-` | `no run under the current runtime` |
+| `smaoffsettesting1` | `-` | `no run under the current runtime` |
+| `smart_money_futures` | `-` | `no run under the current runtime` |
+| `smart_money_strategy` | `-` | `no run under the current runtime` |
+| `smart_money_strategy_2` | `-` | `no run under the current runtime` |
+| `smart_money_strategy_hyperopt` | `-` | `no run under the current runtime` |
+| `sniper` | `-` | `no run under the current runtime` |
+| `sniper_s` | `-` | `no run under the current runtime` |
+| `sniper_v1` | `-` | `no run under the current runtime` |
+| `sonicr_strategy` | `-` | `no run under the current runtime` |
+| `stoch` | `-` | `no run under the current runtime` |
+| `stochrsi` | `-` | `no run under the current runtime` |
+| `stochrsi3` | `-` | `no run under the current runtime` |
+| `stochtest` | `-` | `no run under the current runtime` |
+| `strat3` | `-` | `no run under the current runtime` |
+| `strat9` | `-` | `no run under the current runtime` |
+| `strategijaconsensus` | `-` | `no run under the current runtime` |
+| `strategy` | `-` | `no run under the current runtime (historical hint: 'stoploss' is a required property)` |
+| `strategy001` | `-` | `no run under the current runtime` |
+| `strategy001_2` | `-` | `no run under the current runtime` |
+| `strategy001_3` | `-` | `no run under the current runtime` |
+| `strategy001_4` | `-` | `no run under the current runtime` |
+| `strategy002_2` | `-` | `no run under the current runtime` |
+| `strategy002_3` | `-` | `no run under the current runtime` |
+| `strategy002_5` | `-` | `no run under the current runtime` |
+| `strategy003_3` | `-` | `no run under the current runtime` |
+| `strategy003_4` | `-` | `no run under the current runtime` |
+| `strategy004_2` | `-` | `no run under the current runtime` |
+| `strategy004_3` | `-` | `no run under the current runtime` |
+| `strategy004_4` | `-` | `no run under the current runtime` |
+| `strategy004_5` | `-` | `no run under the current runtime` |
+| `strategy005_2` | `-` | `no run under the current runtime` |
+| `strategy005_3` | `-` | `no run under the current runtime` |
+| `strategy_01_bb_rsi` | `-` | `no run under the current runtime` |
+| `strategy_02_bb_rsi` | `-` | `no run under the current runtime` |
+| `strategy_03_bb_rsi` | `-` | `no run under the current runtime` |
+| `strategy_04` | `-` | `no run under the current runtime` |
+| `strategy_06_bb_rsi` | `-` | `no run under the current runtime` |
+| `strategy_08_bb_rsi` | `-` | `no run under the current runtime` |
+| `strategy_test` | `-` | `no run under the current runtime` |
+| `strategy_test_v2` | `-` | `no run under the current runtime` |
+| `strategy_test_v2_1` | `-` | `no run under the current runtime` |
+| `strategy_test_v2_16` | `-` | `no run under the current runtime` |
+| `strategy_test_v2_6` | `-` | `no run under the current runtime` |
+| `strategy_test_v3` | `-` | `no run under the current runtime` |
+| `strategy_v2` | `-` | `no run under the current runtime` |
+| `stratetgy_123124312412` | `-` | `no run under the current runtime` |
+| `strato_244` | `-` | `no run under the current runtime` |
+| `tema_master1m` | `-` | `no run under the current runtime` |
+| `tema_master_v2` | `-` | `no run under the current runtime` |
+| `tesla` | `-` | `no run under the current runtime` |
+| `test` | `-` | `no run under the current runtime` |
+| `test_ema` | `-` | `no run under the current runtime` |
+| `test_ema2` | `-` | `no run under the current runtime` |
+| `test_strategy` | `-` | `no run under the current runtime` |
+| `test_strategy_163` | `-` | `no run under the current runtime` |
+| `test_strategy_193` | `-` | `no run under the current runtime` |
+| `test_strategy_194` | `-` | `no run under the current runtime` |
+| `test_strategy_302` | `-` | `no run under the current runtime` |
+| `test_strategy_471` | `-` | `no run under the current runtime` |
+| `test_strategy_5` | `-` | `no run under the current runtime` |
+| `teststrat_fvg_bpercent` | `-` | `no run under the current runtime` |
+| `timija` | `-` | `no run under the current runtime` |
+| `timijaV12` | `-` | `no run under the current runtime` |
+| `timijaV3` | `-` | `no run under the current runtime` |
+| `timijaV31` | `-` | `no run under the current runtime` |
+| `timijaV45` | `-` | `no run under the current runtime` |
+| `titanium` | `-` | `no run under the current runtime` |
+| `trailingTrendStrategy` | `-` | `no run under the current runtime` |
+| `trailingVWAPstrategy` | `-` | `no run under the current runtime` |
+| `trend` | `-` | `no run under the current runtime` |
+| `true_lambo_2` | `-` | `no run under the current runtime` |
+| `tsl` | `-` | `no run under the current runtime` |
+| `two_ema_rsi_bb` | `-` | `no run under the current runtime` |
+| `updownV3` | `-` | `no run under the current runtime` |
+| `vendor` | `-` | `no run under the current runtime` |
+| `vin` | `-` | `no run under the current runtime (historical hint: engine exited with code 0 but produced no summary (no trades at all, or output not parsed))` |
+| `vinex` | `-` | `no run under the current runtime` |
+| `vinfast4` | `-` | `no run under the current runtime` |
+| `vinfast5` | `-` | `no run under the current runtime` |
+| `vulcan` | `-` | `no run under the current runtime` |
+| `vulcan_10` | `-` | `no run under the current runtime` |
+| `vwap` | `-` | `no run under the current runtime` |
+| `welldone_gotOKX` | `-` | `no run under the current runtime` |
+| `wrsicd` | `-` | `no run under the current runtime` |
+| `x_strat_dryrun_org` | `-` | `no run under the current runtime` |
+| `x_zvwap06` | `-` | `no run under the current runtime` |
+| `yabar_bbrsi` | `-` | `no run under the current runtime` |
+| `yabar_bbrsi0` | `-` | `no run under the current runtime` |
+| `yoyo` | `-` | `no run under the current runtime` |
+| `yoyo_action_strategy` | `-` | `no run under the current runtime` |
+| `yoyo_action_strategy_8` | `-` | `no run under the current runtime` |
+| `yoyo_action_strategy_v0_1` | `-` | `no run under the current runtime` |
+| `yoyo_action_zone_strategy` | `-` | `no run under the current runtime` |
+
 ## Exclusion unconfirmed - 8 strategies
 
 `excluded` is a verdict, and this audit does not issue one on
@@ -5297,7 +7166,7 @@ This is not a softening. A row here may well end up excluded - the
 limited environment does not invent bias. It ends up there on our
 own evidence or not at all.
 
-## Not passing - 546 strategies, by decisive reason
+## Not passing - 555 strategies, by decisive reason
 
 A row usually fails several gates. It is grouped by the most final
 one: a strategy that reads future candles is out however clean its
@@ -5345,7 +7214,7 @@ whether the row is finished with or waiting on us.
 
 | Basis | Meaning | Strategies |
 |---|---|---:|
-| `own_measurement` | a disqualifying result measured here, from this implementation | 504 |
+| `own_measurement` | a disqualifying result measured here, from this implementation | 513 |
 
 Only `own_measurement` is a closed case. The other three carry the
 work that would settle them in `open_work`, and the selftest fails if
@@ -5356,13 +7225,13 @@ one of them carries none.
 | `lookahead_found` | reads data it could not have had at the time | 157 |
 | `recursive_bias_found` | indicator value still drifts at every warm-up the ladder can reach | 86 |
 | `no_trades_in_full_measurement` | never trades over the full window | 7 |
-| `full_backtest_not_testable` | the canonical pooled full backtest did not complete under the fixed runtime budget | 34 |
-| `repair_refused_would_invent_strategy` | declares no timeframe, no stoploss, no exit logic, or names a model that no longer exists and cannot be restored; supplying one would measure our invention rather than the author's strategy | 51 |
+| `full_backtest_not_testable` | the canonical pooled full backtest did not complete under the fixed runtime budget | 33 |
+| `repair_refused_would_invent_strategy` | declares no timeframe, no stoploss, no exit logic, or names a model that no longer exists and cannot be restored; supplying one would measure our invention rather than the author's strategy | 53 |
 | `local_module_repair_exhausted` | imports a helper the author shipped beside it; every candidate copy in the corpus either fails to import, would shadow an installed package, or imports cleanly but does not define what the strategy calls | 15 |
 | `measured_only_in_freqai_arm` | runs only under its author's own FreqAI configuration, measured separately in that arm; not comparable with the ordinary spot audit | 6 |
 | `third_party_package_declined` | needs a Python package this runtime does not install; declined because installing one changes the runtime every other strategy runs under, owner's call 2026-09-04 | 30 |
 | `shared_runtime_change_declined` | the fix is understood - pandas' or numpy's own type-coercion rules have tightened - but applying it would touch every strategy's column writes, not just this row's; declined, owner's call 2026-09-04 | 11 |
-| `duplicate_implementation` | duplicates the executable code of a retained representative - either confirmed further by an identical canonical full-backtest trade set, or, since 2026-09-16, by code identity alone once no config overlay stands against it and no two of its measurements disagree under the same condition; hashes from different windows are not comparable and are no evidence either way (see evidence_rule in SEMANTIC_DUPLICATE_ADJUDICATION.json for which applied to a given row) | 90 |
+| `duplicate_implementation` | duplicates the executable code of a retained representative - either confirmed further by an identical canonical full-backtest trade set, or, since 2026-09-16, by code identity alone once no config overlay stands against it and no two of its measurements disagree under the same condition; hashes from different windows are not comparable and are no evidence either way (see evidence_rule in SEMANTIC_DUPLICATE_ADJUDICATION.json for which applied to a given row) | 98 |
 | `recursive_check_incomplete_at_longest_rungs` | - | 13 |
 | `repeated_timeout_after_exhausted_repair` | - | 4 |
 | `user_policy_excluded_after_triage` | - | 42 |
@@ -5375,13 +7244,13 @@ one of them carries none.
 | `lookahead_found` | 80 | 1 | 0 | 15 | 0 | 0 | 61 |
 | `recursive_bias_found` | 24 | 0 | 3 | 18 | 14 | 1 | 26 |
 | `no_trades_in_full_measurement` | 1 | 0 | 0 | 6 | 0 | 0 | 0 |
-| `full_backtest_not_testable` | 14 | 0 | 0 | 17 | 0 | 1 | 2 |
-| `repair_refused_would_invent_strategy` | 9 | 1 | 0 | 37 | 0 | 0 | 4 |
+| `full_backtest_not_testable` | 13 | 0 | 0 | 17 | 0 | 1 | 2 |
+| `repair_refused_would_invent_strategy` | 9 | 1 | 0 | 39 | 0 | 0 | 4 |
 | `local_module_repair_exhausted` | 7 | 0 | 0 | 8 | 0 | 0 | 0 |
 | `measured_only_in_freqai_arm` | 0 | 0 | 0 | 5 | 0 | 0 | 1 |
 | `third_party_package_declined` | 18 | 0 | 0 | 12 | 0 | 0 | 0 |
 | `shared_runtime_change_declined` | 4 | 0 | 0 | 6 | 0 | 0 | 1 |
-| `duplicate_implementation` | 86 | 1 | 0 | 2 | 0 | 0 | 1 |
+| `duplicate_implementation` | 94 | 1 | 0 | 2 | 0 | 0 | 1 |
 | `recursive_check_incomplete_at_longest_rungs` | 13 | 0 | 0 | 0 | 0 | 0 | 0 |
 | `repeated_timeout_after_exhausted_repair` | 4 | 0 | 0 | 0 | 0 | 0 | 0 |
 | `user_policy_excluded_after_triage` | 41 | 0 | 0 | 1 | 0 | 0 | 0 |
@@ -5502,16 +7371,16 @@ Wave `C_measurement_recovery` - 6:
 `BreakEven`, `DoesNothingStrategy`, `Miku_PP_v3`, `MyStrategyTemplate`
 `ViN`, `ep3mas2`
 
-### `full_backtest_not_testable` - 34
+### `full_backtest_not_testable` - 33
 
 The canonical pooled full backtest did not complete under the fixed runtime budget.
 
-Wave `-` - 14:
+Wave `-` - 13:
 
 `BTCBigDrop`, `BTCJump`, `BTCNDrop`, `BTCNSeq`
 `ClucHAnixV2`, `ComboHold`, `DCADMIPRICEStrategySpot`, `DCAGRID`
-`GRIDDMIPRICEStrategyFuture`, `GRIDDMIPRICEStrategyFutureV7`, `SARIMAX`, `Schism_BTC`
-`Schism_ETH`, `TrailingBuyStratClucBBRPBMODE`
+`GRIDDMIPRICEStrategyFuture`, `SARIMAX`, `Schism_BTC`, `Schism_ETH`
+`TrailingBuyStratClucBBRPBMODE`
 
 Wave `C_measurement_recovery` - 17:
 
@@ -5529,7 +7398,7 @@ Wave `not_scheduled` - 2:
 
 `A9AV`, `Schism5`
 
-### `repair_refused_would_invent_strategy` - 51
+### `repair_refused_would_invent_strategy` - 53
 
 Declares no timeframe, no stoploss, no exit logic, or names a model that no longer exists and cannot be restored; supplying one would measure our invention rather than the author's strategy.
 
@@ -5543,7 +7412,7 @@ Wave `A_pending_diagnostics` - 1:
 
 `TGMA`
 
-Wave `C_measurement_recovery` - 37:
+Wave `C_measurement_recovery` - 39:
 
 `AdaptiveRenkoStrategy`, `Astro`, `AutoArimaTripleV1`, `BinanceStream`
 `BlueEyes_MPP_v1`, `Chained`, `ClucCrypROI`, `ClucCrypSlow`
@@ -5554,7 +7423,7 @@ Wave `C_measurement_recovery` - 37:
 `MultiTargetRegressorTestStrategy`, `NoLost`, `PolymarketLogicalArbStrategy`, `Prediction_Strategy`
 `QuickAdapterV3`, `RLAgentStrategy`, `RenkoYolo`, `ScalpingCCI`
 `SimpleRiskFilterStrategy`, `TrainCatBoostStrategy`, `TuplaBollinger`, `UpSliceStrategy`
-`thetank2`
+`freqai_test_multimodel_strat`, `freqai_test_strat`, `thetank2`
 
 Wave `not_scheduled` - 4:
 
@@ -5622,11 +7491,11 @@ Wave `not_scheduled` - 1:
 
 `DIV_v1`
 
-### `duplicate_implementation` - 90
+### `duplicate_implementation` - 98
 
 Duplicates the executable code of a retained representative - either confirmed further by an identical canonical full-backtest trade set, or, since 2026-09-16, by code identity alone once no config overlay stands against it and no two of its measurements disagree under the same condition; hashes from different windows are not comparable and are no evidence either way (see evidence_rule in semantic_duplicate_adjudication.json for which applied to a given row).
 
-Wave `-` - 86:
+Wave `-` - 94:
 
 `Anomaly_adx`, `Anomaly_all`, `Anomaly_aroon`, `Anomaly_bbw`
 `Anomaly_dwt`, `Anomaly_fbb`, `Anomaly_fwr`, `Anomaly_highlow`
@@ -5634,20 +7503,22 @@ Wave `-` - 86:
 `Anomaly_nseq`, `Anomaly_over`, `Anomaly_profit`, `Anomaly_pv`
 `Anomaly_slope`, `Anomaly_smooth`, `Anomaly_stochastic`, `Anomaly_swing`
 `BBRSITV1`, `BBRSITV2`, `BBRSITV3`, `BB_RTR_dca`
+`BTCBigDrop_2`, `BTCEMABounce_2`, `BTCNDrop_2`, `BTCNSeq_2`
 `BinClucMadSMAv1`, `BinClucMadSMAv2`, `BinClucMadv1`, `BinClucMadv2`
 `BlendBasket`, `Cluc4werk_ETH`, `Cluc5mDCA`, `Cluc5werk_BTC`
 `Cluc5werk_ETH`, `Cluc5werk_USD`, `ClucCrypROI_BTC`, `ClucCrypROI_ETH`
 `ClucCrypSlow_BTC`, `ClucCrypSlow_ETH`, `ClucDCA`, `ClucDCAV2`
 `ClucHAwerk_BTC`, `ClucHAwerk_ETH`, `ClucHAwerk_USD`, `ConstantMixBasket`
-`CppiBasket`, `EI3v2_tag_cofi_dca_green`, `Enchilada_Slow`, `Hacklemore_Slow`
-`InverseVolBasket`, `Lateralus_Slow`, `LmaoStoplossClusterOpt`, `MinVarianceBasket`
-`MomentumBasket`, `MomentumRegimeBasket15mFast`, `PCA_dwt`, `PCA_fbb`
-`PCA_fwr`, `PCA_highlow`, `PCA_jump`, `PCA_macd`
-`PCA_mfi`, `PCA_minmax`, `PCA_nseq`, `PCA_over`
-`PCA_profit`, `PCA_pv`, `PCA_stochastic`, `PCA_swing`
-`SMAOffsetProtectOptV1_1`, `Schism3_BTC`, `Schism3_ETH`, `Schism4_BTC`
-`Schism4_ETH`, `Schism5_BTC`, `Schism5_ETH`, `Schism6_BTC`
-`Schism6_ETH`, `Stinkfist_BTC`, `Stinkfist_ETH`, `SuperHV27_ETH`
+`CppiBasket`, `EI3v2_tag_cofi_dca_green`, `EMABounce_2`, `Enchilada_Slow`
+`GRIDDMIPRICEStrategyFutureV7`, `Hacklemore_Slow`, `Ichis`, `InverseVolBasket`
+`Lateralus_Slow`, `LmaoStoplossClusterOpt`, `MinVarianceBasket`, `MomentumBasket`
+`MomentumRegimeBasket15mFast`, `PCA_dwt`, `PCA_fbb`, `PCA_fwr`
+`PCA_highlow`, `PCA_jump`, `PCA_macd`, `PCA_mfi`
+`PCA_minmax`, `PCA_nseq`, `PCA_over`, `PCA_profit`
+`PCA_pv`, `PCA_stochastic`, `PCA_swing`, `SMAOffsetProtectOptV1_1`
+`Schism3_BTC`, `Schism3_ETH`, `Schism4_BTC`, `Schism4_ETH`
+`Schism5_BTC`, `Schism5_ETH`, `Schism6_BTC`, `Schism6_ETH`
+`SlopeV8`, `Stinkfist_BTC`, `Stinkfist_ETH`, `SuperHV27_ETH`
 `SuperReversal_mtf_5min`, `ViNSellCorr`, `ViNSellEps`, `ViNSellRiseCorrFall`
 `ViNSellRiseFall`, `VolTargetBasket`
 
@@ -5702,7 +7573,7 @@ Wave `C_measurement_recovery` - 1:
 
 | Wave | Strategies |
 |---|---:|
-| `(none)` | 461 |
+| `(none)` | 2334 |
 | `not_scheduled` | 390 |
 | `C_measurement_recovery` | 229 |
 | `D_recursive_drift` | 121 |
@@ -5714,8 +7585,9 @@ Wave `C_measurement_recovery` - 1:
 
 | Item | Strategies |
 |---|---:|
+| `recursive_ladder_pending` | 1878 |
+| `first_measurement_in_current_runtime` | 1851 |
 | `lookahead_remeasure_pending` | 32 |
-| `recursive_ladder_pending` | 27 |
 | `needs_a_look` | 11 |
 | `repair_attempted` | 3 |
 | `to_be_fixed` | 3 |

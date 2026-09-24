@@ -103,10 +103,81 @@ def _load_extra_subclass_strategies():
 EXTRA_SUBCLASS_STRATEGIES, INHERIT_PROFILE_FROM = _load_extra_subclass_strategies()
 
 
+def _file_digest(path):
+    with io.open(path, "rb") as handle:
+        return "sha256_" + hashlib.sha256(handle.read()).hexdigest()
+
+
+def measured_canonical_hashes():
+    """The content hash every measurement store recorded, per strategy_id.
+
+    WHY THIS EXISTS. `discover()` names one file per class name and it used to
+    name it by traversal order alone. A newly harvested repository whose folder
+    sorts earlier in that order therefore took the representation of a strategy
+    that had already been measured from another folder: the row kept its
+    `strategy_id` but its bytes changed, so the measurement stopped describing
+    the file the corpus points at. Observed on 2026-09-23 after
+    `tools.harvest remiotore/ccxt-freqtrade`: 45 rows moved to the new folder,
+    39 of them to a different revision, and 22 already-admitted strategies lost
+    `technical_chain_complete` with no measurement having failed.
+
+    Read from the raw producer stores, never from a derived read model: a
+    representative decision is an identity input, and identity must not depend
+    on a published summary of itself.
+    """
+    hashes = {}
+    for relative in ("evidence/PROFILE_SMOKE.json", "evidence/PROFILE_BIAS.json",
+                     "evidence/PROFILE_FULL_WINDOW.json",
+                     "results/regime/full_backtest_manifest.json"):
+        path = os.path.join(ROOT, relative)
+        if not os.path.exists(path):
+            continue
+        try:
+            data = json.load(io.open(path, encoding="utf-8"))
+        except (ValueError, OSError):
+            continue
+        for strategy, record in (data.get("results") or {}).items():
+            digest = record.get("canonical_sha256") if isinstance(record, dict) else None
+            if digest:
+                hashes.setdefault(strategy, set()).add(digest)
+    return hashes
+
+
+def _pick_representative(strategy, candidates, measured):
+    """The file that represents `strategy`, or None if it has no candidate.
+
+    `candidates` is [(path, repo), ...] in traversal order. The first one wins
+    unless another candidate is the file a measurement already ran on - a
+    representative that carries a measurement is not replaceable by a
+    same-named copy, so the identity a published row was measured under stays
+    put. A strategy without any measurement keeps the long-standing rule
+    (first occurrence in alphabetical traversal), so a re-run of the same disk
+    state still produces the same corpus.
+    """
+    if not candidates:
+        return None, None
+    wanted = measured.get(strategy) or set()
+    if wanted:
+        for path, repo in candidates:
+            try:
+                if _file_digest(path) in wanted:
+                    return path, repo
+            except OSError:
+                continue
+    return candidates[0]
+
+
 def discover(repos=REPOS):
-    """Return the same first-by-class-name corpus used by corpus.py."""
-    seen = set()
-    rows = []
+    """Return the same first-by-class-name corpus used by corpus.py.
+
+    Two passes: collect every file that defines each class name, then name one
+    of them per class name - see `_pick_representative()` for which and why.
+    The emission order is unchanged (first occurrence in alphabetical
+    traversal), so adding a repository can no longer reorder existing rows.
+    """
+    measured = measured_canonical_hashes()
+    candidates = {}
+    order = []
     for directory in sorted(os.listdir(repos)):
         repo_root = os.path.join(repos, directory)
         if not os.path.isdir(repo_root):
@@ -135,18 +206,31 @@ def discover(repos=REPOS):
                     if _is_strategy(node):
                         found.append((path, node.name))
         for path, strategy in sorted(found, key=lambda x: (x[0], x[1])):
-            if strategy in seen:
-                continue
-            seen.add(strategy)
-            rows.append({"repo": repo, "path": path, "strategy": strategy})
+            if strategy not in candidates:
+                order.append(strategy)
+                candidates[strategy] = []
+            candidates[strategy].append((path, repo))
     for rel_path, strategy in EXTRA_SUBCLASS_STRATEGIES:
-        if strategy in seen:
-            continue
         path = os.path.join(repos, *rel_path.split("/"))
         if not os.path.isfile(path):
             continue
         repo = rel_path.split("/", 1)[0].replace("_", "/", 1)
-        seen.add(strategy)
+        if strategy in candidates:
+            # This list names a class whose base is another local strategy
+            # class. Such a class can ALSO be defined somewhere else with a
+            # direct `IStrategy` base, and then the scan above collects only
+            # that second file. Dropping the listed path here made the
+            # representative choice blind to the very file a measurement had
+            # run on (observed on TrailingBuyStrat2, NASOSv5_antipump,
+            # ClucHAnix_5mTB1 after the 2026-09-23 intake), so it joins the
+            # candidate list instead of replacing it.
+            candidates[strategy].append((path, repo))
+            continue
+        order.append(strategy)
+        candidates[strategy] = [(path, repo)]
+    rows = []
+    for strategy in order:
+        path, repo = _pick_representative(strategy, candidates[strategy], measured)
         rows.append({"repo": repo, "path": path, "strategy": strategy})
     return rows
 
