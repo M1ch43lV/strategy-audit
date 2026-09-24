@@ -473,6 +473,11 @@ def date_cell(strategy_id, dates) -> str:
         label = "repo, import" if bulk_repos(dates or {}).get(repo) else "repo"
         parts.append("%s <span class=\"meta\">%s</span>"
                      % (html.escape(str(upstream["date"])), label))
+    elif not parts and record.get("repo") not in (None, "", "frequenthippo"):
+        # The difference between "the source has no date for this" and "nobody
+        # has asked the source yet" matters, so an unfetched revision says so
+        # instead of looking like a revision without a date.
+        return "<span class=\"meta\">not fetched yet</span>"
     return "; ".join(parts) or "-"
 
 
