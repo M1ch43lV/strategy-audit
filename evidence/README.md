@@ -36,10 +36,13 @@ inventories. Writer utilities that merge these stores live here as well.
   `strategy_status.html` remain there because they are the published view.
 - Hand-written files in this directory: this README, `EXECUTION_PROFILES.md` (what the canonical corpus and the
   execution profiles mean), `ADMISSION_RECORDS.md` (results of the finished expansion waves) and `STRATEGY_IDEAS.json`
-  (one paragraph per strategy family, read out of the code by an LLM session - a description, never a measurement).
+  (one paragraph per strategy family plus a note on what changed between its revisions, read out of the code by an LLM
+  session - a description, never a measurement).
   Every other `.md` here is generated; see the list in `../README.md`. `tools/strategy_ideas.py` extracts the facts an
-  interpretation has to rest on and renders them, but it never writes `STRATEGY_IDEAS.json`: an idea carries the
-  `source_sha256` of the file it was read from, and `--check` fails once the corpus has moved past that revision.
+  interpretation has to rest on and renders them, but it never writes `STRATEGY_IDEAS.json`: each family names the one
+  revision its sentences were read from in `read_from`, with that revision's `source_sha256`, and `--check` fails once
+  the corpus has moved past it. The family's other rows are derived from the corpus by stem, so the store does not
+  repeat hundreds of hashes to say what the corpus already records.
 - Historical E0 files in this directory are provenance only. Current admission
   comes from active `admitted_E1` decisions.
 

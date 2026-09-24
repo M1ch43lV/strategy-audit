@@ -14,12 +14,50 @@ details{margin:.4rem 0 0}summary{cursor:pointer;color:#444}
 .meta{color:#57606a;font-size:.9rem}
 </style></head><body>
 <h1>Strategy ideas</h1>
-<p class="meta">One family per block: what the code does, read from the code. Written by an LLM from <code>evidence/STRATEGY_IDEAS_INPUT.json</code> and bound to the source hash it was read from; a family whose file has changed since is marked <span class="stale">stale</span>. This is a description, not a measurement, and it decides nothing.</p>
-<h2>Zaratustra <span class="meta">- 1 version(s)</span>
+<p class="meta">One family per block: what the code does, read from the code, and what changed between revisions. Written by an LLM session, each sentence tied to the one revision it was read from - a family whose file has changed since is marked <span class="stale">stale</span>. This is a description, not a measurement, and it decides nothing.</p>
+<h2>Zaratustra <span class="meta">- 32 row(s) in the corpus</span>
 <p class="idea">One comparison decides everything: while RSI(7) sits above RSI(14) the strategy is long, while it sits below it is short, and each side is closed as soon as the two cross back. There is no other filter and no signal-per-candle logic - the position is a state of the RSI spread. Exits in practice come from the risk settings, which are deliberately tight: 1% stoploss, 0.1% trailing stop and a flat 1% take-profit.</p>
 <p class="meta"><strong>Caveat:</strong> The site&#x27;s own family table advertises this family as 10x with a trailing stop. This revision&#x27;s leverage() returns 1, so the published description and the code in the corpus disagree about position size - the description there may belong to a different revision or to a bot configuration.</p>
-<table><tr><th>Version</th><th>Timeframe</th><th>Class</th><th>Source</th><th>State</th></tr>
-<tr><td><code>ZaratustraV31</code></td><td>1h</td><td>ZaratustraV31</td><td>repos/remiotore_ccxt-freqtrade/my-strategies/ZaratustraV31.py</td><td>current</td></tr>
+<table><tr><th>Versions</th><th>What changed</th></tr>
+<tr><td><code>V3-V4</code></td><td>The early design steps: V3 runs 15m with one indicator call and no exit condition at all, V4 moves to 5m and brings the Bollinger/crossed_above condition, the ROI ladder and a 1.3% trailing stop.</td></tr>
+<tr><td><code>V5-V26</code></td><td>This stretch reads like a hyperopt walk rather than a design history: the ROI ladder is removed at V5 and returns at V6, DCA is switched on at V8 and off at V9, max_open_trades alternates between -1 and 10, the indicator count climbs to 17 (V19) and falls back to 4 (V25), and the stoploss moves between -0.125 and -0.99 without a direction.</td></tr>
+<tr><td><code>V27-V31</code></td><td>The end of the line leaves the 5m chart: V27 runs 15m, V28/V29/V31 run 1h, and V31 is down to two indicator calls (RSI 7 and RSI 14) with the RSI spread as the only rule.</td></tr>
+<tr><td><code>DCA2_06-DCA5</code></td><td>A separate branch that keeps the DCA idea: 183-204 lines with adjust_trade_position (53-71 lines) in ZaratustraDCA2_06/_07/_063, and ZaratustraDCA5 at 572 lines with 17 indicator calls and 23 conditions, the largest member of the family.</td></tr>
+</table>
+<p class="meta">Read from <code>ZaratustraV31</code> <code>sha256_2860cc0ae18f5d1...</code>: the corpus still holds it</p>
+<table><tr><th>Row in the corpus</th><th>Timeframe</th><th>Class</th><th>File</th></tr>
+<tr><td><code>Zaratustra</code></td><td>15m</td><td>Zaratustra</td><td>repos/remiotore_ccxt-freqtrade/my-strategies/Zaratustra.py</td></tr>
+<tr><td><code>ZaratustraDCA2_06</code></td><td>5m</td><td>ZaratustraDCA2_06</td><td>repos/TheoBrigitte_freqtrade/strategies/Zaratustra/ZaratustraDCA2_06.py</td></tr>
+<tr><td><code>ZaratustraDCA2_063</code></td><td>5m</td><td>ZaratustraDCA2_063</td><td>repos/remiotore_ccxt-freqtrade/strategies/ZaratustraDCA2_063_20250121.py</td></tr>
+<tr><td><code>ZaratustraDCA2_07</code></td><td>5m</td><td>ZaratustraDCA2_07</td><td>repos/bustillo_freqtrade-strategies/ZaratustraDCA/ZaratustraDCA2_07.py</td></tr>
+<tr><td><code>ZaratustraDCA5</code></td><td>5m</td><td>ZaratustraDCA5</td><td>repos/bustillo_freqtrade-strategies/ZaratustraDCA/ZaratustraDCA5.py</td></tr>
+<tr><td><code>ZaratustraV10</code></td><td>5m</td><td>ZaratustraV10</td><td>repos/remiotore_ccxt-freqtrade/my-strategies/ZaratustraV10.py</td></tr>
+<tr><td><code>ZaratustraV11</code></td><td>5m</td><td>ZaratustraV11</td><td>repos/remiotore_ccxt-freqtrade/my-strategies/ZaratustraV11.py</td></tr>
+<tr><td><code>ZaratustraV12</code></td><td>5m</td><td>ZaratustraV12</td><td>repos/remiotore_ccxt-freqtrade/my-strategies/ZaratustraV12.py</td></tr>
+<tr><td><code>ZaratustraV13</code></td><td>5m</td><td>ZaratustraV13</td><td>repos/remiotore_ccxt-freqtrade/my-strategies/ZaratustraV13.py</td></tr>
+<tr><td><code>ZaratustraV14</code></td><td>5m</td><td>ZaratustraV14</td><td>repos/remiotore_ccxt-freqtrade/my-strategies/ZaratustraV14.py</td></tr>
+<tr><td><code>ZaratustraV15</code></td><td>5m</td><td>ZaratustraV15</td><td>repos/remiotore_ccxt-freqtrade/my-strategies/ZaratustraV15.py</td></tr>
+<tr><td><code>ZaratustraV16</code></td><td>5m</td><td>ZaratustraV16</td><td>repos/remiotore_ccxt-freqtrade/my-strategies/ZaratustraV16.py</td></tr>
+<tr><td><code>ZaratustraV17</code></td><td>5m</td><td>ZaratustraV17</td><td>repos/remiotore_ccxt-freqtrade/my-strategies/ZaratustraV17.py</td></tr>
+<tr><td><code>ZaratustraV18</code></td><td>5m</td><td>ZaratustraV18</td><td>repos/remiotore_ccxt-freqtrade/my-strategies/ZaratustraV18.py</td></tr>
+<tr><td><code>ZaratustraV19</code></td><td>5m</td><td>ZaratustraV19</td><td>repos/remiotore_ccxt-freqtrade/my-strategies/ZaratustraV19.py</td></tr>
+<tr><td><code>ZaratustraV20</code></td><td>5m</td><td>ZaratustraV20</td><td>repos/remiotore_ccxt-freqtrade/my-strategies/ZaratustraV20.py</td></tr>
+<tr><td><code>ZaratustraV21</code></td><td>5m</td><td>ZaratustraV21</td><td>repos/remiotore_ccxt-freqtrade/my-strategies/ZaratustraV21.py</td></tr>
+<tr><td><code>ZaratustraV22</code></td><td>5m</td><td>ZaratustraV22</td><td>repos/remiotore_ccxt-freqtrade/my-strategies/ZaratustraV22.py</td></tr>
+<tr><td><code>ZaratustraV23</code></td><td>5m</td><td>ZaratustraV23</td><td>repos/remiotore_ccxt-freqtrade/my-strategies/ZaratustraV23.py</td></tr>
+<tr><td><code>ZaratustraV24</code></td><td>5m</td><td>ZaratustraV24</td><td>repos/remiotore_ccxt-freqtrade/my-strategies/ZaratustraV24.py</td></tr>
+<tr><td><code>ZaratustraV25</code></td><td>5m</td><td>ZaratustraV25</td><td>repos/remiotore_ccxt-freqtrade/my-strategies/ZaratustraV25.py</td></tr>
+<tr><td><code>ZaratustraV26</code></td><td>5m</td><td>ZaratustraV26</td><td>repos/remiotore_ccxt-freqtrade/my-strategies/ZaratustraV26.py</td></tr>
+<tr><td><code>ZaratustraV27</code></td><td>15m</td><td>ZaratustraV27</td><td>repos/remiotore_ccxt-freqtrade/my-strategies/ZaratustraV27.py</td></tr>
+<tr><td><code>ZaratustraV28</code></td><td>1h</td><td>ZaratustraV28</td><td>repos/remiotore_ccxt-freqtrade/my-strategies/ZaratustraV28.py</td></tr>
+<tr><td><code>ZaratustraV29</code></td><td>1h</td><td>ZaratustraV29</td><td>repos/remiotore_ccxt-freqtrade/my-strategies/ZaratustraV29.py</td></tr>
+<tr><td><code>ZaratustraV3</code></td><td>15m</td><td>ZaratustraV3</td><td>repos/remiotore_ccxt-freqtrade/my-strategies/ZaratustraV3.py</td></tr>
+<tr><td><code>ZaratustraV31</code> *</td><td>1h</td><td>ZaratustraV31</td><td>repos/remiotore_ccxt-freqtrade/my-strategies/ZaratustraV31.py</td></tr>
+<tr><td><code>ZaratustraV4</code></td><td>5m</td><td>ZaratustraV4</td><td>repos/remiotore_ccxt-freqtrade/my-strategies/ZaratustraV4.py</td></tr>
+<tr><td><code>ZaratustraV5</code></td><td>5m</td><td>ZaratustraV5</td><td>repos/remiotore_ccxt-freqtrade/my-strategies/ZaratustraV5.py</td></tr>
+<tr><td><code>ZaratustraV6</code></td><td>5m</td><td>ZaratustraV6</td><td>repos/remiotore_ccxt-freqtrade/my-strategies/ZaratustraV6.py</td></tr>
+<tr><td><code>ZaratustraV8</code></td><td>5m</td><td>ZaratustraV8</td><td>repos/remiotore_ccxt-freqtrade/my-strategies/ZaratustraV8.py</td></tr>
+<tr><td><code>ZaratustraV9</code></td><td>5m</td><td>ZaratustraV9</td><td>repos/remiotore_ccxt-freqtrade/my-strategies/ZaratustraV9.py</td></tr>
 </table>
 <details><summary>what this reading rests on</summary><ul>
 <li>populate_indicators: rsi7 = ta.RSI(..., timeperiod=7), rsi14 = ta.RSI(..., timeperiod=14)</li>
@@ -28,10 +66,23 @@ details{margin:.4rem 0 0}summary{cursor:pointer;color:#444}
 <li>settings: minimal_roi {&#x27;0&#x27;: 0.01}, stoploss -0.01, trailing_stop True, trailing_stop_positive 0.001</li>
 <li>leverage(): returns 1</li>
 </ul></details>
-<h2>Slope <span class="meta">- 1 version(s)</span>
+<h2>Slope <span class="meta">- 7 row(s) in the corpus</span>
 <p class="idea">A pure swing-point reversal: scipy.signal.argrelextrema marks the local minima and maxima of the close over a rolling 64-bar window, a fresh local minimum opens a long and a fresh local maximum closes it, with the short side mirrored. There is no stoploss and no profit target in the usual sense - stoploss -0.999 and minimal_roi 1 mean the trade only ends when the opposite extreme appears.</p>
-<table><tr><th>Version</th><th>Timeframe</th><th>Class</th><th>Source</th><th>State</th></tr>
-<tr><td><code>SlopeV8</code></td><td>15m</td><td>SlopeV8</td><td>repos/remiotore_ccxt-freqtrade/strategies/LSlopeV8.py</td><td>current</td></tr>
+<table><tr><th>Versions</th><th>What changed</th></tr>
+<tr><td><code>all seven rows</code></td><td>The rule itself never changes: argrelextrema(close, order=5) over a 64-bar window and the mirrored exit are identical in every revision. What moves is the risk block, which is why the family is a good example of a corpus that varies one thing at a time.</td></tr>
+<tr><td><code>V1-V2</code></td><td>V1 trades 30m with no indicator calls, V2 moves to 15m, cuts the stoploss from -0.133 to -0.344 and rebuilds the ROI ladder.</td></tr>
+<tr><td><code>V3-V6</code></td><td>V3 is the largest revision (143 lines) and moves ROI, stoploss and the trailing offset again; V4 removes the protections() block; V5 arms the trailing stop at a 1% offset; V6 adds a minus_di condition and raises the offset to 6.5%.</td></tr>
+<tr><td><code>V8</code></td><td>The revision the description is read from drops the extra indicators and the stop as well: stoploss -0.999 and trailing off, so only the opposite extremum ends a trade.</td></tr>
+</table>
+<p class="meta">Read from <code>SlopeV8</code> <code>sha256_3ed2f392d65d932...</code>: the corpus still holds it</p>
+<table><tr><th>Row in the corpus</th><th>Timeframe</th><th>Class</th><th>File</th></tr>
+<tr><td><code>SlopeV1</code></td><td>30m</td><td>SlopeV1</td><td>repos/remiotore_ccxt-freqtrade/my-strategies/SlopeV1.py</td></tr>
+<tr><td><code>SlopeV2</code></td><td>15m</td><td>SlopeV2</td><td>repos/remiotore_ccxt-freqtrade/my-strategies/SlopeV2.py</td></tr>
+<tr><td><code>SlopeV3</code></td><td>15m</td><td>SlopeV3</td><td>repos/remiotore_ccxt-freqtrade/my-strategies/SlopeV3.py</td></tr>
+<tr><td><code>SlopeV4</code></td><td>15m</td><td>SlopeV4</td><td>repos/remiotore_ccxt-freqtrade/my-strategies/SlopeV4.py</td></tr>
+<tr><td><code>SlopeV5</code></td><td>15m</td><td>SlopeV5</td><td>repos/remiotore_ccxt-freqtrade/my-strategies/SlopeV5.py</td></tr>
+<tr><td><code>SlopeV6</code></td><td>15m</td><td>SlopeV6</td><td>repos/remiotore_ccxt-freqtrade/my-strategies/SlopeV6.py</td></tr>
+<tr><td><code>SlopeV8</code> *</td><td>15m</td><td>SlopeV8</td><td>repos/remiotore_ccxt-freqtrade/strategies/LSlopeV8.py</td></tr>
 </table>
 <details><summary>what this reading rests on</summary><ul>
 <li>populate_indicators: rolling_window = 64, rolling_max/min, maxima_idx/minima_idx = argrelextrema(close, np.greater/np.less, order=5)</li>
@@ -39,20 +90,39 @@ details{margin:.4rem 0 0}summary{cursor:pointer;color:#444}
 <li>populate_exit_trend: exits are the mirrored columns</li>
 <li>settings: stoploss -0.999, minimal_roi {&#x27;0&#x27;: 1}, trailing_stop False</li>
 </ul></details>
-<h2>RSIBB <span class="meta">- 1 version(s)</span>
+<h2>RSIBB <span class="meta">- 5 row(s) in the corpus</span>
 <p class="idea">A breakout that has to be confirmed by volume and volatility: the close crossing above its upper Bollinger band together with volume crossing above its own upper band and a normalised ATR above 1.0 opens the long, the mirrored crossing below opens the short. Both parts must happen on the same candle. Entry is a single event, so the 20% stoploss and the 1.2% trailing stop carry the exit.</p>
-<table><tr><th>Version</th><th>Timeframe</th><th>Class</th><th>Source</th><th>State</th></tr>
-<tr><td><code>RSIBB_V4</code></td><td>5m</td><td>RSIBB_V4</td><td>repos/remiotore_ccxt-freqtrade/my-strategies/RSIBB_V4.py</td><td>current</td></tr>
+<table><tr><th>Versions</th><th>What changed</th></tr>
+<tr><td><code>V1-V3</code></td><td>The breakout stays the same while the risk block is rebuilt: stoploss -0.262 at V1, -0.01 at V2, -0.2 at V3; V2 replaces the ROI ladder with a trailing stop and caps max_open_trades at 1; V3 turns trailing back on.</td></tr>
+<tr><td><code>V4</code></td><td>The revision the description is read from drops RSI(12) and RSI(6) and adds the normalised ATR, which is what makes volatility the third confirmation next to price and volume.</td></tr>
+<tr><td><code>RSIBB02</code></td><td>Not a version of V4: it runs 1h with three indicator calls and carries a hyperopt parameter dump in its settings, so this stem holds two timeframes under one idea.</td></tr>
+</table>
+<p class="meta">Read from <code>RSIBB_V4</code> <code>sha256_6409ac625307a15...</code>: the corpus still holds it</p>
+<table><tr><th>Row in the corpus</th><th>Timeframe</th><th>Class</th><th>File</th></tr>
+<tr><td><code>RSIBB02</code></td><td>1h</td><td>RSIBB02</td><td>repos/davidzr_freqtrade-strategies/strategies/RSIBB02/RSIBB02.py</td></tr>
+<tr><td><code>RSIBB_V1</code></td><td>5m</td><td>RSIBB_V1</td><td>repos/remiotore_ccxt-freqtrade/my-strategies/RSIBB_V1.py</td></tr>
+<tr><td><code>RSIBB_V2</code></td><td>5m</td><td>RSIBB_V2</td><td>repos/remiotore_ccxt-freqtrade/my-strategies/RSIBB_V2.py</td></tr>
+<tr><td><code>RSIBB_V3</code></td><td>5m</td><td>RSIBB_V3</td><td>repos/remiotore_ccxt-freqtrade/my-strategies/RSIBB_V3.py</td></tr>
+<tr><td><code>RSIBB_V4</code> *</td><td>5m</td><td>RSIBB_V4</td><td>repos/remiotore_ccxt-freqtrade/my-strategies/RSIBB_V4.py</td></tr>
 </table>
 <details><summary>what this reading rests on</summary><ul>
 <li>indicators: qtpylib.bollinger_bands(typical_price, 20, 2), qtpylib.bollinger_bands(volume, 20, 2), ta.NATR(14), natr_zscore</li>
 <li>populate_entry_trend: enter_long = crossed_above(close, bbu) &amp; crossed_above(volume, vbbu) &amp; (natr_zscore &gt; 1.0); enter_short is the mirror below bbl</li>
 <li>settings: stoploss -0.2, trailing_stop True, trailing_stop_positive 0.012, minimal_roi {}</li>
 </ul></details>
-<h2>EMA + Fibonacci <span class="meta">- 1 version(s)</span>
+<h2>EMA + Fibonacci <span class="meta">- 3 row(s) in the corpus</span>
 <p class="idea">Perfect trend alignment on Fibonacci-length EMAs: EMA(34/55/89/144/233) of the typical price, and the long requires the +DI series of the same lengths stacked in ascending order (34&gt;55&gt;89&gt;144&gt;233) with the last one above -DI; the short mirrors it on the -DI side. The exit throws the trade out on any cross of the price with the 233 EMA, so the strategy rides an aligned trend but leaves as soon as price loses the longest average. The 0.99 stoploss is nominal - the exit signal is the real risk control.</p>
-<table><tr><th>Version</th><th>Timeframe</th><th>Class</th><th>Source</th><th>State</th></tr>
-<tr><td><code>EMA_Fibonacci_V4</code></td><td>5m</td><td>EMA_Fibonacci_V4</td><td>repos/remiotore_ccxt-freqtrade/my-strategies/EMA_Fibonacci_V4.py</td><td>current</td></tr>
+<table><tr><th>Versions</th><th>What changed</th></tr>
+<tr><td><code>V2</code></td><td>The longest revision (137 lines, 19 indicator calls) and the one with the shortest stop: -0.75.</td></tr>
+<tr><td><code>V3</code></td><td>Replaces EMA(89) with EMA(30) and loosens the stoploss to -0.99, so the alignment ladder gets shorter and the stop stops protecting.</td></tr>
+<tr><td><code>V4</code></td><td>The revision the description is read from brings back the 30/89 pair, adds the exit cross against EMA(233) and the DI stacking that decides the direction.</td></tr>
+<tr><td><code>count</code></td><td>The published family table counts four revisions; the corpus holds three (V2, V3, V4).</td></tr>
+</table>
+<p class="meta">Read from <code>EMA_Fibonacci_V4</code> <code>sha256_7d6607eac988546...</code>: the corpus still holds it</p>
+<table><tr><th>Row in the corpus</th><th>Timeframe</th><th>Class</th><th>File</th></tr>
+<tr><td><code>EMA_Fibonacci_V2</code></td><td>5m</td><td>EMA_Fibonacci_V2</td><td>repos/remiotore_ccxt-freqtrade/my-strategies/EMA_Fibonacci_V2.py</td></tr>
+<tr><td><code>EMA_Fibonacci_V3</code></td><td>5m</td><td>EMA_Fibonacci_V3</td><td>repos/remiotore_ccxt-freqtrade/my-strategies/EMA_Fibonacci_V3.py</td></tr>
+<tr><td><code>EMA_Fibonacci_V4</code> *</td><td>5m</td><td>EMA_Fibonacci_V4</td><td>repos/remiotore_ccxt-freqtrade/my-strategies/EMA_Fibonacci_V4.py</td></tr>
 </table>
 <details><summary>what this reading rests on</summary><ul>
 <li>indicators: ta.EMA(typ, 34/55/89/144/233), ta.PLUS_DI and ta.MINUS_DI at those same lengths</li>
@@ -60,10 +130,14 @@ details{margin:.4rem 0 0}summary{cursor:pointer;color:#444}
 <li>populate_exit_trend: exit on qtpylib.crossed_above/crossed_below(typ, ema_233)</li>
 <li>settings: stoploss -0.99, minimal_roi {}, trailing_stop False</li>
 </ul></details>
-<h2>el_extrema <span class="meta">- 1 version(s)</span>
+<h2>el_extrema <span class="meta">- 1 row(s) in the corpus</span>
 <p class="idea">Dip-buying at detected extrema with an EWO momentum filter: a local minimum of the close (argrelextrema, order 5) plus price below EMA(entry length) times low_offset, and then either an EWO above the high threshold with RSI below the entry level or an EWO below the low threshold, opens the long; the short side is the mirror at local maxima. Exits are the ROI ladder (50% at entry decaying to 2% after five days) plus a 5% stoploss. The offsets, EMA lengths, RSI level and both EWO thresholds are hyperopt parameters, so the revision in the corpus is one point in a search space.</p>
-<table><tr><th>Version</th><th>Timeframe</th><th>Class</th><th>Source</th><th>State</th></tr>
-<tr><td><code>el_extrema</code></td><td>5m</td><td>el_extrema</td><td>repos/remiotore_ccxt-freqtrade/my-strategies/el_extrema.py</td><td>current</td></tr>
+<table><tr><th>Versions</th><th>What changed</th></tr>
+<tr><td><code>one row</code></td><td>The corpus holds exactly one file under this stem, so there is nothing to compare. The derivatives the published table lists next to it (_rolling, _RL, _rsiqui) live under longer stems, which this page keeps apart on purpose instead of guessing that they belong together.</td></tr>
+</table>
+<p class="meta">Read from <code>el_extrema</code> <code>sha256_abde98597b0293c...</code>: the corpus still holds it</p>
+<table><tr><th>Row in the corpus</th><th>Timeframe</th><th>Class</th><th>File</th></tr>
+<tr><td><code>el_extrema</code> *</td><td>5m</td><td>el_extrema</td><td>repos/remiotore_ccxt-freqtrade/my-strategies/el_extrema.py</td></tr>
 </table>
 <details><summary>what this reading rests on</summary><ul>
 <li>populate_indicators: ma_entry_*/ma_exit_* = ta.EMA over the parameter ranges, EWO = (SMA5 - SMA35)/close*100, rsi = ta.RSI(14), &#x27;&amp;s-extrema&#x27; from argrelextrema(close, order=5)</li>
@@ -71,10 +145,23 @@ details{margin:.4rem 0 0}summary{cursor:pointer;color:#444}
 <li>settings: minimal_roi ladder {&#x27;0&#x27;: 0.5, &#x27;60&#x27;: 0.45, ... &#x27;7200&#x27;: 0.02}, stoploss -0.05</li>
 <li>Parameters: low_offset, high_offset, rsi_entry, ewo_high, ewo_low, base_nb_candles_entry/exit, cooldown_lookback</li>
 </ul></details>
-<h2>Rsiqui <span class="meta">- 1 version(s)</span>
+<h2>Rsiqui <span class="meta">- 7 row(s) in the corpus</span>
 <p class="idea">The trigger is the slope of an EMA-smoothed RSI, not the RSI level alone: long when RSI is below the entry level and the smoothed RSI gradient turns up, short when RSI is above the upper level and the gradient turns down; each side closes when the gradient turns against it and RSI has crossed the exit level. It is a mean-reversion scalp at 5m with hyperopt-driven thresholds (entry 30-70) and a steep ROI ladder (22% decaying to 0 after ~110 minutes) over a 27% stoploss.</p>
-<table><tr><th>Version</th><th>Timeframe</th><th>Class</th><th>Source</th><th>State</th></tr>
-<tr><td><code>RsiquiV5</code></td><td>5m</td><td>RsiquiV5</td><td>repos/TheoBrigitte_freqtrade/strategies/rsiqui/RsiquiV5.py</td><td>current</td></tr>
+<table><tr><th>Versions</th><th>What changed</th></tr>
+<tr><td><code>V2</code></td><td>70 lines with four indicator calls: the RSI gradient rule alone, without the frame the later revisions build around it.</td></tr>
+<tr><td><code>V3-V4</code></td><td>Grows to 119-121 lines and twelve indicator calls - a nan-safe min/max frame around the RSI - and V4 changes max_open_trades to -1 and the stoploss from -0.05 to -0.287 in the same step.</td></tr>
+<tr><td><code>V5</code></td><td>Back to four indicator calls and 89 lines, and the revision the description is read from; RsiquiV5_2 differs from it only in can_short, so the corpus counts two rows where there is one revision.</td></tr>
+<tr><td><code>Rsiqui</code></td><td>20 lines: a fragment of the idea rather than an implementation, kept because the corpus records the file.</td></tr>
+</table>
+<p class="meta">Read from <code>RsiquiV5</code> <code>sha256_5f030f084dd930b...</code>: the corpus still holds it</p>
+<table><tr><th>Row in the corpus</th><th>Timeframe</th><th>Class</th><th>File</th></tr>
+<tr><td><code>Rsiqui</code></td><td>5m</td><td>Rsiqui</td><td>repos/TheoBrigitte_freqtrade/strategies/rsiqui/Rsiqui.py</td></tr>
+<tr><td><code>RsiquiV2</code></td><td>5m</td><td>RsiquiV2</td><td>repos/TheoBrigitte_freqtrade/strategies/rsiqui/RsiquiV2.py</td></tr>
+<tr><td><code>RsiquiV3</code></td><td>5m</td><td>RsiquiV3</td><td>repos/remiotore_ccxt-freqtrade/my-strategies/RsiquiV3.py</td></tr>
+<tr><td><code>RsiquiV3_2</code></td><td>5m</td><td>RsiquiV3_2</td><td>repos/remiotore_ccxt-freqtrade/strategies/RsiquiV3_2.py</td></tr>
+<tr><td><code>RsiquiV4</code></td><td>5m</td><td>RsiquiV4</td><td>repos/remiotore_ccxt-freqtrade/my-strategies/RsiquiV4.py</td></tr>
+<tr><td><code>RsiquiV5</code> *</td><td>5m</td><td>RsiquiV5</td><td>repos/TheoBrigitte_freqtrade/strategies/rsiqui/RsiquiV5.py</td></tr>
+<tr><td><code>RsiquiV5_2</code></td><td>5m</td><td>RsiquiV5_2</td><td>repos/remiotore_ccxt-freqtrade/strategies/RsiquiV5_2.py</td></tr>
 </table>
 <details><summary>what this reading rests on</summary><ul>
 <li>indicators: ta.RSI(14), np.gradient(dataframe[&#x27;rsi_ema&#x27;]), qtpylib.crossed_above/below(rsi_gra, 0)</li>
@@ -83,10 +170,17 @@ details{margin:.4rem 0 0}summary{cursor:pointer;color:#444}
 <li>settings: minimal_roi {&#x27;0&#x27;: 0.223, &#x27;34&#x27;: 0.082, &#x27;82&#x27;: 0.033, &#x27;109&#x27;: 0}, stoploss -0.273</li>
 <li>cluster store: direction long_short, logic mean_reversion, speed scalp, regime hypothesis bear+range</li>
 </ul></details>
-<h2>BollingerMACD <span class="meta">- 1 version(s)</span>
+<h2>BollingerMACD <span class="meta">- 3 row(s) in the corpus</span>
 <p class="idea">Dual momentum confirmation: the long needs the close crossing above the upper Bollinger band and both MACD lines above zero, the short mirrors it below the lower band with both lines below zero, and a non-zero volume column is required in every branch. The exit is the opposite band cross under the same MACD agreement, so the position is held while the regime lasts; the 35% stoploss and 12% trailing stop are what actually bound the loss.</p>
-<table><tr><th>Version</th><th>Timeframe</th><th>Class</th><th>Source</th><th>State</th></tr>
-<tr><td><code>BollingerMACD_V3</code></td><td>5m</td><td>BollingerMACD_V3</td><td>repos/remiotore_ccxt-freqtrade/my-strategies/BollingerMACD_V3.py</td><td>current</td></tr>
+<table><tr><th>Versions</th><th>What changed</th></tr>
+<tr><td><code>V1-V2</code></td><td>The entry and exit conditions are identical in both; V2 is 17 lines shorter and has the same seven indicator calls, so the difference is formatting rather than strategy.</td></tr>
+<tr><td><code>V3</code></td><td>Adds the whole risk block the earlier revisions lack - ROI ladder, stoploss -0.35 and a 12% trailing stop - while the signal itself is unchanged across all three revisions.</td></tr>
+</table>
+<p class="meta">Read from <code>BollingerMACD_V3</code> <code>sha256_5447b3349ab947d...</code>: the corpus still holds it</p>
+<table><tr><th>Row in the corpus</th><th>Timeframe</th><th>Class</th><th>File</th></tr>
+<tr><td><code>BollingerMACD_V1</code></td><td>5m</td><td>BollingerMACD_V1</td><td>repos/remiotore_ccxt-freqtrade/my-strategies/BollingerMACD_V1.py</td></tr>
+<tr><td><code>BollingerMACD_V2</code></td><td>5m</td><td>BollingerMACD_V2</td><td>repos/remiotore_ccxt-freqtrade/my-strategies/BollingerMACD_V2.py</td></tr>
+<tr><td><code>BollingerMACD_V3</code> *</td><td>5m</td><td>BollingerMACD_V3</td><td>repos/remiotore_ccxt-freqtrade/my-strategies/BollingerMACD_V3.py</td></tr>
 </table>
 <details><summary>what this reading rests on</summary><ul>
 <li>indicators: ta.MACD(dataframe), qtpylib.bollinger_bands(typical_price, 20, 2), crossed_above/below on close vs bb_upperband/bb_lowerband</li>
@@ -94,10 +188,16 @@ details{margin:.4rem 0 0}summary{cursor:pointer;color:#444}
 <li>populate_exit_trend: exit_long = crossed_below(close, bbu) with the same MACD and volume conditions</li>
 <li>settings: minimal_roi {&#x27;0&#x27;: 0.28, &#x27;22&#x27;: 0.081, &#x27;68&#x27;: 0.039, &#x27;90&#x27;: 0}, stoploss -0.35, trailing_stop True, trailing_stop_positive 0.12</li>
 </ul></details>
-<h2>GnF <span class="meta">- 1 version(s)</span>
+<h2>GnF <span class="meta">- 2 row(s) in the corpus</span>
 <p class="idea">A synthetic greed/fear index decides the direction: momentum (close against SMA20), volatility (NATR14) and a volume sentiment (up-volume minus down-volume) are each min-max normalised over a 20-bar window and averaged into one 0-1 number. Above 0.7 the strategy is long, below 0.3 short, and a trade is only opened while volume exceeds its own 50-bar mean; the opposite threshold closes the side, so the index crossing the band is what turns the position.</p>
-<table><tr><th>Version</th><th>Timeframe</th><th>Class</th><th>Source</th><th>State</th></tr>
-<tr><td><code>GnF_V2</code></td><td>1h</td><td>GnF_V2</td><td>repos/vaskosmihaylov_nfi-custom-strategies/user_data/strategies/remiotore/GnF_V2.py</td><td>current</td></tr>
+<table><tr><th>Versions</th><th>What changed</th></tr>
+<tr><td><code>GnF</code></td><td>75 lines using ta.ATR and carrying a longer plot_config.</td></tr>
+<tr><td><code>V2</code></td><td>The revision the description is read from switches to ta.NATR - which matters because the index divides volatility by price - and shortens the plot_config. Two revisions in the corpus, one of them a refinement of the same index.</td></tr>
+</table>
+<p class="meta">Read from <code>GnF_V2</code> <code>sha256_3e095a5da824d1b...</code>: the corpus still holds it</p>
+<table><tr><th>Row in the corpus</th><th>Timeframe</th><th>Class</th><th>File</th></tr>
+<tr><td><code>GnF</code></td><td>1h</td><td>GnF</td><td>repos/remiotore_ccxt-freqtrade/my-strategies/GnF.py</td></tr>
+<tr><td><code>GnF_V2</code> *</td><td>1h</td><td>GnF_V2</td><td>repos/vaskosmihaylov_nfi-custom-strategies/user_data/strategies/remiotore/GnF_V2.py</td></tr>
 </table>
 <details><summary>what this reading rests on</summary><ul>
 <li>populate_indicators: momentum = (close - SMA20)/SMA20, volatility = ta.NATR(14), volume_up/volume_down -&gt; volume_sentiment, each normalised over rolling(20), greed_fear_index = mean of the three</li>
@@ -105,10 +205,14 @@ details{margin:.4rem 0 0}summary{cursor:pointer;color:#444}
 <li>populate_exit_trend: exit_long where greed_fear_index &lt; 0.3, exit_short where &gt; 0.7</li>
 <li>settings: stoploss -0.99, minimal_roi {}, trailing_stop False</li>
 </ul></details>
-<h2>EWOist <span class="meta">- 1 version(s)</span>
+<h2>EWOist <span class="meta">- 1 row(s) in the corpus</span>
 <p class="idea">One indicator and two thresholds: EWO = (SMA50 - SMA200)/close*100; EWO above the buy threshold opens the long, below the sell threshold closes it again, and the short side is mirrored around the same levels. Nothing else is consulted except a non-zero volume. The risk side is a 10% profit offset with a 3% trailing stop that only arms once the offset is reached.</p>
-<table><tr><th>Version</th><th>Timeframe</th><th>Class</th><th>Source</th><th>State</th></tr>
-<tr><td><code>EWOistV1</code></td><td>5m</td><td>EWOistV1</td><td>repos/remiotore_ccxt-freqtrade/my-strategies/EWOistV1.py</td><td>current</td></tr>
+<table><tr><th>Versions</th><th>What changed</th></tr>
+<tr><td><code>one row</code></td><td>One revision in the corpus, so there is nothing to compare and the four risk settings carry the whole difference from a raw single-indicator rule to a tradeable strategy.</td></tr>
+</table>
+<p class="meta">Read from <code>EWOistV1</code> <code>sha256_cfefb9de82bd658...</code>: the corpus still holds it</p>
+<table><tr><th>Row in the corpus</th><th>Timeframe</th><th>Class</th><th>File</th></tr>
+<tr><td><code>EWOistV1</code> *</td><td>5m</td><td>EWOistV1</td><td>repos/remiotore_ccxt-freqtrade/my-strategies/EWOistV1.py</td></tr>
 </table>
 <details><summary>what this reading rests on</summary><ul>
 <li>populate_indicators: EWO = (ta.SMA(50) - ta.SMA(200))/close*100</li>
@@ -116,15 +220,395 @@ details{margin:.4rem 0 0}summary{cursor:pointer;color:#444}
 <li>populate_exit_trend: exit_long where EWO &lt; ewo_sell_high; exit_short where EWO &gt; ewo_sell_low</li>
 <li>settings: exit_profit_offset 0.1, trailing_stop_positive_offset 0.03, trailing_only_offset_is_reached True, stoploss -0.99</li>
 </ul></details>
-<h2>PlusMinus <span class="meta">- 1 version(s)</span>
+<h2>PlusMinus <span class="meta">- 1 row(s) in the corpus</span>
 <p class="idea">A directional-indicator breakout with an RSI filter: +DI crossing above -DI while RSI is above 60 opens the long, -DI crossing above +DI while RSI is below 15 opens the short, and the same crosses close the opposite side. Each side also has a second branch that fires when a rolling maximum of RSI and of the matching DI is flagged - an exhaustion branch rather than a cross - so the strategy trades both a breakout and its reversal signal.</p>
-<table><tr><th>Version</th><th>Timeframe</th><th>Class</th><th>Source</th><th>State</th></tr>
-<tr><td><code>PlusMinusV1</code></td><td>5m</td><td>PlusMinusV1</td><td>repos/remiotore_ccxt-freqtrade/my-strategies/PlusMinusV1.py</td><td>current</td></tr>
+<table><tr><th>Versions</th><th>What changed</th></tr>
+<tr><td><code>one row</code></td><td>One revision in the corpus. The version marker suggests predecessors, but they are not in the corpus, so nothing here describes them.</td></tr>
+</table>
+<p class="meta">Read from <code>PlusMinusV1</code> <code>sha256_5df5b6356a620bd...</code>: the corpus still holds it</p>
+<table><tr><th>Row in the corpus</th><th>Timeframe</th><th>Class</th><th>File</th></tr>
+<tr><td><code>PlusMinusV1</code> *</td><td>5m</td><td>PlusMinusV1</td><td>repos/remiotore_ccxt-freqtrade/my-strategies/PlusMinusV1.py</td></tr>
 </table>
 <details><summary>what this reading rests on</summary><ul>
 <li>indicators: ta.RSI(dataframe), ta.PLUS_DI(dataframe), ta.MINUS_DI(dataframe), crossed_above on &#x27;Plus DI&#x27;/&#x27;Minus DI&#x27;</li>
 <li>populate_entry_trend: enter_long = (crossed_above(Plus DI, Minus DI) &amp; RSI &gt; 60) OR (&#x27;RSI Max&#x27; notnull &amp; &#x27;Plus DI Max&#x27; notnull)</li>
 <li>populate_exit_trend: exit_long = (&#x27;RSI Max&#x27; notnull &amp; &#x27;Plus DI Max&#x27; notnull) OR (crossed_above(Minus DI, Plus DI) &amp; RSI &lt; 60)</li>
 <li>settings: stoploss -0.3, minimal_roi {}, trailing_stop False</li>
+</ul></details>
+<h2>E0V1E <span class="meta">- 39 row(s) in the corpus</span>
+<p class="idea">A 5m scalper whose entry is a bundle of conditions ORed together rather than one rule: EMA(8/16) against EMA/SMA(15) and RSI(4/14/20), the stochastic-fast fastk, and a Bollinger band around the typical price are collected into a list and reduced with `lambda x, y: x | y`, so any single member can open a trade. The exit side is where the work sits: a custom_stoploss that locks in above 1% profit and treats trades tagged &#x27;ewo&#x27; differently, plus a custom_exit that reads the fastk and RSI columns of the current candle. minimal_roi and the 0.99 stoploss are nominal next to that.</p>
+<p class="meta"><strong>Caveat:</strong> The custom_stoploss branches on the entry tag (`if &#x27;ewo&#x27; in enter_tags`), so the same file holds two different exit rules depending on which condition opened the trade - a reader who evaluates only the stoploss number will read the risk wrong.</p>
+<table><tr><th>Versions</th><th>What changed</th></tr>
+<tr><td><code>2023-09-15 - 2024-01-11</code></td><td>The only chronology this family has, and it comes from the dates in five file names: the ROI goes {&#x27;0&#x27;: 10} -&gt; {&#x27;0&#x27;: 0.02, &#x27;120&#x27;: 0.01} -&gt; {&#x27;0&#x27;: 10} -&gt; {&#x27;0&#x27;: 1} -&gt; {&#x27;0&#x27;: 10}, the stoploss -0.13 -&gt; -0.18 -&gt; -0.27 -&gt; back to -0.99, startup_candle_count 121 -&gt; 120 -&gt; 20, and the 2024-01-11 revision adds ta.CCI(20) and switches DCA (position_adjustment_enable) off again. Five dated rows, four steps, and they are steps of a scalar search rather than four designs.</td></tr>
+<tr><td><code>the 34 numbered rows</code></td><td>Their numbers are the harvest&#x27;s collision counter, not versions, and the content proves it: adjacent rows reverse each other - E0V1E_22 to _23 steps stoploss -0.18 -&gt; -0.99 and startup_candle_count 120 -&gt; 20, and _23 to _24 steps both back again. What the corpus holds is a parameter fan written out in file order, so this page lists the rows and states no order for them.</td></tr>
+<tr><td><code>two body plans</code></td><td>Across the fan there are two shapes: 74-93 lines with 5-8 indicator calls and no custom hooks, and 121-158 lines with 11 indicator calls plus custom_stoploss and custom_exit. Every row runs 5m.</td></tr>
+</table>
+<p class="meta">Read from <code>E0V1E</code> <code>sha256_e87c7b96477328e...</code>: the corpus still holds it</p>
+<table><tr><th>Row in the corpus</th><th>Timeframe</th><th>Class</th><th>File</th></tr>
+<tr><td><code>E0V1E</code> *</td><td>5m</td><td>E0V1E</td><td>repos/TheoBrigitte_freqtrade/strategies/e0v1e/E0V1E.py</td></tr>
+<tr><td><code>E0V1E2</code></td><td>5m</td><td>E0V1E2</td><td>repos/TheoBrigitte_freqtrade/strategies/e0v1e/E0V1E2.py</td></tr>
+<tr><td><code>E0V1E_13</code></td><td>5m</td><td>E0V1E_13</td><td>repos/remiotore_ccxt-freqtrade/strategies/E0V1E_13.py</td></tr>
+<tr><td><code>E0V1E_14</code></td><td>5m</td><td>E0V1E_14</td><td>repos/remiotore_ccxt-freqtrade/strategies/E0V1E_14.py</td></tr>
+<tr><td><code>E0V1E_15</code></td><td>5m</td><td>E0V1E_15</td><td>repos/remiotore_ccxt-freqtrade/strategies/E0V1E_15.py</td></tr>
+<tr><td><code>E0V1E_16</code></td><td>5m</td><td>E0V1E_16</td><td>repos/remiotore_ccxt-freqtrade/strategies/E0V1E_16.py</td></tr>
+<tr><td><code>E0V1E_17</code></td><td>5m</td><td>E0V1E_17</td><td>repos/remiotore_ccxt-freqtrade/strategies/E0V1E_17.py</td></tr>
+<tr><td><code>E0V1E_18</code></td><td>5m</td><td>E0V1E_18</td><td>repos/remiotore_ccxt-freqtrade/strategies/E0V1E_18.py</td></tr>
+<tr><td><code>E0V1E_20</code></td><td>5m</td><td>E0V1E_20</td><td>repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20.py</td></tr>
+<tr><td><code>E0V1E_20230915</code></td><td>5m</td><td>E0V1E_20230915</td><td>repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20230915.py</td></tr>
+<tr><td><code>E0V1E_20231014_0847</code></td><td>5m</td><td>E0V1E_20231014_0847</td><td>repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20231014_0847.py</td></tr>
+<tr><td><code>E0V1E_20231017_1059</code></td><td>5m</td><td>E0V1E_20231017_1059</td><td>repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20231017_1059.py</td></tr>
+<tr><td><code>E0V1E_20231019_1032</code></td><td>5m</td><td>E0V1E_20231019_1032</td><td>repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20231019_1032.py</td></tr>
+<tr><td><code>E0V1E_20240111_1625</code></td><td>5m</td><td>E0V1E_20240111_1625</td><td>repos/remiotore_ccxt-freqtrade/strategies/E0V1E_20240111_1625.py</td></tr>
+<tr><td><code>E0V1E_2024_2</code></td><td>5m</td><td>E0V1E_2024_2</td><td>repos/remiotore_ccxt-freqtrade/strategies/E0V1E_2024_2.py</td></tr>
+<tr><td><code>E0V1E_22</code></td><td>5m</td><td>E0V1E_22</td><td>repos/remiotore_ccxt-freqtrade/strategies/E0V1E_22.py</td></tr>
+<tr><td><code>E0V1E_23</code></td><td>5m</td><td>E0V1E_23</td><td>repos/remiotore_ccxt-freqtrade/strategies/E0V1E_23.py</td></tr>
+<tr><td><code>E0V1E_24</code></td><td>5m</td><td>E0V1E_24</td><td>repos/remiotore_ccxt-freqtrade/strategies/E0V1E_24.py</td></tr>
+<tr><td><code>E0V1E_25</code></td><td>5m</td><td>E0V1E_25</td><td>repos/remiotore_ccxt-freqtrade/strategies/E0V1E_25.py</td></tr>
+<tr><td><code>E0V1E_26</code></td><td>5m</td><td>E0V1E_26</td><td>repos/remiotore_ccxt-freqtrade/strategies/E0V1E_26.py</td></tr>
+<tr><td><code>E0V1E_27</code></td><td>5m</td><td>E0V1E_27</td><td>repos/remiotore_ccxt-freqtrade/strategies/E0V1E_27.py</td></tr>
+<tr><td><code>E0V1E_28</code></td><td>5m</td><td>E0V1E_28</td><td>repos/remiotore_ccxt-freqtrade/strategies/E0V1E_28.py</td></tr>
+<tr><td><code>E0V1E_3</code></td><td>5m</td><td>E0V1E_3</td><td>repos/vaskosmihaylov_nfi-custom-strategies/user_data/strategies/e0v1e/E0V1E_3.py</td></tr>
+<tr><td><code>E0V1E_30</code></td><td>5m</td><td>E0V1E_30</td><td>repos/remiotore_ccxt-freqtrade/strategies/E0V1E_30.py</td></tr>
+<tr><td><code>E0V1E_35</code></td><td>5m</td><td>E0V1E_35</td><td>repos/remiotore_ccxt-freqtrade/strategies/E0V1E_35.py</td></tr>
+<tr><td><code>E0V1E_4</code></td><td>5m</td><td>E0V1E_4</td><td>repos/remiotore_ccxt-freqtrade/strategies/E0V1E_4.py</td></tr>
+<tr><td><code>E0V1E_40</code></td><td>5m</td><td>E0V1E_40</td><td>repos/remiotore_ccxt-freqtrade/strategies/E0V1E_40.py</td></tr>
+<tr><td><code>E0V1E_41</code></td><td>5m</td><td>E0V1E_41</td><td>repos/remiotore_ccxt-freqtrade/strategies/E0V1E_41.py</td></tr>
+<tr><td><code>E0V1E_45</code></td><td>5m</td><td>E0V1E_45</td><td>repos/remiotore_ccxt-freqtrade/strategies/E0V1E_45.py</td></tr>
+<tr><td><code>E0V1E_47</code></td><td>5m</td><td>E0V1E_47</td><td>repos/remiotore_ccxt-freqtrade/strategies/E0V1E_47.py</td></tr>
+<tr><td><code>E0V1E_48</code></td><td>5m</td><td>E0V1E_48</td><td>repos/remiotore_ccxt-freqtrade/strategies/E0V1E_48.py</td></tr>
+<tr><td><code>E0V1E_49</code></td><td>5m</td><td>E0V1E_49</td><td>repos/remiotore_ccxt-freqtrade/strategies/E0V1E_49.py</td></tr>
+<tr><td><code>E0V1E_50</code></td><td>5m</td><td>E0V1E_50</td><td>repos/remiotore_ccxt-freqtrade/strategies/E0V1E_50.py</td></tr>
+<tr><td><code>E0V1E_51</code></td><td>5m</td><td>E0V1E_51</td><td>repos/remiotore_ccxt-freqtrade/strategies/E0V1E_51.py</td></tr>
+<tr><td><code>E0V1E_53</code></td><td>5m</td><td>E0V1E_53</td><td>repos/remiotore_ccxt-freqtrade/strategies/E0V1E_53.py</td></tr>
+<tr><td><code>E0V1E_55</code></td><td>5m</td><td>E0V1E_55</td><td>repos/remiotore_ccxt-freqtrade/strategies/E0V1E_55.py</td></tr>
+<tr><td><code>E0V1E_56</code></td><td>5m</td><td>E0V1E_56</td><td>repos/remiotore_ccxt-freqtrade/strategies/E0V1E_56.py</td></tr>
+<tr><td><code>E0V1E_6</code></td><td>5m</td><td>E0V1E_6</td><td>repos/remiotore_ccxt-freqtrade/strategies/E0V1E_6.py</td></tr>
+<tr><td><code>E0V1E_DCA3</code></td><td>5m</td><td>E0V1E_DCA3</td><td>repos/TheoBrigitte_freqtrade/strategies/e0v1e/E0V1E_DCA3.py</td></tr>
+</table>
+<details><summary>what this reading rests on</summary><ul>
+<li>indicators: ta.EMA(8) and ta.EMA(16) against ta.SMA(15), ta.RSI(4/14/20), ta.STOCHF(5,3,0,3,0), qtpylib.bollinger_bands(qtpylib.typical_price, window=20, stds=2)</li>
+<li>populate_entry_trend: enter_long = reduce(lambda x, y: x | y, conditions)</li>
+<li>populate_entry_trend: conditions = [] then conditions.append(is_ewo) and conditions.append(buy_1), and each branch writes its own tag - dataframe.loc[is_ewo, &#x27;enter_tag&#x27;] += &#x27;ewo&#x27;</li>
+<li>custom_stoploss: reads trade.enter_tag, splits it into enter_tags and takes the &#x27;ewo&#x27; branch first (`if &quot;ewo&quot; in enter_tags`), then branches on current_profit &gt; 0.01 / &lt; 0.01 / &gt;= 0.05 and on current_candle[&#x27;fastk&#x27;] &gt; sell_fastx and rsi &gt; 80 / &gt; 90</li>
+<li>settings: minimal_roi {&#x27;0&#x27;: 10}, stoploss -0.99, use_custom_stoploss True, startup_candle_count 20</li>
+<li>the five dated revisions: E0V1E_20230915, _20231014_0847, _20231017_1059, _20231019_1032, _20240111_1625</li>
+</ul></details>
+<h2>Ichimoku <span class="meta">- 31 row(s) in the corpus</span>
+<p class="idea">The Ichimoku cloud used as a filter around a Tenkan/Kijun cross rather than as the signal itself: the long needs the Tenkan line to cross above the Kijun line while the cloud is red, and the short is not the mirror but a different rule. Later revisions keep the same cross and read the cloud from a higher timeframe through informative_pairs, or replace the candle with its Heikin-Ashi version and compare that against the daily Senkou A/B - so the family is one idea read against different chart types.</p>
+<p class="meta"><strong>Caveat:</strong> The entry in the row read here buys a Tenkan/Kijun cross while `cloud_red` is true, i.e. while the cloud is bearish - the opposite of the textbook reading, where a cross is only taken in the direction of the cloud. Its `populate_sell_trend` also assigns an empty tuple, so exits in this revision come from minimal_roi alone.</p>
+<table><tr><th>Versions</th><th>What changed</th></tr>
+<tr><td><code>v1-v12</code></td><td>4h, 42-60 lines, two to four indicator calls, and one line of buy logic that changes from revision to revision: crossed_above(tenkan, kijun), then crossed_below, then the same cross against senkou_b, then against close. The ROI value alternates between {&#x27;0&#x27;: 10} and {&#x27;0&#x27;: 100} while nothing else moves.</td></tr>
+<tr><td><code>v13-v18</code></td><td>The chart moves out to 1d (v17) and back to 4h (v18), and informative_pairs grows to five lines: the daily Tenkan is pulled into the 4h frame, which is the first revision that reads two timeframes at once.</td></tr>
+<tr><td><code>v19, v31, v37</code></td><td>Three rows that add the same three settings (process_only_new_candles, startup_candle_count 150, use_sell_signal) and lose them again in the next row, so they are variants of one shape rather than a progression. v37 is the Heikin-Ashi variant (file Ichimoku_v37_HeikinAshi.py): ha_close of the 4h against senkou_a_1d/senkou_b_1d plus cloud_green_1d.</td></tr>
+<tr><td><code>v12_4</code></td><td>188 lines at 5m, the only intraday member of the cloud family, and the only row that sets ticker_interval and timeframe at once - a file written for two freqtrade API generations.</td></tr>
+</table>
+<p class="meta">Read from <code>Ichimoku</code> <code>sha256_377b0bc34d77185...</code>: the corpus still holds it</p>
+<table><tr><th>Row in the corpus</th><th>Timeframe</th><th>Class</th><th>File</th></tr>
+<tr><td><code>Ichimoku</code> *</td><td>5m</td><td>Ichimoku</td><td>repos/PeetCrypto_freqtrade-stuff/Ichimoku.py</td></tr>
+<tr><td><code>Ichimoku_v1</code></td><td>4h</td><td>Ichimoku_v1</td><td>repos/remiotore_ccxt-freqtrade/strategies/Ichimoku_v1.py</td></tr>
+<tr><td><code>Ichimoku_v10</code></td><td>4h</td><td>Ichimoku_v10</td><td>repos/remiotore_ccxt-freqtrade/strategies/Ichimoku_v10.py</td></tr>
+<tr><td><code>Ichimoku_v11</code></td><td>4h</td><td>Ichimoku_v11</td><td>repos/remiotore_ccxt-freqtrade/strategies/Ichimoku_v11.py</td></tr>
+<tr><td><code>Ichimoku_v12</code></td><td>4h</td><td>Ichimoku_v12</td><td>repos/PeetCrypto_freqtrade-stuff/Ichimoku_v12.py</td></tr>
+<tr><td><code>Ichimoku_v12_4</code></td><td>5m</td><td>Ichimoku_v12_4</td><td>repos/remiotore_ccxt-freqtrade/strategies/Ichimoku_v12_4.py</td></tr>
+<tr><td><code>Ichimoku_v13</code></td><td>4h</td><td>Ichimoku_v13</td><td>repos/remiotore_ccxt-freqtrade/strategies/Ichimoku_v13.py</td></tr>
+<tr><td><code>Ichimoku_v17</code></td><td>1d</td><td>Ichimoku_v17</td><td>repos/remiotore_ccxt-freqtrade/strategies/Ichimoku_v17.py</td></tr>
+<tr><td><code>Ichimoku_v18</code></td><td>4h</td><td>Ichimoku_v18</td><td>repos/remiotore_ccxt-freqtrade/strategies/Ichimoku_v18.py</td></tr>
+<tr><td><code>Ichimoku_v19</code></td><td>1h</td><td>Ichimoku_v19</td><td>repos/remiotore_ccxt-freqtrade/strategies/Ichimoku_v19.py</td></tr>
+<tr><td><code>Ichimoku_v2</code></td><td>4h</td><td>Ichimoku_v2</td><td>repos/remiotore_ccxt-freqtrade/strategies/Ichimoku_v2.py</td></tr>
+<tr><td><code>Ichimoku_v20</code></td><td>4h</td><td>Ichimoku_v20</td><td>repos/remiotore_ccxt-freqtrade/strategies/Ichimoku_v20.py</td></tr>
+<tr><td><code>Ichimoku_v21</code></td><td>4h</td><td>Ichimoku_v21</td><td>repos/remiotore_ccxt-freqtrade/strategies/Ichimoku_v21.py</td></tr>
+<tr><td><code>Ichimoku_v22</code></td><td>4h</td><td>Ichimoku_v22</td><td>repos/remiotore_ccxt-freqtrade/strategies/Ichimoku_v22.py</td></tr>
+<tr><td><code>Ichimoku_v23</code></td><td>4h</td><td>Ichimoku_v23</td><td>repos/remiotore_ccxt-freqtrade/strategies/Ichimoku_v23.py</td></tr>
+<tr><td><code>Ichimoku_v24</code></td><td>4h</td><td>Ichimoku_v24</td><td>repos/remiotore_ccxt-freqtrade/strategies/Ichimoku_v24.py</td></tr>
+<tr><td><code>Ichimoku_v25</code></td><td>4h</td><td>Ichimoku_v25</td><td>repos/remiotore_ccxt-freqtrade/strategies/Ichimoku_v25.py</td></tr>
+<tr><td><code>Ichimoku_v3</code></td><td>4h</td><td>Ichimoku_v3</td><td>repos/remiotore_ccxt-freqtrade/strategies/Ichimoku_v3.py</td></tr>
+<tr><td><code>Ichimoku_v30</code></td><td>4h</td><td>Ichimoku_v30</td><td>repos/PeetCrypto_freqtrade-stuff/Ichimoku_v30_DojiStar.py</td></tr>
+<tr><td><code>Ichimoku_v31</code></td><td>1h</td><td>Ichimoku_v31</td><td>repos/PeetCrypto_freqtrade-stuff/Ichimoku_v31_Heikin.py</td></tr>
+<tr><td><code>Ichimoku_v32</code></td><td>4h</td><td>Ichimoku_v32</td><td>repos/PeetCrypto_freqtrade-stuff/Ichimoku_v32_HeikinAshi.py</td></tr>
+<tr><td><code>Ichimoku_v33</code></td><td>4h</td><td>Ichimoku_v33</td><td>repos/PeetCrypto_freqtrade-stuff/Ichimoku_v33_SAR.py</td></tr>
+<tr><td><code>Ichimoku_v34</code></td><td>4h</td><td>Ichimoku_v34</td><td>repos/remiotore_ccxt-freqtrade/strategies/Ichimoku_v34.py</td></tr>
+<tr><td><code>Ichimoku_v35</code></td><td>4h</td><td>Ichimoku_v35</td><td>repos/PeetCrypto_freqtrade-stuff/Ichimoku_v35_SAR_1d.py</td></tr>
+<tr><td><code>Ichimoku_v37</code></td><td>4h</td><td>Ichimoku_v37</td><td>repos/PeetCrypto_freqtrade-stuff/Ichimoku_v37_HeikinAshi.py</td></tr>
+<tr><td><code>Ichimoku_v4</code></td><td>4h</td><td>Ichimoku_v4</td><td>repos/remiotore_ccxt-freqtrade/strategies/Ichimoku_v4.py</td></tr>
+<tr><td><code>Ichimoku_v5</code></td><td>4h</td><td>Ichimoku_v5</td><td>repos/remiotore_ccxt-freqtrade/strategies/Ichimoku_v5.py</td></tr>
+<tr><td><code>Ichimoku_v6</code></td><td>4h</td><td>Ichimoku_v6</td><td>repos/remiotore_ccxt-freqtrade/strategies/Ichimoku_v6.py</td></tr>
+<tr><td><code>Ichimoku_v7</code></td><td>4h</td><td>Ichimoku_v7</td><td>repos/remiotore_ccxt-freqtrade/strategies/Ichimoku_v7.py</td></tr>
+<tr><td><code>Ichimoku_v8</code></td><td>4h</td><td>Ichimoku_v8</td><td>repos/remiotore_ccxt-freqtrade/strategies/Ichimoku_v8.py</td></tr>
+<tr><td><code>Ichimoku_v9</code></td><td>4h</td><td>Ichimoku_v9</td><td>repos/remiotore_ccxt-freqtrade/strategies/Ichimoku_v9.py</td></tr>
+</table>
+<details><summary>what this reading rests on</summary><ul>
+<li>Ichimoku (5m): populate_buy_trend buy = (tenkan.shift(1) &lt; kijun.shift(1)) &amp; (tenkan &gt; kijun) &amp; (cloud_red == True); populate_sell_trend sell = ()</li>
+<li>Ichimoku_v37 (4h): buy = ha_4h_close.crossed_above(senkou_a_1d) &amp; (ha_4h_close.shift() &lt; senkou_a_1d) &amp; (cloud_green_1d == True) | same against senkou_b_1d</li>
+<li>Ichimoku_v37: indicators are only qtpylib.heikinashi(informative_1d) and qtpylib.heikinashi(dataframe) - the cloud is built in the informative frame</li>
+<li>Ichimoku: settings minimal_roi {&#x27;0&#x27;: 1}, stoploss -0.1, trailing_stop True with a 1% positive and a 2% offset; v37: minimal_roi {&#x27;0&#x27;: 100}, stoploss -0.99, use_sell_signal True</li>
+<li>corpus: 31 rows, 30 of them 4h or higher, one at 5m (v12_4)</li>
+</ul></details>
+<h2>CombinedBinHAndCluc <span class="meta">- 22 row(s) in the corpus</span>
+<p class="idea">The name is the recipe: the &#x27;Cluc&#x27; entry is a lower-band event - the prior lower band above zero, a band distance above 0.8% of price, a body above 1.75% and a lower wick smaller than a quarter of that distance - combined with the BinH trend frame, and from V8 onward with a full 1h informative block of EMA(50/100/200)/SMA(200)/RSI(14). V8 is 477 lines whose populate_buy_trend alone is 191 lines and which puts custom_sell (56 lines) and custom_stoploss (21 lines) on top, so the revision in the corpus is less a signal than a small system.</p>
+<table><tr><th>Versions</th><th>What changed</th></tr>
+<tr><td><code>the base rows</code></td><td>Five rows of 57-58 lines plus the undecorated one share one shape: Bollinger(20, 2) on the typical price, EMA(50), and the bbdelta/closedelta/tail entry. They differ only in minimal_roi, stoploss (-0.05 to -0.2) and use_sell_signal - the same variant problem as in E0V1E, only smaller.</td></tr>
+<tr><td><code>V2-V6</code></td><td>V2 is 124 lines with 14 indicator calls and a get_informative_indicators helper; V3-V5 shrink to 81-89 lines and drop the informative frame; V6 grows back to 138 lines and introduces np.where columns for the high/low state. The entry stays the band event throughout.</td></tr>
+<tr><td><code>V7</code></td><td>210-237 lines and 17 indicator calls: ta.MFI(14) is added and process_only_new_candles is switched on.</td></tr>
+<tr><td><code>V8 and its variants</code></td><td>477 lines, 21 indicator calls, an informative_1h_indicators helper, custom_sell (56 lines) and custom_stoploss (21 lines). The five V8_* rows are not five further revisions: they fall into two shapes (477 and about 256 lines) that repeat the same indicator set and the same eight conditions, with custom_sell alternating between 56 and 23 lines.</td></tr>
+<tr><td><code>CombinedBinHAndCluc2021</code></td><td>70 lines with seven indicator calls - a re-cut of the base shape with a different ROI/stoploss pair rather than a step in the line.</td></tr>
+</table>
+<p class="meta">Read from <code>CombinedBinHAndClucV8</code> <code>sha256_43b43b5cfdfe72d...</code>: the corpus still holds it</p>
+<table><tr><th>Row in the corpus</th><th>Timeframe</th><th>Class</th><th>File</th></tr>
+<tr><td><code>CombinedBinHAndCluc</code></td><td>5m</td><td>CombinedBinHAndCluc</td><td>repos/PeetCrypto_freqtrade-stuff/CombinedBinHAndCluc.py</td></tr>
+<tr><td><code>CombinedBinHAndCluc2021</code></td><td>5m</td><td>CombinedBinHAndCluc2021</td><td>repos/PeetCrypto_freqtrade-stuff/CombinedBinHAndCluc2021.py</td></tr>
+<tr><td><code>CombinedBinHAndClucV2</code></td><td>5m</td><td>CombinedBinHAndClucV2</td><td>repos/PeetCrypto_freqtrade-stuff/CombinedBinHAndClucV2.py</td></tr>
+<tr><td><code>CombinedBinHAndClucV2_326</code></td><td>5m</td><td>CombinedBinHAndClucV2_326</td><td>repos/remiotore_ccxt-freqtrade/strategies/CombinedBinHAndClucV2_326.py</td></tr>
+<tr><td><code>CombinedBinHAndClucV3</code></td><td>5m</td><td>CombinedBinHAndClucV3</td><td>repos/davidzr_freqtrade-strategies/strategies/CombinedBinHAndClucV3/CombinedBinHAndClucV3.py</td></tr>
+<tr><td><code>CombinedBinHAndClucV4</code></td><td>5m</td><td>CombinedBinHAndClucV4</td><td>repos/PeetCrypto_freqtrade-stuff/CombinedBinHAndClucV4.py</td></tr>
+<tr><td><code>CombinedBinHAndClucV5</code></td><td>5m</td><td>CombinedBinHAndClucV5</td><td>repos/PeetCrypto_freqtrade-stuff/CombinedBinHAndClucV5.py</td></tr>
+<tr><td><code>CombinedBinHAndClucV6</code></td><td>5m</td><td>CombinedBinHAndClucV6</td><td>repos/PeetCrypto_freqtrade-stuff/CombinedBinHAndClucV6.py</td></tr>
+<tr><td><code>CombinedBinHAndClucV6_2</code></td><td>5m</td><td>CombinedBinHAndClucV6_2</td><td>repos/remiotore_ccxt-freqtrade/strategies/CombinedBinHAndClucV6_2.py</td></tr>
+<tr><td><code>CombinedBinHAndClucV7</code></td><td>5m</td><td>CombinedBinHAndClucV7</td><td>repos/PeetCrypto_freqtrade-stuff/CombinedBinHAndClucV7.py</td></tr>
+<tr><td><code>CombinedBinHAndClucV7_702</code></td><td>5m</td><td>CombinedBinHAndClucV7_702</td><td>repos/remiotore_ccxt-freqtrade/strategies/CombinedBinHAndClucV7_702.py</td></tr>
+<tr><td><code>CombinedBinHAndClucV8</code> *</td><td>5m</td><td>CombinedBinHAndClucV8</td><td>repos/PeetCrypto_freqtrade-stuff/CombinedBinHAndClucV8.py</td></tr>
+<tr><td><code>CombinedBinHAndClucV8_1</code></td><td>5m</td><td>CombinedBinHAndClucV8_1</td><td>repos/remiotore_ccxt-freqtrade/strategies/CombinedBinHAndClucV8_1.py</td></tr>
+<tr><td><code>CombinedBinHAndClucV8_2</code></td><td>5m</td><td>CombinedBinHAndClucV8_2</td><td>repos/remiotore_ccxt-freqtrade/strategies/CombinedBinHAndClucV8_2.py</td></tr>
+<tr><td><code>CombinedBinHAndClucV8_3</code></td><td>5m</td><td>CombinedBinHAndClucV8_3</td><td>repos/remiotore_ccxt-freqtrade/strategies/CombinedBinHAndClucV8_3.py</td></tr>
+<tr><td><code>CombinedBinHAndClucV8_4</code></td><td>5m</td><td>CombinedBinHAndClucV8_4</td><td>repos/remiotore_ccxt-freqtrade/strategies/CombinedBinHAndClucV8_4.py</td></tr>
+<tr><td><code>CombinedBinHAndClucV8_5</code></td><td>5m</td><td>CombinedBinHAndClucV8_5</td><td>repos/remiotore_ccxt-freqtrade/strategies/CombinedBinHAndClucV8_5.py</td></tr>
+<tr><td><code>CombinedBinHAndCluc_2</code></td><td>5m</td><td>CombinedBinHAndCluc_2</td><td>repos/remiotore_ccxt-freqtrade/strategies/CombinedBinHAndCluc_2.py</td></tr>
+<tr><td><code>CombinedBinHAndCluc_219</code></td><td>5m</td><td>CombinedBinHAndCluc_219</td><td>repos/remiotore_ccxt-freqtrade/strategies/CombinedBinHAndCluc_219.py</td></tr>
+<tr><td><code>CombinedBinHAndCluc_453</code></td><td>5m</td><td>CombinedBinHAndCluc_453</td><td>repos/remiotore_ccxt-freqtrade/strategies/CombinedBinHAndCluc_453.py</td></tr>
+<tr><td><code>CombinedBinHAndCluc_455</code></td><td>5m</td><td>CombinedBinHAndCluc_455</td><td>repos/remiotore_ccxt-freqtrade/strategies/CombinedBinHAndCluc_455.py</td></tr>
+<tr><td><code>CombinedBinHAndCluc_783</code></td><td>5m</td><td>CombinedBinHAndCluc_783</td><td>repos/remiotore_ccxt-freqtrade/strategies/CombinedBinHAndCluc_783.py</td></tr>
+</table>
+<details><summary>what this reading rests on</summary><ul>
+<li>CombinedBinHAndClucV8 indicators: qtpylib.bollinger_bands(close, window=40, stds=2) and (typical_price, 20, 2), ta.EMA(12/26/50/200), ta.SMA(5/200), ta.RSI(14), ta.MFI(14)</li>
+<li>CombinedBinHAndClucV8 informative_1h_indicators: ta.EMA(50/100/200), ta.SMA(200), ta.RSI(14) on the 1h frame</li>
+<li>CombinedBinHAndCluc: buy = lower.shift().gt(0) &amp; bbdelta.gt(close * 0.008) &amp; closedelta.gt(close * 0.0175) &amp; tail.lt(bbdelta * 0.25) &amp; close.lt(lower.shift())</li>
+<li>CombinedBinHAndClucV8 custom_stoploss: if (current_profit &lt; 0) &amp; (current_time - timedelta(minutes=280) &gt; trade.open_date_utc) ... if last_candle[&#x27;sma_200_dec&#x27;] &amp; last_candle[&#x27;sma_200_dec_1h&#x27;]</li>
+<li>settings V8: minimal_roi {&#x27;0&#x27;: 10}, stoploss -0.99, use_custom_stoploss True, startup_candle_count 200, trailing_stop False</li>
+</ul></details>
+<h2>BinH <span class="meta">- 21 row(s) in the corpus</span>
+<p class="idea">Two designs share this stem, and the page keeps them together because the name does. BinHV27 is the multi-filter one - RSI(5), an EMA of an RSI frame, ADX with its +DI/-DI and the EMAs of both, plus EMA/SMA 60/120/240 - where the long needs the close below both slow averages, -DI above its own EMA and RSI not falling, and the sell side has its own reversal machine (&#x27;preparechangetrendconfirm&#x27;, &#x27;bigdown&#x27;). BinHV45 is a 1-minute Bollinger scalp at a window of 40 that uses the same bbdelta/closedelta/tail entry as the CombinedBinHAndCluc family, so the two branches are related by the entry construction rather than by lineage.</p>
+<table><tr><th>Versions</th><th>What changed</th></tr>
+<tr><td><code>V27</code></td><td>124 lines, 22 indicator calls, no custom stop, minimal_roi {&#x27;0&#x27;: 1} and stoploss -0.5. Its variants move in one step each: _1, _3 and _254 add custom_stoploss, use_sell_signal and startup_candle_count 240; _2 runs 15m; _32 writes the timeframe as &#x27;5T&#x27;; _747 adds two more indicator calls; _253 and _387 come back to the bare shape.</td></tr>
+<tr><td><code>V45</code></td><td>1m, 45-85 lines, one or two indicator calls (Bollinger at window=40); the rows differ only in minimal_roi (0.0125 against 0.20233), stoploss (-0.05 against -0.13348) and whether a trailing stop is armed. _2 is the outlier at 15m with a ROI of 0.99.</td></tr>
+<tr><td><code>order</code></td><td>Both branches number their rows with harvest counters; adjacent rows reverse each other (V27_253 to _254 switches minimal_roi 1 &lt;-&gt; 100, custom stop off/on and startup count none/240, and _254 to _387 switches them back), so nothing here is claimed to be a history.</td></tr>
+</table>
+<p class="meta">Read from <code>BinHV27</code> <code>sha256_62b8250f065c476...</code>: the corpus still holds it</p>
+<table><tr><th>Row in the corpus</th><th>Timeframe</th><th>Class</th><th>File</th></tr>
+<tr><td><code>BinHV27</code> *</td><td>5m</td><td>BinHV27</td><td>repos/PeetCrypto_freqtrade-stuff/BinHV27.py</td></tr>
+<tr><td><code>BinHV27_1</code></td><td>5m</td><td>BinHV27_1</td><td>repos/remiotore_ccxt-freqtrade/strategies/BinHV27_1.py</td></tr>
+<tr><td><code>BinHV27_104</code></td><td>5m</td><td>BinHV27_104</td><td>repos/remiotore_ccxt-freqtrade/strategies/BinHV27_104.py</td></tr>
+<tr><td><code>BinHV27_2</code></td><td>15m</td><td>BinHV27_2</td><td>repos/remiotore_ccxt-freqtrade/strategies/BinHV27_2.py</td></tr>
+<tr><td><code>BinHV27_253</code></td><td>5m</td><td>BinHV27_253</td><td>repos/remiotore_ccxt-freqtrade/strategies/BinHV27_253.py</td></tr>
+<tr><td><code>BinHV27_254</code></td><td>5m</td><td>BinHV27_254</td><td>repos/remiotore_ccxt-freqtrade/strategies/BinHV27_254.py</td></tr>
+<tr><td><code>BinHV27_3</code></td><td>5m</td><td>BinHV27_3</td><td>repos/remiotore_ccxt-freqtrade/strategies/BinHV27_3.py</td></tr>
+<tr><td><code>BinHV27_32</code></td><td>5t</td><td>BinHV27_32</td><td>repos/remiotore_ccxt-freqtrade/strategies/BinHV27_32.py</td></tr>
+<tr><td><code>BinHV27_387</code></td><td>5m</td><td>BinHV27_387</td><td>repos/remiotore_ccxt-freqtrade/strategies/BinHV27_387.py</td></tr>
+<tr><td><code>BinHV27_4</code></td><td>5m</td><td>BinHV27_4</td><td>repos/remiotore_ccxt-freqtrade/strategies/BinHV27_4.py</td></tr>
+<tr><td><code>BinHV27_5</code></td><td>5m</td><td>BinHV27_5</td><td>repos/remiotore_ccxt-freqtrade/strategies/BinHV27_5.py</td></tr>
+<tr><td><code>BinHV27_747</code></td><td>5m</td><td>BinHV27_747</td><td>repos/remiotore_ccxt-freqtrade/strategies/BinHV27_747.py</td></tr>
+<tr><td><code>BinHV27_823</code></td><td>5m</td><td>BinHV27_823</td><td>repos/remiotore_ccxt-freqtrade/strategies/BinHV27_823.py</td></tr>
+<tr><td><code>BinHV45</code></td><td>1m</td><td>BinHV45</td><td>repos/Foxel05_freqtrade-stuff/strategies/BinHV45.py</td></tr>
+<tr><td><code>BinHV45_142</code></td><td>1m</td><td>BinHV45_142</td><td>repos/remiotore_ccxt-freqtrade/strategies/BinHV45_142.py</td></tr>
+<tr><td><code>BinHV45_2</code></td><td>15m</td><td>BinHV45_2</td><td>repos/remiotore_ccxt-freqtrade/strategies/BinHV45_2.py</td></tr>
+<tr><td><code>BinHV45_3</code></td><td>1m</td><td>BinHV45_3</td><td>repos/remiotore_ccxt-freqtrade/strategies/BinHV45_3.py</td></tr>
+<tr><td><code>BinHV45_343</code></td><td>1m</td><td>BinHV45_343</td><td>repos/remiotore_ccxt-freqtrade/strategies/BinHV45_343.py</td></tr>
+<tr><td><code>BinHV45_4</code></td><td>1m</td><td>BinHV45_4</td><td>repos/remiotore_ccxt-freqtrade/strategies/BinHV45_4.py</td></tr>
+<tr><td><code>BinHV45_422</code></td><td>1m</td><td>BinHV45_422</td><td>repos/remiotore_ccxt-freqtrade/strategies/BinHV45_422.py</td></tr>
+<tr><td><code>BinHV45_613</code></td><td>1m</td><td>BinHV45_613</td><td>repos/remiotore_ccxt-freqtrade/strategies/BinHV45_613.py</td></tr>
+</table>
+<details><summary>what this reading rests on</summary><ul>
+<li>BinHV27 docstring: &#x27;strategy sponsored by user BinH from slack&#x27;</li>
+<li>BinHV27 indicators: numpy.nan_to_num-wrapped ta.RSI(5), ta.EMA(rsiframe, 5), ta.ADX, ta.PLUS_DI/MINUS_DI with ta.EMA(5) and ta.EMA(25), ta.EMA(60/120), ta.SMA(120/240)</li>
+<li>BinHV27 populate_buy_trend: slowsma &gt; 0 &amp; close &lt; highsma &amp; close &lt; lowsma &amp; minusdi &gt; minusdiema &amp; rsi &gt;= rsi.shift() &amp; ~preparechangetrendconfirm</li>
+<li>BinHV45 indicators: qtpylib.bollinger_bands(dataframe[&#x27;close&#x27;], window=40, stds=2); buy = lower.shift() &gt; 0 &amp; bbdelta &gt; close * buy_bbdelta / 1000 &amp; closedelta &gt; close * buy_closedelta / 1000 &amp; tail &lt; ...</li>
+<li>settings: V27 minimal_roi {&#x27;0&#x27;: 1}, stoploss -0.5, timeframe &#x27;5m&#x27;; V45 minimal_roi {&#x27;0&#x27;: 0.0125}, stoploss -0.05, timeframe &#x27;1m&#x27;</li>
+</ul></details>
+<h2>NostalgiaForInfinityX <span class="meta">- 21 row(s) in the corpus</span>
+<p class="idea">The X line is a trading system rather than a signal: an entry built from a long list of indexed conditions, a custom_exit of several hundred lines, adjust_trade_position for DCA and a set of _bad_trade_controller_* handlers that decide when a losing trade gets de-risked, held or closed. The revisions grow by adding whole blocks - the informative 1d/4h/1h/15m indicator sets, the derisk handlers, the volume-normalised helpers - while the entry stays a basket of conditions that can be switched on and off per index.</p>
+<p class="meta"><strong>Caveat:</strong> This is the only family on this page that the bundle cannot describe: the indicator list is capped at 40 entries and the method list is longer than one screen, so no count on this page says how large the strategy really is. Read the row in the corpus, not the summary.</p>
+<table><tr><th>Versions</th><th>What changed</th></tr>
+<tr><td><code>X2</code></td><td>13,585 lines, the smallest release. The X2_* rows grow from 742 to 1,393 lines, add __init__/_load/_remove_profit_target and pull the 5m and 1h indicator blocks apart into named methods - the structural change of the line.</td></tr>
+<tr><td><code>X3-X7</code></td><td>40,162 to 66,190 lines. The growth sits in the informative indicator sets (155-207 lines each in X8) and in the exit machinery; X6 adds the mode handlers _handle_derisk_mode, _handle_scalp_mode and _handle_top_coins_mode, which is the first time the strategy switches behaviour per regime instead of per condition.</td></tr>
+<tr><td><code>X8</code></td><td>39,071 lines and the revision the description is read from - smaller than X7 again, which fits the picture of a line that is rewritten rather than only appended to. It carries the volume-normalised helpers (OBV change, Chaikin money flow, fast percentage change) and a custom_exit of 557 lines.</td></tr>
+<tr><td><code>the _NN rows</code></td><td>position_adjustment_enable, minimal_roi and startup_candle_count (800 against 480) alternate between adjacent rows, so they are variants of the releases above, not further releases.</td></tr>
+</table>
+<p class="meta">Read from <code>NostalgiaForInfinityX8</code> <code>sha256_14762b0c6bddd77...</code>: the corpus still holds it</p>
+<table><tr><th>Row in the corpus</th><th>Timeframe</th><th>Class</th><th>File</th></tr>
+<tr><td><code>NostalgiaForInfinityX</code></td><td>5m</td><td>NostalgiaForInfinityX</td><td>repair/patched/repos/PeetCrypto_freqtrade-stuff/NFIXMod1.3_TraNz (3).py</td></tr>
+<tr><td><code>NostalgiaForInfinityX2</code></td><td>5m</td><td>NostalgiaForInfinityX2</td><td>repos/ShahAnuj2610_my-freqtrade-nfi-nextgen/user_data/strategies/NostalgiaForInfinityX2.py</td></tr>
+<tr><td><code>NostalgiaForInfinityX2_11</code></td><td>5m</td><td>NostalgiaForInfinityX2_11</td><td>repos/remiotore_ccxt-freqtrade/strategies/NostalgiaForInfinityX2_11.py</td></tr>
+<tr><td><code>NostalgiaForInfinityX2_13</code></td><td>5m</td><td>NostalgiaForInfinityX2_13</td><td>repos/remiotore_ccxt-freqtrade/strategies/NostalgiaForInfinityX2_13.py</td></tr>
+<tr><td><code>NostalgiaForInfinityX2_14</code></td><td>5m</td><td>NostalgiaForInfinityX2_14</td><td>repos/remiotore_ccxt-freqtrade/strategies/NostalgiaForInfinityX2_14.py</td></tr>
+<tr><td><code>NostalgiaForInfinityX2_2</code></td><td>5m</td><td>NostalgiaForInfinityX2_2</td><td>repos/remiotore_ccxt-freqtrade/strategies/NostalgiaForInfinityX2_2.py</td></tr>
+<tr><td><code>NostalgiaForInfinityX2_234</code></td><td>5m</td><td>NostalgiaForInfinityX2_234</td><td>repos/remiotore_ccxt-freqtrade/strategies/NostalgiaForInfinityX2_234.py</td></tr>
+<tr><td><code>NostalgiaForInfinityX2_237</code></td><td>5m</td><td>NostalgiaForInfinityX2_237</td><td>repos/remiotore_ccxt-freqtrade/strategies/NostalgiaForInfinityX2_237.py</td></tr>
+<tr><td><code>NostalgiaForInfinityX2_3</code></td><td>5m</td><td>NostalgiaForInfinityX2_3</td><td>repos/remiotore_ccxt-freqtrade/strategies/NostalgiaForInfinityX2_3.py</td></tr>
+<tr><td><code>NostalgiaForInfinityX2_4</code></td><td>5m</td><td>NostalgiaForInfinityX2_4</td><td>repos/remiotore_ccxt-freqtrade/strategies/NostalgiaForInfinityX2_4.py</td></tr>
+<tr><td><code>NostalgiaForInfinityX2_5</code></td><td>5m</td><td>NostalgiaForInfinityX2_5</td><td>repos/remiotore_ccxt-freqtrade/strategies/NostalgiaForInfinityX2_5.py</td></tr>
+<tr><td><code>NostalgiaForInfinityX2_8</code></td><td>5m</td><td>NostalgiaForInfinityX2_8</td><td>repos/remiotore_ccxt-freqtrade/strategies/NostalgiaForInfinityX2_8.py</td></tr>
+<tr><td><code>NostalgiaForInfinityX2_92</code></td><td>5m</td><td>NostalgiaForInfinityX2_92</td><td>repos/remiotore_ccxt-freqtrade/strategies/NostalgiaForInfinityX2_92.py</td></tr>
+<tr><td><code>NostalgiaForInfinityX2_93</code></td><td>5m</td><td>NostalgiaForInfinityX2_93</td><td>repos/remiotore_ccxt-freqtrade/strategies/NostalgiaForInfinityX2_93.py</td></tr>
+<tr><td><code>NostalgiaForInfinityX3</code></td><td>5m</td><td>NostalgiaForInfinityX3</td><td>repos/iterativv_NostalgiaForInfinity/NostalgiaForInfinityX3.py</td></tr>
+<tr><td><code>NostalgiaForInfinityX4</code></td><td>5m</td><td>NostalgiaForInfinityX4</td><td>repos/cyberjunky_freqtrade_strategy/strategies/NostalgiaForInfinityX4.py</td></tr>
+<tr><td><code>NostalgiaForInfinityX5</code></td><td>5m</td><td>NostalgiaForInfinityX5</td><td>user_data/profile_repairs/NostalgiaForInfinityX5.py</td></tr>
+<tr><td><code>NostalgiaForInfinityX6</code></td><td>5m</td><td>NostalgiaForInfinityX6</td><td>repos/iterativv_NostalgiaForInfinity/NostalgiaForInfinityX6.py</td></tr>
+<tr><td><code>NostalgiaForInfinityX7</code></td><td>5m</td><td>NostalgiaForInfinityX7</td><td>repos/iterativv_NostalgiaForInfinity/NostalgiaForInfinityX7.py</td></tr>
+<tr><td><code>NostalgiaForInfinityX8</code> *</td><td>5m</td><td>NostalgiaForInfinityX8</td><td>repos/iterativv_NostalgiaForInfinity/NostalgiaForInfinityX8.py</td></tr>
+<tr><td><code>NostalgiaForInfinityX_2</code></td><td>5m</td><td>NostalgiaForInfinityX_2</td><td>repos/remiotore_ccxt-freqtrade/strategies/NostalgiaForInfinityX_2.py</td></tr>
+</table>
+<details><summary>what this reading rests on</summary><ul>
+<li>NostalgiaForInfinityX8 methods: custom_exit (557 lines), exit_profit_target (314), adjust_trade_position (204), informative_4h_indicators (207), informative_1h_indicators (197), informative_1d_indicators (178), base_tf_5m_indicators (503), populate_indicators (505)</li>
+<li>NostalgiaForInfinityX8 derisk handlers: _bad_trade_controller_ema_gap_and_adverse_move (30), _bad_trade_controller_exit_reason (34), _bad_trade_controller_derisk_hold (12), _bad_trade_controller_capitulation (9)</li>
+<li>NostalgiaForInfinityX8 indicators include ta.STOCHF(14,3,0), ta.MFI(14), ta.WILLR(14), ta.ULTOSC, ta.CCI(20), ta.ADX(14) with PLUS_DI/MINUS_DI and AROON</li>
+<li>entry: long_entry_condition_index branches from 1 to 104, each guarded by long_entry_signal_params[...] - the conditions are indexed and enable-able, not a single expression</li>
+<li>settings X8: stoploss -0.99, position_adjustment_enable True, startup_candle_count 800, use_custom_stoploss False, trailing_stop False</li>
+</ul></details>
+<h2>NostalgiaForInfinityNext <span class="meta">- 20 row(s) in the corpus</span>
+<p class="idea">The same basket-of-conditions entry as the X line, but with the exit assembled from a library of named sell functions - sell_over_main (174 lines), sell_under_main (163), sell_pump_main (374), sell_ichi, sell_long_mode, sell_quick_mode, sell_duration_main - between which custom_sell (201 lines) selects. That is where the revision differences sit: populate_buy_trend is 634 lines in the revision read here, whereas the exit side is a set of replaceable parts.</p>
+<p class="meta"><strong>Caveat:</strong> The canonical file of the revision read here is a repaired file (repair/patched/repos/Foxel05_freqtrade-stuff/...), so the sentence describes the repaired revision. The same family is also present from upstream repositories, and the repaired file is the one the corpus measures.</p>
+<table><tr><th>Versions</th><th>What changed</th></tr>
+<tr><td><code>V7155 / 7_15_5</code></td><td>4,942 and 4,954 lines: two rows whose names carry the upstream version markers, sitting in the middle of the line by size.</td></tr>
+<tr><td><code>Next1 - Next2_0</code></td><td>The structural step: Next1 (4,869 lines) and Next1_327 are the same shape, Next2 (2,688) drops to 37 indicator calls and Next2_0 (5,312) comes back larger with position_adjustment_enable switched on and the stoploss moved from -0.5 to -0.99.</td></tr>
+<tr><td><code>the numbered rows</code></td><td>2,105-5,312 lines. position_adjustment_enable, stoploss (-0.5 against -0.99) and startup_candle_count (400 against 480) alternate between adjacent rows, and the same three-step pattern repeats (e.g. _75 -&gt; _76 -&gt; _98 and _134 -&gt; _223 -&gt; _272), which is the signature of a variant list rather than of a development history.</td></tr>
+<tr><td><code>the hold config</code></td><td>From the larger revisions on, the file carries a second class block of its own (rapidjson load/save, process_loaded_data, _object_hook) that persists a hold-trades list across bot restarts - infrastructure inside the strategy file, not a signal.</td></tr>
+</table>
+<p class="meta">Read from <code>NostalgiaForInfinityNext</code> <code>sha256_cc9762e543b69a1...</code>: the corpus still holds it</p>
+<table><tr><th>Row in the corpus</th><th>Timeframe</th><th>Class</th><th>File</th></tr>
+<tr><td><code>NostalgiaForInfinityNext</code> *</td><td>5m</td><td>NostalgiaForInfinityNext</td><td>repair/patched/repos/Foxel05_freqtrade-stuff/strategies/NostalgiaForInfinityNext.py</td></tr>
+<tr><td><code>NostalgiaForInfinityNext1</code></td><td>5m</td><td>NostalgiaForInfinityNext1</td><td>repos/remiotore_ccxt-freqtrade/strategies/NostalgiaForInfinityNext1.py</td></tr>
+<tr><td><code>NostalgiaForInfinityNext1_327</code></td><td>5m</td><td>NostalgiaForInfinityNext1_327</td><td>repos/remiotore_ccxt-freqtrade/strategies/NostalgiaForInfinityNext1_327.py</td></tr>
+<tr><td><code>NostalgiaForInfinityNext2</code></td><td>5m</td><td>NostalgiaForInfinityNext2</td><td>repos/remiotore_ccxt-freqtrade/strategies/NostalgiaForInfinityNext2.py</td></tr>
+<tr><td><code>NostalgiaForInfinityNext2_0</code></td><td>5m</td><td>NostalgiaForInfinityNext2_0</td><td>repos/remiotore_ccxt-freqtrade/strategies/NostalgiaForInfinityNext2_0.py</td></tr>
+<tr><td><code>NostalgiaForInfinityNext772</code></td><td>5m</td><td>NostalgiaForInfinityNext772</td><td>repair/patched/repos/TheoBrigitte_freqtrade/sources/nfix/NostalgiaForInfinityNext772.py</td></tr>
+<tr><td><code>NostalgiaForInfinityNext7_15_5</code></td><td>5m</td><td>NostalgiaForInfinityNext7_15_5</td><td>repos/remiotore_ccxt-freqtrade/strategies/NostalgiaForInfinityNext7_15_5.py</td></tr>
+<tr><td><code>NostalgiaForInfinityNextV7155</code></td><td>5m</td><td>NostalgiaForInfinityNextV7155</td><td>repair/patched/repos/PeetCrypto_freqtrade-stuff/nfiv7155.py</td></tr>
+<tr><td><code>NostalgiaForInfinityNext_0</code></td><td>5m</td><td>NostalgiaForInfinityNext_0</td><td>repos/remiotore_ccxt-freqtrade/strategies/NostalgiaForInfinityNext_0.py</td></tr>
+<tr><td><code>NostalgiaForInfinityNext_105</code></td><td>5m</td><td>NostalgiaForInfinityNext_105</td><td>repos/remiotore_ccxt-freqtrade/strategies/NostalgiaForInfinityNext_105.py</td></tr>
+<tr><td><code>NostalgiaForInfinityNext_134</code></td><td>5m</td><td>NostalgiaForInfinityNext_134</td><td>repos/remiotore_ccxt-freqtrade/strategies/NostalgiaForInfinityNext_134.py</td></tr>
+<tr><td><code>NostalgiaForInfinityNext_2</code></td><td>5m</td><td>NostalgiaForInfinityNext_2</td><td>repos/remiotore_ccxt-freqtrade/strategies/NostalgiaForInfinityNext_2.py</td></tr>
+<tr><td><code>NostalgiaForInfinityNext_223</code></td><td>5m</td><td>NostalgiaForInfinityNext_223</td><td>repos/remiotore_ccxt-freqtrade/strategies/NostalgiaForInfinityNext_223.py</td></tr>
+<tr><td><code>NostalgiaForInfinityNext_272</code></td><td>5m</td><td>NostalgiaForInfinityNext_272</td><td>repos/remiotore_ccxt-freqtrade/strategies/NostalgiaForInfinityNext_272.py</td></tr>
+<tr><td><code>NostalgiaForInfinityNext_75</code></td><td>5m</td><td>NostalgiaForInfinityNext_75</td><td>repos/remiotore_ccxt-freqtrade/strategies/NostalgiaForInfinityNext_75.py</td></tr>
+<tr><td><code>NostalgiaForInfinityNext_76</code></td><td>5m</td><td>NostalgiaForInfinityNext_76</td><td>repos/remiotore_ccxt-freqtrade/strategies/NostalgiaForInfinityNext_76.py</td></tr>
+<tr><td><code>NostalgiaForInfinityNext_818</code></td><td>5m</td><td>NostalgiaForInfinityNext_818</td><td>repos/remiotore_ccxt-freqtrade/strategies/NostalgiaForInfinityNext_818.py</td></tr>
+<tr><td><code>NostalgiaForInfinityNext_919</code></td><td>5m</td><td>NostalgiaForInfinityNext_919</td><td>repos/remiotore_ccxt-freqtrade/strategies/NostalgiaForInfinityNext_919.py</td></tr>
+<tr><td><code>NostalgiaForInfinityNext_960</code></td><td>5m</td><td>NostalgiaForInfinityNext_960</td><td>repos/remiotore_ccxt-freqtrade/strategies/NostalgiaForInfinityNext_960.py</td></tr>
+<tr><td><code>NostalgiaForInfinityNext_98</code></td><td>5m</td><td>NostalgiaForInfinityNext_98</td><td>repos/remiotore_ccxt-freqtrade/strategies/NostalgiaForInfinityNext_98.py</td></tr>
+</table>
+<details><summary>what this reading rests on</summary><ul>
+<li>NostalgiaForInfinityNext methods: sell_pump_main (374 lines), custom_sell (201), sell_over_main (174), sell_under_main (163), sell_long_mode (77), _should_hold_trade (65), populate_buy_trend (634), informative_1h_indicators (140), normal_tf_indicators (154)</li>
+<li>populate_buy_trend: guarded by self.buy_params[&#x27;buy_condition_{index}_enable&#x27;] and by globals like ema_fast, ema_slow, sma200_rising, btc_1h_not_downtrend, safe_dips, safe_pump</li>
+<li>exit selection: custom_sell chooses among the sell_* library and _should_hold_trade decides whether a trade survives at all</li>
+<li>settings: minimal_roi {&#x27;0&#x27;: 10}, stoploss -0.99, startup_candle_count 480, use_sell_signal True, trailing_stop False</li>
+</ul></details>
+<h2>roger <span class="meta">- 20 row(s) in the corpus</span>
+<p class="idea">The numbered rows are one line of work: each iteration adds a candlestick-pattern filter to a VWAP/EMA/RSI/ATR frame, until roger27 trades `bullish_conditions | candlestick_patterns &amp; macd_condition` and stops the trade on peak-profit drawdown. The undecorated row is a different design under the same stem - a VWAP band system with RSI(16) percentile bands and no candle patterns at all - so the stem holds two strategies, and this page says so rather than averaging them into one sentence.</p>
+<p class="meta"><strong>Caveat:</strong> `roger` (88 lines, nine conditions) and `VWAPStrategy` (73 lines) use the same construction: a per-candle state column asking whether the body touched the daily VWAP from below, above or both, plus RSI percentile bands. They are not code-identical, which is why no duplicate verdict covers them, but a reader should expect them to behave alike.</p>
+<table><tr><th>Versions</th><th>What changed</th></tr>
+<tr><td><code>roger2 - roger12</code></td><td>45 to 101 lines and 2 to 17 indicator calls: the frame (EMA 50/200, Bollinger, RSI) is set up at roger2-roger4, can_short appears at roger4 and toggles, and from roger6 the candle patterns start arriving one per row (CDL3BLACKCROWS, CDLENGULFING, CDL3WHITESOLDIERS, CDL3INSIDE, CDL3OUTSIDE, CDLGRAVESTONEDOJI, CDLHAMMER, CDLINVERTEDHAMMER, CDLSHOOTINGSTAR, CDLENGULFING).</td></tr>
+<tr><td><code>roger14 - roger22</code></td><td>The ATR trailing stop arrives (use_custom_stoploss True at roger14), the ATR length moves 14 -&gt; 150 -&gt; 4, and roger21 adds calc_stop_loss_pct and on_trade_close, i.e. the exit becomes stateful.</td></tr>
+<tr><td><code>roger27</code></td><td>160 lines, 21 indicator calls, ta.MACD added: the entry is bullish_conditions | candlestick_patterns &amp; macd_condition and the stop reacts to a peak-profit drawdown above 2%, then 10%.</td></tr>
+<tr><td><code>roger</code></td><td>88 lines, no candle patterns: VWAP_signal, RSI(16) with lower_band/upper_band from percentiles, BB(14, 2) and a 14-line ATR stop. Same stem, different strategy.</td></tr>
+</table>
+<p class="meta">Read from <code>roger</code> <code>sha256_718c59f3c2b4644...</code>: the corpus still holds it</p>
+<table><tr><th>Row in the corpus</th><th>Timeframe</th><th>Class</th><th>File</th></tr>
+<tr><td><code>roger</code> *</td><td>15m</td><td>roger</td><td>repos/remiotore_ccxt-freqtrade/strategies/roger.py</td></tr>
+<tr><td><code>roger10</code></td><td>15m</td><td>roger10</td><td>repos/remiotore_ccxt-freqtrade/strategies/roger10.py</td></tr>
+<tr><td><code>roger12</code></td><td>15m</td><td>roger12</td><td>repos/remiotore_ccxt-freqtrade/strategies/roger12.py</td></tr>
+<tr><td><code>roger14</code></td><td>15m</td><td>roger14</td><td>repos/remiotore_ccxt-freqtrade/strategies/roger14.py</td></tr>
+<tr><td><code>roger15</code></td><td>15m</td><td>roger15</td><td>repos/remiotore_ccxt-freqtrade/strategies/roger15.py</td></tr>
+<tr><td><code>roger16</code></td><td>15m</td><td>roger16</td><td>repos/remiotore_ccxt-freqtrade/strategies/roger16.py</td></tr>
+<tr><td><code>roger17</code></td><td>15m</td><td>roger17</td><td>repos/remiotore_ccxt-freqtrade/strategies/roger17.py</td></tr>
+<tr><td><code>roger18</code></td><td>15m</td><td>roger18</td><td>repos/remiotore_ccxt-freqtrade/strategies/roger18.py</td></tr>
+<tr><td><code>roger19</code></td><td>15m</td><td>roger19</td><td>repos/remiotore_ccxt-freqtrade/strategies/roger19.py</td></tr>
+<tr><td><code>roger2</code></td><td>15m</td><td>roger2</td><td>repos/remiotore_ccxt-freqtrade/strategies/roger2.py</td></tr>
+<tr><td><code>roger20</code></td><td>15m</td><td>roger20</td><td>repos/remiotore_ccxt-freqtrade/strategies/roger20.py</td></tr>
+<tr><td><code>roger21</code></td><td>15m</td><td>roger21</td><td>repos/remiotore_ccxt-freqtrade/strategies/roger21.py</td></tr>
+<tr><td><code>roger22</code></td><td>15m</td><td>roger22</td><td>repos/remiotore_ccxt-freqtrade/strategies/roger22.py</td></tr>
+<tr><td><code>roger27</code></td><td>15m</td><td>roger27</td><td>repos/remiotore_ccxt-freqtrade/strategies/roger27.py</td></tr>
+<tr><td><code>roger3</code></td><td>15m</td><td>roger3</td><td>repos/remiotore_ccxt-freqtrade/strategies/roger3.py</td></tr>
+<tr><td><code>roger4</code></td><td>15m</td><td>roger4</td><td>repos/remiotore_ccxt-freqtrade/strategies/roger4.py</td></tr>
+<tr><td><code>roger6</code></td><td>15m</td><td>roger6</td><td>repos/remiotore_ccxt-freqtrade/strategies/roger6.py</td></tr>
+<tr><td><code>roger7</code></td><td>15m</td><td>roger7</td><td>repos/remiotore_ccxt-freqtrade/strategies/roger7.py</td></tr>
+<tr><td><code>roger8</code></td><td>15m</td><td>roger8</td><td>repos/remiotore_ccxt-freqtrade/strategies/roger8.py</td></tr>
+<tr><td><code>roger9</code></td><td>15m</td><td>roger9</td><td>repos/remiotore_ccxt-freqtrade/strategies/roger9.py</td></tr>
+</table>
+<details><summary>what this reading rests on</summary><ul>
+<li>roger indicators: ta.vwap(anchor=&#x27;D&#x27;), ta.rsi(length=16), ta.atr(length=150), np.percentile, pd.to_datetime</li>
+<li>roger populate_indicators: per-candle loop setting VWAP_signal by comparing max(open, close) and min(open, close) against the VWAP column; lower_band/upper_band from RSI percentiles</li>
+<li>roger entry: buy = (volume &gt; 0) &amp; (VWAP_signal == 2) &amp; (rsi &lt; rsi_pnr_low) &amp; (close &lt;= lower_band) &amp; (close.shift(1) &lt;= lower_band.shift(1))</li>
+<li>roger27 entry: buy = bullish_conditions | candlestick_patterns &amp; macd_condition; custom_stoploss on peak_profit_drawdown &gt; 0.02 and current_profit &gt; 0.1</li>
+<li>roger27 indicators: ta.CDL3INSIDE, CDL3OUTSIDE, CDL3STARSINSOUTH, CDLHAMMER, CDLINVERTEDHAMMER, CDL3BLACKCROWS, CDL3WHITESOLDIERS, CDL3LINESTRIKE, CDLGRAVESTONEDOJI, CDLSHOOTINGSTAR, CDLENGULFING, ta.MACD, ta.ATR(4)</li>
+</ul></details>
+<h2>GeneTrader_gen <span class="meta">- 19 row(s) in the corpus</span>
+<p class="idea">A generator&#x27;s output, labelled by the generator itself: every class name carries the generation, a Unix timestamp and a counter, which makes this the one family on the page that can be ordered by time from its names alone. The population alternates between two blueprints - a 112-135-line variant with 8 indicator calls, and a 507-621-line variant with DCA, an informative BTC frame and one to four RSI periods - so the generator was comparing a small and a large body plan, not refining one design.</p>
+<table><tr><th>Versions</th><th>What changed</th></tr>
+<tr><td><code>2024-09-21</code></td><td>Three rows (gen3, gen5, gen30), 112 lines each with 8 indicator calls and no DCA - the earliest state in the corpus and the smallest.</td></tr>
+<tr><td><code>2024-12-06</code></td><td>gen1, 507 lines with 26 indicator calls and a ROI ladder: the first large member, ten weeks after the small ones.</td></tr>
+<tr><td><code>2024-12-20/21</code></td><td>Seven rows of 135 lines at 8 indicator calls, written within two days of each other. The generation number does not track the body plan - gen10 appears here and again among the large rows - so the generator&#x27;s numbering counts its own rounds, not the strategy size.</td></tr>
+<tr><td><code>2024-12-22 - 2024-12-25</code></td><td>Six rows of 620/621 lines with position_adjustment_enable, ROI {&#x27;0&#x27;: 100}, startup_candle_count 168 and adjust_trade_position (87 lines). The 135-line rows written in the same window carry ROI {&#x27;0&#x27;: 1} and no DCA, so the two blueprints were run side by side rather than one after the other.</td></tr>
+</table>
+<p class="meta">Read from <code>GeneTrader_gen9_1735161895_5455</code> <code>sha256_d8494f08b7c845f...</code>: the corpus still holds it</p>
+<table><tr><th>Row in the corpus</th><th>Timeframe</th><th>Class</th><th>File</th></tr>
+<tr><td><code>GeneTrader_gen10_1734717133_4618</code></td><td>5m</td><td>GeneTrader_gen10_1734717133_4618</td><td>repos/remiotore_ccxt-freqtrade/strategies/GeneTrader_gen10_1734717133_4618.py</td></tr>
+<tr><td><code>GeneTrader_gen10_1734726148_6020</code></td><td>5m</td><td>GeneTrader_gen10_1734726148_6020</td><td>repos/remiotore_ccxt-freqtrade/strategies/GeneTrader_gen10_1734726148_6020.py</td></tr>
+<tr><td><code>GeneTrader_gen10_1734895087_6007</code></td><td>5m</td><td>GeneTrader_gen10_1734895087_6007</td><td>repair/patched/repos/TheoBrigitte_freqtrade/strategies/GeneTrader/GeneTrader_gen10_1734895087_6007.py</td></tr>
+<tr><td><code>GeneTrader_gen10_1734895087_6007_2</code></td><td>5m</td><td>GeneTrader_gen10_1734895087_6007_2</td><td>repos/remiotore_ccxt-freqtrade/strategies/GeneTrader_gen10_1734895087_6007_2.py</td></tr>
+<tr><td><code>GeneTrader_gen1_1733508206_5694</code></td><td>5m</td><td>GeneTrader_gen1_1733508206_5694</td><td>repos/remiotore_ccxt-freqtrade/strategies/genetrade_reduce.py</td></tr>
+<tr><td><code>GeneTrader_gen1_1734730112_1242</code></td><td>5m</td><td>GeneTrader_gen1_1734730112_1242</td><td>repos/remiotore_ccxt-freqtrade/strategies/GeneTrader_gen1_1734730112_1242.py</td></tr>
+<tr><td><code>GeneTrader_gen1_1734734787_5835</code></td><td>5m</td><td>GeneTrader_gen1_1734734787_5835</td><td>repos/remiotore_ccxt-freqtrade/strategies/GeneTrader_gen1_1734734787_5835.py</td></tr>
+<tr><td><code>GeneTrader_gen30_1727304467_5789</code></td><td>5m</td><td>GeneTrader_gen30_1727304467_5789</td><td>repos/remiotore_ccxt-freqtrade/strategies/GeneTrader_gen30_1727304467_5789.py</td></tr>
+<tr><td><code>GeneTrader_gen3_1726920341_8194</code></td><td>5m</td><td>GeneTrader_gen3_1726920341_8194</td><td>repos/remiotore_ccxt-freqtrade/strategies/GeneTrader_gen3_1726920341_8194.py</td></tr>
+<tr><td><code>GeneTrader_gen3_1734727320_9082</code></td><td>5m</td><td>GeneTrader_gen3_1734727320_9082</td><td>repos/remiotore_ccxt-freqtrade/strategies/GeneTrader_gen3_1734727320_9082.py</td></tr>
+<tr><td><code>GeneTrader_gen5_1726907875_9248</code></td><td>5m</td><td>GeneTrader_gen5_1726907875_9248</td><td>repos/remiotore_ccxt-freqtrade/strategies/GeneTrader_gen5_1726907875_9248.py</td></tr>
+<tr><td><code>GeneTrader_gen5_1734993636_5978</code></td><td>5m</td><td>GeneTrader_gen5_1734993636_5978</td><td>repos/remiotore_ccxt-freqtrade/strategies/GeneTrader_gen5_1734993636_5978.py</td></tr>
+<tr><td><code>GeneTrader_gen5_1735014093_4541</code></td><td>5m</td><td>GeneTrader_gen5_1735014093_4541</td><td>repair/patched/repos/TheoBrigitte_freqtrade/strategies/GeneTrader/GeneTrader_gen5_1735014093_4541.py</td></tr>
+<tr><td><code>GeneTrader_gen6_1734976897_7418</code></td><td>5m</td><td>GeneTrader_gen6_1734976897_7418</td><td>repos/remiotore_ccxt-freqtrade/strategies/GeneTrader_gen6_1734976897_7418.py</td></tr>
+<tr><td><code>GeneTrader_gen6_1735035146_3706</code></td><td>5m</td><td>GeneTrader_gen6_1735035146_3706</td><td>repos/remiotore_ccxt-freqtrade/strategies/GeneTrader_gen6_1735035146_3706.py</td></tr>
+<tr><td><code>GeneTrader_gen7_1734720513_4206</code></td><td>5m</td><td>GeneTrader_gen7_1734720513_4206</td><td>repos/remiotore_ccxt-freqtrade/strategies/GeneTrader_gen7_1734720513_4206.py</td></tr>
+<tr><td><code>GeneTrader_gen8_1734713146_5730</code></td><td>5m</td><td>GeneTrader_gen8_1734713146_5730</td><td>repos/remiotore_ccxt-freqtrade/strategies/GeneTrader_gen8_1734713146_5730.py</td></tr>
+<tr><td><code>GeneTrader_gen8_1734741843_6073</code></td><td>5m</td><td>GeneTrader_gen8_1734741843_6073</td><td>repos/remiotore_ccxt-freqtrade/strategies/GeneTrader_gen8_1734741843_6073.py</td></tr>
+<tr><td><code>GeneTrader_gen9_1735161895_5455</code> *</td><td>5m</td><td>GeneTrader_gen9_1735161895_5455</td><td>repos/remiotore_ccxt-freqtrade/strategies/GeneTrader_gen9_1735161895_5455.py</td></tr>
+</table>
+<details><summary>what this reading rests on</summary><ul>
+<li>GeneTrader_gen9_1735161895_5455: 620 lines, methods is_support, informative_pairs, custom_sell (70), custom_stoploss (26), populate_indicators (192), populate_entry_trend (182), adjust_trade_position (87)</li>
+<li>GeneTrader_gen9 indicators: ta.EMA(200/50/20/25/16/26/12/5/10), ta.RSI(14/4/20/84/112), qtpylib.heikinashi, ta.STOCHRSI, qtpylib.rolling_vwap, qtpylib.bollinger_bands(20,2) and (20,3) and (40,2), ta.ROCR(28)</li>
+<li>GeneTrader_gen10_1734726148_6020 is 135 lines with 8 indicator calls and ROI {&#x27;0&#x27;: 1} - the other blueprint</li>
+<li>docstring of the gen9 row: &#x27;PASTE OUTPUT FROM HYPEROPT HERE Can be overridden for specific sub-strategies (stake currencies) at the bottom.&#x27; - the generator copied the freqtrade template comment</li>
+<li>name format: GeneTrader_gen&lt;generation&gt;_&lt;unix timestamp&gt;_&lt;counter&gt;, e.g. gen9_1735161895_5455 = 2024-12-25</li>
+</ul></details>
+<h2>VWAPStrategy <span class="meta">- 18 row(s) in the corpus</span>
+<p class="idea">A VWAP band system: for every candle the code asks whether the body touched the daily VWAP from below, from above or both, stores that as a state column, and then asks the RSI(16) to sit below its own 10th percentile (or the mirror, above the 90th) while the close is outside the Bollinger band - so the trade needs a VWAP event, an RSI extreme and a band break at once, joined with reduce(lambda x, y: x &amp; y, conditions). The stop is a custom_stoploss that is rewritten in almost every row of the family; the entry is not.</p>
+<p class="meta"><strong>Caveat:</strong> The rows here are numbered by the harvest, and the numbers do not order them: VWAPStrategy_11 has stoploss -0.1, _12 has -0.2 and drops the trailing stop, and the undecorated row has -0.07 again. The table below lists variants, not a history.</p>
+<table><tr><th>Versions</th><th>What changed</th></tr>
+<tr><td><code>the entry</code></td><td>Unchanged across all 18 rows: the VWAP_signal loop, RSI(16) with percentile bands, Bollinger(14, 2). This is one of the few families where the signal and the risk can be separated cleanly.</td></tr>
+<tr><td><code>the stop block</code></td><td>custom_stoploss is rewritten in nearly every row - 35 -&gt; 31 -&gt; 28 -&gt; 27 -&gt; 25 -&gt; 28 -&gt; 18 -&gt; 17 -&gt; 21 lines - and changes its idea twice: it starts from the ATR, then compares the current profit against fixed steps, then works from trade.initial_stop_loss, and VWAPStrategy_1 arms it with ta.atr(length=150) where the undecorated row uses length=7.</td></tr>
+<tr><td><code>the variants</code></td><td>use_custom_stoploss is absent at _2 and present from _03 on; the stoploss moves between -0.2 and -0.1 twice; trailing_stop, trailing_stop_positive and the offset appear and disappear together (at _12 and again at _18). None of the moves is reversed later in a way that would let one call this a direction.</td></tr>
+</table>
+<p class="meta">Read from <code>VWAPStrategy</code> <code>sha256_4aa9eda34672cbd...</code>: the corpus still holds it</p>
+<table><tr><th>Row in the corpus</th><th>Timeframe</th><th>Class</th><th>File</th></tr>
+<tr><td><code>VWAPStrategy</code> *</td><td>5m</td><td>VWAPStrategy</td><td>repos/remiotore_ccxt-freqtrade/strategies/VWAPStrategy.py</td></tr>
+<tr><td><code>VWAPStrategy_03</code></td><td>5m</td><td>VWAPStrategy_03</td><td>repos/remiotore_ccxt-freqtrade/strategies/VWAPStrategy_03.py</td></tr>
+<tr><td><code>VWAPStrategy_04</code></td><td>5m</td><td>VWAPStrategy_04</td><td>repos/remiotore_ccxt-freqtrade/strategies/VWAPStrategy_04.py</td></tr>
+<tr><td><code>VWAPStrategy_05</code></td><td>5m</td><td>VWAPStrategy_05</td><td>repos/remiotore_ccxt-freqtrade/strategies/VWAPStrategy_05.py</td></tr>
+<tr><td><code>VWAPStrategy_06</code></td><td>5m</td><td>VWAPStrategy_06</td><td>repos/remiotore_ccxt-freqtrade/strategies/VWAPStrategy_06.py</td></tr>
+<tr><td><code>VWAPStrategy_08</code></td><td>5m</td><td>VWAPStrategy_08</td><td>repos/remiotore_ccxt-freqtrade/strategies/VWAPStrategy_08.py</td></tr>
+<tr><td><code>VWAPStrategy_09</code></td><td>5m</td><td>VWAPStrategy_09</td><td>repos/remiotore_ccxt-freqtrade/strategies/VWAPStrategy_09.py</td></tr>
+<tr><td><code>VWAPStrategy_1</code></td><td>5m</td><td>VWAPStrategy_1</td><td>repos/remiotore_ccxt-freqtrade/strategies/VWAPStrategy_1.py</td></tr>
+<tr><td><code>VWAPStrategy_10</code></td><td>5m</td><td>VWAPStrategy_10</td><td>repos/remiotore_ccxt-freqtrade/strategies/VWAPStrategy_10.py</td></tr>
+<tr><td><code>VWAPStrategy_11</code></td><td>5m</td><td>VWAPStrategy_11</td><td>repos/remiotore_ccxt-freqtrade/strategies/VWAPStrategy_11.py</td></tr>
+<tr><td><code>VWAPStrategy_12</code></td><td>5m</td><td>VWAPStrategy_12</td><td>repos/remiotore_ccxt-freqtrade/strategies/VWAPStrategy_12.py</td></tr>
+<tr><td><code>VWAPStrategy_13</code></td><td>5m</td><td>VWAPStrategy_13</td><td>repos/remiotore_ccxt-freqtrade/strategies/VWAPStrategy_13.py</td></tr>
+<tr><td><code>VWAPStrategy_14</code></td><td>5m</td><td>VWAPStrategy_14</td><td>repos/remiotore_ccxt-freqtrade/strategies/VWAPStrategy_14.py</td></tr>
+<tr><td><code>VWAPStrategy_15</code></td><td>5m</td><td>VWAPStrategy_15</td><td>repos/remiotore_ccxt-freqtrade/strategies/VWAPStrategy_15.py</td></tr>
+<tr><td><code>VWAPStrategy_16</code></td><td>5m</td><td>VWAPStrategy_16</td><td>repos/remiotore_ccxt-freqtrade/strategies/VWAPStrategy_16.py</td></tr>
+<tr><td><code>VWAPStrategy_17</code></td><td>5m</td><td>VWAPStrategy_17</td><td>repos/remiotore_ccxt-freqtrade/strategies/VWAPStrategy_17.py</td></tr>
+<tr><td><code>VWAPStrategy_18</code></td><td>5m</td><td>VWAPStrategy_18</td><td>repos/remiotore_ccxt-freqtrade/strategies/VWAPStrategy_18.py</td></tr>
+<tr><td><code>VWAPStrategy_2</code></td><td>5m</td><td>VWAPStrategy_2</td><td>repos/remiotore_ccxt-freqtrade/strategies/VWAPStrategy_2.py</td></tr>
+</table>
+<details><summary>what this reading rests on</summary><ul>
+<li>VWAPStrategy indicators: ta.vwap(anchor=&#x27;D&#x27;), ta.rsi(length=16), ta.bbands(length=14, std=2.0), ta.atr(length=7)</li>
+<li>VWAPStrategy populate_indicators: per-candle loop over VWAP setting up_trend/down_trend; buy = reduce(lambda x, y: x &amp; y, conditions); sell likewise</li>
+<li>VWAPStrategy_1: ta.atr(length=150), custom_stoploss 35 lines, use_custom_stoploss absent (VWAPStrategy_2 follows at -0.1 with the same entry)</li>
+<li>settings: VWAPStrategy minimal_roi {&#x27;0&#x27;: 1}, stoploss -0.07, trailing_stop False; the numbered rows repeat the same minimal_roi with stoploss -0.1 or -0.2</li>
 </ul></details>
 </body></html>

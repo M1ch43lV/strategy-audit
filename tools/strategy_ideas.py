@@ -18,11 +18,14 @@ the job in two and keeps the halves apart:
    it.
 2. An LLM - an agent session, not this program - reads that bundle and writes
    `evidence/STRATEGY_IDEAS.json`: one entry per family, each idea bound to the
-   `source_sha256` of the file it was read from and to the facts it rests on.
-   This program never writes that file; `--render` only lays it out, and
-   `--check` fails when the corpus has moved on from the revision an idea
-   describes. A description that silently outlives its source is the failure
-   mode this artifact would otherwise have.
+   one revision it was read from (`read_from`, with that revision's
+   `source_sha256`) and to the facts it rests on. The family's *other* rows are
+   derived from the corpus by stem instead of being listed, because a family
+   with 39 revisions would otherwise need 39 hand-written hash entries that
+   repeat what the corpus already records. This program never writes that
+   store; `--render` only lays it out, and `--check` fails when the corpus has
+   moved on from the revision an idea describes. A description that silently
+   outlives its source is the failure mode this artifact would otherwise have.
 
 WHY THE HASH IS THE WHOLE POINT. A strategy file in this corpus is identified by
 its bytes, and the corpus changes underneath it: the wave of 2026-09-23 moved 45
@@ -46,6 +49,7 @@ import json
 import os
 import re
 import sys
+import time
 import warnings
 
 _ROOT = (os.environ.get("AUDIT_ROOT") or
@@ -211,6 +215,54 @@ def docstring_of(tree) -> str:
     return " ".join(text.split())[:MAX_DOC]
 
 
+def functions_of(tree) -> list[str]:
+    """The methods the class defines, with their size in lines.
+
+    A reader's first question after "what does it buy on" is "what does it do
+    that the framework would not" - a DCA hook, a custom stop, a confirmation
+    gate - and that question is answered by which hooks exist. Sizes are line
+    spans of the definition, a fact about the file.
+    """
+    out = []
+    for node in ast.walk(tree):
+        if isinstance(node, ast.ClassDef):
+            for item in node.body:
+                if isinstance(item, (ast.FunctionDef, ast.AsyncFunctionDef)):
+                    out.append("%s (%d lines)" % (
+                        item.name,
+                        (item.end_lineno or item.lineno) - item.lineno + 1))
+    return out
+
+
+_VERSION = re.compile(r"(?i)(?:v|ver|version)(\d+(?:[._]\d+)*)$")
+_DATE = re.compile(r"(20\d{2})[-_]?(0[1-9]|1[0-2])[-_]?(0[1-9]|[12]\d|3[01])")
+_EPOCH = re.compile(r"(?:^|[^0-9])(1[0-9]{9})(?:[^0-9]|$)")
+
+
+def version_key(strategy_id) -> str:
+    """The version the *name* claims, as written - `V31`, `v12_4`, `2023-09-15`.
+
+    A fact about the id, not a decision about order, and deliberately not a sort
+    key. The marker has to sit at the end of the name, which is why `E0V1E`
+    reports none although `V1` appears in the middle of it, and why the marker
+    is returned verbatim instead of being reformatted - `V7_2021` is what the
+    author wrote and this function does not get to decide whether the `2021` is
+    a minor version or a year. GeneTrader's generator writes a Unix timestamp
+    into the class name, so that counts as a marker too. A family without
+    markers is a family whose order the name cannot tell; the interpretation has
+    to say what it used instead.
+    """
+    dates = _DATE.findall(strategy_id)
+    if dates:
+        year, month, day = dates[-1]
+        return "%s-%s-%s" % (year, month, day)
+    epoch = _EPOCH.search(strategy_id)
+    if epoch:
+        return time.strftime("%Y-%m-%d", time.gmtime(int(epoch.group(1))))
+    marker = _VERSION.search(strategy_id)
+    return marker.group(0) if marker else ""
+
+
 def family_stem(strategy_id) -> str:
     """The name without its version marker - the mechanical family guess.
 
@@ -242,6 +294,7 @@ def bundle_rows(strategy_ids, profiles, clusters, classification) -> list[dict]:
         row = {
             "strategy_id": strategy_id,
             "family_stem": family_stem(strategy_id),
+            "version_key": version_key(strategy_id),
             "canonical_file": profile["canonical_file"],
             "source_sha256": "sha256_" + hashlib.sha256(
                 io.open(path, "rb").read()).hexdigest(),
@@ -258,6 +311,7 @@ def bundle_rows(strategy_ids, profiles, clusters, classification) -> list[dict]:
             "settings": settings_of(tree),
             "indicators": indicators_in([tree]),
             "signals": signals_in(tree, TARGET_FUNCS),
+            "functions": functions_of(tree),
         }
         rows.append(row)
     return rows
@@ -298,10 +352,14 @@ def write_bundle(rows, out=BUNDLE):
                          "state its idea. Read `docstring`, `settings`, `indicators` and "
                          "`signals`; do not infer beyond them."),
         "how_to_answer": ("Write evidence/STRATEGY_IDEAS.json: one entry per family with "
-                          "`idea` (2-3 sentences: what it trades, on which signal, how it "
-                          "exits), `family`, `members` (the strategy_ids it covers) and "
-                          "`evidence` (the code facts the sentence rests on). Bind each "
-                          "member to the `source_sha256` given here."),
+                          "`family`, `stem` (the mechanical family the rows are grouped by), "
+                          "`read_from` ({strategy_id, source_sha256} - the one revision the "
+                          "sentences were read from), `idea` (2-3 sentences: what it trades, "
+                          "on which signal, how it exits), `versions` (a short note per era of "
+                          "the family: what changed from one revision to the next, from the "
+                          "`settings`, `indicators`, `signals` and `functions` below), "
+                          "`evidence` (the code facts the sentence rests on) and `exclude` "
+                          "for any row of the stem the family does not cover, with a reason."),
         "strategies": rows,
     }
     with io.open(out, "w", encoding="utf-8", newline="\n") as handle:
@@ -311,9 +369,26 @@ def write_bundle(rows, out=BUNDLE):
     return out
 
 
-def render_html(bundle, ideas, stream):
-    """One section per family: the idea, then its versions and their evidence."""
-    by_id = {row["strategy_id"]: row for row in bundle.get("strategies", [])}
+def family_members(family, profiles) -> list[str]:
+    """The corpus rows the family covers: by stem, minus what the store excludes.
+
+    Derived, not listed, because a family with 39 revisions would otherwise need
+    39 hand-written hash entries that say nothing the corpus does not already
+    say. What *is* hand-written is the revision the sentence was read from, and
+    that one carries its hash.
+    """
+    listed = family.get("members")
+    if listed:
+        return [m.get("strategy_id") if isinstance(m, dict) else m for m in listed]
+    stem = family.get("stem") or family.get("family")
+    excluded = {e.get("strategy_id") if isinstance(e, dict) else e
+                for e in family.get("exclude") or []}
+    return [sid for sid in sorted(profiles)
+            if family_stem(sid) == stem and sid not in excluded]
+
+
+def render_html(profiles, ideas, stream):
+    """One section per family: the idea, what changed between revisions, its rows."""
     families = ideas.get("families") or []
     parts = [
         "<!doctype html>", '<html lang="en"><head><meta charset="utf-8">',
@@ -332,9 +407,9 @@ def render_html(bundle, ideas, stream):
         ".meta{color:#57606a;font-size:.9rem}",
         "</style></head><body>",
         "<h1>Strategy ideas</h1>",
-        "<p class=\"meta\">One family per block: what the code does, read from the code. "
-        "Written by an LLM from <code>evidence/STRATEGY_IDEAS_INPUT.json</code> and bound to the "
-        "source hash it was read from; a family whose file has changed since is marked "
+        "<p class=\"meta\">One family per block: what the code does, read from the code, "
+        "and what changed between revisions. Written by an LLM session, each sentence tied to "
+        "the one revision it was read from - a family whose file has changed since is marked "
         "<span class=\"stale\">stale</span>. This is a description, not a measurement, and it "
         "decides nothing.</p>",
     ]
@@ -343,9 +418,9 @@ def render_html(bundle, ideas, stream):
                      "--bundle</code>, then write <code>evidence/STRATEGY_IDEAS.json</code>."
                      "</p>")
     for family in families:
-        name = html.escape(str(family.get("family", "?")))
-        parts.append("<h2>%s <span class=\"meta\">- %d version(s)</span>"
-                     % (name, len(family.get("members") or [])))
+        members = family_members(family, profiles)
+        parts.append("<h2>%s <span class=\"meta\">- %d row(s) in the corpus</span>"
+                     % (html.escape(str(family.get("family", "?"))), len(members)))
         parts.append('<p class="idea">%s</p>' % html.escape(str(family.get("idea", ""))))
         if family.get("caveat"):
             # Where the code says something the published table does not, the
@@ -353,28 +428,43 @@ def render_html(bundle, ideas, stream):
             # otherwise read the silence as agreement.
             parts.append('<p class="meta"><strong>Caveat:</strong> %s</p>'
                          % html.escape(str(family["caveat"])))
-        parts.append("<table><tr><th>Version</th><th>Timeframe</th><th>Class</th>"
-                     "<th>Source</th><th>State</th></tr>")
-        for member in family.get("members") or []:
-            strategy_id = member.get("strategy_id") if isinstance(member, dict) else member
-            recorded = member.get("source_sha256") if isinstance(member, dict) else None
-            row = by_id.get(strategy_id, {})
-            current = row.get("source_sha256")
-            if not current:
-                state = '<span class="stale">not in the corpus</span>'
-            elif recorded and current != recorded:
-                state = '<span class="stale">stale</span>'
-            elif not recorded:
-                state = '<span class="stale">no hash recorded</span>'
-            else:
-                state = "current"
-            parts.append("<tr><td><code>%s</code></td><td>%s</td><td>%s</td><td>%s</td>"
-                         "<td>%s</td></tr>" % (
-                             html.escape(str(strategy_id)),
-                             html.escape(str(row.get("timeframe") or "-")),
-                             html.escape(str(row.get("class") or "-")),
-                             html.escape(str(row.get("canonical_file") or "-")),
-                             state))
+        versions = family.get("versions") or []
+        if versions:
+            # What changed between revisions is the part a name cannot carry:
+            # `V8` says nothing about which indicator it added, and the corpus
+            # keeps several revisions per name, so the eras are listed.
+            parts.append("<table><tr><th>Versions</th><th>What changed</th></tr>")
+            for version in versions:
+                parts.append("<tr><td><code>%s</code></td><td>%s</td></tr>"
+                             % (html.escape(str(version.get("label", ""))),
+                                html.escape(str(version.get("note", "")))))
+            parts.append("</table>")
+        read_from = family.get("read_from") or {}
+        strategy_id = read_from.get("strategy_id")
+        row = profiles.get(strategy_id) or {}
+        current = row.get("source_sha256")
+        if not current:
+            state = ('<span class="stale">no longer in the corpus</span>')
+        elif current != read_from.get("source_sha256"):
+            state = ('<span class="stale">stale - the corpus holds a different '
+                     'revision under this name</span>')
+        else:
+            state = "the corpus still holds it"
+        parts.append('<p class="meta">Read from <code>%s</code> <code>%s</code>: %s</p>'
+                     % (html.escape(str(strategy_id)),
+                        html.escape(str(read_from.get("source_sha256", ""))[:22] + "..."),
+                        state))
+        parts.append("<table><tr><th>Row in the corpus</th><th>Timeframe</th>"
+                     "<th>Class</th><th>File</th></tr>")
+        for member in members:
+            member_row = profiles.get(member) or {}
+            marker = " *" if member == strategy_id else ""
+            parts.append("<tr><td><code>%s</code>%s</td><td>%s</td><td>%s</td><td>%s</td>"
+                         "</tr>" % (
+                             html.escape(str(member)), marker,
+                             html.escape(str(member_row.get("execution_timeframe") or "-")),
+                             html.escape(str(member_row.get("strategy") or "-")),
+                             html.escape(str(member_row.get("canonical_file") or "-"))))
         parts.append("</table>")
         evidence = family.get("evidence") or []
         if evidence:
@@ -422,12 +512,11 @@ def main(argv=None):
         return 0
 
     if args.render:
-        bundle = json.load(io.open(BUNDLE, encoding="utf-8")) if os.path.exists(BUNDLE) else {}
         ideas = json.load(io.open(IDEAS, encoding="utf-8")) if os.path.exists(IDEAS) else {}
         with io.open(PAGE, "w", encoding="utf-8", newline="\n") as handle:
-            render_html(bundle, ideas, handle)
-        print("wrote %s (%d families)" % (os.path.relpath(PAGE, _ROOT),
-                                          len(ideas.get("families") or [])))
+            render_html(profiles, ideas, handle)
+        print("wrote %s (%d families)"
+              % (os.path.relpath(PAGE, _ROOT), len(ideas.get("families") or [])))
         return 0
 
     if args.check:
@@ -435,23 +524,33 @@ def main(argv=None):
             print("no ideas store yet: %s" % os.path.relpath(IDEAS, _ROOT))
             return 1
         ideas = json.load(io.open(IDEAS, encoding="utf-8"))
-        bundle = json.load(io.open(BUNDLE, encoding="utf-8")) if os.path.exists(BUNDLE) else {}
-        by_id = {row["strategy_id"]: row for row in bundle.get("strategies", [])}
         stale = []
         for family in ideas.get("families") or []:
+            read_from = family.get("read_from") or {}
+            strategy_id = read_from.get("strategy_id")
+            current = (profiles.get(strategy_id) or {}).get("source_sha256")
+            if not current:
+                stale.append("%s (read from %s, which the corpus no longer holds)"
+                             % (family.get("family"), strategy_id))
+            elif current != read_from.get("source_sha256"):
+                stale.append("%s (read from %s, now a different revision)"
+                             % (family.get("family"), strategy_id))
             for member in family.get("members") or []:
-                strategy_id = member.get("strategy_id") if isinstance(member, dict) else member
+                # The older shape listed every member with its own hash; keep
+                # checking it rather than letting such an entry rot silently.
+                member_id = member.get("strategy_id") if isinstance(member, dict) else member
                 recorded = member.get("source_sha256") if isinstance(member, dict) else None
-                current = (by_id.get(strategy_id) or {}).get("source_sha256")
-                if not current or (recorded and recorded != current):
-                    stale.append(strategy_id)
+                current = (profiles.get(member_id) or {}).get("source_sha256")
+                if recorded and current != recorded:
+                    stale.append("%s (listed member %s is now a different revision)"
+                                 % (family.get("family"), member_id))
         page_current = (os.path.exists(PAGE)
                         and os.path.getmtime(PAGE) >= os.path.getmtime(IDEAS))
-        print("strategy ideas: %d families, %d stale member(s), page %s"
+        print("strategy ideas: %d families, %d stale, page %s"
               % (len(ideas.get("families") or []), len(stale),
                  "current" if page_current else "NOT current"))
-        for strategy_id in stale:
-            print("  stale: %s" % strategy_id)
+        for entry in stale:
+            print("  stale: %s" % entry)
         return 1 if (stale or not page_current) else 0
 
     parser.print_help()
@@ -482,15 +581,36 @@ def selftest():
     signals = signals_in(tree, TARGET_FUNCS)
     assert signals["populate_entry_trend"] == \
         ["enter_long = dataframe['rsi'] < 30"], signals
-    cases += 3
+    assert functions_of(tree) == ["populate_indicators (3 lines)",
+                                  "populate_entry_trend (3 lines)"], functions_of(tree)
+    cases += 4
+    # The version key is read off the name and must not invent one: a family
+    # whose ids carry no marker has no marker, and the order is the reader's
+    # problem to state, not the tool's to guess.
+    assert version_key("ZaratustraV31") == "V31"
+    assert version_key("Ichimoku_v12_4") == "v12_4"
+    assert version_key("E0V1E_20230915") == "2023-09-15"
+    assert version_key("E0V1E_13") == ""
+    assert version_key("BinHV45") == "V45"
+    assert version_key("GeneTrader_gen9_1735161895_5455") == "2024-12-25"
+    cases += 6
     # An idea whose file moved must be reported, not silently re-used.
-    bundle = {"strategies": [{"strategy_id": "X", "source_sha256": "sha256_new"}]}
-    ideas = {"families": [{"family": "F", "members": [
-        {"strategy_id": "X", "source_sha256": "sha256_old"}]}]}
+    profiles = {"X": {"source_sha256": "sha256_new", "execution_timeframe": "5m",
+                       "strategy": "X", "canonical_file": "repos/a/X.py"}}
+    ideas = {"families": [{"family": "X", "stem": "X",
+                            "read_from": {"strategy_id": "X", "source_sha256": "sha256_old"}}]}
     out = io.StringIO()
-    render_html(bundle, ideas, out)
+    render_html(profiles, ideas, out)
     assert "stale" in out.getvalue(), out.getvalue()
-    cases += 1
+    # The members of a family are derived from the corpus, not listed by hand:
+    # a 39-revision family would otherwise need 39 hand-written hash entries
+    # that repeat what the corpus already knows.
+    profiles = {name: {"source_sha256": "s", "execution_timeframe": "5m",
+                       "strategy": name, "canonical_file": "repos/a/%s.py" % name}
+                for name in ("F", "F2", "F3", "Other")}
+    assert family_members({"stem": "F"}, profiles) == ["F", "F2", "F3"]
+    assert family_members({"stem": "F", "exclude": ["F2"]}, profiles) == ["F", "F3"]
+    cases += 3
     print("strategy_ideas selftest: PASS (%d cases)" % cases)
     return 0
 

@@ -1,16 +1,33 @@
 {
   "schema_version": 1,
   "written_by": "an LLM session (GitHub Copilot), 2026-09-24",
-  "how": "Read from evidence/STRATEGY_IDEAS_INPUT.json, which tools/strategy_ideas.py extracted from each canonical file (docstring, settings, indicator calls, entry/exit conditions), plus a direct read of the five files whose conditions are built in helper variables. Every sentence names the code fact it rests on in `evidence`. Each member carries the source_sha256 it was read from; tools/strategy_ideas.py --check fails when the corpus has moved on, and the page marks such a member stale.",
-  "scope": "exemplary, ten families, latest revision of each, chosen to match the families the site publishes in its own table",
+  "how": "Read from evidence/STRATEGY_IDEAS_INPUT.json, which tools/strategy_ideas.py extracted from each canonical file (docstring, settings, indicator calls, entry/exit conditions, method inventory), plus a direct read of the files whose conditions are built in helper variables, plus user_data/family_deltas.py for the version-to-version notes: it compares consecutive revisions of a family and prints settings changes, added and removed indicator calls and methods, the changed conditions and the size. Every sentence names the code fact it rests on in `evidence`. Each family names the one revision it was read from in `read_from`, with that revision's source_sha256; tools/strategy_ideas.py --check compares it against the corpus and the page marks it stale when the corpus has moved on. The family's other rows are derived from the corpus by stem, so nothing here lists 39 hashes to say what the corpus already knows.",
+  "scope": "nineteen families in two batches: ten that the published family table leads with (Zaratustra, Slope, RSIBB, EMA + Fibonacci, el_extrema, Rsiqui, BollingerMACD, GnF, EWOist, PlusMinus) and the ten largest stems in the corpus (E0V1E, Zaratustra, Ichimoku, CombinedBinHAndCluc, BinH, NostalgiaForInfinityX, NostalgiaForInfinityNext, roger, GeneTrader_gen, VWAPStrategy). Zaratustra is in both batches. The corpus holds about 2,000 stems; everything here is a sample.",
   "families": [
     {
       "family": "Zaratustra",
-      "members": [
+      "stem": "Zaratustra",
+      "read_from": {
+        "strategy_id": "ZaratustraV31",
+        "source_sha256": "sha256_2860cc0ae18f5d1e8d8857275c0646a1bba53598ae01be4262a1f62df071e205",
+        "note": "highest numbered revision in the corpus"
+      },
+      "versions": [
         {
-          "strategy_id": "ZaratustraV31",
-          "source_sha256": "sha256_2860cc0ae18f5d1e8d8857275c0646a1bba53598ae01be4262a1f62df071e205",
-          "note": "highest numbered revision in the corpus"
+          "label": "V3-V4",
+          "note": "The early design steps: V3 runs 15m with one indicator call and no exit condition at all, V4 moves to 5m and brings the Bollinger/crossed_above condition, the ROI ladder and a 1.3% trailing stop."
+        },
+        {
+          "label": "V5-V26",
+          "note": "This stretch reads like a hyperopt walk rather than a design history: the ROI ladder is removed at V5 and returns at V6, DCA is switched on at V8 and off at V9, max_open_trades alternates between -1 and 10, the indicator count climbs to 17 (V19) and falls back to 4 (V25), and the stoploss moves between -0.125 and -0.99 without a direction."
+        },
+        {
+          "label": "V27-V31",
+          "note": "The end of the line leaves the 5m chart: V27 runs 15m, V28/V29/V31 run 1h, and V31 is down to two indicator calls (RSI 7 and RSI 14) with the RSI spread as the only rule."
+        },
+        {
+          "label": "DCA2_06-DCA5",
+          "note": "A separate branch that keeps the DCA idea: 183-204 lines with adjust_trade_position (53-71 lines) in ZaratustraDCA2_06/_07/_063, and ZaratustraDCA5 at 572 lines with 17 indicator calls and 23 conditions, the largest member of the family."
         }
       ],
       "idea": "One comparison decides everything: while RSI(7) sits above RSI(14) the strategy is long, while it sits below it is short, and each side is closed as soon as the two cross back. There is no other filter and no signal-per-candle logic - the position is a state of the RSI spread. Exits in practice come from the risk settings, which are deliberately tight: 1% stoploss, 0.1% trailing stop and a flat 1% take-profit.",
@@ -25,11 +42,28 @@
     },
     {
       "family": "Slope",
-      "members": [
+      "stem": "Slope",
+      "read_from": {
+        "strategy_id": "SlopeV8",
+        "source_sha256": "sha256_3ed2f392d65d9321ca766e003aca39f825003ab21e14fd349fd66af5355e7cfb",
+        "note": "revision LSlopeV8.py"
+      },
+      "versions": [
         {
-          "strategy_id": "SlopeV8",
-          "source_sha256": "sha256_3ed2f392d65d9321ca766e003aca39f825003ab21e14fd349fd66af5355e7cfb",
-          "note": "revision LSlopeV8.py"
+          "label": "all seven rows",
+          "note": "The rule itself never changes: argrelextrema(close, order=5) over a 64-bar window and the mirrored exit are identical in every revision. What moves is the risk block, which is why the family is a good example of a corpus that varies one thing at a time."
+        },
+        {
+          "label": "V1-V2",
+          "note": "V1 trades 30m with no indicator calls, V2 moves to 15m, cuts the stoploss from -0.133 to -0.344 and rebuilds the ROI ladder."
+        },
+        {
+          "label": "V3-V6",
+          "note": "V3 is the largest revision (143 lines) and moves ROI, stoploss and the trailing offset again; V4 removes the protections() block; V5 arms the trailing stop at a 1% offset; V6 adds a minus_di condition and raises the offset to 6.5%."
+        },
+        {
+          "label": "V8",
+          "note": "The revision the description is read from drops the extra indicators and the stop as well: stoploss -0.999 and trailing off, so only the opposite extremum ends a trade."
         }
       ],
       "idea": "A pure swing-point reversal: scipy.signal.argrelextrema marks the local minima and maxima of the close over a rolling 64-bar window, a fresh local minimum opens a long and a fresh local maximum closes it, with the short side mirrored. There is no stoploss and no profit target in the usual sense - stoploss -0.999 and minimal_roi 1 mean the trade only ends when the opposite extreme appears.",
@@ -42,11 +76,24 @@
     },
     {
       "family": "RSIBB",
-      "members": [
+      "stem": "RSIBB",
+      "read_from": {
+        "strategy_id": "RSIBB_V4",
+        "source_sha256": "sha256_6409ac625307a15405996bed56b25d18528482335d0a2f584341b6cbd576da9b",
+        "note": "highest version of the RSIBB_V* line"
+      },
+      "versions": [
         {
-          "strategy_id": "RSIBB_V4",
-          "source_sha256": "sha256_6409ac625307a15405996bed56b25d18528482335d0a2f584341b6cbd576da9b",
-          "note": "highest version of the RSIBB_V* line"
+          "label": "V1-V3",
+          "note": "The breakout stays the same while the risk block is rebuilt: stoploss -0.262 at V1, -0.01 at V2, -0.2 at V3; V2 replaces the ROI ladder with a trailing stop and caps max_open_trades at 1; V3 turns trailing back on."
+        },
+        {
+          "label": "V4",
+          "note": "The revision the description is read from drops RSI(12) and RSI(6) and adds the normalised ATR, which is what makes volatility the third confirmation next to price and volume."
+        },
+        {
+          "label": "RSIBB02",
+          "note": "Not a version of V4: it runs 1h with three indicator calls and carries a hyperopt parameter dump in its settings, so this stem holds two timeframes under one idea."
         }
       ],
       "idea": "A breakout that has to be confirmed by volume and volatility: the close crossing above its upper Bollinger band together with volume crossing above its own upper band and a normalised ATR above 1.0 opens the long, the mirrored crossing below opens the short. Both parts must happen on the same candle. Entry is a single event, so the 20% stoploss and the 1.2% trailing stop carry the exit.",
@@ -58,11 +105,28 @@
     },
     {
       "family": "EMA + Fibonacci",
-      "members": [
+      "stem": "EMA_Fibonacci",
+      "read_from": {
+        "strategy_id": "EMA_Fibonacci_V4",
+        "source_sha256": "sha256_7d6607eac98854660b9adecee4434d76ea72e1ef4bfed651b8acac7e23d5d131",
+        "note": "highest version of the EMA_Fibonacci_V* line"
+      },
+      "versions": [
         {
-          "strategy_id": "EMA_Fibonacci_V4",
-          "source_sha256": "sha256_7d6607eac98854660b9adecee4434d76ea72e1ef4bfed651b8acac7e23d5d131",
-          "note": "highest version of the EMA_Fibonacci_V* line"
+          "label": "V2",
+          "note": "The longest revision (137 lines, 19 indicator calls) and the one with the shortest stop: -0.75."
+        },
+        {
+          "label": "V3",
+          "note": "Replaces EMA(89) with EMA(30) and loosens the stoploss to -0.99, so the alignment ladder gets shorter and the stop stops protecting."
+        },
+        {
+          "label": "V4",
+          "note": "The revision the description is read from brings back the 30/89 pair, adds the exit cross against EMA(233) and the DI stacking that decides the direction."
+        },
+        {
+          "label": "count",
+          "note": "The published family table counts four revisions; the corpus holds three (V2, V3, V4)."
         }
       ],
       "idea": "Perfect trend alignment on Fibonacci-length EMAs: EMA(34/55/89/144/233) of the typical price, and the long requires the +DI series of the same lengths stacked in ascending order (34>55>89>144>233) with the last one above -DI; the short mirrors it on the -DI side. The exit throws the trade out on any cross of the price with the 233 EMA, so the strategy rides an aligned trend but leaves as soon as price loses the longest average. The 0.99 stoploss is nominal - the exit signal is the real risk control.",
@@ -75,11 +139,16 @@
     },
     {
       "family": "el_extrema",
-      "members": [
+      "stem": "el_extrema",
+      "read_from": {
+        "strategy_id": "el_extrema",
+        "source_sha256": "sha256_abde98597b0293c5fa1f2edda354995008b1c13df8521cb133de254891150dbd",
+        "note": "base variant; the corpus also carries _rolling, _RL and _rsiqui derivatives"
+      },
+      "versions": [
         {
-          "strategy_id": "el_extrema",
-          "source_sha256": "sha256_abde98597b0293c5fa1f2edda354995008b1c13df8521cb133de254891150dbd",
-          "note": "base variant; the corpus also carries _rolling, _RL and _rsiqui derivatives"
+          "label": "one row",
+          "note": "The corpus holds exactly one file under this stem, so there is nothing to compare. The derivatives the published table lists next to it (_rolling, _RL, _rsiqui) live under longer stems, which this page keeps apart on purpose instead of guessing that they belong together."
         }
       ],
       "idea": "Dip-buying at detected extrema with an EWO momentum filter: a local minimum of the close (argrelextrema, order 5) plus price below EMA(entry length) times low_offset, and then either an EWO above the high threshold with RSI below the entry level or an EWO below the low threshold, opens the long; the short side is the mirror at local maxima. Exits are the ROI ladder (50% at entry decaying to 2% after five days) plus a 5% stoploss. The offsets, EMA lengths, RSI level and both EWO thresholds are hyperopt parameters, so the revision in the corpus is one point in a search space.",
@@ -92,11 +161,28 @@
     },
     {
       "family": "Rsiqui",
-      "members": [
+      "stem": "Rsiqui",
+      "read_from": {
+        "strategy_id": "RsiquiV5",
+        "source_sha256": "sha256_5f030f084dd930b9ed8cb004ec383f90a76a0289d2f9843969adbd7a400ba1af",
+        "note": "highest version; lives in the TheoBrigitte repository"
+      },
+      "versions": [
         {
-          "strategy_id": "RsiquiV5",
-          "source_sha256": "sha256_5f030f084dd930b9ed8cb004ec383f90a76a0289d2f9843969adbd7a400ba1af",
-          "note": "highest version; lives in the TheoBrigitte repository"
+          "label": "V2",
+          "note": "70 lines with four indicator calls: the RSI gradient rule alone, without the frame the later revisions build around it."
+        },
+        {
+          "label": "V3-V4",
+          "note": "Grows to 119-121 lines and twelve indicator calls - a nan-safe min/max frame around the RSI - and V4 changes max_open_trades to -1 and the stoploss from -0.05 to -0.287 in the same step."
+        },
+        {
+          "label": "V5",
+          "note": "Back to four indicator calls and 89 lines, and the revision the description is read from; RsiquiV5_2 differs from it only in can_short, so the corpus counts two rows where there is one revision."
+        },
+        {
+          "label": "Rsiqui",
+          "note": "20 lines: a fragment of the idea rather than an implementation, kept because the corpus records the file."
         }
       ],
       "idea": "The trigger is the slope of an EMA-smoothed RSI, not the RSI level alone: long when RSI is below the entry level and the smoothed RSI gradient turns up, short when RSI is above the upper level and the gradient turns down; each side closes when the gradient turns against it and RSI has crossed the exit level. It is a mean-reversion scalp at 5m with hyperopt-driven thresholds (entry 30-70) and a steep ROI ladder (22% decaying to 0 after ~110 minutes) over a 27% stoploss.",
@@ -110,11 +196,20 @@
     },
     {
       "family": "BollingerMACD",
-      "members": [
+      "stem": "BollingerMACD",
+      "read_from": {
+        "strategy_id": "BollingerMACD_V3",
+        "source_sha256": "sha256_5447b3349ab947de31ab0698ee48444bdc45fbed7c5e8f7efa591f019bcc9a94",
+        "note": "highest version of the line"
+      },
+      "versions": [
         {
-          "strategy_id": "BollingerMACD_V3",
-          "source_sha256": "sha256_5447b3349ab947de31ab0698ee48444bdc45fbed7c5e8f7efa591f019bcc9a94",
-          "note": "highest version of the line"
+          "label": "V1-V2",
+          "note": "The entry and exit conditions are identical in both; V2 is 17 lines shorter and has the same seven indicator calls, so the difference is formatting rather than strategy."
+        },
+        {
+          "label": "V3",
+          "note": "Adds the whole risk block the earlier revisions lack - ROI ladder, stoploss -0.35 and a 12% trailing stop - while the signal itself is unchanged across all three revisions."
         }
       ],
       "idea": "Dual momentum confirmation: the long needs the close crossing above the upper Bollinger band and both MACD lines above zero, the short mirrors it below the lower band with both lines below zero, and a non-zero volume column is required in every branch. The exit is the opposite band cross under the same MACD agreement, so the position is held while the regime lasts; the 35% stoploss and 12% trailing stop are what actually bound the loss.",
@@ -127,11 +222,20 @@
     },
     {
       "family": "GnF",
-      "members": [
+      "stem": "GnF",
+      "read_from": {
+        "strategy_id": "GnF_V2",
+        "source_sha256": "sha256_3e095a5da824d1b9c58351f19265f79adc3bad47daea258b190caca6289d456d",
+        "note": "highest version; the corpus also carries the CryptoFrogNFI* variants under the same stem"
+      },
+      "versions": [
         {
-          "strategy_id": "GnF_V2",
-          "source_sha256": "sha256_3e095a5da824d1b9c58351f19265f79adc3bad47daea258b190caca6289d456d",
-          "note": "highest version; the corpus also carries the CryptoFrogNFI* variants under the same stem"
+          "label": "GnF",
+          "note": "75 lines using ta.ATR and carrying a longer plot_config."
+        },
+        {
+          "label": "V2",
+          "note": "The revision the description is read from switches to ta.NATR - which matters because the index divides volatility by price - and shortens the plot_config. Two revisions in the corpus, one of them a refinement of the same index."
         }
       ],
       "idea": "A synthetic greed/fear index decides the direction: momentum (close against SMA20), volatility (NATR14) and a volume sentiment (up-volume minus down-volume) are each min-max normalised over a 20-bar window and averaged into one 0-1 number. Above 0.7 the strategy is long, below 0.3 short, and a trade is only opened while volume exceeds its own 50-bar mean; the opposite threshold closes the side, so the index crossing the band is what turns the position.",
@@ -144,11 +248,16 @@
     },
     {
       "family": "EWOist",
-      "members": [
+      "stem": "EWOist",
+      "read_from": {
+        "strategy_id": "EWOistV1",
+        "source_sha256": "sha256_cfefb9de82bd658d7944a98ef1d795853aaeaf481dc5af4620a23429ec6fe73c",
+        "note": "only revision in the corpus"
+      },
+      "versions": [
         {
-          "strategy_id": "EWOistV1",
-          "source_sha256": "sha256_cfefb9de82bd658d7944a98ef1d795853aaeaf481dc5af4620a23429ec6fe73c",
-          "note": "only revision in the corpus"
+          "label": "one row",
+          "note": "One revision in the corpus, so there is nothing to compare and the four risk settings carry the whole difference from a raw single-indicator rule to a tradeable strategy."
         }
       ],
       "idea": "One indicator and two thresholds: EWO = (SMA50 - SMA200)/close*100; EWO above the buy threshold opens the long, below the sell threshold closes it again, and the short side is mirrored around the same levels. Nothing else is consulted except a non-zero volume. The risk side is a 10% profit offset with a 3% trailing stop that only arms once the offset is reached.",
@@ -161,11 +270,16 @@
     },
     {
       "family": "PlusMinus",
-      "members": [
+      "stem": "PlusMinus",
+      "read_from": {
+        "strategy_id": "PlusMinusV1",
+        "source_sha256": "sha256_5df5b6356a620bd177485498e3af4e1211dc5ff567aa1c32995b5fb3708e9ed2",
+        "note": "only revision in the corpus"
+      },
+      "versions": [
         {
-          "strategy_id": "PlusMinusV1",
-          "source_sha256": "sha256_5df5b6356a620bd177485498e3af4e1211dc5ff567aa1c32995b5fb3708e9ed2",
-          "note": "only revision in the corpus"
+          "label": "one row",
+          "note": "One revision in the corpus. The version marker suggests predecessors, but they are not in the corpus, so nothing here describes them."
         }
       ],
       "idea": "A directional-indicator breakout with an RSI filter: +DI crossing above -DI while RSI is above 60 opens the long, -DI crossing above +DI while RSI is below 15 opens the short, and the same crosses close the opposite side. Each side also has a second branch that fires when a rolling maximum of RSI and of the matching DI is flagged - an exhaustion branch rather than a cross - so the strategy trades both a breakout and its reversal signal.",
@@ -174,6 +288,318 @@
         "populate_entry_trend: enter_long = (crossed_above(Plus DI, Minus DI) & RSI > 60) OR ('RSI Max' notnull & 'Plus DI Max' notnull)",
         "populate_exit_trend: exit_long = ('RSI Max' notnull & 'Plus DI Max' notnull) OR (crossed_above(Minus DI, Plus DI) & RSI < 60)",
         "settings: stoploss -0.3, minimal_roi {}, trailing_stop False"
+      ]
+    },
+    {
+      "family": "E0V1E",
+      "stem": "E0V1E",
+      "read_from": {
+        "strategy_id": "E0V1E",
+        "source_sha256": "sha256_e87c7b96477328e4ffd5d93d2626f435e88b1b6e39478a2249f1fcb8343880cd",
+        "note": "the undecorated row, 135 lines, 11 indicator calls"
+      },
+      "idea": "A 5m scalper whose entry is a bundle of conditions ORed together rather than one rule: EMA(8/16) against EMA/SMA(15) and RSI(4/14/20), the stochastic-fast fastk, and a Bollinger band around the typical price are collected into a list and reduced with `lambda x, y: x | y`, so any single member can open a trade. The exit side is where the work sits: a custom_stoploss that locks in above 1% profit and treats trades tagged 'ewo' differently, plus a custom_exit that reads the fastk and RSI columns of the current candle. minimal_roi and the 0.99 stoploss are nominal next to that.",
+      "caveat": "The custom_stoploss branches on the entry tag (`if 'ewo' in enter_tags`), so the same file holds two different exit rules depending on which condition opened the trade - a reader who evaluates only the stoploss number will read the risk wrong.",
+      "versions": [
+        {
+          "label": "2023-09-15 - 2024-01-11",
+          "note": "The only chronology this family has, and it comes from the dates in five file names: the ROI goes {'0': 10} -> {'0': 0.02, '120': 0.01} -> {'0': 10} -> {'0': 1} -> {'0': 10}, the stoploss -0.13 -> -0.18 -> -0.27 -> back to -0.99, startup_candle_count 121 -> 120 -> 20, and the 2024-01-11 revision adds ta.CCI(20) and switches DCA (position_adjustment_enable) off again. Five dated rows, four steps, and they are steps of a scalar search rather than four designs."
+        },
+        {
+          "label": "the 34 numbered rows",
+          "note": "Their numbers are the harvest's collision counter, not versions, and the content proves it: adjacent rows reverse each other - E0V1E_22 to _23 steps stoploss -0.18 -> -0.99 and startup_candle_count 120 -> 20, and _23 to _24 steps both back again. What the corpus holds is a parameter fan written out in file order, so this page lists the rows and states no order for them."
+        },
+        {
+          "label": "two body plans",
+          "note": "Across the fan there are two shapes: 74-93 lines with 5-8 indicator calls and no custom hooks, and 121-158 lines with 11 indicator calls plus custom_stoploss and custom_exit. Every row runs 5m."
+        }
+      ],
+      "evidence": [
+        "indicators: ta.EMA(8) and ta.EMA(16) against ta.SMA(15), ta.RSI(4/14/20), ta.STOCHF(5,3,0,3,0), qtpylib.bollinger_bands(qtpylib.typical_price, window=20, stds=2)",
+        "populate_entry_trend: enter_long = reduce(lambda x, y: x | y, conditions)",
+        "populate_entry_trend: conditions = [] then conditions.append(is_ewo) and conditions.append(buy_1), and each branch writes its own tag - dataframe.loc[is_ewo, 'enter_tag'] += 'ewo'",
+        "custom_stoploss: reads trade.enter_tag, splits it into enter_tags and takes the 'ewo' branch first (`if \"ewo\" in enter_tags`), then branches on current_profit > 0.01 / < 0.01 / >= 0.05 and on current_candle['fastk'] > sell_fastx and rsi > 80 / > 90",
+        "settings: minimal_roi {'0': 10}, stoploss -0.99, use_custom_stoploss True, startup_candle_count 20",
+        "the five dated revisions: E0V1E_20230915, _20231014_0847, _20231017_1059, _20231019_1032, _20240111_1625"
+      ]
+    },
+    {
+      "family": "Ichimoku",
+      "stem": "Ichimoku",
+      "read_from": {
+        "strategy_id": "Ichimoku",
+        "source_sha256": "sha256_377b0bc34d771853f170018b2aca5ee4b60d730dca233fd9141005f79fb69231",
+        "note": "the undecorated 5m row, the smallest of the 31"
+      },
+      "idea": "The Ichimoku cloud used as a filter around a Tenkan/Kijun cross rather than as the signal itself: the long needs the Tenkan line to cross above the Kijun line while the cloud is red, and the short is not the mirror but a different rule. Later revisions keep the same cross and read the cloud from a higher timeframe through informative_pairs, or replace the candle with its Heikin-Ashi version and compare that against the daily Senkou A/B - so the family is one idea read against different chart types.",
+      "caveat": "The entry in the row read here buys a Tenkan/Kijun cross while `cloud_red` is true, i.e. while the cloud is bearish - the opposite of the textbook reading, where a cross is only taken in the direction of the cloud. Its `populate_sell_trend` also assigns an empty tuple, so exits in this revision come from minimal_roi alone.",
+      "versions": [
+        {
+          "label": "v1-v12",
+          "note": "4h, 42-60 lines, two to four indicator calls, and one line of buy logic that changes from revision to revision: crossed_above(tenkan, kijun), then crossed_below, then the same cross against senkou_b, then against close. The ROI value alternates between {'0': 10} and {'0': 100} while nothing else moves."
+        },
+        {
+          "label": "v13-v18",
+          "note": "The chart moves out to 1d (v17) and back to 4h (v18), and informative_pairs grows to five lines: the daily Tenkan is pulled into the 4h frame, which is the first revision that reads two timeframes at once."
+        },
+        {
+          "label": "v19, v31, v37",
+          "note": "Three rows that add the same three settings (process_only_new_candles, startup_candle_count 150, use_sell_signal) and lose them again in the next row, so they are variants of one shape rather than a progression. v37 is the Heikin-Ashi variant (file Ichimoku_v37_HeikinAshi.py): ha_close of the 4h against senkou_a_1d/senkou_b_1d plus cloud_green_1d."
+        },
+        {
+          "label": "v12_4",
+          "note": "188 lines at 5m, the only intraday member of the cloud family, and the only row that sets ticker_interval and timeframe at once - a file written for two freqtrade API generations."
+        }
+      ],
+      "evidence": [
+        "Ichimoku (5m): populate_buy_trend buy = (tenkan.shift(1) < kijun.shift(1)) & (tenkan > kijun) & (cloud_red == True); populate_sell_trend sell = ()",
+        "Ichimoku_v37 (4h): buy = ha_4h_close.crossed_above(senkou_a_1d) & (ha_4h_close.shift() < senkou_a_1d) & (cloud_green_1d == True) | same against senkou_b_1d",
+        "Ichimoku_v37: indicators are only qtpylib.heikinashi(informative_1d) and qtpylib.heikinashi(dataframe) - the cloud is built in the informative frame",
+        "Ichimoku: settings minimal_roi {'0': 1}, stoploss -0.1, trailing_stop True with a 1% positive and a 2% offset; v37: minimal_roi {'0': 100}, stoploss -0.99, use_sell_signal True",
+        "corpus: 31 rows, 30 of them 4h or higher, one at 5m (v12_4)"
+      ]
+    },
+    {
+      "family": "CombinedBinHAndCluc",
+      "stem": "CombinedBinHAndCluc",
+      "read_from": {
+        "strategy_id": "CombinedBinHAndClucV8",
+        "source_sha256": "sha256_43b43b5cfdfe72d0f5ea3e0eafc62a49addcf5159ea6514788e7117b33002de3",
+        "note": "the largest revision, 477 lines"
+      },
+      "idea": "The name is the recipe: the 'Cluc' entry is a lower-band event - the prior lower band above zero, a band distance above 0.8% of price, a body above 1.75% and a lower wick smaller than a quarter of that distance - combined with the BinH trend frame, and from V8 onward with a full 1h informative block of EMA(50/100/200)/SMA(200)/RSI(14). V8 is 477 lines whose populate_buy_trend alone is 191 lines and which puts custom_sell (56 lines) and custom_stoploss (21 lines) on top, so the revision in the corpus is less a signal than a small system.",
+      "versions": [
+        {
+          "label": "the base rows",
+          "note": "Five rows of 57-58 lines plus the undecorated one share one shape: Bollinger(20, 2) on the typical price, EMA(50), and the bbdelta/closedelta/tail entry. They differ only in minimal_roi, stoploss (-0.05 to -0.2) and use_sell_signal - the same variant problem as in E0V1E, only smaller."
+        },
+        {
+          "label": "V2-V6",
+          "note": "V2 is 124 lines with 14 indicator calls and a get_informative_indicators helper; V3-V5 shrink to 81-89 lines and drop the informative frame; V6 grows back to 138 lines and introduces np.where columns for the high/low state. The entry stays the band event throughout."
+        },
+        {
+          "label": "V7",
+          "note": "210-237 lines and 17 indicator calls: ta.MFI(14) is added and process_only_new_candles is switched on."
+        },
+        {
+          "label": "V8 and its variants",
+          "note": "477 lines, 21 indicator calls, an informative_1h_indicators helper, custom_sell (56 lines) and custom_stoploss (21 lines). The five V8_* rows are not five further revisions: they fall into two shapes (477 and about 256 lines) that repeat the same indicator set and the same eight conditions, with custom_sell alternating between 56 and 23 lines."
+        },
+        {
+          "label": "CombinedBinHAndCluc2021",
+          "note": "70 lines with seven indicator calls - a re-cut of the base shape with a different ROI/stoploss pair rather than a step in the line."
+        }
+      ],
+      "evidence": [
+        "CombinedBinHAndClucV8 indicators: qtpylib.bollinger_bands(close, window=40, stds=2) and (typical_price, 20, 2), ta.EMA(12/26/50/200), ta.SMA(5/200), ta.RSI(14), ta.MFI(14)",
+        "CombinedBinHAndClucV8 informative_1h_indicators: ta.EMA(50/100/200), ta.SMA(200), ta.RSI(14) on the 1h frame",
+        "CombinedBinHAndCluc: buy = lower.shift().gt(0) & bbdelta.gt(close * 0.008) & closedelta.gt(close * 0.0175) & tail.lt(bbdelta * 0.25) & close.lt(lower.shift())",
+        "CombinedBinHAndClucV8 custom_stoploss: if (current_profit < 0) & (current_time - timedelta(minutes=280) > trade.open_date_utc) ... if last_candle['sma_200_dec'] & last_candle['sma_200_dec_1h']",
+        "settings V8: minimal_roi {'0': 10}, stoploss -0.99, use_custom_stoploss True, startup_candle_count 200, trailing_stop False"
+      ]
+    },
+    {
+      "family": "BinH",
+      "stem": "BinH",
+      "read_from": {
+        "strategy_id": "BinHV27",
+        "source_sha256": "sha256_62b8250f065c4767b639e129bbb7e778db8715558db6b0a8bb5570bf4a00ae25",
+        "note": "the base V27 row; the corpus also holds the V45 branch under this stem"
+      },
+      "idea": "Two designs share this stem, and the page keeps them together because the name does. BinHV27 is the multi-filter one - RSI(5), an EMA of an RSI frame, ADX with its +DI/-DI and the EMAs of both, plus EMA/SMA 60/120/240 - where the long needs the close below both slow averages, -DI above its own EMA and RSI not falling, and the sell side has its own reversal machine ('preparechangetrendconfirm', 'bigdown'). BinHV45 is a 1-minute Bollinger scalp at a window of 40 that uses the same bbdelta/closedelta/tail entry as the CombinedBinHAndCluc family, so the two branches are related by the entry construction rather than by lineage.",
+      "versions": [
+        {
+          "label": "V27",
+          "note": "124 lines, 22 indicator calls, no custom stop, minimal_roi {'0': 1} and stoploss -0.5. Its variants move in one step each: _1, _3 and _254 add custom_stoploss, use_sell_signal and startup_candle_count 240; _2 runs 15m; _32 writes the timeframe as '5T'; _747 adds two more indicator calls; _253 and _387 come back to the bare shape."
+        },
+        {
+          "label": "V45",
+          "note": "1m, 45-85 lines, one or two indicator calls (Bollinger at window=40); the rows differ only in minimal_roi (0.0125 against 0.20233), stoploss (-0.05 against -0.13348) and whether a trailing stop is armed. _2 is the outlier at 15m with a ROI of 0.99."
+        },
+        {
+          "label": "order",
+          "note": "Both branches number their rows with harvest counters; adjacent rows reverse each other (V27_253 to _254 switches minimal_roi 1 <-> 100, custom stop off/on and startup count none/240, and _254 to _387 switches them back), so nothing here is claimed to be a history."
+        }
+      ],
+      "evidence": [
+        "BinHV27 docstring: 'strategy sponsored by user BinH from slack'",
+        "BinHV27 indicators: numpy.nan_to_num-wrapped ta.RSI(5), ta.EMA(rsiframe, 5), ta.ADX, ta.PLUS_DI/MINUS_DI with ta.EMA(5) and ta.EMA(25), ta.EMA(60/120), ta.SMA(120/240)",
+        "BinHV27 populate_buy_trend: slowsma > 0 & close < highsma & close < lowsma & minusdi > minusdiema & rsi >= rsi.shift() & ~preparechangetrendconfirm",
+        "BinHV45 indicators: qtpylib.bollinger_bands(dataframe['close'], window=40, stds=2); buy = lower.shift() > 0 & bbdelta > close * buy_bbdelta / 1000 & closedelta > close * buy_closedelta / 1000 & tail < ...",
+        "settings: V27 minimal_roi {'0': 1}, stoploss -0.5, timeframe '5m'; V45 minimal_roi {'0': 0.0125}, stoploss -0.05, timeframe '1m'"
+      ]
+    },
+    {
+      "family": "NostalgiaForInfinityX",
+      "stem": "NostalgiaForInfinityX",
+      "read_from": {
+        "strategy_id": "NostalgiaForInfinityX8",
+        "source_sha256": "sha256_14762b0c6bddd77d61bb035c4ec351de0db49b21adba1b2a486d35d715032e85",
+        "note": "39,071 lines; the X2-X8 releases come from the iterativv repository"
+      },
+      "idea": "The X line is a trading system rather than a signal: an entry built from a long list of indexed conditions, a custom_exit of several hundred lines, adjust_trade_position for DCA and a set of _bad_trade_controller_* handlers that decide when a losing trade gets de-risked, held or closed. The revisions grow by adding whole blocks - the informative 1d/4h/1h/15m indicator sets, the derisk handlers, the volume-normalised helpers - while the entry stays a basket of conditions that can be switched on and off per index.",
+      "caveat": "This is the only family on this page that the bundle cannot describe: the indicator list is capped at 40 entries and the method list is longer than one screen, so no count on this page says how large the strategy really is. Read the row in the corpus, not the summary.",
+      "versions": [
+        {
+          "label": "X2",
+          "note": "13,585 lines, the smallest release. The X2_* rows grow from 742 to 1,393 lines, add __init__/_load/_remove_profit_target and pull the 5m and 1h indicator blocks apart into named methods - the structural change of the line."
+        },
+        {
+          "label": "X3-X7",
+          "note": "40,162 to 66,190 lines. The growth sits in the informative indicator sets (155-207 lines each in X8) and in the exit machinery; X6 adds the mode handlers _handle_derisk_mode, _handle_scalp_mode and _handle_top_coins_mode, which is the first time the strategy switches behaviour per regime instead of per condition."
+        },
+        {
+          "label": "X8",
+          "note": "39,071 lines and the revision the description is read from - smaller than X7 again, which fits the picture of a line that is rewritten rather than only appended to. It carries the volume-normalised helpers (OBV change, Chaikin money flow, fast percentage change) and a custom_exit of 557 lines."
+        },
+        {
+          "label": "the _NN rows",
+          "note": "position_adjustment_enable, minimal_roi and startup_candle_count (800 against 480) alternate between adjacent rows, so they are variants of the releases above, not further releases."
+        }
+      ],
+      "evidence": [
+        "NostalgiaForInfinityX8 methods: custom_exit (557 lines), exit_profit_target (314), adjust_trade_position (204), informative_4h_indicators (207), informative_1h_indicators (197), informative_1d_indicators (178), base_tf_5m_indicators (503), populate_indicators (505)",
+        "NostalgiaForInfinityX8 derisk handlers: _bad_trade_controller_ema_gap_and_adverse_move (30), _bad_trade_controller_exit_reason (34), _bad_trade_controller_derisk_hold (12), _bad_trade_controller_capitulation (9)",
+        "NostalgiaForInfinityX8 indicators include ta.STOCHF(14,3,0), ta.MFI(14), ta.WILLR(14), ta.ULTOSC, ta.CCI(20), ta.ADX(14) with PLUS_DI/MINUS_DI and AROON",
+        "entry: long_entry_condition_index branches from 1 to 104, each guarded by long_entry_signal_params[...] - the conditions are indexed and enable-able, not a single expression",
+        "settings X8: stoploss -0.99, position_adjustment_enable True, startup_candle_count 800, use_custom_stoploss False, trailing_stop False"
+      ]
+    },
+    {
+      "family": "NostalgiaForInfinityNext",
+      "stem": "NostalgiaForInfinityNext",
+      "read_from": {
+        "strategy_id": "NostalgiaForInfinityNext",
+        "source_sha256": "sha256_cc9762e543b69a180d1442d7f40f0620be19108d7342d17e29a1cf514741f7f5",
+        "note": "4,054 lines; the canonical file is a repaired one under repair/patched/"
+      },
+      "idea": "The same basket-of-conditions entry as the X line, but with the exit assembled from a library of named sell functions - sell_over_main (174 lines), sell_under_main (163), sell_pump_main (374), sell_ichi, sell_long_mode, sell_quick_mode, sell_duration_main - between which custom_sell (201 lines) selects. That is where the revision differences sit: populate_buy_trend is 634 lines in the revision read here, whereas the exit side is a set of replaceable parts.",
+      "caveat": "The canonical file of the revision read here is a repaired file (repair/patched/repos/Foxel05_freqtrade-stuff/...), so the sentence describes the repaired revision. The same family is also present from upstream repositories, and the repaired file is the one the corpus measures.",
+      "versions": [
+        {
+          "label": "V7155 / 7_15_5",
+          "note": "4,942 and 4,954 lines: two rows whose names carry the upstream version markers, sitting in the middle of the line by size."
+        },
+        {
+          "label": "Next1 - Next2_0",
+          "note": "The structural step: Next1 (4,869 lines) and Next1_327 are the same shape, Next2 (2,688) drops to 37 indicator calls and Next2_0 (5,312) comes back larger with position_adjustment_enable switched on and the stoploss moved from -0.5 to -0.99."
+        },
+        {
+          "label": "the numbered rows",
+          "note": "2,105-5,312 lines. position_adjustment_enable, stoploss (-0.5 against -0.99) and startup_candle_count (400 against 480) alternate between adjacent rows, and the same three-step pattern repeats (e.g. _75 -> _76 -> _98 and _134 -> _223 -> _272), which is the signature of a variant list rather than of a development history."
+        },
+        {
+          "label": "the hold config",
+          "note": "From the larger revisions on, the file carries a second class block of its own (rapidjson load/save, process_loaded_data, _object_hook) that persists a hold-trades list across bot restarts - infrastructure inside the strategy file, not a signal."
+        }
+      ],
+      "evidence": [
+        "NostalgiaForInfinityNext methods: sell_pump_main (374 lines), custom_sell (201), sell_over_main (174), sell_under_main (163), sell_long_mode (77), _should_hold_trade (65), populate_buy_trend (634), informative_1h_indicators (140), normal_tf_indicators (154)",
+        "populate_buy_trend: guarded by self.buy_params['buy_condition_{index}_enable'] and by globals like ema_fast, ema_slow, sma200_rising, btc_1h_not_downtrend, safe_dips, safe_pump",
+        "exit selection: custom_sell chooses among the sell_* library and _should_hold_trade decides whether a trade survives at all",
+        "settings: minimal_roi {'0': 10}, stoploss -0.99, startup_candle_count 480, use_sell_signal True, trailing_stop False"
+      ]
+    },
+    {
+      "family": "roger",
+      "stem": "roger",
+      "read_from": {
+        "strategy_id": "roger",
+        "source_sha256": "sha256_718c59f3c2b4644e1ef8a11c32f4c74468e92e0cde033ad74c6ba79a31648639",
+        "note": "the undecorated row, 88 lines"
+      },
+      "idea": "The numbered rows are one line of work: each iteration adds a candlestick-pattern filter to a VWAP/EMA/RSI/ATR frame, until roger27 trades `bullish_conditions | candlestick_patterns & macd_condition` and stops the trade on peak-profit drawdown. The undecorated row is a different design under the same stem - a VWAP band system with RSI(16) percentile bands and no candle patterns at all - so the stem holds two strategies, and this page says so rather than averaging them into one sentence.",
+      "caveat": "`roger` (88 lines, nine conditions) and `VWAPStrategy` (73 lines) use the same construction: a per-candle state column asking whether the body touched the daily VWAP from below, above or both, plus RSI percentile bands. They are not code-identical, which is why no duplicate verdict covers them, but a reader should expect them to behave alike.",
+      "versions": [
+        {
+          "label": "roger2 - roger12",
+          "note": "45 to 101 lines and 2 to 17 indicator calls: the frame (EMA 50/200, Bollinger, RSI) is set up at roger2-roger4, can_short appears at roger4 and toggles, and from roger6 the candle patterns start arriving one per row (CDL3BLACKCROWS, CDLENGULFING, CDL3WHITESOLDIERS, CDL3INSIDE, CDL3OUTSIDE, CDLGRAVESTONEDOJI, CDLHAMMER, CDLINVERTEDHAMMER, CDLSHOOTINGSTAR, CDLENGULFING)."
+        },
+        {
+          "label": "roger14 - roger22",
+          "note": "The ATR trailing stop arrives (use_custom_stoploss True at roger14), the ATR length moves 14 -> 150 -> 4, and roger21 adds calc_stop_loss_pct and on_trade_close, i.e. the exit becomes stateful."
+        },
+        {
+          "label": "roger27",
+          "note": "160 lines, 21 indicator calls, ta.MACD added: the entry is bullish_conditions | candlestick_patterns & macd_condition and the stop reacts to a peak-profit drawdown above 2%, then 10%."
+        },
+        {
+          "label": "roger",
+          "note": "88 lines, no candle patterns: VWAP_signal, RSI(16) with lower_band/upper_band from percentiles, BB(14, 2) and a 14-line ATR stop. Same stem, different strategy."
+        }
+      ],
+      "evidence": [
+        "roger indicators: ta.vwap(anchor='D'), ta.rsi(length=16), ta.atr(length=150), np.percentile, pd.to_datetime",
+        "roger populate_indicators: per-candle loop setting VWAP_signal by comparing max(open, close) and min(open, close) against the VWAP column; lower_band/upper_band from RSI percentiles",
+        "roger entry: buy = (volume > 0) & (VWAP_signal == 2) & (rsi < rsi_pnr_low) & (close <= lower_band) & (close.shift(1) <= lower_band.shift(1))",
+        "roger27 entry: buy = bullish_conditions | candlestick_patterns & macd_condition; custom_stoploss on peak_profit_drawdown > 0.02 and current_profit > 0.1",
+        "roger27 indicators: ta.CDL3INSIDE, CDL3OUTSIDE, CDL3STARSINSOUTH, CDLHAMMER, CDLINVERTEDHAMMER, CDL3BLACKCROWS, CDL3WHITESOLDIERS, CDL3LINESTRIKE, CDLGRAVESTONEDOJI, CDLSHOOTINGSTAR, CDLENGULFING, ta.MACD, ta.ATR(4)"
+      ]
+    },
+    {
+      "family": "GeneTrader_gen",
+      "stem": "GeneTrader_gen",
+      "read_from": {
+        "strategy_id": "GeneTrader_gen9_1735161895_5455",
+        "source_sha256": "sha256_d8494f08b7c845fe121be05d10c4a8a7dd06aaad8ca5be810509d51723d7216f",
+        "note": "the youngest timestamp in the family (2024-12-25); 620 lines"
+      },
+      "idea": "A generator's output, labelled by the generator itself: every class name carries the generation, a Unix timestamp and a counter, which makes this the one family on the page that can be ordered by time from its names alone. The population alternates between two blueprints - a 112-135-line variant with 8 indicator calls, and a 507-621-line variant with DCA, an informative BTC frame and one to four RSI periods - so the generator was comparing a small and a large body plan, not refining one design.",
+      "versions": [
+        {
+          "label": "2024-09-21",
+          "note": "Three rows (gen3, gen5, gen30), 112 lines each with 8 indicator calls and no DCA - the earliest state in the corpus and the smallest."
+        },
+        {
+          "label": "2024-12-06",
+          "note": "gen1, 507 lines with 26 indicator calls and a ROI ladder: the first large member, ten weeks after the small ones."
+        },
+        {
+          "label": "2024-12-20/21",
+          "note": "Seven rows of 135 lines at 8 indicator calls, written within two days of each other. The generation number does not track the body plan - gen10 appears here and again among the large rows - so the generator's numbering counts its own rounds, not the strategy size."
+        },
+        {
+          "label": "2024-12-22 - 2024-12-25",
+          "note": "Six rows of 620/621 lines with position_adjustment_enable, ROI {'0': 100}, startup_candle_count 168 and adjust_trade_position (87 lines). The 135-line rows written in the same window carry ROI {'0': 1} and no DCA, so the two blueprints were run side by side rather than one after the other."
+        }
+      ],
+      "evidence": [
+        "GeneTrader_gen9_1735161895_5455: 620 lines, methods is_support, informative_pairs, custom_sell (70), custom_stoploss (26), populate_indicators (192), populate_entry_trend (182), adjust_trade_position (87)",
+        "GeneTrader_gen9 indicators: ta.EMA(200/50/20/25/16/26/12/5/10), ta.RSI(14/4/20/84/112), qtpylib.heikinashi, ta.STOCHRSI, qtpylib.rolling_vwap, qtpylib.bollinger_bands(20,2) and (20,3) and (40,2), ta.ROCR(28)",
+        "GeneTrader_gen10_1734726148_6020 is 135 lines with 8 indicator calls and ROI {'0': 1} - the other blueprint",
+        "docstring of the gen9 row: 'PASTE OUTPUT FROM HYPEROPT HERE Can be overridden for specific sub-strategies (stake currencies) at the bottom.' - the generator copied the freqtrade template comment",
+        "name format: GeneTrader_gen<generation>_<unix timestamp>_<counter>, e.g. gen9_1735161895_5455 = 2024-12-25"
+      ]
+    },
+    {
+      "family": "VWAPStrategy",
+      "stem": "VWAPStrategy",
+      "read_from": {
+        "strategy_id": "VWAPStrategy",
+        "source_sha256": "sha256_4aa9eda34672cbd2e543fcd42e187c9332c9f2bcf17d6c35042e3dff3c7fd65b",
+        "note": "the undecorated row, 73 lines, the smallest of the 18"
+      },
+      "idea": "A VWAP band system: for every candle the code asks whether the body touched the daily VWAP from below, from above or both, stores that as a state column, and then asks the RSI(16) to sit below its own 10th percentile (or the mirror, above the 90th) while the close is outside the Bollinger band - so the trade needs a VWAP event, an RSI extreme and a band break at once, joined with reduce(lambda x, y: x & y, conditions). The stop is a custom_stoploss that is rewritten in almost every row of the family; the entry is not.",
+      "caveat": "The rows here are numbered by the harvest, and the numbers do not order them: VWAPStrategy_11 has stoploss -0.1, _12 has -0.2 and drops the trailing stop, and the undecorated row has -0.07 again. The table below lists variants, not a history.",
+      "versions": [
+        {
+          "label": "the entry",
+          "note": "Unchanged across all 18 rows: the VWAP_signal loop, RSI(16) with percentile bands, Bollinger(14, 2). This is one of the few families where the signal and the risk can be separated cleanly."
+        },
+        {
+          "label": "the stop block",
+          "note": "custom_stoploss is rewritten in nearly every row - 35 -> 31 -> 28 -> 27 -> 25 -> 28 -> 18 -> 17 -> 21 lines - and changes its idea twice: it starts from the ATR, then compares the current profit against fixed steps, then works from trade.initial_stop_loss, and VWAPStrategy_1 arms it with ta.atr(length=150) where the undecorated row uses length=7."
+        },
+        {
+          "label": "the variants",
+          "note": "use_custom_stoploss is absent at _2 and present from _03 on; the stoploss moves between -0.2 and -0.1 twice; trailing_stop, trailing_stop_positive and the offset appear and disappear together (at _12 and again at _18). None of the moves is reversed later in a way that would let one call this a direction."
+        }
+      ],
+      "evidence": [
+        "VWAPStrategy indicators: ta.vwap(anchor='D'), ta.rsi(length=16), ta.bbands(length=14, std=2.0), ta.atr(length=7)",
+        "VWAPStrategy populate_indicators: per-candle loop over VWAP setting up_trend/down_trend; buy = reduce(lambda x, y: x & y, conditions); sell likewise",
+        "VWAPStrategy_1: ta.atr(length=150), custom_stoploss 35 lines, use_custom_stoploss absent (VWAPStrategy_2 follows at -0.1 with the same entry)",
+        "settings: VWAPStrategy minimal_roi {'0': 1}, stoploss -0.07, trailing_stop False; the numbered rows repeat the same minimal_roi with stoploss -0.1 or -0.2"
       ]
     }
   ]

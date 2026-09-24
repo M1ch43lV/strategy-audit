@@ -1,11 +1,12 @@
 {
   "schema_version": 1,
   "what_this_is": "Facts extracted from each strategy's canonical file so an LLM can state its idea. Read `docstring`, `settings`, `indicators` and `signals`; do not infer beyond them.",
-  "how_to_answer": "Write evidence/STRATEGY_IDEAS.json: one entry per family with `idea` (2-3 sentences: what it trades, on which signal, how it exits), `family`, `members` (the strategy_ids it covers) and `evidence` (the code facts the sentence rests on). Bind each member to the `source_sha256` given here.",
+  "how_to_answer": "Write evidence/STRATEGY_IDEAS.json: one entry per family with `family`, `stem` (the mechanical family the rows are grouped by), `read_from` ({strategy_id, source_sha256} - the one revision the sentences were read from), `idea` (2-3 sentences: what it trades, on which signal, how it exits), `versions` (a short note per era of the family: what changed from one revision to the next, from the `settings`, `indicators`, `signals` and `functions` below), `evidence` (the code facts the sentence rests on) and `exclude` for any row of the stem the family does not cover, with a reason.",
   "strategies": [
     {
       "strategy_id": "ZaratustraV31",
       "family_stem": "Zaratustra",
+      "version_key": "V31",
       "canonical_file": "repos/remiotore_ccxt-freqtrade/my-strategies/ZaratustraV31.py",
       "source_sha256": "sha256_2860cc0ae18f5d1e8d8857275c0646a1bba53598ae01be4262a1f62df071e205",
       "class": "ZaratustraV31",
@@ -41,11 +42,19 @@
         "populate_indicators": [],
         "populate_entry_trend": [],
         "populate_exit_trend": []
-      }
+      },
+      "functions": [
+        "plot_config (11 lines)",
+        "populate_indicators (4 lines)",
+        "populate_entry_trend (11 lines)",
+        "populate_exit_trend (11 lines)",
+        "leverage (2 lines)"
+      ]
     },
     {
       "strategy_id": "SlopeV8",
       "family_stem": "Slope",
+      "version_key": "V8",
       "canonical_file": "repos/remiotore_ccxt-freqtrade/strategies/LSlopeV8.py",
       "source_sha256": "sha256_3ed2f392d65d9321ca766e003aca39f825003ab21e14fd349fd66af5355e7cfb",
       "class": "SlopeV8",
@@ -83,11 +92,19 @@
           "exit_long = dataframe['maxima'].notnull()",
           "exit_short = dataframe['minima'].notnull()"
         ]
-      }
+      },
+      "functions": [
+        "plot_config (28 lines)",
+        "leverage (2 lines)",
+        "populate_indicators (17 lines)",
+        "populate_entry_trend (14 lines)",
+        "populate_exit_trend (14 lines)"
+      ]
     },
     {
       "strategy_id": "RSIBB_V4",
       "family_stem": "RSIBB",
+      "version_key": "V4",
       "canonical_file": "repos/remiotore_ccxt-freqtrade/my-strategies/RSIBB_V4.py",
       "source_sha256": "sha256_6409ac625307a15405996bed56b25d18528482335d0a2f584341b6cbd576da9b",
       "class": "RSIBB_V4",
@@ -132,11 +149,19 @@
           "enter_short = qtpylib.crossed_below(dataframe['close'], dataframe['bbl']) & qtpylib.crossed_below(dataframe['volume'], dataframe['vbbl']) & (dataframe['natr_zscore'] > 1.0)"
         ],
         "populate_exit_trend": []
-      }
+      },
+      "functions": [
+        "plot_config (20 lines)",
+        "populate_indicators (21 lines)",
+        "populate_entry_trend (20 lines)",
+        "populate_exit_trend (2 lines)",
+        "leverage (2 lines)"
+      ]
     },
     {
       "strategy_id": "EMA_Fibonacci_V4",
       "family_stem": "EMA_Fibonacci",
+      "version_key": "V4",
       "canonical_file": "repos/remiotore_ccxt-freqtrade/my-strategies/EMA_Fibonacci_V4.py",
       "source_sha256": "sha256_7d6607eac98854660b9adecee4434d76ea72e1ef4bfed651b8acac7e23d5d131",
       "class": "EMA_Fibonacci_V4",
@@ -193,11 +218,19 @@
           "exit_long = qtpylib.crossed_above(dataframe['typ'], dataframe['ema_233']) | qtpylib.crossed_below(dataframe['typ'], dataframe['ema_233'])",
           "exit_short = qtpylib.crossed_above(dataframe['typ'], dataframe['ema_233']) | qtpylib.crossed_below(dataframe['typ'], dataframe['ema_233'])"
         ]
-      }
+      },
+      "functions": [
+        "plot_config (29 lines)",
+        "leverage (2 lines)",
+        "populate_indicators (21 lines)",
+        "populate_entry_trend (30 lines)",
+        "populate_exit_trend (16 lines)"
+      ]
     },
     {
       "strategy_id": "el_extrema",
       "family_stem": "el_extrema",
+      "version_key": "",
       "canonical_file": "repos/remiotore_ccxt-freqtrade/my-strategies/el_extrema.py",
       "source_sha256": "sha256_abde98597b0293c5fa1f2edda354995008b1c13df8521cb133de254891150dbd",
       "class": "el_extrema",
@@ -247,11 +280,22 @@
           "exit_long = reduce(lambda x, y: x | y, exit_long_conditions)",
           "exit_short = reduce(lambda x, y: x | y, exit_short_conditions)"
         ]
-      }
+      },
+      "functions": [
+        "protections (19 lines)",
+        "plot_config (21 lines)",
+        "informative_pairs (4 lines)",
+        "get_informative_indicators (3 lines)",
+        "populate_indicators (16 lines)",
+        "populate_entry_trend (32 lines)",
+        "populate_exit_trend (30 lines)",
+        "leverage (2 lines)"
+      ]
     },
     {
       "strategy_id": "RsiquiV5",
       "family_stem": "Rsiqui",
+      "version_key": "V5",
       "canonical_file": "repos/TheoBrigitte_freqtrade/strategies/rsiqui/RsiquiV5.py",
       "source_sha256": "sha256_5f030f084dd930b9ed8cb004ec383f90a76a0289d2f9843969adbd7a400ba1af",
       "class": "RsiquiV5",
@@ -296,11 +340,19 @@
           "exit_long = (dataframe['rsi'] > self.rsi_exit_long.value) & qtpylib.crossed_below(dataframe['rsi_gra'], 0)",
           "exit_short = (dataframe['rsi'] < self.rsi_exit_short.value) & qtpylib.crossed_above(dataframe['rsi_gra'], 0)"
         ]
-      }
+      },
+      "functions": [
+        "plot_config (14 lines)",
+        "populate_indicators (6 lines)",
+        "populate_entry_trend (16 lines)",
+        "populate_exit_trend (16 lines)",
+        "leverage (2 lines)"
+      ]
     },
     {
       "strategy_id": "BollingerMACD_V3",
       "family_stem": "BollingerMACD",
+      "version_key": "V3",
       "canonical_file": "repos/remiotore_ccxt-freqtrade/my-strategies/BollingerMACD_V3.py",
       "source_sha256": "sha256_5447b3349ab947de31ab0698ee48444bdc45fbed7c5e8f7efa591f019bcc9a94",
       "class": "BollingerMACD_V3",
@@ -348,11 +400,20 @@
           "exit_long = qtpylib.crossed_below(dataframe['close'], dataframe['bb_upperband']) & (dataframe['macd'] > 0) & (dataframe['macdsignal'] > 0) & (dataframe['volume'] > 0)",
           "exit_short = qtpylib.crossed_above(dataframe['close'], dataframe['bb_lowerband']) & (dataframe['macd'] < 0) & (dataframe['macdsignal'] < 0) & (dataframe['volume'] > 0)"
         ]
-      }
+      },
+      "functions": [
+        "plot_config (11 lines)",
+        "informative_pairs (2 lines)",
+        "leverage (4 lines)",
+        "populate_indicators (12 lines)",
+        "populate_entry_trend (20 lines)",
+        "populate_exit_trend (20 lines)"
+      ]
     },
     {
       "strategy_id": "GnF_V2",
       "family_stem": "GnF",
+      "version_key": "V2",
       "canonical_file": "repos/vaskosmihaylov_nfi-custom-strategies/user_data/strategies/remiotore/GnF_V2.py",
       "source_sha256": "sha256_3e095a5da824d1b9c58351f19265f79adc3bad47daea258b190caca6289d456d",
       "class": "GnF_V2",
@@ -392,11 +453,19 @@
           "exit_long = dataframe['greed_fear_index'] < 0.3",
           "exit_short = dataframe['greed_fear_index'] > 0.7"
         ]
-      }
+      },
+      "functions": [
+        "plot_config (18 lines)",
+        "populate_indicators (34 lines)",
+        "populate_entry_trend (18 lines)",
+        "populate_exit_trend (15 lines)",
+        "leverage (2 lines)"
+      ]
     },
     {
       "strategy_id": "EWOistV1",
       "family_stem": "EWOist",
+      "version_key": "V1",
       "canonical_file": "repos/remiotore_ccxt-freqtrade/my-strategies/EWOistV1.py",
       "source_sha256": "sha256_cfefb9de82bd658d7944a98ef1d795853aaeaf481dc5af4620a23429ec6fe73c",
       "class": "EWOistV1",
@@ -443,11 +512,19 @@
           "exit_long = reduce(lambda x, y: x | y, exit_long_conditions)",
           "exit_short = reduce(lambda x, y: x | y, exit_short_conditions)"
         ]
-      }
+      },
+      "functions": [
+        "plot_config (11 lines)",
+        "populate_indicators (4 lines)",
+        "populate_entry_trend (19 lines)",
+        "populate_exit_trend (18 lines)",
+        "leverage (2 lines)"
+      ]
     },
     {
       "strategy_id": "PlusMinusV1",
       "family_stem": "PlusMinus",
+      "version_key": "V1",
       "canonical_file": "repos/remiotore_ccxt-freqtrade/my-strategies/PlusMinusV1.py",
       "source_sha256": "sha256_5df5b6356a620bd177485498e3af4e1211dc5ff567aa1c32995b5fb3708e9ed2",
       "class": "PlusMinusV1",
@@ -491,7 +568,1435 @@
           "exit_long = dataframe['RSI Max'].notnull() & dataframe['Plus DI Max'].notnull() | (qtpylib.crossed_above(dataframe['Minus DI'], dataframe['Plus DI']) & dataframe['RSI'] < 60)",
           "exit_short = dataframe['RSI Min'].notnull() & dataframe['Minus DI Max'].notnull() | (qtpylib.crossed_above(dataframe['Plus DI'], dataframe['Minus DI']) & dataframe['RSI'] > 15)"
         ]
-      }
+      },
+      "functions": [
+        "plot_config (21 lines)",
+        "leverage (2 lines)",
+        "populate_indicators (14 lines)",
+        "populate_entry_trend (27 lines)",
+        "populate_exit_trend (26 lines)"
+      ]
+    },
+    {
+      "strategy_id": "E0V1E",
+      "family_stem": "E0V1E",
+      "version_key": "",
+      "canonical_file": "repos/TheoBrigitte_freqtrade/strategies/e0v1e/E0V1E.py",
+      "source_sha256": "sha256_e87c7b96477328e4ffd5d93d2626f435e88b1b6e39478a2249f1fcb8343880cd",
+      "class": "E0V1E",
+      "timeframe": "5m",
+      "canonical_measured": "true",
+      "classification": "",
+      "cluster": {
+        "direction": "long_only",
+        "logic": "volatility",
+        "speed": "scalp",
+        "complexity": "simple",
+        "exit_style": "custom+roi",
+        "dca": false,
+        "informative": false,
+        "regime_hypothesis": "high_vol"
+      },
+      "cluster_why": "{'direction': 'canonical direction_capability after applying can_short', 'speed': '5m', 'logic': 'volatility indicators only (1)', 'exit': 'custom_exit=True trailing=False roi=True', 'complexity': 'loc=188 indicators=5 hyperopt=True informative=False dca=False'}",
+      "docstring": "",
+      "settings": {
+        "minimal_roi": "{'0': 10}",
+        "timeframe": "'5m'",
+        "process_only_new_candles": "True",
+        "startup_candle_count": "20",
+        "stoploss": "-0.99",
+        "use_custom_stoploss": "True"
+      },
+      "indicators": [
+        "ta.EMA(df, timeperiod=ema_length)",
+        "ta.EMA(df, timeperiod=ema2_length)",
+        "ta.SMA(dataframe, timeperiod=15)",
+        "ta.RSI(dataframe, timeperiod=14)",
+        "ta.RSI(dataframe, timeperiod=4)",
+        "ta.RSI(dataframe, timeperiod=20)",
+        "ta.EMA(dataframe, timeperiod=8)",
+        "ta.EMA(dataframe, timeperiod=16)",
+        "ta.STOCHF(dataframe, 5, 3, 0, 3, 0)",
+        "qtpylib.bollinger_bands(qtpylib.typical_price(dataframe), window=20, stds=2)",
+        "qtpylib.typical_price(dataframe)"
+      ],
+      "signals": {
+        "populate_indicators": [],
+        "populate_entry_trend": [
+          "if conditions:",
+          "enter_long = reduce(lambda x, y: x | y, conditions)"
+        ],
+        "custom_stoploss": [
+          "if hasattr(trade, 'enter_tag') and trade.enter_tag is not None:",
+          "if 'ewo' in enter_tags:",
+          "if current_profit > 0.01:",
+          "if current_profit < 0.01:",
+          "if current_profit >= 0.05:",
+          "if current_candle['fastk'] > self.sell_fastx.value:",
+          "if current_candle['rsi'] > 80:",
+          "if current_candle['rsi'] > 90:"
+        ],
+        "populate_exit_trend": []
+      },
+      "functions": [
+        "populate_indicators (32 lines)",
+        "populate_entry_trend (33 lines)",
+        "custom_stoploss (27 lines)",
+        "custom_exit (14 lines)",
+        "populate_exit_trend (5 lines)"
+      ]
+    },
+    {
+      "strategy_id": "Ichimoku_v37",
+      "family_stem": "Ichimoku",
+      "version_key": "v37",
+      "canonical_file": "repos/PeetCrypto_freqtrade-stuff/Ichimoku_v37_HeikinAshi.py",
+      "source_sha256": "sha256_ab55a132c009484ace8d44aee152e8b951639b3e2b37b0825b4aa5513baa79a5",
+      "class": "Ichimoku_v37",
+      "timeframe": "4h",
+      "canonical_measured": "true",
+      "classification": "",
+      "cluster": {
+        "direction": "long_only",
+        "logic": "trend_following",
+        "speed": "swing",
+        "complexity": "simple",
+        "exit_style": "roi",
+        "dca": false,
+        "informative": true,
+        "regime_hypothesis": "bull"
+      },
+      "cluster_why": "{'direction': 'canonical direction_capability after applying can_short', 'speed': '4h', 'logic': 'trend indicators (1) outweigh oscillators (0)', 'exit': 'custom_exit=False trailing=False roi=True', 'complexity': 'loc=129 indicators=1 hyperopt=False informative=True dca=False'}",
+      "docstring": "",
+      "settings": {
+        "minimal_roi": "{'0': 100}",
+        "stoploss": "-0.99",
+        "timeframe": "'4h'",
+        "process_only_new_candles": "True",
+        "use_sell_signal": "True",
+        "startup_candle_count": "150"
+      },
+      "indicators": [
+        "qtpylib.heikinashi(dataframe_inf)",
+        "qtpylib.heikinashi(dataframe)"
+      ],
+      "signals": {
+        "informative_pairs": [
+          "if not self.dp:"
+        ],
+        "populate_indicators": [
+          "if not self.dp:"
+        ],
+        "populate_buy_trend": [
+          "buy = dataframe['ha_4h_close'].crossed_above(dataframe['senkou_a_1d']) & (dataframe['ha_4h_close'].shift() < dataframe['senkou_a_1d']) & (dataframe['cloud_green_1d'] == True) | dataframe['ha_4h_close'].crossed_above(dataframe['senkou_b_1d']) & (d ..."
+        ],
+        "populate_sell_trend": [
+          "sell = (dataframe['ha_4h_close'] < dataframe['senkou_a_1d']) | (dataframe['ha_4h_close'] < dataframe['senkou_b_1d'])"
+        ]
+      },
+      "functions": [
+        "informative_pairs (9 lines)",
+        "populate_indicators (43 lines)",
+        "populate_buy_trend (17 lines)",
+        "populate_sell_trend (9 lines)"
+      ]
+    },
+    {
+      "strategy_id": "Ichimoku",
+      "family_stem": "Ichimoku",
+      "version_key": "",
+      "canonical_file": "repos/PeetCrypto_freqtrade-stuff/Ichimoku.py",
+      "source_sha256": "sha256_377b0bc34d771853f170018b2aca5ee4b60d730dca233fd9141005f79fb69231",
+      "class": "Ichimoku",
+      "timeframe": "5m",
+      "canonical_measured": "true",
+      "classification": "",
+      "cluster": {
+        "direction": "long_only",
+        "logic": "trend_following",
+        "speed": "scalp",
+        "complexity": "simple",
+        "exit_style": "trailing+roi",
+        "dca": false,
+        "informative": true,
+        "regime_hypothesis": "bull"
+      },
+      "cluster_why": "{'direction': 'canonical direction_capability after applying can_short', 'speed': '5m', 'logic': 'trend indicators (1) outweigh oscillators (0)', 'exit': 'custom_exit=False trailing=True roi=True', 'complexity': 'loc=89 indicators=1 hyperopt=False informative=True dca=False'}",
+      "docstring": "Ichimoku Strategy",
+      "settings": {
+        "minimal_roi": "{'0': 1}",
+        "stoploss": "-0.1",
+        "timeframe": "'5m'",
+        "trailing_stop": "True",
+        "trailing_stop_positive": "0.01",
+        "trailing_stop_positive_offset": "0.02",
+        "use_sell_signal": "True"
+      },
+      "indicators": [],
+      "signals": {
+        "informative_pairs": [],
+        "populate_indicators": [],
+        "populate_buy_trend": [
+          "buy = (dataframe['tenkan'].shift(1) < dataframe['kijun'].shift(1)) & (dataframe['tenkan'] > dataframe['kijun']) & (dataframe['cloud_red'] == True)"
+        ],
+        "populate_sell_trend": [
+          "sell = ()"
+        ]
+      },
+      "functions": [
+        "informative_pairs (5 lines)",
+        "populate_indicators (13 lines)",
+        "populate_buy_trend (13 lines)",
+        "populate_sell_trend (9 lines)"
+      ]
+    },
+    {
+      "strategy_id": "CombinedBinHAndClucV8",
+      "family_stem": "CombinedBinHAndCluc",
+      "version_key": "V8",
+      "canonical_file": "repos/PeetCrypto_freqtrade-stuff/CombinedBinHAndClucV8.py",
+      "source_sha256": "sha256_43b43b5cfdfe72d0f5ea3e0eafc62a49addcf5159ea6514788e7117b33002de3",
+      "class": "CombinedBinHAndClucV8",
+      "timeframe": "5m",
+      "canonical_measured": "true",
+      "classification": "",
+      "cluster": {
+        "direction": "long_only",
+        "logic": "volatility",
+        "speed": "scalp",
+        "complexity": "moderate",
+        "exit_style": "custom+roi",
+        "dca": false,
+        "informative": true,
+        "regime_hypothesis": "high_vol"
+      },
+      "cluster_why": "{'direction': 'canonical direction_capability after applying can_short', 'speed': '5m', 'logic': 'volatility indicators only (2)', 'exit': 'custom_exit=True trailing=False roi=True', 'complexity': 'loc=585 indicators=6 hyperopt=True informative=True dca=False'}",
+      "docstring": "",
+      "settings": {
+        "minimal_roi": "{'0': 10}",
+        "stoploss": "-0.99",
+        "timeframe": "'5m'",
+        "use_sell_signal": "True",
+        "trailing_stop": "False",
+        "trailing_stop_positive": "0.01",
+        "trailing_stop_positive_offset": "0.03",
+        "use_custom_stoploss": "True",
+        "process_only_new_candles": "True",
+        "startup_candle_count": "200"
+      },
+      "indicators": [
+        "ta.ATR(df, timeperiod=14)",
+        "np.where(df['close'] > df['smaHigh'], 1, np.where(df['close'] < df['smaLow'], -1, np.NAN))",
+        "np.where(df['hlv'] < 0, df['smaHigh'], df['smaLow'])",
+        "np.where(df['hlv'] < 0, df['smaLow'], df['smaHigh'])",
+        "np.where(df['close'] < df['smaLow'], -1, np.NAN)",
+        "ta.EMA(informative_1h, timeperiod=50)",
+        "ta.EMA(informative_1h, timeperiod=100)",
+        "ta.EMA(informative_1h, timeperiod=200)",
+        "ta.SMA(informative_1h, timeperiod=200)",
+        "ta.RSI(informative_1h, timeperiod=14)",
+        "qtpylib.bollinger_bands(dataframe['close'], window=40, stds=2)",
+        "qtpylib.bollinger_bands(qtpylib.typical_price(dataframe), window=20, stds=2)",
+        "ta.EMA(dataframe, timeperiod=50)",
+        "ta.EMA(dataframe, timeperiod=12)",
+        "ta.EMA(dataframe, timeperiod=26)",
+        "ta.EMA(dataframe, timeperiod=200)",
+        "ta.SMA(dataframe, timeperiod=5)",
+        "ta.SMA(dataframe, timeperiod=200)",
+        "ta.MFI(dataframe, timeperiod=14)",
+        "ta.RSI(dataframe, timeperiod=14)",
+        "qtpylib.typical_price(dataframe)"
+      ],
+      "signals": {
+        "custom_stoploss": [
+          "if (current_profit < 0) & (current_time - timedelta(minutes=280) > trade.open_date_utc):",
+          "if current_profit < self.sell_custom_stoploss_1.value:",
+          "if last_candle is not None:",
+          "if last_candle['sma_200_dec'] & last_candle['sma_200_dec_1h']:"
+        ],
+        "informative_pairs": [],
+        "populate_indicators": [],
+        "populate_buy_trend": [
+          "if conditions:",
+          "buy = reduce(lambda x, y: x | y, conditions)"
+        ],
+        "populate_sell_trend": [
+          "if conditions:",
+          "sell = reduce(lambda x, y: x | y, conditions)"
+        ]
+      },
+      "functions": [
+        "custom_stoploss (21 lines)",
+        "custom_sell (56 lines)",
+        "informative_pairs (4 lines)",
+        "informative_1h_indicators (25 lines)",
+        "normal_tf_indicators (38 lines)",
+        "populate_indicators (11 lines)",
+        "populate_buy_trend (191 lines)",
+        "populate_sell_trend (21 lines)"
+      ]
+    },
+    {
+      "strategy_id": "CombinedBinHAndCluc",
+      "family_stem": "CombinedBinHAndCluc",
+      "version_key": "",
+      "canonical_file": "repos/PeetCrypto_freqtrade-stuff/CombinedBinHAndCluc.py",
+      "source_sha256": "sha256_ac3ab1a70862fbf66c26955ede2925469b4d4336d34c964cd2f037f01a66d3ac",
+      "class": "CombinedBinHAndCluc",
+      "timeframe": "5m",
+      "canonical_measured": "true",
+      "classification": "",
+      "cluster": {
+        "direction": "long_only",
+        "logic": "trend_following",
+        "speed": "scalp",
+        "complexity": "simple",
+        "exit_style": "roi",
+        "dca": false,
+        "informative": false,
+        "regime_hypothesis": "bull"
+      },
+      "cluster_why": "{'direction': 'canonical direction_capability after applying can_short', 'speed': '5m', 'logic': 'trend indicators (1) outweigh oscillators (0)', 'exit': 'custom_exit=False trailing=False roi=True', 'complexity': 'loc=76 indicators=2 hyperopt=False informative=False dca=False'}",
+      "docstring": "",
+      "settings": {
+        "minimal_roi": "{'0': 0.05}",
+        "stoploss": "-0.05",
+        "timeframe": "'5m'",
+        "use_sell_signal": "True"
+      },
+      "indicators": [
+        "np.nan_to_num(rolling_mean)",
+        "np.nan_to_num(lower_band)",
+        "qtpylib.bollinger_bands(qtpylib.typical_price(dataframe), window=20, stds=2)",
+        "ta.EMA(dataframe, timeperiod=50)",
+        "qtpylib.typical_price(dataframe)"
+      ],
+      "signals": {
+        "populate_indicators": [],
+        "populate_buy_trend": [
+          "buy = dataframe['lower'].shift().gt(0) & dataframe['bbdelta'].gt(dataframe['close'] * 0.008) & dataframe['closedelta'].gt(dataframe['close'] * 0.0175) & dataframe['tail'].lt(dataframe['bbdelta'] * 0.25) & dataframe['close'].lt(dataframe['lower']. ..."
+        ],
+        "populate_sell_trend": [
+          "sell = dataframe['close'] > dataframe['bb_middleband']"
+        ]
+      },
+      "functions": [
+        "populate_indicators (15 lines)",
+        "populate_buy_trend (18 lines)",
+        "populate_sell_trend (8 lines)"
+      ]
+    },
+    {
+      "strategy_id": "BinHV27",
+      "family_stem": "BinH",
+      "version_key": "V27",
+      "canonical_file": "repos/PeetCrypto_freqtrade-stuff/BinHV27.py",
+      "source_sha256": "sha256_62b8250f065c4767b639e129bbb7e778db8715558db6b0a8bb5570bf4a00ae25",
+      "class": "BinHV27",
+      "timeframe": "5m",
+      "canonical_measured": "true",
+      "classification": "",
+      "cluster": {
+        "direction": "long_only",
+        "logic": "trend_following",
+        "speed": "scalp",
+        "complexity": "simple",
+        "exit_style": "roi",
+        "dca": false,
+        "informative": false,
+        "regime_hypothesis": "bull"
+      },
+      "cluster_why": "{'direction': 'canonical direction_capability after applying can_short', 'speed': '5m', 'logic': 'trend indicators (5) outweigh oscillators (1)', 'exit': 'custom_exit=False trailing=False roi=True', 'complexity': 'loc=136 indicators=6 hyperopt=False informative=False dca=False'}",
+      "docstring": "strategy sponsored by user BinH from slack",
+      "settings": {
+        "minimal_roi": "{'0': 1}",
+        "stoploss": "-0.5",
+        "timeframe": "'5m'"
+      },
+      "indicators": [
+        "numpy.nan_to_num(ta.RSI(dataframe, timeperiod=5))",
+        "numpy.nan_to_num(ta.EMA(rsiframe, timeperiod=5))",
+        "numpy.nan_to_num(ta.ADX(dataframe))",
+        "numpy.nan_to_num(ta.MINUS_DI(dataframe))",
+        "numpy.nan_to_num(ta.EMA(minusdiframe, timeperiod=25))",
+        "numpy.nan_to_num(ta.PLUS_DI(dataframe))",
+        "numpy.nan_to_num(ta.EMA(plusdiframe, timeperiod=5))",
+        "numpy.nan_to_num(ta.EMA(dataframe, timeperiod=60))",
+        "numpy.nan_to_num(ta.EMA(dataframe, timeperiod=120))",
+        "numpy.nan_to_num(ta.SMA(dataframe, timeperiod=120))",
+        "numpy.nan_to_num(ta.SMA(dataframe, timeperiod=240))",
+        "ta.RSI(dataframe, timeperiod=5)",
+        "ta.EMA(rsiframe, timeperiod=5)",
+        "ta.ADX(dataframe)",
+        "ta.MINUS_DI(dataframe)",
+        "ta.EMA(minusdiframe, timeperiod=25)",
+        "ta.PLUS_DI(dataframe)",
+        "ta.EMA(plusdiframe, timeperiod=5)",
+        "ta.EMA(dataframe, timeperiod=60)",
+        "ta.EMA(dataframe, timeperiod=120)",
+        "ta.SMA(dataframe, timeperiod=120)",
+        "ta.SMA(dataframe, timeperiod=240)"
+      ],
+      "signals": {
+        "populate_indicators": [],
+        "populate_buy_trend": [
+          "buy = dataframe['slowsma'].gt(0) & dataframe['close'].lt(dataframe['highsma']) & dataframe['close'].lt(dataframe['lowsma']) & dataframe['minusdi'].gt(dataframe['minusdiema']) & dataframe['rsi'].ge(dataframe['rsi'].shift()) & (~dataframe['preparec ..."
+        ],
+        "populate_sell_trend": [
+          "sell = ~dataframe['preparechangetrendconfirm'] & ~dataframe['continueup'] & (dataframe['close'].gt(dataframe['lowsma']) | dataframe['close'].gt(dataframe['highsma'])) & dataframe['highsma'].gt(0) & dataframe['bigdown'] | ~dataframe['preparechanget ..."
+        ]
+      },
+      "functions": [
+        "populate_indicators (24 lines)",
+        "populate_buy_trend (37 lines)",
+        "populate_sell_trend (42 lines)"
+      ]
+    },
+    {
+      "strategy_id": "BinHV45",
+      "family_stem": "BinH",
+      "version_key": "V45",
+      "canonical_file": "repos/Foxel05_freqtrade-stuff/strategies/BinHV45.py",
+      "source_sha256": "sha256_dad74375f7b6746a8003d047f6bebee2929f1d0258651cb71295aae3abe0ad2e",
+      "class": "BinHV45",
+      "timeframe": "1m",
+      "canonical_measured": "true",
+      "classification": "",
+      "cluster": {
+        "direction": "long_only",
+        "logic": "volatility",
+        "speed": "scalp",
+        "complexity": "simple",
+        "exit_style": "roi",
+        "dca": false,
+        "informative": false,
+        "regime_hypothesis": "high_vol"
+      },
+      "cluster_why": "{'direction': 'canonical direction_capability after applying can_short', 'speed': '1m', 'logic': 'volatility indicators only (1)', 'exit': 'custom_exit=False trailing=False roi=True', 'complexity': 'loc=71 indicators=1 hyperopt=False informative=False dca=False'}",
+      "docstring": "",
+      "settings": {
+        "minimal_roi": "{'0': 0.0125}",
+        "stoploss": "-0.05",
+        "timeframe": "'1m'"
+      },
+      "indicators": [
+        "qtpylib.bollinger_bands(dataframe['close'], window=40, stds=2)"
+      ],
+      "signals": {
+        "populate_indicators": [],
+        "populate_buy_trend": [
+          "buy = dataframe['lower'].shift().gt(0) & dataframe['bbdelta'].gt(dataframe['close'] * self.buy_bbdelta.value / 1000) & dataframe['closedelta'].gt(dataframe['close'] * self.buy_closedelta.value / 1000) & dataframe['tail'].lt(dataframe['bbdelta'] * ..."
+        ],
+        "populate_sell_trend": [
+          "sell = :"
+        ]
+      },
+      "functions": [
+        "populate_indicators (11 lines)",
+        "populate_buy_trend (12 lines)",
+        "populate_sell_trend (6 lines)"
+      ]
+    },
+    {
+      "strategy_id": "NostalgiaForInfinityX8",
+      "family_stem": "NostalgiaForInfinityX",
+      "version_key": "",
+      "canonical_file": "repos/iterativv_NostalgiaForInfinity/NostalgiaForInfinityX8.py",
+      "source_sha256": "sha256_14762b0c6bddd77d61bb035c4ec351de0db49b21adba1b2a486d35d715032e85",
+      "class": "NostalgiaForInfinityX8",
+      "timeframe": "5m",
+      "canonical_measured": "true",
+      "classification": "",
+      "cluster": {
+        "direction": null,
+        "logic": null,
+        "speed": null,
+        "complexity": null,
+        "exit_style": null,
+        "dca": null,
+        "informative": null,
+        "regime_hypothesis": null
+      },
+      "cluster_why": "",
+      "docstring": "",
+      "settings": {
+        "stoploss": "-0.99",
+        "trailing_stop": "False",
+        "trailing_stop_positive": "0.01",
+        "trailing_stop_positive_offset": "0.03",
+        "use_custom_stoploss": "False",
+        "timeframe": "'5m'",
+        "process_only_new_candles": "True",
+        "startup_candle_count": "800",
+        "position_adjustment_enable": "True"
+      },
+      "indicators": [
+        "ta.EMA(df, timeperiod=ema1_length)",
+        "ta.EMA(df, timeperiod=ema2_length)",
+        "np.asarray(condition, dtype=bool)",
+        "np.zeros_like(close, dtype=np.float64)",
+        "np.vstack([mfv, volume])",
+        "np.nan_to_num(stacked, nan=0.0)",
+        "np.cumsum(stacked_clean, axis=1)",
+        "np.full(stacked.shape, np.nan, dtype=np.float64)",
+        "np.where(vol_sum == 0, np.nan, vol_sum)",
+        "np.asarray(arr, dtype=np.float64)",
+        "np.full(arr.shape, np.nan, dtype=np.float64)",
+        "np.divide(arr[1:] - prev, prev, out=out[1:], where=prev != 0)",
+        "np.asarray(obv, dtype=np.float64)",
+        "np.full(obv.shape, np.nan, dtype=np.float64)",
+        "np.divide(obv[1:] - prev, np.abs(prev), out=out[1:], where=valid)",
+        "np.where(denom == 0, np.nan, denom)",
+        "np.empty_like(arr)",
+        "ta.STOCHF(high_np, low_np, close_np, fastk_period=14, fastd_period=3, fastd_matype=0)",
+        "ta.MFI(high_np, low_np, close_np, volume_np, timeperiod=14)",
+        "ta.WILLR(high_np, low_np, close_np, timeperiod=14)",
+        "np.where(open_np == 0, np.nan, open_np)",
+        "np.maximum(open_np, close_np)",
+        "np.minimum(open_np, close_np)",
+        "np.where(max_oc == 0, np.nan, max_oc)",
+        "np.where(min_oc == 0, np.nan, min_oc)",
+        "np.abs((low_np - min_oc) / min_oc_calc * 100.0)",
+        "pd.DataFrame({'RSI_3': rsi_3, 'RSI_14': rsi_14, 'STOCHk_14_3_3': stoch_k, 'STOCHRSIk_14_14_3_3': stochrsi_k, 'MFI_14': mfi_14, 'CMF_20': cmf_20, 'WILLR_14': willr_14, 'AROONU_14': aroon_up, 'AROOND_14': aroon_down, 'ROC_2': roc_2, 'ROC_9':  ...",
+        "pd.concat([informative_1d, new_cols], axis=1, copy=False)",
+        "ta.ULTOSC(high_np, low_np, close_np)",
+        "ta.CCI(high_np, low_np, close_np, timeperiod=20)",
+        "ta.ADX(high_np, low_np, close_np, timeperiod=14)",
+        "ta.PLUS_DI(high_np, low_np, close_np, timeperiod=14)",
+        "ta.MINUS_DI(high_np, low_np, close_np, timeperiod=14)",
+        "pd.DataFrame({'RSI_3': rsi_3, 'RSI_14': rsi_14, 'ADX_14': adx_14, 'PLUS_DI_14': plus_di_14, 'MINUS_DI_14': minus_di_14, 'AROONU_14': aroon_up, 'AROOND_14': aroon_down, 'BBP_20_2.0': bbp_20, 'STOCHk_14_3_3': stoch_k, 'STOCHRSIk_14_14_3_3': s ...",
+        "pd.concat([informative_4h, new_cols], axis=1, copy=False)",
+        "np.where(bb_middle == 0, np.nan, bb_middle)",
+        "pd.DataFrame({'RSI_3': rsi_3, 'RSI_14': rsi_14, 'RSI_3_change_pct': rsi_3_change, 'RSI_14_change_pct': rsi_14_change, 'EMA_12': ema_12, 'EMA_200': ema_200, 'SMA_200_dec_12': sma_200_dec_12, 'SMA_200_inc_12': sma_200_inc_12, 'SMA_16': sma_16 ...",
+        "pd.concat([informative_1h, new_cols], axis=1, copy=False)",
+        "ta.OBV(close_np, volume_np)",
+        "ta.ROC(close_np, timeperiod=9)"
+      ],
+      "signals": {
+        "adjust_trade_position": [
+          "if not self.position_adjustment_enable:",
+          "if hasattr(trade, 'enter_tag'):",
+          "if is_backtest:",
+          "if not trade_is_short:",
+          "if trade_enter_tag is not None:",
+          "if not is_long_rebuy:",
+          "if is_long_rebuy:",
+          "if is_system_v4:",
+          "if is_system_v3_family:",
+          "if is_long_grind_mode or is_long_btc_mode or (not is_v2_date):",
+          "if is_long_adjust_mode or not is_long_known_mode:",
+          "if not is_short_rebuy:",
+          "if is_short_rebuy:",
+          "if is_system_v4:",
+          "if is_system_v3_family:",
+          "if is_short_grind_mode or not is_v2_date:",
+          "if is_short_adjust_mode or not is_short_known_mode:",
+          "if is_system_v4:",
+          "if not is_long_grind_mode and (not is_long_btc_mode):",
+          "if not is_long_grind_mode and (not is_long_btc_mode):",
+          "if is_system_v4:",
+          "if is_system_v3_family:",
+          "if not is_short_grind_mode:",
+          "if not is_short_grind_mode:",
+          "if is_system_v3_family:",
+          "if is_long_adjust_mode or not is_long_known_mode:",
+          "if is_long_grind_mode or is_long_btc_mode or (not is_v2_date):",
+          "if is_long_adjust_mode or not is_long_known_mode:",
+          "if is_long_grind_mode or is_long_btc_mode or (not is_v2_date):",
+          "if is_short_adjust_mode or not is_short_known_mode:",
+          "if is_short_grind_mode or not is_v2_date:",
+          "if is_short_adjust_mode or not is_short_known_mode:",
+          "if is_short_grind_mode or not is_v2_date:"
+        ],
+        "informative_pairs": [],
+        "populate_indicators": [
+          "if debug_time:",
+          "if debug:",
+          "if debug:",
+          "if debug_time:",
+          "protections_long_global = True",
+          "global_protections_long_pump = True",
+          "global_protections_long_dump = True",
+          "protections_long_rebuy = True",
+          "protections_short_global = True",
+          "global_protections_short_pump = True",
+          "global_protections_short_dump = True",
+          "protections_short_rebuy = True",
+          "if debug_time:",
+          "if btc_df.empty:",
+          "if info_df.empty:",
+          "if col in df.columns:",
+          "if not final_nan.empty:",
+          "if source == 'BTC':",
+          "if not tf_cols:",
+          "if total_nans > 0:"
+        ],
+        "confirm_trade_entry": [
+          "if entry_tag == 'force_entry':",
+          "if all((c in long_grind_mode_tags for c in entry_tags)):",
+          "if all((c in long_top_coins_mode_tags for c in entry_tags)):",
+          "if all((c in long_scalp_mode_tags for c in entry_tags)):",
+          "if self.is_futures_mode:",
+          "if len(df) >= 1:",
+          "if is_long_side:",
+          "if max_side_trades != 0:",
+          "if is_long_side and rate > last_close or (is_short_side and rate < last_close):",
+          "if is_short_side:",
+          "if side_trades >= max_side_trades:",
+          "if is_long_side and slippage < max_slippage or (is_short_side and slippage > -max_slippage):"
+        ],
+        "populate_exit_trend": [
+          "exit_long = :",
+          "exit_short = :"
+        ],
+        "populate_entry_trend": [
+          "if debug:",
+          "enter_long = :",
+          "enter_short = :",
+          "if not is_backtest:",
+          "if not is_backtest:",
+          "if long_entry_conditions:",
+          "if short_entry_conditions:",
+          "if debug:",
+          "if long_entry_signal_params[enabled_long_entry_signal]:",
+          "if short_entry_signal_params[enabled_short_entry_signal]:",
+          "if enter_tag is not None:",
+          "if long_entry_condition_index == 1:",
+          "if long_entry_condition_index == 2:",
+          "if long_entry_condition_index == 3:",
+          "if long_entry_condition_index == 4:",
+          "if long_entry_condition_index == 5:",
+          "if long_entry_condition_index == 6:",
+          "if long_entry_condition_index == 7:",
+          "if long_entry_condition_index == 8:",
+          "if long_entry_condition_index == 9:",
+          "if long_entry_condition_index == 10:",
+          "if long_entry_condition_index == 11:",
+          "if long_entry_condition_index == 21:",
+          "if long_entry_condition_index == 41:",
+          "if long_entry_condition_index == 42:",
+          "if long_entry_condition_index == 43:",
+          "if long_entry_condition_index == 44:",
+          "if long_entry_condition_index == 45:",
+          "if long_entry_condition_index == 46:",
+          "if long_entry_condition_index == 47:",
+          "if long_entry_condition_index == 61:",
+          "if long_entry_condition_index == 62:",
+          "if long_entry_condition_index == 63:",
+          "if long_entry_condition_index == 64:",
+          "if long_entry_condition_index == 65:",
+          "if long_entry_condition_index == 68:",
+          "if long_entry_condition_index == 101:",
+          "if long_entry_condition_index == 102:",
+          "if long_entry_condition_index == 103:",
+          "if long_entry_condition_index == 104:"
+        ]
+      },
+      "functions": [
+        "version (2 lines)",
+        "__init__ (138 lines)",
+        "plot_config (16 lines)",
+        "get_ticker_indicator (2 lines)",
+        "mark_profit_target (17 lines)",
+        "exit_profit_target (314 lines)",
+        "filled_order_snapshot (15 lines)",
+        "_bad_trade_controller_ema_gap_and_adverse_move (30 lines)",
+        "_bad_trade_controller_exit_reason (34 lines)",
+        "_bad_trade_controller_derisk_hold (12 lines)",
+        "_bad_trade_controller_capitulation (9 lines)",
+        "trade_order_state (10 lines)",
+        "cache_backtest_profit_snapshot (24 lines)",
+        "backtest_profit_snapshot (28 lines)",
+        "profit_or_order_snapshot (7 lines)",
+        "calc_total_profit (60 lines)",
+        "scale_stakes_for_min_stake (6 lines)",
+        "custom_exit (557 lines)",
+        "custom_stake_amount (133 lines)",
+        "order_filled (91 lines)",
+        "adjust_trade_position (204 lines)",
+        "notification_msg (134 lines)",
+        "btc_informative_pair (8 lines)",
+        "prepare_informative_merge (12 lines)",
+        "informative_pairs (16 lines)",
+        "chaikin_money_flow (17 lines)",
+        "fast_pct_change (14 lines)",
+        "obv_change_pct (9 lines)",
+        "stochrsi_k (17 lines)",
+        "calc_kst (13 lines)",
+        "validate_indicators (45 lines)",
+        "np_shift (5 lines)",
+        "informative_1d_indicators (178 lines)",
+        "informative_4h_indicators (207 lines)",
+        "informative_1h_indicators (197 lines)",
+        "informative_15m_indicators (155 lines)",
+        "base_tf_5m_indicators (503 lines)",
+        "btc_informative_1d_indicators (56 lines)",
+        "btc_informative_4h_indicators (57 lines)",
+        "btc_informative_1h_indicators (67 lines)",
+        "btc_informative_15m_indicators (67 lines)",
+        "btc_informative_5m_indicators (67 lines)",
+        "info_switcher (11 lines)",
+        "btc_info_switcher (13 lines)",
+        "populate_indicators (505 lines)",
+        "confirm_trade_entry (63 lines)",
+        "_handle_grind_mode (17 lines)",
+        "_handle_top_coins_mode (6 lines)",
+        "_handle_scalp_mode (6 lines)",
+        "confirm_trade_exit (46 lines)",
+        "check_entry_timeout (12 lines)",
+        "check_exit_timeout (15 lines)",
+        "bot_loop_start (8 lines)",
+        "leverage (19 lines)",
+        "correct_min_stake (6 lines)",
+        "is_backtest_mode (3 lines)",
+        "is_system_v3 (3 lines)",
+        "is_system_v3_1 (3 lines)",
+        "is_system_v3_2 (3 lines)",
+        "is_system_v4 (3 lines)",
+        "get_system_version_flags (8 lines)",
+        "has_valid_entry_conditions (15 lines)",
+        "update_signals_from_config (16 lines)",
+        "_set_profit_target (10 lines)",
+        "_remove_profit_target (6 lines)",
+        "get_hold_trades_config_file (24 lines)",
+        "load_hold_trades_config (11 lines)",
+        "_should_hold_trade (70 lines)",
+        "populate_exit_trend (5 lines)",
+        "populate_entry_trend (18213 lines)",
+        "long_exit_normal (247 lines)",
+        "long_exit_pump (236 lines)",
+        "long_exit_quick (294 lines)",
+        "long_exit_rebuy (269 lines)",
+        "long_exit_high_profit (230 lines)",
+        "long_exit_rapid (302 lines)",
+        "long_exit_grind (23 lines)",
+        "long_exit_btc (23 lines)",
+        "long_exit_top_coins (218 lines)",
+        "long_exit_scalp (235 lines)",
+        "long_exit_signals (84 lines)",
+        "long_exit_main (96 lines)",
+        "long_exit_williams_r (59 lines)",
+        "long_exit_dec (85 lines)",
+        "long_exit_stoploss (136 lines)",
+        "long_grind_adjust_trade_position_v2 (2026 lines)",
+        "long_buyback_entry_v2 (136 lines)",
+        "long_grind_entry_v2 (309 lines)",
+        "long_buyback_exit_v2 (21 lines)",
+        "long_grind_exit_v2 (28 lines)",
+        "long_grind_adjust_trade_position_v3 (1568 lines)",
+        "long_grind_entry_v3 (704 lines)",
+        "long_buyback_entry_v3 (15 lines)",
+        "long_rebuy_entry_v3 (14 lines)",
+        "long_grind_exit_v3 (105 lines)",
+        "long_grind_adjust_trade_position_v4 (1547 lines)",
+        "long_grind_entry_v4 (704 lines)",
+        "long_buyback_entry_v4 (15 lines)",
+        "long_rebuy_entry_v4 (14 lines)",
+        "long_grind_exit_v4 (105 lines)",
+        "long_grind_adjust_trade_position (2097 lines)",
+        "long_grind_entry (121 lines)",
+        "long_adjust_trade_position_no_derisk (1414 lines)",
+        "long_rebuy_adjust_trade_position (198 lines)",
+        "long_rebuy_adjust_trade_position_v3 (196 lines)",
+        "long_rebuy_adjust_trade_position_v4 (196 lines)",
+        "short_exit_normal (247 lines)",
+        "short_exit_pump (239 lines)",
+        "short_exit_quick (282 lines)",
+        "short_exit_rebuy (281 lines)",
+        "short_exit_high_profit (222 lines)",
+        "short_exit_rapid (344 lines)",
+        "short_exit_grind (24 lines)",
+        "short_exit_top_coins (245 lines)",
+        "short_exit_scalp (286 lines)",
+        "short_exit_signals (84 lines)",
+        "short_exit_main (100 lines)",
+        "short_exit_williams_r (59 lines)",
+        "short_exit_dec (83 lines)",
+        "short_exit_stoploss (136 lines)",
+        "short_grind_adjust_trade_position_v2 (2000 lines)",
+        "short_buyback_entry_v2 (137 lines)",
+        "short_grind_entry_v2 (310 lines)",
+        "short_buyback_exit_v2 (21 lines)",
+        "short_grind_exit_v2 (21 lines)",
+        "short_grind_exit_v3 (106 lines)",
+        "short_grind_adjust_trade_position_v3 (1376 lines)",
+        "short_grind_entry_v3 (698 lines)",
+        "short_rebuy_entry_v3 (16 lines)",
+        "short_grind_adjust_trade_position_v4 (1374 lines)",
+        "short_grind_entry_v4 (698 lines)",
+        "short_rebuy_entry_v4 (16 lines)",
+        "short_grind_exit_v4 (106 lines)",
+        "short_grind_adjust_trade_position (2015 lines)",
+        "short_grind_entry (119 lines)",
+        "short_adjust_trade_position_no_derisk (1414 lines)",
+        "short_rebuy_adjust_trade_position (188 lines)",
+        "short_rebuy_adjust_trade_position_v3 (196 lines)",
+        "short_rebuy_adjust_trade_position_v4 (196 lines)",
+        "__init__ (9 lines)",
+        "rapidjson_load_kwargs (2 lines)",
+        "rapidjson_dump_kwargs (2 lines)",
+        "load (3 lines)",
+        "save (3 lines)",
+        "process_loaded_data (2 lines)",
+        "_load (15 lines)",
+        "_save (9 lines)",
+        "rapidjson_load_kwargs (6 lines)",
+        "rapidjson_dump_kwargs (5 lines)",
+        "save (2 lines)",
+        "process_loaded_data (111 lines)",
+        "_object_hook (9 lines)"
+      ]
+    },
+    {
+      "strategy_id": "NostalgiaForInfinityNext",
+      "family_stem": "NostalgiaForInfinityNext",
+      "version_key": "",
+      "canonical_file": "repair/patched/repos/Foxel05_freqtrade-stuff/strategies/NostalgiaForInfinityNext.py",
+      "source_sha256": "sha256_cc9762e543b69a180d1442d7f40f0620be19108d7342d17e29a1cf514741f7f5",
+      "class": "NostalgiaForInfinityNext",
+      "timeframe": "5m",
+      "canonical_measured": "true",
+      "classification": "",
+      "cluster": {
+        "direction": "long_only",
+        "logic": "trend_following",
+        "speed": "scalp",
+        "complexity": "complex",
+        "exit_style": "custom+roi",
+        "dca": false,
+        "informative": true,
+        "regime_hypothesis": "bull"
+      },
+      "cluster_why": "{'direction': 'canonical direction_capability after applying can_short', 'speed': '5m', 'logic': 'trend indicators (9) outweigh oscillators (5)', 'exit': 'custom_exit=True trailing=False roi=True', 'complexity': 'loc=5021 indicators=17 hyperopt=False informative=True dca=False'}",
+      "docstring": "",
+      "settings": {
+        "minimal_roi": "{'0': 10}",
+        "stoploss": "-0.99",
+        "trailing_stop": "False",
+        "trailing_stop_positive": "0.01",
+        "trailing_stop_positive_offset": "0.03",
+        "use_custom_stoploss": "False",
+        "timeframe": "'5m'",
+        "process_only_new_candles": "True",
+        "use_sell_signal": "True",
+        "startup_candle_count": "480"
+      },
+      "indicators": [
+        "ta.EMA(dataframe, timeperiod=sma1_length)",
+        "ta.EMA(dataframe, timeperiod=sma2_length)",
+        "ta.EMA(ema_data, timeperiod=timeperiod)",
+        "ta.WMA(2 * ta.WMA(wma_data, int(math.floor(timeperiod / 2))) - ta.WMA(wma_data, timeperiod), int(round(np.sqrt(timeperiod))))",
+        "ta.ATR(df, timeperiod=period)",
+        "np.full(len(df), 0.0)",
+        "np.where(pm_arr > 0.0, np.where(mavalue < pm_arr, 'down', 'up'), 'nan')",
+        "ta.ATR(dataframe, timeperiod=14)",
+        "np.where(hlv < 0, smaHigh, smaLow)",
+        "np.where(hlv < 0, smaLow, smaHigh)",
+        "ta.EMA(informative_1h, timeperiod=12)",
+        "ta.EMA(informative_1h, timeperiod=15)",
+        "ta.EMA(informative_1h, timeperiod=20)",
+        "ta.EMA(informative_1h, timeperiod=25)",
+        "ta.EMA(informative_1h, timeperiod=26)",
+        "ta.EMA(informative_1h, timeperiod=35)",
+        "ta.EMA(informative_1h, timeperiod=50)",
+        "ta.EMA(informative_1h, timeperiod=100)",
+        "ta.EMA(informative_1h, timeperiod=200)",
+        "ta.SMA(informative_1h, timeperiod=200)",
+        "ta.RSI(informative_1h, timeperiod=14)",
+        "qtpylib.bollinger_bands(qtpylib.typical_price(informative_1h), window=20, stds=2)",
+        "np.where(crsi_closechange.gt(1), 1.0, np.where(crsi_closechange.lt(1), -1.0, 0.0))",
+        "qtpylib.bollinger_bands(dataframe['close'], window=40, stds=2)",
+        "qtpylib.bollinger_bands(qtpylib.typical_price(dataframe), window=20, stds=2)",
+        "ta.EMA(dataframe, timeperiod=12)",
+        "ta.EMA(dataframe, timeperiod=13)",
+        "ta.EMA(dataframe, timeperiod=15)",
+        "ta.EMA(dataframe, timeperiod=16)",
+        "ta.EMA(dataframe, timeperiod=20)",
+        "ta.EMA(dataframe, timeperiod=25)",
+        "ta.EMA(dataframe, timeperiod=26)",
+        "ta.EMA(dataframe, timeperiod=35)",
+        "ta.EMA(dataframe, timeperiod=50)",
+        "ta.EMA(dataframe, timeperiod=100)",
+        "ta.EMA(dataframe, timeperiod=200)",
+        "ta.SMA(dataframe, timeperiod=5)",
+        "ta.SMA(dataframe, timeperiod=15)",
+        "ta.SMA(dataframe, timeperiod=20)",
+        "ta.SMA(dataframe, timeperiod=30)"
+      ],
+      "signals": {
+        "informative_pairs": [
+          "if self.config['stake_currency'] in ['USDT', 'BUSD', 'USDC', 'DAI', 'TUSD', 'PAX', 'USD', 'EUR', 'GBP']:"
+        ],
+        "populate_indicators": [
+          "if self.config['stake_currency'] in ['USDT', 'BUSD', 'USDC', 'DAI', 'TUSD', 'PAX', 'USD', 'EUR', 'GBP']:",
+          "if self.has_BTC_base_tf:",
+          "if self.has_BTC_info_tf:",
+          "if self.info_timeframe != 'none':",
+          "if self.res_timeframe != 'none':",
+          "if self.has_loop_perf_logging:"
+        ],
+        "populate_buy_trend": [
+          "if conditions:",
+          "if self.buy_params[f'buy_condition_{index}_enable']:",
+          "if global_buy_protection_params['ema_fast']:",
+          "if global_buy_protection_params['ema_slow']:",
+          "if global_buy_protection_params['close_above_ema_fast']:",
+          "if global_buy_protection_params['close_above_ema_slow']:",
+          "if global_buy_protection_params['sma200_rising']:",
+          "if global_buy_protection_params['sma200_1h_rising']:",
+          "if global_buy_protection_params['safe_dips']:",
+          "if global_buy_protection_params['safe_pump']:",
+          "if global_buy_protection_params['btc_1h_not_downtrend']:",
+          "if not self.config['runmode'].value in ('live', 'dry_run'):",
+          "if index == 1:",
+          "if self.has_bt_agefilter:",
+          "if self.has_downtime_protection:",
+          "if index == 2:",
+          "if index == 3:",
+          "if index == 4:",
+          "if index == 5:",
+          "if index == 6:",
+          "if index == 7:",
+          "if index == 8:",
+          "if index == 9:",
+          "if index == 10:",
+          "if index == 11:",
+          "if index == 12:",
+          "if index == 13:",
+          "if index == 14:",
+          "if index == 15:",
+          "if index == 16:",
+          "if index == 17:",
+          "if index == 18:",
+          "if index == 19:",
+          "if index == 20:",
+          "if index == 21:",
+          "if index == 22:",
+          "if index == 23:",
+          "if index == 24:",
+          "if index == 25:",
+          "if index == 26:"
+        ],
+        "populate_sell_trend": [
+          "sell = :"
+        ]
+      },
+      "functions": [
+        "__init__ (9 lines)",
+        "get_hold_trades_config_file (24 lines)",
+        "load_hold_trades_config (9 lines)",
+        "bot_loop_start (15 lines)",
+        "get_ticker_indicator (2 lines)",
+        "sell_over_main (174 lines)",
+        "sell_under_main (163 lines)",
+        "sell_pump_main (374 lines)",
+        "sell_dec_main (7 lines)",
+        "sell_trail_main (11 lines)",
+        "sell_duration_main (9 lines)",
+        "sell_under_min (11 lines)",
+        "sell_stoploss (16 lines)",
+        "sell_pump_dec (11 lines)",
+        "sell_pump_extra (10 lines)",
+        "sell_recover (8 lines)",
+        "sell_r_1 (39 lines)",
+        "sell_r_2 (39 lines)",
+        "sell_r_3 (15 lines)",
+        "sell_r_4 (39 lines)",
+        "sell_r_5 (39 lines)",
+        "mark_profit_target (5 lines)",
+        "sell_profit_target (6 lines)",
+        "sell_quick_mode (19 lines)",
+        "sell_ichi (22 lines)",
+        "sell_long_mode (77 lines)",
+        "custom_sell (201 lines)",
+        "range_percent_change (14 lines)",
+        "top_percent_change (11 lines)",
+        "range_maxgap (8 lines)",
+        "range_maxgap_adjusted (9 lines)",
+        "range_height (8 lines)",
+        "safe_pump (10 lines)",
+        "safe_dips (14 lines)",
+        "informative_pairs (13 lines)",
+        "informative_1h_indicators (140 lines)",
+        "normal_tf_indicators (154 lines)",
+        "resampled_tf_indicators (6 lines)",
+        "base_tf_btc_indicators (11 lines)",
+        "info_tf_btc_indicators (12 lines)",
+        "populate_indicators (60 lines)",
+        "populate_buy_trend (634 lines)",
+        "populate_sell_trend (4 lines)",
+        "confirm_trade_exit (29 lines)",
+        "_set_profit_target (7 lines)",
+        "_remove_profit_target (4 lines)",
+        "_should_hold_trade (65 lines)",
+        "__init__ (9 lines)",
+        "rapidjson_load_kwargs (2 lines)",
+        "rapidjson_dump_kwargs (2 lines)",
+        "load (3 lines)",
+        "save (3 lines)",
+        "process_loaded_data (2 lines)",
+        "_load (14 lines)",
+        "_save (9 lines)",
+        "rapidjson_load_kwargs (5 lines)",
+        "rapidjson_dump_kwargs (5 lines)",
+        "save (2 lines)",
+        "process_loaded_data (121 lines)",
+        "_object_hook (9 lines)"
+      ]
+    },
+    {
+      "strategy_id": "roger27",
+      "family_stem": "roger",
+      "version_key": "",
+      "canonical_file": "repos/remiotore_ccxt-freqtrade/strategies/roger27.py",
+      "source_sha256": "sha256_c0e591ac3a313bed17b588ffaaf7eeb28832710534e4b60c2c6b66d88c2e16e7",
+      "class": "roger27",
+      "timeframe": "15m",
+      "canonical_measured": "false",
+      "classification": "",
+      "cluster": {
+        "direction": null,
+        "logic": null,
+        "speed": null,
+        "complexity": null,
+        "exit_style": null,
+        "dca": null,
+        "informative": null,
+        "regime_hypothesis": null
+      },
+      "cluster_why": "",
+      "docstring": "",
+      "settings": {
+        "can_short": "False",
+        "minimal_roi": "{'0': 0.5}",
+        "stoploss": "-0.25",
+        "use_custom_stoploss": "True",
+        "trailing_stop": "True",
+        "trailing_stop_positive": "0.001",
+        "trailing_stop_positive_offset": "0.05",
+        "timeframe": "'15m'",
+        "process_only_new_candles": "True"
+      },
+      "indicators": [
+        "ta.SMA(dataframe, timeperiod=200)",
+        "ta.SMA(dataframe, timeperiod=50)",
+        "ta.SMA(dataframe, timeperiod=20)",
+        "ta.EMA(dataframe, timeperiod=200)",
+        "ta.EMA(dataframe, timeperiod=50)",
+        "ta.EMA(dataframe, timeperiod=20)",
+        "qtpylib.bollinger_bands(qtpylib.typical_price(dataframe), window=20, stds=2)",
+        "ta.CDL3INSIDE(dataframe)",
+        "ta.CDL3OUTSIDE(dataframe)",
+        "ta.CDL3STARSINSOUTH(dataframe)",
+        "ta.CDLHAMMER(dataframe)",
+        "ta.CDLINVERTEDHAMMER(dataframe)",
+        "ta.CDL3BLACKCROWS(dataframe)",
+        "ta.CDL3WHITESOLDIERS(dataframe)",
+        "ta.CDL3LINESTRIKE(dataframe)",
+        "ta.CDLGRAVESTONEDOJI(dataframe)",
+        "ta.CDLSHOOTINGSTAR(dataframe)",
+        "ta.CDLENGULFING(dataframe)",
+        "ta.ATR(dataframe, timeperiod=4)",
+        "ta.MACD(dataframe)",
+        "qtpylib.typical_price(dataframe)"
+      ],
+      "signals": {
+        "populate_indicators": [],
+        "populate_entry_trend": [
+          "buy = bullish_conditions | candlestick_patterns & macd_condition"
+        ],
+        "populate_exit_trend": [
+          "sell = bearish_conditions & candlestick_patterns & macd_condition"
+        ],
+        "custom_stoploss": [
+          "if peak_profit_drawdown > 0.02:",
+          "if current_profit > 0.1:",
+          "if peak_profit_drawdown > 0.1:",
+          "if current_profit > 0.05:"
+        ]
+      },
+      "functions": [
+        "on_trade_update (9 lines)",
+        "on_trade_close (3 lines)",
+        "populate_indicators (56 lines)",
+        "populate_entry_trend (37 lines)",
+        "populate_exit_trend (39 lines)",
+        "calc_stop_loss_pct (2 lines)",
+        "calculate_dynamic_take_profit (9 lines)",
+        "custom_take_profit (7 lines)",
+        "custom_stoploss (21 lines)"
+      ]
+    },
+    {
+      "strategy_id": "roger",
+      "family_stem": "roger",
+      "version_key": "",
+      "canonical_file": "repos/remiotore_ccxt-freqtrade/strategies/roger.py",
+      "source_sha256": "sha256_718c59f3c2b4644e1ef8a11c32f4c74468e92e0cde033ad74c6ba79a31648639",
+      "class": "roger",
+      "timeframe": "15m",
+      "canonical_measured": "false",
+      "classification": "",
+      "cluster": {
+        "direction": null,
+        "logic": null,
+        "speed": null,
+        "complexity": null,
+        "exit_style": null,
+        "dca": null,
+        "informative": null,
+        "regime_hypothesis": null
+      },
+      "cluster_why": "",
+      "docstring": "",
+      "settings": {
+        "timeframe": "'15m'",
+        "minimal_roi": "{'0': 1}",
+        "stoploss": "-0.2",
+        "use_custom_stoploss": "True"
+      },
+      "indicators": [
+        "pd.to_datetime(dataframe['date'])",
+        "ta.vwap(dataframe['high'], dataframe['low'], dataframe['close'], dataframe['volume'], anchor='D', offset=None)",
+        "ta.atr(dataframe['high'], dataframe['low'], dataframe['close'], length=150)",
+        "ta.rsi(dataframe['close'], length=16)",
+        "np.percentile(x, p)",
+        "np.isnan(atr_stoploss)"
+      ],
+      "signals": {
+        "custom_stoploss": [
+          "if trade.stop_loss == trade.initial_stop_loss:",
+          "if np.isnan(atr_stoploss):"
+        ],
+        "populate_indicators": [
+          "if up_trend == 1 and down_trend == 1:",
+          "if max(dataframe['open'][i], dataframe['close'][i]) >= dataframe['VWAP'][i]:",
+          "if min(dataframe['open'][i], dataframe['close'][i]) <= dataframe['VWAP'][i]:",
+          "if up_trend == 1:",
+          "if down_trend == 1:"
+        ],
+        "populate_entry_trend": [
+          "buy = (dataframe['volume'] > 0) & (dataframe['VWAP_signal'] == 2) & (dataframe['rsi'] < dataframe['rsi_pnr_low']) & (dataframe['close'] <= dataframe['lower_band']) & (dataframe['close'].shift(1) <= dataframe['lower_band'].shift(1)) & (dataframe[' ..."
+        ],
+        "populate_exit_trend": [
+          "sell = (dataframe['volume'] > 0) & (dataframe['close'] >= dataframe['upper_band']) & (dataframe['rsi'] > dataframe['rsi_pnr_high']) & (dataframe['lower_band'] != dataframe['upper_band'])"
+        ]
+      },
+      "functions": [
+        "custom_stoploss (14 lines)",
+        "populate_indicators (58 lines)",
+        "populate_entry_trend (22 lines)",
+        "populate_exit_trend (18 lines)"
+      ]
+    },
+    {
+      "strategy_id": "GeneTrader_gen9_1735161895_5455",
+      "family_stem": "GeneTrader_gen",
+      "version_key": "2024-12-25",
+      "canonical_file": "repos/remiotore_ccxt-freqtrade/strategies/GeneTrader_gen9_1735161895_5455.py",
+      "source_sha256": "sha256_d8494f08b7c845fe121be05d10c4a8a7dd06aaad8ca5be810509d51723d7216f",
+      "class": "GeneTrader_gen9_1735161895_5455",
+      "timeframe": "5m",
+      "canonical_measured": "false",
+      "classification": "",
+      "cluster": {
+        "direction": null,
+        "logic": null,
+        "speed": null,
+        "complexity": null,
+        "exit_style": null,
+        "dca": null,
+        "informative": null,
+        "regime_hypothesis": null
+      },
+      "cluster_why": "",
+      "docstring": "PASTE OUTPUT FROM HYPEROPT HERE Can be overridden for specific sub-strategies (stake currencies) at the bottom.",
+      "settings": {
+        "minimal_roi": "{'0': 100}",
+        "position_adjustment_enable": "True",
+        "stoploss": "-0.99",
+        "trailing_stop": "False",
+        "trailing_stop_positive": "0.02",
+        "trailing_stop_positive_offset": "0.1",
+        "timeframe": "'5m'",
+        "use_custom_stoploss": "False",
+        "process_only_new_candles": "True",
+        "startup_candle_count": "168"
+      },
+      "indicators": [
+        "ta.EMA(dataframe, timeperiod=sma1_length)",
+        "ta.EMA(dataframe, timeperiod=sma2_length)",
+        "ta.EMA(df, timeperiod=ema_length)",
+        "ta.EMA(df, timeperiod=ema2_length)",
+        "qtpylib.rolling_vwap(df, window=window_size)",
+        "ta.ATR(df, timeperiod=period)",
+        "np.full(len(df), 0.0)",
+        "np.where(pm_arr > 0.0, np.where(mavalue < pm_arr, 'down', 'up'), np.NaN)",
+        "np.nan_to_num(rolling_mean)",
+        "np.nan_to_num(lower_band)",
+        "ta.EMA(informative_btc, timeperiod=20)",
+        "ta.EMA(informative_btc, timeperiod=25)",
+        "qtpylib.bollinger_bands(qtpylib.typical_price(dataframe), window=20, stds=2)",
+        "qtpylib.bollinger_bands(qtpylib.typical_price(dataframe), window=40, stds=2)",
+        "ta.EMA(dataframe, timeperiod=200)",
+        "ta.EMA(dataframe, timeperiod=50)",
+        "ta.RSI(dataframe, timeperiod=14)",
+        "ta.RSI(dataframe, timeperiod=4)",
+        "ta.RSI(dataframe, timeperiod=20)",
+        "ta.RSI(dataframe, timeperiod=84)",
+        "ta.RSI(dataframe, timeperiod=112)",
+        "qtpylib.heikinashi(dataframe)",
+        "ta.STOCHRSI(dataframe, 15, 20, 2, 2)",
+        "qtpylib.bollinger_bands(qtpylib.typical_price(dataframe), window=20, stds=3)",
+        "ta.EMA(dataframe['ha_close'], timeperiod=3)",
+        "ta.EMA(dataframe['ha_close'], timeperiod=50)",
+        "ta.ROCR(dataframe['ha_close'], timeperiod=28)",
+        "ta.SMA(dataframe, timeperiod=15)",
+        "ta.SMA(dataframe, timeperiod=30)",
+        "ta.EMA(dataframe, timeperiod=16)",
+        "ta.EMA(dataframe, timeperiod=26)",
+        "ta.EMA(dataframe, timeperiod=12)",
+        "ta.EMA(dataframe, timeperiod=5)",
+        "ta.EMA(dataframe, timeperiod=10)",
+        "ta.EMA(dataframe['source'], timeperiod=9)",
+        "ta.SMA(dataframe, timeperiod=75)",
+        "ta.RSI(dataframe)",
+        "qtpylib.heikinashi(informative)",
+        "ta.ROCR(informative['ha_close'], timeperiod=168)",
+        "ta.ROC(informative, timeperiod=9)"
+      ],
+      "signals": {
+        "informative_pairs": [],
+        "custom_stoploss": [
+          "if current_profit > PF_2:",
+          "if sl_profit >= current_profit:",
+          "if current_profit > PF_1:"
+        ],
+        "populate_indicators": [],
+        "populate_entry_trend": [],
+        "populate_exit_trend": [
+          "sell = (dataframe['fisher'] > self.sell_fisher.value) & dataframe['ha_high'].le(dataframe['ha_high'].shift(1)) & dataframe['ha_high'].shift(1).le(dataframe['ha_high'].shift(2)) & dataframe['ha_close'].le(dataframe['ha_close'].shift(1)) & (datafram ..."
+        ],
+        "adjust_trade_position": [
+          "if current_profit > self.initial_safety_order_trigger:",
+          "if count_of_buys == 1 and last_candle['tpct_change_0'] > 0.018 and (last_candle['close'] < last_candle['open']):",
+          "if 1 <= count_of_buys <= self.max_safety_orders:",
+          "if count_of_buys == 2 and last_candle['tpct_change_0'] > 0.018 and (last_candle['close'] < last_candle['open']) and (last_candle['ema_vwap_diff_50'] < 0.215):",
+          "if self.safety_order_step_scale > 1:",
+          "if current_profit <= -1 * abs(safety_order_trigger):",
+          "if count_of_buys == 3 and last_candle['tpct_change_0'] > 0.018 and (last_candle['close'] < last_candle['open']) and (last_candle['ema_vwap_diff_50'] < 0.215):",
+          "if self.safety_order_step_scale < 1:",
+          "if count_of_buys == 4 and last_candle['tpct_change_0'] > 0.018 and (last_candle['close'] < last_candle['open']) and (last_candle['ema_vwap_diff_50'] < 0.215) and (last_candle['ema_5'] >= last_candle['ema_10']):",
+          "if count_of_buys == 5 and last_candle['cmf_1h'] < 0.0 and (last_candle['close'] < last_candle['open']) and (last_candle['rsi_14_1h'] < 30) and (last_candle['tpct_change_0'] > 0.018) and (last_candle['close'] < last_candle['open']) and (last_ca ...:",
+          "if count_of_buys == 6 and last_candle['cmf_1h'] < 0.0 and (last_candle['close'] < last_candle['open']) and (last_candle['rsi_14_1h'] < 30) and (last_candle['tpct_change_0'] > 0.018) and (last_candle['close'] < last_candle['open'] and last_cand ...:",
+          "if count_of_buys == 7 and last_candle['cmf_1h'] < 0.0 and (last_candle['close'] < last_candle['open']) and (last_candle['rsi_14_1h'] < 30) and (last_candle['tpct_change_0'] > 0.018) and (last_candle['close'] < last_candle['open'] and last_cand ...:",
+          "if count_of_buys == 8 and last_candle['cmf_1h'] < 0.0 and (last_candle['close'] < last_candle['open']) and (last_candle['rsi_14_1h'] < 30) and (last_candle['tpct_change_0'] > 0.018) and (last_candle['close'] < last_candle['open'] and last_cand ...:"
+        ]
+      },
+      "functions": [
+        "is_support (8 lines)",
+        "informative_pairs (7 lines)",
+        "custom_sell (70 lines)",
+        "custom_stoploss (26 lines)",
+        "populate_indicators (192 lines)",
+        "populate_entry_trend (182 lines)",
+        "populate_exit_trend (14 lines)",
+        "top_percent_change_dca (11 lines)",
+        "adjust_trade_position (87 lines)"
+      ]
+    },
+    {
+      "strategy_id": "GeneTrader_gen10_1734726148_6020",
+      "family_stem": "GeneTrader_gen",
+      "version_key": "2024-12-20",
+      "canonical_file": "repos/remiotore_ccxt-freqtrade/strategies/GeneTrader_gen10_1734726148_6020.py",
+      "source_sha256": "sha256_614a9d364a2f385b1a258dd93639204bc7051ca11067f69d950e754b9f92723c",
+      "class": "GeneTrader_gen10_1734726148_6020",
+      "timeframe": "5m",
+      "canonical_measured": "false",
+      "classification": "",
+      "cluster": {
+        "direction": null,
+        "logic": null,
+        "speed": null,
+        "complexity": null,
+        "exit_style": null,
+        "dca": null,
+        "informative": null,
+        "regime_hypothesis": null
+      },
+      "cluster_why": "",
+      "docstring": "",
+      "settings": {
+        "minimal_roi": "{'0': 1}",
+        "timeframe": "'5m'",
+        "process_only_new_candles": "True",
+        "startup_candle_count": "240",
+        "stoploss": "stoploss_opt.value",
+        "trailing_stop": "False",
+        "trailing_stop_positive": "0.002",
+        "trailing_stop_positive_offset": "0.05",
+        "use_custom_stoploss": "True"
+      },
+      "indicators": [
+        "ta.SMA(dataframe, timeperiod=15)",
+        "ta.RSI(dataframe, timeperiod=14)",
+        "ta.RSI(dataframe, timeperiod=4)",
+        "ta.RSI(dataframe, timeperiod=20)",
+        "ta.STOCHF(dataframe, 5, 3, 0, 3, 0)",
+        "ta.CCI(dataframe, timeperiod=20)",
+        "ta.MA(dataframe, timeperiod=120)",
+        "ta.MA(dataframe, timeperiod=240)"
+      ],
+      "signals": {
+        "populate_indicators": [],
+        "populate_entry_trend": [
+          "if conditions:",
+          "enter_long = reduce(lambda x, y: x | y, conditions)"
+        ],
+        "populate_exit_trend": [],
+        "custom_stoploss": [
+          "if current_profit > PF_2:",
+          "if sl_profit >= current_profit:",
+          "if current_profit > PF_1:"
+        ]
+      },
+      "functions": [
+        "populate_indicators (18 lines)",
+        "populate_entry_trend (30 lines)",
+        "custom_exit (30 lines)",
+        "populate_exit_trend (3 lines)",
+        "custom_stoploss (26 lines)"
+      ]
+    },
+    {
+      "strategy_id": "VWAPStrategy",
+      "family_stem": "VWAPStrategy",
+      "version_key": "",
+      "canonical_file": "repos/remiotore_ccxt-freqtrade/strategies/VWAPStrategy.py",
+      "source_sha256": "sha256_4aa9eda34672cbd2e543fcd42e187c9332c9f2bcf17d6c35042e3dff3c7fd65b",
+      "class": "VWAPStrategy",
+      "timeframe": "5m",
+      "canonical_measured": "false",
+      "classification": "",
+      "cluster": {
+        "direction": null,
+        "logic": null,
+        "speed": null,
+        "complexity": null,
+        "exit_style": null,
+        "dca": null,
+        "informative": null,
+        "regime_hypothesis": null
+      },
+      "cluster_why": "",
+      "docstring": "",
+      "settings": {
+        "timeframe": "'5m'",
+        "minimal_roi": "{'0': 1}",
+        "stoploss": "-0.07",
+        "trailing_stop": "False",
+        "trailing_stop_positive": "0.01",
+        "trailing_stop_positive_offset": "0.03",
+        "use_custom_stoploss": "True"
+      },
+      "indicators": [
+        "ta.atr(dataframe['high'], dataframe['low'], dataframe['close'], length=7)",
+        "ta.rsi(dataframe['close'], length=16)",
+        "ta.vwap(dataframe['high'], dataframe['low'], dataframe['close'], dataframe['volume'], anchor='D', offset=None)",
+        "ta.bbands(dataframe['close'], length=14, std=2.0)",
+        "pd.DatetimeIndex(dataframe['date'])"
+      ],
+      "signals": {
+        "custom_stoploss": [],
+        "populate_indicators": [
+          "if up_trend == 1 and down_trend == 1:",
+          "if max(dataframe['open'][i], dataframe['close'][i]) >= dataframe['VWAP'][i]:",
+          "if min(dataframe['open'][i], dataframe['close'][i]) <= dataframe['VWAP'][i]:",
+          "if up_trend == 1:",
+          "if down_trend == 1:"
+        ],
+        "populate_buy_trend": [
+          "buy = reduce(lambda x, y: x & y, conditions)"
+        ],
+        "populate_sell_trend": [
+          "sell = reduce(lambda x, y: x & y, conditions)"
+        ]
+      },
+      "functions": [
+        "custom_stoploss (8 lines)",
+        "populate_indicators (31 lines)",
+        "populate_buy_trend (14 lines)",
+        "populate_sell_trend (15 lines)"
+      ]
+    },
+    {
+      "strategy_id": "VWAPStrategy_1",
+      "family_stem": "VWAPStrategy",
+      "version_key": "",
+      "canonical_file": "repos/remiotore_ccxt-freqtrade/strategies/VWAPStrategy_1.py",
+      "source_sha256": "sha256_96f67a4d30a839f2fc51cbb35d4cc427bde59e4eedf679edc044bf8cb9303028",
+      "class": "VWAPStrategy_1",
+      "timeframe": "5m",
+      "canonical_measured": "false",
+      "classification": "",
+      "cluster": {
+        "direction": null,
+        "logic": null,
+        "speed": null,
+        "complexity": null,
+        "exit_style": null,
+        "dca": null,
+        "informative": null,
+        "regime_hypothesis": null
+      },
+      "cluster_why": "",
+      "docstring": "",
+      "settings": {
+        "timeframe": "'5m'",
+        "minimal_roi": "{'0': 1}",
+        "stoploss": "-0.2",
+        "trailing_stop": "False",
+        "trailing_stop_positive": "0.01",
+        "trailing_stop_positive_offset": "0.03"
+      },
+      "indicators": [
+        "pd.notna(last_candle['buy_atr'])",
+        "ta.atr(dataframe['high'], dataframe['low'], dataframe['close'], length=150)",
+        "ta.rsi(dataframe['close'], length=16)",
+        "ta.vwap(dataframe['high'], dataframe['low'], dataframe['close'], dataframe['volume'], anchor='D', offset=None)",
+        "ta.bbands(dataframe['close'], length=14, std=2.0)",
+        "pd.DatetimeIndex(dataframe['date'])"
+      ],
+      "signals": {
+        "custom_stoploss": [
+          "if trade.id in self.custom_stoploss_per_trade:",
+          "if pd.notna(last_candle['buy_atr']):",
+          "if current_profit >= 0.02:",
+          "if updated_stoploss < self.custom_stoploss_per_trade[trade.id]:",
+          "if current_profit >= 0.01:",
+          "if updated_stoploss < self.custom_stoploss_per_trade[trade.id]:"
+        ],
+        "populate_indicators": [
+          "if up_trend == 1 and down_trend == 1:",
+          "if max(dataframe['open'][i], dataframe['close'][i]) >= dataframe['VWAP'][i]:",
+          "if min(dataframe['open'][i], dataframe['close'][i]) <= dataframe['VWAP'][i]:",
+          "if up_trend == 1:",
+          "if down_trend == 1:"
+        ],
+        "populate_entry_trend": [
+          "buy = condition"
+        ],
+        "populate_exit_trend": [
+          "sell = (dataframe['volume'] > 0) & (dataframe['VWAP_signal'] == 2) & (dataframe['close'] >= dataframe['BBU_14_2.0']) & (dataframe['rsi'] > 55) & (dataframe['rsi'] <= 90) & (dataframe['BBL_14_2.0'] != dataframe['BBU_14_2.0'])"
+        ]
+      },
+      "functions": [
+        "custom_stoploss (35 lines)",
+        "populate_indicators (41 lines)",
+        "populate_entry_trend (16 lines)",
+        "populate_exit_trend (16 lines)"
+      ]
     }
   ]
 }
