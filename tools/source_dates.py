@@ -47,9 +47,10 @@ _ROOT = (os.environ.get("AUDIT_ROOT") or
 sys.path.insert(0, _ROOT)
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 
-from tools.strategy_ideas import date_in_name, load_profiles
+from tools.strategy_ideas import date_in_name, family_members, load_profiles
 
 PROFILES = os.path.join(_ROOT, "evidence", "EXECUTION_PROFILES.csv")
+IDEAS = os.path.join(_ROOT, "evidence", "STRATEGY_IDEAS.json")
 STORE = os.path.join(_ROOT, "evidence", "SOURCE_DATES.json")
 TOKEN_FILE = os.path.join(_ROOT, "user_data", ".github_token")
 API = "https://api.github.com"
@@ -148,6 +149,24 @@ def site_post_date(strategy_id):
         if (post.get("slug") or "").lower() == wanted:
             return {"date": (post.get("date") or "")[:10], "slug": post["slug"]}
     return {"error": "no post with this slug"}
+
+
+def page_strategies(profiles):
+    """The strategies the ideas page shows: every member of every family in it.
+
+    This is the set a date column can actually be read from, so it is the set a
+    rate-limited run should spend its budget on first.
+    """
+    if not os.path.exists(IDEAS):
+        return []
+    ideas = json.load(io.open(IDEAS, encoding="utf-8"))
+    ids = []
+    for family in ideas.get("families") or []:
+        ids.extend(family_members(family, profiles))
+        read_from = (family.get("read_from") or {}).get("strategy_id")
+        if read_from:
+            ids.append(read_from)
+    return sorted({i for i in ids if i in profiles})
 
 
 def load_store():
@@ -278,6 +297,8 @@ def main(argv=None):
                         help="comma-separated strategy_ids (default: the whole corpus)")
     parser.add_argument("--only-missing", action="store_true",
                         help="skip strategies that already have an upstream date")
+    parser.add_argument("--on-page", action="store_true",
+                        help="restrict to the strategies the ideas page shows")
     parser.add_argument("--summary", action="store_true", help="print coverage and exit")
     parser.add_argument("--selftest", action="store_true")
     args = parser.parse_args(argv)
@@ -295,6 +316,10 @@ def main(argv=None):
 
     kinds = [k.strip() for k in args.kinds.split(",") if k.strip()]
     wanted = [s.strip() for s in args.strategies.split(",") if s.strip()] or None
+    if args.on_page:
+        on_page = page_strategies(profiles)
+        print("strategies on the ideas page: %d" % len(on_page))
+        wanted = [s for s in on_page if not wanted or s in wanted]
     if args.only_missing:
         wanted = [s for s in (wanted or sorted(profiles))
                   if not (store.get("strategies", {}).get(s) or {}).get("upstream")]

@@ -42,9 +42,9 @@
     },
     "PeetCrypto/freqtrade-stuff": {
       "bulk_import": true,
-      "checked": 15,
+      "checked": 17,
       "dates": {
-        "2022-02-11": 15
+        "2022-02-11": 17
       },
       "distinct_dates": 1
     },
@@ -59,9 +59,9 @@
     },
     "davidzr/freqtrade-strategies": {
       "bulk_import": true,
-      "checked": 5,
+      "checked": 14,
       "dates": {
-        "2023-11-05": 5
+        "2023-11-05": 14
       },
       "distinct_dates": 1
     },
@@ -81,11 +81,19 @@
       },
       "distinct_dates": 1
     },
+    "jaredrsommer/freqtradestrategies": {
+      "bulk_import": false,
+      "checked": 1,
+      "dates": {
+        "2026-05-09": 1
+      },
+      "distinct_dates": 1
+    },
     "remiotore/ccxt-freqtrade": {
       "bulk_import": false,
-      "checked": 12,
+      "checked": 58,
       "dates": {
-        "2025-09-10": 5,
+        "2025-09-10": 51,
         "2026-01-11": 7
       },
       "distinct_dates": 2
@@ -110,8 +118,14 @@
   "schema_version": 1,
   "strategies": {
     "A9AV": {
-      "fetched_at": "2026-09-24T18:52:40",
-      "repo": "jaredrsommer/freqtradestrategies"
+      "fetched_at": "2026-09-24T21:00:59",
+      "repo": "jaredrsommer/freqtradestrategies",
+      "upstream": {
+        "date": "2026-05-09",
+        "path": "A9AV.py",
+        "repo": "jaredrsommer/freqtradestrategies",
+        "sha": "63cd46ea08"
+      }
     },
     "ADXDM": {
       "fetched_at": "2026-09-24T18:52:40",
@@ -284,28 +298,64 @@
       "repo": "remiotore/ccxt-freqtrade"
     },
     "AdxSmasS_v2": {
-      "fetched_at": "2026-09-24T18:52:40",
-      "repo": "remiotore/ccxt-freqtrade"
+      "fetched_at": "2026-09-24T21:01:29",
+      "repo": "remiotore/ccxt-freqtrade",
+      "upstream": {
+        "date": "2025-09-10",
+        "path": "strategies/AdxSmasS_v2.py",
+        "repo": "remiotore/ccxt-freqtrade",
+        "sha": "55e4b67273"
+      }
     },
     "AdxSmasS_v3": {
-      "fetched_at": "2026-09-24T18:52:40",
-      "repo": "remiotore/ccxt-freqtrade"
+      "fetched_at": "2026-09-24T21:01:29",
+      "repo": "remiotore/ccxt-freqtrade",
+      "upstream": {
+        "date": "2025-09-10",
+        "path": "strategies/AdxSmasS_v3.py",
+        "repo": "remiotore/ccxt-freqtrade",
+        "sha": "55e4b67273"
+      }
     },
     "AdxSmasS_v4": {
-      "fetched_at": "2026-09-24T18:52:40",
-      "repo": "remiotore/ccxt-freqtrade"
+      "fetched_at": "2026-09-24T21:01:30",
+      "repo": "remiotore/ccxt-freqtrade",
+      "upstream": {
+        "date": "2025-09-10",
+        "path": "strategies/AdxSmasS_v4.py",
+        "repo": "remiotore/ccxt-freqtrade",
+        "sha": "55e4b67273"
+      }
     },
     "AdxSmasS_v5": {
-      "fetched_at": "2026-09-24T18:52:40",
-      "repo": "remiotore/ccxt-freqtrade"
+      "fetched_at": "2026-09-24T21:01:30",
+      "repo": "remiotore/ccxt-freqtrade",
+      "upstream": {
+        "date": "2025-09-10",
+        "path": "strategies/AdxSmasS_v5.py",
+        "repo": "remiotore/ccxt-freqtrade",
+        "sha": "55e4b67273"
+      }
     },
     "AdxSmasS_v6": {
-      "fetched_at": "2026-09-24T18:52:40",
-      "repo": "remiotore/ccxt-freqtrade"
+      "fetched_at": "2026-09-24T21:01:30",
+      "repo": "remiotore/ccxt-freqtrade",
+      "upstream": {
+        "date": "2025-09-10",
+        "path": "strategies/AdxSmasS_v6.py",
+        "repo": "remiotore/ccxt-freqtrade",
+        "sha": "55e4b67273"
+      }
     },
     "AdxSmasS_v7": {
-      "fetched_at": "2026-09-24T18:52:40",
-      "repo": "remiotore/ccxt-freqtrade"
+      "fetched_at": "2026-09-24T21:01:31",
+      "repo": "remiotore/ccxt-freqtrade",
+      "upstream": {
+        "date": "2025-09-10",
+        "path": "strategies/AdxSmasS_v7.py",
+        "repo": "remiotore/ccxt-freqtrade",
+        "sha": "55e4b67273"
+      }
     },
     "AdxSmasS_v7_long_and_short": {
       "fetched_at": "2026-09-24T18:52:40",
@@ -695,24 +745,48 @@
       }
     },
     "BBMod1": {
-      "fetched_at": "2026-09-24T18:52:40",
-      "repo": "davidzr/freqtrade-strategies"
+      "fetched_at": "2026-09-24T21:01:31",
+      "repo": "davidzr/freqtrade-strategies",
+      "upstream": {
+        "date": "2023-11-05",
+        "path": "strategies/BBMod1/BBMod1.py",
+        "repo": "davidzr/freqtrade-strategies",
+        "sha": "9623c1f3d8"
+      }
     },
     "BBMod1DCA": {
       "fetched_at": "2026-09-24T18:52:40",
       "repo": "thinkong/freqtradestrategies"
     },
     "BBMod1_0": {
-      "fetched_at": "2026-09-24T18:52:40",
-      "repo": "remiotore/ccxt-freqtrade"
+      "fetched_at": "2026-09-24T21:01:31",
+      "repo": "remiotore/ccxt-freqtrade",
+      "upstream": {
+        "date": "2025-09-10",
+        "path": "strategies/BBMod1_0.py",
+        "repo": "remiotore/ccxt-freqtrade",
+        "sha": "55e4b67273"
+      }
     },
     "BBMod1_2": {
-      "fetched_at": "2026-09-24T18:52:40",
-      "repo": "remiotore/ccxt-freqtrade"
+      "fetched_at": "2026-09-24T21:01:32",
+      "repo": "remiotore/ccxt-freqtrade",
+      "upstream": {
+        "date": "2025-09-10",
+        "path": "strategies/BBMod1_2.py",
+        "repo": "remiotore/ccxt-freqtrade",
+        "sha": "55e4b67273"
+      }
     },
     "BBMod1_3": {
-      "fetched_at": "2026-09-24T18:52:40",
-      "repo": "remiotore/ccxt-freqtrade"
+      "fetched_at": "2026-09-24T21:01:32",
+      "repo": "remiotore/ccxt-freqtrade",
+      "upstream": {
+        "date": "2025-09-10",
+        "path": "strategies/BBMod1_3.py",
+        "repo": "remiotore/ccxt-freqtrade",
+        "sha": "55e4b67273"
+      }
     },
     "BBModCE": {
       "fetched_at": "2026-09-24T18:52:40",
@@ -735,36 +809,84 @@
       "repo": "remiotore/ccxt-freqtrade"
     },
     "BBMod_0": {
-      "fetched_at": "2026-09-24T18:52:40",
-      "repo": "remiotore/ccxt-freqtrade"
+      "fetched_at": "2026-09-24T21:01:32",
+      "repo": "remiotore/ccxt-freqtrade",
+      "upstream": {
+        "date": "2025-09-10",
+        "path": "strategies/BBMod_0.py",
+        "repo": "remiotore/ccxt-freqtrade",
+        "sha": "55e4b67273"
+      }
     },
     "BBMod_1": {
-      "fetched_at": "2026-09-24T18:52:40",
-      "repo": "remiotore/ccxt-freqtrade"
+      "fetched_at": "2026-09-24T21:01:33",
+      "repo": "remiotore/ccxt-freqtrade",
+      "upstream": {
+        "date": "2025-09-10",
+        "path": "strategies/BBMod_1.py",
+        "repo": "remiotore/ccxt-freqtrade",
+        "sha": "55e4b67273"
+      }
     },
     "BBMod_2": {
-      "fetched_at": "2026-09-24T18:52:40",
-      "repo": "remiotore/ccxt-freqtrade"
+      "fetched_at": "2026-09-24T21:01:33",
+      "repo": "remiotore/ccxt-freqtrade",
+      "upstream": {
+        "date": "2025-09-10",
+        "path": "strategies/BBMod_2.py",
+        "repo": "remiotore/ccxt-freqtrade",
+        "sha": "55e4b67273"
+      }
     },
     "BBMod_3": {
-      "fetched_at": "2026-09-24T18:52:40",
-      "repo": "remiotore/ccxt-freqtrade"
+      "fetched_at": "2026-09-24T21:01:33",
+      "repo": "remiotore/ccxt-freqtrade",
+      "upstream": {
+        "date": "2025-09-10",
+        "path": "strategies/BBMod_3.py",
+        "repo": "remiotore/ccxt-freqtrade",
+        "sha": "55e4b67273"
+      }
     },
     "BBMod_4": {
-      "fetched_at": "2026-09-24T18:52:40",
-      "repo": "remiotore/ccxt-freqtrade"
+      "fetched_at": "2026-09-24T21:01:34",
+      "repo": "remiotore/ccxt-freqtrade",
+      "upstream": {
+        "date": "2025-09-10",
+        "path": "strategies/BBMod_4.py",
+        "repo": "remiotore/ccxt-freqtrade",
+        "sha": "55e4b67273"
+      }
     },
     "BBMod_5": {
-      "fetched_at": "2026-09-24T18:52:40",
-      "repo": "remiotore/ccxt-freqtrade"
+      "fetched_at": "2026-09-24T21:01:34",
+      "repo": "remiotore/ccxt-freqtrade",
+      "upstream": {
+        "date": "2025-09-10",
+        "path": "strategies/BBMod_5.py",
+        "repo": "remiotore/ccxt-freqtrade",
+        "sha": "55e4b67273"
+      }
     },
     "BBMod_6": {
-      "fetched_at": "2026-09-24T18:52:40",
-      "repo": "remiotore/ccxt-freqtrade"
+      "fetched_at": "2026-09-24T21:01:34",
+      "repo": "remiotore/ccxt-freqtrade",
+      "upstream": {
+        "date": "2025-09-10",
+        "path": "strategies/BBMod_6.py",
+        "repo": "remiotore/ccxt-freqtrade",
+        "sha": "55e4b67273"
+      }
     },
     "BBMod_7": {
-      "fetched_at": "2026-09-24T18:52:40",
-      "repo": "remiotore/ccxt-freqtrade"
+      "fetched_at": "2026-09-24T21:01:35",
+      "repo": "remiotore/ccxt-freqtrade",
+      "upstream": {
+        "date": "2025-09-10",
+        "path": "strategies/BBMod_7.py",
+        "repo": "remiotore/ccxt-freqtrade",
+        "sha": "55e4b67273"
+      }
     },
     "BBRSI": {
       "fetched_at": "2026-09-24T18:52:44",
@@ -777,16 +899,34 @@
       }
     },
     "BBRSI2": {
-      "fetched_at": "2026-09-24T18:52:40",
-      "repo": "davidzr/freqtrade-strategies"
+      "fetched_at": "2026-09-24T21:01:35",
+      "repo": "davidzr/freqtrade-strategies",
+      "upstream": {
+        "date": "2023-11-05",
+        "path": "strategies/BBRSI2/BBRSI2.py",
+        "repo": "davidzr/freqtrade-strategies",
+        "sha": "9623c1f3d8"
+      }
     },
     "BBRSI21": {
-      "fetched_at": "2026-09-24T18:52:40",
-      "repo": "davidzr/freqtrade-strategies"
+      "fetched_at": "2026-09-24T21:01:35",
+      "repo": "davidzr/freqtrade-strategies",
+      "upstream": {
+        "date": "2023-11-05",
+        "path": "strategies/BBRSI21/BBRSI21.py",
+        "repo": "davidzr/freqtrade-strategies",
+        "sha": "9623c1f3d8"
+      }
     },
     "BBRSI3366": {
-      "fetched_at": "2026-09-24T18:52:40",
-      "repo": "davidzr/freqtrade-strategies"
+      "fetched_at": "2026-09-24T21:01:36",
+      "repo": "davidzr/freqtrade-strategies",
+      "upstream": {
+        "date": "2023-11-05",
+        "path": "strategies/BBRSI3366/BBRSI3366.py",
+        "repo": "davidzr/freqtrade-strategies",
+        "sha": "9623c1f3d8"
+      }
     },
     "BBRSI4cust": {
       "fetched_at": "2026-09-24T18:52:40",
@@ -861,20 +1001,38 @@
       "repo": "remiotore/ccxt-freqtrade"
     },
     "BBRSI_648": {
-      "fetched_at": "2026-09-24T18:52:40",
-      "repo": "remiotore/ccxt-freqtrade"
+      "fetched_at": "2026-09-24T21:01:36",
+      "repo": "remiotore/ccxt-freqtrade",
+      "upstream": {
+        "date": "2025-09-10",
+        "path": "strategies/BBRSI_648.py",
+        "repo": "remiotore/ccxt-freqtrade",
+        "sha": "55e4b67273"
+      }
     },
     "BBRSI_815": {
-      "fetched_at": "2026-09-24T18:52:40",
-      "repo": "remiotore/ccxt-freqtrade"
+      "fetched_at": "2026-09-24T21:01:36",
+      "repo": "remiotore/ccxt-freqtrade",
+      "upstream": {
+        "date": "2025-09-10",
+        "path": "strategies/BBRSI_815.py",
+        "repo": "remiotore/ccxt-freqtrade",
+        "sha": "55e4b67273"
+      }
     },
     "BBRSIoriginal": {
       "fetched_at": "2026-09-24T18:52:40",
       "repo": "davidzr/freqtrade-strategies"
     },
     "BBRSIv2": {
-      "fetched_at": "2026-09-24T18:52:40",
-      "repo": "davidzr/freqtrade-strategies"
+      "fetched_at": "2026-09-24T21:01:36",
+      "repo": "davidzr/freqtrade-strategies",
+      "upstream": {
+        "date": "2023-11-05",
+        "path": "strategies/BBRSIv2/BBRSIv2.py",
+        "repo": "davidzr/freqtrade-strategies",
+        "sha": "9623c1f3d8"
+      }
     },
     "BB_DCAv2": {
       "fetched_at": "2026-09-24T18:52:40",
@@ -903,36 +1061,84 @@
       }
     },
     "BB_RPB_TSL_140": {
-      "fetched_at": "2026-09-24T18:52:40",
-      "repo": "remiotore/ccxt-freqtrade"
+      "fetched_at": "2026-09-24T21:01:37",
+      "repo": "remiotore/ccxt-freqtrade",
+      "upstream": {
+        "date": "2025-09-10",
+        "path": "strategies/BB_RPB_TSL_140.py",
+        "repo": "remiotore/ccxt-freqtrade",
+        "sha": "55e4b67273"
+      }
     },
     "BB_RPB_TSL_2": {
-      "fetched_at": "2026-09-24T18:52:40",
-      "repo": "davidzr/freqtrade-strategies"
+      "fetched_at": "2026-09-24T21:01:37",
+      "repo": "davidzr/freqtrade-strategies",
+      "upstream": {
+        "date": "2023-11-05",
+        "path": "strategies/BB_RPB_TSL_2/BB_RPB_TSL_2.py",
+        "repo": "davidzr/freqtrade-strategies",
+        "sha": "9623c1f3d8"
+      }
     },
     "BB_RPB_TSL_221": {
-      "fetched_at": "2026-09-24T18:52:40",
-      "repo": "remiotore/ccxt-freqtrade"
+      "fetched_at": "2026-09-24T21:01:37",
+      "repo": "remiotore/ccxt-freqtrade",
+      "upstream": {
+        "date": "2025-09-10",
+        "path": "strategies/BB_RPB_TSL_221.py",
+        "repo": "remiotore/ccxt-freqtrade",
+        "sha": "55e4b67273"
+      }
     },
     "BB_RPB_TSL_2_2": {
-      "fetched_at": "2026-09-24T18:52:40",
-      "repo": "remiotore/ccxt-freqtrade"
+      "fetched_at": "2026-09-24T21:01:38",
+      "repo": "remiotore/ccxt-freqtrade",
+      "upstream": {
+        "date": "2025-09-10",
+        "path": "strategies/BB_RPB_TSL_2_2.py",
+        "repo": "remiotore/ccxt-freqtrade",
+        "sha": "55e4b67273"
+      }
     },
     "BB_RPB_TSL_3": {
-      "fetched_at": "2026-09-24T18:52:40",
-      "repo": "remiotore/ccxt-freqtrade"
+      "fetched_at": "2026-09-24T21:01:38",
+      "repo": "remiotore/ccxt-freqtrade",
+      "upstream": {
+        "date": "2025-09-10",
+        "path": "strategies/BB_RPB_TSL_3.py",
+        "repo": "remiotore/ccxt-freqtrade",
+        "sha": "55e4b67273"
+      }
     },
     "BB_RPB_TSL_4": {
-      "fetched_at": "2026-09-24T18:52:40",
-      "repo": "remiotore/ccxt-freqtrade"
+      "fetched_at": "2026-09-24T21:01:38",
+      "repo": "remiotore/ccxt-freqtrade",
+      "upstream": {
+        "date": "2025-09-10",
+        "path": "strategies/BB_RPB_TSL_4.py",
+        "repo": "remiotore/ccxt-freqtrade",
+        "sha": "55e4b67273"
+      }
     },
     "BB_RPB_TSL_5": {
-      "fetched_at": "2026-09-24T18:52:40",
-      "repo": "remiotore/ccxt-freqtrade"
+      "fetched_at": "2026-09-24T21:01:39",
+      "repo": "remiotore/ccxt-freqtrade",
+      "upstream": {
+        "date": "2025-09-10",
+        "path": "strategies/BB_RPB_TSL_5.py",
+        "repo": "remiotore/ccxt-freqtrade",
+        "sha": "55e4b67273"
+      }
     },
     "BB_RPB_TSL_600": {
-      "fetched_at": "2026-09-24T18:52:40",
-      "repo": "remiotore/ccxt-freqtrade"
+      "fetched_at": "2026-09-24T21:01:39",
+      "repo": "remiotore/ccxt-freqtrade",
+      "upstream": {
+        "date": "2025-09-10",
+        "path": "strategies/BB_RPB_TSL_600.py",
+        "repo": "remiotore/ccxt-freqtrade",
+        "sha": "55e4b67273"
+      }
     },
     "BB_RPB_TSL_BI": {
       "fetched_at": "2026-09-24T18:52:40",
@@ -969,32 +1175,74 @@
       }
     },
     "BB_RPB_TSL_RNG_2": {
-      "fetched_at": "2026-09-24T18:52:40",
-      "repo": "davidzr/freqtrade-strategies"
+      "fetched_at": "2026-09-24T21:01:39",
+      "repo": "davidzr/freqtrade-strategies",
+      "upstream": {
+        "date": "2023-11-05",
+        "path": "strategies/BB_RPB_TSL_RNG_2/BB_RPB_TSL_RNG_2.py",
+        "repo": "davidzr/freqtrade-strategies",
+        "sha": "9623c1f3d8"
+      }
     },
     "BB_RPB_TSL_RNG_2_0": {
-      "fetched_at": "2026-09-24T18:52:40",
-      "repo": "remiotore/ccxt-freqtrade"
+      "fetched_at": "2026-09-24T21:01:40",
+      "repo": "remiotore/ccxt-freqtrade",
+      "upstream": {
+        "date": "2025-09-10",
+        "path": "strategies/BB_RPB_TSL_RNG_2_0.py",
+        "repo": "remiotore/ccxt-freqtrade",
+        "sha": "55e4b67273"
+      }
     },
     "BB_RPB_TSL_RNG_2_2": {
-      "fetched_at": "2026-09-24T18:52:40",
-      "repo": "remiotore/ccxt-freqtrade"
+      "fetched_at": "2026-09-24T21:01:40",
+      "repo": "remiotore/ccxt-freqtrade",
+      "upstream": {
+        "date": "2025-09-10",
+        "path": "strategies/BB_RPB_TSL_RNG_2_2.py",
+        "repo": "remiotore/ccxt-freqtrade",
+        "sha": "55e4b67273"
+      }
     },
     "BB_RPB_TSL_RNG_2_4": {
-      "fetched_at": "2026-09-24T18:52:40",
-      "repo": "remiotore/ccxt-freqtrade"
+      "fetched_at": "2026-09-24T21:01:40",
+      "repo": "remiotore/ccxt-freqtrade",
+      "upstream": {
+        "date": "2025-09-10",
+        "path": "strategies/BB_RPB_TSL_RNG_2_4.py",
+        "repo": "remiotore/ccxt-freqtrade",
+        "sha": "55e4b67273"
+      }
     },
     "BB_RPB_TSL_RNG_3": {
-      "fetched_at": "2026-09-24T18:52:40",
-      "repo": "remiotore/ccxt-freqtrade"
+      "fetched_at": "2026-09-24T21:01:41",
+      "repo": "remiotore/ccxt-freqtrade",
+      "upstream": {
+        "date": "2025-09-10",
+        "path": "strategies/BB_RPB_TSL_RNG_3.py",
+        "repo": "remiotore/ccxt-freqtrade",
+        "sha": "55e4b67273"
+      }
     },
     "BB_RPB_TSL_RNG_5": {
-      "fetched_at": "2026-09-24T18:52:40",
-      "repo": "remiotore/ccxt-freqtrade"
+      "fetched_at": "2026-09-24T21:01:41",
+      "repo": "remiotore/ccxt-freqtrade",
+      "upstream": {
+        "date": "2025-09-10",
+        "path": "strategies/BB_RPB_TSL_RNG_5.py",
+        "repo": "remiotore/ccxt-freqtrade",
+        "sha": "55e4b67273"
+      }
     },
     "BB_RPB_TSL_RNG_724": {
-      "fetched_at": "2026-09-24T18:52:40",
-      "repo": "remiotore/ccxt-freqtrade"
+      "fetched_at": "2026-09-24T21:01:41",
+      "repo": "remiotore/ccxt-freqtrade",
+      "upstream": {
+        "date": "2025-09-10",
+        "path": "strategies/BB_RPB_TSL_RNG_724.py",
+        "repo": "remiotore/ccxt-freqtrade",
+        "sha": "55e4b67273"
+      }
     },
     "BB_RPB_TSL_RNG_TBS": {
       "fetched_at": "2026-09-24T18:52:40",
@@ -1005,12 +1253,15 @@
       "repo": "PeetCrypto/freqtrade-stuff"
     },
     "BB_RPB_TSL_RNG_V2_20211008": {
-      "fetched_at": "2026-09-24T18:52:41",
+      "fetched_at": "2026-09-24T21:01:41",
       "name_date": "2021-10-08",
       "repo": "frequenthippo",
       "site": {
         "date": "2026-08-01",
         "slug": "bb_rpb_tsl_rng_v2_20211008"
+      },
+      "upstream": {
+        "error": "no repository path"
       }
     },
     "BB_RPB_TSL_RNG_VWAP": {
@@ -1072,12 +1323,24 @@
       "repo": "remiotore/ccxt-freqtrade"
     },
     "BB_RPB_TSL_v102": {
-      "fetched_at": "2026-09-24T18:52:42",
-      "repo": "remiotore/ccxt-freqtrade"
+      "fetched_at": "2026-09-24T21:01:42",
+      "repo": "remiotore/ccxt-freqtrade",
+      "upstream": {
+        "date": "2025-09-10",
+        "path": "strategies/BB_RPB_TSL_v102.py",
+        "repo": "remiotore/ccxt-freqtrade",
+        "sha": "55e4b67273"
+      }
     },
     "BB_RPB_TSL_v104": {
-      "fetched_at": "2026-09-24T18:52:42",
-      "repo": "remiotore/ccxt-freqtrade"
+      "fetched_at": "2026-09-24T21:01:42",
+      "repo": "remiotore/ccxt-freqtrade",
+      "upstream": {
+        "date": "2025-09-10",
+        "path": "strategies/BB_RPB_TSL_v104.py",
+        "repo": "remiotore/ccxt-freqtrade",
+        "sha": "55e4b67273"
+      }
     },
     "BB_RPB_TSLmeneguzzo": {
       "fetched_at": "2026-09-24T18:52:42",
@@ -1282,28 +1545,64 @@
       "repo": "PeetCrypto/freqtrade-stuff"
     },
     "BbandRsi_125": {
-      "fetched_at": "2026-09-24T18:52:42",
-      "repo": "remiotore/ccxt-freqtrade"
+      "fetched_at": "2026-09-24T21:01:42",
+      "repo": "remiotore/ccxt-freqtrade",
+      "upstream": {
+        "date": "2025-09-10",
+        "path": "strategies/BbandRsi_125.py",
+        "repo": "remiotore/ccxt-freqtrade",
+        "sha": "55e4b67273"
+      }
     },
     "BbandRsi_2": {
-      "fetched_at": "2026-09-24T18:52:42",
-      "repo": "remiotore/ccxt-freqtrade"
+      "fetched_at": "2026-09-24T21:01:43",
+      "repo": "remiotore/ccxt-freqtrade",
+      "upstream": {
+        "date": "2025-09-10",
+        "path": "strategies/BbandRsi_2.py",
+        "repo": "remiotore/ccxt-freqtrade",
+        "sha": "55e4b67273"
+      }
     },
     "BbandRsi_3": {
-      "fetched_at": "2026-09-24T18:52:42",
-      "repo": "remiotore/ccxt-freqtrade"
+      "fetched_at": "2026-09-24T21:01:43",
+      "repo": "remiotore/ccxt-freqtrade",
+      "upstream": {
+        "date": "2025-09-10",
+        "path": "strategies/BbandRsi_3.py",
+        "repo": "remiotore/ccxt-freqtrade",
+        "sha": "55e4b67273"
+      }
     },
     "BbandRsi_825": {
-      "fetched_at": "2026-09-24T18:52:42",
-      "repo": "remiotore/ccxt-freqtrade"
+      "fetched_at": "2026-09-24T21:01:43",
+      "repo": "remiotore/ccxt-freqtrade",
+      "upstream": {
+        "date": "2025-09-10",
+        "path": "strategies/BbandRsi_825.py",
+        "repo": "remiotore/ccxt-freqtrade",
+        "sha": "55e4b67273"
+      }
     },
     "BbandRsi_852": {
-      "fetched_at": "2026-09-24T18:52:42",
-      "repo": "remiotore/ccxt-freqtrade"
+      "fetched_at": "2026-09-24T21:01:44",
+      "repo": "remiotore/ccxt-freqtrade",
+      "upstream": {
+        "date": "2025-09-10",
+        "path": "strategies/BbandRsi_852.py",
+        "repo": "remiotore/ccxt-freqtrade",
+        "sha": "55e4b67273"
+      }
     },
     "BbandRsiv1": {
-      "fetched_at": "2026-09-24T18:52:42",
-      "repo": "remiotore/ccxt-freqtrade"
+      "fetched_at": "2026-09-24T21:01:44",
+      "repo": "remiotore/ccxt-freqtrade",
+      "upstream": {
+        "date": "2025-09-10",
+        "path": "strategies/BbandRsiv1.py",
+        "repo": "remiotore/ccxt-freqtrade",
+        "sha": "55e4b67273"
+      }
     },
     "BcmbigzDevelop": {
       "fetched_at": "2026-09-24T18:52:42",
@@ -1374,8 +1673,14 @@
       "repo": "djienne/YOUTUBE_STRATEGIES_FREQTRADE"
     },
     "BigZ03": {
-      "fetched_at": "2026-09-24T18:52:42",
-      "repo": "davidzr/freqtrade-strategies"
+      "fetched_at": "2026-09-24T21:01:44",
+      "repo": "davidzr/freqtrade-strategies",
+      "upstream": {
+        "date": "2023-11-05",
+        "path": "strategies/BigZ03/BigZ03.py",
+        "repo": "davidzr/freqtrade-strategies",
+        "sha": "9623c1f3d8"
+      }
     },
     "BigZ0307HO": {
       "fetched_at": "2026-09-24T18:52:42",
@@ -1386,12 +1691,24 @@
       "repo": "davidzr/freqtrade-strategies"
     },
     "BigZ04": {
-      "fetched_at": "2026-09-24T18:52:42",
-      "repo": "PeetCrypto/freqtrade-stuff"
+      "fetched_at": "2026-09-24T21:01:45",
+      "repo": "PeetCrypto/freqtrade-stuff",
+      "upstream": {
+        "date": "2022-02-11",
+        "path": "BigZ04.py",
+        "repo": "PeetCrypto/freqtrade-stuff",
+        "sha": "fb52a47f2e"
+      }
     },
     "BigZ0407": {
-      "fetched_at": "2026-09-24T18:52:42",
-      "repo": "davidzr/freqtrade-strategies"
+      "fetched_at": "2026-09-24T21:01:45",
+      "repo": "davidzr/freqtrade-strategies",
+      "upstream": {
+        "date": "2023-11-05",
+        "path": "strategies/BigZ0407/BigZ0407.py",
+        "repo": "davidzr/freqtrade-strategies",
+        "sha": "9623c1f3d8"
+      }
     },
     "BigZ0407HO": {
       "fetched_at": "2026-09-24T18:52:42",
@@ -1410,32 +1727,74 @@
       "repo": "remiotore/ccxt-freqtrade"
     },
     "BigZ04_2": {
-      "fetched_at": "2026-09-24T18:52:42",
-      "repo": "remiotore/ccxt-freqtrade"
+      "fetched_at": "2026-09-24T21:01:45",
+      "repo": "remiotore/ccxt-freqtrade",
+      "upstream": {
+        "date": "2025-09-10",
+        "path": "strategies/BigZ04_2.py",
+        "repo": "remiotore/ccxt-freqtrade",
+        "sha": "55e4b67273"
+      }
     },
     "BigZ04_4": {
-      "fetched_at": "2026-09-24T18:52:42",
-      "repo": "remiotore/ccxt-freqtrade"
+      "fetched_at": "2026-09-24T21:01:46",
+      "repo": "remiotore/ccxt-freqtrade",
+      "upstream": {
+        "date": "2025-09-10",
+        "path": "strategies/BigZ04_4.py",
+        "repo": "remiotore/ccxt-freqtrade",
+        "sha": "55e4b67273"
+      }
     },
     "BigZ04_845": {
-      "fetched_at": "2026-09-24T18:52:42",
-      "repo": "remiotore/ccxt-freqtrade"
+      "fetched_at": "2026-09-24T21:01:46",
+      "repo": "remiotore/ccxt-freqtrade",
+      "upstream": {
+        "date": "2025-09-10",
+        "path": "strategies/BigZ04_845.py",
+        "repo": "remiotore/ccxt-freqtrade",
+        "sha": "55e4b67273"
+      }
     },
     "BigZ04_TSL1": {
-      "fetched_at": "2026-09-24T18:52:42",
-      "repo": "remiotore/ccxt-freqtrade"
+      "fetched_at": "2026-09-24T21:01:46",
+      "repo": "remiotore/ccxt-freqtrade",
+      "upstream": {
+        "date": "2025-09-10",
+        "path": "strategies/BigZ04_TSL1.py",
+        "repo": "remiotore/ccxt-freqtrade",
+        "sha": "55e4b67273"
+      }
     },
     "BigZ04_TSL2": {
-      "fetched_at": "2026-09-24T18:52:42",
-      "repo": "remiotore/ccxt-freqtrade"
+      "fetched_at": "2026-09-24T21:01:47",
+      "repo": "remiotore/ccxt-freqtrade",
+      "upstream": {
+        "date": "2025-09-10",
+        "path": "strategies/BigZ04_TSL2.py",
+        "repo": "remiotore/ccxt-freqtrade",
+        "sha": "55e4b67273"
+      }
     },
     "BigZ04_TSL3": {
-      "fetched_at": "2026-09-24T18:52:42",
-      "repo": "PeetCrypto/freqtrade-stuff"
+      "fetched_at": "2026-09-24T21:01:47",
+      "repo": "PeetCrypto/freqtrade-stuff",
+      "upstream": {
+        "date": "2022-02-11",
+        "path": "BigZ04_TSL3.py",
+        "repo": "PeetCrypto/freqtrade-stuff",
+        "sha": "fb52a47f2e"
+      }
     },
     "BigZ04_TSL3_2": {
-      "fetched_at": "2026-09-24T18:52:42",
-      "repo": "remiotore/ccxt-freqtrade"
+      "fetched_at": "2026-09-24T21:01:47",
+      "repo": "remiotore/ccxt-freqtrade",
+      "upstream": {
+        "date": "2025-09-10",
+        "path": "strategies/BigZ04_TSL3_2.py",
+        "repo": "remiotore/ccxt-freqtrade",
+        "sha": "55e4b67273"
+      }
     },
     "BigZ04_TSL3a": {
       "fetched_at": "2026-09-24T18:52:42",
