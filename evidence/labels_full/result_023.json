@@ -1,0 +1,381 @@
+[
+ {
+  "id": "CustomStoplossWithPSAR",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['sar'] < dataframe['sar'].shift())"
+   }
+  ],
+  "note": "Parabolic SAR upturn/downturn signals"
+ },
+ {
+  "id": "CustomStrategy",
+  "primary": "volatility",
+  "labels": [
+   {
+    "label": "volatility",
+    "confidence": "high",
+    "evidence": "bb_width <= 0.1 and rsi_neutral"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "(dataframe['macd'] > 0)"
+   }
+  ],
+  "note": "Sideways detection (BB squeeze) gates entry; MACD confirms direction"
+ },
+ {
+  "id": "CustomStrategy2",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] <= dataframe['sideways_low'])"
+   }
+  ],
+  "note": "Buys at/below range low in tight market"
+ },
+ {
+  "id": "CustomStrategy3",
+  "primary": "volatility",
+  "labels": [
+   {
+    "label": "volatility",
+    "confidence": "high",
+    "evidence": "bb_width <= 0.1 and rsi_neutral"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "(dataframe['macd'] > 0)"
+   }
+  ],
+  "note": "Squeeze-gated entry with MACD momentum"
+ },
+ {
+  "id": "CustomStrategy4",
+  "primary": "volatility",
+  "labels": [
+   {
+    "label": "volatility",
+    "confidence": "high",
+    "evidence": "bb_width <= 0.1 and rsi_neutral"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "(dataframe['macd'] > 0)"
+   }
+  ],
+  "note": "Sideways market squeeze with MACD trigger"
+ },
+ {
+  "id": "DCA",
+  "primary": "grid",
+  "labels": [
+   {
+    "label": "grid",
+    "confidence": "high",
+    "evidence": "position_adjustment_enable = True"
+   }
+  ],
+  "note": "Fixed-schedule DCA via position_adjustment hook"
+ },
+ {
+  "id": "DCADMIPRICEStrategySpot",
+  "primary": "grid",
+  "labels": [
+   {
+    "label": "grid",
+    "confidence": "high",
+    "evidence": "position_adjustment_enable = True"
+   }
+  ],
+  "note": "Unconditional entry; grid via adjust_trade_position"
+ },
+ {
+  "id": "DCAGRID",
+  "primary": "grid",
+  "labels": [
+   {
+    "label": "grid",
+    "confidence": "high",
+    "evidence": "position_adjustment_enable = True"
+   }
+  ],
+  "note": "Grid trading via position adjustment"
+ },
+ {
+  "id": "DCATest1",
+  "primary": "grid",
+  "labels": [
+   {
+    "label": "grid",
+    "confidence": "high",
+    "evidence": "position_adjustment_enable = True"
+   }
+  ],
+  "note": "Fixed-interval grid entries at candles 0, 4, 8 in cycle"
+ },
+ {
+  "id": "DCATest2_fixed",
+  "primary": "grid",
+  "labels": [
+   {
+    "label": "grid",
+    "confidence": "high",
+    "evidence": "position_adjustment_enable = True"
+   }
+  ],
+  "note": "Fixed-interval grid (0, 2, 4 candles in 7-candle cycle)"
+ },
+ {
+  "id": "DCAbyGrok3Adapt_100_new",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] <= dataframe['bb_lower'] * 1.01)"
+   },
+   {
+    "label": "volatility",
+    "confidence": "medium",
+    "evidence": "(dataframe['bb_width'] < 0.05)"
+   }
+  ],
+  "note": "Oversold entry (RSI, stoch, BB) with volatility squeeze gate"
+ },
+ {
+  "id": "DCBBBounce",
+  "primary": "breakout",
+  "labels": [
+   {
+    "label": "breakout",
+    "confidence": "high",
+    "evidence": "qtpylib.crossed_above(dataframe['dcbb_diff_lower'], 0)"
+   }
+  ],
+  "note": "Donchian-Bollinger level cross (support bounce)"
+ },
+ {
+  "id": "DD",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < dataframe['bb_lowerband'])"
+   }
+  ],
+  "note": "Lower band penetration + RSI < 40 dip buy"
+ },
+ {
+  "id": "DELTA_NEUTRAL",
+  "primary": "other",
+  "labels": [],
+  "note": "Funding-rate arbitrage on perpetual futures; not a directional logic"
+ },
+ {
+  "id": "DIV_v1",
+  "primary": "pattern",
+  "labels": [
+   {
+    "label": "pattern",
+    "confidence": "high",
+    "evidence": "(dataframe[\"bullish_divergence\"] == True)"
+   }
+  ],
+  "note": "RSI bullish divergence pattern recognition"
+ },
+ {
+  "id": "DIV_v2",
+  "primary": "pattern",
+  "labels": [
+   {
+    "label": "pattern",
+    "confidence": "high",
+    "evidence": "(dataframe[\"regular_bear_div_rsi\"] == True)"
+   }
+  ],
+  "note": "RSI divergence pattern detection"
+ },
+ {
+  "id": "DMIPRICEDCAStrategyFuture",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe[f'plus_di_{self.inf_tf}'] > dataframe[f'minus_di_{self.inf_tf}'])"
+   }
+  ],
+  "note": "EMA trend filter + directional indicator alignment (ADX)"
+ },
+ {
+  "id": "DNSAlarm",
+  "primary": "pattern",
+  "labels": [
+   {
+    "label": "pattern",
+    "confidence": "medium",
+    "evidence": "engulfing pattern zone calculations"
+   }
+  ],
+  "note": "Bull/bear engulfing patterns; incomplete sheet"
+ },
+ {
+  "id": "DNSAlarm2",
+  "primary": "pattern",
+  "labels": [
+   {
+    "label": "pattern",
+    "confidence": "medium",
+    "evidence": "bull_engulf_green_line, bear_engulf_red_line"
+   }
+  ],
+  "note": "Engulfing pattern levels; incomplete sheet"
+ },
+ {
+  "id": "DNSAlarmDay",
+  "primary": "pattern",
+  "labels": [
+   {
+    "label": "pattern",
+    "confidence": "medium",
+    "evidence": "bull_engulf_green_line, bear_engulf_green_line"
+   }
+  ],
+  "note": "Daily engulfing patterns; incomplete sheet"
+ },
+ {
+  "id": "DNSAlarmMulti",
+  "primary": "pattern",
+  "labels": [
+   {
+    "label": "pattern",
+    "confidence": "medium",
+    "evidence": "bull_engulf_green_line, bear_engulf_green_line"
+   }
+  ],
+  "note": "Multi-timeframe engulfing; incomplete sheet"
+ },
+ {
+  "id": "DNSAlarmReporter",
+  "primary": "pattern",
+  "labels": [
+   {
+    "label": "pattern",
+    "confidence": "medium",
+    "evidence": "bull_engulf calculations across timeframes"
+   }
+  ],
+  "note": "Multi-TF engulfing reporting; incomplete sheet"
+ },
+ {
+  "id": "DNSAlarmReporterBTCRedLines",
+  "primary": "pattern",
+  "labels": [
+   {
+    "label": "pattern",
+    "confidence": "medium",
+    "evidence": "bull_engulf and bear_engulf calculations"
+   }
+  ],
+  "note": "BTC-referenced engulfing; incomplete sheet"
+ },
+ {
+  "id": "DNSAlarmReporterETHRedLines",
+  "primary": "pattern",
+  "labels": [
+   {
+    "label": "pattern",
+    "confidence": "medium",
+    "evidence": "bull_engulf and bear_engulf calculations"
+   }
+  ],
+  "note": "ETH-referenced engulfing; incomplete sheet"
+ },
+ {
+  "id": "DNSAlarmWeek",
+  "primary": "pattern",
+  "labels": [
+   {
+    "label": "pattern",
+    "confidence": "medium",
+    "evidence": "bull_engulf_green_line, bear_engulf_green_line"
+   }
+  ],
+  "note": "Weekly engulfing patterns; incomplete sheet"
+ },
+ {
+  "id": "DNSClosed",
+  "primary": "pattern",
+  "labels": [
+   {
+    "label": "pattern",
+    "confidence": "high",
+    "evidence": "CDLSPINNINGTOP and bull_engulf zone levels"
+   }
+  ],
+  "note": "Candlestick pattern (spinning top) with engulf zones"
+ },
+ {
+  "id": "DNSTrader",
+  "primary": "pattern",
+  "labels": [
+   {
+    "label": "pattern",
+    "confidence": "medium",
+    "evidence": "get_closest_bull_zone position logic"
+   }
+  ],
+  "note": "Bull/bear zone-based pattern trading; incomplete"
+ },
+ {
+  "id": "DNSTraderBTCMACD",
+  "primary": "pattern",
+  "labels": [
+   {
+    "label": "pattern",
+    "confidence": "low",
+    "evidence": "buy/sell_criteria derived from engulf calculations"
+   }
+  ],
+  "note": "Engulfing patterns + BTC MACD filter; incomplete sheet"
+ },
+ {
+  "id": "DNSTraderBTCRSI",
+  "primary": "pattern",
+  "labels": [
+   {
+    "label": "pattern",
+    "confidence": "low",
+    "evidence": "buy/sell_criteria from engulf zones"
+   }
+  ],
+  "note": "Engulfing patterns + BTC RSI filter; incomplete sheet"
+ },
+ {
+  "id": "DS_Green_5m",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['EWO'] > self.ewo_high.value)"
+   },
+   {
+    "label": "volatility",
+    "confidence": "medium",
+    "evidence": "rsi_fast as entry gate, ATR-based thresholds"
+   }
+  ],
+  "note": "EWO oscillator crossover + RSI momentum; incomplete sheet"
+ }
+]

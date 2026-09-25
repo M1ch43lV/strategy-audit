@@ -1,0 +1,387 @@
+[
+ {
+  "id": "EMABreakout",
+  "primary": "breakout",
+  "labels": [
+   {
+    "label": "breakout",
+    "confidence": "high",
+    "evidence": "qtpylib.crossed_above(dataframe['close'], dataframe['ema'])"
+   }
+  ],
+  "note": "Price crosses above EMA level"
+ },
+ {
+  "id": "EMABreakout_2",
+  "primary": "breakout",
+  "labels": [
+   {
+    "label": "breakout",
+    "confidence": "high",
+    "evidence": "qtpylib.crossed_above(dataframe['close'], dataframe['ema'])"
+   }
+  ],
+  "note": "Same logic as EMABreakout with newer entry method"
+ },
+ {
+  "id": "EMACross",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "qtpylib.crossed_above(dataframe[f'ema_short_"
+   }
+  ],
+  "note": "Short EMA crosses above long EMA"
+ },
+ {
+  "id": "EMAMA",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi'] < 35) & (dataframe['fastd'] < 35)"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "(dataframe['adx'] > 30) & (dataframe['plus_di'] > 0.5)"
+   }
+  ],
+  "note": "Oversold entry gated by trend confirmation"
+ },
+ {
+  "id": "EMAPriceCrossoverWithThreshold",
+  "primary": "breakout",
+  "labels": [
+   {
+    "label": "breakout",
+    "confidence": "high",
+    "evidence": "qtpylib.crossed_above(dataframe['close'], dataframe['ema800'])"
+   }
+  ],
+  "note": "Price crosses above long EMA level"
+ },
+ {
+  "id": "EMARibbonStrategy",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "qtpylib.crossed_below(dataframe['ema10'], dataframe['ema20'])"
+   }
+  ],
+  "note": "Buys when short EMA crosses below long EMA (weakness)"
+ },
+ {
+  "id": "EMASkipPump",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] <= dataframe['bb_lowerband']) & (dataframe['close'] == dataframe['min'])"
+   }
+  ],
+  "note": "Buys at local minimum with low volume filter"
+ },
+ {
+  "id": "EMASkipPump_128",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] <= dataframe['bb_lowerband']) & (dataframe['close'] == dataframe['min'])"
+   }
+  ],
+  "note": "Same logic as EMASkipPump"
+ },
+ {
+  "id": "EMASkipPump_2",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] <= 0.92 * dataframe['bb_lowerband'])"
+   }
+  ],
+  "note": "Variant with threshold adjustment to lower band"
+ },
+ {
+  "id": "EMASkipPump_3",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] <= dataframe['bb_lowerband']) & (dataframe['close'] == dataframe['min'])"
+   }
+  ],
+  "note": "Same logic as EMASkipPump"
+ },
+ {
+  "id": "EMASkipPump_4",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] <= dataframe['bb_lowerband']) & (dataframe['close'] == dataframe['min'])"
+   }
+  ],
+  "note": "Same logic as EMASkipPump"
+ },
+ {
+  "id": "EMASkipPump_711",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] <= dataframe['bb_lowerband']) & (dataframe['close'] == dataframe['min'])"
+   }
+  ],
+  "note": "Same logic as EMASkipPump"
+ },
+ {
+  "id": "EMAVolume",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "qtpylib.crossed_above(dataframe['ema13'], dataframe['ema34'])"
+   },
+   {
+    "label": "volume_flow",
+    "confidence": "medium",
+    "evidence": "(dataframe['volume'] > dataframe['volume'].rolling(window=10).mean())"
+   }
+  ],
+  "note": "EMA crossover gated by volume confirmation"
+ },
+ {
+  "id": "EMA_CROSSOVER_STRATEGY",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "dataframe['ema10'].crossed_above(dataframe['ema100'])"
+   }
+  ],
+  "note": "Short EMA crosses above long EMA"
+ },
+ {
+  "id": "EMA_Fibbonaci",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['typ'] > dataframe['34']) & (dataframe['typ'] > dataframe['55']) & (dataframe['typ'] > dataframe['89'])"
+   }
+  ],
+  "note": "Price above all Fibonacci EMAs confirms uptrend"
+ },
+ {
+  "id": "EMA_Fibonacci_V2",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['ema_34'] > dataframe['ema_55']) & (dataframe['ema_55'] > dataframe['ema_89'])"
+   }
+  ],
+  "note": "EMA and DI alignment across Fibonacci periods"
+ },
+ {
+  "id": "EMA_Fibonacci_V3",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['pdi_34'] > dataframe['pdi_55']) & (dataframe['pdi_55'] > dataframe['pdi_89'])"
+   }
+  ],
+  "note": "PLUS_DI alignment across Fibonacci periods"
+ },
+ {
+  "id": "EMA_Fibonacci_V4",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['pdi_34'] > dataframe['pdi_55']) & (dataframe['pdi_55'] > dataframe['pdi_89'])"
+   }
+  ],
+  "note": "DI alignment with pdi > mdi confirmation"
+ },
+ {
+  "id": "EMA_Trailing_Stoploss",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "qtpylib.crossed_above(dataframe['ema3'], dataframe['ema5'])"
+   }
+  ],
+  "note": "EMA crossover with trailing stoploss management"
+ },
+ {
+  "id": "EMA_Trailing_Stoploss_LessMagic",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "qtpylib.crossed_above(dataframe['go_long'], 0)"
+   }
+  ],
+  "note": "Multi-timeframe EMA crossover strategy"
+ },
+ {
+  "id": "EMAcrossover",
+  "primary": "breakout",
+  "labels": [
+   {
+    "label": "breakout",
+    "confidence": "high",
+    "evidence": "qtpylib.crossed_above(dataframe['close'], dataframe['ema800'])"
+   }
+  ],
+  "note": "Price crosses above long EMA level"
+ },
+ {
+  "id": "EMAsStochastic",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "qtpylib.crossed_above(dataframe['fastk'], dataframe['slowd'])"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "(dataframe['first_ema'] > dataframe['second_ema']) & (dataframe['second_ema'] > dataframe['third_ema'])"
+   }
+  ],
+  "note": "Stochastic trigger with EMA trend confirmation"
+ },
+ {
+  "id": "ETCG_Shorts",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi_fast'] > 65) & (dataframe['EWO'] > self.ewo_high.value)"
+   }
+  ],
+  "note": "Multiple momentum-based short entry rules"
+ },
+ {
+  "id": "EVA1",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi_fast'] < self.buy_rsi_fast_32.value) & (dataframe['rsi'] > self.buy_rsi_32.value)"
+   }
+  ],
+  "note": "Oversold indicators with declining RSI_slow"
+ },
+ {
+  "id": "EVA1_2",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi_fast'] < self.buy_rsi_fast_32.value) & (dataframe['rsi'] > self.buy_rsi_32.value)"
+   }
+  ],
+  "note": "Same as EVA1 on 1h timeframe"
+ },
+ {
+  "id": "EVA1_Optimized",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi'] < self.buy_rsi.value) & (dataframe['close'] < dataframe['sma_15']"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "(dataframe['ema_50'] > dataframe['ema_200'])"
+   }
+  ],
+  "note": "Oversold entry gated by trend filters"
+ },
+ {
+  "id": "EVA2",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi_fast'] > 50) & (dataframe['rsi'] > 50) & (dataframe['cti'] < 0)"
+   }
+  ],
+  "note": "RSI above neutral with CTI confirmation"
+ },
+ {
+  "id": "EVA2_2",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['sma_5'] > dataframe['sma_10']) & (dataframe['sma_10'] > dataframe['sma_25'])"
+   }
+  ],
+  "note": "SMA alignment in uptrend with dip buy signal"
+ },
+ {
+  "id": "EWOistV1",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['EWO'] > self.ewo_buy_low.value) & (dataframe['volume'] > 0)"
+   }
+  ],
+  "note": "EWO (SMA difference) based momentum signal"
+ },
+ {
+  "id": "EXPERIMENTAL_STRATEGY",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi'] < 35) & (dataframe['fastd'] < 35)"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "(dataframe['adx'] > 30) & (dataframe['plus_di'] > 0.5)"
+   }
+  ],
+  "note": "Oversold entry gated by trend confirmation"
+ }
+]

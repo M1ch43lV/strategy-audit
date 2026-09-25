@@ -1,0 +1,354 @@
+[
+ {
+  "id": "FakeoutStrategy",
+  "primary": "breakout",
+  "labels": [
+   {
+    "label": "breakout",
+    "confidence": "high",
+    "evidence": "dataframe['low'] <= dataframe[f'lower_peak_{self.buy_peak_order.value}'].shift(1)"
+   }
+  ],
+  "note": "Enters when price breaks below/above recent pivot extremes"
+ },
+ {
+  "id": "FastSupertrend",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe[f'supertrend_1_buy_{self.buy_m1.value}_{self.buy_p1.value}'] == 'up')"
+   }
+  ]
+ },
+ {
+  "id": "FastSupertrendOpt",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe[f'supertrend_1_buy'] == 'up') &\n               (dataframe[f'supertrend_2_buy'] == 'up')"
+   }
+  ]
+ },
+ {
+  "id": "FastSupertrendOpt_2",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe[f'supertrend_1_buy'] == 'up') &\n               (dataframe[f'supertrend_2_buy'] == 'up')"
+   }
+  ]
+ },
+ {
+  "id": "FastSupertrend_2",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe[f'supertrend_1_buy_{self.buy_m1.value}_{self.buy_p1.value}'] == 'up')"
+   }
+  ]
+ },
+ {
+  "id": "FastSupertrend_optim3",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['supertrend_1_buy'] == 'up') &\n            (dataframe['supertrend_2_buy'] == 'up')"
+   }
+  ]
+ },
+ {
+  "id": "FastSupertrend_optim3_rsi_70",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['supertrend_1_buy'] == 'up') &\n            (dataframe['supertrend_2_buy'] == 'up')"
+   },
+   {
+    "label": "momentum",
+    "confidence": "low",
+    "evidence": "(dataframe['rsi_ema'] < 70)"
+   }
+  ]
+ },
+ {
+  "id": "FastSupertrend_optim3_rsi_75",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['supertrend_1_buy'] == 'up') &\n            (dataframe['supertrend_2_buy'] == 'up')"
+   },
+   {
+    "label": "momentum",
+    "confidence": "low",
+    "evidence": "(dataframe['rsi_ema'] < 75)"
+   }
+  ]
+ },
+ {
+  "id": "FastSupertrend_optim3_rsi_752",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['supertrend_1_buy'] == 'up') &\n            (dataframe['supertrend_2_buy'] == 'up')"
+   }
+  ]
+ },
+ {
+  "id": "FastSupertrend_optim3_rsi_75fix",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['supertrend_1_buy'] == 'up') &\n            (dataframe['supertrend_2_buy'] == 'up')"
+   }
+  ]
+ },
+ {
+  "id": "FastSupertrend_optim3_rsi_75fix_signal",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['supertrend_1_buy'] == 'up') &\n            (dataframe['supertrend_2_buy'] == 'up')"
+   }
+  ],
+  "note": "Pullback confirmation after reversal"
+ },
+ {
+  "id": "FastSupertrend_optim3_rsi_75lev",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['supertrend_1_buy'] == 'up') &\n            (dataframe['supertrend_2_buy'] == 'up')"
+   }
+  ]
+ },
+ {
+  "id": "FastSupertrend_optim3_rsi_75sell",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['supertrend_1_sell'] == 'up') &\n            (dataframe['supertrend_2_sell'] == 'up')"
+   }
+  ]
+ },
+ {
+  "id": "FastSupertrend_optim3_rsi_80",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['supertrend_1_buy'] == 'up') &\n            (dataframe['supertrend_2_buy'] == 'up')"
+   }
+  ]
+ },
+ {
+  "id": "FastSupertrend_optim_quick",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['supertrend_1_buy'] == 'up') &\n            (dataframe['supertrend_2_buy'] == 'up')"
+   }
+  ]
+ },
+ {
+  "id": "FastSupertrend_optim_quick2",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['supertrend_1_buy'] == 'up') &\n            (dataframe['supertrend_2_buy'] == 'up')"
+   }
+  ]
+ },
+ {
+  "id": "FastSupertrend_optim_quick3",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['supertrend_1_buy'] == 'up') &\n            (dataframe['supertrend_2_buy'] == 'up')"
+   }
+  ]
+ },
+ {
+  "id": "FastSupertrend_optim_quick4",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['supertrend_1_buy'] == 'up') &\n            (dataframe['supertrend_2_buy'] == 'up')"
+   }
+  ]
+ },
+ {
+  "id": "FastSupertrend_optim_quick5",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['supertrend_1_buy'] == 'up') &\n            (dataframe['supertrend_2_buy'] == 'up')"
+   }
+  ]
+ },
+ {
+  "id": "FastSupertrend_ts_origstop_fix",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe[f'supertrend_1_buy'] == 'up') &\n               (dataframe[f'supertrend_2_buy'] == 'up')"
+   }
+  ]
+ },
+ {
+  "id": "Fengzi_v1",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(qtpylib.crossed_above(dataframe['rsi_3'], dataframe['rsi_6']))"
+   },
+   {
+    "label": "pattern",
+    "confidence": "low",
+    "evidence": "(dataframe['low_swing'] != 0)"
+   }
+  ]
+ },
+ {
+  "id": "FenixTopProfit",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(qtpylib.crossed_above(df['pdi'], df['mdi'])) &\n                (df['adx'] > 25)"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "(df['rsi'] > 30)"
+   }
+  ]
+ },
+ {
+  "id": "Fibbo",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "BB_LONG_ENTRY = dataframe['close'] <= dataframe['bb_lowerband']"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "MACD_LONG_ENTRY = dataframe['macd'] > dataframe['macdsignal']"
+   }
+  ]
+ },
+ {
+  "id": "FiboSmaEmaRsi",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "ma_crossover_long = dataframe['ma_fast'].shift(1) > dataframe['ma_slow'].shift(1)"
+   }
+  ]
+ },
+ {
+  "id": "FibonacciEMATrendStrategy",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "stack_1h_bull = (dataframe[\"ema_fast\"] > dataframe[\"ema_mid\"]) & (dataframe[\"ema_mid\"] > dataframe[\"ema_slow\"])"
+   }
+  ]
+ },
+ {
+  "id": "FibonacciGoldenPocketRSIStrategy",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < dataframe['fib_618']) &\n                (dataframe['rsi'] < 30)"
+   }
+  ]
+ },
+ {
+  "id": "FileLoadingStrategy",
+  "primary": "other",
+  "labels": [],
+  "note": "Loads entry signals from external file based on order status"
+ },
+ {
+  "id": "Finder",
+  "primary": "other",
+  "labels": [],
+  "note": "Entry logic delegated to _populate_trend method not shown in sheet"
+ },
+ {
+  "id": "FishTest",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['cci'] <= -00.0) &\n            (dataframe['fisher_rsi'] < -0.2)"
+   }
+  ]
+ },
+ {
+  "id": "FisherBBDynamic",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(self.get_buy_signal_fisher_bb(dataframe) == True)"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "(dataframe['sslUp_inf'] > dataframe['sslDown_inf'])"
+   }
+  ]
+ }
+]

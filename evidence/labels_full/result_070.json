@@ -1,0 +1,338 @@
+[
+ {
+  "id": "SMAOffsetProtectOptV0",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < (dataframe[f'ma_buy_{self.base_nb_candles_buy.value}'] * self.low_offset.value))"
+   }
+  ]
+ },
+ {
+  "id": "SMAOffsetProtectOptV1",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < (dataframe[f'ma_buy_{self.base_nb_candles_buy.value}'] * self.low_offset.value))"
+   }
+  ]
+ },
+ {
+  "id": "SMAOffsetProtectOptV1HO1",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < (dataframe[f'ma_buy_{self.base_nb_candles_buy.value}'] * self.low_offset.value))"
+   }
+  ]
+ },
+ {
+  "id": "SMAOffsetProtectOptV1Mod",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < (dataframe[f'ma_buy_{self.base_nb_candles_buy.value}'] * self.low_offset.value))"
+   }
+  ]
+ },
+ {
+  "id": "SMAOffsetProtectOptV1Mod2",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < (dataframe[f'ma_buy_{self.base_nb_candles_buy.value}'] * self.low_offset.value))"
+   }
+  ]
+ },
+ {
+  "id": "SMAOffsetProtectOptV1Mod2_antipump",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < (dataframe[f'ma_buy_{self.base_nb_candles_buy.value}'] * self.low_offset.value))"
+   }
+  ]
+ },
+ {
+  "id": "SMAOffsetProtectOptV1_0",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < (dataframe['ma_buy'] * self.low_offset.value))"
+   }
+  ]
+ },
+ {
+  "id": "SMAOffsetProtectOptV1_1",
+  "primary": "other",
+  "labels": [],
+  "note": "No entry or exit code shown; only class attributes provided"
+ },
+ {
+  "id": "SMAOffsetProtectOptV1_2",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < (dataframe[f'ma_buy_{self.base_nb_candles_buy.value}'] * self.low_offset.value))"
+   }
+  ]
+ },
+ {
+  "id": "SMAOffsetProtectOptV1_3",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < (dataframe['ma_buy'] * self.low_offset.value))"
+   }
+  ]
+ },
+ {
+  "id": "SMAOffsetProtectOptV1_356",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < (dataframe[f'ma_buy_{self.base_nb_candles_buy.value}'] * self.low_offset.value))"
+   }
+  ]
+ },
+ {
+  "id": "SMAOffsetProtectOptV1_560",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < (dataframe[f'ma_buy_{self.base_nb_candles_buy.value}'] * self.low_offset.value))"
+   }
+  ]
+ },
+ {
+  "id": "SMAOffsetProtectOptV1_7",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < (dataframe[f'ma_buy_{self.base_nb_candles_buy.value}'] * self.low_offset.value))"
+   }
+  ]
+ },
+ {
+  "id": "SMAOffsetProtectOptV1_830",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < (dataframe[f'ma_buy_{self.base_nb_candles_buy.value}'] * self.low_offset.value))"
+   }
+  ]
+ },
+ {
+  "id": "SMAOffsetProtectOptV1_973",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < (dataframe[f'ma_buy_{self.base_nb_candles_buy.value}'] * self.low_offset.value))"
+   }
+  ]
+ },
+ {
+  "id": "SMAOffsetProtectOptV1_984",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < (dataframe[f'ma_buy_{self.base_nb_candles_buy.value}'] * self.low_offset.value))"
+   }
+  ]
+ },
+ {
+  "id": "SMAOffsetProtectOptV1_kkeue_20210619",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < (dataframe[f'ma_buy_{self.base_nb_candles_buy.value}'] * self.low_offset.value))"
+   }
+  ]
+ },
+ {
+  "id": "SMAOffsetProtectOpt_2",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < (dataframe[f'ma_buy_{self.base_nb_candles_buy.value}'] * self.low_offset.value))"
+   }
+  ]
+ },
+ {
+  "id": "SMAOffsetV2",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < dataframe['sma_30_offset'])"
+   }
+  ]
+ },
+ {
+  "id": "SMAOffset_2",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < (dataframe[sma] * self.low_offset.value))"
+   }
+  ]
+ },
+ {
+  "id": "SMAOffset_3",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < dataframe['ma_offset_buy'])"
+   }
+  ]
+ },
+ {
+  "id": "SMAOffset_4",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < dataframe['ma_offset_buy'])"
+   }
+  ]
+ },
+ {
+  "id": "SMAOffset_Hippocritical_dca",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < (dataframe[f'ma_buy_{self.base_nb_candles_buy.value}'] * self.low_offset.value))"
+   }
+  ]
+ },
+ {
+  "id": "SMAOffset_Hippocritical_dca_leverage",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < (dataframe[f'ma_buy_{self.base_nb_candles_buy.value}'] * self.low_offset.value))"
+   }
+  ]
+ },
+ {
+  "id": "SMAOffset_Hippocritical_dca_old",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < (dataframe[f'ma_buy_{self.base_nb_candles_buy.value}'] * self.low_offset.value))"
+   }
+  ]
+ },
+ {
+  "id": "SMAOffset_Hippocritical_dca_protections",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < (dataframe[f'ma_buy_{self.base_nb_candles_buy.value}'] * self.low_offset.value))"
+   }
+  ]
+ },
+ {
+  "id": "SMA_BBRSI",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi'] < (dataframe[f'basis_{self.for_ma_length.value}'] - (dataframe[f'dev"
+   }
+  ]
+ },
+ {
+  "id": "SMAoffset_antipump_div",
+  "primary": "pattern",
+  "labels": [
+   {
+    "label": "pattern",
+    "confidence": "medium",
+    "evidence": "( (dataframe['bullCond'] > 0) | (dataframe['hiddenBullCond'] > 0) )"
+   }
+  ],
+  "note": "Divergence detection as primary gate; sheet truncated"
+ },
+ {
+  "id": "SOMY",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['sma_50'] > dataframe['sma_200']) &"
+   },
+   {
+    "label": "mean_reversion",
+    "confidence": "medium",
+    "evidence": "(dataframe['close'] < dataframe['bb_lowerband'])"
+   },
+   {
+    "label": "breakout",
+    "confidence": "medium",
+    "evidence": "(dataframe['close'] > dataframe['high'].shift(1)"
+   }
+  ]
+ },
+ {
+  "id": "SOPOV1",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < (dataframe[f'ma_buy_{self.base_nb_candles_buy.value}'] * self.low_offset.value))"
+   }
+  ]
+ }
+]

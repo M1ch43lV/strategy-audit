@@ -1,0 +1,879 @@
+[
+ {
+  "id": "HyperoptableStrategy",
+  "haiku": "mean_reversion",
+  "deepseek": "trend_following",
+  "haiku_labels": [
+   "mean_reversion"
+  ],
+  "deepseek_labels": [
+   "mean_reversion",
+   "trend_following"
+  ]
+ },
+ {
+  "id": "qrsi",
+  "haiku": "mean_reversion",
+  "deepseek": "trend_following",
+  "haiku_labels": [],
+  "deepseek_labels": [
+   "trend_following"
+  ]
+ },
+ {
+  "id": "NFIV6HYPER",
+  "haiku": "mean_reversion",
+  "deepseek": "trend_following",
+  "haiku_labels": [
+   "mean_reversion",
+   "trend_following"
+  ],
+  "deepseek_labels": [
+   "mean_reversion",
+   "trend_following"
+  ]
+ },
+ {
+  "id": "NostalgiaForInfinityNext_272",
+  "haiku": "trend_following",
+  "deepseek": "other",
+  "haiku_labels": [
+   "trend_following"
+  ],
+  "deepseek_labels": [
+   "other"
+  ]
+ },
+ {
+  "id": "strategy_test_v2_16",
+  "haiku": "trend_following",
+  "deepseek": "mean_reversion",
+  "haiku_labels": [
+   "momentum",
+   "trend_following"
+  ],
+  "deepseek_labels": [
+   "mean_reversion",
+   "trend_following"
+  ]
+ },
+ {
+  "id": "HeikinAshiStrategy",
+  "haiku": "trend_following",
+  "deepseek": "pattern",
+  "haiku_labels": [
+   "pattern"
+  ],
+  "deepseek_labels": [
+   "pattern",
+   "trend_following"
+  ]
+ },
+ {
+  "id": "plasma_cutter",
+  "haiku": "trend_following",
+  "deepseek": "other",
+  "haiku_labels": [
+   "trend_following"
+  ],
+  "deepseek_labels": [
+   "other"
+  ]
+ },
+ {
+  "id": "TD",
+  "haiku": "trend_following",
+  "deepseek": "momentum",
+  "haiku_labels": [
+   "trend_following"
+  ],
+  "deepseek_labels": [
+   "momentum"
+  ]
+ },
+ {
+  "id": "PlusMinusV1",
+  "haiku": "trend_following",
+  "deepseek": "momentum",
+  "haiku_labels": [
+   "momentum",
+   "trend_following"
+  ],
+  "deepseek_labels": [
+   "momentum",
+   "trend_following"
+  ]
+ },
+ {
+  "id": "BinHV27_short_2",
+  "haiku": "trend_following",
+  "deepseek": "mean_reversion",
+  "haiku_labels": [
+   "momentum",
+   "trend_following"
+  ],
+  "deepseek_labels": [
+   "mean_reversion"
+  ]
+ },
+ {
+  "id": "SMAOG",
+  "haiku": "trend_following",
+  "deepseek": "mean_reversion",
+  "haiku_labels": [
+   "trend_following"
+  ],
+  "deepseek_labels": [
+   "mean_reversion",
+   "trend_following"
+  ]
+ },
+ {
+  "id": "UltraSmartStrategy",
+  "haiku": "trend_following",
+  "deepseek": "volatility",
+  "haiku_labels": [
+   "trend_following"
+  ],
+  "deepseek_labels": [
+   "mean_reversion",
+   "pattern",
+   "volatility"
+  ]
+ },
+ {
+  "id": "NFI7HO2",
+  "haiku": "trend_following",
+  "deepseek": "mean_reversion",
+  "haiku_labels": [
+   "mean_reversion",
+   "trend_following"
+  ],
+  "deepseek_labels": [
+   "mean_reversion",
+   "trend_following"
+  ]
+ },
+ {
+  "id": "adx_low_stop",
+  "haiku": "trend_following",
+  "deepseek": "mean_reversion",
+  "haiku_labels": [],
+  "deepseek_labels": [
+   "mean_reversion"
+  ]
+ },
+ {
+  "id": "NostalgiaForInfinityV7_7",
+  "haiku": "trend_following",
+  "deepseek": "mean_reversion",
+  "haiku_labels": [
+   "mean_reversion",
+   "trend_following"
+  ],
+  "deepseek_labels": [
+   "mean_reversion",
+   "trend_following"
+  ]
+ },
+ {
+  "id": "legacy_strategy_28",
+  "haiku": "trend_following",
+  "deepseek": "mean_reversion",
+  "haiku_labels": [
+   "trend_following"
+  ],
+  "deepseek_labels": [
+   "mean_reversion"
+  ]
+ },
+ {
+  "id": "roger20",
+  "haiku": "trend_following",
+  "deepseek": "mean_reversion",
+  "haiku_labels": [
+   "pattern"
+  ],
+  "deepseek_labels": [
+   "mean_reversion",
+   "pattern",
+   "trend_following",
+   "volatility"
+  ]
+ },
+ {
+  "id": "Obelisk_Ichimoku_Slow_v1_1_674",
+  "haiku": "trend_following",
+  "deepseek": "other",
+  "haiku_labels": [
+   "trend_following"
+  ],
+  "deepseek_labels": [
+   "other"
+  ]
+ },
+ {
+  "id": "TheForceOptimizedV4",
+  "haiku": "momentum",
+  "deepseek": "trend_following",
+  "haiku_labels": [
+   "momentum"
+  ],
+  "deepseek_labels": [
+   "trend_following"
+  ]
+ },
+ {
+  "id": "adx_opt_strat",
+  "haiku": "momentum",
+  "deepseek": "mean_reversion",
+  "haiku_labels": [
+   "momentum"
+  ],
+  "deepseek_labels": [
+   "mean_reversion"
+  ]
+ },
+ {
+  "id": "yoyo_action_strategy_8",
+  "haiku": "momentum",
+  "deepseek": "other",
+  "haiku_labels": [
+   "momentum"
+  ],
+  "deepseek_labels": [
+   "other"
+  ]
+ },
+ {
+  "id": "NostalgiaForInfinityX7",
+  "haiku": "momentum",
+  "deepseek": "other",
+  "haiku_labels": [
+   "volatility"
+  ],
+  "deepseek_labels": [
+   "other"
+  ]
+ },
+ {
+  "id": "ZaratustraV12",
+  "haiku": "momentum",
+  "deepseek": "trend_following",
+  "haiku_labels": [],
+  "deepseek_labels": [
+   "momentum",
+   "trend_following"
+  ]
+ },
+ {
+  "id": "TGMA",
+  "haiku": "momentum",
+  "deepseek": "other",
+  "haiku_labels": [
+   "momentum"
+  ],
+  "deepseek_labels": [
+   "other"
+  ]
+ },
+ {
+  "id": "Kalman",
+  "haiku": "momentum",
+  "deepseek": "mean_reversion",
+  "haiku_labels": [
+   "momentum"
+  ],
+  "deepseek_labels": [
+   "mean_reversion",
+   "statistical"
+  ]
+ },
+ {
+  "id": "EMAVolume",
+  "haiku": "momentum",
+  "deepseek": "trend_following",
+  "haiku_labels": [
+   "momentum",
+   "volume_flow"
+  ],
+  "deepseek_labels": [
+   "trend_following"
+  ]
+ },
+ {
+  "id": "SMAOffsetProtectOpt",
+  "haiku": "momentum",
+  "deepseek": "mean_reversion",
+  "haiku_labels": [
+   "momentum"
+  ],
+  "deepseek_labels": [
+   "mean_reversion"
+  ]
+ },
+ {
+  "id": "ReinforcedSmoothScalpS",
+  "haiku": "momentum",
+  "deepseek": "mean_reversion",
+  "haiku_labels": [
+   "momentum"
+  ],
+  "deepseek_labels": [
+   "mean_reversion"
+  ]
+ },
+ {
+  "id": "STRATEGY_DEFAULT",
+  "haiku": "momentum",
+  "deepseek": "mean_reversion",
+  "haiku_labels": [
+   "momentum"
+  ],
+  "deepseek_labels": [
+   "mean_reversion"
+  ]
+ },
+ {
+  "id": "SMAOPv1_TTF",
+  "haiku": "momentum",
+  "deepseek": "mean_reversion",
+  "haiku_labels": [],
+  "deepseek_labels": [
+   "mean_reversion"
+  ]
+ },
+ {
+  "id": "NASOSv5_antipump",
+  "haiku": "momentum",
+  "deepseek": "mean_reversion",
+  "haiku_labels": [
+   "mean_reversion",
+   "momentum"
+  ],
+  "deepseek_labels": [
+   "mean_reversion",
+   "momentum"
+  ]
+ },
+ {
+  "id": "E0V1E_23",
+  "haiku": "momentum",
+  "deepseek": "mean_reversion",
+  "haiku_labels": [
+   "mean_reversion",
+   "momentum"
+  ],
+  "deepseek_labels": [
+   "mean_reversion"
+  ]
+ },
+ {
+  "id": "EMACross",
+  "haiku": "momentum",
+  "deepseek": "trend_following",
+  "haiku_labels": [
+   "momentum"
+  ],
+  "deepseek_labels": [
+   "trend_following"
+  ]
+ },
+ {
+  "id": "Trump_LIM",
+  "haiku": "momentum",
+  "deepseek": "volume_flow",
+  "haiku_labels": [
+   "momentum",
+   "volume_flow"
+  ],
+  "deepseek_labels": [
+   "mean_reversion",
+   "volume_flow"
+  ]
+ },
+ {
+  "id": "tesla4",
+  "haiku": "other",
+  "deepseek": "mean_reversion",
+  "haiku_labels": [],
+  "deepseek_labels": [
+   "mean_reversion"
+  ]
+ },
+ {
+  "id": "MultiTargetClassifierTestStrategy",
+  "haiku": "other",
+  "deepseek": "statistical",
+  "haiku_labels": [
+   "other"
+  ],
+  "deepseek_labels": [
+   "statistical"
+  ]
+ },
+ {
+  "id": "EMABreakout_2",
+  "haiku": "breakout",
+  "deepseek": "momentum",
+  "haiku_labels": [
+   "breakout"
+  ],
+  "deepseek_labels": [
+   "momentum"
+  ]
+ },
+ {
+  "id": "Argrelextrema",
+  "haiku": "breakout",
+  "deepseek": "mean_reversion",
+  "haiku_labels": [
+   "breakout"
+  ],
+  "deepseek_labels": [
+   "breakout",
+   "mean_reversion"
+  ]
+ },
+ {
+  "id": "BBBHold_3",
+  "haiku": "breakout",
+  "deepseek": "mean_reversion",
+  "haiku_labels": [
+   "breakout"
+  ],
+  "deepseek_labels": [
+   "mean_reversion"
+  ]
+ },
+ {
+  "id": "TrailingBuy_ClucHAnix_5m_E0V1E_by_TraNz201",
+  "haiku": "breakout",
+  "deepseek": "mean_reversion",
+  "haiku_labels": [
+   "breakout",
+   "mean_reversion"
+  ],
+  "deepseek_labels": [
+   "mean_reversion",
+   "momentum",
+   "pattern"
+  ]
+ },
+ {
+  "id": "AdaptiveRegime",
+  "haiku": "breakout",
+  "deepseek": "statistical",
+  "haiku_labels": [
+   "breakout",
+   "mean_reversion"
+  ],
+  "deepseek_labels": [
+   "breakout",
+   "mean_reversion",
+   "statistical",
+   "trend_following"
+  ]
+ },
+ {
+  "id": "ZaratustraV17",
+  "haiku": "breakout",
+  "deepseek": "trend_following",
+  "haiku_labels": [
+   "breakout",
+   "trend_following"
+  ],
+  "deepseek_labels": [
+   "breakout",
+   "trend_following"
+  ]
+ },
+ {
+  "id": "TaSearch5m",
+  "haiku": "breakout",
+  "deepseek": "other",
+  "haiku_labels": [
+   "breakout"
+  ],
+  "deepseek_labels": [
+   "other"
+  ]
+ },
+ {
+  "id": "FVGChannel",
+  "haiku": "breakout",
+  "deepseek": "mean_reversion",
+  "haiku_labels": [
+   "breakout"
+  ],
+  "deepseek_labels": [
+   "breakout",
+   "mean_reversion"
+  ]
+ },
+ {
+  "id": "HurstCycle7",
+  "haiku": "breakout",
+  "deepseek": "other",
+  "haiku_labels": [
+   "breakout"
+  ],
+  "deepseek_labels": [
+   "other"
+  ]
+ },
+ {
+  "id": "Ichimoku_v17",
+  "haiku": "breakout",
+  "deepseek": "trend_following",
+  "haiku_labels": [
+   "breakout"
+  ],
+  "deepseek_labels": [
+   "trend_following"
+  ]
+ },
+ {
+  "id": "BBBHold_2",
+  "haiku": "breakout",
+  "deepseek": "mean_reversion",
+  "haiku_labels": [
+   "breakout"
+  ],
+  "deepseek_labels": [
+   "mean_reversion"
+  ]
+ },
+ {
+  "id": "Ichimoku_v15_1d",
+  "haiku": "breakout",
+  "deepseek": "trend_following",
+  "haiku_labels": [
+   "breakout"
+  ],
+  "deepseek_labels": [
+   "trend_following"
+  ]
+ },
+ {
+  "id": "BBMod1_2",
+  "haiku": "volatility",
+  "deepseek": "mean_reversion",
+  "haiku_labels": [
+   "volatility"
+  ],
+  "deepseek_labels": [
+   "mean_reversion",
+   "trend_following",
+   "volatility"
+  ]
+ },
+ {
+  "id": "BBMod",
+  "haiku": "volatility",
+  "deepseek": "mean_reversion",
+  "haiku_labels": [
+   "mean_reversion",
+   "volatility"
+  ],
+  "deepseek_labels": [
+   "mean_reversion",
+   "statistical",
+   "volatility"
+  ]
+ },
+ {
+  "id": "BBMod1_0",
+  "haiku": "volatility",
+  "deepseek": "mean_reversion",
+  "haiku_labels": [
+   "volatility"
+  ],
+  "deepseek_labels": [
+   "mean_reversion",
+   "trend_following",
+   "volatility"
+  ]
+ },
+ {
+  "id": "RSIBB_V4",
+  "haiku": "volatility",
+  "deepseek": "breakout",
+  "haiku_labels": [
+   "breakout",
+   "volatility"
+  ],
+  "deepseek_labels": [
+   "breakout",
+   "volatility",
+   "volume_flow"
+  ]
+ },
+ {
+  "id": "Squeeze002",
+  "haiku": "volatility",
+  "deepseek": "momentum",
+  "haiku_labels": [
+   "volatility"
+  ],
+  "deepseek_labels": [
+   "momentum"
+  ]
+ },
+ {
+  "id": "BBMod1_3",
+  "haiku": "volatility",
+  "deepseek": "mean_reversion",
+  "haiku_labels": [
+   "volatility"
+  ],
+  "deepseek_labels": [
+   "mean_reversion",
+   "trend_following",
+   "volatility"
+  ]
+ },
+ {
+  "id": "Squeeze001",
+  "haiku": "volatility",
+  "deepseek": "mean_reversion",
+  "haiku_labels": [
+   "volatility"
+  ],
+  "deepseek_labels": [
+   "mean_reversion",
+   "momentum"
+  ]
+ },
+ {
+  "id": "SqueezeMomentum_2",
+  "haiku": "volatility",
+  "deepseek": "momentum",
+  "haiku_labels": [
+   "momentum",
+   "volatility"
+  ],
+  "deepseek_labels": [
+   "mean_reversion",
+   "momentum",
+   "trend_following"
+  ]
+ },
+ {
+  "id": "DNSAlarm2",
+  "haiku": "pattern",
+  "deepseek": "other",
+  "haiku_labels": [],
+  "deepseek_labels": [
+   "other"
+  ]
+ },
+ {
+  "id": "OsirisXRSI",
+  "haiku": "pattern",
+  "deepseek": "trend_following",
+  "haiku_labels": [
+   "pattern"
+  ],
+  "deepseek_labels": [
+   "pattern",
+   "trend_following"
+  ]
+ },
+ {
+  "id": "DNSTraderBTCRSI",
+  "haiku": "pattern",
+  "deepseek": "other",
+  "haiku_labels": [],
+  "deepseek_labels": [
+   "other"
+  ]
+ },
+ {
+  "id": "DNSAlarmReporterBTCRedLines",
+  "haiku": "pattern",
+  "deepseek": "other",
+  "haiku_labels": [],
+  "deepseek_labels": [
+   "other"
+  ]
+ },
+ {
+  "id": "DNSAlarmWeek",
+  "haiku": "pattern",
+  "deepseek": "other",
+  "haiku_labels": [],
+  "deepseek_labels": [
+   "other"
+  ]
+ },
+ {
+  "id": "NOTankAi_17",
+  "haiku": "pattern",
+  "deepseek": "mean_reversion",
+  "haiku_labels": [],
+  "deepseek_labels": [
+   "mean_reversion"
+  ]
+ },
+ {
+  "id": "ViNBuyPct",
+  "haiku": "statistical",
+  "deepseek": "mean_reversion",
+  "haiku_labels": [],
+  "deepseek_labels": [
+   "mean_reversion",
+   "volatility"
+  ]
+ },
+ {
+  "id": "AnomalyDetectorv2_2",
+  "haiku": "statistical",
+  "deepseek": "volume_flow",
+  "haiku_labels": [
+   "statistical",
+   "volatility"
+  ],
+  "deepseek_labels": [
+   "volatility",
+   "volume_flow"
+  ]
+ },
+ {
+  "id": "AnomalyDetectorv2",
+  "haiku": "statistical",
+  "deepseek": "volume_flow",
+  "haiku_labels": [
+   "statistical",
+   "volatility"
+  ],
+  "deepseek_labels": [
+   "volatility",
+   "volume_flow"
+  ]
+ },
+ {
+  "id": "AdvancedFuturesSwingStrategy",
+  "haiku": "volume_flow",
+  "deepseek": "trend_following",
+  "haiku_labels": [],
+  "deepseek_labels": [
+   "pattern",
+   "trend_following",
+   "volume_flow"
+  ]
+ },
+ {
+  "id": "MultiRSIVfi",
+  "haiku": "volume_flow",
+  "deepseek": "mean_reversion",
+  "haiku_labels": [
+   "mean_reversion",
+   "volume_flow"
+  ],
+  "deepseek_labels": [
+   "mean_reversion",
+   "volume_flow"
+  ]
+ },
+ {
+  "id": "DCATest2_fixed",
+  "haiku": "grid",
+  "deepseek": "other",
+  "haiku_labels": [
+   "grid"
+  ],
+  "deepseek_labels": [
+   "other"
+  ]
+ },
+ {
+  "id": "GRIDDMIPRICEStrategySpot",
+  "haiku": "grid",
+  "deepseek": "other",
+  "haiku_labels": [],
+  "deepseek_labels": [
+   "other"
+  ]
+ },
+ {
+  "id": "UziChanTB",
+  "haiku": "grid",
+  "deepseek": "other",
+  "haiku_labels": [],
+  "deepseek_labels": [
+   "other"
+  ]
+ },
+ {
+  "id": "ADX_PRICE_GRID_Strategy_Future_v7",
+  "haiku": "grid",
+  "deepseek": "other",
+  "haiku_labels": [
+   "grid"
+  ],
+  "deepseek_labels": [
+   "other"
+  ]
+ },
+ {
+  "id": "DCATest1",
+  "haiku": "grid",
+  "deepseek": "other",
+  "haiku_labels": [
+   "grid"
+  ],
+  "deepseek_labels": [
+   "other"
+  ]
+ },
+ {
+  "id": "DCAGRID",
+  "haiku": "grid",
+  "deepseek": "other",
+  "haiku_labels": [
+   "grid"
+  ],
+  "deepseek_labels": [
+   "other"
+  ]
+ },
+ {
+  "id": "DCA",
+  "haiku": "grid",
+  "deepseek": "other",
+  "haiku_labels": [
+   "grid"
+  ],
+  "deepseek_labels": [
+   "other"
+  ]
+ },
+ {
+  "id": "Trend_grid",
+  "haiku": "grid",
+  "deepseek": "mean_reversion",
+  "haiku_labels": [],
+  "deepseek_labels": [
+   "mean_reversion"
+  ]
+ },
+ {
+  "id": "Trend_grid_v1",
+  "haiku": "grid",
+  "deepseek": "mean_reversion",
+  "haiku_labels": [],
+  "deepseek_labels": [
+   "mean_reversion"
+  ]
+ },
+ {
+  "id": "UziChanTB2",
+  "haiku": "grid",
+  "deepseek": "other",
+  "haiku_labels": [],
+  "deepseek_labels": [
+   "other"
+  ]
+ }
+]

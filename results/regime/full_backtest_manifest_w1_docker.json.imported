@@ -1,23 +1,24 @@
 {
   "measurement_scope": "canonical_pooled_native_pair_universe",
   "results": {
-    "AlexBandSniperV10AINoBias": {
-      "attempted_at": "2026-09-23T00:54:09+00:00",
-      "canonical_sha256": "sha256_e2ad2479790be251166908f6da658d5b26a84e10923faea9b83dbcfaa0a87717",
+    "BinClucMadSMACore": {
+      "attempted_at": "2026-09-25T09:17:03+00:00",
+      "canonical_sha256": "sha256_e725b37b23d24ece5542f8af913259320bff4b530d90986e24c7f206a2b85076",
       "class1_rules": [],
-      "elapsed_s": 3599.9,
-      "invocation": "freqtrade backtesting --config runtime/profile_futures_config.json --strategy AlexBandSniperV10AINoBias --strategy-path repos/audit-authored_lookahead-rewrites/user_data/strategies/AlexNexus --timerange 20200401-20260821 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/AlexBandSniperV10AINoBias-5eb3077f --cache none",
+      "debug_log": "user_data/profile_smoke_logs/BinClucMadSMACore-ddd17da2.log",
+      "elapsed_s": 139.9,
+      "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy BinClucMadSMACore --strategy-path repair/patched/repos/remiotore_ccxt-freqtrade/strategies --timerange 20200401-20260821 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/BinClucMadSMACore-ddd17da2 --cache none",
       "measurement_scope": "canonical_pooled_native_pair_universe",
-      "mode": "futures",
+      "mode": "spot",
       "pairs": [
-        "BTC/USDT:USDT",
-        "ETH/USDT:USDT",
-        "LTC/USDT:USDT",
-        "XRP/USDT:USDT",
-        "ADA/USDT:USDT",
-        "XLM/USDT:USDT",
-        "XMR/USDT:USDT",
-        "DASH/USDT:USDT"
+        "BTC/USDT",
+        "ETH/USDT",
+        "LTC/USDT",
+        "XRP/USDT",
+        "ADA/USDT",
+        "XLM/USDT",
+        "XMR/USDT",
+        "DASH/USDT"
       ],
       "repair_state": {
         "config_overrides": {},
@@ -26,12 +27,12 @@
         "python_paths": [],
         "rules": []
       },
-      "run_profile": "futures_long_short",
-      "runtime_config_sha256": "sha256_ae8c9b9335a9953419658f2c252edbd86aedede9b3e14a33acb8f7d47faba7e6",
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
       "runtime_id": "docker:sha256:385a287ced73c5326334598adabb078c6cf55f12fd0ed30149354b606ad6148a",
-      "status": "timeout",
+      "status": "resource_inconclusive",
       "timerange": "20200401-20260821",
-      "why": "timeout after 3600 seconds"
+      "why": "killed by SIGKILL (-9) with no exception logged: the OOM killer, not the strategy - retry with less concurrent load before treating this as a strategy defect"
     }
   },
   "runtime_ids": [],

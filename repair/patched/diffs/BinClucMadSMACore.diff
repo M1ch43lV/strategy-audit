@@ -1,0 +1,209 @@
+--- original/repos/remiotore_ccxt-freqtrade/strategies/BinClucMadSMACore.py
++++ patched/repos/remiotore_ccxt-freqtrade/strategies/BinClucMadSMACore.py
+@@ -583,7 +583,7 @@
+                 & (dataframe["rsi"] < self.rsi_buy.value)
+                 & (self.smaoffset_buy_condition_0_enable.value == True)
+             ),
+-            ['smaoffset_buy_condition_0_enable', 'buy_tag']] = (1, 'buy_signal_smaoffset_0')
++            ['smaoffset_buy_condition_0_enable', 'buy_tag']] = (True, 'buy_signal_smaoffset_0')
+ 
+ 
+         dataframe.loc[
+@@ -592,7 +592,7 @@
+                 & (dataframe["EWO"] < self.ewo_low.value)
+                 & (self.smaoffset_buy_condition_1_enable.value == True)
+             ),
+-            ['smaoffset_buy_condition_1_enable', 'buy_tag']] = (1, 'buy_signal_smaoffset_1')
++            ['smaoffset_buy_condition_1_enable', 'buy_tag']] = (True, 'buy_signal_smaoffset_1')
+ 
+ 
+         dataframe.loc[
+@@ -628,7 +628,7 @@
+                 & dataframe["close"].le(dataframe["close"].shift())
+                 & (self.v8_buy_condition_0_enable.value == True)
+             ),
+-            ['v8_buy_condition_0_enable', 'buy_tag']] = (1, 'buy_signal_v8_0')
++            ['v8_buy_condition_0_enable', 'buy_tag']] = (True, 'buy_signal_v8_0')
+ 
+ 
+         dataframe.loc[
+@@ -665,7 +665,7 @@
+                 )
+                 & (self.v8_buy_condition_1_enable.value == True)
+             ),
+-            ['v8_buy_condition_1_enable', 'buy_tag']] = (1, 'buy_signal_v8_1')
++            ['v8_buy_condition_1_enable', 'buy_tag']] = (True, 'buy_signal_v8_1')
+ 
+         dataframe.loc[
+             (
+@@ -697,7 +697,7 @@
+                 & (dataframe["rsi"] < dataframe["rsi_1h"] - self.buy_rsi_diff.value)
+                 & (self.v8_buy_condition_2_enable.value == True)
+             ),
+-            ['v8_buy_condition_2_enable', 'buy_tag']] = (1, 'buy_signal_v8_2')
++            ['v8_buy_condition_2_enable', 'buy_tag']] = (True, 'buy_signal_v8_2')
+ 
+ 
+ 
+@@ -738,7 +738,7 @@
+                 & (dataframe["mfi"] < self.buy_mfi.value)
+                 & (self.v8_buy_condition_3_enable.value == True)
+             ),
+-            ['v8_buy_condition_3_enable', 'buy_tag']] = (1, 'buy_signal_v8_3')
++            ['v8_buy_condition_3_enable', 'buy_tag']] = (True, 'buy_signal_v8_3')
+ 
+ 
+         dataframe.loc[
+@@ -782,7 +782,7 @@
+                 & (dataframe["close"] < (dataframe["bb_lowerband"]))
+                 & (self.v8_buy_condition_4_enable.value == True)
+             ),
+-            ['v8_buy_condition_4_enable', 'buy_tag']] = (1, 'buy_signal_v8_4')
++            ['v8_buy_condition_4_enable', 'buy_tag']] = (True, 'buy_signal_v8_4')
+ 
+         dataframe.loc[
+             (
+@@ -809,7 +809,7 @@
+                 )
+                 & (self.v9_buy_condition_1_enable.value == True)
+             ),
+-            ['v9_buy_condition_1_enable', 'buy_tag']] = (1, 'buy_signal_v9_1')
++            ['v9_buy_condition_1_enable', 'buy_tag']] = (True, 'buy_signal_v9_1')
+ 
+         dataframe.loc[
+             (
+@@ -835,7 +835,7 @@
+                 )
+                 & (self.v9_buy_condition_2_enable.value == True)
+             ),
+-            ['v9_buy_condition_2_enable', 'buy_tag']] = (1, 'buy_signal_v9_2')
++            ['v9_buy_condition_2_enable', 'buy_tag']] = (True, 'buy_signal_v9_2')
+ 
+         dataframe.loc[
+             (
+@@ -848,7 +848,7 @@
+                 )
+                 & (self.v9_buy_condition_3_enable.value == True)
+             ),
+-            ['v9_buy_condition_3_enable', 'buy_tag']] = (1, 'buy_signal_v9_3')
++            ['v9_buy_condition_3_enable', 'buy_tag']] = (True, 'buy_signal_v9_3')
+ 
+         dataframe.loc[
+             (
+@@ -860,7 +860,7 @@
+                 )
+                 & (self.v9_buy_condition_4_enable.value == True)
+             ),
+-            ['v9_buy_condition_4_enable', 'buy_tag']] = (1, 'buy_signal_v9_4')
++            ['v9_buy_condition_4_enable', 'buy_tag']] = (True, 'buy_signal_v9_4')
+         dataframe.loc[
+             (
+                 (dataframe["close"] > dataframe["ema_200"])
+@@ -886,7 +886,7 @@
+                 )
+                 & (self.v9_buy_condition_5_enable.value == True)
+             ),
+-            ['v9_buy_condition_5_enable', 'buy_tag']] = (1, 'buy_signal_v9_5')
++            ['v9_buy_condition_5_enable', 'buy_tag']] = (True, 'buy_signal_v9_5')
+         dataframe.loc[
+             (
+                 (dataframe["ema_26"] > dataframe["ema_12"])
+@@ -905,7 +905,7 @@
+                 )
+                 & (self.v9_buy_condition_6_enable.value == True)
+             ),
+-            ['v9_buy_condition_6_enable', 'buy_tag']] = (1, 'buy_signal_v9_6')
++            ['v9_buy_condition_6_enable', 'buy_tag']] = (True, 'buy_signal_v9_6')
+         dataframe.loc[
+             (
+                 (dataframe["rsi_1h"] < self.buy_rsi_1h_2.value)
+@@ -929,7 +929,7 @@
+                 )
+                 & (self.v9_buy_condition_7_enable.value == True)
+             ),
+-            ['v9_buy_condition_7_enable', 'buy_tag']] = (1, 'buy_signal_v9_7')
++            ['v9_buy_condition_7_enable', 'buy_tag']] = (True, 'buy_signal_v9_7')
+         dataframe.loc[
+             (
+                 (dataframe["rsi_1h"] < self.buy_rsi_1h_3.value)
+@@ -945,7 +945,7 @@
+                 )
+                 & (self.v9_buy_condition_8_enable.value == True)
+             ),
+-            ['v9_buy_condition_8_enable', 'buy_tag']] = (1, 'buy_signal_v9_8')
++            ['v9_buy_condition_8_enable', 'buy_tag']] = (True, 'buy_signal_v9_8')
+         dataframe.loc[
+             (
+                 (dataframe["rsi_1h"] < self.buy_rsi_1h_4.value)
+@@ -961,7 +961,7 @@
+                 )
+                 & (self.v9_buy_condition_9_enable.value == True)
+             ),
+-            ['v9_buy_condition_9_enable', 'buy_tag']] = (1, 'buy_signal_v9_9')
++            ['v9_buy_condition_9_enable', 'buy_tag']] = (True, 'buy_signal_v9_9')
+         dataframe.loc[
+             (
+                 (dataframe["close"] < dataframe["sma_5"])
+@@ -970,7 +970,7 @@
+                 & (dataframe["rsi"] < dataframe["rsi_1h"] - 43.276)
+                 & (self.v9_buy_condition_10_enable.value == True)
+             ),
+-            ['v9_buy_condition_10_enable', 'buy_tag']] = (1, 'buy_signal_v9_10')
++            ['v9_buy_condition_10_enable', 'buy_tag']] = (True, 'buy_signal_v9_10')
+         dataframe.loc[
+             (
+                 (dataframe["close"] > dataframe["ema_200"])
+@@ -989,7 +989,7 @@
+                 )
+                 & (self.v6_buy_condition_0_enable.value == True)
+             ),
+-            ['v6_buy_condition_0_enable', 'buy_tag']] = (1, 'buy_signal_v6_0')
++            ['v6_buy_condition_0_enable', 'buy_tag']] = (True, 'buy_signal_v6_0')
+ 
+         dataframe.loc[
+             (
+@@ -1009,7 +1009,7 @@
+                 & (dataframe["volume"] < (dataframe["volume"].shift() * 4))
+                 & (self.v6_buy_condition_1_enable.value == True)
+             ),
+-            ['v6_buy_condition_1_enable', 'buy_tag']] = (1, 'buy_signal_v6_1')
++            ['v6_buy_condition_1_enable', 'buy_tag']] = (True, 'buy_signal_v6_1')
+ 
+ 
+         dataframe.loc[
+@@ -1035,7 +1035,7 @@
+                 & (dataframe["close"] < (dataframe["bb_lowerband"]))
+                 & (self.v6_buy_condition_2_enable.value == True)
+             ),
+-            ['v6_buy_condition_2_enable', 'buy_tag']] = (1, 'buy_signal_v6_2')
++            ['v6_buy_condition_2_enable', 'buy_tag']] = (True, 'buy_signal_v6_2')
+ 
+         dataframe.loc[
+             (
+@@ -1052,7 +1052,7 @@
+                 & (dataframe["close"] < (dataframe["bb_lowerband"]))
+                 & (self.v6_buy_condition_3_enable.value == True)
+             ),
+-            ['v6_buy_condition_3_enable', 'buy_tag']] = (1, 'buy_signal_v6_3')
++            ['v6_buy_condition_3_enable', 'buy_tag']] = (True, 'buy_signal_v6_3')
+ 
+         dataframe.loc[:, "conditions_count"] = (
+             dataframe["v9_buy_condition_1_enable"].astype(int)
+@@ -1084,7 +1084,7 @@
+         conditions.append(dataframe["volume"].gt(0))
+ 
+         if conditions:
+-            dataframe.loc[reduce(lambda x, y: x & y, conditions), "buy"] = 1
++            dataframe.loc[reduce(lambda x, y: x & y, conditions), "buy"] = True
+ 
+         if self.cust_log_verbose == True:
+             for index, row in dataframe.iterrows():
+@@ -1138,7 +1138,7 @@
+             )
+ 
+         if conditions:
+-            dataframe.loc[reduce(lambda x, y: x | y, conditions), "sell"] = 1
++            dataframe.loc[reduce(lambda x, y: x | y, conditions), "sell"] = True
+ 
+         return dataframe
+ 

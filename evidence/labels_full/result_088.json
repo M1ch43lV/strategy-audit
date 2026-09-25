@@ -1,0 +1,398 @@
+[
+ {
+  "id": "ZZZ_test1",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "ema_fast > ema_slow"
+   }
+  ]
+ },
+ {
+  "id": "ZarTest",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "(dx > mdi) & (adx > mdi) & (pdi > mdi)"
+   },
+   {
+    "label": "breakout",
+    "confidence": "medium",
+    "evidence": "crossed_above(dataframe['close'], dataframe['bbu'])"
+   }
+  ]
+ },
+ {
+  "id": "ZarTest02",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "(dx > mdi) & (adx > mdi) & (pdi > mdi)"
+   },
+   {
+    "label": "breakout",
+    "confidence": "medium",
+    "evidence": "crossed_below(dataframe['close'], dataframe['bbl'])"
+   }
+  ]
+ },
+ {
+  "id": "Zaratustra",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "medium",
+    "evidence": "(dataframe['rsi'] > 70) & (dataframe['rsi'] < 30)"
+   }
+  ],
+  "note": "Both entries signal short; mixed RSI logic (oversold+overbought)"
+ },
+ {
+  "id": "ZaratustraDCA2_06",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "qtpylib.crossed_above(df['dx'], df['pdi'])"
+   }
+  ]
+ },
+ {
+  "id": "ZaratustraDCA2_063",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "qtpylib.crossed_above(df['dx'], df['pdi'])"
+   }
+  ]
+ },
+ {
+  "id": "ZaratustraDCA2_07",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "qtpylib.crossed_above(df['dx'], df['pdi'])"
+   }
+  ]
+ },
+ {
+  "id": "ZaratustraDCA5",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "crossed_above(dataframe['dx'], dataframe['pdi'])"
+   }
+  ]
+ },
+ {
+  "id": "ZaratustraV10",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "pdi_30m > mdi_30m"
+   }
+  ]
+ },
+ {
+  "id": "ZaratustraV11",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "pdi_30m > mdi_30m"
+   }
+  ]
+ },
+ {
+  "id": "ZaratustraV12",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "close_btc_5m.shift(1) < close_btc_5m"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "pdi_30m > mdi_30m"
+   }
+  ]
+ },
+ {
+  "id": "ZaratustraV13",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dx > mdi) & (adx > mdi) & (pdi > mdi)"
+   },
+   {
+    "label": "breakout",
+    "confidence": "high",
+    "evidence": "crossed_above(dataframe['close'], dataframe['bbu'])"
+   }
+  ]
+ },
+ {
+  "id": "ZaratustraV14",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dx > mdi) & (adx > mdi) & (pdi > mdi)"
+   },
+   {
+    "label": "volatility",
+    "confidence": "medium",
+    "evidence": "(atr > self.base_atr.value)"
+   },
+   {
+    "label": "breakout",
+    "confidence": "medium",
+    "evidence": "crossed_above(dataframe['close'], dataframe['bb_upperband'])"
+   }
+  ]
+ },
+ {
+  "id": "ZaratustraV15",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dx > mdi) & (adx > mdi) & (pdi > mdi)"
+   },
+   {
+    "label": "volume_flow",
+    "confidence": "high",
+    "evidence": "(obv > obv.shift(1)) & (mfi > 50)"
+   },
+   {
+    "label": "breakout",
+    "confidence": "medium",
+    "evidence": "crossed_above(close, bb_upperband)"
+   }
+  ]
+ },
+ {
+  "id": "ZaratustraV16",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(aup > ado) & (aup > 50)"
+   },
+   {
+    "label": "volume_flow",
+    "confidence": "high",
+    "evidence": "(mfi > 50)"
+   },
+   {
+    "label": "breakout",
+    "confidence": "high",
+    "evidence": "crossed_above(dataframe['close'], dataframe['bbu'])"
+   }
+  ]
+ },
+ {
+  "id": "ZaratustraV17",
+  "primary": "breakout",
+  "labels": [
+   {
+    "label": "breakout",
+    "confidence": "high",
+    "evidence": "crossed_above(dataframe['close'], dataframe['bbu'])"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "(dataframe['slope'] > 0)"
+   }
+  ]
+ },
+ {
+  "id": "ZaratustraV18",
+  "primary": "breakout",
+  "labels": [
+   {
+    "label": "breakout",
+    "confidence": "high",
+    "evidence": "crossed_above(dataframe['close'], dataframe['bb_upperband'])"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "(dataframe['slope'] > 0)"
+   }
+  ]
+ },
+ {
+  "id": "ZaratustraV19",
+  "primary": "breakout",
+  "labels": [
+   {
+    "label": "breakout",
+    "confidence": "high",
+    "evidence": "crossed_above(dataframe['close'], dataframe['max'].shift(1))"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "(dataframe['slope'] > 0)"
+   }
+  ]
+ },
+ {
+  "id": "ZaratustraV20",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "crossed_above(dataframe['DX'], dataframe['ADX'])"
+   }
+  ]
+ },
+ {
+  "id": "ZaratustraV21",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "crossed_above(dataframe['DX'], dataframe['ADX'])"
+   }
+  ]
+ },
+ {
+  "id": "ZaratustraV22",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['EMA20'] > dataframe['EMA50'])"
+   }
+  ]
+ },
+ {
+  "id": "ZaratustraV23",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "qtpylib.crossed_above(dataframe['DX'], dataframe['PDI'])"
+   }
+  ]
+ },
+ {
+  "id": "ZaratustraV24",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "qtpylib.crossed_above(dataframe['DX'], dataframe['PDI'])"
+   }
+  ]
+ },
+ {
+  "id": "ZaratustraV25",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(RSI < 30) & (CCI < -100) & (close < BBL)"
+   }
+  ]
+ },
+ {
+  "id": "ZaratustraV26",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(RSI < 30) & (CCI < -100) & (close < BBL)"
+   }
+  ]
+ },
+ {
+  "id": "ZaratustraV27",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(ADX > 20) & (PDI > MDI)"
+   }
+  ]
+ },
+ {
+  "id": "ZaratustraV28",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "qtpylib.crossed_above(dataframe['RSI'], 70)"
+   }
+  ]
+ },
+ {
+  "id": "ZaratustraV29",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "qtpylib.crossed_above(dataframe['RSI'], 70)"
+   }
+  ]
+ },
+ {
+  "id": "ZaratustraV3",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(macd > dataframe['signal'])"
+   }
+  ]
+ },
+ {
+  "id": "ZaratustraV31",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi7'] > dataframe['rsi14'])"
+   }
+  ]
+ }
+]

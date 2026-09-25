@@ -1,0 +1,497 @@
+[
+ {
+  "id": "BigPete",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < dataframe['bb_lowerband'] * 0.993)"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "(dataframe['hist'] > 0) & (dataframe['hist'].shift() > 0)"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "(dataframe['close'] > dataframe['ema_200'])"
+   }
+  ]
+ },
+ {
+  "id": "BigPeteBU",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < dataframe['bb_lowerband'] * 0.993)"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "(dataframe['hist'] > 0) & (dataframe['hist'].shift() > 0)"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "(dataframe['close'] > dataframe['ema_200'])"
+   }
+  ]
+ },
+ {
+  "id": "BigTrader",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < (dataframe['sma_15'] * low_offset))"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "(dataframe['close'] > dataframe['close'].shift(4))"
+   }
+  ]
+ },
+ {
+  "id": "BigWill",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['WillR'] < float(self.willOverSold.value))"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "(dataframe['EMAf'] > dataframe['EMAs'])"
+   }
+  ]
+ },
+ {
+  "id": "BigZ03",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < dataframe['bb_lowerband'] * 0.993)"
+   },
+   {
+    "label": "pattern",
+    "confidence": "medium",
+    "evidence": "((dataframe['high'] - dataframe['low']) < dataframe['open']/100)"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "(dataframe['close'] > dataframe['ema_200'])"
+   }
+  ]
+ },
+ {
+  "id": "BigZ0307HO",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < dataframe['bb_lowerband'] * self.buy_condition_12_bblower_close.value)"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "(dataframe['hist'] > 0) & (dataframe['hist'].shift() > 0)"
+   }
+  ]
+ },
+ {
+  "id": "BigZ03HO",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < dataframe['bb_lowerband'] * 0.993)"
+   },
+   {
+    "label": "pattern",
+    "confidence": "medium",
+    "evidence": "((dataframe['high'] - dataframe['low']) < dataframe['open']/100)"
+   }
+  ]
+ },
+ {
+  "id": "BigZ04",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < dataframe['bb_lowerband'] * 0.993)"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "(dataframe['hist'] > 0) & (dataframe['hist'].shift() > 0)"
+   }
+  ]
+ },
+ {
+  "id": "BigZ0407",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < dataframe['bb_lowerband'] * self.buy_condition_12_bblower_close.value)"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "(dataframe['hist'] > 0)"
+   }
+  ]
+ },
+ {
+  "id": "BigZ0407HO",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < dataframe['bb_lowerband'] * self.buy_condition_12_bblower_close.value)"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "(dataframe['hist'] > 0)"
+   }
+  ]
+ },
+ {
+  "id": "BigZ04HO",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < dataframe['bb_lowerband'] * 0.993)"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "(dataframe['hist'] > 0) & (dataframe['hist'].shift() > 0)"
+   }
+  ]
+ },
+ {
+  "id": "BigZ04HO2",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < dataframe['bb_lowerband'] * self.buy_condition_12_bblower_close.value)"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "(dataframe['hist'] > 0)"
+   }
+  ]
+ },
+ {
+  "id": "BigZ04NextHO",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < dataframe['bb_lowerband'] * self.buy_condition_12_bblower_close.value)"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "(dataframe['hist'] > 0)"
+   }
+  ]
+ },
+ {
+  "id": "BigZ04_2",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < dataframe['bb_lowerband'] * 0.993)"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "(dataframe['hist'] > 0) & (dataframe['hist'].shift() > 0)"
+   }
+  ]
+ },
+ {
+  "id": "BigZ04_4",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < dataframe['bb_lowerband'] * 0.993)"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "(dataframe['hist'] > 0) & (dataframe['hist'].shift() > 0)"
+   }
+  ]
+ },
+ {
+  "id": "BigZ04_845",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < dataframe['bb_lowerband'] * 0.993)"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "(dataframe['hist'] > 0) & (dataframe['hist'].shift() > 0)"
+   }
+  ]
+ },
+ {
+  "id": "BigZ04_TSL1",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < dataframe['bb_lowerband'] * 0.993)"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "(dataframe['hist'] > 0) & (dataframe['hist'].shift() > 0)"
+   }
+  ]
+ },
+ {
+  "id": "BigZ04_TSL2",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < dataframe['bb_lowerband'] * 0.993)"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "(dataframe['hist'] > 0) & (dataframe['hist'].shift() > 0)"
+   }
+  ]
+ },
+ {
+  "id": "BigZ04_TSL3",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < dataframe['bb_lowerband'] * 0.993)"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "(dataframe['hist'] > 0) & (dataframe['hist'].shift() > 0)"
+   }
+  ]
+ },
+ {
+  "id": "BigZ04_TSL3_2",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < dataframe['bb_lowerband'] * 0.993)"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "(dataframe['hist'] > 0) & (dataframe['hist'].shift() > 0)"
+   }
+  ]
+ },
+ {
+  "id": "BigZ04_TSL3a",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < dataframe['bb_lowerband'] * 0.993)"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "(dataframe['hist'] > 0)"
+   }
+  ]
+ },
+ {
+  "id": "BigZ04_TSL4",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < dataframe['bb_lowerband'] * 0.993)"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "(dataframe['hist'] > 0) & (dataframe['hist'].shift() > 0)"
+   }
+  ]
+ },
+ {
+  "id": "BigZ04_TSL4_2",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < dataframe['bb_lowerband'] * 0.993)"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "(dataframe['hist'] > 0) & (dataframe['hist'].shift() > 0)"
+   }
+  ]
+ },
+ {
+  "id": "BigZ04_TSL4_24",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < dataframe['bb_lowerband'] * 0.993)"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "(dataframe['hist'] > 0) & (dataframe['hist'].shift() > 0)"
+   }
+  ]
+ },
+ {
+  "id": "BigZ04_TSL4_69",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < dataframe['bb_lowerband'] * 0.993)"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "(dataframe['hist'] > 0) & (dataframe['hist'].shift() > 0)"
+   }
+  ]
+ },
+ {
+  "id": "BigZ06",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < dataframe['bb_lowerband'] * 0.993)"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "(dataframe['cmf'] < -0.435) & (dataframe['rsi'] < 22)"
+   }
+  ]
+ },
+ {
+  "id": "BigZ07",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < dataframe['bb_lowerband'] * 0.993)"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "(dataframe['cmf'] < -0.435) & (dataframe['rsi'] < 22)"
+   }
+  ]
+ },
+ {
+  "id": "BigZ07Next",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < dataframe['bb_lowerband'] * 0.993)"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "(dataframe['cmf'] < -0.435) & (dataframe['rsi'] < 22)"
+   }
+  ]
+ },
+ {
+  "id": "BigZ07Next2",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < dataframe['bb_lowerband'] * 0.993)"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "(dataframe['cmf'] < -0.435) & (dataframe['rsi'] < 22)"
+   }
+  ]
+ },
+ {
+  "id": "BinClucMad",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe[\"close\"] < dataframe[\"bb_lowerband\"] * self.buy_bb20_close_bblowerband_safe_1.value)"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "(dataframe[\"close\"] > dataframe[\"ema_200\"])"
+   }
+  ]
+ }
+]

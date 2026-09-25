@@ -1,0 +1,323 @@
+[
+ {
+  "id": "GRIDDMIPRICEStrategyFutureV2Short",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe[f'plus_di_{self.inf_tf}'] > dataframe[f'minus_di_{self.inf_tf}']) & (dataframe[f'plus_di_{self.inf_tf}']>self.adxThr.value)"
+   }
+  ]
+ },
+ {
+  "id": "GRIDDMIPRICEStrategyFutureV3",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe[f'plus_di_{self.inf_tf}'] > dataframe[f'minus_di_{self.inf_tf}']) & (dataframe[f'plus_di_{self.inf_tf}']>self.adxThr.value)"
+   }
+  ]
+ },
+ {
+  "id": "GRIDDMIPRICEStrategyFutureV4",
+  "primary": "other",
+  "labels": [],
+  "note": "Entry conditions compare price to 0, not real market logic"
+ },
+ {
+  "id": "GRIDDMIPRICEStrategyFutureV5",
+  "primary": "other",
+  "labels": [],
+  "note": "Entry conditions compare price to 0, not real market logic"
+ },
+ {
+  "id": "GRIDDMIPRICEStrategyFutureV5Long",
+  "primary": "other",
+  "labels": [],
+  "note": "Entry conditions compare price to 0, not real market logic"
+ },
+ {
+  "id": "GRIDDMIPRICEStrategyFutureV5Short",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['wt1'] < dataframe['wt2']) & (dataframe['wt2'] < self.obLevel.value)"
+   }
+  ]
+ },
+ {
+  "id": "GRIDDMIPRICEStrategyFutureV6",
+  "primary": "other",
+  "labels": [],
+  "note": "Entry conditions compare price to 0, not real market logic"
+ },
+ {
+  "id": "GRIDDMIPRICEStrategyFutureV7",
+  "primary": "other",
+  "labels": [],
+  "note": "Entry conditions compare price to 0, not real market logic"
+ },
+ {
+  "id": "GRIDDMIPRICEStrategySpot",
+  "primary": "grid",
+  "labels": [
+   {
+    "label": "grid",
+    "confidence": "low",
+    "evidence": "position_adjustment_enable = True"
+   }
+  ],
+  "note": "Actual logic likely in adjust_trade_position hook; shown entry/exit is trivial"
+ },
+ {
+  "id": "GeneStrategy",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < dataframe['bb_lowerband3'] * self.buy_bb_factor.value)"
+   },
+   {
+    "label": "volatility",
+    "confidence": "medium",
+    "evidence": "(dataframe['bb_width'] > self.buy_bb_width.value)"
+   }
+  ]
+ },
+ {
+  "id": "GeneStrategy_v2",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < dataframe['bb_lowerband3'] * self.buy_bb_factor.value)"
+   },
+   {
+    "label": "volatility",
+    "confidence": "medium",
+    "evidence": "(dataframe['bb_width'] > self.buy_bb_width.value)"
+   }
+  ]
+ },
+ {
+  "id": "GeneTrader_gen10_1734717133_4618",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi_fast'] < self.buy_rsi_fast_32.value) & (dataframe['rsi'] > self.buy_rsi_32.value)"
+   }
+  ]
+ },
+ {
+  "id": "GeneTrader_gen10_1734726148_6020",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi_fast'] < self.buy_rsi_fast_32.value) & (dataframe['rsi'] > self.buy_rsi_32.value)"
+   }
+  ]
+ },
+ {
+  "id": "GeneTrader_gen10_1734895087_6007",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < dataframe['bb_lowerband3'] * self.buy_bb_factor.value)"
+   }
+  ]
+ },
+ {
+  "id": "GeneTrader_gen10_1734895087_6007_2",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < dataframe['bb_lowerband3'] * self.buy_bb_factor.value)"
+   }
+  ]
+ },
+ {
+  "id": "GeneTrader_gen1_1733508206_5694",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < dataframe['bb_lowerband'] * self.buy_bb_offset.value)"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "(dataframe['ewo'] > self.buy_ewo_min.value)"
+   }
+  ]
+ },
+ {
+  "id": "GeneTrader_gen1_1734730112_1242",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi_fast'] < self.buy_rsi_fast_32.value) & (dataframe['rsi'] > self.buy_rsi_32.value)"
+   }
+  ]
+ },
+ {
+  "id": "GeneTrader_gen1_1734734787_5835",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi_fast'] < self.buy_rsi_fast_32.value) & (dataframe['rsi'] > self.buy_rsi_32.value)"
+   }
+  ]
+ },
+ {
+  "id": "GeneTrader_gen30_1727304467_5789",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi_fast'] < self.buy_rsi_fast_32.value) & (dataframe['rsi'] > self.buy_rsi_32.value)"
+   }
+  ]
+ },
+ {
+  "id": "GeneTrader_gen3_1726920341_8194",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi_fast'] < self.buy_rsi_fast_32.value) & (dataframe['rsi'] > self.buy_rsi_32.value)"
+   }
+  ]
+ },
+ {
+  "id": "GeneTrader_gen3_1734727320_9082",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi_fast'] < self.buy_rsi_fast_32.value) & (dataframe['rsi'] > self.buy_rsi_32.value)"
+   }
+  ]
+ },
+ {
+  "id": "GeneTrader_gen5_1726907875_9248",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi_fast'] < self.buy_rsi_fast_32.value) & (dataframe['rsi'] > self.buy_rsi_32.value)"
+   }
+  ]
+ },
+ {
+  "id": "GeneTrader_gen5_1734993636_5978",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < dataframe['bb_lowerband3'] * self.buy_bb_factor.value)"
+   }
+  ]
+ },
+ {
+  "id": "GeneTrader_gen5_1735014093_4541",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < dataframe['bb_lowerband3'] * self.buy_bb_factor.value)"
+   }
+  ]
+ },
+ {
+  "id": "GeneTrader_gen6_1734976897_7418",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < dataframe['bb_lowerband3'] * self.buy_bb_factor.value)"
+   }
+  ]
+ },
+ {
+  "id": "GeneTrader_gen6_1735035146_3706",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < dataframe['bb_lowerband3'] * self.buy_bb_factor.value)"
+   }
+  ]
+ },
+ {
+  "id": "GeneTrader_gen7_1734720513_4206",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi_fast'] < self.buy_rsi_fast_32.value) & (dataframe['rsi'] > self.buy_rsi_32.value)"
+   }
+  ]
+ },
+ {
+  "id": "GeneTrader_gen8_1734713146_5730",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi_fast'] < self.buy_rsi_fast_32.value) & (dataframe['rsi'] > self.buy_rsi_32.value)"
+   }
+  ]
+ },
+ {
+  "id": "GeneTrader_gen8_1734741843_6073",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi_fast'] < self.buy_rsi_fast_32.value) & (dataframe['rsi'] > self.buy_rsi_32.value)"
+   }
+  ]
+ },
+ {
+  "id": "GeneTrader_gen9_1735161895_5455",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < dataframe['bb_lowerband3'] * self.buy_bb_factor.value)"
+   }
+  ]
+ }
+]

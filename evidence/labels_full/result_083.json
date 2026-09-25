@@ -1,0 +1,332 @@
+[
+ {
+  "id": "TheMessenger",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rmi_length_{self.buy_rmi_length.value}'] < self.buy_rmi.value)"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "(dataframe['tenkan_sen_1h'] > dataframe['kijun_sen_1h']) &"
+   },
+   {
+    "label": "breakout",
+    "confidence": "medium",
+    "evidence": "(dataframe['close'] < dataframe['bb_lowerband3'] * self.buy_bb_factor.value)"
+   }
+  ]
+ },
+ {
+  "id": "TheRealPullbackV2",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "medium",
+    "evidence": "(dataframe['rmi'] < 20) & (dataframe['cci'] <= -150) & (dataframe['srsi_fk'] < 20)"
+   }
+  ]
+ },
+ {
+  "id": "TheRealPullbackV2_220",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "medium",
+    "evidence": "(dataframe['rmi'] < 20) & (dataframe['cci'] <= -150) & (dataframe['srsi_fk'] < 20)"
+   }
+  ]
+ },
+ {
+  "id": "TheSimpleStrategy",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['macd'] > 0) & (dataframe['macd'] > dataframe['macdsignal'])"
+   }
+  ]
+ },
+ {
+  "id": "ThreeCommasStrategy",
+  "primary": "other",
+  "labels": [],
+  "note": "No indicator, entry, or exit code provided"
+ },
+ {
+  "id": "ThreeSmaCrossStrategy",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['sma_fast'] > dataframe['sma_slow']) & (dataframe['sma_fast'].shift(1) <= dataframe['sma_slow'].shift(1))"
+   }
+  ]
+ },
+ {
+  "id": "ToTheMoon",
+  "primary": "pattern",
+  "labels": [
+   {
+    "label": "pattern",
+    "confidence": "high",
+    "evidence": "qtpylib.crossed_below(dataframe['moon_phase'],99)"
+   }
+  ]
+ },
+ {
+  "id": "Top100TrendStrategy",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "strong_trend = dataframe['sma20'] > dataframe['sma50']"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "positive_momentum = dataframe['momentum'] > 0"
+   }
+  ]
+ },
+ {
+  "id": "TouchEmaDelayStrategy",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "dataframe['high'] > dataframe[f'ema_long_{self.buy_ema_period.value}']"
+   }
+  ]
+ },
+ {
+  "id": "TouchEmaStrategy",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "dataframe['high'] > dataframe[f'ema_long_{self.buy_ema_period.value}']"
+   }
+  ]
+ },
+ {
+  "id": "Trader_4",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < dataframe['sma_15'] * self.buy_sma15_32.value)"
+   }
+  ]
+ },
+ {
+  "id": "Trader_4_1726727454_3078",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < dataframe['sma_15'] * self.buy_sma15_32.value)"
+   }
+  ]
+ },
+ {
+  "id": "TrailingBuySellStrat",
+  "primary": "other",
+  "labels": [],
+  "note": "Entry/exit code truncated; trailing logic not fully visible"
+ },
+ {
+  "id": "TrailingBuyStrat",
+  "primary": "other",
+  "labels": [],
+  "note": "Entry/exit code truncated; uses parent strategy logic"
+ },
+ {
+  "id": "TrailingBuyStrat2",
+  "primary": "other",
+  "labels": [],
+  "note": "Exit code truncated; trailing buy wrapper"
+ },
+ {
+  "id": "TrailingBuyStrat2a",
+  "primary": "other",
+  "labels": [],
+  "note": "Uses parent populate_buy_trend; wrapper strategy"
+ },
+ {
+  "id": "TrailingBuyStratCluc",
+  "primary": "other",
+  "labels": [],
+  "note": "No exit code; trailing buy wrapper"
+ },
+ {
+  "id": "TrailingBuyStratCluc5m",
+  "primary": "other",
+  "labels": [],
+  "note": "No exit code; trailing buy wrapper"
+ },
+ {
+  "id": "TrailingBuyStratClucBBRPBMODE",
+  "primary": "other",
+  "labels": [],
+  "note": "No exit code; trailing buy wrapper"
+ },
+ {
+  "id": "TrailingBuyStratClucBBRPBMODE_167",
+  "primary": "breakout",
+  "labels": [
+   {
+    "label": "breakout",
+    "confidence": "high",
+    "evidence": "(dataframe['bbdelta'].gt(dataframe['ha_close'] * self.bbdelta_close.value))"
+   },
+   {
+    "label": "volatility",
+    "confidence": "medium",
+    "evidence": "mid, lower = bollinger_bands(ha_typical_price(dataframe), window_size=40, num_of_std=2)"
+   }
+  ]
+ },
+ {
+  "id": "TrailingBuyStratCluc_172",
+  "primary": "breakout",
+  "labels": [
+   {
+    "label": "breakout",
+    "confidence": "high",
+    "evidence": "(dataframe['bbdelta'].gt(dataframe['ha_close'] * self.bbdelta_close.value))"
+   },
+   {
+    "label": "mean_reversion",
+    "confidence": "medium",
+    "evidence": "(dataframe['ha_close'] < dataframe['ema_slow']) &"
+   }
+  ]
+ },
+ {
+  "id": "TrailingBuyStrat_661",
+  "primary": "other",
+  "labels": [],
+  "note": "Empty strategy with no logic"
+ },
+ {
+  "id": "TrailingBuy_ClucHAnix_5m_E0V1E_by_TraNz",
+  "primary": "breakout",
+  "labels": [
+   {
+    "label": "breakout",
+    "confidence": "high",
+    "evidence": "(dataframe['bbdelta'].gt(dataframe['ha_close'] * self.bbdelta_close.value))"
+   },
+   {
+    "label": "mean_reversion",
+    "confidence": "medium",
+    "evidence": "(dataframe['ha_close'] < dataframe['ema_slow'])"
+   }
+  ]
+ },
+ {
+  "id": "TrailingBuy_ClucHAnix_5m_E0V1E_by_TraNz201",
+  "primary": "breakout",
+  "labels": [
+   {
+    "label": "breakout",
+    "confidence": "high",
+    "evidence": "(dataframe['bbdelta'].gt(dataframe['ha_close'] * self.bbdelta_close.value))"
+   },
+   {
+    "label": "mean_reversion",
+    "confidence": "medium",
+    "evidence": "(dataframe['ha_close'] < dataframe['ema_slow'])"
+   }
+  ]
+ },
+ {
+  "id": "TrailingStopLossStrategy",
+  "primary": "other",
+  "labels": [],
+  "note": "Only custom_stoploss hook; no entry/exit logic shown"
+ },
+ {
+  "id": "TrainCatBoostStrategy",
+  "primary": "other",
+  "labels": [],
+  "note": "ML ensemble strategy; logic parameterized at runtime"
+ },
+ {
+  "id": "Trend23t",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['macd'] > 0) & (dataframe['fisher_rsi'] > 0.8)"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "(qtpylib.crossed_above(dataframe['sma7'], dataframe['sma20']))"
+   }
+  ]
+ },
+ {
+  "id": "TrendAtrStrategy",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['ema_fast'] > dataframe['ema_mid']) & (dataframe['ema_mid'] > dataframe['ema_slow'])"
+   },
+   {
+    "label": "volatility",
+    "confidence": "medium",
+    "evidence": "(dataframe['dist_to_mid'] < self.atr_pullback.value)"
+   }
+  ]
+ },
+ {
+  "id": "TrendBreakout",
+  "primary": "breakout",
+  "labels": [
+   {
+    "label": "breakout",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] > dc_high)"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "(dataframe['close'] > dataframe['ema200'])"
+   }
+  ]
+ },
+ {
+  "id": "TrendFollowingStrategy",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] > dataframe['trend']) & (dataframe['close'].shift(1) <= dataframe['trend'].shift(1))"
+   },
+   {
+    "label": "volume_flow",
+    "confidence": "medium",
+    "evidence": "(dataframe['obv'] > dataframe['obv'].shift(1))"
+   }
+  ]
+ }
+]

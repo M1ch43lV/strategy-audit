@@ -1,0 +1,197 @@
+[
+  {
+    "id": "ClucCrypSlow_ETH",
+    "primary": "other",
+    "labels": [],
+    "note": "No entry/exit code visible"
+  },
+  {
+    "id": "StrategyScalpingFast",
+    "primary": "mean_reversion",
+    "labels": [
+      {
+        "label": "mean_reversion",
+        "confidence": "high",
+        "evidence": "(dataframe['open'] < dataframe['ema_low']) & (dataframe['mfi'] < 30)"
+      },
+      {
+        "label": "momentum",
+        "confidence": "medium",
+        "evidence": "(qtpylib.crossed_above(dataframe['fastk'], dataframe['fastd']))"
+      }
+    ]
+  },
+  {
+    "id": "StrategyScalpingFast2",
+    "primary": "mean_reversion",
+    "labels": [
+      {
+        "label": "mean_reversion",
+        "confidence": "high",
+        "evidence": "conditions.append(dataframe['open'] < dataframe['ema_low'])"
+      },
+      {
+        "label": "momentum",
+        "confidence": "medium",
+        "evidence": "conditions.append(qtpylib.crossed_above(dataframe['fastk'], dataframe['fastd']))"
+      }
+    ]
+  },
+  {
+    "id": "StrategyScalpingFast2_3",
+    "primary": "mean_reversion",
+    "labels": [
+      {
+        "label": "mean_reversion",
+        "confidence": "high",
+        "evidence": "conditions.append(dataframe['open'] < dataframe['ema_low'])"
+      },
+      {
+        "label": "momentum",
+        "confidence": "medium",
+        "evidence": "conditions.append(qtpylib.crossed_above(dataframe['fastk'], dataframe['fastd']))"
+      }
+    ]
+  },
+  {
+    "id": "ichimoku",
+    "primary": "trend_following",
+    "labels": [
+      {
+        "label": "trend_following",
+        "confidence": "high",
+        "evidence": "(dataframe['cloud_red']==True) & (dataframe['tenkan'] > dataframe['kijun'])"
+      }
+    ]
+  },
+  {
+    "id": "ichimoku_2",
+    "primary": "trend_following",
+    "labels": [
+      {
+        "label": "trend_following",
+        "confidence": "high",
+        "evidence": "(dataframe['open'] > dataframe['senkou_span_"
+      },
+      {
+        "label": "momentum",
+        "confidence": "medium",
+        "evidence": "(dataframe['macd'] > dataframe['macdsignal'])"
+      }
+    ]
+  },
+  {
+    "id": "ichimoku_638",
+    "primary": "trend_following",
+    "labels": [
+      {
+        "label": "trend_following",
+        "confidence": "high",
+        "evidence": "(dataframe['cloud_red']==True) & (dataframe['tenkan']>dataframe['kijun'])"
+      }
+    ]
+  },
+  {
+    "id": "IchiV1_Marius_fixed_2",
+    "primary": "trend_following",
+    "labels": [
+      {
+        "label": "trend_following",
+        "confidence": "high",
+        "evidence": "(dataframe['trend_close_8h'] > dataframe['trend_close_6h'])&"
+      }
+    ]
+  },
+  {
+    "id": "ichiV1_Marius",
+    "primary": "trend_following",
+    "labels": [
+      {
+        "label": "trend_following",
+        "confidence": "high",
+        "evidence": "(dataframe['trend_close_8h'] > dataframe['trend_close_6h'])&"
+      }
+    ]
+  },
+  {
+    "id": "ichiV1_Marius_fixed",
+    "primary": "trend_following",
+    "labels": [
+      {
+        "label": "trend_following",
+        "confidence": "high",
+        "evidence": "(dataframe['trend_close_8h'] > dataframe['trend_close_6h'])&"
+      }
+    ]
+  },
+  {
+    "id": "SmoothScalp",
+    "primary": "mean_reversion",
+    "labels": [
+      {
+        "label": "mean_reversion",
+        "confidence": "high",
+        "evidence": "(dataframe['open'] < dataframe['ema_low']) & (dataframe['mfi'] < 30)"
+      },
+      {
+        "label": "momentum",
+        "confidence": "medium",
+        "evidence": "(qtpylib.crossed_above(dataframe['fastk'], dataframe['fastd']))"
+      }
+    ]
+  },
+  {
+    "id": "SmoothScalp_321",
+    "primary": "mean_reversion",
+    "labels": [
+      {
+        "label": "mean_reversion",
+        "confidence": "high",
+        "evidence": "(dataframe['open'] < dataframe['ema_low']) & (dataframe['mfi'] < 30)"
+      },
+      {
+        "label": "momentum",
+        "confidence": "medium",
+        "evidence": "(qtpylib.crossed_above(dataframe['fastk'], dataframe['fastd']))"
+      }
+    ]
+  },
+  {
+    "id": "SmoothScalp_831",
+    "primary": "mean_reversion",
+    "labels": [
+      {
+        "label": "mean_reversion",
+        "confidence": "high",
+        "evidence": "(dataframe['open'] < dataframe['ema_low']) & (dataframe['mfi'] < 30)"
+      },
+      {
+        "label": "momentum",
+        "confidence": "medium",
+        "evidence": "(qtpylib.crossed_above(dataframe['fastk'], dataframe['fastd']))"
+      }
+    ]
+  },
+  {
+    "id": "BigZ04_TSL1",
+    "primary": "mean_reversion",
+    "labels": [
+      {
+        "label": "mean_reversion",
+        "confidence": "high",
+        "evidence": "(dataframe['close'] < dataframe['bb_lowerband'] * 0.993)"
+      }
+    ]
+  },
+  {
+    "id": "BigZ04_TSL4",
+    "primary": "mean_reversion",
+    "labels": [
+      {
+        "label": "mean_reversion",
+        "confidence": "high",
+        "evidence": "(dataframe['close'] < dataframe['bb_lowerband'] * 0.993)"
+      }
+    ]
+  }
+]

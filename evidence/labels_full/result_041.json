@@ -1,0 +1,332 @@
+[
+ {
+  "id": "IMTestOpt",
+  "primary": "other",
+  "labels": [],
+  "note": "Entry and exit logic delegated to external modules; actual conditions not visible"
+ },
+ {
+  "id": "INSIDEUP",
+  "primary": "pattern",
+  "labels": [
+   {
+    "label": "pattern",
+    "confidence": "high",
+    "evidence": "(dataframe['CDL3INSIDE'] >= 0).any() # Bullish"
+   },
+   {
+    "label": "mean_reversion",
+    "confidence": "medium",
+    "evidence": "(dataframe['rsi_14'] < 50)"
+   }
+  ]
+ },
+ {
+  "id": "IStrategy",
+  "primary": "other",
+  "labels": [],
+  "note": "Base class with no entry/exit implementation"
+ },
+ {
+  "id": "IStrategyWithEntryOrderBlocking",
+  "primary": "other",
+  "labels": [],
+  "note": "Base class with no entry/exit implementation"
+ },
+ {
+  "id": "I_DONT_WANT_TO_WORK_FINAL",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] > dataframe['upper1']) & (dataframe['close'].shift(1) <= dataframe['upper1'].shift(1))"
+   }
+  ]
+ },
+ {
+  "id": "Ichess",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "qtpylib.crossed_above(ta.SMA(dataframe['Ichimoku_Score'], self.buy_fast_timeperiod.value),"
+   },
+   {
+    "label": "pattern",
+    "confidence": "medium",
+    "evidence": "Ichimoku cloud position used as trend driver"
+   }
+  ]
+ },
+ {
+  "id": "Ichi",
+  "primary": "breakout",
+  "labels": [
+   {
+    "label": "breakout",
+    "confidence": "high",
+    "evidence": "(dataframe['open'].shift(1) < dataframe['senkou_b'].shift(1)) & (dataframe['close'].shift(1) > dataframe['senkou_b'].shift(1))"
+   }
+  ]
+ },
+ {
+  "id": "IchiV1_Fixed",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "if self.buy_params['buy_trend_above_senkou_level'] >= 1:\n            conditions.append(dataframe['trend_close_5m'] > dataframe['senkou_a'])"
+   }
+  ]
+ },
+ {
+  "id": "IchiV1_Marius_fixed_2",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['trend_close_8h'] > dataframe['trend_close_6h'])&(dataframe['trend_close_15m'] > dataframe['trend_close_30m'])"
+   }
+  ]
+ },
+ {
+  "id": "IchiVSOptimized",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "long_conditions.append(dataframe['trend_close_5m'] > dataframe['senkou_a'])"
+   },
+   {
+    "label": "volatility",
+    "confidence": "medium",
+    "evidence": "long_conditions.append(dataframe['atr'] >= self.buy_par"
+   }
+  ]
+ },
+ {
+  "id": "IchiVwapAdx",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['ichimoku_bullish']) & (dataframe['volatility_ok'])"
+   }
+  ]
+ },
+ {
+  "id": "Ichi_trigger",
+  "primary": "other",
+  "labels": [],
+  "note": "Entry driven by custom indicators bs_pic_sig and pic_l_s_trig; logic not visible"
+ },
+ {
+  "id": "Ichi_trigger_v2",
+  "primary": "other",
+  "labels": [],
+  "note": "Entry driven by custom indicators bs_pic_sig and pic_l_s_trig; logic not visible"
+ },
+ {
+  "id": "Ichimoku",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['tenkan']>dataframe['kijun']) & (dataframe['cloud_red']==True)"
+   }
+  ]
+ },
+ {
+  "id": "IchimokuCloudBreakoutStrategy",
+  "primary": "breakout",
+  "labels": [
+   {
+    "label": "breakout",
+    "confidence": "high",
+    "evidence": "(dataframe[\"close\"] > dataframe[\"cloud_top\"]) & (dataframe[\"cloud_top\"].notna())"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "tenkan_above_kijun = dataframe[\"tenkan\"] > dataframe[\"kijun\"]"
+   }
+  ]
+ },
+ {
+  "id": "IchimokuCloudStrategy",
+  "primary": "breakout",
+  "labels": [
+   {
+    "label": "breakout",
+    "confidence": "high",
+    "evidence": "(dataframe[\"close\"] > dataframe[\"cloud_top\"]) & (qtpylib.crossed_above(dataframe[\"tenkan_sen\"], dataframe[\"kijun_sen\"]))"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "qtpylib.crossed_above(dataframe[\"tenkan_sen\"], dataframe[\"kijun_sen\"])"
+   }
+  ]
+ },
+ {
+  "id": "IchimokuSimpleStrategy",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe[\"tenkan\"] > dataframe[\"kijun\"]) & (dataframe[\"tenkan_prev\"] <= dataframe[\"kijun_prev\"])"
+   }
+  ]
+ },
+ {
+  "id": "IchimokuStrategy",
+  "primary": "breakout",
+  "labels": [
+   {
+    "label": "breakout",
+    "confidence": "high",
+    "evidence": "(qtpylib.crossed_above(dataframe['close'], dataframe['kijun'])) & (dataframe['close'] > dataframe['senkou_a'])"
+   }
+  ]
+ },
+ {
+  "id": "Ichimoku_SenkouSpanCross",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(qtpylib.crossed_above(dataframe['senkou_a'], dataframe['senkou_b'])) & (dataframe['close'] > dataframe['senkou_a'])"
+   }
+  ]
+ },
+ {
+  "id": "Ichimoku_v1",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(qtpylib.crossed_above(dataframe['senkou_a'], dataframe['senkou_b'])) & (dataframe['cloud_green'] == True)"
+   }
+  ]
+ },
+ {
+  "id": "Ichimoku_v10",
+  "primary": "breakout",
+  "labels": [
+   {
+    "label": "breakout",
+    "confidence": "high",
+    "evidence": "(qtpylib.crossed_above(dataframe['close'], dataframe['senkou_a'])) & (dataframe['close'] > dataframe['senkou_a'])"
+   }
+  ]
+ },
+ {
+  "id": "Ichimoku_v11",
+  "primary": "breakout",
+  "labels": [
+   {
+    "label": "breakout",
+    "confidence": "high",
+    "evidence": "(qtpylib.crossed_above(dataframe['close'], dataframe['senkou_a'])) & (dataframe['close'] > dataframe['senkou_a'])"
+   }
+  ]
+ },
+ {
+  "id": "Ichimoku_v12",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] > dataframe['senkou_a']) & (dataframe['close'] > dataframe['senkou_b'])"
+   }
+  ]
+ },
+ {
+  "id": "Ichimoku_v12_4",
+  "primary": "breakout",
+  "labels": [
+   {
+    "label": "breakout",
+    "confidence": "high",
+    "evidence": "(df['close'].shift(1) < df['senkou_b']) & (df['close'] > df['senkou_a']) & (df['close'] > df['senkou_b'])"
+   }
+  ]
+ },
+ {
+  "id": "Ichimoku_v13",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] > dataframe['senkou_a']) & (dataframe['close'] > dataframe['senkou_b'])"
+   }
+  ]
+ },
+ {
+  "id": "Ichimoku_v15_1d",
+  "primary": "breakout",
+  "labels": [
+   {
+    "label": "breakout",
+    "confidence": "high",
+    "evidence": "(qtpylib.crossed_above(dataframe['close'], dataframe['senkou_a'])) & (dataframe['close'] > dataframe['senkou_a'])"
+   }
+  ]
+ },
+ {
+  "id": "Ichimoku_v16_1d",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(qtpylib.crossed_above(dataframe['tenkan'], dataframe['kijun']))"
+   }
+  ]
+ },
+ {
+  "id": "Ichimoku_v17",
+  "primary": "breakout",
+  "labels": [
+   {
+    "label": "breakout",
+    "confidence": "high",
+    "evidence": "(qtpylib.crossed_above(dataframe['close'], dataframe['senkou_a'])) & (dataframe['close'] > dataframe['senkou_a'])"
+   }
+  ]
+ },
+ {
+  "id": "Ichimoku_v18",
+  "primary": "breakout",
+  "labels": [
+   {
+    "label": "breakout",
+    "confidence": "high",
+    "evidence": "(qtpylib.crossed_above(dataframe['close'], dataframe['senkou_a'])) & (dataframe['close'] > dataframe['senkou_a'])"
+   }
+  ]
+ },
+ {
+  "id": "Ichimoku_v19",
+  "primary": "breakout",
+  "labels": [
+   {
+    "label": "breakout",
+    "confidence": "high",
+    "evidence": "(dataframe['ha_close_4h'].crossed_above(dataframe['senkou_a_4h'])) & (dataframe['cloud_green_4h'] == True)"
+   }
+  ]
+ }
+]

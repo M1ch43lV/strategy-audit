@@ -1,0 +1,422 @@
+[
+ {
+  "id": "marketciphertest",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['wt2'] <= self.buy_downtrend_oslevel.value)"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['adx'] > 20) & (dataframe['plus_di'] > dataframe['minus_di'])"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "min5v5",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['EWO'] > self.ewo_high.value)"
+   },
+   {
+    "label": "mean_reversion",
+    "confidence": "medium",
+    "evidence": "(dataframe['rsi_fast'] < self.rsi_fast_buy.value) & (dataframe['rsi'] < 25)"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "mind",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['fastk'] > dataframe['fastd'])"
+   },
+   {
+    "label": "mean_reversion",
+    "confidence": "medium",
+    "evidence": "(dataframe['lower'] < dataframe['close'])"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "ml_strategy",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "high",
+    "evidence": "dataframe.loc[ (dataframe['Prediction'] == 1), 'buy'] = 1"
+   }
+  ],
+  "note": "ML model prediction, no TA indicators in entry logic"
+ },
+ {
+  "id": "ml_strategy_473",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "dataframe.loc[ (dataframe['rsi'] < 35), 'buy'] = 1"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "mm6k_strategy",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "dataframe['tema'] <= dataframe['bb_middleband']"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "dataframe['tema'] > dataframe['tema'].shift(1)"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "mokuStrat",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['span_a'] > dataframe['span_b']) & (dataframe['conversion'] > dataframe['base'])"
+   }
+  ],
+  "note": "Ichimoku cloud alignment and component configuration"
+ },
+ {
+  "id": "momentum",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] > dataframe['open']) & (dataframe['close'] > dataframe['close'].shift(1))"
+   }
+  ],
+  "note": "Multiple consecutive strong candles"
+ },
+ {
+  "id": "momentum_long",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] > dataframe['open']) & (dataframe['close'] > dataframe['close'].shift(1))"
+   }
+  ],
+  "note": "Long-only consecutive strong candles"
+ },
+ {
+  "id": "momentum_rsi",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] > dataframe['close'].shift(1))"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "(dataframe['close'] > dataframe['ma'])"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "momentum_tf_divergence",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe[\"resample_15_cci\"] > 100) & (dataframe[\"cci\"] > 100)"
+   }
+  ],
+  "note": "CCI overbought with multi-timeframe confirmation"
+ },
+ {
+  "id": "momentum_wick",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] > dataframe['open']) & (((dataframe['open'] - dataframe['low']) / (dataframe['close'] - dataframe['open'])) < 0.25)"
+   }
+  ],
+  "note": "Consecutive candles with small lower wicks"
+ },
+ {
+  "id": "moonhouse",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "high",
+    "evidence": "df['Moon_Phase'] = moon_phase; df['Mercury_dec'] = planet declination"
+   }
+  ],
+  "note": "Astronomical data (moon phases, planetary positions)"
+ },
+ {
+  "id": "mp",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "dataframe['min'].isnull() == False"
+   }
+  ],
+  "note": "Buys at local price minima"
+ },
+ {
+  "id": "mq20241227",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < dataframe['boll_lower'])"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "(dataframe['ema_5'] > dataframe['ema_20'])"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "multi_tf",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi'] < 30)"
+   }
+  ],
+  "note": "Multi-timeframe RSI oversold confirmation"
+ },
+ {
+  "id": "multmatsl",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < dataframe['ema_offset_buy'])"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "(dataframe['ewo'] = EWO(dataframe, ...))"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "my_gym",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "high",
+    "evidence": "action = self.rl_model_predict(dataframe); dataframe['buy'] = (action == 1)"
+   }
+  ],
+  "note": "RL model-based, no explicit TA logic"
+ },
+ {
+  "id": "my_gym2",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "high",
+    "evidence": "action = self.rl_model_predict(dataframe, metadata['pair'])"
+   }
+  ],
+  "note": "RL model-based prediction, no TA-driven signals"
+ },
+ {
+  "id": "my_gym3",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "high",
+    "evidence": "action = self.rl_model_predict(dataframe, metadata['pair'])"
+   }
+  ],
+  "note": "RL model with z-scored indicators, model output drives entry"
+ },
+ {
+  "id": "my_gym4",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "high",
+    "evidence": "action = self.rl_model_predict(dataframe, metadata['pair'])"
+   }
+  ],
+  "note": "RL model-driven entry, no explicit trading logic"
+ },
+ {
+  "id": "my_gym_2",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "high",
+    "evidence": "action = self.rl_model_predict(dataframe)"
+   }
+  ],
+  "note": "RL model prediction drives trading signals"
+ },
+ {
+  "id": "my_gym_cnn",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "high",
+    "evidence": "dataframe['buy'] = (action[0] > 0.50)"
+   }
+  ],
+  "note": "CNN-based model prediction"
+ },
+ {
+  "id": "my_strategy_example",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "dataframe['close'].lt(dataframe['lower'].shift())"
+   }
+  ],
+  "note": "Buying below lower Bollinger Band"
+ },
+ {
+  "id": "mycustom",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "qtpylib.crossed_above(dataframe['rsi'], self.buy_rsi.value)"
+   },
+   {
+    "label": "mean_reversion",
+    "confidence": "medium",
+    "evidence": "(dataframe['tema'] <= dataframe['bb_middleband'])"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "myshortingstrategiembe1",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['trend_close_5m'] > dataframe['senkou_a']) & (dataframe['trend_close_5m'] > dataframe['senkou_b'])"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "dataframe['fan_magnitude_gain'] >= self.buy_params['buy_min_fan_magnitude_gain']"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "myshortingstrategiembe2",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['trend_close_5m'] > dataframe['senkou_a']) & (dataframe['trend_close_5m'] > dataframe['senkou_b'])"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "dataframe['fan_magnitude_gain'] >= self.buy_params['buy_min_fan_magnitude_gain']"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "nado_to_the_moon",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi'] < 28) & (dataframe['close'] < dataframe['bb_lowerband'])"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "(dataframe['macd'] > dataframe['macdsignal'])"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "naruto",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['trend_close_5m'] > dataframe['senkou_a']) & (dataframe['trend_close_5m'] > dataframe['senkou_b'])"
+   }
+  ],
+  "note": "Ichimoku cloud position with multi-timeframe trend alignment"
+ },
+ {
+  "id": "nasosv5",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['EWO'] > self.ewo_high.value)"
+   },
+   {
+    "label": "mean_reversion",
+    "confidence": "medium",
+    "evidence": "(dataframe['rsi'] < 25)"
+   }
+  ],
+  "note": ""
+ }
+]

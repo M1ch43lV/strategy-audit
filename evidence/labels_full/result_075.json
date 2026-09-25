@@ -1,0 +1,279 @@
+[
+ {
+  "id": "SmoothScalp_386",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['open'] < dataframe['ema_low']) & (dataframe['mfi'] < 30)"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "qtpylib.crossed_above(dataframe['fastk'], dataframe['fastd'])"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "SmoothScalp_4",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['open'] < dataframe['ema_low']) & (dataframe['mfi'] < 30)"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "qtpylib.crossed_above(dataframe['fastk'], dataframe['fastd'])"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "SmoothScalp_476",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['open'] < dataframe['ema_low']) & (dataframe['mfi'] < 30)"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "qtpylib.crossed_above(dataframe['fastk'], dataframe['fastd'])"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "SmoothScalp_831",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['open'] < dataframe['ema_low']) & (dataframe['mfi'] < 30)"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "qtpylib.crossed_above(dataframe['fastk'], dataframe['fastd'])"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "Solipsis",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "low",
+    "evidence": "dataframe['rmi-up-trend'] == 1"
+   }
+  ],
+  "note": "Entry code incomplete; inferred from indicators"
+ },
+ {
+  "id": "Solipsis3",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "medium",
+    "evidence": "(dataframe['rmi-dn-trend'] == 1) & (dataframe['rmi-slow'] >= params['base-rmi-slow'])"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "Solipsis3_BTC",
+  "primary": "other",
+  "labels": [],
+  "note": "No entry or exit code provided"
+ },
+ {
+  "id": "Solipsis3_ETH",
+  "primary": "other",
+  "labels": [],
+  "note": "No entry or exit code provided"
+ },
+ {
+  "id": "Solipsis4",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "medium",
+    "evidence": "(dataframe['rmi-dn-count'] >= self.base_rmi_streak.value)"
+   },
+   {
+    "label": "breakout",
+    "confidence": "medium",
+    "evidence": "qtpylib.crossed_above(dataframe['streak-roc'], dataframe['pcc-lowerband'])"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "Solipsis4_BTC",
+  "primary": "other",
+  "labels": [],
+  "note": "No entry or exit code provided"
+ },
+ {
+  "id": "Solipsis4_ETH",
+  "primary": "other",
+  "labels": [],
+  "note": "No entry or exit code provided"
+ },
+ {
+  "id": "Solipsis5",
+  "primary": "other",
+  "labels": [],
+  "note": "Entry uses random value plus green candles count"
+ },
+ {
+  "id": "Solipsis5_BTC",
+  "primary": "other",
+  "labels": [],
+  "note": "No entry or exit code provided"
+ },
+ {
+  "id": "Solipsis5_ETH",
+  "primary": "other",
+  "labels": [],
+  "note": "No entry or exit code provided"
+ },
+ {
+  "id": "Solipsis6",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "dataframe['close'].lt(dataframe['lower'].shift())"
+   }
+  ],
+  "note": "Combines BinHV45 and ClucMay72018 strategies, both mean-reversion"
+ },
+ {
+  "id": "Solipsis6_BTC",
+  "primary": "other",
+  "labels": [],
+  "note": "No entry or exit code provided"
+ },
+ {
+  "id": "Solipsis6_ETH",
+  "primary": "other",
+  "labels": [],
+  "note": "No entry or exit code provided"
+ },
+ {
+  "id": "SolipsisCon",
+  "primary": "other",
+  "labels": [],
+  "note": "Entry driven by consensus score across multiple unspecified indicators"
+ },
+ {
+  "id": "SolipsisCon_BTC",
+  "primary": "other",
+  "labels": [],
+  "note": "No entry or exit code provided"
+ },
+ {
+  "id": "SolipsisMM",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "(dataframe['pmax-trend'] == 'up')"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "SolipsisMM_BTC",
+  "primary": "other",
+  "labels": [],
+  "note": "No entry or exit code provided"
+ },
+ {
+  "id": "SolipsisMM_ETH",
+  "primary": "other",
+  "labels": [],
+  "note": "No entry or exit code provided"
+ },
+ {
+  "id": "Solipsis_BTC",
+  "primary": "other",
+  "labels": [],
+  "note": "No entry or exit code provided"
+ },
+ {
+  "id": "Solipsis_ETH",
+  "primary": "other",
+  "labels": [],
+  "note": "No entry or exit code provided"
+ },
+ {
+  "id": "Solipsis_USD",
+  "primary": "other",
+  "labels": [],
+  "note": "No entry or exit code provided"
+ },
+ {
+  "id": "Solipsis_tradedbexp",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "medium",
+    "evidence": "(dataframe['rmi-dn-trend'] == 1) & (dataframe['rmi-slow'] >= params['base-rmi-slow'])"
+   }
+  ],
+  "note": "Entry code incomplete; same pattern as Solipsis"
+ },
+ {
+  "id": "Solipsis_v1",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "(dataframe['pmax-trend'] == 'up')"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "Solipsis_v2",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "medium",
+    "evidence": "(dataframe['rmi-dn-trend'] == 1) & (dataframe['rmi-slow'] >= params['base-rmi-slow'])"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "Solipsis_v2_4",
+  "primary": "other",
+  "labels": [],
+  "note": "Entry driven by consensus score across multiple indicators"
+ },
+ {
+  "id": "Solipsis_v2_5",
+  "primary": "other",
+  "labels": [],
+  "note": "Entry uses random value plus consecutive green candles count"
+ }
+]

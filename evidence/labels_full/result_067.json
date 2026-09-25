@@ -1,0 +1,375 @@
+[
+ {
+  "id": "RSITrailingStopScalper",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe[\"rsi\"] < self.rsi_buy_min.value)"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "RSI_BB",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe[\"close\"] < dataframe['bb_lowerband1'])"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "RSI_BB_MACD_Nov_2023_1h_2_Dec",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['adx'] > self.adx_long_min_1.value) & # trend strength confirmation"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "RSI_EMA_strategy",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi_oversold'].shift(1) == True)"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "RSI_F",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi'] < self.buy_rsi_value.value)"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "RSI_MFI",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe[\"rsi\"] <= self.buy_rsi.value) &"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "RSI_MFI_2",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe[\"rsi\"] <= self.buy_rsi.value) &"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "RSI_hyper",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['RSI'] < self.buy_rsi.value)"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "RSIv2",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi']<30) &"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "RalliV1",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['EWO'] > self.ewo_high.value) &"
+   },
+   {
+    "label": "mean_reversion",
+    "confidence": "medium",
+    "evidence": "(dataframe['rsi_fast'] <35)&"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "RalliV1_2",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['EWO'] > self.ewo_high.value) &"
+   },
+   {
+    "label": "mean_reversion",
+    "confidence": "medium",
+    "evidence": "(dataframe['rsi_fast'] <35)&"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "RalliV1_disable56",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['EWO'] > self.ewo_high.value) &"
+   },
+   {
+    "label": "mean_reversion",
+    "confidence": "medium",
+    "evidence": "(dataframe['rsi_fast'] <35)&"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "RalliV1_disable56_2",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['EWO'] > self.ewo_high.value) &"
+   },
+   {
+    "label": "mean_reversion",
+    "confidence": "medium",
+    "evidence": "(dataframe['rsi_fast'] <35)&"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "RangeTrader",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] <= dataframe['support'] * 1.01) &"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "RapidBuyTrailing",
+  "primary": "other",
+  "labels": [],
+  "note": "entry always true; open > or < prior close (exhaustive)"
+ },
+ {
+  "id": "RaposaDivergenceV1",
+  "primary": "pattern",
+  "labels": [
+   {
+    "label": "pattern",
+    "confidence": "high",
+    "evidence": "(dataframe['close_lows'] == -1) &"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "ReCoredV1",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "(qtpylib.crossed_below(dataframe[\"close\"], dataframe[\"ma_sell\"]))"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "ReDeCoredV1StoplossAdjusted",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "(qtpylib.crossed_below(dataframe[\"close\"], dataframe[\"ma_sell\"]))"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "RebalanceStrategySpot",
+  "primary": "other",
+  "labels": [],
+  "note": "entry trivial (close > 0); strategy logic in adjust_trade_position"
+ },
+ {
+  "id": "RegimeFilterStrategy",
+  "primary": "breakout",
+  "labels": [
+   {
+    "label": "breakout",
+    "confidence": "high",
+    "evidence": "breakout_up = dataframe['close'] > dataframe['highest_20']"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "dataframe['bull_regime'] = dataframe['ema50'] > dataframe['ema100']"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "ReinforcedAverageStrategy",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "qtpylib.crossed_above(dataframe['maShort'], dataframe['maMedium'])"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "ReinforcedAverageStrategy_3",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "qtpylib.crossed_above(dataframe['maShort'], dataframe['maMedium'])"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "ReinforcedAverageStrategy_4",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "qtpylib.crossed_above(dataframe['maShort'], dataframe['maMedium'])"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "ReinforcedAverageStrategy_6",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "qtpylib.crossed_above(dataframe['maShort'], dataframe['maMedium'])"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "ReinforcedAverageStrategy_92",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "qtpylib.crossed_above(dataframe['maShort'], dataframe['maMedium']) &"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "ReinforcedQuickie",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] <= dataframe['bb_lowerband'])"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "ReinforcedQuickieHyperStrategy",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] <= dataframe['bb_lowerband'])"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "ReinforcedQuickie_2",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] <= dataframe['bb_lowerband'])"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "ReinforcedQuickie_3",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] <= dataframe['bb_lowerband'])"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "ReinforcedQuickie_86",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] <= dataframe['bb_lowerband'])"
+   }
+  ],
+  "note": ""
+ }
+]

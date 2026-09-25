@@ -1,0 +1,364 @@
+[
+ {
+  "id": "Etcg",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi_fast'] <35)&(dataframe['close'] < (dataframe[f'ma_buy"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "(dataframe['EWO'] > self.ewo_high.value)"
+   }
+  ]
+ },
+ {
+  "id": "EuroEdge",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['ema_fast'] > dataframe['ema_slow']) &"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "(dataframe['momentum'] > 1) &"
+   }
+  ]
+ },
+ {
+  "id": "Ewt2",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['EWO_BUY'] > self.buy_EWO_val.value)"
+   }
+  ]
+ },
+ {
+  "id": "Ewt3",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe[ewo] > self.buy_EWO.value)"
+   }
+  ]
+ },
+ {
+  "id": "ExampleLSTMStrategy",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "high",
+    "evidence": "dataframe = self.freqai.start(dataframe, metadata, self)"
+   }
+  ],
+  "note": "Machine learning model; actual logic unknown at strategy level"
+ },
+ {
+  "id": "Example_Strat_With_FileLogging",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] > dataframe['senkou_b'])"
+   }
+  ]
+ },
+ {
+  "id": "ExponentialGradientPortfolio",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "high",
+    "evidence": "dataframe['target_weight'] > 0.001"
+   }
+  ],
+  "note": "Portfolio weight allocation, not price-pattern logic"
+ },
+ {
+  "id": "FAdxSmaStrategy",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "qtpylib.crossed_above(dataframe[f\"sma_short"
+   }
+  ]
+ },
+ {
+  "id": "FBB_2",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['fisher_wr'] <= self.buy_fisher_wr.value)"
+   },
+   {
+    "label": "volatility",
+    "confidence": "medium",
+    "evidence": "(qtpylib.crossed_above(dataframe['bb_gain']"
+   }
+  ]
+ },
+ {
+  "id": "FBB_DWT",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "high",
+    "evidence": "qtpylib.crossed_above(dataframe['dwt_predict_diff']"
+   }
+  ],
+  "note": "Discrete wavelet transform prediction"
+ },
+ {
+  "id": "FBB_KalmanSIMD",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "high",
+    "evidence": "qtpylib.crossed_above(dataframe['kf_model_diff']"
+   }
+  ],
+  "note": "Kalman filter prediction"
+ },
+ {
+  "id": "FBB_ROI",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['fisher_wr'] <= self.buy_fisher_wr.value)"
+   }
+  ]
+ },
+ {
+  "id": "FFT",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "high",
+    "evidence": "qtpylib.crossed_above(dataframe['fft_predict_diff']"
+   }
+  ],
+  "note": "FFT prediction model"
+ },
+ {
+  "id": "FLAGS",
+  "primary": "pattern",
+  "labels": [
+   {
+    "label": "pattern",
+    "confidence": "high",
+    "evidence": "dataframe.loc[dataframe['signal'] == 1, 'enter_long']"
+   }
+  ]
+ },
+ {
+  "id": "FOttStrategy",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(qtpylib.crossed_above(dataframe[\"var\"], dataframe[\"ott\"]))"
+   }
+  ]
+ },
+ {
+  "id": "FRAYSTRAT",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(qtpylib.crossed_above(dataframe['rsi'], self.buy_rsi.value))"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "(dataframe['tema'] < dataframe['ema7'])"
+   }
+  ]
+ },
+ {
+  "id": "FRAYSTRAT_BTCUSDT_1H",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(qtpylib.crossed_above(dataframe['rsi'], self.buy_rsi.value))"
+   }
+  ]
+ },
+ {
+  "id": "FRandomWalk",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "high",
+    "evidence": "dataframe['random_walk'] = choice([1, 1, 0, 0, 0, 0, -1, -1, -1])"
+   }
+  ],
+  "note": "Random signal; not based on market data"
+ },
+ {
+  "id": "FReinforcedStrategy",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "qtpylib.crossed_above(dataframe[f\"ema_short"
+   }
+  ]
+ },
+ {
+  "id": "FSampleStrategy",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(qtpylib.crossed_above(dataframe[\"rsi\"], 30))"
+   }
+  ]
+ },
+ {
+  "id": "FSampleStrategyChat",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi'] < self.rsi_oversold)"
+   }
+  ]
+ },
+ {
+  "id": "FSampleStrategys",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "((dataframe[\"rsi\"] > 60) & (dataframe[\"rsi_30m\"] > 50))"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "(dataframe[\"adx\"] > 40)"
+   }
+  ]
+ },
+ {
+  "id": "FSupertrendStrategy",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "f\"supertrend_1_buy_{self.buy_m1.value}_{self.buy_p1.value}\""
+   }
+  ]
+ },
+ {
+  "id": "FSupertrendStrategyBTC",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "f\"supertrend_1_buy_{self.buy_m1.value}_{self.buy_p1.value}\""
+   }
+  ]
+ },
+ {
+  "id": "FSupertrendStrategyETH",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "f\"supertrend_1_buy_{self.buy_m1.value}_{self.buy_p1.value}\""
+   }
+  ]
+ },
+ {
+  "id": "FTT_DWT_FBB_FUTURES",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "high",
+    "evidence": "informative['fft_dev'] = informative['close'].rolling"
+   }
+  ],
+  "note": "FFT/DWT hybrid with trend filters"
+ },
+ {
+  "id": "FUTURES",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(qtpylib.crossed_above(dataframe['ema5'],dataframe['ema8']))"
+   }
+  ]
+ },
+ {
+  "id": "FVGAdvancedStrategy_V2",
+  "primary": "pattern",
+  "labels": [
+   {
+    "label": "pattern",
+    "confidence": "high",
+    "evidence": "dataframe['bull_fvg'] = ((dataframe['low_3'] > dataframe['high_1'])"
+   }
+  ]
+ },
+ {
+  "id": "FVGChannel",
+  "primary": "breakout",
+  "labels": [
+   {
+    "label": "breakout",
+    "confidence": "high",
+    "evidence": "(dataframe[\"close\"] > dataframe['lower_extreme'])"
+   }
+  ]
+ },
+ {
+  "id": "Fakebuy",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < dataframe['lower'].shift())"
+   }
+  ]
+ }
+]

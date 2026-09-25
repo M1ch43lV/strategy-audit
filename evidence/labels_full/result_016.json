@@ -1,0 +1,437 @@
+[
+ {
+  "id": "Cenderawasih_3_kucoin",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "((dataframe['close'] < dataframe['vwma_offset_buy']) & (dataframe['close'] < dataframe['ema_offset_buy'])"
+   },
+   {
+    "label": "volatility",
+    "confidence": "low",
+    "evidence": "dataframe['volume'].rolling(window=72, min_periods=72).min() > 0"
+   }
+  ],
+  "note": "Dip-buying below offset moving averages with volume confirmation"
+ },
+ {
+  "id": "Cenderawasih_freqai",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "df[\"&-s_close\"] > df[\"target_roi\"]"
+   },
+   {
+    "label": "statistical",
+    "confidence": "medium",
+    "evidence": "dataframe[\"target_roi\"] = dataframe[\"&-s_close_mean\"] + dataframe[\"&-s_close_std\"] * 1.25"
+   }
+  ],
+  "note": "FreqAI model-driven with statistical mean/std thresholds"
+ },
+ {
+  "id": "ChaikinMoneyFlowStrategy",
+  "primary": "volume_flow",
+  "labels": [
+   {
+    "label": "volume_flow",
+    "confidence": "high",
+    "evidence": "(dataframe[\"cmf\"] > 0) & (dataframe[\"cmf_prev\"] <= 0) & (dataframe[\"volume\"] > dataframe[\"volume_ma\"])"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "dataframe[\"close\"] > dataframe[\"ema50\"]"
+   }
+  ],
+  "note": "Chaikin Money Flow crossing with trend filter"
+ },
+ {
+  "id": "Chained",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "high",
+    "evidence": "dataframe.filter(like='strat_buy_signal_').mean(axis=1) > self.buy_action_diff_threshold.value"
+   }
+  ],
+  "note": "Meta-strategy combining multiple sub-strategies by signal averaging"
+ },
+ {
+  "id": "Chandem",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(qtpylib.crossed_above(dataframe[\"CMO\"].shift(1), 0)) & (dataframe[\"CMO\"]>=0)"
+   }
+  ],
+  "note": "CMO oscillator crossing zero with continuation"
+ },
+ {
+  "id": "Chandemtwo",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(qtpylib.crossed_above(dataframe[\"CMO\"].shift(2), 0)) & (dataframe[\"CMO\"].shift(1)>=0)"
+   }
+  ],
+  "note": "CMO crossing with multi-candle confirmation"
+ },
+ {
+  "id": "Chispei",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['mom'] < 15) & (dataframe['fastMA'] > dataframe['slowMA'])"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "dataframe['fastMA'] > dataframe['slowMA']"
+   }
+  ],
+  "note": "Momentum oscillator low with moving average alignment"
+ },
+ {
+  "id": "Chopchop",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi'] < 37) & (dataframe['close'] < dataframe['bb_lowerband'])"
+   },
+   {
+    "label": "volatility",
+    "confidence": "medium",
+    "evidence": "dataframe['chop'] < dataframe['minusDev']"
+   }
+  ],
+  "note": "Oversold RSI and lower Bollinger Band dip with volatility compression"
+ },
+ {
+  "id": "Circles",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "high",
+    "evidence": "enter_long'] = 0"
+   }
+  ],
+  "note": "No actual entry signals generated (all set to 0)"
+ },
+ {
+  "id": "Claude",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "dataframe['rsi'] > self.rsi_overbought.value"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "(dataframe['ema_short'] > dataframe['ema_long'])"
+   }
+  ],
+  "note": "Multiple entry methods: RSI/MACD/EMA cross depending on parameter"
+ },
+ {
+  "id": "Cluc4",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "dataframe['close'].lt(dataframe['lower'].shift())"
+   },
+   {
+    "label": "volatility",
+    "confidence": "medium",
+    "evidence": "dataframe['bbdelta'].gt(dataframe['close'] * 0.006)"
+   }
+  ],
+  "note": "Close below shifted lower Bollinger band with delta and tail conditions"
+ },
+ {
+  "id": "Cluc4werk",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "dataframe['close'].lt(dataframe['lower'].shift())"
+   },
+   {
+    "label": "volatility",
+    "confidence": "medium",
+    "evidence": "dataframe['bbdelta'].gt(dataframe['close'] * params['bbdelta-close'])"
+   }
+  ],
+  "note": "Parameterized dip-buying with Bollinger band delta expansion"
+ },
+ {
+  "id": "Cluc4werk_ETH",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "high",
+    "evidence": ""
+   }
+  ],
+  "note": "Incomplete sheet; no indicator or entry/exit code provided"
+ },
+ {
+  "id": "Cluc5mDCA",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "high",
+    "evidence": "position_adjustment_enable = True"
+   }
+  ],
+  "note": "Only position adjustment declared; no strategy logic shown"
+ },
+ {
+  "id": "Cluc5werk",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "dataframe['close'].lt(dataframe['lower'].shift())"
+   },
+   {
+    "label": "volatility",
+    "confidence": "medium",
+    "evidence": "dataframe['bbdelta'].gt(dataframe['close'] * params['bbdelta-close'])"
+   }
+  ],
+  "note": "Consecutive fake_buy confirmation before entry with dip logic"
+ },
+ {
+  "id": "Cluc5werk_BTC",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "high",
+    "evidence": ""
+   }
+  ],
+  "note": "Incomplete sheet; no indicator or entry/exit code provided"
+ },
+ {
+  "id": "Cluc5werk_ETH",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "high",
+    "evidence": ""
+   }
+  ],
+  "note": "Incomplete sheet; no indicator or entry/exit code provided"
+ },
+ {
+  "id": "Cluc5werk_USD",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "high",
+    "evidence": ""
+   }
+  ],
+  "note": "Incomplete sheet; no indicator or entry/exit code provided"
+ },
+ {
+  "id": "Cluc6werk",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "dataframe['close'].lt(dataframe['lower-bb1'].shift())"
+   },
+   {
+    "label": "volatility",
+    "confidence": "medium",
+    "evidence": "dataframe['bb1-delta'].gt(dataframe['close'] * params['bbdelta-close'])"
+   }
+  ],
+  "note": "Fisher-RSI low with Bollinger band mean reversion setup"
+ },
+ {
+  "id": "Cluc7werk",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "dataframe['close'].lt(dataframe['lower-bb1'].shift())"
+   },
+   {
+    "label": "volatility",
+    "confidence": "medium",
+    "evidence": "dataframe['bb1-delta'].gt(dataframe['close'] * params['bbdelta-close'])"
+   }
+  ],
+  "note": "Fisher-RSI extreme low triggers dip-buying setup"
+ },
+ {
+  "id": "ClucCrypROI",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['stake-fiat-adx'] > params['adx'])"
+   },
+   {
+    "label": "mean_reversion",
+    "confidence": "medium",
+    "evidence": "dataframe['bb1-delta'].gt(dataframe['close'] * params['bbdelta-close'])"
+   }
+  ],
+  "note": "ADX trend filter gatekeeps Bollinger band mean reversion logic"
+ },
+ {
+  "id": "ClucCrypROI_BTC",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "high",
+    "evidence": ""
+   }
+  ],
+  "note": "Incomplete sheet; no indicator or entry/exit code provided"
+ },
+ {
+  "id": "ClucCrypROI_ETH",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "high",
+    "evidence": ""
+   }
+  ],
+  "note": "Incomplete sheet; no indicator or entry/exit code provided"
+ },
+ {
+  "id": "ClucCrypSlow",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['stake-fiat-adx'] > params['adx'])"
+   },
+   {
+    "label": "mean_reversion",
+    "confidence": "medium",
+    "evidence": "dataframe['bb1-delta'].gt(dataframe['close'] * params['bbdelta-close'])"
+   }
+  ],
+  "note": "ADX-gated entry with Bollinger band mean reversion"
+ },
+ {
+  "id": "ClucCrypSlow_BTC",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "high",
+    "evidence": ""
+   }
+  ],
+  "note": "Incomplete sheet; no indicator or entry/exit code provided"
+ },
+ {
+  "id": "ClucCrypSlow_ETH",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "high",
+    "evidence": ""
+   }
+  ],
+  "note": "Incomplete sheet; no indicator or entry/exit code provided"
+ },
+ {
+  "id": "ClucDCA",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "high",
+    "evidence": "position_adjustment_enable = True"
+   }
+  ],
+  "note": "Only position adjustment declared; no strategy logic shown"
+ },
+ {
+  "id": "ClucDCAV2",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "high",
+    "evidence": "position_adjustment_enable = True"
+   }
+  ],
+  "note": "Only position adjustment declared; no strategy logic shown"
+ },
+ {
+  "id": "ClucFiatROI",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "dataframe['close'].lt(dataframe['lower-bb1'].shift())"
+   },
+   {
+    "label": "volatility",
+    "confidence": "medium",
+    "evidence": "dataframe['bb1-delta'].gt(dataframe['close'] * params['bbdelta-close'])"
+   }
+  ],
+  "note": "Fisher-RSI low with dip-buying; gated by active trade state"
+ },
+ {
+  "id": "ClucFiatSlow",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "dataframe['close'].lt(dataframe['lower-bb1'].shift())"
+   },
+   {
+    "label": "volatility",
+    "confidence": "medium",
+    "evidence": "dataframe['bb1-delta'].gt(dataframe['close'] * params['bbdelta-close'])"
+   }
+  ],
+  "note": "Fisher-RSI low with Bollinger band dip-buying logic"
+ }
+]

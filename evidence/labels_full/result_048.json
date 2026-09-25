@@ -1,0 +1,317 @@
+[
+ {
+  "id": "MASlopeStrategy",
+  "primary": "other",
+  "labels": [],
+  "note": "no entry code; only exit on ma_slope threshold"
+ },
+ {
+  "id": "MAStopLossStrategy",
+  "primary": "other",
+  "labels": [],
+  "note": "no entry or exit code shown"
+ },
+ {
+  "id": "MATrailingStopLossStrategy",
+  "primary": "other",
+  "labels": [],
+  "note": "entry code empty; incomplete indicator code"
+ },
+ {
+  "id": "MFI",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['MFI'].shift() <= 14)"
+   }
+  ]
+ },
+ {
+  "id": "MFI2",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < dataframe['ema5'])"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "dataframe['dm_delta'] > 0"
+   }
+  ]
+ },
+ {
+  "id": "MFI2_2",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < dataframe['ema5'])"
+   }
+  ]
+ },
+ {
+  "id": "MFIRSICross",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "qtpylib.crossed_above(dataframe['mfi_rsi_accel'], 0)"
+   }
+  ]
+ },
+ {
+  "id": "MFIRSICross_2",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "qtpylib.crossed_above(dataframe['mfi_rsi_accel'], 0)"
+   }
+  ]
+ },
+ {
+  "id": "MFIStrategy",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['mfi'] <= 20)"
+   }
+  ]
+ },
+ {
+  "id": "MKPmaxDcaStrategyV1_0",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "qtpylib.crossed_above(dataframe['MA_1_9'], dataframe['pm_10_27_9_1'])"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "qtpylib.crossed_above(dataframe['rsi'], self.buy_rsi.value)"
+   }
+  ]
+ },
+ {
+  "id": "MKR",
+  "primary": "other",
+  "labels": [],
+  "note": "ML-based strategy using learned predictions"
+ },
+ {
+  "id": "MLStrategy",
+  "primary": "other",
+  "labels": [],
+  "note": "ML model predictions; no explicit TA logic"
+ },
+ {
+  "id": "MLStrategy2",
+  "primary": "other",
+  "labels": [],
+  "note": "ML model predictions; no explicit TA logic"
+ },
+ {
+  "id": "MOY_NASOSv4",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['EWO'] > self.ewo_high.value)"
+   },
+   {
+    "label": "mean_reversion",
+    "confidence": "medium",
+    "evidence": "(dataframe['rsi_fast'] < 35)"
+   }
+  ]
+ },
+ {
+  "id": "MQALYY",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "dataframe['fan_magnitude_gain'] >= self.buy_params"
+   }
+  ]
+ },
+ {
+  "id": "MR_V1",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi_fast'] < self.buy_rsi_fast_32.value)"
+   }
+  ]
+ },
+ {
+  "id": "MSO",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['ms_osc'] > self.buy_threshold.value)"
+   }
+  ]
+ },
+ {
+  "id": "MSlopeV8",
+  "primary": "pattern",
+  "labels": [
+   {
+    "label": "pattern",
+    "confidence": "high",
+    "evidence": "argrelextrema(dataframe['close'].values, np.less, order=order)"
+   }
+  ]
+ },
+ {
+  "id": "MVA",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] * 1.10 <= dataframe['sma25'])"
+   }
+  ]
+ },
+ {
+  "id": "MaXTrend",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe[f'short_ma_{self.short_ma.value}'] > dataframe[f'mid_ma'])"
+   }
+  ]
+ },
+ {
+  "id": "MabStra",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['buy-mojoMA'].div(dataframe['buy-fastMA']) > self.buy_div_min.value)"
+   }
+  ]
+ },
+ {
+  "id": "Macd",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['macdhist_1d'] > 0)"
+   }
+  ]
+ },
+ {
+  "id": "MacdAdxStrategy",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['adx'] > 25)"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "(dataframe['macd'] > dataframe['macdsignal'])"
+   }
+  ]
+ },
+ {
+  "id": "MacdStrategy",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "qtpylib.crossed_above(dataframe['macd'], dataframe['macdsignal'])"
+   }
+  ]
+ },
+ {
+  "id": "MacdZeroCrossStrategy",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe[\"macd\"] > 0) & (dataframe[\"macd_prev\"] <= 0)"
+   }
+  ]
+ },
+ {
+  "id": "Macd_2",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "qtpylib.crossed_above(dataframe['plus_di'], dataframe['minus_di'])"
+   }
+  ]
+ },
+ {
+  "id": "MacheteV8b",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['sslUp_inf'] > dataframe['sslDown_inf'])"
+   }
+  ]
+ },
+ {
+  "id": "MacheteV8bRallimod",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['sslUp_inf'] > dataframe['sslDown_inf'])"
+   }
+  ]
+ },
+ {
+  "id": "MacheteV8bRallimod2",
+  "primary": "other",
+  "labels": [],
+  "note": "helper functions not shown; unable to determine"
+ },
+ {
+  "id": "MadV9HO",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < dataframe['bb_lowerband']"
+   }
+  ]
+ }
+]

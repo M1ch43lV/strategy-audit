@@ -1,0 +1,192 @@
+[
+ {
+  "id": "NNPredict_TCN",
+  "primary": "other",
+  "labels": [],
+  "note": "no entry/exit code provided in sheet"
+ },
+ {
+  "id": "NNPredict_TFT",
+  "primary": "other",
+  "labels": [],
+  "note": "no entry/exit code provided in sheet"
+ },
+ {
+  "id": "NNPredict_Transformer",
+  "primary": "other",
+  "labels": [],
+  "note": "no entry/exit code provided in sheet"
+ },
+ {
+  "id": "NNPredict_Wavenet",
+  "primary": "other",
+  "labels": [],
+  "note": "no entry/exit code provided in sheet"
+ },
+ {
+  "id": "NNPredict_Wavenet2",
+  "primary": "other",
+  "labels": [],
+  "note": "no entry/exit code provided in sheet"
+ },
+ {
+  "id": "NNPredict_dTransformer",
+  "primary": "other",
+  "labels": [],
+  "note": "no entry/exit code provided in sheet"
+ },
+ {
+  "id": "NNPredict_kTFT",
+  "primary": "other",
+  "labels": [],
+  "note": "no entry/exit code provided in sheet"
+ },
+ {
+  "id": "NNTC",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "dataframe['mfi'] < 50.0\n        conditions.append(dataframe['fisher_wr'] <= -0.5)"
+   },
+   {
+    "label": "statistical",
+    "confidence": "medium",
+    "evidence": "dataframe['predict_buy'] > 0.5"
+   }
+  ]
+ },
+ {
+  "id": "NNTC_adx2_LSTM",
+  "primary": "other",
+  "labels": [],
+  "note": "no entry/exit code provided in sheet"
+ },
+ {
+  "id": "NNTC_adx3_LSTM",
+  "primary": "other",
+  "labels": [],
+  "note": "no entry/exit code provided in sheet"
+ },
+ {
+  "id": "NNTC_adx_LSTM",
+  "primary": "other",
+  "labels": [],
+  "note": "no entry/exit code provided in sheet"
+ },
+ {
+  "id": "NNTC_all_LSTM",
+  "primary": "other",
+  "labels": [],
+  "note": "no entry/exit code provided in sheet"
+ },
+ {
+  "id": "NNTC_aroon_LSTM",
+  "primary": "other",
+  "labels": [],
+  "note": "no entry/exit code provided in sheet"
+ },
+ {
+  "id": "NNTC_bbw_LSTM",
+  "primary": "other",
+  "labels": [],
+  "note": "no entry/exit code provided in sheet"
+ },
+ {
+  "id": "NNTC_bbw_Transformer",
+  "primary": "other",
+  "labels": [],
+  "note": "no entry/exit code provided in sheet"
+ },
+ {
+  "id": "NNTC_dwt2_LSTM",
+  "primary": "other",
+  "labels": [],
+  "note": "no entry/exit code provided in sheet"
+ },
+ {
+  "id": "NNTC_dwt_LSTM",
+  "primary": "other",
+  "labels": [],
+  "note": "no entry/exit code provided in sheet"
+ },
+ {
+  "id": "NNTC_fbb_AdditiveAttention",
+  "primary": "other",
+  "labels": [],
+  "note": "no entry/exit code provided in sheet"
+ },
+ {
+  "id": "NNTC_fbb_Attention",
+  "primary": "other",
+  "labels": [],
+  "note": "no entry/exit code provided in sheet"
+ },
+ {
+  "id": "NNTC_fbb_Ensemble",
+  "primary": "other",
+  "labels": [],
+  "note": "no entry/exit code provided in sheet"
+ },
+ {
+  "id": "NNTC_fbb_GRU",
+  "primary": "other",
+  "labels": [],
+  "note": "no entry/exit code provided in sheet"
+ },
+ {
+  "id": "NNTC_fbb_LSTM",
+  "primary": "other",
+  "labels": [],
+  "note": "no entry/exit code provided in sheet"
+ },
+ {
+  "id": "NNTC_fbb_Multihead",
+  "primary": "other",
+  "labels": [],
+  "note": "no entry/exit code provided in sheet"
+ },
+ {
+  "id": "NNTC_fbb_Transformer",
+  "primary": "other",
+  "labels": [],
+  "note": "no entry/exit code provided in sheet"
+ },
+ {
+  "id": "NNTC_fbb_Wavenet",
+  "primary": "other",
+  "labels": [],
+  "note": "no entry/exit code provided in sheet"
+ },
+ {
+  "id": "NNTC_fwr_LSTM",
+  "primary": "other",
+  "labels": [],
+  "note": "no entry/exit code provided in sheet"
+ },
+ {
+  "id": "NNTC_highlow_Ensemble",
+  "primary": "other",
+  "labels": [],
+  "note": "no entry/exit code provided in sheet"
+ },
+ {
+  "id": "NNTC_highlow_LSTM",
+  "primary": "other",
+  "labels": [],
+  "note": "no entry/exit code provided in sheet"
+ },
+ {
+  "id": "NNTC_jump_Ensemble",
+  "primary": "other",
+  "labels": [],
+  "note": "no entry/exit code provided in sheet"
+ },
+ {
+  "id": "NNTC_jump_LSTM",
+  "primary": "other",
+  "labels": [],
+  "note": "no entry/exit code provided in sheet"
+ }
+]

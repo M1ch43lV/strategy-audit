@@ -1,0 +1,344 @@
+[
+ {
+  "id": "RsiquiV3",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "qtpylib.crossed_above(dataframe['rsi_gra'], 0)"
+   }
+  ]
+ },
+ {
+  "id": "RsiquiV3_2",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "qtpylib.crossed_above(dataframe['rsi_gra'], 0)"
+   }
+  ]
+ },
+ {
+  "id": "RsiquiV4",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "qtpylib.crossed_above(dataframe['rsi_gra'], 0)"
+   }
+  ]
+ },
+ {
+  "id": "RsiquiV5",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "qtpylib.crossed_above(dataframe['rsi_gra'], 0)"
+   }
+  ]
+ },
+ {
+  "id": "RsiquiV5_2",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "qtpylib.crossed_above(dataframe['rsi_gra'], 0)"
+   }
+  ]
+ },
+ {
+  "id": "RsiquiV5_long_only",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "qtpylib.crossed_above(dataframe['rsi_gra'], 0)"
+   }
+  ]
+ },
+ {
+  "id": "RunStrategy",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi'] < 30) & (dataframe['slowk'] < 20) & (dataframe['bb_lowerband'] > dataframe['close'])"
+   }
+  ]
+ },
+ {
+  "id": "S096",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['adx'] > 25)"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "qtpylib.crossed_above(dataframe['rsi'], 60) & (dataframe['adx'] > 30)"
+   }
+  ]
+ },
+ {
+  "id": "SAR",
+  "primary": "breakout",
+  "labels": [
+   {
+    "label": "breakout",
+    "confidence": "high",
+    "evidence": "(dataframe['sar'] < dataframe['close']) & (dataframe['sar'].shift(1) > dataframe['close'].shift(1))"
+   }
+  ]
+ },
+ {
+  "id": "SARCross",
+  "primary": "breakout",
+  "labels": [
+   {
+    "label": "breakout",
+    "confidence": "high",
+    "evidence": "qtpylib.crossed_below(dataframe['sar'], dataframe['tema'])"
+   }
+  ]
+ },
+ {
+  "id": "SARCross_2",
+  "primary": "breakout",
+  "labels": [
+   {
+    "label": "breakout",
+    "confidence": "high",
+    "evidence": "qtpylib.crossed_below(dataframe['sar'], dataframe['tema'])"
+   }
+  ]
+ },
+ {
+  "id": "SARIMAX",
+  "primary": "statistical",
+  "labels": [
+   {
+    "label": "statistical",
+    "confidence": "high",
+    "evidence": "qtpylib.crossed_above(dataframe['smax_predict_diff'], self.entry_smax_diff)"
+   }
+  ],
+  "note": "SARIMAX time-series forecast crossing threshold"
+ },
+ {
+  "id": "SAR_and_BB",
+  "primary": "breakout",
+  "labels": [
+   {
+    "label": "breakout",
+    "confidence": "high",
+    "evidence": "qtpylib.crossed_above(dataframe['close'], dataframe['sar'])"
+   },
+   {
+    "label": "mean_reversion",
+    "confidence": "medium",
+    "evidence": "(dataframe['close'] < 0.99 * dataframe['bb_lowerband'])"
+   }
+  ]
+ },
+ {
+  "id": "SMA",
+  "primary": "statistical",
+  "labels": [
+   {
+    "label": "statistical",
+    "confidence": "high",
+    "evidence": "(dataframe['prob'] < 0.45)"
+   }
+  ],
+  "note": "Markov regime-switching model probability"
+ },
+ {
+  "id": "SMA1CTE2",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['ema_50'] > dataframe['ema_200']) & (dataframe['close'] > dataframe['ema_200']) & (dataframe['close'] < dataframe['ma_offset_buy'])"
+   }
+  ]
+ },
+ {
+  "id": "SMA1Sell",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['ema_50'] > dataframe['ema_200']) & (dataframe['close'] > dataframe['ema_200'])"
+   }
+  ]
+ },
+ {
+  "id": "SMAIP3",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['ema_50'] > dataframe['ema_200']) & (dataframe['close'] > dataframe['ema_200'])"
+   }
+  ]
+ },
+ {
+  "id": "SMAIP3v2",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['ema_50'] > dataframe['ema_200']) & (dataframe['close'] > dataframe['ema_200'])"
+   }
+  ]
+ },
+ {
+  "id": "SMAOG",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['ema_50'] > dataframe['ema_200']) & (dataframe['close'] > dataframe['ema_200'])"
+   }
+  ]
+ },
+ {
+  "id": "SMAOG_273",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['ema_50'] > dataframe['ema_200']) & (dataframe['close'] > dataframe['ema_200'])"
+   }
+  ]
+ },
+ {
+  "id": "SMAOG_706",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['ema_50'] > dataframe['ema_200']) & (dataframe['close'] > dataframe['ema_200'])"
+   }
+  ]
+ },
+ {
+  "id": "SMAOG_821",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['ema_50'] > dataframe['ema_200']) & (dataframe['close'] > dataframe['ema_200'])"
+   }
+  ]
+ },
+ {
+  "id": "SMAOPv1_TTF",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['EWO'] > self.ewo_high.value) & (dataframe['rsi'] < self.rsi_buy.value)"
+   }
+  ]
+ },
+ {
+  "id": "SMAOPv1_TTF_2",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['EWO'] > self.ewo_high.value) & (dataframe['rsi'] < self.rsi_buy.value)"
+   }
+  ]
+ },
+ {
+  "id": "SMAOffset",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < dataframe['ma_offset_buy'])"
+   }
+  ]
+ },
+ {
+  "id": "SMAOffsetBZed",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < dataframe['ma_offset_buy'])"
+   }
+  ]
+ },
+ {
+  "id": "SMAOffsetMod1BTC",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['sma_3'] < dataframe['sma_2']) & (dataframe['sma_35'] < dataframe['sma_5'])"
+   }
+  ]
+ },
+ {
+  "id": "SMAOffsetOptV1",
+  "primary": "breakout",
+  "labels": [
+   {
+    "label": "breakout",
+    "confidence": "high",
+    "evidence": "qtpylib.crossed_above(dataframe['close'], dataframe['ma_offset_buy'])"
+   }
+  ]
+ },
+ {
+  "id": "SMAOffsetPlusDemon",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi'] < 30) & (dataframe['close'] <= 0.975 * dataframe['bb_lowerband'])"
+   }
+  ]
+ },
+ {
+  "id": "SMAOffsetProtectOpt",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['EWO'] > self.ewo_high.value) & (dataframe['rsi'] < self.rsi_buy.value)"
+   }
+  ]
+ }
+]

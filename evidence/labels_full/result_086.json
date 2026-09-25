@@ -1,0 +1,366 @@
+[
+ {
+  "id": "VWAPStrategy_17",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < dataframe['lower_band']) &\n                (dataframe['rsi'] < 45)"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "VWAPStrategy_18",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < dataframe['lower_band']) &\n                (dataframe['rsi'] < 45)"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "VWAPStrategy_2",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] <= dataframe['lower_band']) & # Buy when the current closing price is less than or equal to the current lower bband"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "VWAP_1",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < dataframe['vwap_low']) &\n                (dataframe['rsi'] < 35)"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "VWAP_2",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "last_closed_candle_open < last_closed_candle_vwap < last_closed_candle_close and self.btc_macd_hist[-1] > self.btc_macd_hist[-2]"
+   }
+  ],
+  "note": "VWAP crossover confirmed by higher-timeframe BTC MACD"
+ },
+ {
+  "id": "VWAP_266",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < dataframe['vwap_low']) &\n                (dataframe['rsi'] < 35)"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "VWAP_319",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < dataframe['vwap_low']) &\n                (dataframe['rsi'] < 35)"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "VWAPstratATR5",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] <= dataframe['lower_band']) &\n                (dataframe['close'].shift(1) <= dataframe['lower_band'].shift(1))"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "Vail2",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < dataframe['ma_lower']) &\n                    (dataframe['open'] > dataframe['ma_lower'])"
+   }
+  ],
+  "note": "Dip-buying in confirmed uptrend"
+ },
+ {
+  "id": "Vail6",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['EWO'] > self.ewo_high.value) &\n                    (dataframe['rsi_fast'] < 35)"
+   },
+   {
+    "label": "mean_reversion",
+    "confidence": "medium",
+    "evidence": "(dataframe['rsi_fast'] < 35)"
+   }
+  ],
+  "note": "EWO (oscillator momentum) is primary driver with oversold confirmation"
+ },
+ {
+  "id": "Vail61",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['EWO'] > self.ewo_high.value) &\n                    (dataframe['rsi_fast'] < 35)"
+   },
+   {
+    "label": "mean_reversion",
+    "confidence": "medium",
+    "evidence": "(dataframe['rsi_fast'] < 35)"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "Vail62",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['EWO'] > self.ewo_high.value) &\n                    (dataframe['rsi_fast'] < 35)"
+   },
+   {
+    "label": "mean_reversion",
+    "confidence": "medium",
+    "evidence": "(dataframe['rsi_fast'] < 35)"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "Vedat22OcatRevized",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi'] < self.buy_rsi.value) &\n                (dataframe['mfi'] < 30)"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "(dataframe['ema9'] > dataframe['ema26']) &\n                (dataframe['ema26'] > dataframe['ema50'])"
+   }
+  ],
+  "note": "Oversold entry confirmed by EMA alignment and HTF trend filter"
+ },
+ {
+  "id": "ViN",
+  "primary": "other",
+  "labels": [],
+  "note": "No actual entry/exit logic; populate_buy_trend sets buy=False"
+ },
+ {
+  "id": "ViNBuyLc2",
+  "primary": "pattern",
+  "labels": [
+   {
+    "label": "pattern",
+    "confidence": "high",
+    "evidence": "(df['lc2_adj'].shift(1) / lc2_low.shift(2)).lt(0.99),\n                (df['lc2_adj'] / lc2_low.shift(2)).gt(1)"
+   }
+  ],
+  "note": "Price action pattern based on low/close ratios over rolling windows"
+ },
+ {
+  "id": "ViNBuyPct",
+  "primary": "statistical",
+  "labels": [
+   {
+    "label": "statistical",
+    "confidence": "high",
+    "evidence": "(pctchange / bb_pctchange_lo).between(1.01, 1.39),\n                (bb_pctchange_up - bb_pctchange_lo).ge(0.02)"
+   }
+  ],
+  "note": "Z-score-like analysis of price change vs rolling std dev bands"
+ },
+ {
+  "id": "ViNBuyPctLc2",
+  "primary": "statistical",
+  "labels": [
+   {
+    "label": "statistical",
+    "confidence": "high",
+    "evidence": "(pctchange / bb_pctchange_lo).between(1.01, 1.39),\n                (bb_pctchange_up - bb_pctchange_lo).ge(0.02)"
+   }
+  ],
+  "note": "Combines percentage change Bollinger bands with price pattern"
+ },
+ {
+  "id": "ViNBuyVws",
+  "primary": "pattern",
+  "labels": [
+   {
+    "label": "pattern",
+    "confidence": "medium",
+    "evidence": "df[f\"vws_{i}\"].between(2, 18), #2, pow(i, 0.67)),\n                df[f\"hlc3_corr_{i}\"].between(-0.999, -0.999 + pow(i, 0.5) / 1000)"
+   }
+  ],
+  "note": "VWS (volume-weighted slope) and HLC correlation pattern"
+ },
+ {
+  "id": "ViNSellCorr",
+  "primary": "other",
+  "labels": [],
+  "note": "Empty logic; only custom_sell hook present"
+ },
+ {
+  "id": "ViNSellEps",
+  "primary": "other",
+  "labels": [],
+  "note": "Empty logic; only custom_sell hook present"
+ },
+ {
+  "id": "ViNSellRiseCorrFall",
+  "primary": "other",
+  "labels": [],
+  "note": "Empty logic; only custom_sell hook present"
+ },
+ {
+  "id": "ViNSellRiseFall",
+  "primary": "other",
+  "labels": [],
+  "note": "Empty logic; only custom_sell hook present"
+ },
+ {
+  "id": "ViTradeTuned",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "c.evaluate_adx() ... c.evaluate_macd() ... score = c.score()"
+   }
+  ],
+  "note": "Multi-indicator consensus (ADX, MACD, CCI, Hull MA) confirms trend"
+ },
+ {
+  "id": "VolBreak_RSI_Adaptive",
+  "primary": "breakout",
+  "labels": [
+   {
+    "label": "breakout",
+    "confidence": "high",
+    "evidence": "(dataframe[\"close\"] > dataframe[\"breakout_upper\"]) &\n            (dataframe[\"rsi\"] > 50)"
+   },
+   {
+    "label": "volatility",
+    "confidence": "medium",
+    "evidence": "dataframe[\"breakout_upper\"] = dataframe[\"close\"].shift(1) + (dataframe[\"atr\"] * 1.5)"
+   }
+  ],
+  "note": "ATR-based dynamic breakout level with momentum filter"
+ },
+ {
+  "id": "VolTargetBasket",
+  "primary": "other",
+  "labels": [],
+  "note": "No indicators or entry/exit logic provided"
+ },
+ {
+  "id": "VolatilitySystem",
+  "primary": "volatility",
+  "labels": [
+   {
+    "label": "volatility",
+    "confidence": "high",
+    "evidence": "dataframe['close_change'] * 1 > dataframe['atr'].shift(1)"
+   }
+  ],
+  "note": "Entry when price move exceeds ATR threshold"
+ },
+ {
+  "id": "VolatilitySystemV2",
+  "primary": "volatility",
+  "labels": [
+   {
+    "label": "volatility",
+    "confidence": "high",
+    "evidence": "dataframe['close_change'] * 1 > dataframe['atr'].shift(1)"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "VolatimImproved",
+  "primary": "volatility",
+  "labels": [
+   {
+    "label": "volatility",
+    "confidence": "high",
+    "evidence": "dataframe['volatility_ratio'] > 0.8,  # Some volatility present\n            dataframe['volatility_ratio'] < 3.0"
+   },
+   {
+    "label": "mean_reversion",
+    "confidence": "medium",
+    "evidence": "(dataframe['mean_reversion_up'] == 1)"
+   }
+  ],
+  "note": "Volatility ratio gate with mean reversion component"
+ },
+ {
+  "id": "VolatimStrategy",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi'] < 30) &  # Oversold (adjustable based on 2.035% observation)\n                (dataframe['close'] < dataframe['returns_roll_mean_cumsum_lower'])"
+   },
+   {
+    "label": "volatility",
+    "confidence": "medium",
+    "evidence": "dataframe['volume'] > dataframe['volume'].rolling(20).mean()"
+   }
+  ],
+  "note": "Oversold mean reversion with volume and BTC correlation filters"
+ },
+ {
+  "id": "VolatimStrategyOptimized",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "((dataframe['rsi'] < 30) |\n                 ((dataframe['rsi_7'] < 25) & (dataframe['rsi'] < 35)))"
+   },
+   {
+    "label": "volatility",
+    "confidence": "medium",
+    "evidence": "(dataframe['atr'] > dataframe['atr'].rolling(50).mean())"
+   }
+  ],
+  "note": "Multi-timeframe RSI oversold with volatility expansion"
+ }
+]

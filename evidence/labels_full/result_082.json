@@ -1,0 +1,362 @@
+[
+ {
+  "id": "TankAi",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(df[\"minima\"].shift(1) == 1) &"
+   },
+   {
+    "label": "pattern",
+    "confidence": "medium",
+    "evidence": "murrey_math_levels = calculate_murrey_math_levels(dataframe)"
+   }
+  ],
+  "note": "Trades local minima/maxima detected via Murrey Math extrema patterns"
+ },
+ {
+  "id": "TankAiRevival",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(df[\"&s-extrema\"] < df[\"minima_sort_threshold\"]) &"
+   },
+   {
+    "label": "pattern",
+    "confidence": "medium",
+    "evidence": "dataframe[\"extrema_cross_up\"] == 1"
+   }
+  ],
+  "note": "Extrema-based mean reversion with pattern crossing"
+ },
+ {
+  "id": "TapolV1",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['macd'] > dataframe['macdsignal']) &"
+   }
+  ],
+  "note": "MACD crossing signal line with EMA/BB confirmation"
+ },
+ {
+  "id": "TechnicalExampleStrategy",
+  "primary": "volume_flow",
+  "labels": [
+   {
+    "label": "volume_flow",
+    "confidence": "high",
+    "evidence": "(dataframe['cmf'] < 0)"
+   }
+  ],
+  "note": "Chaikin Money Flow volume indicator"
+ },
+ {
+  "id": "TechnicalExampleStrategy_2",
+  "primary": "volume_flow",
+  "labels": [
+   {
+    "label": "volume_flow",
+    "confidence": "high",
+    "evidence": "(dataframe['cmf'] < 0)"
+   }
+  ],
+  "note": "Chaikin Money Flow volume indicator"
+ },
+ {
+  "id": "TemaMaster",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "qtpylib.crossed_above(dataframe[\"TEMA\"], dataframe[\"bb_lowerband\"])"
+   }
+  ],
+  "note": "TEMA at lower Bollinger band with CMO filter"
+ },
+ {
+  "id": "TemaMaster3",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "qtpylib.crossed_above(dataframe[\"TEMA\"], dataframe[\"bb_lowerband\"])"
+   }
+  ],
+  "note": "TEMA crossing lower BB on 1m timeframe"
+ },
+ {
+  "id": "TemaPure",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(((dataframe['TEMA']<=dataframe['bb_lowerbandTA'])"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "(qtpylib.crossed_above(dataframe['CMO'],0))"
+   }
+  ],
+  "note": "TEMA at lower band + CMO momentum confirmation"
+ },
+ {
+  "id": "TemaPureNeat",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "qtpylib.crossed_above(dataframe[\"TEMA\"], dataframe[\"bb_lowerband\"])"
+   }
+  ],
+  "note": "TEMA band crossing with CMO gate"
+ },
+ {
+  "id": "TemaPureTwo",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(qtpylib.crossed_above(dataframe[\"TEMA\"], dataframe[\"bb_lowerbandTA1\"])"
+   }
+  ],
+  "note": "Multi-band TEMA mean reversion setup"
+ },
+ {
+  "id": "TemaStrategy",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe[\"tema20\"] > dataframe[\"tema50\"]) & (dataframe[\"adx\"] > 20)"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "(dataframe[\"volume\"] > dataframe[\"volume_ma\"])"
+   }
+  ],
+  "note": "Moving average alignment with ADX trend confirmation"
+ },
+ {
+  "id": "TenderEnter",
+  "primary": "other",
+  "labels": [],
+  "note": "Comparison logic not fully visible; uses custom compareFields method"
+ },
+ {
+  "id": "Tesla4_2",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['EWO'] > self.ewo_high.value) &"
+   },
+   {
+    "label": "mean_reversion",
+    "confidence": "medium",
+    "evidence": "(dataframe['close'] < (dataframe[f'ma_buy_{self.base_nb_candles_buy.value}']"
+   }
+  ],
+  "note": "Elliot Wave Oscillator momentum with MA distance filters"
+ },
+ {
+  "id": "Test4",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe[\"SIG_dip_1\"] > self.buy_sig_dip_1.value) &"
+   }
+  ],
+  "note": "Buying price dips below recent open high"
+ },
+ {
+  "id": "Test5",
+  "primary": "statistical",
+  "labels": [
+   {
+    "label": "statistical",
+    "confidence": "high",
+    "evidence": "abs(dataframe[f\"corr_{self.inf_timeframe}\"]) > 0.7"
+   },
+   {
+    "label": "breakout",
+    "confidence": "low",
+    "evidence": "dataframe[\"hedged_norm\"] < -2"
+   }
+  ],
+  "note": "Pairs trading on regression-hedged norm via correlation"
+ },
+ {
+  "id": "TestCandles11",
+  "primary": "pattern",
+  "labels": [
+   {
+    "label": "pattern",
+    "confidence": "high",
+    "evidence": "(dataframe['CDLDOJI'] == 100) |"
+   }
+  ],
+  "note": "Candlestick pattern recognition (Doji, Harami, etc)"
+ },
+ {
+  "id": "TestPair",
+  "primary": "statistical",
+  "labels": [
+   {
+    "label": "statistical",
+    "confidence": "high",
+    "evidence": "abs(dataframe[f\"corr_{self.inf_timeframe}\"]) > 0.7"
+   }
+  ],
+  "note": "Pairs trading via correlation and OLS hedging ratio"
+ },
+ {
+  "id": "TestStrategy",
+  "primary": "other",
+  "labels": [],
+  "note": "Hard-coded entry/exit at specific dataframe indices only"
+ },
+ {
+  "id": "TestStrategyLegacyV1",
+  "primary": "other",
+  "labels": [],
+  "note": "No entry or exit logic implemented"
+ },
+ {
+  "id": "TestStrategyNoImplementSell",
+  "primary": "other",
+  "labels": [],
+  "note": "Only stub calls to super methods"
+ },
+ {
+  "id": "TestStrategyNoImplements",
+  "primary": "other",
+  "labels": [],
+  "note": "No entry/exit logic, calls to super only"
+ },
+ {
+  "id": "Test_MAMA4",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "qtpylib.crossed_above(dataframe['mama'], dataframe['fama'])"
+   }
+  ],
+  "note": "Adaptive moving average (MAMA/FAMA) alignment crossing"
+ },
+ {
+  "id": "Testing",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "pattern",
+    "confidence": "low",
+    "evidence": "heikinashi = qtpylib.heikinashi(dataframe)"
+   }
+  ],
+  "note": "Heikin-Ashi + custom test() logic not fully visible"
+ },
+ {
+  "id": "TheForce",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['macd'] > dataframe['macd'].shift(1))"
+   }
+  ],
+  "note": "MACD momentum with Stochastic neutral zone + EMA confirmation"
+ },
+ {
+  "id": "TheForceOptimized",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['macd'] > dataframe['macdsignal']) &"
+   }
+  ],
+  "note": "MACD crossing + Stochastic + RSI zone + volume filter"
+ },
+ {
+  "id": "TheForceOptimizedV2",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['macd'] > dataframe['macdsignal']) &"
+   }
+  ],
+  "note": "MACD crossing + EMA trend + Stochastic + RSI zone"
+ },
+ {
+  "id": "TheForceOptimizedV3",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['macd'] > dataframe['macdsignal']) &"
+   }
+  ],
+  "note": "MACD crossing with Stochastic/EMA/RSI multi-confirm"
+ },
+ {
+  "id": "TheForceOptimizedV4",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['macd'] > dataframe['macdsignal']) &"
+   }
+  ],
+  "note": "MACD + Stochastic + EMA + RSI + volume guards"
+ },
+ {
+  "id": "TheForceV4",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['macd'] > dataframe['macd'].shift(1))"
+   }
+  ],
+  "note": "MACD rising with Stochastic + EMA + Bollinger band"
+ },
+ {
+  "id": "TheForceV7",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['macd'] > dataframe['macd'].shift(1))"
+   }
+  ],
+  "note": "MACD momentum with Stochastic + RSI7 + EMA filters"
+ }
+]

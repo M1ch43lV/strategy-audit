@@ -1,0 +1,348 @@
+[
+ {
+  "id": "informative_decorator_strategy",
+  "primary": "other",
+  "labels": [],
+  "note": "no entry/exit signals generated, placeholder strategy"
+ },
+ {
+  "id": "informative_decorator_strategy_11",
+  "primary": "other",
+  "labels": [],
+  "note": "no entry/exit signals generated, placeholder strategy"
+ },
+ {
+  "id": "informative_decorator_strategy_247",
+  "primary": "other",
+  "labels": [],
+  "note": "no entry/exit signals generated, placeholder strategy"
+ },
+ {
+  "id": "inkkerslower_strategy",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['ema_5'] > dataframe['ema_10']) &\n                (dataframe['ema_5'] > dataframe['ema_25'])"
+   },
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['hist'] > 0) &\n                (dataframe['hist'].shift(2) < 0)"
+   },
+   {
+    "label": "mean_reversion",
+    "confidence": "medium",
+    "evidence": "(dataframe['crsi'] < 35)"
+   }
+  ]
+ },
+ {
+  "id": "interface_futures_binance",
+  "primary": "other",
+  "labels": [],
+  "note": "no indicator/entry/exit code, interface stub"
+ },
+ {
+  "id": "kac_index_v1",
+  "primary": "volatility",
+  "labels": [
+   {
+    "label": "volatility",
+    "confidence": "high",
+    "evidence": "(dataframe['ATR'] > 1.5),\n            (dataframe['ATR'] > dataframe['ATR'].shift(1)),"
+   },
+   {
+    "label": "mean_reversion",
+    "confidence": "medium",
+    "evidence": "(dataframe['CCI'] < 0),"
+   }
+  ]
+ },
+ {
+  "id": "kac_index_v2",
+  "primary": "volatility",
+  "labels": [
+   {
+    "label": "volatility",
+    "confidence": "high",
+    "evidence": "dataframe.loc[reduce(lambda x, y: x & y, [dataframe['ATR'] > 2.75])]"
+   }
+  ]
+ },
+ {
+  "id": "kac_index_v2_10x",
+  "primary": "volatility",
+  "labels": [
+   {
+    "label": "volatility",
+    "confidence": "high",
+    "evidence": "dataframe.loc[reduce(lambda x, y: x & y, [dataframe['ATR'] > 2.75])]"
+   }
+  ]
+ },
+ {
+  "id": "kalthetank",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "pattern",
+    "confidence": "low",
+    "evidence": "freq, power = perform_fft(dataframe['kalman'], window_size=self.u_window_size.value)"
+   }
+  ],
+  "note": "FFT/harmonic analysis with custom closePos indicators"
+ },
+ {
+  "id": "kcx_strat_prod_plot_36",
+  "primary": "breakout",
+  "labels": [
+   {
+    "label": "breakout",
+    "confidence": "high",
+    "evidence": "((dataframe[\"close\"] > dataframe[\"kc_upperband\"]) & (dataframe[\"macdhist\"] > 0)),"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "dataframe[\"macdhist\"] > 0"
+   }
+  ]
+ },
+ {
+  "id": "keltner",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(qtpylib.crossed_above(dataframe['close'], dataframe['lowerband']))"
+   }
+  ]
+ },
+ {
+  "id": "keltnerchannel",
+  "primary": "breakout",
+  "labels": [
+   {
+    "label": "breakout",
+    "confidence": "high",
+    "evidence": "(qtpylib.crossed_above(dataframe['close'], dataframe['kc_upperband'])\n            & (dataframe[\"rsi\"] > dataframe['hline'])"
+   }
+  ]
+ },
+ {
+  "id": "keltnerchannel_0",
+  "primary": "breakout",
+  "labels": [
+   {
+    "label": "breakout",
+    "confidence": "high",
+    "evidence": "(qtpylib.crossed_above(dataframe['close'], dataframe['kc_upperband'])\n            & (dataframe[\"rsi\"] > dataframe['hline'])"
+   }
+  ]
+ },
+ {
+  "id": "keltnerchannelrsi",
+  "primary": "breakout",
+  "labels": [
+   {
+    "label": "breakout",
+    "confidence": "high",
+    "evidence": "(qtpylib.crossed_above(dataframe['close'], dataframe[f\"kc_upperband_{self.window_range.value}_{self.atrs_range.value}\"]))\n           & (dataframe['rsi'] > self.rsi_buy_hline.value )"
+   }
+  ]
+ },
+ {
+  "id": "keltnerhopt",
+  "primary": "breakout",
+  "labels": [
+   {
+    "label": "breakout",
+    "confidence": "high",
+    "evidence": "(qtpylib.crossed_above(dataframe['close'], dataframe[f\"kc_upperband_{self.window_range.value}_{self.atrs_range.value}\"]))\n           & (dataframe['rsi'] > self.rsi_buy_hline.value )"
+   }
+  ]
+ },
+ {
+  "id": "keltnerhopt_0",
+  "primary": "breakout",
+  "labels": [
+   {
+    "label": "breakout",
+    "confidence": "high",
+    "evidence": "(qtpylib.crossed_above(dataframe['close'], dataframe[f\"kc_upperband_{self.window_range.value}_{self.atrs_range.value}\"]))\n           & (dataframe['rsi'] > self.rsi_buy_hline.value )"
+   }
+  ]
+ },
+ {
+  "id": "keltnerhopt_4",
+  "primary": "breakout",
+  "labels": [
+   {
+    "label": "breakout",
+    "confidence": "high",
+    "evidence": "(qtpylib.crossed_above(dataframe['close'], dataframe[f\"kc_upperband_{self.window_range.value}_{self.atrs_range.value}\"]))\n           & (dataframe['rsi'] > self.rsi_buy_hline.value )"
+   }
+  ]
+ },
+ {
+  "id": "kijun_cross_strong_s",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe[\"kijun_above_cloud\"] == True) & (dataframe[\"close_above_cloud\"] == True)"
+   }
+  ]
+ },
+ {
+  "id": "koala",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['supertrend_1'] == 'up') &\n                (dataframe['close'] > dataframe['emalow'])"
+   }
+  ]
+ },
+ {
+  "id": "lafuria",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['EWO'] > self.ewo_high.value) &\n                (dataframe['rsi'] < self.rsi_buy.value)"
+   },
+   {
+    "label": "mean_reversion",
+    "confidence": "medium",
+    "evidence": "(dataframe['close'] < (dataframe['ema_14'] * self.lambo2_ema_14_factor.value)) &\n            (dataframe['rsi_4'] < int(self.lambo2_rsi_4_limit.value))"
+   }
+  ]
+ },
+ {
+  "id": "lambotest",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(qtpylib.crossed_above(dataframe['fastk'], dataframe['slowd']))"
+   },
+   {
+    "label": "volume_flow",
+    "confidence": "medium",
+    "evidence": "(dataframe['OBVSlope'] > 0)"
+   },
+   {
+    "label": "mean_reversion",
+    "confidence": "medium",
+    "evidence": "(dataframe['close'] < dataframe['bb.middle'])"
+   }
+  ]
+ },
+ {
+  "id": "lapin",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] > dataframe['kijun']) &\n                (dataframe['close'] > dataframe['senkou_a'])"
+   }
+  ]
+ },
+ {
+  "id": "laughing_ritchie",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] <= dataframe['bb_lowerband_20_2']) &\n                 (dataframe['rsi_14'] <= 25)"
+   }
+  ]
+ },
+ {
+  "id": "legacy_strategy",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['adx'] > 30) &\n                (dataframe['tema'] <= dataframe['bb_middleband'])"
+   }
+  ]
+ },
+ {
+  "id": "legacy_strategy_28",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['adx'] > 30) &\n                (dataframe['tema'] <= dataframe['bb_middleband'])"
+   }
+  ]
+ },
+ {
+  "id": "legacy_strategy_60",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['adx'] > 30) &\n                (dataframe['tema'] > dataframe['tema'].shift(1))"
+   }
+  ]
+ },
+ {
+  "id": "legacy_strategy_v1",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['adx'] > 30) &\n                (dataframe['tema'] > dataframe['tema'].shift(1))"
+   }
+  ]
+ },
+ {
+  "id": "legacy_strategy_v1_8",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['adx'] > 30) &\n                (dataframe['tema'] > dataframe['tema'].shift(1))"
+   }
+  ]
+ },
+ {
+  "id": "lookahead_strategy",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "qtpylib.crossed_above(\n                dataframe[\"buy_ema_fast\"].shift(self.buy_params[\"buy_shift\"]),"
+   }
+  ]
+ },
+ {
+  "id": "low_bb",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "qtpylib.crossed_below(dataframe['close'], 0.98 * dataframe['bb_lowerband'])"
+   }
+  ]
+ }
+]

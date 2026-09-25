@@ -1,0 +1,328 @@
+[
+ {
+  "id": "Schism_v1",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['macd'] > dataframe['macdsignal'])"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "(dataframe['rmi-up-trend'] == 1)"
+   }
+  ]
+ },
+ {
+  "id": "Schism_v1_4",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "dataframe['mp']  = ta.RSI(dataframe['roc'], timeperiod=6)"
+   }
+  ]
+ },
+ {
+  "id": "Schism_v1_5",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "qtpylib.crossed_below(dataframe['rsi'], params['bull-buy-rsi'])"
+   }
+  ]
+ },
+ {
+  "id": "Schism_v1_6",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "medium",
+    "evidence": "(dataframe['close'] <= dataframe[f\"3d_lo"
+   }
+  ],
+  "note": "entry code truncated but shows dip-buying near 3d low"
+ },
+ {
+  "id": "Schism_v2",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] <= dataframe[f\"3d_low_{self.inf_timeframe}\"]"
+   }
+  ]
+ },
+ {
+  "id": "Seb",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "qtpylib.crossed_above(dataframe['ema20'], dataframe['ema50'])"
+   }
+  ]
+ },
+ {
+  "id": "SeeYouLaterTSL",
+  "primary": "pattern",
+  "labels": [
+   {
+    "label": "pattern",
+    "confidence": "high",
+    "evidence": "(dataframe['bearish']) & (dataframe['close'] < dataframe['teeth']"
+   }
+  ]
+ },
+ {
+  "id": "SeeYouLater_68",
+  "primary": "pattern",
+  "labels": [
+   {
+    "label": "pattern",
+    "confidence": "high",
+    "evidence": "(dataframe['bearish']) & (dataframe['close'] < dataframe['teeth']"
+   }
+  ]
+ },
+ {
+  "id": "ShaneBitty",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "qtpylib.crossed_above(dataframe['emaShort'], dataframe['emaLong'])"
+   }
+  ]
+ },
+ {
+  "id": "Simple",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['macd'] > dataframe['macdsignal'])"
+   }
+  ]
+ },
+ {
+  "id": "SimpleBollinger",
+  "primary": "breakout",
+  "labels": [
+   {
+    "label": "breakout",
+    "confidence": "high",
+    "evidence": "qtpylib.crossed_above(dataframe['close'], dataframe['bb_upperband'])"
+   }
+  ]
+ },
+ {
+  "id": "SimpleBollinger_2",
+  "primary": "breakout",
+  "labels": [
+   {
+    "label": "breakout",
+    "confidence": "high",
+    "evidence": "qtpylib.crossed_above(dataframe['close'], dataframe['bb_upperband'])"
+   }
+  ]
+ },
+ {
+  "id": "SimpleHopt",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['macd'] > dataframe['macdsignal'])"
+   }
+  ]
+ },
+ {
+  "id": "SimpleHopt1Along",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['macd'] > dataframe['macdsignal'])"
+   }
+  ]
+ },
+ {
+  "id": "SimpleHopt1Ashort",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['macd'] < dataframe['macdsignal'])"
+   }
+  ]
+ },
+ {
+  "id": "SimpleHoptS",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['macd'] < dataframe['macdsignal'])"
+   }
+  ]
+ },
+ {
+  "id": "SimpleMAStrategy",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "qtpylib.crossed_above(dataframe['sma7'], dataframe['sma25'])"
+   }
+  ]
+ },
+ {
+  "id": "SimpleRSI",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['RSI'] >= self.minRSI.value) & (dataframe['RSI'].shift(1) < self.minRSI.value)"
+   }
+  ]
+ },
+ {
+  "id": "SimpleRSI_Shorts",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['RSI'] <= self.minRSI.value) & (dataframe['RSI'].shift(1) > self.minRSI.value)"
+   }
+  ]
+ },
+ {
+  "id": "SimpleRiskFilterStrategy",
+  "primary": "other",
+  "labels": [],
+  "note": "No concrete indicator logic; Remora filtering applied"
+ },
+ {
+  "id": "SimpleStrategy",
+  "primary": "other",
+  "labels": [],
+  "note": "Empty placeholder strategy"
+ },
+ {
+  "id": "Simple_18",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['sma_short'] > dataframe['sma_mid']) & (dataframe['sma_mid'] > dataframe['sma_long'])"
+   }
+  ]
+ },
+ {
+  "id": "Simple_3",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['macd'] > dataframe['macdsignal'])"
+   }
+  ]
+ },
+ {
+  "id": "Simple_4",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['macd'] > dataframe['macdsignal'])"
+   }
+  ]
+ },
+ {
+  "id": "Simple_5",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['macd'] > dataframe['macdsignal'])"
+   }
+  ]
+ },
+ {
+  "id": "Simple_98",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['macd'] > dataframe['macdsignal'])"
+   }
+  ]
+ },
+ {
+  "id": "Simple_ichi",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(df[f'close_{ichi_tf}'] > df[f'senkou_span_a_{ichi_tf}'])"
+   }
+  ]
+ },
+ {
+  "id": "SlingShot1",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['emafast_1m'].shift(1) < dataframe['emaslow_1m'].shift(1))"
+   }
+  ]
+ },
+ {
+  "id": "SlopeIsDope",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['fast_slope'] > 0) & (dataframe['slow_slope'] > 0)"
+   }
+  ]
+ },
+ {
+  "id": "SlopeV1",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['slope'] > 0) & (dataframe['slope'].shift(1) < 0)"
+   }
+  ]
+ }
+]

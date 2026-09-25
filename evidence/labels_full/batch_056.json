@@ -1,0 +1,122 @@
+[
+ {
+  "id": "NNTC_jump_Transformer",
+  "sheet": "CLASS ATTRIBUTES\nHOOKS PRESENT: \nINDICATOR CODE\n\nENTRY CODE\n\nEXIT CODE\n"
+ },
+ {
+  "id": "NNTC_macd2_Attention",
+  "sheet": "CLASS ATTRIBUTES\nHOOKS PRESENT: \nINDICATOR CODE\n\nENTRY CODE\n\nEXIT CODE\n"
+ },
+ {
+  "id": "NNTC_macd3_LSTM",
+  "sheet": "CLASS ATTRIBUTES\nHOOKS PRESENT: \nINDICATOR CODE\n\nENTRY CODE\n\nEXIT CODE\n"
+ },
+ {
+  "id": "NNTC_macd_Attention",
+  "sheet": "CLASS ATTRIBUTES\nHOOKS PRESENT: \nINDICATOR CODE\n\nENTRY CODE\n\nEXIT CODE\n"
+ },
+ {
+  "id": "NNTC_macd_Ensemble",
+  "sheet": "CLASS ATTRIBUTES\nHOOKS PRESENT: \nINDICATOR CODE\n\nENTRY CODE\n\nEXIT CODE\n"
+ },
+ {
+  "id": "NNTC_macd_GRU",
+  "sheet": "CLASS ATTRIBUTES\nHOOKS PRESENT: \nINDICATOR CODE\n\nENTRY CODE\n\nEXIT CODE\n"
+ },
+ {
+  "id": "NNTC_macd_LSTM",
+  "sheet": "CLASS ATTRIBUTES\nHOOKS PRESENT: \nINDICATOR CODE\n\nENTRY CODE\n\nEXIT CODE\n"
+ },
+ {
+  "id": "NNTC_macd_Multihead",
+  "sheet": "CLASS ATTRIBUTES\nHOOKS PRESENT: \nINDICATOR CODE\n\nENTRY CODE\n\nEXIT CODE\n"
+ },
+ {
+  "id": "NNTC_macd_TCN",
+  "sheet": "CLASS ATTRIBUTES\nHOOKS PRESENT: \nINDICATOR CODE\n\nENTRY CODE\n\nEXIT CODE\n"
+ },
+ {
+  "id": "NNTC_macd_Transformer",
+  "sheet": "CLASS ATTRIBUTES\nHOOKS PRESENT: \nINDICATOR CODE\n\nENTRY CODE\n\nEXIT CODE\n"
+ },
+ {
+  "id": "NNTC_mfi_LSTM",
+  "sheet": "CLASS ATTRIBUTES\nHOOKS PRESENT: \nINDICATOR CODE\n\nENTRY CODE\n\nEXIT CODE\n"
+ },
+ {
+  "id": "NNTC_minmax_LSTM",
+  "sheet": "CLASS ATTRIBUTES\nHOOKS PRESENT: \nINDICATOR CODE\n\nENTRY CODE\n\nEXIT CODE\n"
+ },
+ {
+  "id": "NNTC_nseq_Attention",
+  "sheet": "CLASS ATTRIBUTES\nHOOKS PRESENT: \nINDICATOR CODE\n\nENTRY CODE\n\nEXIT CODE\n"
+ },
+ {
+  "id": "NNTC_nseq_Ensemble",
+  "sheet": "CLASS ATTRIBUTES\nHOOKS PRESENT: \nINDICATOR CODE\n\nENTRY CODE\n\nEXIT CODE\n"
+ },
+ {
+  "id": "NNTC_nseq_GRU",
+  "sheet": "CLASS ATTRIBUTES\nHOOKS PRESENT: \nINDICATOR CODE\n\nENTRY CODE\n\nEXIT CODE\n"
+ },
+ {
+  "id": "NNTC_nseq_LSTM",
+  "sheet": "CLASS ATTRIBUTES\nHOOKS PRESENT: \nINDICATOR CODE\n\nENTRY CODE\n\nEXIT CODE\n"
+ },
+ {
+  "id": "NNTC_nseq_Transformer",
+  "sheet": "CLASS ATTRIBUTES\nHOOKS PRESENT: \nINDICATOR CODE\n\nENTRY CODE\n\nEXIT CODE\n"
+ },
+ {
+  "id": "NNTC_nseq_Wavenet",
+  "sheet": "CLASS ATTRIBUTES\nHOOKS PRESENT: \nINDICATOR CODE\n\nENTRY CODE\n\nEXIT CODE\n"
+ },
+ {
+  "id": "NNTC_over_LSTM",
+  "sheet": "CLASS ATTRIBUTES\nHOOKS PRESENT: \nINDICATOR CODE\n\nENTRY CODE\n\nEXIT CODE\n"
+ },
+ {
+  "id": "NNTC_profit_AdditiveAttention",
+  "sheet": "CLASS ATTRIBUTES\nHOOKS PRESENT: \nINDICATOR CODE\n\nENTRY CODE\n\nEXIT CODE\n"
+ },
+ {
+  "id": "NNTC_profit_Attention",
+  "sheet": "CLASS ATTRIBUTES\nHOOKS PRESENT: \nINDICATOR CODE\n\nENTRY CODE\n\nEXIT CODE\n"
+ },
+ {
+  "id": "NNTC_profit_CNN",
+  "sheet": "CLASS ATTRIBUTES\nHOOKS PRESENT: \nINDICATOR CODE\n\nENTRY CODE\n\nEXIT CODE\n"
+ },
+ {
+  "id": "NNTC_profit_Ensemble",
+  "sheet": "CLASS ATTRIBUTES\nHOOKS PRESENT: \nINDICATOR CODE\n\nENTRY CODE\n\nEXIT CODE\n"
+ },
+ {
+  "id": "NNTC_profit_GRU",
+  "sheet": "CLASS ATTRIBUTES\nHOOKS PRESENT: \nINDICATOR CODE\n\nENTRY CODE\n\nEXIT CODE\n"
+ },
+ {
+  "id": "NNTC_profit_LSTM",
+  "sheet": "CLASS ATTRIBUTES\nHOOKS PRESENT: \nINDICATOR CODE\n\nENTRY CODE\n\nEXIT CODE\n"
+ },
+ {
+  "id": "NNTC_profit_LSTM2",
+  "sheet": "CLASS ATTRIBUTES\nHOOKS PRESENT: \nINDICATOR CODE\n\nENTRY CODE\n\nEXIT CODE\n"
+ },
+ {
+  "id": "NNTC_profit_LSTM3",
+  "sheet": "CLASS ATTRIBUTES\nHOOKS PRESENT: \nINDICATOR CODE\n\nENTRY CODE\n\nEXIT CODE\n"
+ },
+ {
+  "id": "NNTC_profit_MLP",
+  "sheet": "CLASS ATTRIBUTES\nHOOKS PRESENT: \nINDICATOR CODE\n\nENTRY CODE\n\nEXIT CODE\n"
+ },
+ {
+  "id": "NNTC_profit_Multihead",
+  "sheet": "CLASS ATTRIBUTES\nHOOKS PRESENT: \nINDICATOR CODE\n\nENTRY CODE\n\nEXIT CODE\n"
+ },
+ {
+  "id": "NNTC_profit_TCN",
+  "sheet": "CLASS ATTRIBUTES\nHOOKS PRESENT: \nINDICATOR CODE\n\nENTRY CODE\n\nEXIT CODE\n"
+ }
+]

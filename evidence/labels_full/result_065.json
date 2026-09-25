@@ -1,0 +1,367 @@
+[
+ {
+  "id": "PpoMomentumStrategy",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe[\"ppo\"] > 0) & (dataframe[\"ppo_prev\"] <= 0)"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "& (dataframe[\"close\"] > dataframe[\"ema50\"])"
+   }
+  ]
+ },
+ {
+  "id": "PrawnstarOBV",
+  "primary": "volume_flow",
+  "labels": [
+   {
+    "label": "volume_flow",
+    "confidence": "high",
+    "evidence": "qtpylib.crossed_above(dataframe['obv'], dataframe['obvSma'])"
+   }
+  ]
+ },
+ {
+  "id": "Precognition",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "qtpylib.crossed_above(dataframe['buy_ema_fast'].shift"
+   }
+  ]
+ },
+ {
+  "id": "Prediction_Strategy",
+  "primary": "statistical",
+  "labels": [
+   {
+    "label": "statistical",
+    "confidence": "high",
+    "evidence": "(dataframe['pred4'] > .45) &"
+   }
+  ],
+  "note": "ML model using lagged SMA differences, std dev, z-score features"
+ },
+ {
+  "id": "PriceActionCandleStrategy",
+  "primary": "pattern",
+  "labels": [
+   {
+    "label": "pattern",
+    "confidence": "high",
+    "evidence": "(dataframe[\"bullish_pattern\"] == 1)"
+   },
+   {
+    "label": "mean_reversion",
+    "confidence": "medium",
+    "evidence": "& (dataframe[\"near_support\"] == 1)"
+   }
+  ]
+ },
+ {
+  "id": "PriceActionEngulfingStrategy",
+  "primary": "pattern",
+  "labels": [
+   {
+    "label": "pattern",
+    "confidence": "high",
+    "evidence": "(dataframe['prev_close'] < dataframe['prev_open']) &"
+   }
+  ]
+ },
+ {
+  "id": "PriceAlertShort",
+  "primary": "breakout",
+  "labels": [
+   {
+    "label": "breakout",
+    "confidence": "high",
+    "evidence": "qtpylib.crossed_below(dataframe['close_5m'], self"
+   }
+  ]
+ },
+ {
+  "id": "PriceChannelStrategy",
+  "primary": "breakout",
+  "labels": [
+   {
+    "label": "breakout",
+    "confidence": "high",
+    "evidence": "(dataframe[\"close\"] > dataframe[\"upper_channel\"])"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "& (dataframe[\"adx\"] > 22)"
+   }
+  ]
+ },
+ {
+  "id": "PrintMoney_v1",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < dataframe['sma_15']"
+   }
+  ]
+ },
+ {
+  "id": "Proton",
+  "primary": "statistical",
+  "labels": [
+   {
+    "label": "statistical",
+    "confidence": "high",
+    "evidence": "(df['do_predict'] == 1) &"
+   }
+  ],
+  "note": "FreeqAI ML classification model"
+ },
+ {
+  "id": "PumpDetector",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(qtpylib.crossed_above(dataframe['j'],  0))"
+   }
+  ]
+ },
+ {
+  "id": "PunkAlgoStrategy",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "long_conditions.append(dataframe['ema_bull'])"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "dataframe['wt_cross_up'] |"
+   }
+  ]
+ },
+ {
+  "id": "QBitrain",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "medium",
+    "evidence": "RESULT += DFINP*QS"
+   }
+  ],
+  "note": "Runtime-parameterized indicators with quantum weights"
+ },
+ {
+  "id": "QWQ",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "qtpylib.crossed_above(dataframe[\"sma1\"], dataframe"
+   }
+  ]
+ },
+ {
+  "id": "QuatreMousquetaires",
+  "primary": "statistical",
+  "labels": [
+   {
+    "label": "statistical",
+    "confidence": "high",
+    "evidence": "(dataframe['signal'] == 1)"
+   }
+  ],
+  "note": "Signal from macro indicators (NASDAQ, SP500, M2, DXY)"
+ },
+ {
+  "id": "QuickAdapterV3",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "high",
+    "evidence": "(df[\"do_predict\"] == 1) &"
+   }
+  ],
+  "note": "FreeqAI extrema detection model"
+ },
+ {
+  "id": "QuickAdapterV35",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "high",
+    "evidence": "(df[\"do_predict\"] == 1) &"
+   }
+  ],
+  "note": "FreeqAI extrema detection model"
+ },
+ {
+  "id": "QuickAdapterV35_2",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "high",
+    "evidence": "(df[\"do_predict\"] == 1) &"
+   }
+  ],
+  "note": "FreeqAI extrema detection model"
+ },
+ {
+  "id": "QuickAdapterV3_2",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "high",
+    "evidence": "(df[\"do_predict\"] == 1) &"
+   }
+  ],
+  "note": "FreeqAI extrema detection model"
+ },
+ {
+  "id": "QuickAdapterV4",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "high",
+    "evidence": "(df[\"do_predict\"] == 1) &"
+   }
+  ],
+  "note": "FreeqAI extrema + volatility filter"
+ },
+ {
+  "id": "QuickAdapterV4_2",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "high",
+    "evidence": "(df[\"do_predict\"] == 1) &"
+   }
+  ],
+  "note": "FreeqAI extrema + volatility filter"
+ },
+ {
+  "id": "QuickBuyStrategy",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] > dataframe['bb_midband'])"
+   }
+  ]
+ },
+ {
+  "id": "QuickBuyStrategy_futures",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] > dataframe['bb_midband'])"
+   }
+  ]
+ },
+ {
+  "id": "QuickGainLowLoss",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(df[\"ema_fast\"] > df[\"ema_slow\"]) &"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "(qtpylib.crossed_above(df[\"ema_fast\"], df[\"ema_slow\"])"
+   }
+  ]
+ },
+ {
+  "id": "Quickie",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['tema'] < dataframe['bb_middleband'])"
+   }
+  ]
+ },
+ {
+  "id": "QuickieHyperStrategy",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['tema'] < dataframe['bb_middleband'])"
+   }
+  ]
+ },
+ {
+  "id": "Quickie_2",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['tema'] < dataframe['bb_middleband'])"
+   }
+  ]
+ },
+ {
+  "id": "Quickie_21",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['tema'] < dataframe['bb_middleband'])"
+   }
+  ]
+ },
+ {
+  "id": "Quickie_3",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['tema'] < dataframe['bb_middleband'])"
+   }
+  ]
+ },
+ {
+  "id": "Quickie_4",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['tema'] < dataframe['bb_middleband'])"
+   }
+  ]
+ }
+]

@@ -1,0 +1,343 @@
+[
+ {
+  "id": "AlexBattleTankKillerV4",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "df['adx'] = ta.ADX(df['high'], df['low'], df['close'], timeperiod=14)"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "df['consecutive_green'] = df['green_candle'].rolling(3).sum()"
+   }
+  ],
+  "note": "Entry code truncated, but ADX and DI indicators plus consecutive candles visible"
+ },
+ {
+  "id": "AlexBattleTankKillerV40H",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "df['pct_drop_from_high'] = (df['highest_close'] - df['close']) / df['highest_close']"
+   }
+  ],
+  "note": "Pullback entry after price drop from recent high"
+ },
+ {
+  "id": "AlexNexusForgeV8AIV2",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "high",
+    "evidence": "ml_prob > 0.7) & (ml_enhanced > 0.65)"
+   }
+  ],
+  "note": "ML model prediction thresholds; underlying trading logic not transparent"
+ },
+ {
+  "id": "AlexNexusForgeV8AIV4_SPOT",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "high",
+    "evidence": "dataframe.get('ml_entry_probability', pd.Series(0.5,"
+   }
+  ],
+  "note": "ML model prediction thresholds; underlying trading logic not transparent"
+ },
+ {
+  "id": "AlexStrategyFinalV8",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "high",
+    "evidence": "df['&-target'] > self.threshold_buy.value"
+   }
+  ],
+  "note": "FreqAI ML target prediction; logic is opaque model output"
+ },
+ {
+  "id": "AlexStrategyFinalV8Hyper",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "high",
+    "evidence": "df['&-target'] > self.threshold_buy.value"
+   }
+  ],
+  "note": "FreqAI ML target; indicators present but entry driven by model prediction"
+ },
+ {
+  "id": "AlexStrategyFinalV9",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "high",
+    "evidence": "df['&-target'] > self.threshold_buy.value"
+   }
+  ],
+  "note": "FreqAI ML target prediction; logic is opaque model output"
+ },
+ {
+  "id": "AlexStrategyFinalV9Hyper",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "high",
+    "evidence": "df['&-target'] > self.threshold_buy.value"
+   }
+  ],
+  "note": "FreqAI ML target; indicators present but entry driven by model prediction"
+ },
+ {
+  "id": "AlgoXStrategy",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "dataframe['ema1'] > dataframe['ema2']"
+   }
+  ],
+  "note": "EMA crossover signal; also uses Heikin-Ashi candles for momentum confirmation"
+ },
+ {
+  "id": "AllCandlestickPatternsStrategyHyperoptv7",
+  "primary": "pattern",
+  "labels": [
+   {
+    "label": "pattern",
+    "confidence": "high",
+    "evidence": "dataframe = self.calculate_candlestick_patterns(dataframe)"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "dataframe['macdhist'] > 0"
+   }
+  ],
+  "note": "Candlestick pattern recognition is primary driver; MACD and other indicators blend in"
+ },
+ {
+  "id": "AlligatorStrat",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "qtpylib.crossed_above(dataframe['SMAShort'], dataframe['SMAMedium'])"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "dataframe['macd'] > dataframe['macdsignal']"
+   }
+  ],
+  "note": "SMA alignment is primary; MACD also used"
+ },
+ {
+  "id": "AlligatorStrategy",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['ema7'] > dataframe['ema30']) & (dataframe['ema30'] > dataframe['ema50'])"
+   }
+  ],
+  "note": "Complete stacked EMA alignment (7>30>50>100>121>200) defines trend"
+ },
+ {
+  "id": "AlmgrenChrissStrategy",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi'] < 45) & (dataframe['volume'] > 0)"
+   }
+  ],
+  "note": "Oversold RSI entry for longs; overbought for shorts"
+ },
+ {
+  "id": "AlphaMA",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi_fast'] < 35) & (dataframe['close'] < (dataframe[f'ma_buy"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "(dataframe['EWO'] > self.ewo_high.value)"
+   }
+  ],
+  "note": "Oversold entry; EWO provides momentum confirmation"
+ },
+ {
+  "id": "AlphaMomentumStrategy",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['momentum_score'] > self.momentum_strength.value)"
+   }
+  ],
+  "note": "Explicit momentum scoring based on price percentage changes and acceleration"
+ },
+ {
+  "id": "AlphaTrend",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "qtpylib.crossed_above(df[f'alpha_trend_{self.alpha_coeff.value}']"
+   }
+  ],
+  "note": "Alpha trend line crossover; EMA 200 used as directional filter"
+ },
+ {
+  "id": "AltcoinBreakoutStrategy",
+  "primary": "breakout",
+  "labels": [
+   {
+    "label": "breakout",
+    "confidence": "high",
+    "evidence": "dataframe['bb_width'] < self.buy_bb_width.value"
+   },
+   {
+    "label": "volatility",
+    "confidence": "medium",
+    "evidence": "(dataframe['bb_width'] < self.buy_bb_width.value, ... macd_hist"
+   }
+  ],
+  "note": "Entry on Bollinger Band squeeze breakout with volume and trend confirmation"
+ },
+ {
+  "id": "AlvinchenV1",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "dataframe['trend_close_5m'] > dataframe['senkou_a']"
+   }
+  ],
+  "note": "Ichimoku cloud position above both senkou A and B (cloud is above)"
+ },
+ {
+  "id": "AlwaysBuy",
+  "primary": "other",
+  "labels": [],
+  "note": "Always enters regardless of market conditions; no trading logic"
+ },
+ {
+  "id": "Anomaly",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "high",
+    "evidence": "dataframe['predict_buy'] > 0.5"
+   }
+  ],
+  "note": "Anomaly detection model output; underlying mechanism opaque"
+ },
+ {
+  "id": "AnomalyDetectorv2",
+  "primary": "statistical",
+  "labels": [
+   {
+    "label": "statistical",
+    "confidence": "high",
+    "evidence": "dataframe['vol_z_score'] = (dataframe['volume'] - dataframe"
+   },
+   {
+    "label": "volatility",
+    "confidence": "medium",
+    "evidence": "dataframe['atr'] > dataframe['atr'].rolling(window=self.atr_length"
+   }
+  ],
+  "note": "Volume z-score anomaly detection (>3σ); ATR expansion confirms volatility regime"
+ },
+ {
+  "id": "AnomalyDetectorv2_2",
+  "primary": "statistical",
+  "labels": [
+   {
+    "label": "statistical",
+    "confidence": "high",
+    "evidence": "vol_z_score = (dataframe['volume'] - dataframe['volume'].rolling"
+   },
+   {
+    "label": "volatility",
+    "confidence": "medium",
+    "evidence": "dataframe['atr'] > dataframe['atr'].rolling(window=self.atr_length"
+   }
+  ],
+  "note": "Volume z-score anomaly detection (>3σ); ATR expansion confirms volatility"
+ },
+ {
+  "id": "Anomaly_adx",
+  "primary": "other",
+  "labels": [],
+  "note": "Empty code sections; cannot label"
+ },
+ {
+  "id": "Anomaly_all",
+  "primary": "other",
+  "labels": [],
+  "note": "Empty code sections; cannot label"
+ },
+ {
+  "id": "Anomaly_aroon",
+  "primary": "other",
+  "labels": [],
+  "note": "Empty code sections; cannot label"
+ },
+ {
+  "id": "Anomaly_bbw",
+  "primary": "other",
+  "labels": [],
+  "note": "Empty code sections; cannot label"
+ },
+ {
+  "id": "Anomaly_dwt",
+  "primary": "other",
+  "labels": [],
+  "note": "Empty code sections; cannot label"
+ },
+ {
+  "id": "Anomaly_fbb",
+  "primary": "other",
+  "labels": [],
+  "note": "Empty code sections; cannot label"
+ },
+ {
+  "id": "Anomaly_fwr",
+  "primary": "other",
+  "labels": [],
+  "note": "Empty code sections; cannot label"
+ },
+ {
+  "id": "Anomaly_highlow",
+  "primary": "other",
+  "labels": [],
+  "note": "Empty code sections; cannot label"
+ }
+]

@@ -1,0 +1,303 @@
+[
+ {
+  "id": "ZaratustraV4",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['pdi_15m'] > 25) &\n                (dataframe['pdi_5m']  > 25) &\n                (dataframe['close_15m'] > dataframe['bbm_15m'])"
+   }
+  ],
+  "note": null
+ },
+ {
+  "id": "ZaratustraV5",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi_30m'] > 50) &\n                (dataframe['pdi_30m'] > 25) &\n                (dataframe['close_30m'] > dataframe['bbm_30m'])"
+   }
+  ],
+  "note": null
+ },
+ {
+  "id": "ZaratustraV6",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi_30m'] > 50) &\n                (dataframe['pdi_30m'] > 25) &\n                (dataframe['close_30m'] > dataframe['bbm_30m'])"
+   }
+  ],
+  "note": null
+ },
+ {
+  "id": "ZaratustraV8",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['pdi_15m'] > dataframe['mdi_15m'] ) &\n                (dataframe['pdi_15m'] > 25) &\n                (dataframe['close_15m'] > dataframe['bbm_15m'])"
+   }
+  ],
+  "note": null
+ },
+ {
+  "id": "ZaratustraV9",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['adx_30m'] > 25) &\n                (dataframe['pdi_30m'] > 25) &\n                (dataframe['close_30m'] > dataframe['bbm_30m'])"
+   }
+  ],
+  "note": null
+ },
+ {
+  "id": "Zeus",
+  "primary": "other",
+  "labels": [],
+  "note": "Entry/exit logic parameterized at runtime; indicator threshold comparison determined by buy_real and buy_cat parameters only"
+ },
+ {
+  "id": "Zeus1",
+  "primary": "other",
+  "labels": [],
+  "note": "Entry/exit logic parameterized at runtime; indicator threshold comparison determined by buy_real and buy_cat parameters only"
+ },
+ {
+  "id": "Zeus_208",
+  "primary": "other",
+  "labels": [],
+  "note": "Entry/exit logic parameterized at runtime; indicator threshold comparison determined by buy_real and buy_cat parameters only"
+ },
+ {
+  "id": "Zeus_257",
+  "primary": "other",
+  "labels": [],
+  "note": "Entry/exit logic parameterized at runtime; indicator threshold comparison determined by buy_real and buy_cat parameters only"
+ },
+ {
+  "id": "Zeus_569",
+  "primary": "other",
+  "labels": [],
+  "note": "Entry/exit logic parameterized at runtime; indicator threshold comparison determined by buy_real and buy_cat parameters only"
+ },
+ {
+  "id": "Zeus_672",
+  "primary": "other",
+  "labels": [],
+  "note": "Entry/exit logic parameterized at runtime; indicator threshold comparison determined by buy_real and buy_cat parameters only"
+ },
+ {
+  "id": "Zeus_862",
+  "primary": "other",
+  "labels": [],
+  "note": "Entry/exit logic parameterized at runtime; indicator threshold comparison determined by buy_real and buy_cat parameters only"
+ },
+ {
+  "id": "Zone1",
+  "primary": "breakout",
+  "labels": [
+   {
+    "label": "breakout",
+    "confidence": "high",
+    "evidence": "if dataframe['close'].iloc[i] > box_top and dataframe['open'].iloc[i] < box_top:\n                    dataframe.loc[i, 'enter_long'] = 1"
+   }
+  ],
+  "note": null
+ },
+ {
+  "id": "_Concrete",
+  "primary": "other",
+  "labels": [],
+  "note": "No indicator or entry/exit logic defined"
+ },
+ {
+  "id": "_Strat",
+  "primary": "other",
+  "labels": [],
+  "note": "Base class with no trading logic"
+ },
+ {
+  "id": "abbas",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe[\"rsi_fast\"] < 35) &\n                (dataframe[\"close\"] < (dataframe[f\"ma_buy"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "(dataframe[\"EWO\"] > self.ewo_high.value)"
+   }
+  ],
+  "note": null
+ },
+ {
+  "id": "abbas1",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe[\"rsi_fast\"] < self.rsi_fast_ewo1.value) &\n                (dataframe[\"close\"] < (dataframe[f\"ma_buy"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "(dataframe[\"ewo\"] > self.ewo_high.value)"
+   }
+  ],
+  "note": null
+ },
+ {
+  "id": "abbas10",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe[\"rsi_fast\"] < self.rsi_fast_ewo1.value) &\n                (dataframe[\"close\"] < (dataframe[f\"ma_buy"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "(dataframe[\"ewo\"] > self.ewo_high.value)"
+   }
+  ],
+  "note": null
+ },
+ {
+  "id": "abbas94",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe[\"rsi_fast\"] < self.rsi_fast_ewo1.value) &\n                (dataframe[\"close\"] < (dataframe[f\"ma_buy"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "(dataframe[\"ewo\"] > self.ewo_high.value)"
+   }
+  ],
+  "note": null
+ },
+ {
+  "id": "abbasPublic",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < dataframe[\"vwap_lowerband\"]) &\n                (dataframe[\"vwap_width\"] > self.buy_vwap_width.value)"
+   },
+   {
+    "label": "volume_flow",
+    "confidence": "medium",
+    "evidence": "(dataframe[\"close\"] < dataframe[\"vwap_lowerband\"])"
+   }
+  ],
+  "note": null
+ },
+ {
+  "id": "abeille",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['supertrend_1_buy'] == 'up') &\n               (dataframe['supertrend_2_buy'] == 'up') &\n               (dataframe['supertrend_3_buy'] == 'up')"
+   }
+  ],
+  "note": null
+ },
+ {
+  "id": "abydon_keltner",
+  "primary": "other",
+  "labels": [],
+  "note": "Entry/exit conditions empty; no logic defined"
+ },
+ {
+  "id": "abydon_macd",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "qtpylib.crossed_above(dataframe['macd'], dataframe['macdsignal'])"
+   }
+  ],
+  "note": null
+ },
+ {
+  "id": "abydon_template01",
+  "primary": "other",
+  "labels": [],
+  "note": "Entry/exit conditions empty; no logic defined"
+ },
+ {
+  "id": "abydon_wbtc",
+  "primary": "other",
+  "labels": [],
+  "note": "Entry/exit based on absolute price level only, not technical logic"
+ },
+ {
+  "id": "abydon_wbtc_ver1_0",
+  "primary": "other",
+  "labels": [],
+  "note": "Entry/exit based on absolute price level only, not technical logic"
+ },
+ {
+  "id": "adaptive",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['r_14'] < -61.3) &\n                (dataframe['mama_diff'] < -0.025)"
+   }
+  ],
+  "note": null
+ },
+ {
+  "id": "adaptive_390",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['r_14'] < -61.3) &\n                (dataframe['mama_diff'] < -0.025)"
+   }
+  ],
+  "note": null
+ },
+ {
+  "id": "adaptive_trend",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe[\"mom\"] > theta) &\n                (dataframe[\"sr_long\"] >= gL)"
+   }
+  ],
+  "note": null
+ },
+ {
+  "id": "advanced_strategy",
+  "primary": "other",
+  "labels": [],
+  "note": "Entry/exit conditions empty; only RSI indicator present but not used"
+ }
+]

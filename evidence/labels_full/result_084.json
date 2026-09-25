@@ -1,0 +1,397 @@
+[
+ {
+  "id": "TrendFollowingStrategy_2",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] > dataframe['ema_1']) & (dataframe['ema_1'] > dataframe['ema_2'])"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "TrendFollowingStrategy_4",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] > dataframe['trend']) & (dataframe['close'].shift(1) <= dataframe['trend'].shift(1))"
+   },
+   {
+    "label": "volume_flow",
+    "confidence": "medium",
+    "evidence": "(dataframe['obv'] > dataframe['obv'].shift(1)) &"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "TrendFutures",
+  "primary": "breakout",
+  "labels": [
+   {
+    "label": "breakout",
+    "confidence": "high",
+    "evidence": "(dataframe[\"close\"] > up) & (dataframe[\"close\"] > dataframe[\"ema200\"])"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "dataframe[\"ema200\"] = ta.EMA(dataframe, timeperiod=200)"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "TrendMomoClassifier",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(qtpylib.crossed_above(df[\"stoch_rsi_K\"], df[\"stoch_rsi_D\"])) &"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "TrendRiderStrategy",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "dataframe[\"is_bull\"] == 1,"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "dataframe[\"macdhist\"] > dataframe[\"macdhist\"].shift(1),"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "Trend_Strength_Directional",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "ta.PLUS_DI(dataframe, timeperiod=int(self.buy_plusdi.value)) > ta.MINUS_DI"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "Trend_Strength_Directional_2",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "ta.PLUS_DI(dataframe, timeperiod=int(self.buy_plusdi.value)) > ta.MINUS_DI"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "Trend_grid",
+  "primary": "grid",
+  "labels": [
+   {
+    "label": "grid",
+    "confidence": "high",
+    "evidence": "position_adjustment_enable = True; max_entry_position_adjustment = 4"
+   },
+   {
+    "label": "mean_reversion",
+    "confidence": "medium",
+    "evidence": "(dataframe[\"rsi_slow\"] < dataframe[\"rsi_slow\"].shift(1)) & (dataframe[\"close\"] < dataframe[\"sma_15\"] * self.long_sma15_32.value)"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "Trend_grid_v1",
+  "primary": "grid",
+  "labels": [
+   {
+    "label": "grid",
+    "confidence": "high",
+    "evidence": "position_adjustment_enable = True; max_entry_position_adjustment = 4"
+   },
+   {
+    "label": "mean_reversion",
+    "confidence": "medium",
+    "evidence": "(dataframe[\"rsi_slow\"] < dataframe[\"rsi_slow\"].shift(1)) & (dataframe[\"close\"] < dataframe[\"sma_15\"] * self.long_sma15_32.value)"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "Trendhere2",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "is_uptrend = (dataframe[\"sma_50_15m\"] > dataframe[\"sma_200_15m\"]) & (dataframe[\"price_vs_200_15m\"] > 0.01)"
+   },
+   {
+    "label": "volatility",
+    "confidence": "medium",
+    "evidence": "trend_threshold = 25  # Minimum ADX to be considered a trending market"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "TripleEmaStrategy",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe[\"ema8\"] > dataframe[\"ema21\"]) & (dataframe[\"ema21\"] > dataframe[\"ema55\"])"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "TripleSuperTrendADXRSI",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe[f\"supertrend_1_buy_{self.buy_m1.value}_{self.buy_p1.value}\"] == \"up\")"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "TripleSuperTrendADXRSIK1",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe[f\"supertrend_1_buy_{self.buy_m1.value}_{self.buy_p1.value}\"] == \"up\")"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "TrixSignalStrategy",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe[\"trix\"] > 0) & (dataframe[\"trix_prev\"] <= 0)"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "TrixStrategy",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['trix_histo'] > 0) &"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "TrixV15Strategy",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "dataframe['trix_s_pct'] > dataframe[f'trix_s_signal_{self.sell_trix_signal_timeperiod.value}']"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "TrixV21Strategy",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "dataframe['trix_s_pct'] > dataframe[f'trix_s_signal_{self.sell_trix_signal_timeperiod.value}']"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "TrixV23Strategy",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "dataframe['trix_s_pct'] > dataframe[f'trix_s_signal_{self.sell_trix_signal_timeperiod.value}']"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "Trump_LIM",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['close_5m'] - dataframe['open_5m']) / dataframe['open_5m'] < -1.0*self.min_candle_variation.value"
+   },
+   {
+    "label": "volume_flow",
+    "confidence": "high",
+    "evidence": "dataframe['volume_5m'] > (dataframe[f'volume_ma_{p}_5m'] * float(self.vol_factor.value))"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "TryEverything",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "low",
+    "evidence": "conditions = self.populate_trend(dataframe, \"buy\")"
+   }
+  ],
+  "note": "Entry logic delegates to populate_trend, not shown in sheet"
+ },
+ {
+  "id": "TuplaBollinger",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < dataframe['inner_lowerband']) &"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "Turtle",
+  "primary": "breakout",
+  "labels": [
+   {
+    "label": "breakout",
+    "confidence": "high",
+    "evidence": "(dataframe['high'] >= dataframe['rmax'])"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "TurtlePyramidingStrategy",
+  "primary": "breakout",
+  "labels": [
+   {
+    "label": "breakout",
+    "confidence": "high",
+    "evidence": "(df['close'] > df['20d_high'].shift(1)),"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "TwoCandle",
+  "primary": "pattern",
+  "labels": [
+   {
+    "label": "pattern",
+    "confidence": "high",
+    "evidence": "(dataframe['pattern_mean'].shift() < 4) & (dataframe['pattern_mean'] > 4)"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "TwoCandleTheory",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "supertrend_long_filter = ((dataframe['close'] > dataframe['supertrend_long_stop']))"
+   }
+  ],
+  "note": "Multiple mixed filters (rsi, vwap, supertrend, vwma, psar)"
+ },
+ {
+  "id": "TwoMovingAveragesStrategy",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe[\"ma_fast\"] > dataframe[\"ma_slow\"]) & (dataframe[\"ma_fast\"].shift(1) <= dataframe[\"ma_slow\"].shift(1)),"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "UltimateAlphaV16",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "above_200 = df[\"close\"] > df[\"ema_200\"]; ema_stack = df[\"ema_21\"] > df[\"ema_50\"]"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "UltimateHighProbFutures",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "dataframe['uptrend'] = ((dataframe['ema_8'] > dataframe['ema_13']) &"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "UltimateMomentumIndicator",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(qtpylib.crossed_above(dataframe['utmi'], 50)) &"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "UltraSmartStrategy",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "is_trending = dataframe['adx'] > 20"
+   }
+  ],
+  "note": ""
+ }
+]

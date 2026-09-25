@@ -1,0 +1,211 @@
+[
+  {
+    "id": "CombinedBinHAndClucV6H",
+    "primary": "mean_reversion",
+    "labels": [
+      {
+        "label": "mean_reversion",
+        "confidence": "high",
+        "evidence": "close < dataframe['lower'].shift()"
+      },
+      {
+        "label": "trend_following",
+        "confidence": "high",
+        "evidence": "ema_50 > dataframe['ema_200']"
+      }
+    ]
+  },
+  {
+    "id": "KeltnerBounce_Shorts",
+    "primary": "mean_reversion",
+    "labels": [
+      {
+        "label": "mean_reversion",
+        "confidence": "high",
+        "evidence": "close > dataframe['kc_middleband'] after close.shift(1) >= kc_upperband"
+      },
+      {
+        "label": "momentum",
+        "confidence": "medium",
+        "evidence": "fisher_rsi >= (-1 * self.buy_fisher.value)"
+      }
+    ]
+  },
+  {
+    "id": "SqueezeMomentum_2",
+    "primary": "volatility",
+    "labels": [
+      {
+        "label": "volatility",
+        "confidence": "high",
+        "evidence": "sqz_val < -self.buy_sqz_band.value"
+      },
+      {
+        "label": "momentum",
+        "confidence": "high",
+        "evidence": "qtpylib.crossed_above(dataframe['sqz_accel'], 0)"
+      }
+    ]
+  },
+  {
+    "id": "AdvancedRiskFilterStrategy",
+    "primary": "other",
+    "labels": [
+      {
+        "label": "other",
+        "confidence": "medium",
+        "evidence": "risk_score >= 0.4"
+      }
+    ],
+    "note": "Remora risk API filtering, not technical indicators"
+  },
+  {
+    "id": "aquma3",
+    "primary": "mean_reversion",
+    "labels": [
+      {
+        "label": "mean_reversion",
+        "confidence": "high",
+        "evidence": "close < dataframe['bb_lowerband3'] * self.buy_bb_factor"
+      },
+      {
+        "label": "trend_following",
+        "confidence": "medium",
+        "evidence": "btc_ema_fast < btc_ema_slow for down filter"
+      }
+    ]
+  },
+  {
+    "id": "AlexBattleTankKillerV3",
+    "primary": "pattern",
+    "labels": [
+      {
+        "label": "pattern",
+        "confidence": "high",
+        "evidence": "df['[6/8]P'], df['[4/8]P'], df['[2/8]P'] levels"
+      }
+    ],
+    "note": "Murray Levels (MML) grid pattern system"
+  },
+  {
+    "id": "DCAGRID",
+    "primary": "grid",
+    "labels": [
+      {
+        "label": "grid",
+        "confidence": "high",
+        "evidence": "position_adjustment_enable=True, max_entry_position_adjustment=-1"
+      }
+    ],
+    "note": "DCA grid with unlimited position adjustments"
+  },
+  {
+    "id": "twinturboV8_2",
+    "primary": "momentum",
+    "labels": [
+      {
+        "label": "momentum",
+        "confidence": "high",
+        "evidence": "EWO > dataframe['EWO'].shift(1) with EWO in band"
+      },
+      {
+        "label": "trend_following",
+        "confidence": "medium",
+        "evidence": "hma_50 trend filter used"
+      }
+    ]
+  },
+  {
+    "id": "HPStrategyTFJPAConfirmV3_9",
+    "primary": "pattern",
+    "labels": [
+      {
+        "label": "pattern",
+        "confidence": "high",
+        "evidence": "CDLDOJI, CDLDRAGONFLYDOJI candlestick patterns"
+      },
+      {
+        "label": "statistical",
+        "confidence": "medium",
+        "evidence": "fibonacci_retracements < 0.786"
+      }
+    ]
+  },
+  {
+    "id": "SimpleRSI_Shorts",
+    "primary": "momentum",
+    "labels": [
+      {
+        "label": "momentum",
+        "confidence": "high",
+        "evidence": "RSI <= minRSI.value & RSI.shift(1) > minRSI.value"
+      }
+    ]
+  },
+  {
+    "id": "ZaratustraV26",
+    "primary": "mean_reversion",
+    "labels": [
+      {
+        "label": "mean_reversion",
+        "confidence": "high",
+        "evidence": "RSI < 30 & close < BBL or RSI > 70 & close > BBU"
+      }
+    ]
+  },
+  {
+    "id": "DcaTpShort_3",
+    "primary": "trend_following",
+    "labels": [
+      {
+        "label": "trend_following",
+        "confidence": "high",
+        "evidence": "ema9_30 < ema21_30 < ema99_30"
+      },
+      {
+        "label": "breakout",
+        "confidence": "medium",
+        "evidence": "close > bb_upperband"
+      }
+    ]
+  },
+  {
+    "id": "ichiV1_Marius_fixed",
+    "primary": "trend_following",
+    "labels": [
+      {
+        "label": "trend_following",
+        "confidence": "high",
+        "evidence": "Ichimoku cloud indicators for trend state"
+      }
+    ],
+    "note": "Ichimoku cloud-based trend detection"
+  },
+  {
+    "id": "Lmao",
+    "primary": "mean_reversion",
+    "labels": [
+      {
+        "label": "mean_reversion",
+        "confidence": "high",
+        "evidence": "close < dataframe['bb_lowerband3'] * self.buy_bb_factor"
+      },
+      {
+        "label": "volatility",
+        "confidence": "medium",
+        "evidence": "bb_delta > threshold, bb_width expansion"
+      }
+    ]
+  },
+  {
+    "id": "slope_is_dopeCT",
+    "primary": "trend_following",
+    "labels": [
+      {
+        "label": "trend_following",
+        "confidence": "high",
+        "evidence": "fast_slope > threshold & slow_slope > threshold"
+      }
+    ]
+  }
+]

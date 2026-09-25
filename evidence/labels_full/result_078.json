@@ -1,0 +1,342 @@
+[
+ {
+  "id": "Strategy004_955",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['cci'] < self.buy_cci.value)"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "(dataframe['fastk'] > dataframe['fastd'])"
+   }
+  ]
+ },
+ {
+  "id": "Strategy004_957",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['cci'] < self.buy_cci.value)"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "(dataframe['fastk'] > dataframe['fastd'])"
+   }
+  ]
+ },
+ {
+  "id": "Strategy005",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < dataframe['sma'])"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "(dataframe['fastd'] > dataframe['fastk'])"
+   }
+  ]
+ },
+ {
+  "id": "Strategy005_133",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < dataframe['sma'])"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "(dataframe['fastd'] > dataframe['fastk'])"
+   }
+  ]
+ },
+ {
+  "id": "Strategy005_496",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < dataframe['sma'])"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "(dataframe['fastd'] > dataframe['fastk'])"
+   }
+  ]
+ },
+ {
+  "id": "Strategy041_2",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < dataframe['bb_lowerband'])"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "(dataframe['adx'] > 30)"
+   },
+   {
+    "label": "volatility",
+    "confidence": "medium",
+    "evidence": "bollinger = qtpylib.bollinger_bands"
+   }
+  ]
+ },
+ {
+  "id": "StrategyAnalysis",
+  "primary": "other",
+  "labels": [],
+  "note": "No entry/exit logic defined"
+ },
+ {
+  "id": "StrategyAnalysis_2",
+  "primary": "other",
+  "labels": [],
+  "note": "No entry/exit logic defined"
+ },
+ {
+  "id": "StrategyDoubleScalper",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe[\"main_rsi\"] > self.buy_params[\"main_oversold\"])"
+   }
+  ]
+ },
+ {
+  "id": "StrategyName",
+  "primary": "other",
+  "labels": [],
+  "note": "No entry/exit logic defined"
+ },
+ {
+  "id": "StrategyScalpingFast",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['fastk'] < 30) & (dataframe['fastd'] < 30)"
+   },
+   {
+    "label": "volatility",
+    "confidence": "medium",
+    "evidence": "(dataframe['cci'] < -150)"
+   }
+  ]
+ },
+ {
+  "id": "StrategyScalpingFast2",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['open'] < dataframe['ema_low'])"
+   }
+  ]
+ },
+ {
+  "id": "StrategyScalpingFast2_3",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['open'] < dataframe['ema_low'])"
+   }
+  ]
+ },
+ {
+  "id": "StrategyTestV2",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe[\"rsi\"] < 35)"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "(dataframe[\"adx\"] > 30)"
+   }
+  ]
+ },
+ {
+  "id": "StrategyTestV3",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi'] < self.buy_rsi.value)"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "(dataframe['adx'] > 30)"
+   }
+  ]
+ },
+ {
+  "id": "StrategyTestV3CustomEntryPrice",
+  "primary": "other",
+  "labels": [],
+  "note": "Only checks volume > 0, no actual entry strategy"
+ },
+ {
+  "id": "StrategyTestV3Futures",
+  "primary": "other",
+  "labels": [],
+  "note": "No entry/exit logic defined"
+ },
+ {
+  "id": "StrategyTrendReversal",
+  "primary": "other",
+  "labels": [],
+  "note": "Uses external trend_reversal indicator; logic not shown"
+ },
+ {
+  "id": "StrategyV3",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['ema50'] >= dataframe['ema200'])"
+   },
+   {
+    "label": "mean_reversion",
+    "confidence": "medium",
+    "evidence": "(dataframe['rsi'] < (dataframe['resample_"
+   }
+  ]
+ },
+ {
+  "id": "StrategyV4",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi'] < 45)"
+   }
+  ]
+ },
+ {
+  "id": "Strategy_38",
+  "primary": "other",
+  "labels": [],
+  "note": "Delegates to parent class; no custom entry/exit logic"
+ },
+ {
+  "id": "Super",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['ST_long'] < dataframe['close'])"
+   }
+  ]
+ },
+ {
+  "id": "Super3",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['ST_long'] < dataframe['close'])"
+   }
+  ]
+ },
+ {
+  "id": "SuperAi_1m",
+  "primary": "pattern",
+  "labels": [
+   {
+    "label": "pattern",
+    "confidence": "high",
+    "evidence": "minima[argrelextrema(dataframe[\"close\"].values, np.less"
+   },
+   {
+    "label": "mean_reversion",
+    "confidence": "medium",
+    "evidence": "(df[\"rsi\"] < 30)"
+   }
+  ]
+ },
+ {
+  "id": "SuperBB",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['ST_long'] < dataframe['close'])"
+   }
+  ]
+ },
+ {
+  "id": "SuperBoost",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < dataframe['sma_15']"
+   }
+  ]
+ },
+ {
+  "id": "SuperBuy",
+  "primary": "other",
+  "labels": [],
+  "note": "Complex multi-condition logic with parent class dependencies"
+ },
+ {
+  "id": "SuperHV27",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "dataframe['bigup'] = dataframe['fastsma'].gt(dataframe['slowsma']"
+   }
+  ]
+ },
+ {
+  "id": "SuperHV27_BTC",
+  "primary": "other",
+  "labels": [],
+  "note": "No entry/exit logic defined"
+ },
+ {
+  "id": "SuperHV27_ETH",
+  "primary": "other",
+  "labels": [],
+  "note": "No entry/exit logic defined"
+ }
+]

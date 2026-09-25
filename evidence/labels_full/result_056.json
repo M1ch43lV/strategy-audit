@@ -1,0 +1,362 @@
+[
+ {
+  "id": "NNTC_jump_Transformer",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "low",
+    "evidence": ""
+   }
+  ],
+  "note": "Fact sheet is empty; cannot analyze logic"
+ },
+ {
+  "id": "NNTC_macd2_Attention",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "low",
+    "evidence": ""
+   }
+  ],
+  "note": "Fact sheet is empty; cannot analyze logic"
+ },
+ {
+  "id": "NNTC_macd3_LSTM",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "low",
+    "evidence": ""
+   }
+  ],
+  "note": "Fact sheet is empty; cannot analyze logic"
+ },
+ {
+  "id": "NNTC_macd_Attention",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "low",
+    "evidence": ""
+   }
+  ],
+  "note": "Fact sheet is empty; cannot analyze logic"
+ },
+ {
+  "id": "NNTC_macd_Ensemble",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "low",
+    "evidence": ""
+   }
+  ],
+  "note": "Fact sheet is empty; cannot analyze logic"
+ },
+ {
+  "id": "NNTC_macd_GRU",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "low",
+    "evidence": ""
+   }
+  ],
+  "note": "Fact sheet is empty; cannot analyze logic"
+ },
+ {
+  "id": "NNTC_macd_LSTM",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "low",
+    "evidence": ""
+   }
+  ],
+  "note": "Fact sheet is empty; cannot analyze logic"
+ },
+ {
+  "id": "NNTC_macd_Multihead",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "low",
+    "evidence": ""
+   }
+  ],
+  "note": "Fact sheet is empty; cannot analyze logic"
+ },
+ {
+  "id": "NNTC_macd_TCN",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "low",
+    "evidence": ""
+   }
+  ],
+  "note": "Fact sheet is empty; cannot analyze logic"
+ },
+ {
+  "id": "NNTC_macd_Transformer",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "low",
+    "evidence": ""
+   }
+  ],
+  "note": "Fact sheet is empty; cannot analyze logic"
+ },
+ {
+  "id": "NNTC_mfi_LSTM",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "low",
+    "evidence": ""
+   }
+  ],
+  "note": "Fact sheet is empty; cannot analyze logic"
+ },
+ {
+  "id": "NNTC_minmax_LSTM",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "low",
+    "evidence": ""
+   }
+  ],
+  "note": "Fact sheet is empty; cannot analyze logic"
+ },
+ {
+  "id": "NNTC_nseq_Attention",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "low",
+    "evidence": ""
+   }
+  ],
+  "note": "Fact sheet is empty; cannot analyze logic"
+ },
+ {
+  "id": "NNTC_nseq_Ensemble",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "low",
+    "evidence": ""
+   }
+  ],
+  "note": "Fact sheet is empty; cannot analyze logic"
+ },
+ {
+  "id": "NNTC_nseq_GRU",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "low",
+    "evidence": ""
+   }
+  ],
+  "note": "Fact sheet is empty; cannot analyze logic"
+ },
+ {
+  "id": "NNTC_nseq_LSTM",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "low",
+    "evidence": ""
+   }
+  ],
+  "note": "Fact sheet is empty; cannot analyze logic"
+ },
+ {
+  "id": "NNTC_nseq_Transformer",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "low",
+    "evidence": ""
+   }
+  ],
+  "note": "Fact sheet is empty; cannot analyze logic"
+ },
+ {
+  "id": "NNTC_nseq_Wavenet",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "low",
+    "evidence": ""
+   }
+  ],
+  "note": "Fact sheet is empty; cannot analyze logic"
+ },
+ {
+  "id": "NNTC_over_LSTM",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "low",
+    "evidence": ""
+   }
+  ],
+  "note": "Fact sheet is empty; cannot analyze logic"
+ },
+ {
+  "id": "NNTC_profit_AdditiveAttention",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "low",
+    "evidence": ""
+   }
+  ],
+  "note": "Fact sheet is empty; cannot analyze logic"
+ },
+ {
+  "id": "NNTC_profit_Attention",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "low",
+    "evidence": ""
+   }
+  ],
+  "note": "Fact sheet is empty; cannot analyze logic"
+ },
+ {
+  "id": "NNTC_profit_CNN",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "low",
+    "evidence": ""
+   }
+  ],
+  "note": "Fact sheet is empty; cannot analyze logic"
+ },
+ {
+  "id": "NNTC_profit_Ensemble",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "low",
+    "evidence": ""
+   }
+  ],
+  "note": "Fact sheet is empty; cannot analyze logic"
+ },
+ {
+  "id": "NNTC_profit_GRU",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "low",
+    "evidence": ""
+   }
+  ],
+  "note": "Fact sheet is empty; cannot analyze logic"
+ },
+ {
+  "id": "NNTC_profit_LSTM",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "low",
+    "evidence": ""
+   }
+  ],
+  "note": "Fact sheet is empty; cannot analyze logic"
+ },
+ {
+  "id": "NNTC_profit_LSTM2",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "low",
+    "evidence": ""
+   }
+  ],
+  "note": "Fact sheet is empty; cannot analyze logic"
+ },
+ {
+  "id": "NNTC_profit_LSTM3",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "low",
+    "evidence": ""
+   }
+  ],
+  "note": "Fact sheet is empty; cannot analyze logic"
+ },
+ {
+  "id": "NNTC_profit_MLP",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "low",
+    "evidence": ""
+   }
+  ],
+  "note": "Fact sheet is empty; cannot analyze logic"
+ },
+ {
+  "id": "NNTC_profit_Multihead",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "low",
+    "evidence": ""
+   }
+  ],
+  "note": "Fact sheet is empty; cannot analyze logic"
+ },
+ {
+  "id": "NNTC_profit_TCN",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "low",
+    "evidence": ""
+   }
+  ],
+  "note": "Fact sheet is empty; cannot analyze logic"
+ }
+]

@@ -1,0 +1,2779 @@
+[
+ {
+  "id": "quantumfirst",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < dataframe['sma']) &"
+   },
+   {
+    "label": "volume_flow",
+    "confidence": "medium",
+    "evidence": "(dataframe['volume'] > dataframe['volume'].rolling(200).mean() * 4) &"
+   }
+  ],
+  "note": "Buys below SMA with fisher/stoch oversold; volume spike gate."
+ },
+ {
+  "id": "bbandrsi",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < dataframe['bb_lowerband'])"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "Low_BB",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] <= 0.98 * dataframe['bb_lowerband'])"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "BOAV1",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "medium",
+    "evidence": "(((dataframe['open'] - dataframe['close'])/dataframe['open']) > SCALE_BUY)"
+   }
+  ],
+  "note": "Buys after a down candle; single dip rule."
+ },
+ {
+  "id": "HyperoptableStrategy",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['adx'] > 30) &"
+   },
+   {
+    "label": "mean_reversion",
+    "confidence": "medium",
+    "evidence": "(dataframe['rsi'] < self.buy_rsi.value) &"
+   }
+  ],
+  "note": "ADX/+DI trend gate with oversold rsi/fastd pullback filter."
+ },
+ {
+  "id": "SmartMoneyStrategyHyperopt",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < dataframe['ema_200']) &"
+   },
+   {
+    "label": "volume_flow",
+    "confidence": "high",
+    "evidence": "(dataframe['cmf'] < self.buy_cmf.value)"
+   }
+  ],
+  "note": "Buys weakness below EMA200 with weak money flow MFI/CMF."
+ },
+ {
+  "id": "BinHV45HO",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'].lt(dataframe['lower'].shift()))"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "NostalgiaForInfinityV4",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi'] < self.buy_rsi_1.value) &"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "(dataframe['ema_50_1h'] > dataframe['ema_200_1h']) &"
+   }
+  ],
+  "note": "Dip-buy conditions with higher-timeframe EMA trend alignment."
+ },
+ {
+  "id": "trailingTrendStrategy",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] <= dataframe['lower_band']) &"
+   },
+   {
+    "label": "volume_flow",
+    "confidence": "medium",
+    "evidence": "(dataframe['VWAP_signal'] == 2) &"
+   }
+  ],
+  "note": "Buys at lower band with VWAP-based regime gate."
+ },
+ {
+  "id": "NostalgiaForInfinityV3",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < dataframe['sma_5']) &"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "(dataframe['ema_50_1h'] > dataframe['ema_200_1h']) &"
+   }
+  ],
+  "note": "Pullback/dip buys with EMA trend alignment filters."
+ },
+ {
+  "id": "BBRSITV",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "dataframe['rsi'] < (dataframe[f'basis_{self.for_ma_length.value}'] - (dataframe[f'dev_{self.for_ma_length.value}'] * self.for_sigma.value))"
+   }
+  ]
+ },
+ {
+  "id": "bbandrsi_0",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < dataframe['bb_lowerband'])"
+   }
+  ]
+ },
+ {
+  "id": "MultiRSICMF",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi'] < (dataframe['resample_{}_rsi'.format(self.get_ticker_indicator() * 8)] - 20))"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "(dataframe['sma5'] >= dataframe['sma200']) &"
+   },
+   {
+    "label": "volume_flow",
+    "confidence": "medium",
+    "evidence": "(dataframe['resample_{}_cmf'.format(self.get_ticker_indicator() * 8)] > 0)"
+   }
+  ]
+ },
+ {
+  "id": "Strategy004_955",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['cci'] < self.buy_cci.value)"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "(dataframe['adx'] > self.buy_adx.value) |"
+   }
+  ]
+ },
+ {
+  "id": "slownsteady",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < dataframe['bbg_lowerband'])"
+   },
+   {
+    "label": "volatility",
+    "confidence": "medium",
+    "evidence": "(dataframe['bb_spread_ma'] > self.bb_spread_ma_value)"
+   }
+  ]
+ },
+ {
+  "id": "SmoothOperator_10",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['cci'] < -200)"
+   }
+  ]
+ },
+ {
+  "id": "Stoch",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(qtpylib.crossed_above(dataframe['rsi'], self.buy_params['rsi-lower-band'])) &"
+   }
+  ]
+ },
+ {
+  "id": "qrsi",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "close_above_ma = (dataframe['close'] > dataframe['ma'])"
+   }
+  ]
+ },
+ {
+  "id": "NFIV6HYPER",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['sma_200'] > dataframe['sma_200'].shift(int(self.buy_01_protection__sma200_rising_val.value)))"
+   },
+   {
+    "label": "mean_reversion",
+    "confidence": "medium",
+    "evidence": "(dataframe['close'] > dataframe['bb_upperband'])"
+   }
+  ]
+ },
+ {
+  "id": "ElliotV8_IF3_futlo",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < (dataframe[f'ma_buy_{self.base_nb_candles_buy.value}'] * self.low_offset.value))"
+   }
+  ]
+ },
+ {
+  "id": "OversoldReversion",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "& (dataframe[\"dislocation\"] < self.DISLOCATION)"
+   }
+  ]
+ },
+ {
+  "id": "ClucHAnix_3",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['ha_close'].lt(dataframe['lower'].shift()))"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "dataframe['rocr_1h'].gt(self.rocr_1h.value)"
+   }
+  ]
+ },
+ {
+  "id": "ClucHAnix_748",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['ha_close'].lt(dataframe['lower'].shift()))"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "dataframe['rocr_1h'].gt(params['rocr-1h'])"
+   }
+  ]
+ },
+ {
+  "id": "NotAnotherSMAOffsetStrategyHOv3_b",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < (dataframe[f'ma_buy_{self.base_nb_candles_buy.value}'] * self.low_offset.value))"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "(dataframe['EWO'] > self.ewo_high.value)"
+   }
+  ]
+ },
+ {
+  "id": "GeneTrader_gen10_1734895087_6007_2",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < dataframe['bb_lowerband3'] * self.buy_bb_factor.value)&"
+   },
+   {
+    "label": "volatility",
+    "confidence": "medium",
+    "evidence": "(dataframe['bb_width'] > self.buy_bb_width.value)"
+   }
+  ]
+ },
+ {
+  "id": "EI3v2_tag_cofi_green_7",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < (dataframe['ema_14'] * self.lambo2_ema_14_factor.value)) &"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "(dataframe['EWO'] > self.ewo_high.value) &"
+   }
+  ]
+ },
+ {
+  "id": "GeneStrategy_v2",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < dataframe['bb_lowerband3'] * self.buy_bb_factor.value)&"
+   },
+   {
+    "label": "volatility",
+    "confidence": "medium",
+    "evidence": "(dataframe['bb_width'] > self.buy_bb_width.value)"
+   }
+  ]
+ },
+ {
+  "id": "Solipsis_v2_6",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "dataframe['close'].lt(dataframe['lower'].shift())"
+   },
+   {
+    "label": "volatility",
+    "confidence": "medium",
+    "evidence": "(params['inf-pct-adr-top'] * dataframe[f\"adr_{self.inf_timeframe}\"]))"
+   }
+  ]
+ },
+ {
+  "id": "strategy_02_bb_rsi",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe[\"close\"] < dataframe['bb_lowerband4'])"
+   }
+  ]
+ },
+ {
+  "id": "flawless_lambo",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['williamspercent'] < -66) &"
+   },
+   {
+    "label": "volume_flow",
+    "confidence": "medium",
+    "evidence": "(dataframe['OBVSlope'] > 0) &"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "(dataframe['plus.di.slope'] > 0) &"
+   }
+  ]
+ },
+ {
+  "id": "NostalgiaForInfinityNext_272",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "high",
+    "evidence": "if self.buy_params[f\"buy_condition_{index}_enable\"]:"
+   }
+  ],
+  "note": "Only parameterized protections shown; actual buy conditions not in sheet."
+ },
+ {
+  "id": "Ichimoku_v20",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(qtpylib.crossed_above(dataframe['close'], dataframe['senkou_a'])) &"
+   }
+  ]
+ },
+ {
+  "id": "FastSupertrend_optim3_rsi_75sell",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['supertrend_1_sell'] == 'up') &"
+   }
+  ]
+ },
+ {
+  "id": "strategy_test_v2_16",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi'] < 35) &"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "(dataframe['adx'] > 30) &"
+   }
+  ]
+ },
+ {
+  "id": "HeikinAshiStrategy",
+  "primary": "pattern",
+  "labels": [
+   {
+    "label": "pattern",
+    "confidence": "high",
+    "evidence": "(dataframe[\"ha_bullish\"] == 1)"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "& (dataframe[\"adx\"] > 20)"
+   }
+  ]
+ },
+ {
+  "id": "SlopeV3",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['plus_di']    > self.plus_di_buy.value) &"
+   },
+   {
+    "label": "volume_flow",
+    "confidence": "medium",
+    "evidence": "(dataframe['volume_pct'] > self.volume_long.value) &"
+   }
+  ]
+ },
+ {
+  "id": "MultiMa",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "                        dataframe[f\"buy-ma-{i}\"].shift(shift)\n                        > dataframe[f\"buy-ma-{i-1}\"].shift(shift)"
+   }
+  ]
+ },
+ {
+  "id": "SSL_ATR_ADX_VOL",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['adx'] > 25) &"
+   },
+   {
+    "label": "volume_flow",
+    "confidence": "medium",
+    "evidence": "(dataframe['volume'] > dataframe['volume_mean']) &"
+   }
+  ]
+ },
+ {
+  "id": "plasma_cutter",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "high",
+    "evidence": "(dataframe['buy-fastMA'].div(dataframe['buy-slowMA'])\n                    > self.buy_params['buy-div-min'])"
+   }
+  ],
+  "note": "MA ratio band entry; no clear trend/reversion direction."
+ },
+ {
+  "id": "TD",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "        conditions.append(qtpylib.crossed_above("
+   }
+  ]
+ },
+ {
+  "id": "PlusMinusV1",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "dataframe['RSI Max'].notnull()"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "qtpylib.crossed_above(dataframe['Plus DI'], dataframe['Minus DI']) &"
+   }
+  ]
+ },
+ {
+  "id": "BinHV27_short_2",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "dataframe['close'].lt(dataframe['lowsma']) &"
+   }
+  ]
+ },
+ {
+  "id": "SMAOG",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < dataframe['ma_offset_buy']) &"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "(dataframe['ema_50'] > dataframe['ema_200']) &"
+   }
+  ]
+ },
+ {
+  "id": "UltraSmartStrategy",
+  "primary": "volatility",
+  "labels": [
+   {
+    "label": "volatility",
+    "confidence": "high",
+    "evidence": "(dataframe['atr_p'] > 0.001) &"
+   },
+   {
+    "label": "mean_reversion",
+    "confidence": "medium",
+    "evidence": "(dataframe['rsi_14'] > 70) |"
+   },
+   {
+    "label": "pattern",
+    "confidence": "medium",
+    "evidence": "(dataframe['bearish_divergence'] == 1) |"
+   }
+  ]
+ },
+ {
+  "id": "Obelisk_Ichimoku_Slow_v1_3_338",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "(dataframe['trending'] > 0)"
+   }
+  ],
+  "note": "underlying trend indicator not shown in sheet"
+ },
+ {
+  "id": "ZaratustraV11",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['close_30m'] > dataframe['bbm_30m']) &"
+   }
+  ]
+ },
+ {
+  "id": "ichi_v2",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "dataframe['trend_close_5m'] > dataframe['senkou_a']"
+   }
+  ]
+ },
+ {
+  "id": "ichiV3_1",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "dataframe['trend_close_5m'] > dataframe['senkou_a']"
+   }
+  ]
+ },
+ {
+  "id": "ObeliskIM_v1_1",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "dataframe['cloud_green_strong'] > 0"
+   },
+   {
+    "label": "breakout",
+    "confidence": "medium",
+    "evidence": "dataframe['close'] > dataframe['recent_high'].shift()"
+   }
+  ]
+ },
+ {
+  "id": "ZZZ_test1",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "dataframe.loc[dataframe['ema_fast'] > dataframe['ema_slow'], 'buy'] = 1"
+   }
+  ]
+ },
+ {
+  "id": "m",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "qtpylib.crossed_above(dataframe['ema20'], dataframe['ema50']) &"
+   },
+   {
+    "label": "pattern",
+    "confidence": "medium",
+    "evidence": "(dataframe['ha_open'] < dataframe['ha_close'])  # green bar"
+   }
+  ]
+ },
+ {
+  "id": "NFI7HO2",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi'] > self.sell_rsi_bb_1.value) &"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "dataframe['sma_200'] > dataframe['sma_200'].shift(int(self.buy_01_protection__sma200_rising_val.value))"
+   }
+  ]
+ },
+ {
+  "id": "ZaratustraV16",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['adx'] > dataframe['mdi']) &"
+   },
+   {
+    "label": "breakout",
+    "confidence": "medium",
+    "evidence": "qtpylib.crossed_above(dataframe['close'], dataframe['bbu'])"
+   }
+  ]
+ },
+ {
+  "id": "adx_low_stop",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['plus_di'] < dataframe['minus_di'])"
+   }
+  ]
+ },
+ {
+  "id": "NostalgiaForInfinityV7_7",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi'] > self.sell_rsi_bb_1.value) &"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "dataframe['sma_200'] > dataframe['sma_200'].shift(int(self.buy_01_protection__sma200_rising_val.value))"
+   }
+  ]
+ },
+ {
+  "id": "legacy_strategy_28",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['tema'] <= dataframe['bb_middleband']) &"
+   }
+  ]
+ },
+ {
+  "id": "roger20",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['bb_percent'] < 0.2) &"
+   },
+   {
+    "label": "pattern",
+    "confidence": "high",
+    "evidence": "(dataframe['cdl3inside'] == 100) |"
+   },
+   {
+    "label": "volatility",
+    "confidence": "medium",
+    "evidence": "(dataframe['bb_width'] < 0.05) # Bollinger Bands are narrow"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "(dataframe['sma20'] > dataframe['sma50']) &"
+   }
+  ]
+ },
+ {
+  "id": "Obelisk_Ichimoku_Slow_v1_1_674",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "high",
+    "evidence": "dataframe['go_long'] > 0"
+   }
+  ],
+  "note": "go_long logic not shown; cannot classify"
+ },
+ {
+  "id": "NostalgiaForInfinityX2_5",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "item_buy_logic.append(dataframe['sma_50'] > dataframe['sma_200'])"
+   }
+  ]
+ },
+ {
+  "id": "ZaratustraV15",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['adx'] > dataframe['mdi']) &"
+   },
+   {
+    "label": "breakout",
+    "confidence": "medium",
+    "evidence": "qtpylib.crossed_above(dataframe['close'], dataframe['bb_upperband'])"
+   },
+   {
+    "label": "volume_flow",
+    "confidence": "medium",
+    "evidence": "(dataframe['obv'] > dataframe['obv'].shift(1)) &"
+   },
+   {
+    "label": "volatility",
+    "confidence": "medium",
+    "evidence": "(dataframe['atr'] < 0.2)"
+   }
+  ]
+ },
+ {
+  "id": "MultiRSIBBand",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['resample_{}_rsi'.format(self.get_ticker_indicator() * 1)] > 50) &"
+   }
+  ]
+ },
+ {
+  "id": "FRAYSTRAT_BTCUSDT_1H",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(qtpylib.crossed_above(dataframe['rsi'], self.buy_rsi.value)) &"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "(dataframe['ema12'] < dataframe['ema7']) &"
+   }
+  ]
+ },
+ {
+  "id": "MACDStrategyENJ",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['macd'] > dataframe['macdsignal']) &"
+   }
+  ]
+ },
+ {
+  "id": "eltoro1_4",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['BTC_EWO_Fast_4h'] > dataframe['BTC_EWO_Fast_4h'].shift(1)) &"
+   }
+  ]
+ },
+ {
+  "id": "TheForceOptimizedV4",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['ema5c'] > dataframe['ema50']) &  # Confirmação de tendência"
+   }
+  ]
+ },
+ {
+  "id": "powerxhopt_2",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi'] > self.rsi_hline.value )"
+   }
+  ]
+ },
+ {
+  "id": "adx_opt_strat",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['mom'] < 0) &"
+   }
+  ]
+ },
+ {
+  "id": "yoyo_action_strategy_8",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "high",
+    "evidence": "dataframe.loc[(dataframe['signal_buy'] == True) , 'buy'] = 1"
+   }
+  ],
+  "note": "signal_buy logic not shown; entry uses precomputed boolean."
+ },
+ {
+  "id": "NostalgiaForInfinityX7",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "high",
+    "evidence": "long_entry_conditions = []"
+   }
+  ],
+  "note": "Entry conditions truncated/not shown; exit empty."
+ },
+ {
+  "id": "TheSimpleStrategy",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['macd'] > dataframe['macdsignal'])  # over signal"
+   }
+  ]
+ },
+ {
+  "id": "ZaratustraV12",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['adx_30m'] > dataframe['mdi_30m']) &"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "(dataframe['close_btc_5m'].shift(3) < dataframe['close_btc_5m'].shift(2)) &"
+   }
+  ]
+ },
+ {
+  "id": "TGMA",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "high",
+    "evidence": "qtpylib.crossed_above(dataframe[\"gradientH2\"], dataframe['buylimitH2'])"
+   }
+  ],
+  "note": "Entry uses custom gradientH2 crossing buylimitH2; computation not shown."
+ },
+ {
+  "id": "Kalman",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "qtpylib.crossed_above(dataframe['kf_predict_diff'], self.entry_kf_diff)"
+   },
+   {
+    "label": "statistical",
+    "confidence": "high",
+    "evidence": "informative['kf_predict'] = informative['close'].rolling("
+   }
+  ]
+ },
+ {
+  "id": "TheForceV4",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['macd'] > dataframe['macd'].shift(1))"
+   },
+   {
+    "label": "mean_reversion",
+    "confidence": "medium",
+    "evidence": "(dataframe['close'] <= dataframe['"
+   }
+  ]
+ },
+ {
+  "id": "EMAVolume",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(qtpylib.crossed_above(dataframe['ema13'], dataframe['ema34']))"
+   }
+  ]
+ },
+ {
+  "id": "SMAOffsetProtectOpt",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < dataframe['ma_buy']) &"
+   }
+  ]
+ },
+ {
+  "id": "ReinforcedSmoothScalpS",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "conditions.append(dataframe['mfi'] > self.buy_mfi.value)"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "low",
+    "evidence": "conditions.append(dataframe['resample_sma'] > dataframe['close'])"
+   }
+  ]
+ },
+ {
+  "id": "AdvancedScalpingStrategy",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['momentum_score'] > dataframe['momentum_score'].shift(1))"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['adx'] > 25)"
+   },
+   {
+    "label": "volatility",
+    "confidence": "high",
+    "evidence": "(dataframe['vol_regime'] > self.avf_threshold.value)"
+   },
+   {
+    "label": "volume_flow",
+    "confidence": "medium",
+    "evidence": "(dataframe['volume_ratio'] > self.volume_factor.value)"
+   }
+  ]
+ },
+ {
+  "id": "STRATEGY_DEFAULT",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(qtpylib.crossed_above(dataframe['rsi'], 30))"
+   }
+  ]
+ },
+ {
+  "id": "SMAOPv1_TTF",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < (dataframe[f'ma_buy_{self.base_nb_candles_buy.value}'] * self.low_offset.value)) &"
+   }
+  ]
+ },
+ {
+  "id": "MACDStrategyETC",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['macd'] > dataframe['macdsignal']) &"
+   },
+   {
+    "label": "mean_reversion",
+    "confidence": "medium",
+    "evidence": "(dataframe['cci'] <= self.buy_cci.value)"
+   }
+  ]
+ },
+ {
+  "id": "GKD_FisherTransformMTF",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe[\"fisher_smooth\"] > dataframe[\"fisher_smooth\"].shift()) &"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "(dataframe[\"baseline_down\"]) &"
+   }
+  ]
+ },
+ {
+  "id": "ImpulseMACDVolumeStrategy",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe[\"macd\"] > dataframe[\"macdsignal\"])  # MACD sygnał wzrostu"
+   },
+   {
+    "label": "volume_flow",
+    "confidence": "high",
+    "evidence": "(dataframe[\"volume\"] > dataframe[\"volume_avg\"])  # Zwiększona objętość"
+   }
+  ]
+ },
+ {
+  "id": "NASOSv5_antipump",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < (dataframe[f'ma_buy_{self.base_nb_candles_buy.value}'] * self.low_offset.value)) &"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "(dataframe['EWO'] > self.ewo_high.value) &"
+   }
+  ]
+ },
+ {
+  "id": "E0V1E_23",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < dataframe['ema_8'] * self.buy_ema_low.value) &"
+   },
+   {
+    "label": "momentum",
+    "confidence": "low",
+    "evidence": "(dataframe['EWO'] > self.buy_ewo.value) &"
+   }
+  ]
+ },
+ {
+  "id": "EMACross",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "dataframe[f'ema_short_{self.buy_ema_short.value}'], dataframe[f'ema_long_{self.buy_ema_long.value}']"
+   }
+  ]
+ },
+ {
+  "id": "Trump_LIM",
+  "primary": "volume_flow",
+  "labels": [
+   {
+    "label": "volume_flow",
+    "confidence": "high",
+    "evidence": "conditions.append(dataframe['volume_5m'] > (dataframe[f'volume_ma_{p}_5m'] * float(self.vol_factor.value)))"
+   },
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close_5m'] - dataframe['open_5m']) / dataframe['open_5m'] < -1.0*self.min_candle_variation.value"
+   }
+  ]
+ },
+ {
+  "id": "MACDStrategy_crossed_102",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "qtpylib.crossed_above(dataframe['macd'], dataframe['macdsignal']) &"
+   },
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['cci'] <= -50.0)"
+   }
+  ]
+ },
+ {
+  "id": "MACD_EMA",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "qtpylib.crossed_above(dataframe['macd'], dataframe['macdsignal']) &"
+   }
+  ]
+ },
+ {
+  "id": "MACDStrategy_crossed_419",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "qtpylib.crossed_above(dataframe['macd'], dataframe['macdsignal']) &"
+   },
+   {
+    "label": "mean_reversion",
+    "confidence": "low",
+    "evidence": "(dataframe['cci'] <= self.cci_buy_param.value)"
+   }
+  ],
+  "note": "CCI buy threshold parameterized; mean_reversion implied."
+ },
+ {
+  "id": "TaSearchDynamic30m_2",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "high",
+    "evidence": "(df['buy_stride'] > 4) & (df['buy_stride'] < 10) &"
+   },
+   {
+    "label": "mean_reversion",
+    "confidence": "medium",
+    "evidence": "(df['rsi_7'] > 85) |"
+   }
+  ],
+  "note": "Entry uses custom buy_stride/buy_past_rsi; exit sells overbought RSI."
+ },
+ {
+  "id": "PCA_fwr",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "high",
+    "evidence": "INDICATOR CODE"
+   }
+  ],
+  "note": "No indicator, entry, or exit code shown."
+ },
+ {
+  "id": "BuyAllSellAllStrategy",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "high",
+    "evidence": "dataframe[\"buy\"] = np.random.randint(0, 2, size=len(dataframe))"
+   }
+  ],
+  "note": "Random entries; no TA logic."
+ },
+ {
+  "id": "StrategyTestV3CustomEntryPrice",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "high",
+    "evidence": "dataframe['volume'] > 0,"
+   }
+  ],
+  "note": "Enters whenever volume > 0; no real signal."
+ },
+ {
+  "id": "NNTC_profit_GRU",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "high",
+    "evidence": "INDICATOR CODE"
+   }
+  ],
+  "note": "No indicator, entry, or exit code shown."
+ },
+ {
+  "id": "StrategyAnalysis",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "high",
+    "evidence": "INDICATOR CODE"
+   }
+  ],
+  "note": "No indicator, entry, or exit code shown."
+ },
+ {
+  "id": "buysell",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "high",
+    "evidence": "dataframe[\"buy\"] = np.random.randint(0, 2, size=len(dataframe))"
+   }
+  ],
+  "note": "Random entries; sell always 0."
+ },
+ {
+  "id": "strategijaconsensus",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "high",
+    "evidence": "dataframe['consensus_buy'] = c.score()['buy']"
+   }
+  ],
+  "note": "Consensus score from custom Consensus class; component rules not shown."
+ },
+ {
+  "id": "NNTC_fbb_LSTM",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "high",
+    "evidence": "INDICATOR CODE"
+   }
+  ],
+  "note": "No indicator, entry, or exit code shown."
+ },
+ {
+  "id": "freqai_test_classifier",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "high",
+    "evidence": "enter_long_conditions = [df['&s-up_or_down'] == 'up']"
+   }
+  ],
+  "note": "FreqAI model prediction drives entries."
+ },
+ {
+  "id": "Scalping2",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "high",
+    "evidence": "(dataframe['enter'] == 1) |"
+   }
+  ],
+  "note": "Signals come from self.calc; concrete entry/exit logic not shown."
+ },
+ {
+  "id": "NNTC_macd_Attention",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "high",
+    "evidence": "ENTRY CODE\n\nEXIT CODE"
+   }
+  ],
+  "note": "No indicator, entry or exit code present."
+ },
+ {
+  "id": "DevilStra",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "high",
+    "evidence": "buy_indicator = params['buy_indicator0']"
+   }
+  ],
+  "note": "Indicator/operator chosen at runtime via hyperopt params."
+ },
+ {
+  "id": "Schism4_ETH",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "high",
+    "evidence": "INDICATOR CODE\n\nENTRY CODE\n\nEXIT CODE"
+   }
+  ],
+  "note": "No logic code in sheet."
+ },
+ {
+  "id": "LoadRLModel",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "high",
+    "evidence": "action, nan_list = self.rl_model_redict(dataframe)"
+   }
+  ],
+  "note": "RL model predictions decide buy/sell; TA indicators are only features."
+ },
+ {
+  "id": "HyperStra_SMAOnly",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "high",
+    "evidence": "indicator=self.buy_1_indicator.value,"
+   }
+  ],
+  "note": "Hyperoptable indicator/operator params; no concrete entry rule shown."
+ },
+ {
+  "id": "Finder",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "high",
+    "evidence": "conditions = self._populate_trend(dataframe, \"buy\")"
+   }
+  ],
+  "note": "Entry logic delegated to _populate_trend, not shown."
+ },
+ {
+  "id": "NNTC_macd_Multihead",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "high",
+    "evidence": "ENTRY CODE\n\nEXIT CODE"
+   }
+  ],
+  "note": "No indicator, entry or exit code present."
+ },
+ {
+  "id": "godstrat",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "high",
+    "evidence": "buy_indicator = self.buy_indicator0.value"
+   }
+  ],
+  "note": "Hyperoptable indicator/operator params; no concrete rule shown."
+ },
+ {
+  "id": "advanced_strategy",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "high",
+    "evidence": "def populate_entry_trend(self, dataframe: DataFrame, metadata: dict) -> DataFrame:\n        return dataframe"
+   }
+  ],
+  "note": "Entry and exit return dataframe unchanged; RSI calculated but unused."
+ },
+ {
+  "id": "Anomaly",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "high",
+    "evidence": "dataframe['predict_buy'] > 0.5"
+   }
+  ],
+  "note": "ML/anomaly predict_buy signal; no standard TA logic visible."
+ },
+ {
+  "id": "TrailingBuyStratCluc5m",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "high",
+    "evidence": "if (last_candle['buy'] == 1):"
+   }
+  ],
+  "note": "Trailing-buy wrapper; base entry logic in superclass not shown."
+ },
+ {
+  "id": "TrailingBuyStratClucBBRPBMODE",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "high",
+    "evidence": "if (last_candle['buy'] == 1):"
+   }
+  ],
+  "note": "Trailing-buy wrapper; base entry logic in superclass not shown."
+ },
+ {
+  "id": "TM3MultiClass",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "high",
+    "evidence": "df = self.freqai.start(df, metadata, self)"
+   }
+  ],
+  "note": "FreqAI signal_entry_long/short not shown."
+ },
+ {
+  "id": "roger2",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "high",
+    "evidence": "(dataframe['volume'] > 0)"
+   }
+  ],
+  "note": "Entry/exit only volume>0; no trading logic."
+ },
+ {
+  "id": "QuickAdapterV4",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "high",
+    "evidence": "df[\"do_predict\"] == 1"
+   }
+  ],
+  "note": "FreqAI predictions/extrema thresholds; no standard TA label."
+ },
+ {
+  "id": "tesla4",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi'] < self.rsi_buy.value)"
+   }
+  ],
+  "note": "Buys dips below MA with low RSI; EWO/volume filters."
+ },
+ {
+  "id": "MultiTargetClassifierTestStrategy",
+  "primary": "statistical",
+  "labels": [
+   {
+    "label": "statistical",
+    "confidence": "high",
+    "evidence": "df[\"up_long\"] > df[f\"target_roi_{self.std_dev_multiplier_buy.value}\"]"
+   }
+  ],
+  "note": "FreqAI predictions vs std-dev ROI thresholds."
+ },
+ {
+  "id": "GGShotStrategy",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "high",
+    "evidence": "dataframe['long_signal'] &"
+   }
+  ],
+  "note": "long_signal/short_signal computation not shown."
+ },
+ {
+  "id": "TA_Collector_v1_0",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "high",
+    "evidence": "dataframe.loc[:, 'buy'] = 0"
+   }
+  ],
+  "note": "No entry/exit signals; data collection only."
+ },
+ {
+  "id": "BreakoutFlash",
+  "primary": "breakout",
+  "labels": [
+   {
+    "label": "breakout",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] > dataframe['resistance_level'])"
+   },
+   {
+    "label": "volatility",
+    "confidence": "medium",
+    "evidence": "(dataframe['atr'] > dataframe['atr'].rolling(14).mean())"
+   }
+  ]
+ },
+ {
+  "id": "EMABreakout_2",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "conditions.append(qtpylib.crossed_above(dataframe['close'], dataframe['ema']))"
+   }
+  ]
+ },
+ {
+  "id": "Argrelextrema",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe[\"low\"] < dataframe['bb_lowerband'])"
+   },
+   {
+    "label": "breakout",
+    "confidence": "medium",
+    "evidence": "(qtpylib.crossed_below(dataframe[\"low\"], dataframe[\"minima\"]))"
+   }
+  ]
+ },
+ {
+  "id": "KeltnerChannels_2",
+  "primary": "breakout",
+  "labels": [
+   {
+    "label": "breakout",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] >= dataframe['kc_upperband'])"
+   }
+  ]
+ },
+ {
+  "id": "RBreakerStrategy",
+  "primary": "breakout",
+  "labels": [
+   {
+    "label": "breakout",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] > self.Bbreak)"
+   },
+   {
+    "label": "mean_reversion",
+    "confidence": "medium",
+    "evidence": "dataframe[(dataframe['date'] >= self.end_time)].min()['high']< self.Bsetup"
+   }
+  ]
+ },
+ {
+  "id": "BBBHold_3",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['open'] < dataframe['bb_lowerband'])"
+   }
+  ]
+ },
+ {
+  "id": "DonchianBreakoutStrategy",
+  "primary": "breakout",
+  "labels": [
+   {
+    "label": "breakout",
+    "confidence": "high",
+    "evidence": "(dataframe[\"close\"] > dataframe[\"dc_high\"])"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "(dataframe[\"adx\"] > 20)"
+   }
+  ]
+ },
+ {
+  "id": "TrailingBuy_ClucHAnix_5m_E0V1E_by_TraNz201",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['ha_close'].lt(dataframe['lower'].shift()))"
+   },
+   {
+    "label": "pattern",
+    "confidence": "medium",
+    "evidence": "dataframe['ha_close'].le(dataframe['ha_close'].shift())"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "dataframe['rocr_1h'].gt(self.rocr_1h.value)"
+   }
+  ]
+ },
+ {
+  "id": "AdaptiveRegime",
+  "primary": "statistical",
+  "labels": [
+   {
+    "label": "statistical",
+    "confidence": "high",
+    "evidence": "er = dataframe[f\"er_{self.er_period.value}\"]"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe[\"close\"] > dataframe[\"ema200\"])"
+   },
+   {
+    "label": "breakout",
+    "confidence": "high",
+    "evidence": "(dataframe[\"close\"] > up)"
+   },
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe[\"rsi\"] < self.RSI_LOW)"
+   }
+  ]
+ },
+ {
+  "id": "donchian",
+  "primary": "breakout",
+  "labels": [
+   {
+    "label": "breakout",
+    "confidence": "high",
+    "evidence": "qtpylib.crossed_above(dataframe['close'], dataframe['upper'])"
+   }
+  ]
+ },
+ {
+  "id": "ZaratustraV17",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['adx'] > dataframe['mdi']) &"
+   },
+   {
+    "label": "breakout",
+    "confidence": "medium",
+    "evidence": "qtpylib.crossed_above(dataframe['close'], dataframe['bbu']) &"
+   }
+  ]
+ },
+ {
+  "id": "keltnerchannelrsi",
+  "primary": "breakout",
+  "labels": [
+   {
+    "label": "breakout",
+    "confidence": "high",
+    "evidence": "(qtpylib.crossed_above(dataframe['close'], dataframe[f\"kc_upperband_{self.window_range.value}_{self.atrs_range.value}\"]))"
+   }
+  ]
+ },
+ {
+  "id": "keltnerchannel_0",
+  "primary": "breakout",
+  "labels": [
+   {
+    "label": "breakout",
+    "confidence": "high",
+    "evidence": "(qtpylib.crossed_above(dataframe['close'], dataframe['kc_upperband'])"
+   }
+  ]
+ },
+ {
+  "id": "TaSearch5m",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "high",
+    "evidence": "df['buy'] = df.apply(lambda row: self.__populate_buy(row), axis=1)"
+   }
+  ],
+  "note": "entry logic hidden in __populate_buy; no concrete rule shown"
+ },
+ {
+  "id": "FVGChannel",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "['enter_long', 'enter_tag']] = (1, 'lower_extreme dip')"
+   },
+   {
+    "label": "breakout",
+    "confidence": "medium",
+    "evidence": "(dataframe[\"close\"] > dataframe['upper_inner']) &"
+   }
+  ]
+ },
+ {
+  "id": "HurstCycle7",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "high",
+    "evidence": "dataframe = do_indicators(self, dataframe, metadata)"
+   }
+  ],
+  "note": "logic delegated to do_indicators; synergy/vtl names not defined in sheet"
+ },
+ {
+  "id": "Ichimoku_v17",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "qtpylib.crossed_above(dataframe['close'], dataframe['senkou_a'])"
+   }
+  ]
+ },
+ {
+  "id": "BBBHold_2",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['open'] < dataframe['bb_lowerband']) &"
+   }
+  ]
+ },
+ {
+  "id": "Ichimoku_v15_1d",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "qtpylib.crossed_above(dataframe['close'], dataframe['senkou_a'])"
+   }
+  ]
+ },
+ {
+  "id": "Zone1",
+  "primary": "breakout",
+  "labels": [
+   {
+    "label": "breakout",
+    "confidence": "high",
+    "evidence": "if dataframe['close'].iloc[i] > box_top and dataframe['open'].iloc[i] < box_top:"
+   }
+  ]
+ },
+ {
+  "id": "CustomStrategy4",
+  "primary": "volatility",
+  "labels": [
+   {
+    "label": "volatility",
+    "confidence": "high",
+    "evidence": "if bb_width <= 0.1 and rsi_neutral:"
+   },
+   {
+    "label": "pattern",
+    "confidence": "medium",
+    "evidence": "if dataframe.at[i, 'doji'] and dataframe.at[i - 1, 'doji']:"
+   }
+  ]
+ },
+ {
+  "id": "VolatimImproved",
+  "primary": "volatility",
+  "labels": [
+   {
+    "label": "volatility",
+    "confidence": "high",
+    "evidence": "dataframe['volatility_ratio'] > 0.8,  # Some volatility present"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "dataframe['returns_roll_mean'] > dataframe['returns_roll_mean'].shift(1),"
+   },
+   {
+    "label": "mean_reversion",
+    "confidence": "medium",
+    "evidence": "(dataframe['rsi'] > 80) |"
+   }
+  ]
+ },
+ {
+  "id": "BBMod1_2",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < dataframe['bb_lowerband3'] * self.buy_bb_factor.value)"
+   },
+   {
+    "label": "volatility",
+    "confidence": "medium",
+    "evidence": "(dataframe['bb_width'] > self.buy_bb_width.value) &"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "(dataframe['ema_26'] > dataframe['ema_12']) &"
+   }
+  ]
+ },
+ {
+  "id": "CustomStrategy",
+  "primary": "volatility",
+  "labels": [
+   {
+    "label": "volatility",
+    "confidence": "high",
+    "evidence": "if bb_width <= 0.1 and rsi_neutral:"
+   },
+   {
+    "label": "pattern",
+    "confidence": "medium",
+    "evidence": "(dataframe['upper_wick'] <= 0.4 * dataframe['candle_length']) &"
+   }
+  ]
+ },
+ {
+  "id": "BBMod",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < dataframe['bb_lowerband3'] * self.break_buy_bb_factor.value)"
+   },
+   {
+    "label": "volatility",
+    "confidence": "medium",
+    "evidence": "(dataframe['bb_width'] > self.buy_bb_width.value) &"
+   },
+   {
+    "label": "statistical",
+    "confidence": "medium",
+    "evidence": "(dataframe['linreg_val_20'].shift(2) > dataframe['linreg_val_20'].shift(1)) &"
+   }
+  ]
+ },
+ {
+  "id": "CustomStrategy3",
+  "primary": "volatility",
+  "labels": [
+   {
+    "label": "volatility",
+    "confidence": "high",
+    "evidence": "if bb_width <= 0.1 and rsi_neutral:"
+   }
+  ]
+ },
+ {
+  "id": "SqueezeOff",
+  "primary": "volatility",
+  "labels": [
+   {
+    "label": "volatility",
+    "confidence": "high",
+    "evidence": "conditions.append(dataframe['sqz_val'] < 0)"
+   }
+  ]
+ },
+ {
+  "id": "Heracles_4",
+  "primary": "volatility",
+  "labels": [
+   {
+    "label": "volatility",
+    "confidence": "high",
+    "evidence": "IND = 'volatility_dcp'"
+   }
+  ]
+ },
+ {
+  "id": "BBMod1_0",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < dataframe['bb_lowerband3'] * self.buy_bb_factor.value)"
+   },
+   {
+    "label": "volatility",
+    "confidence": "medium",
+    "evidence": "(dataframe['bb_width'] > self.buy_bb_width.value) &"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "(dataframe['ema_26'] > dataframe['ema_12']) &"
+   }
+  ]
+ },
+ {
+  "id": "kac_index_v1",
+  "primary": "volatility",
+  "labels": [
+   {
+    "label": "volatility",
+    "confidence": "high",
+    "evidence": "(dataframe['ATR'] > 1.5),"
+   },
+   {
+    "label": "mean_reversion",
+    "confidence": "medium",
+    "evidence": "(dataframe['CCI'] < 0),"
+   }
+  ]
+ },
+ {
+  "id": "RSIBB_V4",
+  "primary": "breakout",
+  "labels": [
+   {
+    "label": "breakout",
+    "confidence": "high",
+    "evidence": "qtpylib.crossed_above(dataframe[\"close\"], dataframe[\"bbu\"]) &"
+   },
+   {
+    "label": "volatility",
+    "confidence": "high",
+    "evidence": "(dataframe[\"natr_zscore\"] > 1.0)"
+   },
+   {
+    "label": "volume_flow",
+    "confidence": "medium",
+    "evidence": "qtpylib.crossed_above(dataframe[\"volume\"], dataframe[\"vbbu\"]) &"
+   }
+  ]
+ },
+ {
+  "id": "Squeeze002",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "conditions.append(qtpylib.crossed_above(dataframe['sqz_val'], 0))"
+   }
+  ]
+ },
+ {
+  "id": "BBMod1_3",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < dataframe['bb_lowerband3'] * self.buy_bb_factor.value)"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "(dataframe['ema_26'] > dataframe['ema_12']) &"
+   },
+   {
+    "label": "volatility",
+    "confidence": "medium",
+    "evidence": "(dataframe['bb_width'] > self.buy_bb_width.value) &"
+   }
+  ]
+ },
+ {
+  "id": "Squeeze001",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['sqz_val'] < -self.buy_sqz_band.value) &"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "(dataframe['sqz_val'] > dataframe['sqz_val'].shift(1)) &"
+   }
+  ]
+ },
+ {
+  "id": "SqueezeMomentum_2",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "conditions.append(qtpylib.crossed_above(dataframe['sqz_val'], 0))"
+   },
+   {
+    "label": "mean_reversion",
+    "confidence": "medium",
+    "evidence": "conditions.append(dataframe['mfi'] <= self.buy_mfi.value)"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "(dataframe['adx'] >= self.buy_adx.value) &"
+   }
+  ]
+ },
+ {
+  "id": "DNSAlarm2",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "high",
+    "evidence": "dataframe[\"buy_criteria\"]"
+   }
+  ],
+  "note": "Entry uses opaque buy_criteria; no concrete rule in sheet."
+ },
+ {
+  "id": "PriceActionEngulfingStrategy",
+  "primary": "pattern",
+  "labels": [
+   {
+    "label": "pattern",
+    "confidence": "high",
+    "evidence": "(dataframe['bullish_engulfing'] == 1),"
+   }
+  ]
+ },
+ {
+  "id": "OsirisXRSI",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "align_long  = dataframe[\"close\"] >= ema50 * (1.0 - band)"
+   },
+   {
+    "label": "pattern",
+    "confidence": "medium",
+    "evidence": "body_ok_long  = (dataframe[\"body_ratio\"] >= min_br) & (dataframe[\"lower_wick\"] >= min_lw)"
+   }
+  ]
+ },
+ {
+  "id": "Tank1Modulus",
+  "primary": "pattern",
+  "labels": [
+   {
+    "label": "pattern",
+    "confidence": "high",
+    "evidence": "(df[\"wave_t1\"] < df[\"wave_t1_DN_FIB\"]) &"
+   },
+   {
+    "label": "mean_reversion",
+    "confidence": "medium",
+    "evidence": "(df[\"OHLC4\"] < df['200sma']) &"
+   }
+  ]
+ },
+ {
+  "id": "DNSTraderBTCRSI",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "high",
+    "evidence": "dataframe[\"buy_criteria\"]"
+   }
+  ],
+  "note": "Entry uses opaque buy_criteria; no concrete rule in sheet."
+ },
+ {
+  "id": "AlexBandSniperV10AINoBias",
+  "primary": "pattern",
+  "labels": [
+   {
+    "label": "pattern",
+    "confidence": "high",
+    "evidence": "Enhanced Entry Strategy with Optuna-Optimized Divergence & Fisher Signals"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "7. Bull/Bear_Fisher (Fisher Transform crossover)"
+   }
+  ]
+ },
+ {
+  "id": "DNSAlarmReporterBTCRedLines",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "high",
+    "evidence": "dataframe.loc[\n            (\n            ), 'buy'] = 1"
+   }
+  ],
+  "note": "Empty entry/exit; alarm/reporter only."
+ },
+ {
+  "id": "Tank5ModulusDCA",
+  "primary": "pattern",
+  "labels": [
+   {
+    "label": "pattern",
+    "confidence": "high",
+    "evidence": "(df[\"wave_t1\"] < df[\"wave_t1_DN_FIB\"])"
+   },
+   {
+    "label": "mean_reversion",
+    "confidence": "medium",
+    "evidence": "(df[\"OHLC4\"] < df['200sma'])"
+   }
+  ],
+  "note": "DCA-style position adjustment present."
+ },
+ {
+  "id": "DNSAlarmWeek",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "high",
+    "evidence": "dataframe.loc[\n            (\n            ), 'buy'] = 1"
+   }
+  ],
+  "note": "Empty entry/exit; alarm/reporter only."
+ },
+ {
+  "id": "HarmonicDivergence_fix",
+  "primary": "pattern",
+  "labels": [
+   {
+    "label": "pattern",
+    "confidence": "high",
+    "evidence": "dataframe[resample('total_bullish_divergences')].shift() > 0"
+   }
+  ]
+ },
+ {
+  "id": "AlexBandSniperV10AI",
+  "primary": "pattern",
+  "labels": [
+   {
+    "label": "pattern",
+    "confidence": "high",
+    "evidence": "Enhanced Entry Strategy with Optuna-Optimized Divergence & Fisher Signals"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "7. Bull/Bear_Fisher (Fisher Transform crossover)"
+   }
+  ]
+ },
+ {
+  "id": "DivergenceStrategy",
+  "primary": "pattern",
+  "labels": [
+   {
+    "label": "pattern",
+    "confidence": "high",
+    "evidence": "pivots = self.divergence(dataframe['rsi'], pivot_low=True)"
+   },
+   {
+    "label": "mean_reversion",
+    "confidence": "medium",
+    "evidence": "dataframe['close'].iloc[pivot] < dataframe['close'].iloc[pivot + self.maxbars]"
+   }
+  ]
+ },
+ {
+  "id": "CrazyThursdayJP1h",
+  "primary": "pattern",
+  "labels": [
+   {
+    "label": "pattern",
+    "confidence": "high",
+    "evidence": "dataframe[self.resample('total_bullish_divergences')].shift() > 0"
+   }
+  ]
+ },
+ {
+  "id": "NOTankAi_17",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "medium",
+    "evidence": "rsi_long_threshold = 30 + rsi_low_adj"
+   }
+  ],
+  "note": "RSI oversold/overbought thresholds drive entries/exits."
+ },
+ {
+  "id": "Goose1",
+  "primary": "pattern",
+  "labels": [
+   {
+    "label": "pattern",
+    "confidence": "high",
+    "evidence": "self.elliot.populate_entry_trend_v1(dataframe, conditions)"
+   }
+  ],
+  "note": "Elliott/Fibonacci/doji pattern logic."
+ },
+ {
+  "id": "ViNBuyPct",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "medium",
+    "evidence": "df['streak_s_min'].le(-1),"
+   },
+   {
+    "label": "volatility",
+    "confidence": "medium",
+    "evidence": "(df[f\"bb_pctchange_{i}_up\"] - df[f\"bb_pctchange_{i}_lo\"]).ge(0.02),"
+   }
+  ]
+ },
+ {
+  "id": "FreqAIHybridStrategy",
+  "primary": "statistical",
+  "labels": [
+   {
+    "label": "statistical",
+    "confidence": "high",
+    "evidence": "z = (target - mean) / (std + 1e-12)"
+   }
+  ]
+ },
+ {
+  "id": "ARIMA_15",
+  "primary": "statistical",
+  "labels": [
+   {
+    "label": "statistical",
+    "confidence": "high",
+    "evidence": "self.arima_model[pair] = auto_arima(train, start_p=1, start_q=1, start_P=1, start_Q=1,"
+   },
+   {
+    "label": "mean_reversion",
+    "confidence": "medium",
+    "evidence": "(dataframe['OHLC4'] < dataframe['sma_dn'])"
+   }
+  ]
+ },
+ {
+  "id": "MinimumVariancePortfolio",
+  "primary": "statistical",
+  "labels": [
+   {
+    "label": "statistical",
+    "confidence": "high",
+    "evidence": "weights_df = self._compute_mvp_weights(aligned_prices)"
+   }
+  ]
+ },
+ {
+  "id": "AnomalyDetectorv2_2",
+  "primary": "volume_flow",
+  "labels": [
+   {
+    "label": "volume_flow",
+    "confidence": "high",
+    "evidence": "dataframe['anomaly'] = np.where(vol_z_score > threshold, 1, 0)"
+   },
+   {
+    "label": "volatility",
+    "confidence": "medium",
+    "evidence": "(dataframe['atr'] > dataframe['atr'].rolling(window=self.atr_length.value).mean())"
+   }
+  ]
+ },
+ {
+  "id": "HedgeStrategy",
+  "primary": "statistical",
+  "labels": [
+   {
+    "label": "statistical",
+    "confidence": "high",
+    "evidence": "informative[\"hedge_ratio\"] = informative[\"close\"].rolling(ols_window).apply("
+   },
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "dataframe[\"hedged_norm\"] < self.hedge_long.value"
+   }
+  ]
+ },
+ {
+  "id": "AnomalyDetectorv2",
+  "primary": "volume_flow",
+  "labels": [
+   {
+    "label": "volume_flow",
+    "confidence": "high",
+    "evidence": "dataframe['anomaly'] = np.where(dataframe['vol_z_score'] > threshold, 1, 0)"
+   },
+   {
+    "label": "volatility",
+    "confidence": "medium",
+    "evidence": "(dataframe['atr'] > dataframe['atr'].rolling(window=self.atr_length.value).mean())"
+   }
+  ]
+ },
+ {
+  "id": "FreqaiExampleStrategy",
+  "primary": "statistical",
+  "labels": [
+   {
+    "label": "statistical",
+    "confidence": "high",
+    "evidence": "dataframe = self.freqai.start(dataframe, metadata, self)"
+   }
+  ]
+ },
+ {
+  "id": "SARIMAX",
+  "primary": "statistical",
+  "labels": [
+   {
+    "label": "statistical",
+    "confidence": "high",
+    "evidence": "informative['smax_predict'] = informative['close'].rolling("
+   }
+  ]
+ },
+ {
+  "id": "freqai_test_multimodel_strat",
+  "primary": "statistical",
+  "labels": [
+   {
+    "label": "statistical",
+    "confidence": "high",
+    "evidence": "dataframe[\"target_roi\"] = dataframe[\"&-s_close_mean\"] + dataframe[\"&-s_close_std\"] * 1.25"
+   }
+  ]
+ },
+ {
+  "id": "A9AV",
+  "primary": "volume_flow",
+  "labels": [
+   {
+    "label": "volume_flow",
+    "confidence": "high",
+    "evidence": "(dataframe['volume'] > dataframe['SMA_9']) &"
+   }
+  ]
+ },
+ {
+  "id": "simple_vwap_v1",
+  "primary": "volume_flow",
+  "labels": [
+   {
+    "label": "volume_flow",
+    "confidence": "medium",
+    "evidence": "conditions.append((dataframe['VWAP_low'] < dataframe['high']))"
+   }
+  ]
+ },
+ {
+  "id": "PrawnstarOBV",
+  "primary": "volume_flow",
+  "labels": [
+   {
+    "label": "volume_flow",
+    "confidence": "high",
+    "evidence": "(qtpylib.crossed_above(dataframe['obv'], dataframe['obvSma'])) &"
+   }
+  ]
+ },
+ {
+  "id": "Flow",
+  "primary": "volume_flow",
+  "labels": [
+   {
+    "label": "volume_flow",
+    "confidence": "high",
+    "evidence": "(dataframe[\"ofi\"].abs() > self.absorption_threshold.value)"
+   },
+   {
+    "label": "volatility",
+    "confidence": "medium",
+    "evidence": "(dataframe[\"realized_vol\"] < self.volatility_threshold.value)"
+   }
+  ]
+ },
+ {
+  "id": "TechnicalExampleStrategy_2",
+  "primary": "volume_flow",
+  "labels": [
+   {
+    "label": "volume_flow",
+    "confidence": "high",
+    "evidence": "(dataframe['cmf'] < 0)"
+   }
+  ]
+ },
+ {
+  "id": "AdvancedFuturesSwingStrategy",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['adx'] > self.adx_trend_min.value)  # Trending"
+   },
+   {
+    "label": "volume_flow",
+    "confidence": "high",
+    "evidence": "(dataframe['cumulative_delta'] > self.delta_threshold.value) &  # Positive order flow"
+   },
+   {
+    "label": "pattern",
+    "confidence": "high",
+    "evidence": "(dataframe['spring'] == True) &  # Spring pattern"
+   }
+  ]
+ },
+ {
+  "id": "ChaikinMoneyFlowStrategy",
+  "primary": "volume_flow",
+  "labels": [
+   {
+    "label": "volume_flow",
+    "confidence": "high",
+    "evidence": "(dataframe[\"cmf\"] > 0) & (dataframe[\"cmf_prev\"] <= 0)"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "low",
+    "evidence": "(dataframe[\"close\"] > dataframe[\"ema50\"])"
+   }
+  ]
+ },
+ {
+  "id": "MoneyFlowStrategy",
+  "primary": "volume_flow",
+  "labels": [
+   {
+    "label": "volume_flow",
+    "confidence": "high",
+    "evidence": "(dataframe[\"mfi\"] > 20) & (dataframe[\"mfi_prev\"] <= 20)"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "(dataframe[\"ema50\"] > dataframe[\"ema100\"])"
+   }
+  ]
+ },
+ {
+  "id": "MultiRSIVfi",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi'] < (dataframe['resample_{}_rsi'.format(self.get_ticker_indicator() * 8)] - 20))"
+   },
+   {
+    "label": "volume_flow",
+    "confidence": "medium",
+    "evidence": "(dataframe['vfi'] >= dataframe['vfima']) &"
+   }
+  ]
+ },
+ {
+  "id": "TechnicalExampleStrategy",
+  "primary": "volume_flow",
+  "labels": [
+   {
+    "label": "volume_flow",
+    "confidence": "high",
+    "evidence": "(dataframe['cmf'] < 0)"
+   }
+  ]
+ },
+ {
+  "id": "DCATest2_fixed",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "high",
+    "evidence": "dataframe['buy_1'].iloc[row] = 1"
+   }
+  ],
+  "note": "Buys/sells on fixed candle-count schedule; no price-level grid or indicator signal."
+ },
+ {
+  "id": "GRIDDMIPRICEStrategySpot",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] > 0)"
+   }
+  ],
+  "note": "Entry always true; position adjustment logic in hook not shown."
+ },
+ {
+  "id": "UziChanTB",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "high",
+    "evidence": "trailing_buy = self.trailing_buy(metadata['pair'])"
+   }
+  ],
+  "note": "Trailing order management only; underlying entry/exit signals in superclass not shown."
+ },
+ {
+  "id": "ADX_PRICE_GRID_Strategy_Future_v7",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] > 0)"
+   }
+  ],
+  "note": "Entry always true; grid logic in adjust_trade_position hook not shown."
+ },
+ {
+  "id": "DCATest1",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "high",
+    "evidence": "dataframe['first_buy'].iloc[row] = 1"
+   }
+  ],
+  "note": "Buys on fixed candle-count schedule; DCA-like, not price-level grid."
+ },
+ {
+  "id": "DCAGRID",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] > 0)"
+   }
+  ],
+  "note": "Entry always true; grid/DCA logic in adjust_trade_position hook not shown."
+ },
+ {
+  "id": "DCA",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "high",
+    "evidence": "dataframe['buy_1'] = 0"
+   }
+  ],
+  "note": "Entry condition empty; DCA schedule in indicators not wired to entry."
+ },
+ {
+  "id": "Trend_grid",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe[\"close\"] < dataframe[\"sma_15\"] * self.long_sma15_32.value)"
+   }
+  ],
+  "note": "Long buys below SMA/oversold; short sells above SMA/overbought."
+ },
+ {
+  "id": "Trend_grid_v1",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe[\"close\"] < dataframe[\"sma_15\"] * self.long_sma15_32.value)"
+   }
+  ],
+  "note": "Long buys below SMA/oversold; short sells above SMA/overbought."
+ },
+ {
+  "id": "UziChanTB2",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "high",
+    "evidence": "trailing_buy = self.trailing_buy(metadata['pair'])"
+   }
+  ],
+  "note": "Trailing order management only; underlying entry/exit signals in superclass not shown."
+ }
+]

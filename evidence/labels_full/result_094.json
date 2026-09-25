@@ -1,0 +1,352 @@
+[
+ {
+  "id": "default_strategy_6",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi'] < 35) &"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['adx'] > 30) &"
+   }
+  ]
+ },
+ {
+  "id": "default_strategy_7",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi'] < 35) &"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['adx'] > 30) &"
+   }
+  ]
+ },
+ {
+  "id": "default_strategy_8",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi'] < 35) &"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['adx'] > 30) &"
+   }
+  ]
+ },
+ {
+  "id": "default_strategy_9",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi'] < 35) &"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['adx'] > 30) &"
+   }
+  ]
+ },
+ {
+  "id": "degen",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe[\"fastd\"] < 20) &"
+   }
+  ]
+ },
+ {
+  "id": "delist_shorter_strategy",
+  "primary": "other",
+  "labels": [],
+  "note": "Risk management/delisting signal, not traditional trading logic"
+ },
+ {
+  "id": "deneme",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(qtpylib.crossed_above(dataframe['rsi'], self.buy_rsi.value))"
+   }
+  ]
+ },
+ {
+  "id": "dip",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "self.ichimoku_cloud(dataframe, conversion_periods="
+   }
+  ]
+ },
+ {
+  "id": "discordsocialist",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < dataframe['ma_offset_buy'])"
+   },
+   {
+    "label": "volatility",
+    "confidence": "medium",
+    "evidence": "dataframe['bbdelta'].gt(dataframe['close'] * 0.008)"
+   }
+  ]
+ },
+ {
+  "id": "donchian",
+  "primary": "breakout",
+  "labels": [
+   {
+    "label": "breakout",
+    "confidence": "high",
+    "evidence": "(qtpylib.crossed_above(dataframe['close'], dataframe['upper']))"
+   }
+  ]
+ },
+ {
+  "id": "dualwave",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "informative['200_SMA'] = ta.SMA(informative[\"close\"]"
+   }
+  ]
+ },
+ {
+  "id": "dualwave_2",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "informative['200_SMA'] = ta.SMA(informative[\"close\"]"
+   }
+  ]
+ },
+ {
+  "id": "e0v1e_dca_temp",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe[\"close\"] < dataframe[\"sma_15\"]"
+   }
+  ]
+ },
+ {
+  "id": "e6v34",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "conditions.append(dataframe[f'hma{shma}'].shift(1)"
+   }
+  ]
+ },
+ {
+  "id": "eddies",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['EWO'] > self.ewo_high.value)"
+   }
+  ]
+ },
+ {
+  "id": "el",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['EWO'] > self.ewo_high.value)"
+   }
+  ]
+ },
+ {
+  "id": "el_2",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['EWO'] > self.ewo_high.value)"
+   }
+  ]
+ },
+ {
+  "id": "el_extrema",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['&s-extrema'] < 0)"
+   }
+  ]
+ },
+ {
+  "id": "el_extrema_RL",
+  "primary": "statistical",
+  "labels": [
+   {
+    "label": "statistical",
+    "confidence": "high",
+    "evidence": "(dataframe['do_predict'] == 1)"
+   }
+  ]
+ },
+ {
+  "id": "el_extrema_rolling",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['&s-extrema'] < 0)"
+   }
+  ]
+ },
+ {
+  "id": "el_extrema_rolling_2",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['&s-extrema'] < 0)"
+   }
+  ]
+ },
+ {
+  "id": "el_extrema_rsiqui",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi'] < 30)"
+   }
+  ]
+ },
+ {
+  "id": "el_extrema_rsiqui_2",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi'] < 30)"
+   }
+  ]
+ },
+ {
+  "id": "el_rsiqui",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi'] < 30)"
+   }
+  ]
+ },
+ {
+  "id": "el_rsiqui_2",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi'] < 30)"
+   }
+  ]
+ },
+ {
+  "id": "el_rsiqui_unbiased",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi'] < 30)"
+   }
+  ]
+ },
+ {
+  "id": "eltoro",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['BTC_EWO_Fast_1h'] >= self.bull.value)"
+   }
+  ]
+ },
+ {
+  "id": "eltoro1_4",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['BTC_EWO_Fast_4h'] >= self.bull.value)"
+   }
+  ]
+ },
+ {
+  "id": "eltoro1_4_simple",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['BTC_EWO_Fast_4h'] >= self.bull.value)"
+   }
+  ]
+ },
+ {
+  "id": "ema",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(qtpylib.crossed_above(dataframe['ema'],dataframe['ema2']))"
+   }
+  ]
+ }
+]

@@ -117,3 +117,13 @@ momentum_rsi,solo,measured,202,4554,15500m
 momentum_wick,solo,measured,341,4419,15500m
 AlexBandSniperV10AINoBias,1,timeout,3601,2183,3500m
 AlexBandSniperV10AINoBias,solo,timeout,3601,2129,15500m
+BinHModWhiteHOV0,1,resource_inconclusive,131,1132,3500m
+BinHModWhiteHOV0,solo,measured,151,4863,15500m
+CombinedBinHClucAndSMAOffset_2,1,resource_inconclusive,131,1110,3500m
+CombinedBinHClucAndSMAOffset_2,solo,measured,160,6295,15500m
+BB_RPB_TSL_RNG_V2_20211008,1,resource_inconclusive,140,3007,3500m
+BB_RPB_TSL_RNG_V2_20211008,solo,measured,169,6384,15500m
+BB_RPB_TSL_jilv220_github_20211008,1,resource_inconclusive,141,2735,3500m
+BB_RPB_TSL_jilv220_github_20211008,solo,measured,175,6479,15500m
+BinClucMadSMACore,1,resource_inconclusive,141,1099,3500m
+BinClucMadSMACore,solo,measured,180,6103,15500m

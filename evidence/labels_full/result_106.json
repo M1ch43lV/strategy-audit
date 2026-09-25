@@ -1,0 +1,302 @@
+[
+ {
+  "id": "strategy_04",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "qtpylib.crossed_above(dataframe['rsi'], 30)"
+   }
+  ]
+ },
+ {
+  "id": "strategy_06_bb_rsi",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe[\"close\"] < dataframe['bb_lowerband3'])"
+   }
+  ]
+ },
+ {
+  "id": "strategy_08_bb_rsi",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe[\"close\"] < dataframe['bb_lowerband3'])"
+   }
+  ]
+ },
+ {
+  "id": "strategy_3",
+  "primary": "other",
+  "labels": [],
+  "note": "No entry or exit logic defined"
+ },
+ {
+  "id": "strategy_test",
+  "primary": "other",
+  "labels": [],
+  "note": "Entry and exit code truncated/incomplete"
+ },
+ {
+  "id": "strategy_test_v2",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['adx'] > 30) &\n                (dataframe['plus_di'] > 0.5)"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "(dataframe['rsi'] < 35) &\n                (dataframe['fastd'] < 35)"
+   }
+  ]
+ },
+ {
+  "id": "strategy_test_v2_1",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['adx'] > 30) &\n                (dataframe['plus_di'] > 0.5)"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "(dataframe['rsi'] < 35) &\n                (dataframe['fastd'] < 35)"
+   }
+  ]
+ },
+ {
+  "id": "strategy_test_v2_16",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['adx'] > 30) &\n                (dataframe['plus_di'] > 0.5)"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "(dataframe['rsi'] < 35) &\n                (dataframe['fastd'] < 35)"
+   }
+  ]
+ },
+ {
+  "id": "strategy_test_v2_6",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['adx'] > 30) &\n                (dataframe['plus_di'] > 0.5)"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "(dataframe['rsi'] < 35) &\n                (dataframe['fastd'] < 35)"
+   }
+  ]
+ },
+ {
+  "id": "strategy_test_v3",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['adx'] > 30) &\n                (dataframe['plus_di'] > self.buy_plusdi.value)"
+   }
+  ]
+ },
+ {
+  "id": "strategy_test_v3_recursive_issue",
+  "primary": "other",
+  "labels": [],
+  "note": "Entry and exit trend functions return empty dataframe"
+ },
+ {
+  "id": "strategy_test_v3_with_lookahead_bias",
+  "primary": "other",
+  "labels": [],
+  "note": "Uses forward/backward shifts, contains lookahead bias"
+ },
+ {
+  "id": "strategy_v2",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['ema50'] >= dataframe['ema200'])"
+   }
+  ]
+ },
+ {
+  "id": "stratetgy_123124312412",
+  "primary": "pattern",
+  "labels": [
+   {
+    "label": "pattern",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] <= dataframe['fib_618'])"
+   }
+  ]
+ },
+ {
+  "id": "stratfib",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['dema8'] > dataframe['dema21']) &\n                (dataframe['dema8'] > dataframe['dema89'])"
+   }
+  ]
+ },
+ {
+  "id": "strato",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['k'] < 18) &\n                (dataframe['k'] >= dataframe['d'])"
+   }
+  ]
+ },
+ {
+  "id": "strato_244",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "((dataframe['close']+dataframe['low'])/2)<dataframe['bblow']"
+   }
+  ]
+ },
+ {
+  "id": "tacos",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi_ma_slope'] > 0)"
+   }
+  ]
+ },
+ {
+  "id": "tacos1",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "qtpylib.crossed_above(\n                dataframe[f'ema_bshort"
+   }
+  ]
+ },
+ {
+  "id": "tbedit",
+  "primary": "other",
+  "labels": [],
+  "note": "Entry and exit code truncated/incomplete"
+ },
+ {
+  "id": "tbtest",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < dataframe['sma_offset']) & (dataframe['rsi'] < 30)"
+   }
+  ]
+ },
+ {
+  "id": "tema_master1m",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(qtpylib.crossed_above(dataframe[\"TEMA\"], dataframe[\"bb_lowerband\"]))"
+   }
+  ]
+ },
+ {
+  "id": "tema_master_v2",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(qtpylib.crossed_above(dataframe[\"TEMA\"], dataframe[\"bb_lowerband\"]))"
+   }
+  ]
+ },
+ {
+  "id": "tesla",
+  "primary": "other",
+  "labels": [],
+  "note": "Entry and exit code truncated/incomplete"
+ },
+ {
+  "id": "tesla4",
+  "primary": "other",
+  "labels": [],
+  "note": "Entry and exit code truncated/incomplete"
+ },
+ {
+  "id": "tesla7",
+  "primary": "other",
+  "labels": [],
+  "note": "Entry and exit code truncated/incomplete"
+ },
+ {
+  "id": "test",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(qtpylib.crossed_above(dataframe['ema5'], dataframe['ema10']))"
+   }
+  ]
+ },
+ {
+  "id": "test_ema",
+  "primary": "other",
+  "labels": [],
+  "note": "Entry and exit conditions empty"
+ },
+ {
+  "id": "test_ema2",
+  "primary": "other",
+  "labels": [],
+  "note": "Entry and exit conditions empty"
+ },
+ {
+  "id": "test_strategy",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['adx'] > 30) &\n                (dataframe['tema'] <= dataframe['bb_middleband'])"
+   }
+  ]
+ }
+]

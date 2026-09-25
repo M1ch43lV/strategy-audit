@@ -1,0 +1,262 @@
+[
+ {
+  "id": "TaLevelB15m",
+  "primary": "other",
+  "labels": [],
+  "note": "Entry uses level_min/max from hidden methods, exit on RSI extremes"
+ },
+ {
+  "id": "TaLevelB5m",
+  "primary": "other",
+  "labels": [],
+  "note": "Entry uses level_min/max from hidden methods, exit on RSI extremes"
+ },
+ {
+  "id": "TaSearch1m",
+  "primary": "breakout",
+  "labels": [
+   {
+    "label": "breakout",
+    "confidence": "high",
+    "evidence": "df = self.search.find_extremes(df)"
+   }
+  ]
+ },
+ {
+  "id": "TaSearch1mBTC",
+  "primary": "breakout",
+  "labels": [
+   {
+    "label": "breakout",
+    "confidence": "high",
+    "evidence": "df = self.search.find_extremes(df)"
+   }
+  ]
+ },
+ {
+  "id": "TaSearch30m",
+  "primary": "breakout",
+  "labels": [
+   {
+    "label": "breakout",
+    "confidence": "high",
+    "evidence": "df = self.search.find_extremes(df)"
+   }
+  ]
+ },
+ {
+  "id": "TaSearch30m_6",
+  "primary": "other",
+  "labels": [],
+  "note": "Entry uses buy_stride and buy_past_rsi from hidden methods"
+ },
+ {
+  "id": "TaSearch30m_8",
+  "primary": "other",
+  "labels": [],
+  "note": "Entry uses buy_stride and buy_past_rsi from hidden methods"
+ },
+ {
+  "id": "TaSearch30m_9",
+  "primary": "other",
+  "labels": [],
+  "note": "Entry uses buy_stride and buy_past_rsi from hidden methods"
+ },
+ {
+  "id": "TaSearch5m",
+  "primary": "breakout",
+  "labels": [
+   {
+    "label": "breakout",
+    "confidence": "high",
+    "evidence": "df = self.search.find_extremes(df)"
+   }
+  ]
+ },
+ {
+  "id": "TaSearch5mL",
+  "primary": "other",
+  "labels": [],
+  "note": "Entry uses buy_stride and buy_past_rsi from hidden methods"
+ },
+ {
+  "id": "TaSearch5m_2",
+  "primary": "other",
+  "labels": [],
+  "note": "Entry uses buy_stride and buy_past_rsi from hidden methods"
+ },
+ {
+  "id": "TaSearch5m_4",
+  "primary": "other",
+  "labels": [],
+  "note": "Entry uses buy_stride and buy_past_rsi from hidden methods"
+ },
+ {
+  "id": "TaSearch5m_5",
+  "primary": "other",
+  "labels": [],
+  "note": "Entry uses buy_stride and buy_past_rsi from hidden methods"
+ },
+ {
+  "id": "TaSearchDynamic30m",
+  "primary": "other",
+  "labels": [],
+  "note": "Entry uses buy_stride and buy_past_rsi from hidden methods"
+ },
+ {
+  "id": "TaSearchDynamic30m_2",
+  "primary": "other",
+  "labels": [],
+  "note": "Entry uses buy_stride and buy_past_rsi from hidden methods"
+ },
+ {
+  "id": "TaSearchDynamic5m",
+  "primary": "other",
+  "labels": [],
+  "note": "Entry uses buy_stride and buy_past_rsi from hidden methods"
+ },
+ {
+  "id": "TaSearchDynamic5m_3",
+  "primary": "other",
+  "labels": [],
+  "note": "Entry uses buy_stride and buy_past_rsi from hidden methods"
+ },
+ {
+  "id": "TaSearchLevelB30m",
+  "primary": "other",
+  "labels": [],
+  "note": "Entry uses level_min/max from hidden methods"
+ },
+ {
+  "id": "TaSearchLevelC30m",
+  "primary": "other",
+  "labels": [],
+  "note": "Entry uses level_min/max from hidden methods"
+ },
+ {
+  "id": "TaSearchLevelG15m",
+  "primary": "pattern",
+  "labels": [
+   {
+    "label": "pattern",
+    "confidence": "high",
+    "evidence": "df = self.do_heikin_ashi(df)"
+   }
+  ]
+ },
+ {
+  "id": "TaSearchLevelG15mv",
+  "primary": "pattern",
+  "labels": [
+   {
+    "label": "pattern",
+    "confidence": "high",
+    "evidence": "df = self.do_heikin_ashi(df)"
+   }
+  ]
+ },
+ {
+  "id": "TaSearchLevelH15m",
+  "primary": "pattern",
+  "labels": [
+   {
+    "label": "pattern",
+    "confidence": "high",
+    "evidence": "df = self.do_heikin_ashi(df)"
+   }
+  ]
+ },
+ {
+  "id": "TaSearchLevelH15m_2",
+  "primary": "pattern",
+  "labels": [
+   {
+    "label": "pattern",
+    "confidence": "high",
+    "evidence": "df = self.do_heikin_ashi(df)"
+   }
+  ]
+ },
+ {
+  "id": "TaSearchLevelJ15m",
+  "primary": "pattern",
+  "labels": [
+   {
+    "label": "pattern",
+    "confidence": "high",
+    "evidence": "df = self.do_heikin_ashi(df)"
+   }
+  ]
+ },
+ {
+  "id": "TakeprofitThenTrail",
+  "primary": "other",
+  "labels": [],
+  "note": "Placeholder strategy; all entry/exit logic in custom_stoploss"
+ },
+ {
+  "id": "Tank1Modulus",
+  "primary": "pattern",
+  "labels": [
+   {
+    "label": "pattern",
+    "confidence": "high",
+    "evidence": "(df[\"wave_t1\"] < df[\"wave_t1_DN_FIB\"])"
+   },
+   {
+    "label": "mean_reversion",
+    "confidence": "medium",
+    "evidence": "(df[\"minima_check\"].shift(3) == 1)"
+   }
+  ]
+ },
+ {
+  "id": "Tank5HurstDCAV1",
+  "primary": "pattern",
+  "labels": [
+   {
+    "label": "pattern",
+    "confidence": "high",
+    "evidence": "(df['harmonic_1/4'] < df['harmonic_1/3'])"
+   }
+  ]
+ },
+ {
+  "id": "Tank5HurstDCAV3",
+  "primary": "pattern",
+  "labels": [
+   {
+    "label": "pattern",
+    "confidence": "high",
+    "evidence": "(df['harmonic_1/4'] > df['upper_envelope'])"
+   }
+  ]
+ },
+ {
+  "id": "Tank5ModulusDCA",
+  "primary": "pattern",
+  "labels": [
+   {
+    "label": "pattern",
+    "confidence": "high",
+    "evidence": "(df[\"wave_t1\"] < df[\"wave_t1_DN_FIB\"])"
+   }
+  ]
+ },
+ {
+  "id": "Tank5ModulusDCAV3",
+  "primary": "pattern",
+  "labels": [
+   {
+    "label": "pattern",
+    "confidence": "high",
+    "evidence": "(df['total_bullish_divergences'].shift() > 0)"
+   },
+   {
+    "label": "mean_reversion",
+    "confidence": "medium",
+    "evidence": "(df[\"willr14\"] < -50)"
+   }
+  ]
+ }
+]

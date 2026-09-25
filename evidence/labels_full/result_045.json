@@ -1,0 +1,267 @@
+[
+ {
+  "id": "Lateralus_Slow",
+  "primary": "other",
+  "labels": [],
+  "note": "No indicator, entry, or exit code provided"
+ },
+ {
+  "id": "LeoStrategy",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "qtpylib.crossed_above(dataframe['ema10'], dataframe['ema60'])"
+   }
+  ]
+ },
+ {
+  "id": "LetsWinStratv3",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['adx'] > 30)"
+   }
+  ]
+ },
+ {
+  "id": "Leveraged",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < dataframe['ema_{}'.format(self.EMA_SHORT_TERM)])"
+   }
+  ]
+ },
+ {
+  "id": "LightningScalper",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "dataframe['rsi_oversold'] &"
+   }
+  ]
+ },
+ {
+  "id": "LimitedDCAStrategy",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "dataframe['rsi'] < self.buy_rsi_level.value"
+   }
+  ]
+ },
+ {
+  "id": "LimitedEntryDCAStrategy",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "dataframe['rsi'] < self.rsi_oversold.value"
+   }
+  ]
+ },
+ {
+  "id": "LinearRegressionStrategy",
+  "primary": "statistical",
+  "labels": [
+   {
+    "label": "statistical",
+    "confidence": "high",
+    "evidence": "(dataframe[\"linreg_slope\"] > 0) & (dataframe[\"linreg_slope_prev\"] <= 0)"
+   }
+  ]
+ },
+ {
+  "id": "LiquiditySweep",
+  "primary": "pattern",
+  "labels": [
+   {
+    "label": "pattern",
+    "confidence": "high",
+    "evidence": "fvg_data = smc.fvg(ohlc, join_consecutive=True)"
+   }
+  ]
+ },
+ {
+  "id": "LitmusBBStrategy",
+  "primary": "other",
+  "labels": [],
+  "note": "No indicator, entry, or exit code provided"
+ },
+ {
+  "id": "LitmusBBTrendStrategy",
+  "primary": "other",
+  "labels": [],
+  "note": "No indicator, entry, or exit code provided"
+ },
+ {
+  "id": "LitmusClucStrategy",
+  "primary": "other",
+  "labels": [],
+  "note": "No indicator, entry, or exit code provided"
+ },
+ {
+  "id": "LitmusEntryRollClassificationStrategy",
+  "primary": "statistical",
+  "labels": [
+   {
+    "label": "statistical",
+    "confidence": "high",
+    "evidence": "df[\"minima_0_mean\"] + df[\"minima_0_std\"]"
+   }
+  ]
+ },
+ {
+  "id": "LitmusGoodMinMaxClassificationStrategy",
+  "primary": "other",
+  "labels": [],
+  "note": "Entry driven by hidden FreqAI ML model; visible code only checks do_predict"
+ },
+ {
+  "id": "LitmusMLDPStrategy",
+  "primary": "statistical",
+  "labels": [
+   {
+    "label": "statistical",
+    "confidence": "high",
+    "evidence": "df[\"minima_slow\"] >= df[\"primary_enter_long_threshold\"]"
+   }
+  ]
+ },
+ {
+  "id": "LitmusMetaStrategy",
+  "primary": "other",
+  "labels": [],
+  "note": "Entry from hidden ML model; exits use Bollinger mean reversion"
+ },
+ {
+  "id": "LitmusMinMaxBroadClassificationStrategy",
+  "primary": "statistical",
+  "labels": [
+   {
+    "label": "statistical",
+    "confidence": "high",
+    "evidence": "qtpylib.crossed_above(df[\"minima_0\"], df[\"long_entry_target\"])"
+   }
+  ]
+ },
+ {
+  "id": "LitmusMinMaxClassificationStrategy",
+  "primary": "statistical",
+  "labels": [
+   {
+    "label": "statistical",
+    "confidence": "high",
+    "evidence": "qtpylib.crossed_above(df[\"missed1_minima\"], df[\"missed1_long_entry_target\"])"
+   }
+  ]
+ },
+ {
+  "id": "LitmusMinMaxRegretClassificationStrategy",
+  "primary": "statistical",
+  "labels": [
+   {
+    "label": "statistical",
+    "confidence": "high",
+    "evidence": "qtpylib.crossed_above(df[\"missed_long_entry\"], df[\"missed_long_entry_target\"])"
+   }
+  ]
+ },
+ {
+  "id": "LitmusMinMaxSegmentClassificationStrategy",
+  "primary": "statistical",
+  "labels": [
+   {
+    "label": "statistical",
+    "confidence": "high",
+    "evidence": "df[\"delta_segment_1x1x\"] > df[\"entry_threshold_long\"]"
+   }
+  ]
+ },
+ {
+  "id": "LitmusMinMaxStrategy",
+  "primary": "statistical",
+  "labels": [
+   {
+    "label": "statistical",
+    "confidence": "high",
+    "evidence": "df[\"minima\"] >= df[\"primary_enter_long_threshold\"]"
+   }
+  ]
+ },
+ {
+  "id": "LitmusMinMaxTrendStrategy",
+  "primary": "statistical",
+  "labels": [
+   {
+    "label": "statistical",
+    "confidence": "high",
+    "evidence": "df[\"a_win_long\"] >= df[\"meta_enter_long_threshold\"]"
+   }
+  ]
+ },
+ {
+  "id": "LitmusSARStrategy",
+  "primary": "other",
+  "labels": [],
+  "note": "No indicator, entry, or exit code provided"
+ },
+ {
+  "id": "LitmusScalpStrategy",
+  "primary": "other",
+  "labels": [],
+  "note": "No indicator, entry, or exit code provided"
+ },
+ {
+  "id": "LitmusSimpleStrategy",
+  "primary": "other",
+  "labels": [],
+  "note": "Entry driven by hidden FreqAI ML model prediction"
+ },
+ {
+  "id": "LitmusTrendScalpStrategy",
+  "primary": "other",
+  "labels": [],
+  "note": "No indicator, entry, or exit code provided"
+ },
+ {
+  "id": "LitmusVulcanStrategy",
+  "primary": "other",
+  "labels": [],
+  "note": "No indicator, entry, or exit code provided"
+ },
+ {
+  "id": "Lmao",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "dataframe[\"close\"] < dataframe[\"bb_lowerband3\"] * self.buy_bb_factor.value"
+   }
+  ]
+ },
+ {
+  "id": "LmaoStoplossClusterOpt",
+  "primary": "other",
+  "labels": [],
+  "note": "No indicator, entry, or exit code provided"
+ },
+ {
+  "id": "LoadRLModel",
+  "primary": "other",
+  "labels": [],
+  "note": "Entry and exit driven by hidden RL model predictions"
+ }
+]

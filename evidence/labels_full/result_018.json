@@ -1,0 +1,349 @@
+[
+ {
+  "id": "ClucHAnix_5m_old",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['ha_close'].lt(dataframe['lower'].shift()))"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "dataframe['rocr_1h'].gt(self.rocr_1h.value)"
+   }
+  ]
+ },
+ {
+  "id": "ClucHAnix_748",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['ha_close'].lt(dataframe['lower'].shift()))"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "dataframe['rocr_1h'].gt(params['rocr-1h'])"
+   }
+  ]
+ },
+ {
+  "id": "ClucHAnix_8",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['ha_close'].lt(dataframe['lower'].shift()))"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "dataframe['rocr_1h'].gt(params['rocr-1h'])"
+   }
+  ]
+ },
+ {
+  "id": "ClucHAnix_932",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['ha_close'].lt(dataframe['lower'].shift()))"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "dataframe['rocr_1h'].gt(params['rocr-1h'])"
+   }
+  ]
+ },
+ {
+  "id": "ClucHAnix_BB_RPB",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi_4'] < int(self.lambo1_rsi_4_limit.value))"
+   }
+  ],
+  "note": "Entry code truncated; lambo1/lambo2 RSI oversold conditions visible"
+ },
+ {
+  "id": "ClucHAnix_BB_RPB_2",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi_4'] < int(self.lambo1_rsi_4_limit.value))"
+   }
+  ],
+  "note": "Entry code truncated; lambo RSI oversold entry"
+ },
+ {
+  "id": "ClucHAnix_BB_RPB_3",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi_4'] < int(self.lambo1_rsi_4_limit.value))"
+   }
+  ]
+ },
+ {
+  "id": "ClucHAnix_BB_RPB_5M_MOD2_DYNAMIC_TB",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi_4'] < int(self.lambo1_rsi_4_limit.value))"
+   }
+  ]
+ },
+ {
+  "id": "ClucHAnix_BB_RPB_HO2",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi_4'] < int(self.lambo1_rsi_4_limit.value))"
+   }
+  ]
+ },
+ {
+  "id": "ClucHAnix_BB_RPB_MOD",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi_4'] < int(self.lambo1_rsi_4_limit.value))"
+   }
+  ]
+ },
+ {
+  "id": "ClucHAnix_BB_RPB_MOD2",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi_4'] < int(self.lambo1_rsi_4_limit.value))"
+   }
+  ]
+ },
+ {
+  "id": "ClucHAnix_BB_RPB_MOD2_2",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi_4'] < int(self.lambo1_rsi_4_limit.value))"
+   }
+  ]
+ },
+ {
+  "id": "ClucHAnix_BB_RPB_MOD2_DYNAMIC_TB",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi_4'] < int(self.lambo1_rsi_4_limit.value))"
+   }
+  ]
+ },
+ {
+  "id": "ClucHAnix_BB_RPB_MOD2_ROI",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi_4'] < int(self.lambo1_rsi_4_limit.value))"
+   }
+  ]
+ },
+ {
+  "id": "ClucHAnix_BB_RPB_MOD2_ROI_DYNAMIC_TB",
+  "primary": "other",
+  "labels": [],
+  "note": "Trailing buy wrapper inheriting core logic from parent via super()"
+ },
+ {
+  "id": "ClucHAnix_BB_RPB_MOD2_TB",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi_4'] < int(self.lambo1_rsi_4_limit.value))"
+   }
+  ]
+ },
+ {
+  "id": "ClucHAnix_BB_RPB_MOD2_fixed",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi_4'] < int(self.lambo1_rsi_4_limit.value))"
+   }
+  ]
+ },
+ {
+  "id": "ClucHAnix_BB_RPB_MOD_2",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi_4'] < int(self.lambo1_rsi_4_limit.value))"
+   }
+  ]
+ },
+ {
+  "id": "ClucHAnix_BB_RPB_MOD_CTT",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi_4'] < int(self.lambo1_rsi_4_limit.value))"
+   }
+  ]
+ },
+ {
+  "id": "ClucHAnix_BB_RPB_MOD_CTT_DTB",
+  "primary": "other",
+  "labels": [],
+  "note": "Trailing buy wrapper inheriting core logic from parent via super()"
+ },
+ {
+  "id": "ClucHAnix_BB_RPB_MOD_CTT_STB",
+  "primary": "other",
+  "labels": [],
+  "note": "Trailing buy wrapper inheriting core logic from parent via super()"
+ },
+ {
+  "id": "ClucHAnix_BB_RPB_MOD_E0V1E_DYNAMIC_TB1",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi_4'] < int(self.lambo1_rsi_4_limit.value))"
+   }
+  ]
+ },
+ {
+  "id": "ClucHAnix_BB_RPB_MOD_E0V1E_ROI",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi_4'] < int(self.lambo1_rsi_4_limit.value))"
+   }
+  ]
+ },
+ {
+  "id": "ClucHAnix_BB_RPB_MOD_E0V1E_ROI_3",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi_4'] < int(self.lambo1_rsi_4_limit.value))"
+   }
+  ]
+ },
+ {
+  "id": "ClucHAnix_BB_RPB_MOD_E0V1E_ROI_DYNAMIC_TB",
+  "primary": "other",
+  "labels": [],
+  "note": "Trailing buy wrapper inheriting core logic from parent via super()"
+ },
+ {
+  "id": "ClucHAnix_BB_RPB_MOD_trailing_buy",
+  "primary": "other",
+  "labels": [],
+  "note": "Trailing buy wrapper; core entry logic inherited, sheet truncated"
+ },
+ {
+  "id": "ClucHAnix_BB_RPB_TraNz",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe[f'rmi_length_{self.buy_rmi_length.value}'] < self.buy_rmi.value)"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "(dataframe['ema_26'] > dataframe['ema_12'])"
+   }
+  ]
+ },
+ {
+  "id": "ClucHAnix_hhll",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['ha_close'].lt(dataframe['lower'].shift()))"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "dataframe['rocr_1h'].gt(self.rocr_1h.value)"
+   }
+  ]
+ },
+ {
+  "id": "ClucHAnix_hhll_66",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['ha_close'].lt(dataframe['lower'].shift()))"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "dataframe['rocr_1h'].gt(self.rocr_1h.value)"
+   }
+  ]
+ },
+ {
+  "id": "ClucHAnix_hhll_714",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['ha_close'].lt(dataframe['lower'].shift()))"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "dataframe['rocr_1h'].gt(self.rocr_1h.value)"
+   }
+  ]
+ }
+]

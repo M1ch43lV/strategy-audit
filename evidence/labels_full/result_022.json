@@ -1,0 +1,415 @@
+[
+ {
+  "id": "CoreStrategy",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "dataframe[f\"ma_sell_{self.base_nb_candles_sell.value}\"] * self.high_offset.value"
+   },
+   {
+    "label": "mean_reversion",
+    "confidence": "medium",
+    "evidence": "(dataframe[\"close\"] > dataframe[\"bb_middleband\"] * 1.01)"
+   }
+  ],
+  "note": "Entry code truncated; exit shows MA and BB strategies"
+ },
+ {
+  "id": "CppiBasket",
+  "primary": "other",
+  "labels": [],
+  "note": "No trading logic present; empty indicator, entry, and exit code"
+ },
+ {
+  "id": "CrazyThursdayJP",
+  "primary": "pattern",
+  "labels": [
+   {
+    "label": "pattern",
+    "confidence": "high",
+    "evidence": "(dataframe[self.resample('total_bullish_divergences')].shift() > 0)"
+   }
+  ]
+ },
+ {
+  "id": "CrazyThursdayJP1h",
+  "primary": "pattern",
+  "labels": [
+   {
+    "label": "pattern",
+    "confidence": "high",
+    "evidence": "(dataframe[self.resample('total_bullish_divergences')].shift() > 0)"
+   }
+  ]
+ },
+ {
+  "id": "CrazyThursdayJP30m",
+  "primary": "pattern",
+  "labels": [
+   {
+    "label": "pattern",
+    "confidence": "high",
+    "evidence": "(dataframe[self.resample('total_bullish_divergences')].shift() > 0)"
+   }
+  ]
+ },
+ {
+  "id": "CrossEMA",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['ema1'] > dataframe['ema2']) & (dataframe['ema1'] < 0.019)"
+   }
+  ]
+ },
+ {
+  "id": "CrossEMAStrategy",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['ema28'] > dataframe['ema48']) & (dataframe['stoch_rsi'] < self.buy_stoch_rsi.value)"
+   }
+  ]
+ },
+ {
+  "id": "CryptoFrog",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['mfi'] < 20) | (dataframe['dmi_minus'] > 30)"
+   },
+   {
+    "label": "volatility",
+    "confidence": "high",
+    "evidence": "(dataframe['bbw_expansion'] == 1) & (dataframe['sqzmi'] == False)"
+   }
+  ]
+ },
+ {
+  "id": "CryptoFrog1",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['mfi'] < 20) | (dataframe['dmi_minus'] > 30)"
+   },
+   {
+    "label": "volatility",
+    "confidence": "high",
+    "evidence": "(dataframe['bbw_expansion'] == 1) & (dataframe['sqzmi'] == False)"
+   }
+  ]
+ },
+ {
+  "id": "CryptoFrogHO",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['mfi'] < 20) | (dataframe['dmi_minus'] > 30)"
+   },
+   {
+    "label": "volatility",
+    "confidence": "high",
+    "evidence": "(dataframe['bbw_expansion'] == 1) & (dataframe['sqzmi'] == False)"
+   }
+  ]
+ },
+ {
+  "id": "CryptoFrogHO2",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['mfi'] < 20) | (dataframe['dmi_minus'] > 30)"
+   },
+   {
+    "label": "volatility",
+    "confidence": "high",
+    "evidence": "(dataframe['bbw_expansion'] == 1) & (dataframe['sqzmi'] == False)"
+   }
+  ]
+ },
+ {
+  "id": "CryptoFrogHO2A",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['mfi'] < 20) | (dataframe['dmi_minus'] > 30)"
+   },
+   {
+    "label": "volatility",
+    "confidence": "high",
+    "evidence": "(dataframe['bbw_expansion'] == 1) & (dataframe['sqzmi'] == False)"
+   }
+  ]
+ },
+ {
+  "id": "CryptoFrogHO3A1",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['mfi'] < 20) | (dataframe['dmi_minus'] > 30)"
+   },
+   {
+    "label": "volatility",
+    "confidence": "high",
+    "evidence": "(dataframe['bbw_expansion'] == 1) & (dataframe['sqzmi'] == False)"
+   }
+  ]
+ },
+ {
+  "id": "CryptoFrogHO3A2",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['mfi'] < 20) | (dataframe['dmi_minus'] > 30)"
+   },
+   {
+    "label": "volatility",
+    "confidence": "high",
+    "evidence": "(dataframe['bbw_expansion'] == 1) & (dataframe['sqzmi'] == False)"
+   }
+  ]
+ },
+ {
+  "id": "CryptoFrogHO3A3",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['mfi'] < 20) | (dataframe['dmi_minus'] > 30)"
+   },
+   {
+    "label": "volatility",
+    "confidence": "high",
+    "evidence": "(dataframe['bbw_expansion'] == 1) & (dataframe['sqzmi'] == False)"
+   }
+  ]
+ },
+ {
+  "id": "CryptoFrogHO3A4",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['mfi'] < 20) | (dataframe['dmi_minus'] > 30)"
+   },
+   {
+    "label": "volatility",
+    "confidence": "high",
+    "evidence": "(dataframe['bbw_expansion'] == 1) & (dataframe['sqzmi'] == False)"
+   }
+  ]
+ },
+ {
+  "id": "CryptoFrogNFI",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['mfi'] < 20) | (dataframe['dmi_minus'] > 30)"
+   },
+   {
+    "label": "volatility",
+    "confidence": "high",
+    "evidence": "(dataframe['bbw_expansion'] == 1) & (dataframe['sqzmi'] == False)"
+   }
+  ]
+ },
+ {
+  "id": "CryptoFrogNFI2",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['mfi'] < 20) | (dataframe['dmi_minus'] > 30)"
+   },
+   {
+    "label": "volatility",
+    "confidence": "high",
+    "evidence": "(dataframe['bbw_expansion'] == 1) & (dataframe['sqzmi'] == False)"
+   }
+  ]
+ },
+ {
+  "id": "CryptoFrogNFIHO1A",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['mfi'] < 20) | (dataframe['dmi_minus'] > 30)"
+   },
+   {
+    "label": "volatility",
+    "confidence": "high",
+    "evidence": "(dataframe['bbw_expansion'] == 1) & (dataframe['sqzmi'] == False)"
+   }
+  ]
+ },
+ {
+  "id": "CryptoFrogOffset",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['mfi'] < 20) | (dataframe['dmi_minus'] > 30)"
+   },
+   {
+    "label": "volatility",
+    "confidence": "high",
+    "evidence": "(dataframe['bbw_expansion'] == 1) & (dataframe['sqzmi'] == False)"
+   }
+  ]
+ },
+ {
+  "id": "CryptoFrog_205",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['mfi'] < 20) | (dataframe['dmi_minus'] > 30)"
+   },
+   {
+    "label": "volatility",
+    "confidence": "high",
+    "evidence": "(dataframe['bbw_expansion'] == 1) & (dataframe['sqzmi'] == False)"
+   }
+  ]
+ },
+ {
+  "id": "CryptoFrog_nateema",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['fisher_rsi'] <= self.buy_fisher.value) & (dataframe['bb_gain'] >= self.buy_bb_gain.value)"
+   },
+   {
+    "label": "volatility",
+    "confidence": "medium",
+    "evidence": "bb_gain expansion measure in entry condition"
+   }
+  ]
+ },
+ {
+  "id": "CryptoFuturesStrategy",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['ema50'] > dataframe['ema200']) & (dataframe['adx'] > 25)"
+   },
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "qtpylib.crossed_above(dataframe['macd'], dataframe['macd_signal'])"
+   }
+  ]
+ },
+ {
+  "id": "CryptoPredictionTraining",
+  "primary": "other",
+  "labels": [],
+  "note": "No trading logic; buy and sell columns set to 0"
+ },
+ {
+  "id": "CryptosRejectBitcoin",
+  "primary": "other",
+  "labels": [],
+  "note": "No entry/exit logic defined; conditions are empty"
+ },
+ {
+  "id": "CsMom",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe[\"ema30\"] > dataframe[\"ema60\"]) & (dataframe[\"ema60\"] > dataframe[\"ema120\"])"
+   }
+  ]
+ },
+ {
+  "id": "Cuncontrading",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "((dataframe['adx'] > 25) & qtpylib.crossed_above(dataframe['short'], dataframe['long']))"
+   },
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "((dataframe['macd'] > 0) & ((dataframe['macd'] > dataframe['macdsignal'])"
+   },
+   {
+    "label": "mean_reversion",
+    "confidence": "medium",
+    "evidence": "(dataframe['bb_perc'] < 0.1)"
+   }
+  ]
+ },
+ {
+  "id": "CusTrend_coralTrend_Adx_EMA_Oct_1h",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['adx'] > self.adx_long_min.value) & (dataframe['psar'] < dataframe['close']) & (dataframe['ema'] < dataframe['close'])"
+   }
+  ]
+ },
+ {
+  "id": "CustomAlligatorV0",
+  "primary": "pattern",
+  "labels": [
+   {
+    "label": "pattern",
+    "confidence": "high",
+    "evidence": "(dataframe['smma_lips'] < dataframe['smma_teeth']) & (dataframe['smma_teeth'] > dataframe['smma_jaw'])"
+   }
+  ],
+  "note": "Alligator pattern with moving average alignment"
+ },
+ {
+  "id": "CustomMACDStrategy",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "(dataframe['macd'] <= -9.997) & (dataframe['macdsignal'] <= -100.000)"
+   }
+  ],
+  "note": "Condition values appear unrealistic; MACD-based momentum intended"
+ }
+]

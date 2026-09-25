@@ -1,0 +1,422 @@
+[
+ {
+  "id": "cqq_Green_5mv3",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['EWO'] > self.ewo_high.value) &"
+   },
+   {
+    "label": "mean_reversion",
+    "confidence": "medium",
+    "evidence": "(dataframe['rsi_4'] < int(self.lambo2_rsi_4_limit.value))"
+   }
+  ]
+ },
+ {
+  "id": "crossAboveStrategy",
+  "primary": "breakout",
+  "labels": [
+   {
+    "label": "breakout",
+    "confidence": "high",
+    "evidence": "crossed_above = qtpylib.crossed_above(dataframe['candle_mean'], dataframe['ema100'])"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "dataframe.loc[last_three, 'up_trend'] = 1"
+   }
+  ]
+ },
+ {
+  "id": "crossAboveStrategy15",
+  "primary": "breakout",
+  "labels": [
+   {
+    "label": "breakout",
+    "confidence": "high",
+    "evidence": "crossed_above = qtpylib.crossed_above(dataframe['candle_mean'], dataframe['ema100'])"
+   },
+   {
+    "label": "mean_reversion",
+    "confidence": "medium",
+    "evidence": "(dataframe['rsi'] < dataframe['rsi_pnr_low']) &"
+   }
+  ]
+ },
+ {
+  "id": "cryptohassle",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['ha_macd_cross_above'].rolling(5).apply(lambda x: x.any(), raw=False) == 1) &"
+   }
+  ]
+ },
+ {
+  "id": "cryptotank",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "dataframe['smooth_ma_slope'] = pta.momentum.slope(dataframe[f'smooth_change_{valsma}'])"
+   }
+  ]
+ },
+ {
+  "id": "cryptotankV2",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(qtpylib.crossed_above(df['change'], df[f'smooth_change_{self.smoothing_length.value}'])) &"
+   }
+  ]
+ },
+ {
+  "id": "cryptotankV5",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(qtpylib.crossed_above(df['change'], df['buy_offset'])) &"
+   }
+  ]
+ },
+ {
+  "id": "custom",
+  "primary": "pattern",
+  "labels": [
+   {
+    "label": "pattern",
+    "confidence": "medium",
+    "evidence": "(dataframe['priceLL'] == 1) & (dataframe['oscHL'] == 1) &"
+   },
+   {
+    "label": "mean_reversion",
+    "confidence": "medium",
+    "evidence": "(dataframe['rsi_fast'] <35)&"
+   }
+  ]
+ },
+ {
+  "id": "custom_sell",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "(dataframe['close'] > dataframe['keltner_middle'])"
+   }
+  ]
+ },
+ {
+  "id": "custom_stoploss_with_psar",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['sar'] < dataframe['sar'].shift())"
+   }
+  ]
+ },
+ {
+  "id": "custom_stoploss_with_psar_159",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['sar'] < dataframe['sar'].shift())"
+   }
+  ]
+ },
+ {
+  "id": "custom_stoploss_with_psar_2",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['sar'] < dataframe['sar'].shift())"
+   }
+  ]
+ },
+ {
+  "id": "custom_stoploss_with_psar_3",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['sar'] < dataframe['sar'].shift())"
+   }
+  ]
+ },
+ {
+  "id": "darphane_501_v3",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['cci_one'] < -100) & (dataframe['cci_two'] < -100) & (dataframe['mfi'] < 25)"
+   },
+   {
+    "label": "volume_flow",
+    "confidence": "medium",
+    "evidence": "(dataframe['cmf'] < -0.1) & (dataframe['mfi'] < 25)"
+   }
+  ]
+ },
+ {
+  "id": "dca_snippet_0",
+  "primary": "other",
+  "labels": [],
+  "note": "Empty strategy with no logic defined"
+ },
+ {
+  "id": "default_strategy",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi'] < 35) & (dataframe['fastd'] < 35)"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "(dataframe['adx'] > 30) & (dataframe['plus_di'] > 0.5)"
+   }
+  ]
+ },
+ {
+  "id": "default_strategy_123",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi'] < 35) & (dataframe['fastd'] < 35)"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "(dataframe['adx'] > 30) & (dataframe['plus_di'] > 0.5)"
+   }
+  ]
+ },
+ {
+  "id": "default_strategy_132",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi'] < 35) & (dataframe['fastd'] < 35)"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "(dataframe['adx'] > 30) & (dataframe['plus_di'] > 0.5)"
+   }
+  ]
+ },
+ {
+  "id": "default_strategy_15",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi'] < 35) & (dataframe['fastd'] < 35)"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "(dataframe['adx'] > 30) & (dataframe['plus_di'] > 0.5)"
+   }
+  ]
+ },
+ {
+  "id": "default_strategy_189",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi'] < 35) & (dataframe['fastd'] < 35)"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "(dataframe['adx'] > 30) & (dataframe['plus_di'] > 0.5)"
+   }
+  ]
+ },
+ {
+  "id": "default_strategy_2",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi'] < 35) & (dataframe['fastd'] < 35)"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "(dataframe['adx'] > 30) & (dataframe['plus_di'] > 0.5)"
+   }
+  ]
+ },
+ {
+  "id": "default_strategy_23",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi'] < 35) & (dataframe['fastd'] < 35)"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "(dataframe['adx'] > 30) & (dataframe['plus_di'] > 0.5)"
+   }
+  ]
+ },
+ {
+  "id": "default_strategy_278",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi'] < 35) & (dataframe['fastd'] < 35)"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "(dataframe['adx'] > 30) & (dataframe['plus_di'] > 0.5)"
+   }
+  ]
+ },
+ {
+  "id": "default_strategy_280",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi'] < 35) & (dataframe['fastd'] < 35)"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "(dataframe['adx'] > 30) & (dataframe['plus_di'] > 0.5)"
+   }
+  ]
+ },
+ {
+  "id": "default_strategy_3",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi'] < 35) & (dataframe['fastd'] < 35)"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "(dataframe['adx'] > 30) & (dataframe['plus_di'] > 0.5)"
+   }
+  ]
+ },
+ {
+  "id": "default_strategy_36",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi'] < 35) & (dataframe['fastd'] < 35)"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "(dataframe['adx'] > 30) & (dataframe['plus_di'] > 0.5)"
+   }
+  ]
+ },
+ {
+  "id": "default_strategy_4",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi'] < 35) & (dataframe['fastd'] < 35)"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "(dataframe['adx'] > 30) & (dataframe['plus_di'] > 0.5)"
+   }
+  ]
+ },
+ {
+  "id": "default_strategy_470",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "dataframe.loc[ (dataframe['rsi'] < 35), 'buy'] = 1"
+   }
+  ]
+ },
+ {
+  "id": "default_strategy_5",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi'] < 35) & (dataframe['fastd'] < 35)"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "(dataframe['adx'] > 30) & (dataframe['plus_di'] > 0.5)"
+   }
+  ]
+ },
+ {
+  "id": "default_strategy_51",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi'] < 35) & (dataframe['fastd'] < 35)"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "(dataframe['adx'] > 30) & (dataframe['plus_di'] > 0.5)"
+   }
+  ]
+ }
+]

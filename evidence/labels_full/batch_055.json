@@ -1,0 +1,122 @@
+[
+ {
+  "id": "NNPredict_TCN",
+  "sheet": "CLASS ATTRIBUTES\nHOOKS PRESENT: \nINDICATOR CODE\n\nENTRY CODE\n\nEXIT CODE\n"
+ },
+ {
+  "id": "NNPredict_TFT",
+  "sheet": "CLASS ATTRIBUTES\nHOOKS PRESENT: \nINDICATOR CODE\n\nENTRY CODE\n\nEXIT CODE\n"
+ },
+ {
+  "id": "NNPredict_Transformer",
+  "sheet": "CLASS ATTRIBUTES\nHOOKS PRESENT: \nINDICATOR CODE\n\nENTRY CODE\n\nEXIT CODE\n"
+ },
+ {
+  "id": "NNPredict_Wavenet",
+  "sheet": "CLASS ATTRIBUTES\nHOOKS PRESENT: \nINDICATOR CODE\n\nENTRY CODE\n\nEXIT CODE\n"
+ },
+ {
+  "id": "NNPredict_Wavenet2",
+  "sheet": "CLASS ATTRIBUTES\nHOOKS PRESENT: \nINDICATOR CODE\n\nENTRY CODE\n\nEXIT CODE\n"
+ },
+ {
+  "id": "NNPredict_dTransformer",
+  "sheet": "CLASS ATTRIBUTES\nHOOKS PRESENT: \nINDICATOR CODE\n\nENTRY CODE\n\nEXIT CODE\n"
+ },
+ {
+  "id": "NNPredict_kTFT",
+  "sheet": "CLASS ATTRIBUTES\nHOOKS PRESENT: \nINDICATOR CODE\n\nENTRY CODE\n\nEXIT CODE\n"
+ },
+ {
+  "id": "NNTC",
+  "sheet": "CLASS ATTRIBUTES\nminimal_roi = {\n        \"0\": 0.006\n    }\nstoploss = -0.1\ntrailing_stop = False\ntimeframe = '5m'\nstartup_candle_count = 128\nprocess_only_new_candles = False\nHOOKS PRESENT: custom_exit, custom_stoploss\nINDICATOR CODE\ndef populate_indicators(self, dataframe: DataFrame, metadata: dict) -> DataFrame:\n        curr_pair = metadata['pair']\n        self.curr_pair = curr_pair\n        self.set_state(curr_pair, self.State.POPULATE)\n        self.curr_lookahead = int(12 * self.lookahead_hours)\n        self.dbg_curr_df = dataframe\n        if self.training_signals is None:\n            self.training_signals = TrainingSignals.create_training_signals(self.signal_type, self.curr_lookahead)\n            self.curr_lookahead = self.training_signals.get_lookahead()\n            self.n_loss_stddevs = self.training_signals.get_n_loss_stddevs()\n            self.n_profit_stddevs = self.training_signals.get_n_profit_stddevs()\n        if self.dataframeUtils is None:\n            self.dataframeUtils = DataframeUtils()\n        if self.dataframePopulator is None:\n            if self.dbg_trace_memory and (self.dbg_trace_pair == self.curr_pair):\n                self.dbg_trace_pair = curr_pair  # only act when we see this pair (too much otherwise)\n                profiler.start(10)\n                profiler.snapshot()\n            self.dataframePopulator = DataframePopulator()\n            self.dataframePopulator.runmode = self.dp.runmode.value\n            self.dataframePopulator.win_size = min(14, self.curr_lookahead)\n            self.dataframePopulator.startup_win = self.startup_candle_count\n            self.dataframePopulator.n_loss_stddevs = self.n_loss_stddevs\n            self.dataframePopulator.n_profit_stddevs = self.n_profit_stddevs\n        if self.first_time:\n            self.first_time = False\n            print(\"\")\n            print(\"----------------------\")\n            print(self.__class__.__name__)\n            print(\"----------------------\")\n            print(\"\")\n            Environment().print_environment()\n \nENTRY CODE\ndef populate_entry_trend(self, dataframe: DataFrame, metadata: dict) -> DataFrame:\n        conditions = []\n        dataframe.loc[:, 'enter_tag'] = ''\n        curr_pair = metadata['pair']\n        self.set_state(curr_pair, self.State.RUNNING)\n        if not self.dp.runmode.value in ('hyperopt'):\n            if NNTC.first_run:\n                NNTC.first_run = False  # note use of clas variable, not instance variable\n                self.show_all_debug_info()\n        conditions.append(dataframe['volume'] > 0)\n        conditions.append(dataframe['mfi'] < 50.0)\n        conditions.append(dataframe['fisher_wr'] <= -0.5)\n        predict_cond = (\n            dataframe['predict_buy'] > 0.5\n        )\n        conditions.append(predict_cond)\n        strat_cond = self.get_strategy_entry_guard_conditions(dataframe)\n        if strat_cond is not None:\n            conditions.append(strat_cond)\n        dataframe.loc[predict_cond, 'enter_tag'] += 'nntc_entry '\n        if conditions:\n            dataframe.loc[reduce(lambda x, y: x & y, conditions), 'enter_long'] = 1\n        else:\n            dataframe['enter_long'] = 0\n        if self.dbg_trace_memory and (self.dbg_trace_pair == self.curr_pair):\n            profiler.snapshot()\n            profiler.display_stats()\n            profiler.compare()\n            profiler.print_trace()\n        return dataframe\nEXIT CODE\ndef populate_exit_trend(self, dataframe: DataFrame, metadata: dict) -> DataFrame:\n        conditions = []\n        dataframe.loc[:, 'exit_tag'] = ''\n        curr_pair = metadata['pair']\n        self.set_state(curr_pair, self.State.RUNNING)\n        if not self.dp.runmode.value in ('hyperopt'):\n            if NNTC.first_run:\n                NNTC.first_run = False  # note use of class variable, not instance variable\n                self.show_all_debug_info()\n        if self.ignore_exit_signals or (not self.enable_exit_signal.value):\n            dataframe['exit_long'] = 0\n            return dataframe\n        conditions.append(dataframe['volume'] > 0)\n        conditions.append(dataframe['mfi'] > 50.0)\n        conditions.append(dataframe['fisher_wr'] >= 0.5)\n        predict_cond = (\n                dataframe['predict_sell'] > 0.5\n        )\n        conditions.append(predict_cond)\n        strat_c"
+ },
+ {
+  "id": "NNTC_adx2_LSTM",
+  "sheet": "CLASS ATTRIBUTES\nHOOKS PRESENT: \nINDICATOR CODE\n\nENTRY CODE\n\nEXIT CODE\n"
+ },
+ {
+  "id": "NNTC_adx3_LSTM",
+  "sheet": "CLASS ATTRIBUTES\nHOOKS PRESENT: \nINDICATOR CODE\n\nENTRY CODE\n\nEXIT CODE\n"
+ },
+ {
+  "id": "NNTC_adx_LSTM",
+  "sheet": "CLASS ATTRIBUTES\nHOOKS PRESENT: \nINDICATOR CODE\n\nENTRY CODE\n\nEXIT CODE\n"
+ },
+ {
+  "id": "NNTC_all_LSTM",
+  "sheet": "CLASS ATTRIBUTES\nHOOKS PRESENT: \nINDICATOR CODE\n\nENTRY CODE\n\nEXIT CODE\n"
+ },
+ {
+  "id": "NNTC_aroon_LSTM",
+  "sheet": "CLASS ATTRIBUTES\nHOOKS PRESENT: \nINDICATOR CODE\n\nENTRY CODE\n\nEXIT CODE\n"
+ },
+ {
+  "id": "NNTC_bbw_LSTM",
+  "sheet": "CLASS ATTRIBUTES\nHOOKS PRESENT: \nINDICATOR CODE\n\nENTRY CODE\n\nEXIT CODE\n"
+ },
+ {
+  "id": "NNTC_bbw_Transformer",
+  "sheet": "CLASS ATTRIBUTES\nHOOKS PRESENT: \nINDICATOR CODE\n\nENTRY CODE\n\nEXIT CODE\n"
+ },
+ {
+  "id": "NNTC_dwt2_LSTM",
+  "sheet": "CLASS ATTRIBUTES\nHOOKS PRESENT: \nINDICATOR CODE\n\nENTRY CODE\n\nEXIT CODE\n"
+ },
+ {
+  "id": "NNTC_dwt_LSTM",
+  "sheet": "CLASS ATTRIBUTES\nHOOKS PRESENT: \nINDICATOR CODE\n\nENTRY CODE\n\nEXIT CODE\n"
+ },
+ {
+  "id": "NNTC_fbb_AdditiveAttention",
+  "sheet": "CLASS ATTRIBUTES\nHOOKS PRESENT: \nINDICATOR CODE\n\nENTRY CODE\n\nEXIT CODE\n"
+ },
+ {
+  "id": "NNTC_fbb_Attention",
+  "sheet": "CLASS ATTRIBUTES\nHOOKS PRESENT: \nINDICATOR CODE\n\nENTRY CODE\n\nEXIT CODE\n"
+ },
+ {
+  "id": "NNTC_fbb_Ensemble",
+  "sheet": "CLASS ATTRIBUTES\nHOOKS PRESENT: \nINDICATOR CODE\n\nENTRY CODE\n\nEXIT CODE\n"
+ },
+ {
+  "id": "NNTC_fbb_GRU",
+  "sheet": "CLASS ATTRIBUTES\nHOOKS PRESENT: \nINDICATOR CODE\n\nENTRY CODE\n\nEXIT CODE\n"
+ },
+ {
+  "id": "NNTC_fbb_LSTM",
+  "sheet": "CLASS ATTRIBUTES\nHOOKS PRESENT: \nINDICATOR CODE\n\nENTRY CODE\n\nEXIT CODE\n"
+ },
+ {
+  "id": "NNTC_fbb_Multihead",
+  "sheet": "CLASS ATTRIBUTES\nHOOKS PRESENT: \nINDICATOR CODE\n\nENTRY CODE\n\nEXIT CODE\n"
+ },
+ {
+  "id": "NNTC_fbb_Transformer",
+  "sheet": "CLASS ATTRIBUTES\nHOOKS PRESENT: \nINDICATOR CODE\n\nENTRY CODE\n\nEXIT CODE\n"
+ },
+ {
+  "id": "NNTC_fbb_Wavenet",
+  "sheet": "CLASS ATTRIBUTES\nHOOKS PRESENT: \nINDICATOR CODE\n\nENTRY CODE\n\nEXIT CODE\n"
+ },
+ {
+  "id": "NNTC_fwr_LSTM",
+  "sheet": "CLASS ATTRIBUTES\nHOOKS PRESENT: \nINDICATOR CODE\n\nENTRY CODE\n\nEXIT CODE\n"
+ },
+ {
+  "id": "NNTC_highlow_Ensemble",
+  "sheet": "CLASS ATTRIBUTES\nHOOKS PRESENT: \nINDICATOR CODE\n\nENTRY CODE\n\nEXIT CODE\n"
+ },
+ {
+  "id": "NNTC_highlow_LSTM",
+  "sheet": "CLASS ATTRIBUTES\nHOOKS PRESENT: \nINDICATOR CODE\n\nENTRY CODE\n\nEXIT CODE\n"
+ },
+ {
+  "id": "NNTC_jump_Ensemble",
+  "sheet": "CLASS ATTRIBUTES\nHOOKS PRESENT: \nINDICATOR CODE\n\nENTRY CODE\n\nEXIT CODE\n"
+ },
+ {
+  "id": "NNTC_jump_LSTM",
+  "sheet": "CLASS ATTRIBUTES\nHOOKS PRESENT: \nINDICATOR CODE\n\nENTRY CODE\n\nEXIT CODE\n"
+ }
+]

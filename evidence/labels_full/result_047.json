@@ -1,0 +1,457 @@
+[
+ {
+  "id": "MACDRSI200",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "qtpylib.crossed_above(dataframe['macd'], dataframe['macdsignal'])"
+   },
+   {
+    "label": "mean_reversion",
+    "confidence": "medium",
+    "evidence": "(dataframe['rsi'].rolling(8).min() < 41)"
+   }
+  ]
+ },
+ {
+  "id": "MACDSMA200hyperopt2",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "dataframe[f'ema_short_{self.buy_ema_short.value}'] > dataframe[f'ema_long_{self.buy_ema_long.value}']"
+   }
+  ]
+ },
+ {
+  "id": "MACDStrategy",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['macd'] > dataframe['macdsignal'])"
+   },
+   {
+    "label": "mean_reversion",
+    "confidence": "medium",
+    "evidence": "(dataframe['cci'] <= -50.0)"
+   }
+  ]
+ },
+ {
+  "id": "MACDStrategyADA",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['macd'] > dataframe['macdsignal'])"
+   },
+   {
+    "label": "mean_reversion",
+    "confidence": "medium",
+    "evidence": "(dataframe['cci'] <= self.buy_cci.value)"
+   }
+  ]
+ },
+ {
+  "id": "MACDStrategyAVAX",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['macd'] > dataframe['macdsignal'])"
+   },
+   {
+    "label": "mean_reversion",
+    "confidence": "medium",
+    "evidence": "(dataframe['cci'] <= self.buy_cci.value)"
+   }
+  ]
+ },
+ {
+  "id": "MACDStrategyBTC",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['macd'] > dataframe['macdsignal'])"
+   },
+   {
+    "label": "mean_reversion",
+    "confidence": "medium",
+    "evidence": "(dataframe['cci'] <= self.buy_cci.value)"
+   }
+  ]
+ },
+ {
+  "id": "MACDStrategyENJ",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['macd'] > dataframe['macdsignal'])"
+   },
+   {
+    "label": "mean_reversion",
+    "confidence": "medium",
+    "evidence": "(dataframe['cci'] <= self.buy_cci.value)"
+   }
+  ]
+ },
+ {
+  "id": "MACDStrategyETC",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['macd'] > dataframe['macdsignal'])"
+   },
+   {
+    "label": "mean_reversion",
+    "confidence": "medium",
+    "evidence": "(dataframe['cci'] <= self.buy_cci.value)"
+   }
+  ]
+ },
+ {
+  "id": "MACDStrategySOL",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['macd'] > dataframe['macdsignal'])"
+   },
+   {
+    "label": "mean_reversion",
+    "confidence": "medium",
+    "evidence": "(dataframe['cci'] <= self.buy_cci.value)"
+   }
+  ]
+ },
+ {
+  "id": "MACDStrategyXRP",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['macd'] > dataframe['macdsignal'])"
+   },
+   {
+    "label": "mean_reversion",
+    "confidence": "medium",
+    "evidence": "(dataframe['cci'] <= self.buy_cci.value)"
+   }
+  ]
+ },
+ {
+  "id": "MACDStrategy_127",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['macd'] > dataframe['macdsignal'])"
+   },
+   {
+    "label": "mean_reversion",
+    "confidence": "medium",
+    "evidence": "(dataframe['cci'] <= self.buy_cci.value)"
+   }
+  ]
+ },
+ {
+  "id": "MACDStrategy_3",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] > dataframe['ema_slow'])"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "(dataframe['macd'] > dataframe['macdsignal'])"
+   }
+  ]
+ },
+ {
+  "id": "MACDStrategy_4",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['macd'] > dataframe['macdsignal'])"
+   },
+   {
+    "label": "mean_reversion",
+    "confidence": "medium",
+    "evidence": "(dataframe['cci'] <= -50.0)"
+   }
+  ]
+ },
+ {
+  "id": "MACDStrategy_5",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['macd'] > dataframe['macdsignal'])"
+   },
+   {
+    "label": "mean_reversion",
+    "confidence": "medium",
+    "evidence": "(dataframe['cci'] <= -50.0)"
+   }
+  ]
+ },
+ {
+  "id": "MACDStrategy_crossed",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "qtpylib.crossed_above(dataframe['macd'], dataframe['macdsignal'])"
+   },
+   {
+    "label": "mean_reversion",
+    "confidence": "medium",
+    "evidence": "(dataframe['cci'] <= -50.0)"
+   }
+  ]
+ },
+ {
+  "id": "MACDStrategy_crossed_102",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "qtpylib.crossed_above(dataframe['macd'], dataframe['macdsignal'])"
+   },
+   {
+    "label": "mean_reversion",
+    "confidence": "medium",
+    "evidence": "(dataframe['cci'] <= -50.0)"
+   }
+  ]
+ },
+ {
+  "id": "MACDStrategy_crossed_419",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "qtpylib.crossed_above(dataframe['macd'], dataframe['macdsignal'])"
+   },
+   {
+    "label": "mean_reversion",
+    "confidence": "medium",
+    "evidence": "(dataframe['cci'] <= self.cci_buy_param.value)"
+   }
+  ]
+ },
+ {
+  "id": "MACDStrategyv01",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['macd'] > dataframe['macdsignal'])"
+   },
+   {
+    "label": "mean_reversion",
+    "confidence": "medium",
+    "evidence": "(dataframe['cci'] <= -186)"
+   }
+  ]
+ },
+ {
+  "id": "MACDTurn",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "qtpylib.crossed_above(dataframe['macdhist_slope'], 0)"
+   }
+  ]
+ },
+ {
+  "id": "MACDTurn_2",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "qtpylib.crossed_above(dataframe['macdhist_slope'], 0)"
+   }
+  ]
+ },
+ {
+  "id": "MACDZeroCrossStrategy",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "qtpylib.crossed_above(dataframe['macd'], 0)"
+   }
+  ]
+ },
+ {
+  "id": "MACD_BB_Volume",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] <= dataframe['bb_lower'])"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "(dataframe['macd'] > dataframe['macd_signal'])"
+   }
+  ]
+ },
+ {
+  "id": "MACD_EMA",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "qtpylib.crossed_above(dataframe['macd'], dataframe['macdsignal'])"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "((dataframe['close'] > dataframe['ema_{}'.format(self.EMA_LONG_TERM)]))"
+   }
+  ]
+ },
+ {
+  "id": "MACD_TRIPLE_MA",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['sma26'] > dataframe['sma6'])"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "qtpylib.crossed_above(dataframe['macd'], dataframe['macdsignal'])"
+   }
+  ]
+ },
+ {
+  "id": "MACD_TRI_EMA",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "qtpylib.crossed_above(dataframe['macd'], dataframe['macdsignal'])"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "(dataframe['close'].shift(1) > dataframe['tema'].shift(1))"
+   }
+  ]
+ },
+ {
+  "id": "MACDcross",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "qtpylib.crossed_above(dataframe['macd'], dataframe['macdsignal'])"
+   },
+   {
+    "label": "mean_reversion",
+    "confidence": "medium",
+    "evidence": "(dataframe['cci'] <= -50.0)"
+   }
+  ]
+ },
+ {
+  "id": "MAC_0",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['ema20'] > dataframe['ema50'])"
+   }
+  ]
+ },
+ {
+  "id": "MADisplaceV3",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < dataframe['ma_lower'])"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "(dataframe['uptrend'] > 0)"
+   }
+  ]
+ },
+ {
+  "id": "MALinearRegressionStrategy",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < dataframe['ma_5'])"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "(dataframe['reg_slope'] > 0)"
+   }
+  ]
+ },
+ {
+  "id": "MAOffsetsCombinedV0",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < (dataframe[f'trima_{val}'] * get_low_offset(val, self.buy_1_base_offset.value, self.buy_1_inc.value)))"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "(dataframe['EWO'] > self.buy_1_ewo_high.value)"
+   }
+  ]
+ }
+]

@@ -1,0 +1,284 @@
+[
+ {
+  "id": "Obelisk_TradePro_Ichi_v1_1_673",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] > dataframe['senkou_a']) &\n                (dataframe['close'] > dataframe['senkou_b'])"
+   }
+  ],
+  "note": null
+ },
+ {
+  "id": "Obelisk_TradePro_Ichi_v2",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['tenkan_sen'] > dataframe['kijun_sen']) &\n                (dataframe['close'] > dataframe['senkou_a'])"
+   }
+  ],
+  "note": null
+ },
+ {
+  "id": "Obelisk_TradePro_Ichi_v2_1",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['tenkan_sen'] > dataframe['kijun_sen']) &\n                (dataframe['close'] > dataframe['senkou_a'])"
+   }
+  ],
+  "note": null
+ },
+ {
+  "id": "Obelisk_TradePro_Ichi_v2_2",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['ssl_high'] == 0)\n                &\n                (\n                    (dataframe['tenkan_sen'] < dataframe['kijun_sen'])\n                    |\n                    (dataframe['close'] < dataframe['kijun_sen'])"
+   }
+  ],
+  "note": null
+ },
+ {
+  "id": "ObvTrendStrategy",
+  "primary": "volume_flow",
+  "labels": [
+   {
+    "label": "volume_flow",
+    "confidence": "high",
+    "evidence": "(dataframe[\"obv_above\"] == 1) & (dataframe[\"obv_above_prev\"] == 0)"
+   }
+  ],
+  "note": null
+ },
+ {
+  "id": "OmaGann",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['trend'] == 1) &\n            (dataframe['trend'].shift(1) <= 0)"
+   }
+  ],
+  "note": null
+ },
+ {
+  "id": "OptimalStrategy",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < dataframe['bb_lower']) | (dataframe['rsi'] < 30)"
+   }
+  ],
+  "note": null
+ },
+ {
+  "id": "OptimizedIchimokuStrategy",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] > dataframe['senkou_span_a']) &\n            (dataframe['close'] > dataframe['senkou_span_b'])"
+   }
+  ],
+  "note": null
+ },
+ {
+  "id": "OptimizedKamaFama_2",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['kama'] > dataframe['fama']) &\n            (dataframe['fama'] > dataframe['mama'] * 0.981)"
+   }
+  ],
+  "note": null
+ },
+ {
+  "id": "OptimizedStrategy",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['ema_50'] > dataframe['ema_100']) &  # Bullish trend\n                (dataframe['ema_100'] > dataframe['ema_200'])"
+   }
+  ],
+  "note": null
+ },
+ {
+  "id": "OptimizedSupertrend",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "entries, exits = supertrend_strategy(dataframe)"
+   }
+  ],
+  "note": null
+ },
+ {
+  "id": "OrderBook",
+  "primary": "other",
+  "labels": [],
+  "note": "no entry or exit logic; order book data processed for notifications only"
+ },
+ {
+  "id": "OsirisXRSI",
+  "primary": "pattern",
+  "labels": [
+   {
+    "label": "pattern",
+    "confidence": "high",
+    "evidence": "(dataframe[\"body_ratio\"] >= min_br) & (dataframe[\"lower_wick\"] >= min_lw)"
+   }
+  ],
+  "note": null
+ },
+ {
+  "id": "OttTDSeqMultiTimeframeStrategy",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi'] < 30) &  # Aşırı satım\n                (dataframe['macd'] > dataframe['macd_signal'])"
+   }
+  ],
+  "note": null
+ },
+ {
+  "id": "OversoldReversion",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "dataframe[\"rsi_cross_down\"]\n            & (dataframe[\"dislocation\"] < self.DISLOCATION)"
+   }
+  ],
+  "note": null
+ },
+ {
+  "id": "PCA",
+  "primary": "statistical",
+  "labels": [
+   {
+    "label": "statistical",
+    "confidence": "high",
+    "evidence": "qtpylib.crossed_above(dataframe['predict_buy'], 0.5)"
+   }
+  ],
+  "note": null
+ },
+ {
+  "id": "PCA301",
+  "primary": "statistical",
+  "labels": [
+   {
+    "label": "statistical",
+    "confidence": "high",
+    "evidence": "pca_cond = (dataframe['predict_buy'] == 1)"
+   }
+  ],
+  "note": null
+ },
+ {
+  "id": "PCA3_shortberk",
+  "primary": "statistical",
+  "labels": [
+   {
+    "label": "statistical",
+    "confidence": "high",
+    "evidence": "qtpylib.crossed_above(dataframe['predict_buy'], 0.5)"
+   }
+  ],
+  "note": null
+ },
+ {
+  "id": "PCA_dwt",
+  "primary": "other",
+  "labels": [],
+  "note": "no code provided"
+ },
+ {
+  "id": "PCA_fbb",
+  "primary": "other",
+  "labels": [],
+  "note": "no code provided"
+ },
+ {
+  "id": "PCA_fwr",
+  "primary": "other",
+  "labels": [],
+  "note": "no code provided"
+ },
+ {
+  "id": "PCA_highlow",
+  "primary": "other",
+  "labels": [],
+  "note": "no code provided"
+ },
+ {
+  "id": "PCA_jump",
+  "primary": "other",
+  "labels": [],
+  "note": "no code provided"
+ },
+ {
+  "id": "PCA_macd",
+  "primary": "other",
+  "labels": [],
+  "note": "no code provided"
+ },
+ {
+  "id": "PCA_mfi",
+  "primary": "other",
+  "labels": [],
+  "note": "no code provided"
+ },
+ {
+  "id": "PCA_minmax",
+  "primary": "other",
+  "labels": [],
+  "note": "no code provided"
+ },
+ {
+  "id": "PCA_nseq",
+  "primary": "other",
+  "labels": [],
+  "note": "no code provided"
+ },
+ {
+  "id": "PCA_over",
+  "primary": "other",
+  "labels": [],
+  "note": "no code provided"
+ },
+ {
+  "id": "PCA_profit",
+  "primary": "other",
+  "labels": [],
+  "note": "no code provided"
+ },
+ {
+  "id": "PCA_pv",
+  "primary": "other",
+  "labels": [],
+  "note": "no code provided"
+ }
+]

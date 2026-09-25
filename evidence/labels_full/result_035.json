@@ -1,0 +1,339 @@
+[
+ {
+  "id": "FreqaiStrategy_v2",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "high",
+    "evidence": "(dataframe['&-s_close'] > 0.65)"
+   }
+  ],
+  "note": "ML model prediction output"
+ },
+ {
+  "id": "Freqtrade_backtest_validation_freqtrade1",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['fastMA'] > dataframe['slowMA'])"
+   }
+  ]
+ },
+ {
+  "id": "Freqtrade_backtest_validation_freqtrade1_254",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['fastMA'] > dataframe['slowMA'])"
+   }
+  ]
+ },
+ {
+  "id": "FrostAuraM115mStrategy",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe[\"close\"] < dataframe['bb_lowerband2'])"
+   }
+  ]
+ },
+ {
+  "id": "FrostAuraM11hStrategy",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe[\"close\"] < dataframe['bb_lowerband2'])"
+   }
+  ]
+ },
+ {
+  "id": "FrostAuraM21hStrategy",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe[\"slowd\"] > 79) & (dataframe[\"slowk\"] > 77)"
+   }
+  ]
+ },
+ {
+  "id": "FrostAuraM315mStrategy",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe[\"close\"] < dataframe['bb_lowerband3'])"
+   }
+  ]
+ },
+ {
+  "id": "FrostAuraM31hStrategy",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe[\"close\"] < dataframe['bb_lowerband3'])"
+   }
+  ]
+ },
+ {
+  "id": "FrostAuraRandomStrategy",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "high",
+    "evidence": "dataframe['random_number'] = np.random.randint(0, 100, dataframe.shape[0])"
+   }
+  ],
+  "note": "random signal"
+ },
+ {
+  "id": "FundingCarry",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "high",
+    "evidence": "(dataframe[\"funding_z\"] < self.ENTRY_Z)"
+   }
+  ],
+  "note": "funding rate arbitrage"
+ },
+ {
+  "id": "Futures10PercentStrategy",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['price_change_pct'] <= -self.drop_threshold.value)"
+   }
+  ]
+ },
+ {
+  "id": "FuturesStrat8",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['low'] > dataframe['ema200']) & (dataframe['adx'] > 20)"
+   }
+  ]
+ },
+ {
+  "id": "FuturesStrategy1",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['open'] >= dataframe['ema9']) & (dataframe['open'] >= dataframe['ema21'])"
+   }
+  ]
+ },
+ {
+  "id": "GGShotStrategy",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "medium",
+    "evidence": "dataframe['long_signal'] & (dataframe['volume'] > 0)"
+   }
+  ],
+  "note": "signal calculation incomplete in code"
+ },
+ {
+  "id": "GKD_Baseline",
+  "primary": "breakout",
+  "labels": [
+   {
+    "label": "breakout",
+    "confidence": "high",
+    "evidence": "(dataframe[\"price_above\"].shift(1) == False) & (dataframe[\"price_above\"])"
+   }
+  ]
+ },
+ {
+  "id": "GKD_BaselineAllMAs",
+  "primary": "breakout",
+  "labels": [
+   {
+    "label": "breakout",
+    "confidence": "high",
+    "evidence": "(dataframe[\"price_above\"].shift(1) == False) & (dataframe[\"price_above\"])"
+   }
+  ]
+ },
+ {
+  "id": "GKD_C",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe[\"baseline_up\"]) & (dataframe[\"hurst_smooth\"] > self.hurst_threshold.value)"
+   }
+  ]
+ },
+ {
+  "id": "GKD_CT",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe[\"lr_mid_market\"] > dataframe[\"lr_mid_market\"].shift())"
+   }
+  ]
+ },
+ {
+  "id": "GKD_FisherTransform",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "medium",
+    "evidence": "(dataframe[\"fisher_6h\"] < self.fisher_sell_threshold.value)"
+   }
+  ]
+ },
+ {
+  "id": "GKD_FisherTransformMTF",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe[\"fisher_smooth\"] > dataframe[\"fisher_smooth\"].shift())"
+   }
+  ]
+ },
+ {
+  "id": "GKD_FisherTransformV4_ML",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "high",
+    "evidence": "ml_confidence_condition = dataframe[\"ml_confidence\"] > self.ml_confidence_threshold.value"
+   }
+  ],
+  "note": "ML model-based"
+ },
+ {
+  "id": "GKD_HurstExponent",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe[\"hurst_smooth\"] > self.hurst_threshold) & (dataframe[\"baseline_up\"])"
+   }
+  ]
+ },
+ {
+  "id": "GKD_PFE",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe[\"pfe_smooth\"] > self.pfe_buy_threshold) & (dataframe[\"baseline_up\"])"
+   }
+  ]
+ },
+ {
+  "id": "GPR",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "high",
+    "evidence": "fitted, forecast = self.gaussian_process_regression(y_train, self.window.value)"
+   }
+  ],
+  "note": "statistical ML forecast"
+ },
+ {
+  "id": "GPTREV",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi_15m'] < 30) & (dataframe['adx_15m'] > 20)"
+   }
+  ]
+ },
+ {
+  "id": "GPTStrategy",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "high",
+    "evidence": "df[\"expert_long_enter\"] == 1"
+   }
+  ],
+  "note": "ML expert model"
+ },
+ {
+  "id": "GRIDDMIPRICEStrategyFuture",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < dataframe[f'emaLong_{self.inf_tf}']) & (dataframe[f'plus_di_{self.inf_tf}'] > 20)"
+   }
+  ]
+ },
+ {
+  "id": "GRIDDMIPRICEStrategyFutureV2",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < dataframe[f'emaLong_{self.inf_tf}']) & (dataframe[f'plus_di_{self.inf_tf}'] > 20)"
+   }
+  ]
+ },
+ {
+  "id": "GRIDDMIPRICEStrategyFutureV2Both",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < dataframe[f'emaLong_{self.inf_tf}']) & (dataframe[f'plus_di_{self.inf_tf}'] > 20)"
+   }
+  ]
+ },
+ {
+  "id": "GRIDDMIPRICEStrategyFutureV2Long",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < dataframe[f'emaLong_{self.inf_tf}']) & (dataframe[f'plus_di_{self.inf_tf}'] > 20)"
+   }
+  ]
+ }
+]

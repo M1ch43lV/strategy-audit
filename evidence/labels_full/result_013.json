@@ -1,0 +1,363 @@
+[
+ {
+  "id": "BinHV27_4",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "dataframe['adx'].gt(25) &"
+   },
+   {
+    "label": "mean_reversion",
+    "confidence": "medium",
+    "evidence": "dataframe['emarsi'].le(20)"
+   }
+  ]
+ },
+ {
+  "id": "BinHV27_5",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "dataframe['adx'].gt(25) &"
+   },
+   {
+    "label": "mean_reversion",
+    "confidence": "medium",
+    "evidence": "dataframe['emarsi'].le(20)"
+   }
+  ]
+ },
+ {
+  "id": "BinHV27_747",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "dataframe['adx'].gt(params['adx1']) &"
+   },
+   {
+    "label": "mean_reversion",
+    "confidence": "medium",
+    "evidence": "dataframe['emarsi'].le(params['emarsi1'])"
+   }
+  ]
+ },
+ {
+  "id": "BinHV27_823",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "dataframe['adx'].gt(25) &"
+   },
+   {
+    "label": "mean_reversion",
+    "confidence": "medium",
+    "evidence": "dataframe['emarsi'].le(20)"
+   }
+  ]
+ },
+ {
+  "id": "BinHV27_combined",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "dataframe['adx'].gt(self.entry_long_adx1.value) &"
+   }
+  ]
+ },
+ {
+  "id": "BinHV27_long",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "dataframe['adx'].gt(self.buy_adx1.value) &"
+   }
+  ]
+ },
+ {
+  "id": "BinHV27_short",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "dataframe['adx'].gt(self.buy_adx1.value) &"
+   }
+  ]
+ },
+ {
+  "id": "BinHV27_short_10",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "dataframe['adx'].gt(self.buy_adx1.value) &"
+   }
+  ]
+ },
+ {
+  "id": "BinHV27_short_2",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "dataframe['adx'].gt(self.buy_adx1.value) &"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "dataframe['rsi'].ge(dataframe['rsi'].shift()) &"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "BinHV27_short_7",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "dataframe['adx'].gt(self.buy_adx1.value) &"
+   }
+  ]
+ },
+ {
+  "id": "BinHV27_short_8",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "dataframe['adx'].gt(self.buy_adx2.value) &"
+   }
+  ]
+ },
+ {
+  "id": "BinHV27_werkkrew",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "dataframe['adx'].gt(params['adx1']) &"
+   },
+   {
+    "label": "mean_reversion",
+    "confidence": "medium",
+    "evidence": "dataframe['emarsi'].le(params['emarsi1'])"
+   }
+  ]
+ },
+ {
+  "id": "BinHV45",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "dataframe['close'].lt(dataframe['lower'].shift())"
+   }
+  ]
+ },
+ {
+  "id": "BinHV45HO",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "dataframe['close'].lt(dataframe['lower'].shift())"
+   }
+  ]
+ },
+ {
+  "id": "BinHV45HyperOpted",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "dataframe['close'].lt(dataframe['lower'].shift())"
+   }
+  ]
+ },
+ {
+  "id": "BinHV45JP",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "dataframe['close'].lt(dataframe['lower'].shift())"
+   }
+  ]
+ },
+ {
+  "id": "BinHV45_142",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "dataframe['close'].lt(dataframe['lower'].shift())"
+   }
+  ]
+ },
+ {
+  "id": "BinHV45_2",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "dataframe['close'].lt(dataframe['lower'].shift())"
+   }
+  ]
+ },
+ {
+  "id": "BinHV45_3",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "dataframe['close'].lt(dataframe['lower'].shift())"
+   }
+  ]
+ },
+ {
+  "id": "BinHV45_343",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "dataframe['close'].lt(dataframe['lower'].shift())"
+   }
+  ]
+ },
+ {
+  "id": "BinHV45_4",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "dataframe['close'].lt(dataframe['lower'].shift())"
+   }
+  ]
+ },
+ {
+  "id": "BinHV45_422",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "dataframe['close'].lt(dataframe['lower'].shift())"
+   }
+  ]
+ },
+ {
+  "id": "BinHV45_613",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "dataframe['close'].lt(dataframe['lower'].shift())"
+   }
+  ]
+ },
+ {
+  "id": "BinHV45_kanaxe",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "dataframe['close'].lt(dataframe['lower'].shift())"
+   }
+  ]
+ },
+ {
+  "id": "BinHV45_stash",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "dataframe['close'].lt(dataframe['lower'].shift())"
+   }
+  ]
+ },
+ {
+  "id": "BinHV45_werkkrew",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "dataframe['close'].lt(dataframe['lower'].shift())"
+   }
+  ]
+ },
+ {
+  "id": "BinMfiBTCv4",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "dataframe['close'].lt(dataframe['lower'].shift())"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "(dataframe['EWO'] < self.wild_ewo_bottom.value)"
+   }
+  ]
+ },
+ {
+  "id": "BinMfiBTCv5003",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "dataframe['close'].lt(dataframe['lower'].shift())"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "(dataframe['EWO'] < self.wild_ewo_bottom.value)"
+   }
+  ]
+ },
+ {
+  "id": "BinanceStream",
+  "primary": "other",
+  "labels": [],
+  "note": "entry delegated to external check_buy() method; trading logic not shown"
+ },
+ {
+  "id": "BinanceStream_209",
+  "primary": "other",
+  "labels": [],
+  "note": "entry delegated to external check_buy() method; trading logic not shown"
+ }
+]

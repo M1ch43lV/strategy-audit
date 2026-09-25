@@ -1,0 +1,487 @@
+[
+ {
+  "id": "NotAnotherSMAOffSetStrategy_V2",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi_fast'] <35)&\n                (dataframe['close'] < (dataframe[f'ma_buy_{self.base_nb_candles_buy.value}'] * self.low_offset.value))"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "(dataframe['EWO'] > self.ewo_high.value) &\n                (dataframe['rsi'] < self.rsi_buy.value)"
+   }
+  ]
+ },
+ {
+  "id": "NotAnotherSMAOffSetStrategy_V2_3",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi_fast'] <35)&\n                (dataframe['close'] < (dataframe[f'ma_buy_{self.base_nb_candles_buy.value}'] * self.low_offset.value))"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "(dataframe['EWO'] > self.ewo_high.value) &\n                (dataframe['rsi'] < self.rsi_buy.value)"
+   }
+  ]
+ },
+ {
+  "id": "NotAnotherSMAOffSetStrategy_V2_577",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi_fast'] <35)&\n                (dataframe['close'] < (dataframe[f'ma_buy_{self.base_nb_candles_buy.value}'] * self.low_offset.value))"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "(dataframe['EWO'] > self.ewo_high.value) &\n                (dataframe['rsi'] < self.rsi_buy.value)"
+   }
+  ]
+ },
+ {
+  "id": "NotAnotherSMAOffsetStrategy",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi_fast'] <35)&\n                (dataframe['close'] < (dataframe[f'ma_buy_{self.base_nb_candles_buy.value}'] * self.low_offset.value))"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "(dataframe['EWO'] > self.ewo_high.value) &\n                (dataframe['rsi'] < self.rsi_buy.value)"
+   }
+  ]
+ },
+ {
+  "id": "NotAnotherSMAOffsetStrategyHO",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi_fast'] < 35) &\n                (dataframe['close'] < (dataframe[f'ma_buy_{self.base_nb_candles_buy.value}'] * self.low_offset.value))"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "(dataframe['EWO'] > self.ewo_high.value) &\n                (dataframe['rsi'] < self.rsi_buy.value)"
+   }
+  ]
+ },
+ {
+  "id": "NotAnotherSMAOffsetStrategyHO_113",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi_fast'] < 35) &\n                (dataframe['close'] < (dataframe[f'ma_buy_{self.base_nb_candles_buy.value}'] * self.low_offset.value))"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "(dataframe['EWO'] > self.ewo_high.value) &\n                (dataframe['rsi'] < self.rsi_buy.value)"
+   }
+  ]
+ },
+ {
+  "id": "NotAnotherSMAOffsetStrategyHO_113S",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi_fast'] < 35) &\n                (dataframe['close'] < (dataframe[f'ma_buy_{self.base_nb_candles_buy.value}'] * self.low_offset.value))"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "(dataframe['EWO'] > self.ewo_high.value) &\n                (dataframe['rsi'] < self.rsi_buy.value)"
+   }
+  ]
+ },
+ {
+  "id": "NotAnotherSMAOffsetStrategyHO_2",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi_fast'] < 35) &\n                (dataframe['close'] < (dataframe[f'ma_buy_{self.base_nb_candles_buy.value}'] * self.low_offset.value))"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "(dataframe['EWO'] > self.ewo_high.value) &\n                (dataframe['rsi'] < self.rsi_buy.value)"
+   }
+  ]
+ },
+ {
+  "id": "NotAnotherSMAOffsetStrategyHOv3",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi_fast'] < 35) &\n                (dataframe['close'] < (dataframe[f'ma_buy_{self.base_nb_candles_buy.value}'] * self.low_offset.value))"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "(dataframe['EWO'] > self.ewo_high.value) &\n                (dataframe['rsi'] < self.rsi_buy.value)"
+   }
+  ]
+ },
+ {
+  "id": "NotAnotherSMAOffsetStrategyHOv3_2",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi_fast'] < 35) &\n                (dataframe['close'] < (dataframe[f'ma_buy_{self.base_nb_candles_buy.value}'] * self.low_offset.value))"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "(dataframe['EWO'] > self.ewo_high.value) &\n                (dataframe['rsi'] < self.rsi_buy.value)"
+   }
+  ]
+ },
+ {
+  "id": "NotAnotherSMAOffsetStrategyHOv3_akiva",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi_fast'] < 35) &\n                (dataframe['close'] < (dataframe[f'ma_buy_{self.base_nb_candles_buy.value}'] * self.low_offset.value))"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "(dataframe['EWO'] > self.ewo_high.value) &\n                (dataframe['rsi'] < self.rsi_buy.value)"
+   }
+  ]
+ },
+ {
+  "id": "NotAnotherSMAOffsetStrategyHOv3_b",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi_fast'] < 35) &\n                (dataframe['close'] < (dataframe[f'ma_buy_{self.base_nb_candles_buy.value}'] * self.low_offset.value))"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "(dataframe['EWO'] > self.ewo_high.value) &\n                (dataframe['rsi'] < self.rsi_buy.value)"
+   }
+  ]
+ },
+ {
+  "id": "NotAnotherSMAOffsetStrategyHOv3_b_81",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi_fast'] < 35) &\n                (dataframe['close'] < (dataframe[f'ma_buy_{self.base_nb_candles_buy.value}'] * self.low_offset.value))"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "(dataframe['EWO'] > self.ewo_high.value) &\n                (dataframe['rsi'] < self.rsi_buy.value)"
+   }
+  ]
+ },
+ {
+  "id": "NotAnotherSMAOffsetStrategyHOv3_b_interface_v3",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe[\"rsi_fast\"] < 35)\n            & (\n                dataframe[\"close\"]\n                < dataframe[f\"ma_buy_{self.base_nb_candles_buy.value}\"]\n                * self.low_offset.value\n            )"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "& (dataframe[\"EWO\"] > self.ewo_high.value)\n            & (dataframe[\"rsi\"] < self.rsi_buy.value)"
+   }
+  ]
+ },
+ {
+  "id": "NotAnotherSMAOffsetStrategyLite",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < (dataframe[f'ema_{self.base_nb_candles_buy.value}'] * self.low_offset.value))\n            &\n            (dataframe['ewo'] > 0)"
+   },
+   {
+    "label": "momentum",
+    "confidence": "low",
+    "evidence": "(dataframe['ewo'] > 0)"
+   }
+  ]
+ },
+ {
+  "id": "NotAnotherSMAOffsetStrategyModHO",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi_fast'] < 35) &\n                (dataframe['close'] < (dataframe[f'ma_buy_{self.base_nb_candles_buy.value}'] * self.low_offset.value))"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "(dataframe['EWO'] > self.ewo_high.value) &\n                (dataframe['rsi'] < self.rsi_buy.value)"
+   }
+  ]
+ },
+ {
+  "id": "NotAnotherSMAOffsetStrategyModHO_LamineDz_20210901",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi_fast'] < 35) &\n                (dataframe['close'] < (dataframe[f'ma_buy_{self.base_nb_candles_buy.value}'] * self.low_offset.value))"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "(dataframe['EWO'] > self.ewo_high.value) &\n                (dataframe['rsi'] < self.rsi_buy.value)"
+   }
+  ]
+ },
+ {
+  "id": "NotAnotherSMAOffsetStrategyX1",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi_fast'] <35)&\n                (dataframe['close'] < (dataframe[f'ma_buy_{self.base_nb_candles_buy.value}'] * self.low_offset.value))"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "(dataframe['EWO'] > self.ewo_high.value) &\n                (dataframe['rsi'] < self.rsi_buy.value)"
+   }
+  ]
+ },
+ {
+  "id": "NotAnotherSMAOffsetStrategyX1_176",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi_fast'] <35)&\n                (dataframe['close'] < (dataframe[f'ma_buy_{self.base_nb_candles_buy.value}'] * self.low_offset.value))"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "(dataframe['EWO'] > self.ewo_high.value) &\n                (dataframe['rsi'] < self.rsi_buy.value)"
+   }
+  ]
+ },
+ {
+  "id": "NotAnotherSMAOffsetStrategy_199",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi_fast'] <35)&\n                (dataframe['close'] < (dataframe[f'ma_buy_{self.base_nb_candles_buy.value}'] * self.low_offset.value))"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "(dataframe['EWO'] > self.ewo_high.value) &\n                (dataframe['rsi'] < self.rsi_buy.value)"
+   }
+  ]
+ },
+ {
+  "id": "NotAnotherSMAOffsetStrategy_2",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi_fast'] <35)&\n            (dataframe['close'] < (dataframe[f'ma_buy_{self.base_nb_candles_buy.value}'] * self.low_offset.value))"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "(dataframe['EWO'] > self.ewo_high.value) &\n            (dataframe['rsi'] < self.rsi_buy.value)"
+   }
+  ]
+ },
+ {
+  "id": "NotAnotherSMAOffsetStrategy_3",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi_fast'] <35)&\n            (dataframe['close'] < (dataframe[f'ma_buy_{self.base_nb_candles_buy.value}'] * self.low_offset.value))"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "(dataframe['EWO'] > self.ewo_high.value) &\n            (dataframe['rsi'] < self.rsi_buy.value)"
+   }
+  ]
+ },
+ {
+  "id": "NotAnotherSMAOffsetStrategy_970",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi_fast'] <35)&\n                (dataframe['close'] < (dataframe[f'ma_buy_{self.base_nb_candles_buy.value}'] * self.low_offset.value))"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "(dataframe['EWO'] > self.ewo_high.value) &\n                (dataframe['rsi'] < self.rsi_buy.value)"
+   }
+  ]
+ },
+ {
+  "id": "NotAnotherSMAOffsetStrategy_uzi",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi_fast'] <35)&\n                (dataframe['close'] < (dataframe[f'ma_buy_{self.base_nb_candles_buy.value}'] * self.low_offset.value))"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "(dataframe['EWO'] > self.ewo_high.value) &\n                (dataframe['rsi'] < self.rsi_buy.value)"
+   }
+  ]
+ },
+ {
+  "id": "NotAnotherSMAOffsetStrategy_uzi2",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi_fast'] <35)&\n                (dataframe['close'] < (dataframe[f'ma_buy_{self.base_nb_candles_buy.value}'] * self.low_offset.value))"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "(dataframe['EWO'] > self.ewo_high.value) &\n                (dataframe['rsi'] < self.rsi_buy.value)"
+   }
+  ]
+ },
+ {
+  "id": "NotAnotherSMAOffsetStrategy_uzi3",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi_fast'] <35)&\n                (dataframe['close'] < (dataframe[f'ma_buy_{self.base_nb_candles_buy.value}'] * self.low_offset.value))"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "(dataframe['EWO'] > self.ewo_high.value) &\n                (dataframe['rsi'] < self.rsi_buy.value)"
+   }
+  ]
+ },
+ {
+  "id": "NotAnotherSMAOffsetStrategy_uzi3ho",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi_fast'] <35)&\n                (dataframe['close'] < (dataframe[f'ma_buy_{self.base_nb_candles_buy.value}'] * self.low_offset.value))"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "(dataframe['EWO'] > self.ewo_high.value) &\n                (dataframe['rsi'] < self.rsi_buy.value)"
+   }
+  ]
+ },
+ {
+  "id": "Notank_unbiased",
+  "primary": "pattern",
+  "labels": [
+   {
+    "label": "pattern",
+    "confidence": "high",
+    "evidence": "dataframe.loc[min_peaks, \"&s-extrema\"] = -1\n        dataframe.loc[max_peaks, \"&s-extrema\"] = 1"
+   },
+   {
+    "label": "mean_reversion",
+    "confidence": "medium",
+    "evidence": "& (df[\"rsi\"] < 30)"
+   }
+  ]
+ },
+ {
+  "id": "Notank_unbiased_no_freqai",
+  "primary": "pattern",
+  "labels": [
+   {
+    "label": "pattern",
+    "confidence": "high",
+    "evidence": "dataframe[\"minima\"] = dataframe[\"close\"].rolling(window=7).apply(lambda x: x[5] == min(x), raw=True)\n        dataframe[\"maxima\"] = dataframe[\"close\"].rolling(window=7).apply(lambda x: x[5] == max(x), raw=True)"
+   },
+   {
+    "label": "mean_reversion",
+    "confidence": "medium",
+    "evidence": "& (df[\"rsi\"] < 30)"
+   }
+  ]
+ },
+ {
+  "id": "NowoIchimoku1hV1",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "& (df['is_cloud_green']) & \\\n                           conversion_line_above_base_line"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "(df['close'] > df['open']) &"
+   },
+   {
+    "label": "breakout",
+    "confidence": "medium",
+    "evidence": "close_above_shifted_upper_cloud = df['close'] > df['shifted_upper_cloud'] * 1.04"
+   }
+  ]
+ }
+]

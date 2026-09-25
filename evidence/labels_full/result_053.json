@@ -1,0 +1,497 @@
+[
+ {
+  "id": "NASOSv5_mod2",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi'] < 31)"
+   },
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['EWO'] > self.ewo_high.value)"
+   }
+  ]
+ },
+ {
+  "id": "NASOSv5_mod3",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi'] < 44)"
+   },
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['EWO'] > self.ewo_high.value)"
+   }
+  ]
+ },
+ {
+  "id": "NASOSv6",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi_fast'] < 35) &"
+   },
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['EWO'] > self.ewo_high.value)"
+   }
+  ]
+ },
+ {
+  "id": "NASOSv7",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi_fast'] < 35) &"
+   },
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['EWO'] > self.ewo_high.value)"
+   }
+  ]
+ },
+ {
+  "id": "NASOSv7LongShort",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi_fast'] < 35) &"
+   },
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['EWO'] > self.ewo_high.value)"
+   }
+  ]
+ },
+ {
+  "id": "NASOSvSH1",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi_fast'] < 35) &"
+   },
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['EWO'] > self.ewo_high.value)"
+   }
+  ]
+ },
+ {
+  "id": "NDrop",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "conditions.append(dataframe['close'] <= dataframe['bb_lowerband'])"
+   },
+   {
+    "label": "volatility",
+    "confidence": "medium",
+    "evidence": "bollinger = qtpylib.weighted_bollinger_bands(..., window=20, stds=2)"
+   }
+  ]
+ },
+ {
+  "id": "NDrop_2",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "conditions.append(dataframe['close'] <= dataframe['bb_lowerband'])"
+   },
+   {
+    "label": "volatility",
+    "confidence": "medium",
+    "evidence": "bollinger = qtpylib.weighted_bollinger_bands(..., window=20, stds=2)"
+   }
+  ]
+ },
+ {
+  "id": "NEWTEST15m",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(qtpylib.crossed_above(dataframe['frsi'], self.buy_frsi.value))"
+   },
+   {
+    "label": "mean_reversion",
+    "confidence": "medium",
+    "evidence": "(qtpylib.crossed_below(dataframe['frsi'], self.buy_dip_frsi.value))"
+   }
+  ]
+ },
+ {
+  "id": "NFI46",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "medium",
+    "evidence": "(dataframe['rsi'] < self.buy_rsi_1.value) &"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "(dataframe['ema_50_1h'] > dataframe['ema_200_1h']) &"
+   },
+   {
+    "label": "momentum",
+    "confidence": "low",
+    "evidence": "((dataframe['close'] - dataframe['open'].rolling(36).min())"
+   }
+  ]
+ },
+ {
+  "id": "NFI46Frog",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "medium",
+    "evidence": "(dataframe['rsi'] < self.buy_rsi_1.value) &"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "(dataframe['ema_50_1h'] > dataframe['ema_200_1h']) &"
+   },
+   {
+    "label": "momentum",
+    "confidence": "low",
+    "evidence": "((dataframe['close'] - dataframe['open'].rolling(36).min())"
+   }
+  ]
+ },
+ {
+  "id": "NFI46FrogZ",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "medium",
+    "evidence": "(dataframe['rsi'] < self.buy_rsi_1.value) &"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "(dataframe['ema_50_1h'] > dataframe['ema_200_1h']) &"
+   }
+  ]
+ },
+ {
+  "id": "NFI46Offset",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "medium",
+    "evidence": "(dataframe['rsi'] < self.buy_rsi_1.value) &"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "(dataframe['ema_50_1h'] > dataframe['ema_200_1h']) &"
+   }
+  ]
+ },
+ {
+  "id": "NFI46OffsetHOA1",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "medium",
+    "evidence": "(dataframe['rsi'] < self.buy_rsi_1.value) &"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "(dataframe['ema_50_1h'] > dataframe['ema_200_1h']) &"
+   }
+  ]
+ },
+ {
+  "id": "NFI46OffsetHOA1_222",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "medium",
+    "evidence": "(dataframe['rsi'] < self.buy_rsi_1.value) &"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "(dataframe['ema_50_1h'] > dataframe['ema_200_1h']) &"
+   }
+  ]
+ },
+ {
+  "id": "NFI46Z",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "medium",
+    "evidence": "(dataframe['rsi'] < self.buy_rsi_1.value) &"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "(dataframe['ema_50_1h'] > dataframe['ema_200_1h']) &"
+   }
+  ]
+ },
+ {
+  "id": "NFI46Z_212",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "medium",
+    "evidence": "(dataframe['rsi'] < self.buy_rsi_1.value) &"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "(dataframe['ema_50_1h'] > dataframe['ema_200_1h']) &"
+   }
+  ]
+ },
+ {
+  "id": "NFI46_217",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "medium",
+    "evidence": "(dataframe['rsi'] < self.buy_rsi_1.value) &"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "(dataframe['ema_50_1h'] > dataframe['ema_200_1h']) &"
+   }
+  ]
+ },
+ {
+  "id": "NFI47",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "medium",
+    "evidence": "(dataframe['rsi'] < self.buy_rsi_1.value) &"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "(dataframe['ema_50_1h'] > dataframe['ema_200_1h']) &"
+   }
+  ]
+ },
+ {
+  "id": "NFI47V2",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "medium",
+    "evidence": "(dataframe['rsi'] < self.buy_rsi_1.value) &"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "(dataframe['ema_50_1h'] > dataframe['ema_200_1h']) &"
+   }
+  ]
+ },
+ {
+  "id": "NFI4Frog",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "medium",
+    "evidence": "(dataframe['rsi'] < self.buy_rsi_1.value) &"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "(dataframe['ema_50_1h'] > dataframe['ema_200_1h']) &"
+   }
+  ]
+ },
+ {
+  "id": "NFI5MOHO",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "dataframe['close'] < dataframe[f'{i}_offset_buy']) &"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "(dataframe['ewo'] < self.ewo_low.value) |"
+   }
+  ]
+ },
+ {
+  "id": "NFI5MOHO2",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "medium",
+    "evidence": "(dataframe['rsi'] < self.buy_rsi_1.value) &"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "(dataframe['ema_50_1h'] > dataframe['ema_200_1h']) &"
+   },
+   {
+    "label": "momentum",
+    "confidence": "low",
+    "evidence": "(dataframe['mfi'] < self.buy_mfi_1.value) &"
+   }
+  ]
+ },
+ {
+  "id": "NFI5MOHO_WIP",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "medium",
+    "evidence": "(dataframe['rsi'] < self.buy_rsi_1.value) &"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "(dataframe['ema_50_1h'] > dataframe['ema_200_1h']) &"
+   }
+  ]
+ },
+ {
+  "id": "NFI5MOHO_WIP_1",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "medium",
+    "evidence": "(dataframe['rsi'] < self.buy_rsi_1.value) &"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "(dataframe['ema_50_1h'] > dataframe['ema_200_1h']) &"
+   }
+  ]
+ },
+ {
+  "id": "NFI5MOHO_WIP_118",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "medium",
+    "evidence": "(dataframe['rsi'] < self.buy_rsi_1.value) &"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "(dataframe['ema_50_1h'] > dataframe['ema_200_1h']) &"
+   }
+  ]
+ },
+ {
+  "id": "NFI5MOHO_WIP_2",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "medium",
+    "evidence": "(dataframe['rsi'] < self.buy_rsi_1.value) &"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "(dataframe['ema_50_1h'] > dataframe['ema_200_1h']) &"
+   }
+  ]
+ },
+ {
+  "id": "NFI5MOHO_WIP_mod1",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "dataframe['close'] < dataframe[f'{i}_offset_buy']) &"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "(dataframe['ewo'] < self.ewo_low.value) |"
+   }
+  ]
+ },
+ {
+  "id": "NFI731_BUSD",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "if global_buy_protection_params[\"ema_fast\"].value:"
+   },
+   {
+    "label": "mean_reversion",
+    "confidence": "medium",
+    "evidence": "if global_buy_protection_params[\"close_above_ema_fast\"].value:"
+   }
+  ]
+ },
+ {
+  "id": "NFI7HO2",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "if self.buy_01_protection__ema_fast.value:"
+   },
+   {
+    "label": "mean_reversion",
+    "confidence": "medium",
+    "evidence": "if self.buy_01_protection__safe_dips.value:"
+   }
+  ]
+ }
+]

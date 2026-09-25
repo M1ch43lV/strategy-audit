@@ -1,0 +1,447 @@
+[
+ {
+  "id": "Scalp_7",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['fastk'] < 30) & (dataframe['fastd'] < 30) & (qtpylib.crossed_above(dataframe['fastk'], dataframe['fastd']))"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "(dataframe['adx'] > 30)"
+   }
+  ],
+  "note": "Stochastic crossing from oversold is primary trigger; ADX filters for trend"
+ },
+ {
+  "id": "Scalping2",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "low",
+    "evidence": "dataframe['enter'] == 1"
+   }
+  ],
+  "note": "Entry/exit logic delegated to calc() method, not shown in fact sheet"
+ },
+ {
+  "id": "ScalpingCCI",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "qtpylib.crossed_above(dataframe['macd'], dataframe['macdsignal'])"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "(dataframe['close'] > dataframe['sma'])"
+   }
+  ],
+  "note": "MACD crossing is primary momentum trigger with SMA trend confirmation"
+ },
+ {
+  "id": "ScalpingCCI_325",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "qtpylib.crossed_above(dataframe['macd'], dataframe['macdsignal'])"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "(dataframe['close'] > dataframe['sma'])"
+   }
+  ],
+  "note": "MACD crossing momentum trigger with SMA trend filter"
+ },
+ {
+  "id": "ScalpingMomentsStrategyV6",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] <= dataframe['nwe_lower']) & (dataframe['rsi'] < dataframe['rsi_lower'])"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "(dataframe['ema_20'] > dataframe['ema_50'])"
+   }
+  ],
+  "note": "Oversold RSI at lower band with EMA trend filter and volume confirmation"
+ },
+ {
+  "id": "ScalpingStrategy",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < dataframe['bb_lowerband']) & (dataframe['rsi'] < 30)"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "(dataframe['ema_fast'] > dataframe['ema_slow'])"
+   }
+  ],
+  "note": "Oversold price at lower band with EMA uptrend confirmation"
+ },
+ {
+  "id": "Schism",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "dataframe['rmi-slow'], dataframe['roc'], dataframe['mp']"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "dataframe['rmi-up-trend'] == 1"
+   }
+  ],
+  "note": "RMI and ROC momentum oscillators with trend confirmation; code truncated"
+ },
+ {
+  "id": "Schism2",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "dataframe['rmi-slow'], dataframe['roc'], dataframe['mp']"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "dataframe['rmi-dn-trend'] == 1"
+   }
+  ],
+  "note": "RMI/ROC momentum with DCA-like re-entry logic; code truncated"
+ },
+ {
+  "id": "Schism2MM",
+  "primary": "pattern",
+  "labels": [
+   {
+    "label": "pattern",
+    "confidence": "high",
+    "evidence": "min_peaks = argrelextrema(dataframe['close'].values, np.less, order=100)"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "dataframe['rmi-up-trend'] == 1"
+   }
+  ],
+  "note": "Peak/trough pattern detection with RMI trend filter"
+ },
+ {
+  "id": "Schism2_BTC",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "low",
+    "evidence": "no code provided"
+   }
+  ],
+  "note": "Empty fact sheet, no logic available"
+ },
+ {
+  "id": "Schism2_ETH",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "low",
+    "evidence": "no code provided"
+   }
+  ],
+  "note": "Empty fact sheet, no logic available"
+ },
+ {
+  "id": "Schism3",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "dataframe['rmi-slow'], dataframe['roc'], dataframe['mp']"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "dataframe['rmi-up-trend'] == 1"
+   }
+  ],
+  "note": "RMI/ROC momentum with bounce-detection on reversals; code truncated"
+ },
+ {
+  "id": "Schism3_BTC",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "low",
+    "evidence": "no code provided"
+   }
+  ],
+  "note": "Empty fact sheet"
+ },
+ {
+  "id": "Schism3_ETH",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "low",
+    "evidence": "no code provided"
+   }
+  ],
+  "note": "Empty fact sheet"
+ },
+ {
+  "id": "Schism4",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "dataframe['rmi-slow'], dataframe['roc'], dataframe['mp']"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "dataframe['rmi-up-trend'] == 1"
+   }
+  ],
+  "note": "RMI/ROC momentum oscillators; code truncated"
+ },
+ {
+  "id": "Schism4_BTC",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "low",
+    "evidence": "no code provided"
+   }
+  ],
+  "note": "Empty fact sheet"
+ },
+ {
+  "id": "Schism4_ETH",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "low",
+    "evidence": "no code provided"
+   }
+  ],
+  "note": "Empty fact sheet"
+ },
+ {
+  "id": "Schism5",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "qtpylib.crossed_below(dataframe['rsi'], params['bull-buy-rsi'])"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "dataframe['bull'] = (rsi > 60) regime detector"
+   }
+  ],
+  "note": "RSI crossing below threshold (oversold) with regime detection"
+ },
+ {
+  "id": "Schism5_BTC",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "low",
+    "evidence": "no code provided"
+   }
+  ],
+  "note": "Empty fact sheet"
+ },
+ {
+  "id": "Schism5_ETH",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "low",
+    "evidence": "no code provided"
+   }
+  ],
+  "note": "Empty fact sheet"
+ },
+ {
+  "id": "Schism6",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "dataframe['rmi-slow'], dataframe['roc'], dataframe['mp']"
+   },
+   {
+    "label": "volatility",
+    "confidence": "medium",
+    "evidence": "PMAX(dataframe, period=10, multiplier=3, length=10)"
+   }
+  ],
+  "note": "RMI/ROC momentum with PMAX volatility envelopes; code truncated"
+ },
+ {
+  "id": "Schism6_BTC",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "low",
+    "evidence": "no code provided"
+   }
+  ],
+  "note": "Empty fact sheet"
+ },
+ {
+  "id": "Schism6_ETH",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "low",
+    "evidence": "no code provided"
+   }
+  ],
+  "note": "Empty fact sheet"
+ },
+ {
+  "id": "SchismLess",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "dataframe['rmi-slow'], dataframe['roc'], dataframe['mp']"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "dataframe['rmi-up-trend'] == 1"
+   }
+  ],
+  "note": "RMI/ROC momentum with informative timeframe RSI filter; code truncated"
+ },
+ {
+  "id": "SchismLess_v2",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "dataframe['rmi-slow'], dataframe['roc'], dataframe['mp']"
+   },
+   {
+    "label": "volatility",
+    "confidence": "medium",
+    "evidence": "dataframe['adr'] = informative['1d_high'] - informative['3d_low']"
+   }
+  ],
+  "note": "RMI/ROC momentum with ADR volatility range; code truncated"
+ },
+ {
+  "id": "Schism_0318",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "dataframe['rmi-slow'], dataframe['roc'], dataframe['mp']"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "dataframe['rmi-up-trend'] == 1"
+   }
+  ],
+  "note": "RMI/ROC momentum; code truncated"
+ },
+ {
+  "id": "Schism_BTC",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "low",
+    "evidence": "no code provided"
+   }
+  ],
+  "note": "Empty fact sheet"
+ },
+ {
+  "id": "Schism_Badstreak",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['mp'] < params['mp']) & (dataframe['streak-roc'] > dataframe['pcc-lowerband'])"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "(dataframe['mac'] == 1)"
+   }
+  ],
+  "note": "MP (RSI of ROC) momentum with streak recovery and moving average cross"
+ },
+ {
+  "id": "Schism_Badstreak2",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['mp'] < params['mp']) & (dataframe['streak-roc'] > dataframe['pcc-lowerband'])"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "(dataframe['mac'] == 1)"
+   }
+  ],
+  "note": "MP (RSI of ROC) momentum with PCC volatility bands and EMA cross"
+ },
+ {
+  "id": "Schism_ETH",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "low",
+    "evidence": "no code provided"
+   }
+  ],
+  "note": "Empty fact sheet"
+ }
+]

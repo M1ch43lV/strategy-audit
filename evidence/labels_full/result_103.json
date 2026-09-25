@@ -1,0 +1,412 @@
+[
+ {
+  "id": "roger",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] <= dataframe['lower_band'])"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "(dataframe['VWAP_signal'] == 2)"
+   }
+  ]
+ },
+ {
+  "id": "roger10",
+  "primary": "pattern",
+  "labels": [
+   {
+    "label": "pattern",
+    "confidence": "high",
+    "evidence": "(dataframe['cdl3inside'] == 100) | # 3 Inside Up/Down"
+   },
+   {
+    "label": "mean_reversion",
+    "confidence": "medium",
+    "evidence": "(dataframe['bb_percent'] < 0.1)"
+   }
+  ]
+ },
+ {
+  "id": "roger12",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['sma50'] > dataframe['sma200'])"
+   },
+   {
+    "label": "pattern",
+    "confidence": "medium",
+    "evidence": "(dataframe['cdl3inside'] == 100)"
+   }
+  ]
+ },
+ {
+  "id": "roger14",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['sma50'] > dataframe['sma200'])"
+   },
+   {
+    "label": "pattern",
+    "confidence": "medium",
+    "evidence": "(dataframe['cdl3inside'] == 100)"
+   }
+  ]
+ },
+ {
+  "id": "roger15",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['sma50'] > dataframe['sma200'])"
+   },
+   {
+    "label": "pattern",
+    "confidence": "medium",
+    "evidence": "(dataframe['cdl3inside'] == 100)"
+   }
+  ]
+ },
+ {
+  "id": "roger16",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['sma50'] > dataframe['sma200'])"
+   },
+   {
+    "label": "pattern",
+    "confidence": "medium",
+    "evidence": "(dataframe['cdl3inside'] == 100)"
+   }
+  ]
+ },
+ {
+  "id": "roger17",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['sma20'] > dataframe['sma50']) & (dataframe['sma50'] > dataframe['sma200'])"
+   },
+   {
+    "label": "pattern",
+    "confidence": "medium",
+    "evidence": "(dataframe['cdl3inside'] == 100)"
+   }
+  ]
+ },
+ {
+  "id": "roger18",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['sma20'] > dataframe['sma50']) & (dataframe['sma50'] > dataframe['sma200'])"
+   },
+   {
+    "label": "pattern",
+    "confidence": "medium",
+    "evidence": "(dataframe['cdl3inside'] == 100)"
+   }
+  ]
+ },
+ {
+  "id": "roger19",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['sma20'] > dataframe['sma50']) & (dataframe['sma50'] > dataframe['sma200'])"
+   },
+   {
+    "label": "pattern",
+    "confidence": "medium",
+    "evidence": "(dataframe['cdl3inside'] == 100)"
+   }
+  ]
+ },
+ {
+  "id": "roger2",
+  "primary": "other",
+  "labels": [],
+  "note": "entry/exit only conditions on volume > 0"
+ },
+ {
+  "id": "roger20",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['sma20'] > dataframe['sma50']) & (dataframe['sma50'] > dataframe['sma200'])"
+   },
+   {
+    "label": "pattern",
+    "confidence": "medium",
+    "evidence": "(dataframe['cdl3inside'] == 100)"
+   }
+  ]
+ },
+ {
+  "id": "roger21",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['sma20'] > dataframe['sma50']) & (dataframe['sma50'] > dataframe['sma200'])"
+   },
+   {
+    "label": "pattern",
+    "confidence": "medium",
+    "evidence": "(dataframe['cdl3inside'] == 100)"
+   }
+  ]
+ },
+ {
+  "id": "roger22",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['sma20'] > dataframe['sma50']) & (dataframe['sma50'] > dataframe['sma200'])"
+   },
+   {
+    "label": "pattern",
+    "confidence": "medium",
+    "evidence": "(dataframe['cdl3inside'] == 100)"
+   }
+  ]
+ },
+ {
+  "id": "roger27",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['ema50'] > dataframe['ema200'])"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "(dataframe['macd'] > dataframe['macdsignal'])"
+   },
+   {
+    "label": "pattern",
+    "confidence": "low",
+    "evidence": "(dataframe['cdl3inside'] == 100)"
+   }
+  ]
+ },
+ {
+  "id": "roger3",
+  "primary": "other",
+  "labels": [],
+  "note": "entry/exit only conditions on volume > 0"
+ },
+ {
+  "id": "roger4",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['bb_percent'] < 0.1)"
+   }
+  ]
+ },
+ {
+  "id": "roger6",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['bb_percent'] < 0.1)"
+   },
+   {
+    "label": "pattern",
+    "confidence": "medium",
+    "evidence": "(dataframe['cdl3inside'] == 100)"
+   }
+  ]
+ },
+ {
+  "id": "roger7",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['bb_percent'] < 0.1)"
+   },
+   {
+    "label": "pattern",
+    "confidence": "medium",
+    "evidence": "(dataframe['cdl3inside'] == 100)"
+   }
+  ]
+ },
+ {
+  "id": "roger8",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['bb_percent'] < 0.1)"
+   },
+   {
+    "label": "pattern",
+    "confidence": "medium",
+    "evidence": "(dataframe['cdl3inside'] == 100)"
+   }
+  ]
+ },
+ {
+  "id": "roger9",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['bb_percent'] < 0.1)"
+   },
+   {
+    "label": "pattern",
+    "confidence": "medium",
+    "evidence": "(dataframe['cdl3inside'] == 100)"
+   }
+  ]
+ },
+ {
+  "id": "rsibb",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < dataframe['bb_lowerband'])"
+   }
+  ]
+ },
+ {
+  "id": "rsibb01",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < dataframe['bb_lowerband'])"
+   }
+  ]
+ },
+ {
+  "id": "rsimacdadx",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi'] < 28)"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "(dataframe['adx'] > 40)"
+   }
+  ]
+ },
+ {
+  "id": "rsistochastics",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi'] > 50) & (dataframe['slowd'] > 50)"
+   }
+  ]
+ },
+ {
+  "id": "rtr",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe[f'rmi_length_{self.buy_rmi_length.value}'] < self.buy_rmi.value)"
+   }
+  ]
+ },
+ {
+  "id": "s06",
+  "primary": "other",
+  "labels": [],
+  "note": "parameterized indicators applied generically, no concrete logic visible"
+ },
+ {
+  "id": "s10lchimoku_zema_hyper",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['ichimoku_valid'] > 0)"
+   }
+  ]
+ },
+ {
+  "id": "s13",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "dataframe[f'buy-ma-{i}'].shift(shift) > dataframe[f'buy-ma-{i-1}'].shift(shift)"
+   }
+  ]
+ },
+ {
+  "id": "sample_strategy",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['adx'] > 30)"
+   }
+  ]
+ },
+ {
+  "id": "sample_strategy3",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['macd'] > dataframe['macdsignal'])"
+   }
+  ]
+ }
+]

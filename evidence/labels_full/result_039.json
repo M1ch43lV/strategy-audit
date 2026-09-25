@@ -1,0 +1,387 @@
+[
+ {
+  "id": "HPStrategyNGV1",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['distance_to_support_pct'] >= 0) &"
+   }
+  ]
+ },
+ {
+  "id": "HPStrategyTFJPAConfirmV1",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['stoch_k'] > dataframe['stoch_d'])"
+   },
+   {
+    "label": "pattern",
+    "confidence": "medium",
+    "evidence": "fib_cond = (\n                (dataframe['close'] <= dataframe['fib_618'])"
+   }
+  ]
+ },
+ {
+  "id": "HPStrategyTFJPAConfirmV1_3",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi_4'] < int(self.lambo2_rsi_4_limit.value)) &"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "(dataframe['EWO'] > self.ewo_high.value) &"
+   }
+  ]
+ },
+ {
+  "id": "HPStrategyTFJPAConfirmV3",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi_14'] < int(self.lambo2_rsi_14_limit.value))"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "(dataframe['EWO'] > self.ewo_high.value) &"
+   }
+  ]
+ },
+ {
+  "id": "HPStrategyTFJPAConfirmV3T",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['high'] > dataframe['open'])"
+   },
+   {
+    "label": "pattern",
+    "confidence": "medium",
+    "evidence": "dataframe['doji'] = talib.CDLDOJI(open, high, low, close)"
+   }
+  ]
+ },
+ {
+  "id": "HPStrategyTFJPAConfirmV3_9",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['high'] > dataframe['open'])"
+   },
+   {
+    "label": "pattern",
+    "confidence": "medium",
+    "evidence": "doji = talib.CDLDOJI(open, high, low, close)"
+   }
+  ]
+ },
+ {
+  "id": "HPStrategyV6",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['cci'] < -100) & (dataframe['rsi'] < 30)"
+   }
+  ]
+ },
+ {
+  "id": "HPStrategyV7UltraDCACSL_Kucoin",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['swing_low'] == 1)"
+   }
+  ]
+ },
+ {
+  "id": "HPStrategyV8UltraDCACSL",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['swing_low'] == 1) |"
+   }
+  ]
+ },
+ {
+  "id": "HPStrategy_12_27",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi_fast'] < 35) &"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "(dataframe['EWO'] > self.ewo_high.value) &"
+   }
+  ]
+ },
+ {
+  "id": "HPStrategy_19",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi_fast'] < 35) &"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "(dataframe['EWO'] > self.ewo_high.value) &"
+   }
+  ]
+ },
+ {
+  "id": "HSI",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['ha_open_slope'] > 0) & (dataframe['ha_close_slope'] > 0)"
+   }
+  ]
+ },
+ {
+  "id": "Hacklemore",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['up_trend'] == 1) &"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "(dataframe['macd'] > dataframe['macdsignal'])"
+   }
+  ]
+ },
+ {
+  "id": "Hacklemore2",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['up_trend'] == True) &"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "(dataframe['RMI'] > 55) &"
+   }
+  ]
+ },
+ {
+  "id": "Hacklemore3",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['up_trend'] == 1) &"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "(dataframe['rmi'] > 55) &"
+   }
+  ]
+ },
+ {
+  "id": "HacklemoreX",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['up_trend'] == 1) &"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "(dataframe['macd'] > dataframe['macdsignal'])"
+   }
+  ]
+ },
+ {
+  "id": "Hacklemore_Slow",
+  "primary": "other",
+  "labels": [],
+  "note": "No entry/exit code provided in fact sheet"
+ },
+ {
+  "id": "Hacklemost",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['rmi'] >= params['buy-rmi']) &"
+   }
+  ]
+ },
+ {
+  "id": "Hammer",
+  "primary": "pattern",
+  "labels": [
+   {
+    "label": "pattern",
+    "confidence": "high",
+    "evidence": "(dataframe['upper_ratio'] > 2) |"
+   }
+  ]
+ },
+ {
+  "id": "HamstringScalper",
+  "primary": "breakout",
+  "labels": [
+   {
+    "label": "breakout",
+    "confidence": "high",
+    "evidence": "dataframe['close'] > dataframe['high_5'].shift(1)"
+   },
+   {
+    "label": "volume_flow",
+    "confidence": "high",
+    "evidence": "dataframe['volume_spike'] &"
+   }
+  ]
+ },
+ {
+  "id": "HansenSmaOffsetV1",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['high']<dataframe['smad1'])&"
+   }
+  ]
+ },
+ {
+  "id": "HarmonicDivergence",
+  "primary": "pattern",
+  "labels": [
+   {
+    "label": "pattern",
+    "confidence": "high",
+    "evidence": "dataframe[resample('total_bullish_divergences')].shift() > 0"
+   }
+  ]
+ },
+ {
+  "id": "HarmonicDivergenceCaoCao",
+  "primary": "pattern",
+  "labels": [
+   {
+    "label": "pattern",
+    "confidence": "high",
+    "evidence": "dataframe[resample('total_bullish_divergences')].shift() > 0"
+   }
+  ]
+ },
+ {
+  "id": "HarmonicDivergence_0_2_0_075_01",
+  "primary": "pattern",
+  "labels": [
+   {
+    "label": "pattern",
+    "confidence": "high",
+    "evidence": "dataframe[resample('total_bullish_divergences')].shift() > 0"
+   }
+  ]
+ },
+ {
+  "id": "HarmonicDivergence_fix",
+  "primary": "pattern",
+  "labels": [
+   {
+    "label": "pattern",
+    "confidence": "high",
+    "evidence": "dataframe[resample('total_bullish_divergences')].shift() > 0"
+   }
+  ]
+ },
+ {
+  "id": "HarmonicDivergence_test",
+  "primary": "pattern",
+  "labels": [
+   {
+    "label": "pattern",
+    "confidence": "high",
+    "evidence": "dataframe[resample('total_bullish_divergences')].shift() > 0"
+   }
+  ]
+ },
+ {
+  "id": "HarmonicDivergence_test_92",
+  "primary": "pattern",
+  "labels": [
+   {
+    "label": "pattern",
+    "confidence": "high",
+    "evidence": "dataframe[resample('total_bullish_divergences')].shift() > 0"
+   }
+  ]
+ },
+ {
+  "id": "HedgeAdaptiveRegimeStrategy",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "trend=((fast-slow)/dataframe[\"close\"]/vol)"
+   },
+   {
+    "label": "volatility",
+    "confidence": "medium",
+    "evidence": "stress=(vol/(baseline.replace(0,np.nan)))"
+   }
+  ]
+ },
+ {
+  "id": "HedgeStrategy",
+  "primary": "statistical",
+  "labels": [
+   {
+    "label": "statistical",
+    "confidence": "high",
+    "evidence": "np.polyfit((informative[\"close_counter\"].iloc[x.index])"
+   }
+  ]
+ },
+ {
+  "id": "HeikinAshi",
+  "primary": "other",
+  "labels": [],
+  "note": "Entry logic in populate_indicators; visible condition insufficient"
+ }
+]

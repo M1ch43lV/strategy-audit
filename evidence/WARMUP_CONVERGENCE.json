@@ -10313,6 +10313,208 @@
       "timeframe": "5m",
       "timerange": "20190101-20190401"
     },
+    "BB_RPB_TSL_RNG_V2_20211008": {
+      "available_prefix_candles": 106125,
+      "chosen_ladder_days": 7,
+      "chosen_startup_candle_count": 2016,
+      "cohort": "lookahead_pass",
+      "columns": [
+        {
+          "from_strategy": true,
+          "startup_candle_count": 288
+        },
+        {
+          "from_strategy": false,
+          "startup_candle_count": 576
+        },
+        {
+          "from_strategy": false,
+          "startup_candle_count": 2016
+        },
+        {
+          "from_strategy": false,
+          "startup_candle_count": 4032
+        }
+      ],
+      "debug_log": "user_data/convergence_logs/BB_RPB_TSL_RNG_V2_20211008-b87d08c3-ladder.log",
+      "declared_max_drift_pct": 22.68,
+      "declared_startup_candle_count": 288,
+      "declared_warmup_override": 288,
+      "drift_threshold_pct": 1.0,
+      "drifts": {
+        "EWO": [
+          22.68,
+          -0.597,
+          -0.0,
+          0.0
+        ],
+        "adx": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "bb_delta": [
+          -0.0,
+          -0.0,
+          -0.0,
+          -0.0
+        ],
+        "bb_lowerband2": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "bb_lowerband3": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "bb_upperband2": [
+          -0.0,
+          -0.0,
+          -0.0,
+          -0.0
+        ],
+        "bb_upperband3": [
+          -0.0,
+          -0.0,
+          -0.0,
+          -0.0
+        ],
+        "bb_width": [
+          -0.0,
+          -0.0,
+          -0.0,
+          -0.0
+        ],
+        "cci": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "cci_length_25": [
+          -0.0,
+          -0.0,
+          -0.0,
+          0.0
+        ],
+        "ema_100": [
+          0.005,
+          -0.0,
+          0.0,
+          0.0
+        ],
+        "ema_26": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "fastd": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "hma_50": [
+          0.0,
+          -0.0,
+          0.0,
+          0.0
+        ],
+        "ma_sell_23": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "rmi_length_17": [
+          -0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "rsi": [
+          -0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "rsi_slow": [
+          -0.0,
+          -0.0,
+          0.0,
+          0.0
+        ],
+        "sma_15": [
+          -0.0,
+          -0.0,
+          -0.0,
+          -0.0
+        ],
+        "sma_30": [
+          -0.0,
+          -0.0,
+          -0.0,
+          -0.0
+        ],
+        "sma_9": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "srsi_fd": [
+          0.0,
+          -0.0,
+          -0.0,
+          -0.0
+        ],
+        "srsi_fk": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "volume_mean_4": [
+          -0.0,
+          -0.0,
+          -0.0,
+          -0.0
+        ]
+      },
+      "elapsed_s": 202.6,
+      "file_derived_period": null,
+      "implementation_id": "BB_RPB_TSL_RNG_V2_20211008:fa4f83fdca91",
+      "invocation": "freqtrade recursive-analysis --config user_data/expansion_configs/BB_RPB_TSL_RNG_V2_20211008_startup_288.json --strategy BB_RPB_TSL_RNG_V2_20211008 --strategy-path user_data/profile_bias_strategies/BB_RPB_TSL_RNG_V2_20211008-b87d08c3 --timerange 20200301-20200601 --no-color --startup-candle 288 576 2016 4032",
+      "ladder_candles": [
+        288,
+        576,
+        2016,
+        4032
+      ],
+      "ladder_days": [
+        1,
+        2,
+        7,
+        14
+      ],
+      "max_drift_indicator": "bb_lowerband2",
+      "max_drift_pct": 0.0,
+      "needed_no_override": false,
+      "output_sha256": "sha256_941605e286cca4e16d13e57343033c4158b5d05cc04b3627e79ced1ce62726ff",
+      "returncode": 0,
+      "run_profile": "spot_long",
+      "runtime_id": "docker:sha256:385a287ced73c5326334598adabb078c6cf55f12fd0ed30149354b606ad6148a",
+      "state": "converged",
+      "strategy_id": "BB_RPB_TSL_RNG_V2_20211008",
+      "timeframe": "5m",
+      "timerange": "20200301-20200601"
+    },
     "BB_RPB_TSL_RNG_VWAP": {
       "available_prefix_candles": 97222,
       "chosen_ladder_days": 7,
@@ -15695,6 +15897,190 @@
       "strategy_id": "BB_RPB_TSL_c7c477d_20211030",
       "timeframe": "5m",
       "timerange": "20190101-20190401"
+    },
+    "BB_RPB_TSL_jilv220_github_20211008": {
+      "available_prefix_candles": 106125,
+      "chosen_ladder_days": 7,
+      "chosen_startup_candle_count": 2016,
+      "cohort": "lookahead_pass",
+      "columns": [
+        {
+          "from_strategy": true,
+          "startup_candle_count": 288
+        },
+        {
+          "from_strategy": false,
+          "startup_candle_count": 576
+        },
+        {
+          "from_strategy": false,
+          "startup_candle_count": 2016
+        },
+        {
+          "from_strategy": false,
+          "startup_candle_count": 4032
+        }
+      ],
+      "debug_log": "user_data/convergence_logs/BB_RPB_TSL_jilv220_github_20211008-557aa9de-ladder.log",
+      "declared_max_drift_pct": 22.68,
+      "declared_startup_candle_count": 288,
+      "declared_warmup_override": 288,
+      "drift_threshold_pct": 1.0,
+      "drifts": {
+        "EWO": [
+          22.68,
+          -0.597,
+          -0.0,
+          0.0
+        ],
+        "adx": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "bb_delta": [
+          -0.0,
+          -0.0,
+          -0.0,
+          -0.0
+        ],
+        "bb_lowerband2": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "bb_lowerband3": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "bb_upperband2": [
+          -0.0,
+          -0.0,
+          -0.0,
+          -0.0
+        ],
+        "bb_upperband3": [
+          -0.0,
+          -0.0,
+          -0.0,
+          -0.0
+        ],
+        "bb_width": [
+          -0.0,
+          -0.0,
+          -0.0,
+          -0.0
+        ],
+        "cci": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "cci_length_25": [
+          -0.0,
+          -0.0,
+          -0.0,
+          0.0
+        ],
+        "ema_26": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "fastd": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "rmi_length_17": [
+          -0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "rsi": [
+          -0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "rsi_slow": [
+          -0.0,
+          -0.0,
+          0.0,
+          0.0
+        ],
+        "sma_15": [
+          -0.0,
+          -0.0,
+          -0.0,
+          -0.0
+        ],
+        "sma_30": [
+          -0.0,
+          -0.0,
+          -0.0,
+          -0.0
+        ],
+        "sma_9": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "srsi_fd": [
+          0.0,
+          -0.0,
+          -0.0,
+          -0.0
+        ],
+        "srsi_fk": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "volume_mean_4": [
+          -0.0,
+          -0.0,
+          -0.0,
+          -0.0
+        ]
+      },
+      "elapsed_s": 214.6,
+      "file_derived_period": null,
+      "implementation_id": "BB_RPB_TSL_jilv220_github_20211008:e72db9789907",
+      "invocation": "freqtrade recursive-analysis --config user_data/expansion_configs/BB_RPB_TSL_jilv220_github_20211008_startup_288.json --strategy BB_RPB_TSL_jilv220_github_20211008 --strategy-path user_data/profile_bias_strategies/BB_RPB_TSL_jilv220_github_20211008-557aa9de --timerange 20200301-20200601 --no-color --startup-candle 288 576 2016 4032",
+      "ladder_candles": [
+        288,
+        576,
+        2016,
+        4032
+      ],
+      "ladder_days": [
+        1,
+        2,
+        7,
+        14
+      ],
+      "max_drift_indicator": "bb_lowerband2",
+      "max_drift_pct": 0.0,
+      "needed_no_override": false,
+      "output_sha256": "sha256_2a3d722295405c166555e3d00dbbb8d4bc98d74f83465b945eb7da1798601edd",
+      "returncode": 0,
+      "run_profile": "spot_long",
+      "runtime_id": "docker:sha256:385a287ced73c5326334598adabb078c6cf55f12fd0ed30149354b606ad6148a",
+      "state": "converged",
+      "strategy_id": "BB_RPB_TSL_jilv220_github_20211008",
+      "timeframe": "5m",
+      "timerange": "20200301-20200601"
     },
     "BB_RPB_TSLmeneguzzo": {
       "available_prefix_candles": 106125,
@@ -25334,6 +25720,222 @@
       "timeframe": "5m",
       "timerange": "20190101-20190401"
     },
+    "BinClucMadSMACore": {
+      "available_prefix_candles": 106125,
+      "chosen_ladder_days": 7,
+      "chosen_startup_candle_count": 2016,
+      "cohort": "lookahead_pass",
+      "columns": [
+        {
+          "from_strategy": true,
+          "startup_candle_count": 200
+        },
+        {
+          "from_strategy": false,
+          "startup_candle_count": 288
+        },
+        {
+          "from_strategy": false,
+          "startup_candle_count": 576
+        },
+        {
+          "from_strategy": false,
+          "startup_candle_count": 2016
+        },
+        {
+          "from_strategy": false,
+          "startup_candle_count": 4032
+        }
+      ],
+      "debug_log": "user_data/convergence_logs/BinClucMadSMACore-ddd17da2-ladder.log",
+      "declared_max_drift_pct": 25.881,
+      "declared_startup_candle_count": 200,
+      "declared_warmup_override": null,
+      "drift_threshold_pct": 1.0,
+      "drifts": {
+        "EWO": [
+          25.881,
+          22.68,
+          -0.597,
+          -0.0,
+          0.0
+        ],
+        "atr": [
+          -0.0,
+          -0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "bb_lowerband": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "bb_upperband": [
+          -0.0,
+          -0.0,
+          -0.0,
+          -0.0,
+          -0.0
+        ],
+        "bbdelta": [
+          -0.0,
+          -0.0,
+          -0.0,
+          -0.0,
+          -0.0
+        ],
+        "ema_100_1h": [
+          -0.047,
+          0.007,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "ema_200": [
+          0.12,
+          0.105,
+          -0.003,
+          -0.0,
+          0.0
+        ],
+        "ema_200_1h": [
+          -1.395,
+          0.123,
+          0.007,
+          0.0,
+          -0.0
+        ],
+        "ema_26": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "ema_50": [
+          -0.0,
+          0.0,
+          -0.0,
+          0.0,
+          0.0
+        ],
+        "ema_50_1h": [
+          0.001,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "lower": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "ma_buy_20": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "ma_sell_24": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "mfi": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "rsi": [
+          -0.0,
+          -0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "rsi_1h": [
+          0.0,
+          -0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "sma_200": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "sma_200_1h": [
+          0.0,
+          0.0,
+          -0.0,
+          0.0,
+          0.0
+        ],
+        "sma_200_dec": [
+          null,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "ssl_down_1h": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "ssl_up_1h": [
+          -0.0,
+          -0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "elapsed_s": 113.2,
+      "file_derived_period": null,
+      "implementation_id": "BinClucMadSMACore:e725b37b23d2",
+      "invocation": "freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy BinClucMadSMACore --strategy-path user_data/profile_bias_strategies/BinClucMadSMACore-ddd17da2 --timerange 20200301-20200601 --no-color --startup-candle 288 576 2016 4032",
+      "ladder_candles": [
+        288,
+        576,
+        2016,
+        4032
+      ],
+      "ladder_days": [
+        1,
+        2,
+        7,
+        14
+      ],
+      "max_drift_indicator": "ema_50_1h",
+      "max_drift_pct": 0.0,
+      "needed_no_override": false,
+      "output_sha256": "sha256_189d639399269a00ef810762cfe11b0a2ac1d0f3d098edde7eef9c5209c2c69e",
+      "returncode": 0,
+      "run_profile": "spot_long",
+      "runtime_id": "docker:sha256:385a287ced73c5326334598adabb078c6cf55f12fd0ed30149354b606ad6148a",
+      "state": "converged",
+      "strategy_id": "BinClucMadSMACore",
+      "timeframe": "5m",
+      "timerange": "20200301-20200601"
+    },
     "BinClucMadSMADevelop": {
       "available_prefix_candles": 97222,
       "chosen_ladder_days": 7,
@@ -25735,6 +26337,96 @@
       "strategy_id": "BinClucMadV1",
       "timeframe": "5m",
       "timerange": "20190101-20190401"
+    },
+    "BinHModWhiteHOV0": {
+      "available_prefix_candles": 106125,
+      "chosen_ladder_days": 1,
+      "chosen_startup_candle_count": 288,
+      "cohort": "lookahead_pass",
+      "columns": [
+        {
+          "from_strategy": false,
+          "startup_candle_count": 288
+        },
+        {
+          "from_strategy": true,
+          "startup_candle_count": 500
+        },
+        {
+          "from_strategy": false,
+          "startup_candle_count": 576
+        },
+        {
+          "from_strategy": false,
+          "startup_candle_count": 2016
+        },
+        {
+          "from_strategy": false,
+          "startup_candle_count": 4032
+        }
+      ],
+      "debug_log": "user_data/convergence_logs/BinHModWhiteHOV0-a1f78b0f-ladder.log",
+      "declared_max_drift_pct": 0.0,
+      "declared_startup_candle_count": 500,
+      "declared_warmup_override": null,
+      "drift_threshold_pct": 1.0,
+      "drifts": {
+        "bbdelta": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "bbwidth": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "lower": [
+          -0.0,
+          -0.0,
+          -0.0,
+          -0.0,
+          -0.0
+        ],
+        "space": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "elapsed_s": 105.0,
+      "file_derived_period": null,
+      "implementation_id": "BinHModWhiteHOV0:097e3aa04ce5",
+      "invocation": "freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy BinHModWhiteHOV0 --strategy-path user_data/profile_bias_strategies/BinHModWhiteHOV0-a1f78b0f --timerange 20200301-20200601 --no-color --startup-candle 288 576 2016 4032",
+      "ladder_candles": [
+        288,
+        576,
+        2016,
+        4032
+      ],
+      "ladder_days": [
+        1,
+        2,
+        7,
+        14
+      ],
+      "max_drift_indicator": "lower",
+      "max_drift_pct": 0.0,
+      "needed_no_override": true,
+      "output_sha256": "sha256_3b4c425e40775581dfc8eb09c8738f0826e8c148d0e03f278516ca282a43c811",
+      "returncode": 0,
+      "run_profile": "spot_long",
+      "runtime_id": "docker:sha256:385a287ced73c5326334598adabb078c6cf55f12fd0ed30149354b606ad6148a",
+      "state": "converged",
+      "strategy_id": "BinHModWhiteHOV0",
+      "timeframe": "5m",
+      "timerange": "20200301-20200601"
     },
     "BinHV27": {
       "available_prefix_candles": 97222,
@@ -37180,6 +37872,243 @@
       "strategy_id": "CombinedBinHClucAndMADV9",
       "timeframe": "5m",
       "timerange": "20190101-20190401"
+    },
+    "CombinedBinHClucAndSMAOffset_2": {
+      "available_prefix_candles": 106125,
+      "chosen_ladder_days": 7,
+      "chosen_startup_candle_count": 2016,
+      "cohort": "lookahead_pass",
+      "columns": [
+        {
+          "from_strategy": true,
+          "startup_candle_count": 200
+        },
+        {
+          "from_strategy": false,
+          "startup_candle_count": 288
+        },
+        {
+          "from_strategy": false,
+          "startup_candle_count": 576
+        },
+        {
+          "from_strategy": false,
+          "startup_candle_count": 2016
+        },
+        {
+          "from_strategy": false,
+          "startup_candle_count": 4032
+        }
+      ],
+      "debug_log": "user_data/convergence_logs/CombinedBinHClucAndSMAOffset_2-1c9b26a2-ladder.log",
+      "declared_max_drift_pct": 25.881,
+      "declared_startup_candle_count": 200,
+      "declared_warmup_override": null,
+      "drift_threshold_pct": 1.0,
+      "drifts": {
+        "EWO": [
+          25.881,
+          22.68,
+          -0.597,
+          -0.0,
+          0.0
+        ],
+        "bb_lowerband": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "bb_upperband": [
+          -0.0,
+          -0.0,
+          -0.0,
+          -0.0,
+          -0.0
+        ],
+        "bbdelta": [
+          -0.0,
+          -0.0,
+          -0.0,
+          -0.0,
+          -0.0
+        ],
+        "ema_100_1h": [
+          -0.047,
+          0.007,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "ema_200": [
+          0.12,
+          0.105,
+          -0.003,
+          -0.0,
+          0.0
+        ],
+        "ema_200_1h": [
+          -1.395,
+          0.123,
+          0.007,
+          0.0,
+          -0.0
+        ],
+        "ema_26": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "ema_50": [
+          -0.0,
+          0.0,
+          -0.0,
+          0.0,
+          0.0
+        ],
+        "ema_50_1h": [
+          0.001,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "ema_slow": [
+          -0.0,
+          0.0,
+          -0.0,
+          0.0,
+          0.0
+        ],
+        "lower": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "ma_buy": [
+          -0.0,
+          -0.0,
+          -0.0,
+          -0.0,
+          -0.0
+        ],
+        "ma_offset_buy": [
+          -0.0,
+          -0.0,
+          -0.0,
+          -0.0,
+          -0.0
+        ],
+        "ma_offset_sell": [
+          -0.0,
+          -0.0,
+          -0.0,
+          -0.0,
+          -0.0
+        ],
+        "ma_sell": [
+          -0.0,
+          -0.0,
+          -0.0,
+          -0.0,
+          -0.0
+        ],
+        "mfi": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "rsi": [
+          -0.0,
+          -0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "rsi_1h": [
+          0.0,
+          -0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "sma_200": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "sma_200_1h": [
+          0.0,
+          0.0,
+          -0.0,
+          0.0,
+          0.0
+        ],
+        "sma_200_dec": [
+          null,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "sma_5": [
+          -0.0,
+          -0.0,
+          -0.0,
+          -0.0,
+          -0.0
+        ],
+        "ssl_down_1h": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "ssl_up_1h": [
+          -0.0,
+          -0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "elapsed_s": 105.6,
+      "file_derived_period": null,
+      "implementation_id": "CombinedBinHClucAndSMAOffset_2:07f4d1dc2e98",
+      "invocation": "freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy CombinedBinHClucAndSMAOffset_2 --strategy-path user_data/profile_bias_strategies/CombinedBinHClucAndSMAOffset_2-1c9b26a2 --timerange 20200301-20200601 --no-color --startup-candle 288 576 2016 4032",
+      "ladder_candles": [
+        288,
+        576,
+        2016,
+        4032
+      ],
+      "ladder_days": [
+        1,
+        2,
+        7,
+        14
+      ],
+      "max_drift_indicator": "ema_50_1h",
+      "max_drift_pct": 0.0,
+      "needed_no_override": false,
+      "output_sha256": "sha256_cc6f6ebda03de7fe8e34efcd8364176b8366ba08cc886dcfa007fe29aa82dc8a",
+      "returncode": 0,
+      "run_profile": "spot_long",
+      "runtime_id": "docker:sha256:385a287ced73c5326334598adabb078c6cf55f12fd0ed30149354b606ad6148a",
+      "state": "converged",
+      "strategy_id": "CombinedBinHClucAndSMAOffset_2",
+      "timeframe": "5m",
+      "timerange": "20200301-20200601"
     },
     "Combined_Indicators": {
       "available_prefix_candles": 486102,

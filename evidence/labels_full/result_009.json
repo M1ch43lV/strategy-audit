@@ -1,0 +1,343 @@
+[
+ {
+  "id": "BB_RTR_dca_0",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "medium",
+    "evidence": "is_crash_1 = (\n                (dataframe['tpct_change_1'] < 0.08) &"
+   }
+  ],
+  "note": "Entry truncated; crash detection + pump avoidance indicate dip-buying"
+ },
+ {
+  "id": "BB_RTR_dca_1",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "medium",
+    "evidence": "is_crash_1 = (\n                (dataframe['tpct_change_1'] < 0.08) &"
+   }
+  ],
+  "note": "Entry truncated; crash detection + pump avoidance indicate dip-buying"
+ },
+ {
+  "id": "BB_RTR_dca_157",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "medium",
+    "evidence": "is_crash_1 = (\n                (dataframe['tpct_change_1'] < 0.08) &"
+   }
+  ],
+  "note": "Entry truncated; crash detection + pump avoidance indicate dip-buying"
+ },
+ {
+  "id": "BB_Strategy04",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < dataframe['bb_lowerband2']) &"
+   }
+  ]
+ },
+ {
+  "id": "BBands",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['tema'] > dataframe['tema'].shift(1)) &  # Guard: tema is rising"
+   }
+  ]
+ },
+ {
+  "id": "BBandsRSI",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi'] < 30) &\n                (dataframe['close'] < dataframe['bb_lowerband']) &"
+   }
+  ]
+ },
+ {
+  "id": "BBandsRSI_303",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi']>30) &\n                (dataframe['close'] < dataframe['bb_lowerband']) &"
+   }
+  ]
+ },
+ {
+  "id": "BBandsRSI_63",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi'] < 30) &\n                (dataframe['close'] < dataframe['bb_lowerband']) &"
+   }
+  ]
+ },
+ {
+  "id": "BBlower",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "medium",
+    "evidence": "qtpylib.crossed_above(\n                        dataframe['TEMA'], dataframe['bb_lowerbandTA1']"
+   }
+  ]
+ },
+ {
+  "id": "BNBArbitrage",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['ema_fast'] > dataframe['ema_slow']) &\n                (dataframe['close'] < dataframe['bb_lower']) &\n                (dataframe['rsi'] < 30)"
+   }
+  ]
+ },
+ {
+  "id": "BOAV1",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "medium",
+    "evidence": "(((dataframe['open'] - dataframe['close'])/dataframe['open']) > SCALE_BUY)"
+   }
+  ]
+ },
+ {
+  "id": "BOLT",
+  "primary": "pattern",
+  "labels": [
+   {
+    "label": "pattern",
+    "confidence": "high",
+    "evidence": "(dataframe['hammer'] == 100) &"
+   }
+  ]
+ },
+ {
+  "id": "BR7",
+  "primary": "other",
+  "labels": [],
+  "note": "Entry code truncated; visible conditions mix volatility (bb_delta, bb_width), CCI, stoch, but outcome unclear"
+ },
+ {
+  "id": "BSS2",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['EWO'] > self.ewo_high.value) &"
+   },
+   {
+    "label": "mean_reversion",
+    "confidence": "medium",
+    "evidence": "(dataframe['close'] < (dataframe[f'ma_buy_{self.base_nb_candles_buy.value}'] * self.low_offset.value)) &"
+   }
+  ]
+ },
+ {
+  "id": "BSS2b",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['EWO'] > self.ewo_high.value) &"
+   },
+   {
+    "label": "mean_reversion",
+    "confidence": "medium",
+    "evidence": "(dataframe['close'] < (dataframe[f'ma_buy_{self.base_nb_candles_buy.value}'] * self.low_offset.value)) &"
+   }
+  ]
+ },
+ {
+  "id": "BTCBigDrop",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(((dataframe['open_5m'].shift(self.buy_num_candles.value-1) - dataframe['close_5m']) /"
+   }
+  ]
+ },
+ {
+  "id": "BTCBigDrop_2",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(((dataframe['open_5m'].shift(self.buy_num_candles.value-1) - dataframe['close_5m']) /"
+   }
+  ]
+ },
+ {
+  "id": "BTCEMABounce",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "qtpylib.crossed_above(dataframe['ema_angle_5m'], 0))"
+   }
+  ]
+ },
+ {
+  "id": "BTCEMABounce_2",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "qtpylib.crossed_above(dataframe['ema_angle_5m'], 0))"
+   }
+  ]
+ },
+ {
+  "id": "BTCJump",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "qtpylib.crossed_above(dataframe['btc_zgain'], 0))"
+   }
+  ]
+ },
+ {
+  "id": "BTCMACDCross",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "qtpylib.crossed_above(dataframe['btc_macd'], dataframe['btc_macdsignal'])"
+   }
+  ]
+ },
+ {
+  "id": "BTCMACDCross_2",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "qtpylib.crossed_above(dataframe['btc_macd'], dataframe['btc_macdsignal'])"
+   }
+  ]
+ },
+ {
+  "id": "BTCNDrop",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(((dataframe['open_5m'].shift(self.buy_num_candles.value-1) - dataframe['close_5m']) /"
+   }
+  ]
+ },
+ {
+  "id": "BTCNDrop_2",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(((dataframe['open_5m'].shift(self.buy_num_candles.value-1) - dataframe['close_5m']) /"
+   }
+  ]
+ },
+ {
+  "id": "BTCNSeq",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "conditions.append(dataframe['close_5m'] > dataframe['open_5m'])"
+   }
+  ],
+  "note": "Reversal entry after N down candles; enters on green candle = reversal/mean-reversion element"
+ },
+ {
+  "id": "BTCNSeq_2",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "conditions.append(dataframe['close_5m'] > dataframe['open_5m'])"
+   }
+  ],
+  "note": "Reversal entry after N down candles; enters on green candle = reversal/mean-reversion element"
+ },
+ {
+  "id": "Babico_SMA5xBBmid",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "qtpylib.crossed_above(dataframe['ema5'], dataframe['bb_mid'])"
+   }
+  ]
+ },
+ {
+  "id": "BadoV1",
+  "primary": "pattern",
+  "labels": [
+   {
+    "label": "pattern",
+    "confidence": "high",
+    "evidence": "(dataframe['minima'].notnull())\n            ),\n        'enter_long'] = 1"
+   }
+  ],
+  "note": "Local extrema detection via argrelextrema; swing-point pattern recognition"
+ },
+ {
+  "id": "BandRSI6",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi'] > 30) &\n                              (dataframe['rsi'].shift(1) <= 30)"
+   }
+  ]
+ },
+ {
+  "id": "Bandtastic",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "dataframe[\"close\"] < dataframe['bb_lowerband1'])"
+   }
+  ]
+ }
+]

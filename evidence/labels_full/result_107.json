@@ -1,0 +1,499 @@
+[
+ {
+  "id": "test_strategy_163",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['tema'] <= dataframe['bb_middleband'])"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['adx'] > 30)"
+   }
+  ]
+ },
+ {
+  "id": "test_strategy_193",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['tema'] <= dataframe['bb_middleband'])"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['adx'] > 30)"
+   }
+  ]
+ },
+ {
+  "id": "test_strategy_194",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['tema'] <= dataframe['bb_middleband'])"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['adx'] > 30)"
+   }
+  ]
+ },
+ {
+  "id": "test_strategy_302",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['tema'] <= dataframe['bb_middleband'])"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['adx'] > 30)"
+   }
+  ]
+ },
+ {
+  "id": "test_strategy_471",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['tema'] <= dataframe['bb_middleband'])"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['adx'] > 30)"
+   }
+  ]
+ },
+ {
+  "id": "test_strategy_5",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['tema'] <= dataframe['bb_middleband'])"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['adx'] > 30)"
+   }
+  ]
+ },
+ {
+  "id": "teststrat_fvg_bpercent",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi'] < 30) & (dataframe['bb_percent_b'] < 0)"
+   }
+  ]
+ },
+ {
+  "id": "thetank2",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(qtpylib.crossed_above(df['wave_t1_1h'], df['wave_t2_1h']))"
+   },
+   {
+    "label": "volatility",
+    "confidence": "high",
+    "evidence": "(df['squeeze_ON'] == 1)"
+   }
+  ]
+ },
+ {
+  "id": "thetank3",
+  "primary": "breakout",
+  "labels": [
+   {
+    "label": "breakout",
+    "confidence": "high",
+    "evidence": "(qtpylib.crossed_above(df[f'zema_{self.filterlength.value}'], df['s3']))"
+   },
+   {
+    "label": "volatility",
+    "confidence": "medium",
+    "evidence": "(df['squeeze_ON'] == 1)"
+   }
+  ]
+ },
+ {
+  "id": "thetank4TV",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(df['200_SMA'] > df['200_SMA'].shift(1))"
+   },
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(df[f'wave_t1{self.wavelength.value}'] > df[f'wave_t1{self.wavelength.value}'].shift(1))"
+   }
+  ]
+ },
+ {
+  "id": "timija",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['sma20'] > dataframe['sma50']) & (dataframe['sma50'] > dataframe['sma200'])"
+   },
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['bb_percent'] < 0.3)"
+   },
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi'] < 30)"
+   },
+   {
+    "label": "pattern",
+    "confidence": "high",
+    "evidence": "(dataframe['cdlhammer'] == 100)"
+   }
+  ]
+ },
+ {
+  "id": "timijaV12",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['sma20'] > dataframe['sma50']) & (dataframe['sma50'] > dataframe['sma200'])"
+   },
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['bb_percent'] < 0.3)"
+   },
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['macd'] > dataframe['macdsignal'])"
+   }
+  ]
+ },
+ {
+  "id": "timijaV3",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['sma20'] > dataframe['sma50']) & (dataframe['sma50'] > dataframe['sma200'])"
+   },
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['bb_percent'] < 0.3)"
+   },
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi'] < 30)"
+   }
+  ]
+ },
+ {
+  "id": "timijaV31",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['sma20'] > dataframe['sma50']) & (dataframe['sma50'] > dataframe['sma200'])"
+   },
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['bb_percent'] < 0.3)"
+   },
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi'] < 30)"
+   }
+  ]
+ },
+ {
+  "id": "timijaV45",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['sma20'] > dataframe['sma50']) & (dataframe['sma50'] > dataframe['sma200'])"
+   },
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['bb_percent'] < 0.3)"
+   },
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi'] < 30)"
+   }
+  ]
+ },
+ {
+  "id": "titanium",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "high",
+    "evidence": "qtpylib.crossed_above(dataframe[self.buy_fast_key.value].shift(...), dataframe[self.buy_slow_key.value])"
+   }
+  ],
+  "note": "Entry logic uses parameterized indicators determined at runtime"
+ },
+ {
+  "id": "trailingTrendStrategy",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] <= dataframe['lower_band'])"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['VWAP_signal'] == 2)"
+   }
+  ]
+ },
+ {
+  "id": "trailingVWAPstrategy",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] <= dataframe['lower_band'])"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['VWAP_signal'] == 2)"
+   }
+  ]
+ },
+ {
+  "id": "trend",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['obv'] > dataframe['obv'].shift(1))"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] > dataframe['trend'])"
+   }
+  ]
+ },
+ {
+  "id": "true_lambo",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(qtpylib.crossed_above(dataframe['fastk'], dataframe['fastd']))"
+   },
+   {
+    "label": "breakout",
+    "confidence": "medium",
+    "evidence": "(dataframe['close'].rolling(48).max() >= (dataframe['close'] * self.buy_pump_2_factor.value))"
+   }
+  ]
+ },
+ {
+  "id": "true_lambo_2",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(qtpylib.crossed_above(dataframe['fastk'], dataframe['fastd']))"
+   },
+   {
+    "label": "breakout",
+    "confidence": "medium",
+    "evidence": "(dataframe['close'].rolling(48).max() >= (dataframe['close'] * self.buy_pump_2_factor.value))"
+   }
+  ]
+ },
+ {
+  "id": "tsl",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe[f'rmi_length_{self.buy_rmi_length.value}'] < self.buy_rmi.value)"
+   },
+   {
+    "label": "breakout",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < dataframe['bb_lowerband3'] * self.buy_bb_factor.value)"
+   },
+   {
+    "label": "volatility",
+    "confidence": "high",
+    "evidence": "(dataframe['bb_width'] > self.buy_bb_width.value)"
+   }
+  ]
+ },
+ {
+  "id": "tsp0chicken",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "medium",
+    "evidence": "freq, power = perform_fft(dataframe['ha_close'], window_size=window_size)"
+   }
+  ],
+  "note": "Uses FFT cycle analysis for entry detection"
+ },
+ {
+  "id": "turbov8",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi_fast'] <35)"
+   },
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['EWO'] > self.ewo_high.value)"
+   }
+  ]
+ },
+ {
+  "id": "twinturboV8",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi_fast'] < 35)"
+   },
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['EWO'] > self.ewo_high_safe.value)"
+   }
+  ]
+ },
+ {
+  "id": "twinturboV8_2",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi_fast'] < 35)"
+   },
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['EWO'] > self.ewo_high_safe.value)"
+   }
+  ]
+ },
+ {
+  "id": "two_ema_rsi_bb",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi'] <= 33)"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['ema180'] > dataframe['ema365'])"
+   }
+  ]
+ },
+ {
+  "id": "ultratank",
+  "primary": "breakout",
+  "labels": [
+   {
+    "label": "breakout",
+    "confidence": "high",
+    "evidence": "(qtpylib.crossed_above(df[f'zema_{self.filterlength.value}'], df['s3']))"
+   },
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(df['wave_t1'] > df['wave_t1'].shift(1))"
+   }
+  ]
+ },
+ {
+  "id": "updownV3",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(qtpylib.crossed_below(dataframe['sslUp'], dataframe['sslDown']))"
+   }
+  ]
+ },
+ {
+  "id": "vendor",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['EWO'] > self.ewo_high.value)"
+   },
+   {
+    "label": "mean_reversion",
+    "confidence": "medium",
+    "evidence": "(dataframe['rsi_fast'] < 35)"
+   }
+  ]
+ }
+]

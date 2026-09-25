@@ -1,0 +1,337 @@
+[
+ {
+  "id": "SRFuturesStrategy2",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "touched_support = True"
+   }
+  ]
+ },
+ {
+  "id": "SRsi",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['k'] < 15) &"
+   }
+  ]
+ },
+ {
+  "id": "SSL_ATR_ADX_VOL",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['adx'] > 25) &"
+   },
+   {
+    "label": "volume_flow",
+    "confidence": "medium",
+    "evidence": "(dataframe['volume'] > dataframe['volume_mean']) &"
+   }
+  ]
+ },
+ {
+  "id": "STRATEGY_002_STOCHASTIC_CDLHAMMER",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi'] < 30) &"
+   },
+   {
+    "label": "pattern",
+    "confidence": "high",
+    "evidence": "(dataframe['CDLHAMMER'] == 100)"
+   }
+  ]
+ },
+ {
+  "id": "STRATEGY_003_RSI_MFI_FISHERRSI",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi'] < 28) &"
+   }
+  ]
+ },
+ {
+  "id": "STRATEGY_005_FASTSTOCH_RSI",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['fastd'] > dataframe['fastk']) &"
+   }
+  ]
+ },
+ {
+  "id": "STRATEGY_CORAL_AND_WAVETREND",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "dataframe['ema10'].crossed_above(dataframe['ema100'])"
+   }
+  ]
+ },
+ {
+  "id": "STRATEGY_DEFAULT",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(qtpylib.crossed_above(dataframe['rsi'], 30)) &"
+   }
+  ]
+ },
+ {
+  "id": "STRATEGY_RSI_BB_BOUNDS_CROSS",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "medium",
+    "evidence": "qtpylib.crossed_above(dataframe['bb_percent'], dataframe['rsi_percent'])"
+   }
+  ]
+ },
+ {
+  "id": "STRATEGY_RSI_BB_CROSS",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "medium",
+    "evidence": "qtpylib.crossed_above(dataframe['bb_percent'], dataframe['rsi_percent'])"
+   }
+  ]
+ },
+ {
+  "id": "STRATEGY_SMOOTHED",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['wt_goingup'] == True) &"
+   }
+  ]
+ },
+ {
+  "id": "SUI_MeanReversion_Optimized",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi'] < 30) &"
+   }
+  ]
+ },
+ {
+  "id": "SUPPORT_RESISTANCE",
+  "primary": "breakout",
+  "labels": [
+   {
+    "label": "breakout",
+    "confidence": "high",
+    "evidence": "(dataframe['signal'] == 1)"
+   }
+  ]
+ },
+ {
+  "id": "SafeCluc",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['ha_close'] < dataframe['lower'].shift())"
+   }
+  ]
+ },
+ {
+  "id": "SafeMaxStrategy",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi'] < 35)  # RSI oversold threshold"
+   }
+  ]
+ },
+ {
+  "id": "SampleROITables",
+  "primary": "other",
+  "labels": [],
+  "note": "No entry or exit logic implemented"
+ },
+ {
+  "id": "SampleStrategy",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(qtpylib.crossed_above(dataframe['rsi'], self.buy_rsi.value))"
+   }
+  ]
+ },
+ {
+  "id": "SampleStrategyV2",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(qtpylib.crossed_above(dataframe['rsi'], self.buy_rsi.value)) &"
+   }
+  ]
+ },
+ {
+  "id": "Sar",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(qtpylib.crossed_above(dataframe['rsi'], 30)) &"
+   }
+  ]
+ },
+ {
+  "id": "Saturn5",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "qtpylib.crossed_above(dataframe['s1_ema_sm'], dataframe['s1_ema_md'])"
+   }
+  ]
+ },
+ {
+  "id": "Saturn5_1",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "qtpylib.crossed_above(dataframe['s1_ema_sm'], dataframe['s1_ema_md'])"
+   }
+  ]
+ },
+ {
+  "id": "SaulusStrategia",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi'] < 30) & #uma ordem de compra"
+   }
+  ]
+ },
+ {
+  "id": "SaulusStrategiaOtimizeHyperOpt",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi'] < 30) & #uma ordem de compra"
+   }
+  ]
+ },
+ {
+  "id": "Scalp",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(qtpylib.crossed_above(dataframe['fastk'], dataframe['fastd']))"
+   }
+  ]
+ },
+ {
+  "id": "ScalpAvalon",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "medium",
+    "evidence": "dataframe['rsi'] < 30"
+   }
+  ]
+ },
+ {
+  "id": "ScalpV1",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "qtpylib.crossed_above(dataframe['fastk'], dataframe['fastd'])"
+   }
+  ]
+ },
+ {
+  "id": "Scalp_2",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(qtpylib.crossed_above(dataframe['fastk'], dataframe['fastd']))"
+   }
+  ]
+ },
+ {
+  "id": "Scalp_3",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(qtpylib.crossed_above(dataframe['fastk'], dataframe['fastd']))"
+   }
+  ]
+ },
+ {
+  "id": "Scalp_4",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(qtpylib.crossed_above(dataframe['fastk'], dataframe['fastd']))"
+   }
+  ]
+ },
+ {
+  "id": "Scalp_6",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(qtpylib.crossed_above(dataframe['fastk'], dataframe['fastd']))"
+   }
+  ]
+ }
+]

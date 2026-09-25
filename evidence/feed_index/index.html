@@ -1,0 +1,109 @@
+<title>Hippo Feed Index</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&family=Source+Serif+4:opsz,wght@8..60,600&display=swap">
+<style>
+:root{--bg:#f5f6f9;--surface:#fff;--surface-2:#eef0f4;--border:#dbdfe6;--text:#1c2029;--muted:#5b6472;--accent:#3552c9;--accent-ink:#fff;--accent-weak:#e8ecfb;--ok:#1d7a4c;--ok-weak:#e4f5eb;--code:#eef0f5;color-scheme:light}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#12151c;--surface:#1a1e28;--surface-2:#20242f;--border:#2b3140;--text:#e8eaf1;--muted:#95a0b3;--accent:#8ea0fb;--accent-ink:#12151c;--accent-weak:#232a44;--ok:#7fe0ac;--ok-weak:#163625;--code:#1f2430;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#12151c;--surface:#1a1e28;--surface-2:#20242f;--border:#2b3140;--text:#e8eaf1;--muted:#95a0b3;--accent:#8ea0fb;--accent-ink:#12151c;--accent-weak:#232a44;--ok:#7fe0ac;--ok-weak:#163625;--code:#1f2430;color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font:14px/1.5 "IBM Plex Sans",system-ui,sans-serif}
+.app{max-width:1200px;margin:0 auto;padding:0 16px;padding-block:20px 48px}
+h1{font:600 1.5rem "Source Serif 4",Georgia,serif;margin:0}
+.head{display:flex;flex-wrap:wrap;gap:6px 16px;align-items:baseline;margin-bottom:14px}
+.sub{color:var(--muted);font-size:.85rem}
+.bar{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:10px}
+#q{flex:1 1 320px;padding:10px 12px;border:1px solid var(--border);border-radius:8px;background:var(--surface);color:var(--text);font:500 .95rem "IBM Plex Sans",sans-serif}
+#q:focus,select:focus,button:focus-visible{outline:2px solid var(--accent);outline-offset:-1px}
+select{padding:9px 10px;border:1px solid var(--border);border-radius:8px;background:var(--surface);color:var(--text);font:inherit}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px}
+.chip{border:1px solid var(--border);background:var(--surface);color:var(--text);border-radius:20px;padding:5px 12px;font:500 .8rem "IBM Plex Sans",sans-serif;cursor:pointer}
+.chip[aria-pressed="true"]{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+.count{color:var(--muted);font-size:.85rem;margin:0 0 8px;font-variant-numeric:tabular-nums}
+.tw{overflow-x:auto;border:1px solid var(--border);border-radius:10px;background:var(--surface)}
+table{border-collapse:collapse;width:100%;min-width:760px}
+th{text-align:left;background:var(--surface-2);color:var(--muted);font-size:.72rem;text-transform:uppercase;letter-spacing:.05em;padding:9px 12px;white-space:nowrap}
+th.s{cursor:pointer}
+td{padding:8px 12px;border-top:1px solid var(--border);vertical-align:top}
+tr:hover td{background:var(--surface-2)}
+.n{font-family:"IBM Plex Mono",monospace;font-weight:500;font-size:.84rem;word-break:break-all}
+.r{color:var(--muted);font-size:.82rem;word-break:break-all}
+.d{white-space:nowrap;font-variant-numeric:tabular-nums;color:var(--muted)}
+.tag{display:inline-block;font:600 .68rem "IBM Plex Sans",sans-serif;border-radius:20px;padding:1px 8px;margin-left:6px;white-space:nowrap}
+.t-lead{background:var(--accent-weak);color:var(--accent)}
+.t-new{background:var(--surface-2);color:var(--muted);border:1px solid var(--border)}
+.t-warn{background:var(--surface-2);color:var(--muted);border:1px dashed var(--muted)}
+.t-in{background:var(--ok-weak);color:var(--ok)}
+a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}
+.lk{white-space:nowrap}
+.pg{display:flex;gap:10px;align-items:center;justify-content:center;margin-top:14px}
+.pg button{border:1px solid var(--border);background:var(--surface);color:var(--text);border-radius:8px;padding:7px 14px;font:500 .85rem "IBM Plex Sans",sans-serif;cursor:pointer}
+.pg button:disabled{opacity:.4;cursor:default}
+</style>
+<div class="app">
+  <div class="head"><h1>Hippo Feed Index</h1><span class="sub" id="meta">Loading…</span></div>
+  <div class="bar">
+    <input id="q" type="search" placeholder="Search strategy, repository, path… (all words must match)" autocomplete="off">
+    <select id="sort"><option value="new">Newest first</option><option value="old">Oldest first</option><option value="name">Strategy A–Z</option><option value="repo">Repository A–Z</option></select>
+  </div>
+  <div class="chips">
+    <button class="chip" id="fLead" aria-pressed="false" type="button">Dashboard top-10 leads</button>
+    <button class="chip" id="fNew" aria-pressed="false" type="button">Not in corpus</button>
+    <button class="chip" id="fIn" aria-pressed="false" type="button">Repository already in strategy-audit</button>
+    <button class="chip" id="fSrc" aria-pressed="false" type="button">Has GitHub source</button>
+  </div>
+  <p class="count" id="count"></p>
+  <div class="tw"><table><thead><tr><th>Strategy file</th><th>Repository</th><th>Feed date</th><th>Source</th></tr></thead><tbody id="rows"></tbody></table></div>
+  <div class="pg"><button id="prev" type="button">Previous</button><span id="pos" class="sub"></span><button id="next" type="button">Next</button></div>
+</div>
+<script>
+(function(){
+var PER=100,rows=[],view=[],page=0,S={lead:false,inr:false,src:false,neu:false};
+var $=function(i){return document.getElementById(i)};
+function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+function stem(r){var p=r[5]||r[6];p=decodeURIComponent(p.split('/').pop());return p.replace(/\.py$/,'')}
+function apply(){
+  var w=$('q').value.toLowerCase().split(/\s+/).filter(Boolean);
+  view=rows.filter(function(r){
+    if(S.lead&&!(r[7]&2))return false;
+    if(S.neu&&!(r[7]&4))return false;
+    if(S.inr&&!(r[7]&1))return false;
+    if(S.src&&!r[3])return false;
+    for(var i=0;i<w.length;i++)if(r._h.indexOf(w[i])<0)return false;
+    return true;
+  });
+  var s=$('sort').value;
+  view.sort(function(a,b){
+    if(s==='new')return b[1]<a[1]?-1:b[1]>a[1]?1:b[0]-a[0];
+    if(s==='old')return a[1]<b[1]?-1:a[1]>b[1]?1:a[0]-b[0];
+    if(s==='name')return a._n.toLowerCase()<b._n.toLowerCase()?-1:1;
+    return (a[3]||'~')<(b[3]||'~')?-1:1;
+  });
+  page=0;draw();
+}
+function draw(){
+  var pages=Math.max(1,Math.ceil(view.length/PER));
+  var sl=view.slice(page*PER,(page+1)*PER),h='';
+  sl.forEach(function(r){
+    var f=r[7],st=f&8?'<span class="tag t-in">own, in corpus</span>':f&4?(f&16?'<span class="tag t-warn">file in repos/, not a corpus strategy</span>':f&1?'<span class="tag t-warn">repo harvested, file not there</span>':'<span class="tag t-new">not in corpus</span>'):(f&1?'<span class="tag t-in">repo in corpus</span>':'');
+    var tags=(f&2?'<span class="tag t-lead">top-10 lead</span>':'')+st;
+    var gh=r[3]?'<a href="https://github.com/'+esc(r[3])+'/blob/'+esc(r[4])+'/'+esc(r[5])+'" target="_blank" rel="noopener">GitHub</a> · ':'';
+    h+='<tr><td><span class="n">'+esc(r._n)+'</span>'+tags+'</td><td class="r">'+esc(r[3]||'site upload only')+'</td><td class="d">'+esc(r[1])+'</td><td class="lk">'+gh+'<a href="https://frequenthippo.ddns.net/wp-content/uploads/strategies/'+encodeURIComponent(r[6])+'" target="_blank" rel="noopener">site .py</a></td></tr>';
+  });
+  $('rows').innerHTML=h||'<tr><td colspan="4" class="r">No match.</td></tr>';
+  $('count').textContent=view.length.toLocaleString('en')+' of '+rows.length.toLocaleString('en')+' feed posts';
+  $('pos').textContent='Page '+(page+1)+' of '+pages;
+  $('prev').disabled=page===0;$('next').disabled=page>=pages-1;
+}
+['q','sort'].forEach(function(i){$(i).addEventListener('input',apply)});
+[['fNew','neu'],['fLead','lead'],['fIn','inr'],['fSrc','src']].forEach(function(p){
+  $(p[0]).addEventListener('click',function(){S[p[1]]=!S[p[1]];this.setAttribute('aria-pressed',S[p[1]]);apply()});
+});
+$('prev').addEventListener('click',function(){page--;draw();scrollTo(0,0)});
+$('next').addEventListener('click',function(){page++;draw();scrollTo(0,0)});
+fetch('data.json').then(function(r){return r.json()}).then(function(j){
+  rows=j.rows;
+  rows.forEach(function(r){r._n=stem(r);r._h=(r[2]+' '+r[3]+' '+r[5]+' '+r[6]).toLowerCase()});
+  $('meta').textContent='All posts of the strategy-feed category, read '+j.generated_at.slice(0,10)+'. A lead list, not evidence. “Not in corpus” compares strategy names, not file contents; our own posts count as in corpus.';
+  apply();
+}).catch(function(e){$('meta').textContent='Could not load data.json: '+e});
+})();
+</script>

@@ -1,0 +1,421 @@
+[
+ {
+  "id": "AdvancedFuturesStrategy",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe[f'trend_up_{self.informative_timeframe}'] == True), (dataframe['adx'] > self.adx_threshold.value), (dataframe['di_plus'] > dataframe['di_minus'])"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "(dataframe['macd'] > dataframe['macdsignal']), (dataframe['macdhist'] > 0)"
+   }
+  ],
+  "note": "Higher-timeframe trend filter drives entry, ADX/DI confirm"
+ },
+ {
+  "id": "AdvancedFuturesSwingStrategy",
+  "primary": "volume_flow",
+  "labels": [
+   {
+    "label": "volume_flow",
+    "confidence": "high",
+    "evidence": "(dataframe['cumulative_delta'] > self.delta_threshold.value), (dataframe['close'] > dataframe['vwap'])"
+   },
+   {
+    "label": "pattern",
+    "confidence": "medium",
+    "evidence": "(dataframe['spring'] == True), (dataframe['long_lower_wick'] == True)"
+   }
+  ],
+  "note": "Order flow (delta, VWAP) with support/resistance wicks"
+ },
+ {
+  "id": "AdvancedMultiIndicatorStrategy",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi'] < 35) & (dataframe['close'] < dataframe['bb_lower'])"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "(dataframe['macd'] > dataframe['macd_signal'])"
+   }
+  ],
+  "note": "Oversold RSI and price below Bollinger band lower"
+ },
+ {
+  "id": "AdvancedMultiIndicatorStrategy2",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi'] < 35) & (dataframe['close'] < dataframe['bb_lower'])"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "(dataframe['macd'] > dataframe['macd_signal'])"
+   }
+  ],
+  "note": "Oversold RSI and price below Bollinger band lower"
+ },
+ {
+  "id": "AdvancedMultiStrategy",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['ema_short'] > dataframe['ema_long']) & (dataframe['trend_strength'] > 0.5)"
+   },
+   {
+    "label": "mean_reversion",
+    "confidence": "low",
+    "evidence": "(dataframe['close'] < dataframe['bb_lowerband']) & (dataframe['volatility_state'] == 'low')"
+   }
+  ],
+  "note": "EMA alignment and explicit trend_strength calculation"
+ },
+ {
+  "id": "AdvancedRiskFilterStrategy",
+  "primary": "other",
+  "labels": [],
+  "note": "Entry logic not shown; only external risk filter applied"
+ },
+ {
+  "id": "AdvancedScalpingStrategy",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['main_signal'] > self.mtmo_threshold.value), (dataframe['macd'] > dataframe['macd_signal'])"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "(dataframe['trend_direction'] > 0), (dataframe['adx'] > 25)"
+   }
+  ],
+  "note": "Momentum signal with MACD crossing; trend/ADX confirm"
+ },
+ {
+  "id": "Advanced_Ichimoku",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi_fast'] < self.buy_rsi_fast_32.value) & (dataframe['close'] < dataframe['sma_15'] * self.buy_sma15_32.value)"
+   },
+   {
+    "label": "momentum",
+    "confidence": "low",
+    "evidence": "(dataframe['rsi_slow'] < dataframe['rsi_slow'].shift(1))"
+   }
+  ],
+  "note": "Entry when RSI_fast oversold and price below SMA"
+ },
+ {
+  "id": "Advanced_Ichimoku_4",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "dataframe['trend_close_5m'] > dataframe['senkou_a'], dataframe['trend_close_5m'] > dataframe['senkou_b']"
+   }
+  ],
+  "note": "Ichimoku cloud position at multiple timeframes"
+ },
+ {
+  "id": "AdxSmas",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['adx'] > 25) & (qtpylib.crossed_above(dataframe['short'], dataframe['long']))"
+   }
+  ],
+  "note": "ADX above 25 with SMA crossover for trend confirmation"
+ },
+ {
+  "id": "AdxSmasS",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['adx'] < 25) & (qtpylib.crossed_above(dataframe['long'], dataframe['short']))"
+   }
+  ],
+  "note": "Low ADX with reversal SMA crossover for trend change"
+ },
+ {
+  "id": "AdxSmasSCSL",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['adx'] < 25) & (qtpylib.crossed_above(dataframe['long'], dataframe['short']))"
+   }
+  ],
+  "note": "Low ADX with reversal SMA crossover for trend change"
+ },
+ {
+  "id": "AdxSmasS_v2",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['adx'] < 25) & (qtpylib.crossed_above(dataframe['long'], dataframe['short']))"
+   }
+  ],
+  "note": "Low ADX with reversal SMA crossover for trend change"
+ },
+ {
+  "id": "AdxSmasS_v3",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['adx'] < 25) & (qtpylib.crossed_above(dataframe['long'], dataframe['short']))"
+   }
+  ],
+  "note": "Low ADX with reversal SMA crossover for trend change"
+ },
+ {
+  "id": "AdxSmasS_v4",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['adx'] < 25) & (qtpylib.crossed_above(dataframe['long'], dataframe['short']))"
+   }
+  ],
+  "note": "Low ADX with reversal SMA crossover for trend change"
+ },
+ {
+  "id": "AdxSmasS_v5",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['adx'] < 25) & (qtpylib.crossed_above(dataframe['long'], dataframe['short']))"
+   }
+  ],
+  "note": "Low ADX with reversal SMA crossover for trend change"
+ },
+ {
+  "id": "AdxSmasS_v6",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['adx'] < 25) & (qtpylib.crossed_above(dataframe['long'], dataframe['short']))"
+   }
+  ],
+  "note": "Low ADX with reversal SMA crossover for trend change"
+ },
+ {
+  "id": "AdxSmasS_v7",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['adx'] < 25) & (qtpylib.crossed_above(dataframe['long'], dataframe['short']))"
+   }
+  ],
+  "note": "Low ADX with reversal SMA crossover for trend change"
+ },
+ {
+  "id": "AdxSmasS_v7_long_and_short",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['adx'] < 25) & (qtpylib.crossed_above(dataframe['long'], dataframe['short']))"
+   }
+  ],
+  "note": "Low ADX with reversal SMA crossover for both directions"
+ },
+ {
+  "id": "AdxSmas_2",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['adx'] > self.buy_adx.value) & (qtpylib.crossed_above(dataframe['short'], dataframe['long']))"
+   }
+  ],
+  "note": "ADX above threshold with SMA crossover"
+ },
+ {
+  "id": "AdxSmas_213",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['adx'] > self.buy_adx.value) & (qtpylib.crossed_above(dataframe['short'], dataframe['long']))"
+   }
+  ],
+  "note": "ADX above threshold with SMA crossover"
+ },
+ {
+  "id": "AdxSmas_3",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['adx'] > 25) & (qtpylib.crossed_above(dataframe['short'], dataframe['long']))"
+   }
+  ],
+  "note": "ADX above 25 with SMA crossover for trend confirmation"
+ },
+ {
+  "id": "AdxSmas_850",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['adx'] > 25) & (qtpylib.crossed_above(dataframe['short'], dataframe['long']))"
+   }
+  ],
+  "note": "ADX above 25 with SMA crossover for trend confirmation"
+ },
+ {
+  "id": "AdxStrengthStrategy",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['adx'] > 25) & (dataframe['adx_prev'] <= 25) & (dataframe['plus_di'] > dataframe['minus_di'])"
+   }
+  ],
+  "note": "ADX crossing above 25 signals trend initiation"
+ },
+ {
+  "id": "AlexBTK_CT",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(df['rsi'] < 25) & (df['close'] > df['close'].shift(1))"
+   },
+   {
+    "label": "pattern",
+    "confidence": "medium",
+    "evidence": "(df['minima'] == 1), (df['s_extrema'] < 0)"
+   }
+  ],
+  "note": "Oversold RSI bounce with extrema pattern detection"
+ },
+ {
+  "id": "AlexBandSniperV10AI",
+  "primary": "pattern",
+  "labels": [
+   {
+    "label": "pattern",
+    "confidence": "high",
+    "evidence": "dataframe['total_bullish_divergences'].shift(1) > 0"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "Fisher Transform crossover signals"
+   }
+  ],
+  "note": "Divergence patterns with Fisher Transform confirmation"
+ },
+ {
+  "id": "AlexBandSniperV10AINoBias",
+  "primary": "pattern",
+  "labels": [
+   {
+    "label": "pattern",
+    "confidence": "high",
+    "evidence": "dataframe['total_bullish_divergences'].shift(1) > 0"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "Fisher Transform crossover signals"
+   }
+  ],
+  "note": "Divergence patterns with Fisher Transform confirmation"
+ },
+ {
+  "id": "AlexBandSniperV58COptuna",
+  "primary": "pattern",
+  "labels": [
+   {
+    "label": "pattern",
+    "confidence": "high",
+    "evidence": "bullish_divergence = (dataframe['total_bullish_divergences'].shift(1) > 0)"
+   },
+   {
+    "label": "volatility",
+    "confidence": "medium",
+    "evidence": "(dataframe['low'].shift(1) <= dataframe['kc_lowerband'].shift(1))"
+   }
+  ],
+  "note": "Divergence detection with Keltner band volatility gate"
+ },
+ {
+  "id": "AlexBattleTankKiller",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(df['rsi'] < 25) & (df['close'] > df['close'].shift(1))"
+   },
+   {
+    "label": "pattern",
+    "confidence": "medium",
+    "evidence": "(df['minima'] == 1), (df['s_extrema'] < 0)"
+   }
+  ],
+  "note": "Oversold RSI bounce with extrema pattern detection"
+ },
+ {
+  "id": "AlexBattleTankKillerV3",
+  "primary": "breakout",
+  "labels": [
+   {
+    "label": "breakout",
+    "confidence": "high",
+    "evidence": "bullish_mml = ((df['close'] > df['[6/8]P']) | ((df['close'] > df['[4/8]P'])))"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "(df['trend_consistency'] > 0.5)"
+   }
+  ],
+  "note": "Breakout above Murrey Math levels at 50% and 75%"
+ }
+]

@@ -1,0 +1,302 @@
+[
+ {
+  "id": "beta_factors_model",
+  "primary": "statistical",
+  "labels": [
+   {
+    "label": "statistical",
+    "confidence": "high",
+    "evidence": "pred_norm = self.get_model().predict(X)"
+   }
+  ]
+ },
+ {
+  "id": "bigshort",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe[\"fastk_15m\"] < 20) & (dataframe[\"fastd_15m\"] < 20)"
+   }
+  ]
+ },
+ {
+  "id": "bigz04_strategy",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < dataframe['bb_lowerband'] * 0.993)"
+   }
+  ]
+ },
+ {
+  "id": "binance",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['EWO'] > self.buy_ewo.value) &"
+   }
+  ]
+ },
+ {
+  "id": "binance_shorts",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe[\"rsi_slow\"] > dataframe[\"rsi_slow\"].shift(1))"
+   }
+  ]
+ },
+ {
+  "id": "binances",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['EWO'] > self.buy_ewo.value) &"
+   }
+  ]
+ },
+ {
+  "id": "bis",
+  "primary": "pattern",
+  "labels": [
+   {
+    "label": "pattern",
+    "confidence": "high",
+    "evidence": "(df[\"high\"].iloc[-3] < df[\"low\"]) &"
+   }
+  ]
+ },
+ {
+  "id": "bollinger",
+  "primary": "breakout",
+  "labels": [
+   {
+    "label": "breakout",
+    "confidence": "high",
+    "evidence": "(qtpylib.crossed_above(dataframe['close'], dataframe['upper']))"
+   }
+  ]
+ },
+ {
+  "id": "bollinger_reversal",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(qtpylib.crossed_below(dataframe['close'], dataframe['lower']))"
+   }
+  ]
+ },
+ {
+  "id": "bollinger_talib_keep",
+  "primary": "other",
+  "labels": [],
+  "note": "Entry condition is empty; no logic can be inferred"
+ },
+ {
+  "id": "bonafe",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(qtpylib.crossed_above(dataframe['rsi'], self.buy_rsi.value))"
+   }
+  ]
+ },
+ {
+  "id": "botMain",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < dataframe['bb_lowerband3'] * self.buy_bb_factor.value)&"
+   }
+  ]
+ },
+ {
+  "id": "botbaby",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['ema13'] > dataframe['ema50'])"
+   }
+  ]
+ },
+ {
+  "id": "brain",
+  "primary": "other",
+  "labels": [],
+  "note": "ML model with runtime-selected indicators; concrete logic not inferrable"
+ },
+ {
+  "id": "brawbot",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['ema_short'] > dataframe['ema_long'])"
+   }
+  ]
+ },
+ {
+  "id": "brawbot2",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "dataframe['trend_close_5m'] > dataframe['trend_close_15m']"
+   }
+  ]
+ },
+ {
+  "id": "brawbot2back",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "dataframe['trend_close_5m'] > dataframe['trend_close_15m']"
+   }
+  ]
+ },
+ {
+  "id": "brideofcluckie",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['ha_close'].lt(dataframe['lower'].shift()))"
+   }
+  ]
+ },
+ {
+  "id": "brideofcluckie5",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['lower'].shift().gt(0)) &"
+   }
+  ]
+ },
+ {
+  "id": "buysell",
+  "primary": "other",
+  "labels": [],
+  "note": "Entry signal is random; no real trading logic"
+ },
+ {
+  "id": "candlestickSD",
+  "primary": "pattern",
+  "labels": [
+   {
+    "label": "pattern",
+    "confidence": "high",
+    "evidence": "if dataframe['Candle'][i]=='Doji':"
+   }
+  ]
+ },
+ {
+  "id": "ch",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['lower'].shift().gt(0)) &"
+   }
+  ]
+ },
+ {
+  "id": "chatgpt",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['stc'] > self.stc_thres.value)"
+   }
+  ]
+ },
+ {
+  "id": "chatgpt3",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(qtpylib.crossed_above(dataframe[\"rsi\"], self.buy_rsi.value))"
+   }
+  ]
+ },
+ {
+  "id": "chl",
+  "primary": "other",
+  "labels": [],
+  "note": "Entry code truncated; logic cannot be determined"
+ },
+ {
+  "id": "cipher5m",
+  "primary": "pattern",
+  "labels": [
+   {
+    "label": "pattern",
+    "confidence": "medium",
+    "evidence": "(dataframe['bullCond'] > 0) &"
+   }
+  ]
+ },
+ {
+  "id": "combined_strategy",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['ema9'] > dataframe['ema21'])"
+   }
+  ]
+ },
+ {
+  "id": "conductor",
+  "primary": "other",
+  "labels": [],
+  "note": "Ensemble meta-strategy with no direct trading logic shown"
+ },
+ {
+  "id": "conny",
+  "primary": "other",
+  "labels": [],
+  "note": "Consensus-based across 20+ indicators, no single dominant logic"
+ },
+ {
+  "id": "cqq_Green_5mv2",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['EWO'] > self.ewo_high.value) &"
+   }
+  ]
+ }
+]

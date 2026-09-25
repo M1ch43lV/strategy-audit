@@ -1,0 +1,373 @@
+[
+ {
+  "id": "adx",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['adx'] > 25) & (dataframe['minus_di'] > 25) & (dataframe['plus_di'] < dataframe['minus_di'])"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "(dataframe['mom'] < 0)"
+   }
+  ]
+ },
+ {
+  "id": "adxMomentum",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['adx'] > 25) & (dataframe['minus_di'] > 25) & (dataframe['plus_di'] < dataframe['minus_di'])"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "(dataframe['mom'] < 0)"
+   }
+  ]
+ },
+ {
+  "id": "adx_low_stop",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['adx'] > 47) & (dataframe['plus_di'] < dataframe['minus_di'])"
+   }
+  ]
+ },
+ {
+  "id": "adx_momentum",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['adx'] > 25) & (dataframe['minus_di'] > 25) & (dataframe['plus_di'] < dataframe['minus_di'])"
+   }
+  ]
+ },
+ {
+  "id": "adx_opt_strat",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['mom'] < 0) & (dataframe['minus_di'] > 48) & (dataframe['plus_di'] < dataframe['minus_di'])"
+   }
+  ]
+ },
+ {
+  "id": "adxbbrsi2",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < dataframe['bb_lowerband'])"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "(dataframe['adx'] > 47)"
+   }
+  ]
+ },
+ {
+  "id": "akiva6",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['EWO'] > self.ewo_high.value)"
+   },
+   {
+    "label": "mean_reversion",
+    "confidence": "medium",
+    "evidence": "(dataframe['rsi_fast'] < 35)"
+   }
+  ]
+ },
+ {
+  "id": "alma",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "dataframe['close']>dataframe[f'alma_{self.buy_aperiod.value}_"
+   }
+  ]
+ },
+ {
+  "id": "aquma3",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < dataframe['bb_lowerband3'] * self.buy_bb_factor.value)"
+   },
+   {
+    "label": "volatility",
+    "confidence": "medium",
+    "evidence": "(dataframe['bb_width'] > self.buy_bb_width.value)"
+   }
+  ]
+ },
+ {
+  "id": "asahyp3",
+  "primary": "pattern",
+  "labels": [
+   {
+    "label": "pattern",
+    "confidence": "high",
+    "evidence": "dataframe[f'hacs_{self.hesma.value}']>dataframe[f'haos_']"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "qtpylib.crossed_above(dataframe['slowk'], dataframe['slowd'])"
+   }
+  ]
+ },
+ {
+  "id": "asd",
+  "primary": "pattern",
+  "labels": [
+   {
+    "label": "pattern",
+    "confidence": "high",
+    "evidence": "(df[\"&s-extrema\"] < 0) & (df[\"minima\"].shift(1) == 1)"
+   },
+   {
+    "label": "mean_reversion",
+    "confidence": "medium",
+    "evidence": "(df[\"rsi\"] < 30)"
+   }
+  ]
+ },
+ {
+  "id": "asem1",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['leading_senkou_span_a'] < dataframe['close'])"
+   }
+  ]
+ },
+ {
+  "id": "avellaneda",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "high",
+    "evidence": "dataframe.loc[:, 'enter_long'] = 1"
+   }
+  ],
+  "note": "Market-making with data collection; entry is unconditional upon sufficient data"
+ },
+ {
+  "id": "basic_bollinger_bands",
+  "primary": "breakout",
+  "labels": [
+   {
+    "label": "breakout",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] > dataframe['bb_upper']) & (dataframe['bb_width'] > 0.045)"
+   },
+   {
+    "label": "volatility",
+    "confidence": "medium",
+    "evidence": "(dataframe['bb_width'] > 0.045)"
+   }
+  ]
+ },
+ {
+  "id": "bb_riding",
+  "primary": "breakout",
+  "labels": [
+   {
+    "label": "breakout",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] > dataframe['bb_upper']) & (dataframe['bb_width'] > 0.02)"
+   }
+  ]
+ },
+ {
+  "id": "bb_riding_strat",
+  "primary": "breakout",
+  "labels": [
+   {
+    "label": "breakout",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] > dataframe['bb_upper'])"
+   }
+  ]
+ },
+ {
+  "id": "bb_rsi",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < dataframe['bb_lowerband3'])"
+   }
+  ]
+ },
+ {
+  "id": "bb_rsi_830",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < dataframe['bb_lowerband'])"
+   }
+  ]
+ },
+ {
+  "id": "bb_rsi_opt",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < dataframe['bb_lowerband4'])"
+   }
+  ]
+ },
+ {
+  "id": "bb_rsi_opt_new",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < dataframe['bb_lowerband4'])"
+   }
+  ]
+ },
+ {
+  "id": "bb_rsi_optimized_strategy",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < dataframe['bb_lower_3sd'])"
+   }
+  ]
+ },
+ {
+  "id": "bbandrsi",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi'] < 30) & (dataframe['close'] < dataframe['bb_lowerband'])"
+   }
+  ]
+ },
+ {
+  "id": "bbandrsi_0",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi'] < 30) & (dataframe['close'] < dataframe['bb_lowerband'])"
+   }
+  ]
+ },
+ {
+  "id": "bbandrsi_778",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi'] < 28) & (dataframe[\"close\"] < dataframe['bb_lowerband3'])"
+   }
+  ]
+ },
+ {
+  "id": "bbbrsi_naive_strategy",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < dataframe['bb_lowerband'])"
+   }
+  ]
+ },
+ {
+  "id": "bbema",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "qtpylib.crossed_above(dataframe['ema10'], dataframe['ema50'])"
+   }
+  ]
+ },
+ {
+  "id": "bbl3h1",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < dataframe['bb_lowerband3'])"
+   }
+  ]
+ },
+ {
+  "id": "bbl3h1rsi",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < dataframe['bb_lowerband3']) & (dataframe['rsi'] <= 30)"
+   }
+  ]
+ },
+ {
+  "id": "bbl3h2rsistd",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < dataframe['bb_lowerband3']) & (dataframe['rsi'] <= 31)"
+   }
+  ]
+ },
+ {
+  "id": "bbl3h3rsisharpe",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < dataframe['bb_lowerband3']) & (dataframe['rsi'] <= 31)"
+   }
+  ]
+ }
+]

@@ -1,0 +1,322 @@
+[
+ {
+  "id": "Magic_Trailing_Stoploss",
+  "primary": "other",
+  "labels": [],
+  "note": "Always enters (buy=1), never exits (sell=0); no actual trading logic"
+ },
+ {
+  "id": "MarioAIS",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "supertrend_1_buy_{self.buy_m1.value}_{self.buy_p1.value}] == \"up\""
+   }
+  ]
+ },
+ {
+  "id": "MarketChyperHyperStrategy",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['wtCrossUp'] & dataframe['wtOversold'])"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "dataframe.loc[(dataframe['trend'] == 'upwards')"
+   }
+  ]
+ },
+ {
+  "id": "MarketModeStrategy",
+  "primary": "other",
+  "labels": [],
+  "note": "Regime-based entry on market mode (BULL/BEAR) classification"
+ },
+ {
+  "id": "MarketProfileStrat",
+  "primary": "other",
+  "labels": [],
+  "note": "No entry or exit signals; market profile data only"
+ },
+ {
+  "id": "Markov",
+  "primary": "statistical",
+  "labels": [
+   {
+    "label": "statistical",
+    "confidence": "high",
+    "evidence": "(dataframe['prob_up'] > 0.8) & (dataframe['prob_side'] < 0.5)"
+   }
+  ]
+ },
+ {
+  "id": "MarkovV2",
+  "primary": "statistical",
+  "labels": [
+   {
+    "label": "statistical",
+    "confidence": "high",
+    "evidence": "(dataframe['prob_up'] > 0.8) & (dataframe['prob_side'] < 0.5)"
+   }
+  ]
+ },
+ {
+  "id": "MarkovV4",
+  "primary": "statistical",
+  "labels": [
+   {
+    "label": "statistical",
+    "confidence": "high",
+    "evidence": "(dataframe['prob_up'] > 0.8) & (dataframe['prob_side'] < 0.5)"
+   }
+  ]
+ },
+ {
+  "id": "MarkowitzPortfolioStrategy",
+  "primary": "other",
+  "labels": [],
+  "note": "Portfolio weight optimization; always enters"
+ },
+ {
+  "id": "Maro4hMacdSd",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['macdhist'] < 0) & (dataframe['macdhist'].shift(2) >"
+   }
+  ]
+ },
+ {
+  "id": "Maro4h_Macd_Adx",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['adx'] >= 25) & (dataframe['di_plus'] > dataframe['di_minus'])"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "qtpylib.crossed_above(dataframe['macdhist'],0)"
+   }
+  ]
+ },
+ {
+  "id": "Maro4h_bb_macd_adx",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "qtpylib.crossed_above(dataframe['close'],dataframe['bb_lowerband'])"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "qtpylib.crossed_above(dataframe['macdhist'],0) & (dataframe['adx']"
+   }
+  ]
+ },
+ {
+  "id": "Martin",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "qtpylib.crossed_above(dataframe[\"rsi\"], 30)"
+   }
+  ]
+ },
+ {
+  "id": "MartyEMA",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "dataframe['EMA1_15m'] >= dataframe['EMA2_15m']"
+   }
+  ]
+ },
+ {
+  "id": "MarwoHeiken",
+  "primary": "pattern",
+  "labels": [
+   {
+    "label": "pattern",
+    "confidence": "high",
+    "evidence": "(dataframe[\"ha_low\"] < dataframe[\"ha_close\"]) & (dataframe[\"ha_close\"]"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "(dataframe['EWO'] < self.ewo_heiken.value)"
+   }
+  ]
+ },
+ {
+  "id": "Marwo_heiken_pure",
+  "primary": "pattern",
+  "labels": [
+   {
+    "label": "pattern",
+    "confidence": "high",
+    "evidence": "if ((dataframe.loc[i, 'hclose'] < dataframe.loc[i, 'hopen'])"
+   }
+  ]
+ },
+ {
+  "id": "MasterMoniGoManiHyperStrategy",
+  "primary": "other",
+  "labels": [],
+  "note": "No indicator or entry/exit code provided"
+ },
+ {
+  "id": "Matoa",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < dataframe['hma_offset_buy'])"
+   }
+  ]
+ },
+ {
+  "id": "Matrix",
+  "primary": "statistical",
+  "labels": [
+   {
+    "label": "statistical",
+    "confidence": "high",
+    "evidence": "(buy_df['coef'].gt(self.buy_min_corr_coef.value))"
+   }
+  ]
+ },
+ {
+  "id": "MaxSharpePortfolio",
+  "primary": "other",
+  "labels": [],
+  "note": "Portfolio optimization via Max Sharpe weights"
+ },
+ {
+  "id": "McQueen1",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < dataframe['mama']) & (dataframe['r_14'] < -30)"
+   }
+  ]
+ },
+ {
+  "id": "Mean1h",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['ema50'] > dataframe['ema100'])"
+   }
+  ]
+ },
+ {
+  "id": "MeanReversionTrend",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "dataframe[\"deviation\"] = (dataframe[\"close\"] - dataframe[\"sma20\"])"
+   }
+  ]
+ },
+ {
+  "id": "MeanV1",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "qtpylib.crossed_below(dataframe['daily_mean'], dataframe['typical_sma'])"
+   }
+  ]
+ },
+ {
+  "id": "MemecoinAggressiveStrategy",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['volume_ratio'] > 2.0) & (dataframe['price_change'] > 15)"
+   }
+  ]
+ },
+ {
+  "id": "MenOfSteel",
+  "primary": "pattern",
+  "labels": [
+   {
+    "label": "pattern",
+    "confidence": "high",
+    "evidence": "dataframe['pivotLow'].notnull()"
+   }
+  ]
+ },
+ {
+  "id": "MeoMeo99",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "qtpylib.crossed_above(dataframe['rsi'], self.buy_rsi.value)"
+   }
+  ]
+ },
+ {
+  "id": "MergedStrategy",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['trend_close_5m'] > dataframe['senkou_a'])"
+   }
+  ]
+ },
+ {
+  "id": "Mid",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['supertrend'] == 1)"
+   }
+  ]
+ },
+ {
+  "id": "Miku_PP_v3",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['ichimoku_ok'] > 0)"
+   }
+  ]
+ }
+]

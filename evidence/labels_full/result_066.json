@@ -1,0 +1,356 @@
+[
+ {
+  "id": "RBreakerStrategy",
+  "primary": "breakout",
+  "labels": [
+   {
+    "label": "breakout",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] > self.Bbreak) & (dataframe['close'].shift(1) < self.Bbreak)"
+   }
+  ],
+  "note": null
+ },
+ {
+  "id": "REMORABB",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(qtpylib.crossed_above(dataframe[\"sma1\"], dataframe[\"sma2\"]))"
+   }
+  ],
+  "note": null
+ },
+ {
+  "id": "RHComb_v1",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "dataframe['close'].lt(dataframe['lower'].shift())"
+   },
+   {
+    "label": "volatility",
+    "confidence": "medium",
+    "evidence": "(dataframe[\"bb_width\"] > 0.045)"
+   }
+  ],
+  "note": null
+ },
+ {
+  "id": "RLAgentStrategy",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "high",
+    "evidence": "dataframe.get(ACTION_COLUMN) == RLAgentStrategy._ACTION_ENTER_LONG"
+   }
+  ],
+  "note": "RL agent-based, logic determined by trained model"
+ },
+ {
+  "id": "RLStrategy",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "medium",
+    "evidence": "(dataframe['rsi'] < 40) & (dataframe['volume'] > 0)"
+   }
+  ],
+  "note": "FreqAI primary, fallback uses oversold RSI"
+ },
+ {
+  "id": "RMB",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe[\"rsi\"] <= 30) & (dataframe[\"mfi\"] <= 20)"
+   }
+  ],
+  "note": null
+ },
+ {
+  "id": "ROCnRoll",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "((dataframe[\"roc\"] <= self.buy_roc.value)) & ((dataframe[\"roc\"]) <= (dataframe[\"roc\"].shift(1)))"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "((dataframe[\"adx\"] >= 25))"
+   }
+  ],
+  "note": null
+ },
+ {
+  "id": "RSI",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi']<30) & (dataframe['rperc']<-80)"
+   }
+  ],
+  "note": null
+ },
+ {
+  "id": "RSIBB02",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi'] > 19) & (dataframe[\"close\"] < dataframe['bb_lowerband'])"
+   }
+  ],
+  "note": null
+ },
+ {
+  "id": "RSIBB_V1",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(qtpylib.crossed_above(dataframe[\"rsi_fast\"], 70))"
+   }
+  ],
+  "note": null
+ },
+ {
+  "id": "RSIBB_V2",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(qtpylib.crossed_above(dataframe[\"rsi_fast\"], 70))"
+   }
+  ],
+  "note": null
+ },
+ {
+  "id": "RSIBB_V3",
+  "primary": "breakout",
+  "labels": [
+   {
+    "label": "breakout",
+    "confidence": "high",
+    "evidence": "qtpylib.crossed_above(dataframe[\"close\"], dataframe[\"bbu\"])"
+   }
+  ],
+  "note": null
+ },
+ {
+  "id": "RSIBB_V4",
+  "primary": "volatility",
+  "labels": [
+   {
+    "label": "volatility",
+    "confidence": "high",
+    "evidence": "(dataframe[\"natr_zscore\"] > 1.0)"
+   },
+   {
+    "label": "breakout",
+    "confidence": "medium",
+    "evidence": "qtpylib.crossed_above(dataframe[\"close\"], dataframe[\"bbu\"])"
+   }
+  ],
+  "note": null
+ },
+ {
+  "id": "RSIBouncer",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi'] < 30) & (dataframe['high_volume'])"
+   }
+  ],
+  "note": null
+ },
+ {
+  "id": "RSICryptoStrategy",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "(dataframe['rsi'] > self.RSI_long.value)"
+   }
+  ],
+  "note": null
+ },
+ {
+  "id": "RSIDip",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['ema50'] > dataframe['ema200'])"
+   }
+  ],
+  "note": null
+ },
+ {
+  "id": "RSIDirectionalWithTrend",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(qtpylib.crossed_above(dataframe['rsi'], 15))"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "(dataframe['low'] > dataframe['ema100'])"
+   }
+  ],
+  "note": null
+ },
+ {
+  "id": "RSIDirectionalWithTrendSlow",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(qtpylib.crossed_above(dataframe['rsi_slow'], 25))"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "(dataframe['low'] > dataframe['ema600'])"
+   }
+  ],
+  "note": null
+ },
+ {
+  "id": "RSIDivTirail",
+  "primary": "pattern",
+  "labels": [
+   {
+    "label": "pattern",
+    "confidence": "high",
+    "evidence": "(dataframe['bullCond'] > 0)"
+   }
+  ],
+  "note": "RSI divergence detection"
+ },
+ {
+  "id": "RSIDivergence_2",
+  "primary": "pattern",
+  "labels": [
+   {
+    "label": "pattern",
+    "confidence": "high",
+    "evidence": "(dataframe['bullCond'] > 0)"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "(dataframe['EWO'] > dataframe['EWO'].shift(1).rolling(self.ewo_rol.value).max())"
+   }
+  ],
+  "note": null
+ },
+ {
+  "id": "RSIDivergence_238",
+  "primary": "pattern",
+  "labels": [
+   {
+    "label": "pattern",
+    "confidence": "high",
+    "evidence": "(dataframe['bullCond'] > 0)"
+   }
+  ],
+  "note": null
+ },
+ {
+  "id": "RSIDivergence_758",
+  "primary": "pattern",
+  "labels": [
+   {
+    "label": "pattern",
+    "confidence": "high",
+    "evidence": "(dataframe['bullCond'] > 0)"
+   }
+  ],
+  "note": null
+ },
+ {
+  "id": "RSIDrop",
+  "primary": "other",
+  "labels": [],
+  "note": "No entry/exit logic implemented, alert-only strategy"
+ },
+ {
+  "id": "RSIDropDNS",
+  "primary": "other",
+  "labels": [],
+  "note": "No entry/exit logic implemented, alert-only strategy"
+ },
+ {
+  "id": "RSIDropDNSTrader",
+  "primary": "other",
+  "labels": [],
+  "note": "Entry/exit criteria undefined in fact sheet"
+ },
+ {
+  "id": "RSIDropDNSTraderBTCMACD",
+  "primary": "other",
+  "labels": [],
+  "note": "Entry/exit criteria undefined in fact sheet"
+ },
+ {
+  "id": "RSIDropDNSTraderBTCRSI",
+  "primary": "other",
+  "labels": [],
+  "note": "Entry/exit criteria undefined in fact sheet"
+ },
+ {
+  "id": "RSIDropDNSTraderBTCVWAP",
+  "primary": "other",
+  "labels": [],
+  "note": "Entry/exit criteria undefined in fact sheet"
+ },
+ {
+  "id": "RSIResampleV2",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi'] < 45) & (dataframe['close'] < dataframe['sma_5'])"
+   }
+  ],
+  "note": null
+ },
+ {
+  "id": "RSIResampleV3",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi'] < dataframe['rsi_min_sma'] - 5)"
+   }
+  ],
+  "note": null
+ }
+]

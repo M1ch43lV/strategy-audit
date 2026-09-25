@@ -1,0 +1,348 @@
+[
+ {
+  "id": "TA_Collector_v1_2",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "high",
+    "evidence": "dataframe.loc[:, 'buy'] = 0"
+   }
+  ],
+  "note": "No trading signals generated; data collection only"
+ },
+ {
+  "id": "TD",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "dataframe[f'sma_ha_close{self.sma_ha_close.value}'], dataframe[f'sma_ha_open"
+   }
+  ]
+ },
+ {
+  "id": "TDSequentialStrategy",
+  "primary": "pattern",
+  "labels": [
+   {
+    "label": "pattern",
+    "confidence": "high",
+    "evidence": "dataframe['seq_buy'] = dataframe['seq_buy'] * (dataframe['seq_buy'].groupby"
+   }
+  ]
+ },
+ {
+  "id": "TDSequentialStrategy_2",
+  "primary": "pattern",
+  "labels": [
+   {
+    "label": "pattern",
+    "confidence": "high",
+    "evidence": "(dataframe['exceed_low']) & (dataframe['seq_buy'] > 8)"
+   },
+   {
+    "label": "mean_reversion",
+    "confidence": "medium",
+    "evidence": "dataframe['close'] < dataframe['bb_lowerband']"
+   }
+  ]
+ },
+ {
+  "id": "TDSequentialStrategy_867",
+  "primary": "pattern",
+  "labels": [
+   {
+    "label": "pattern",
+    "confidence": "high",
+    "evidence": "(dataframe['exceed_low']) & (dataframe['seq_buy'] > 8)"
+   }
+  ]
+ },
+ {
+  "id": "TEMA",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['tema'] <= dataframe['bb_middleband']) & (dataframe['tema'] >"
+   }
+  ]
+ },
+ {
+  "id": "TEMABounce",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "qtpylib.crossed_above(dataframe['tema_angle'], 0)"
+   }
+  ]
+ },
+ {
+  "id": "TEMABounce_2",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "qtpylib.crossed_above(dataframe['tema_angle'], 0)"
+   }
+  ]
+ },
+ {
+  "id": "TGMA",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "qtpylib.crossed_above(dataframe[\"gradientH2\"], dataframe['buylimitH2'])"
+   }
+  ]
+ },
+ {
+  "id": "TM3ExtremumHunter",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "high",
+    "evidence": "df = self.freqai.start(df, metadata, self)"
+   }
+  ],
+  "note": "ML-based prediction; extrema detection"
+ },
+ {
+  "id": "TM3MultiClass",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "high",
+    "evidence": "df = self.freqai.start(df, metadata, self)"
+   }
+  ],
+  "note": "ML-based multiclass classification strategy"
+ },
+ {
+  "id": "TM5QuickAdapterV4",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "high",
+    "evidence": "dataframe = self.freqai.start(dataframe, metadata, self)"
+   }
+  ],
+  "note": "ML-based with extrema thresholds"
+ },
+ {
+  "id": "TN",
+  "primary": "volatility",
+  "labels": [
+   {
+    "label": "volatility",
+    "confidence": "high",
+    "evidence": "(dataframe['natr'] > 0.05)"
+   }
+  ]
+ },
+ {
+  "id": "TPActivatingTSLwithInitialTSLStrategy",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "high",
+    "evidence": "Empty indicator, entry, and exit code"
+   }
+  ],
+  "note": "Template only; no logic implemented"
+ },
+ {
+  "id": "TPActivatingTSLwithSLStrategy",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "high",
+    "evidence": "Empty indicator, entry, and exit code"
+   }
+  ],
+  "note": "Template only; no logic implemented"
+ },
+ {
+  "id": "TR5m",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "qtpylib.crossed_above(dataframe['close'], dataframe['bb_lowerband'])"
+   }
+  ]
+ },
+ {
+  "id": "TRIWAVE",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "qtpylib.crossed_above(dataframe['auto_buy_decision'], self.auto_buy.value)"
+   }
+  ]
+ },
+ {
+  "id": "TRIWAVE_2",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "qtpylib.crossed_above(dataframe['auto_buy_decision'], self.auto_buy.value)"
+   }
+  ]
+ },
+ {
+  "id": "TRIX_LS",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['TRIX_HISTO'] > 0)"
+   }
+  ]
+ },
+ {
+  "id": "TRIX_spot",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['TRIX_HISTO'] > 0)"
+   }
+  ]
+ },
+ {
+  "id": "TRSI",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe[\"rsi1\"] <= self.buy_rsi1.value) & (dataframe[\"rsi2\"] <="
+   }
+  ]
+ },
+ {
+  "id": "TR_default",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "qtpylib.crossed_above(dataframe['close'], dataframe['bb_lowerband'])"
+   }
+  ]
+ },
+ {
+  "id": "TSIHULLBOT",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['tsihmaline_buy'] > dataframe['tsihmaline_buy'].shift(1))"
+   }
+  ]
+ },
+ {
+  "id": "TSPredict",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "high",
+    "evidence": "self.update_gain_targets(dataframe); dataframe[\"gain\"]"
+   }
+  ],
+  "note": "ML-based gain prediction with target bands"
+ },
+ {
+  "id": "TS_Coeff",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "high",
+    "evidence": "Empty code sections"
+   }
+  ],
+  "note": "No logic; empty template"
+ },
+ {
+  "id": "TS_Gain",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "high",
+    "evidence": "Empty code sections"
+   }
+  ],
+  "note": "No logic; empty template"
+ },
+ {
+  "id": "TS_Wavelet",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "high",
+    "evidence": "Empty code sections"
+   }
+  ],
+  "note": "No logic; empty template"
+ },
+ {
+  "id": "TS_default",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "qtpylib.crossed_above(dataframe['close'], dataframe['ema_buy'])"
+   }
+  ]
+ },
+ {
+  "id": "TVdatafeed_exemple",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "high",
+    "evidence": "buy_conditions = ()"
+   }
+  ],
+  "note": "No buy/sell conditions implemented"
+ },
+ {
+  "id": "TWAPStrategy",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe[\"rsi\"] < 45)"
+   }
+  ]
+ }
+]

@@ -88,6 +88,8 @@ CLASS1 = os.path.join(ROOT, "evidence/PROFILE_CLASS1.json")
 # strategy_classification.py. Neither is a measurement, so neither lives in
 # any of the stores above; both are regenerated from source alone.
 CLASSIFICATION = os.path.join(ROOT, "evidence/STRATEGY_CLASSIFICATION.json")
+from tools import label_consensus  # noqa: E402
+LOGIC_LABELS = os.path.join(ROOT, "evidence/STRATEGY_LABELS.json")
 # Which of the six market phases each strategy is predicted to work in,
 # written by evidence/market_phase_hypothesis.py before the benchmark that will test
 # it. A prediction, not a measurement: it decides no cohort and clears no row,
@@ -145,6 +147,7 @@ REPORT = os.path.join(ROOT, "STRATEGY_STATUS.md")
 FIELDS = [
     "strategy_id", "repo", "source_file", "result_archive",
     "run_profile", "expansion_wave", "timeframe", "strategy_type",
+    "logic_labels", "logic_primary", "logic_status", "logic_facts",
     "assumed_market_regime", "assumed_market_regime_evidence",
     "cohort", "measured",
     "observed_trades", "trade_evidence", "test_duration_s",
@@ -784,6 +787,7 @@ def rows():
         if row.get("decision") == "excluded_duplicate_implementation"
     }
     classification = _json(CLASSIFICATION)
+    logic = _json(LOGIC_LABELS, "strategies")
     phase_hypothesis = _json(PHASE_HYPOTHESIS)
     triage = _json(BLOCKED_TRIAGE)
     adjudicated = _adjudicated_decisions()
@@ -1617,6 +1621,13 @@ def rows():
                          or classification.get(strategy, {}).get("timeframe", "")),
             "strategy_type": classification.get(strategy, {}).get(
                 "strategy_type", ""),
+            # model-read logic labels (tools/strategy_labels.py); low-confidence
+            # labels stay in the store but are not carried here
+            "logic_labels": ";".join(label_consensus.confirmed_labels(logic.get(strategy, {}))),
+            "logic_primary": logic.get(strategy, {}).get("primary") or "",
+            "logic_status": (label_consensus.status(logic[strategy]) if strategy in logic else ""),
+            "logic_facts": ";".join(k for k in ("scalper", "futures_capable", "dca", "ml_ai")
+                                    if logic.get(strategy, {}).get("facts", {}).get(k)),
             "assumed_market_regime": phase_hypothesis.get(strategy, {}).get(
                 "assumed_market_regime", ""),
             "assumed_market_regime_evidence": phase_hypothesis.get(

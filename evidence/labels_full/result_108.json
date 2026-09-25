@@ -1,0 +1,254 @@
+[
+ {
+  "id": "vin",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "df['streak_s_min'].le(-1),"
+   },
+   {
+    "label": "pattern",
+    "confidence": "medium",
+    "evidence": "df['streak_s_max'].between(-5, 0),"
+   }
+  ]
+ },
+ {
+  "id": "vinex",
+  "primary": "other",
+  "labels": [],
+  "note": "Data collection, buy/sell always False"
+ },
+ {
+  "id": "vinfast4",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['EWO'] > self.ewo_high.value) &"
+   },
+   {
+    "label": "mean_reversion",
+    "confidence": "medium",
+    "evidence": "dataframe['close'] < (dataframe[f'ma_buy_{self.base_nb_candles_buy.value}']"
+   }
+  ]
+ },
+ {
+  "id": "vinfast5",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < 0.993 * dataframe['bb_lowerband']) &"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "(dataframe['ema_10'].rolling(10).mean() > dataframe['ema_100'].rolling(10).mean())"
+   }
+  ]
+ },
+ {
+  "id": "vulcan",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe[\"close\"] > dataframe[\"SMA\"]) & (dataframe[\"growing_SMA\"])"
+   }
+  ]
+ },
+ {
+  "id": "vulcan_10",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe[\"close\"] > dataframe[\"SMA\"]) & (dataframe[\"growing_SMA\"])"
+   }
+  ]
+ },
+ {
+  "id": "vwap",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(qtpylib.crossed_above(dataframe['rsi'], 30))"
+   }
+  ]
+ },
+ {
+  "id": "wavetrend",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(qtpylib.crossed_above(df['wave_t1'], df['wave_t2'])) &"
+   }
+  ]
+ },
+ {
+  "id": "wavetrend_rsi",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(qtpylib.crossed_above(df['wave_t1'], df['wave_t2'])) &"
+   }
+  ]
+ },
+ {
+  "id": "welldone_gotOKX",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe[\"low\"].shift(periods = 1) < (0.99 * dataframe[\"sma_fast\"].shift"
+   }
+  ]
+ },
+ {
+  "id": "wrsicd",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "qtpylib.crossed_above(dataframe[f\"impulse_macd_{self.macd_ma_period.value}_{self.macd_signal_period.value}\"],"
+   }
+  ]
+ },
+ {
+  "id": "wtc",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(qtpylib.crossed_above(dataframe['wt1'], dataframe['wt2']))"
+   }
+  ]
+ },
+ {
+  "id": "x_strat_dryrun_org",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "((dataframe[\"pos_cnt\"] == 2)),"
+   }
+  ]
+ },
+ {
+  "id": "x_zvwap06",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < zvwap) &"
+   }
+  ]
+ },
+ {
+  "id": "yabar_bbrsi",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "((dataframe['rsi'] > 35) & (dataframe['close'] < dataframe['bb_lowerband'])"
+   }
+  ]
+ },
+ {
+  "id": "yabar_bbrsi0",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "((dataframe['rsi'] < 35) & (dataframe['close'] < dataframe['bb_lowerband'])"
+   }
+  ]
+ },
+ {
+  "id": "yoyo",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "dataframe['macd'] = dataframe['ema_fast'] - dataframe['ema_slow']"
+   }
+  ]
+ },
+ {
+  "id": "yoyo_action_strategy",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "dataframe['macd'] = dataframe['ema_fast'] - dataframe['ema_slow']"
+   }
+  ]
+ },
+ {
+  "id": "yoyo_action_strategy_8",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "dataframe['macd'] = dataframe['ema_fast'] - dataframe['ema_slow']"
+   }
+  ]
+ },
+ {
+  "id": "yoyo_action_strategy_v0_1",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "dataframe['macd'] = dataframe['ema_fast'] - dataframe['ema_slow']"
+   }
+  ]
+ },
+ {
+  "id": "yoyo_action_zone_strategy",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "dataframe['macd'] = dataframe['ema_fast'] - dataframe['ema_slow']"
+   }
+  ]
+ },
+ {
+  "id": "zorkv7_0_0",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['ema_50_1h'] > dataframe['ema_200_1h'])"
+   }
+  ]
+ }
+]

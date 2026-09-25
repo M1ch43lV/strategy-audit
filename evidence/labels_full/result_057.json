@@ -1,0 +1,423 @@
+[
+ {
+  "id": "NNTC_profit_Transformer",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "high",
+    "evidence": "No indicator, entry, or exit code provided"
+   }
+  ],
+  "note": "Empty strategy sheet - no code to analyze"
+ },
+ {
+  "id": "NNTC_profit_Wavenet",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "high",
+    "evidence": "No indicator, entry, or exit code provided"
+   }
+  ],
+  "note": "Empty strategy sheet - no code to analyze"
+ },
+ {
+  "id": "NNTC_profit_Wavenet2",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "high",
+    "evidence": "No indicator, entry, or exit code provided"
+   }
+  ],
+  "note": "Empty strategy sheet - no code to analyze"
+ },
+ {
+  "id": "NNTC_profit_Wavenet3",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "high",
+    "evidence": "No indicator, entry, or exit code provided"
+   }
+  ],
+  "note": "Empty strategy sheet - no code to analyze"
+ },
+ {
+  "id": "NNTC_pv_Ensemble",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "high",
+    "evidence": "No indicator, entry, or exit code provided"
+   }
+  ],
+  "note": "Empty strategy sheet - no code to analyze"
+ },
+ {
+  "id": "NNTC_pv_LSTM",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "high",
+    "evidence": "No indicator, entry, or exit code provided"
+   }
+  ],
+  "note": "Empty strategy sheet - no code to analyze"
+ },
+ {
+  "id": "NNTC_pv_MLP",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "high",
+    "evidence": "No indicator, entry, or exit code provided"
+   }
+  ],
+  "note": "Empty strategy sheet - no code to analyze"
+ },
+ {
+  "id": "NNTC_pv_Multihead",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "high",
+    "evidence": "No indicator, entry, or exit code provided"
+   }
+  ],
+  "note": "Empty strategy sheet - no code to analyze"
+ },
+ {
+  "id": "NNTC_pv_Wavenet",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "high",
+    "evidence": "No indicator, entry, or exit code provided"
+   }
+  ],
+  "note": "Empty strategy sheet - no code to analyze"
+ },
+ {
+  "id": "NNTC_slope_LSTM",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "high",
+    "evidence": "No indicator, entry, or exit code provided"
+   }
+  ],
+  "note": "Empty strategy sheet - no code to analyze"
+ },
+ {
+  "id": "NNTC_smooth_LSTM",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "high",
+    "evidence": "No indicator, entry, or exit code provided"
+   }
+  ],
+  "note": "Empty strategy sheet - no code to analyze"
+ },
+ {
+  "id": "NNTC_stochastic_LSTM",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "high",
+    "evidence": "No indicator, entry, or exit code provided"
+   }
+  ],
+  "note": "Empty strategy sheet - no code to analyze"
+ },
+ {
+  "id": "NNTC_swing_LSTM",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "high",
+    "evidence": "No indicator, entry, or exit code provided"
+   }
+  ],
+  "note": "Empty strategy sheet - no code to analyze"
+ },
+ {
+  "id": "NOTankAi15",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi'] < self.buy_rsi.value) & (dataframe['ema50'] > dataframe['ema200'])"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "(dataframe['ema50'] > dataframe['ema200'])"
+   }
+  ]
+ },
+ {
+  "id": "NOTankAi_15",
+  "primary": "pattern",
+  "labels": [
+   {
+    "label": "pattern",
+    "confidence": "high",
+    "evidence": "(df[\"&s-extrema\"] < 0) & (df[\"minima\"].shift(1) == 1)"
+   },
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(df[\"rsi\"] < 30)"
+   }
+  ]
+ },
+ {
+  "id": "NOTankAi_15_2",
+  "primary": "pattern",
+  "labels": [
+   {
+    "label": "pattern",
+    "confidence": "high",
+    "evidence": "(df[\"&s-extrema\"] < 0) & (df[\"minima\"].shift(1) == 1)"
+   },
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(df[\"rsi\"] < 30)"
+   }
+  ]
+ },
+ {
+  "id": "NOTankAi_15_Cleaned",
+  "primary": "pattern",
+  "labels": [
+   {
+    "label": "pattern",
+    "confidence": "high",
+    "evidence": "(df[\"&s-extrema\"] < 0) & (df[\"minima\"].shift(1) == 1)"
+   },
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(df[\"rsi\"] < 30)"
+   }
+  ]
+ },
+ {
+  "id": "NOTankAi_15_Cleaned_v2",
+  "primary": "pattern",
+  "labels": [
+   {
+    "label": "pattern",
+    "confidence": "high",
+    "evidence": "(df[\"&s-extrema\"] < 0) & (df[\"minima\"].shift(1) == 1)"
+   },
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(df[\"rsi\"] < 30)"
+   }
+  ]
+ },
+ {
+  "id": "NOTankAi_17",
+  "primary": "pattern",
+  "labels": [
+   {
+    "label": "pattern",
+    "confidence": "high",
+    "evidence": "(df[\"&s-extrema\"] < 0) & (df[\"minima\"].shift(1) == 1)"
+   },
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(df[\"rsi\"] < rsi_long_threshold)"
+   }
+  ]
+ },
+ {
+  "id": "NOTankAi_19",
+  "primary": "pattern",
+  "labels": [
+   {
+    "label": "pattern",
+    "confidence": "high",
+    "evidence": "(df[\"&s-extrema\"] < 0) & (df[\"minima\"].shift(1) == 1)"
+   },
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(df[\"rsi\"] < rsi_long_threshold)"
+   }
+  ]
+ },
+ {
+  "id": "NOTankAi_Futures",
+  "primary": "pattern",
+  "labels": [
+   {
+    "label": "pattern",
+    "confidence": "high",
+    "evidence": "(df[\"&s-extrema\"] < 0) & (df[\"minima\"].shift(1) == 1)"
+   },
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(df[\"rsi\"] < 30)"
+   }
+  ]
+ },
+ {
+  "id": "NOTankAi_Futures_Improved",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi'] < 30) & (dataframe['volume'] > dataframe['volume_mean'] * 1.5)"
+   },
+   {
+    "label": "volume_flow",
+    "confidence": "medium",
+    "evidence": "(dataframe['volume'] > dataframe['volume_mean'] * 1.5)"
+   }
+  ]
+ },
+ {
+  "id": "NSeq",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "dataframe['close'] <= dataframe['bb_lowerband']"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "dataframe['close'] >= dataframe['open']"
+   }
+  ]
+ },
+ {
+  "id": "NSeq_2",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "dataframe['close'] <= dataframe['bb_lowerband']"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "dataframe['close'] >= dataframe['open']"
+   }
+  ]
+ },
+ {
+  "id": "NWEv6",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'].shift() < dataframe['entry_line'].shift())"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "(dataframe['btctrend'] == 1)"
+   }
+  ]
+ },
+ {
+  "id": "NWEv6_new",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close_5m'].shift() < dataframe['entry_line_5m'].shift())"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "(dataframe['btc_trend_3m'] == 1)"
+   }
+  ]
+ },
+ {
+  "id": "Napoli",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi'].shift(2) < 40) & (dataframe['rsi'].shift(2) > dataframe['rsi'].shift(1))"
+   },
+   {
+    "label": "volatility",
+    "confidence": "medium",
+    "evidence": "atr = ta.ATR(dataframe, timeperiod=atr_p)"
+   }
+  ]
+ },
+ {
+  "id": "Neat_RL",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "high",
+    "evidence": "action, nan_list = self.rl_model_redict(dataframe)"
+   }
+  ],
+  "note": "ML-driven signals from RL model; logic not interpretable from code"
+ },
+ {
+  "id": "Nemesis4",
+  "primary": "pattern",
+  "labels": [
+   {
+    "label": "pattern",
+    "confidence": "high",
+    "evidence": "dataframe['zl1618'] = (dataframe['a'] - dataframe['0']) * 1.618 + dataframe['b']"
+   }
+  ],
+  "note": "Harmonic XABCD pattern with Fibonacci ratios"
+ },
+ {
+  "id": "NeuroV1",
+  "primary": "pattern",
+  "labels": [
+   {
+    "label": "pattern",
+    "confidence": "high",
+    "evidence": "(dataframe['harmonic_bull'] > 0) | (dataframe['flag_bull'] > 0)"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "(dataframe['trend_signal'] == 1)"
+   }
+  ],
+  "note": "Harmonic patterns, flags, pennants, H&S detection"
+ }
+]

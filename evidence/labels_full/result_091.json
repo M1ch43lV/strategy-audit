@@ -1,0 +1,372 @@
+[
+ {
+  "id": "bbl3rsih2",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < dataframe['bb_lowerband3']) & (dataframe['rsi'] <= 30)"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "bbrsi",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < dataframe['bb_lowerband_1sd'])"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "bbrsi1_strategy",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi'] < 30) & (dataframe['close'] < dataframe['bb_lowerband_2'])"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "bbrsi4Freq",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe[\"close\"] < dataframe['bb_lowerband3'])"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "bbrsi_102",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe[\"close\"] < dataframe['bb_lowerband3'])"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "bbrsi_116",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "dataframe['close'] < dataframe['bb_lowerband_1sd']"
+   }
+  ],
+  "note": "parametric band selection"
+ },
+ {
+  "id": "bbrsi_176",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < dataframe['bb_lowerband']) & (dataframe['rsi'] <= 31)"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "bbrsi_2",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe[\"close\"] < dataframe['bb_lowerband1'])"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "bbrsi_286",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi'] > 30) & (dataframe[\"close\"] < dataframe['bb_lowerband'])"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "bbrsi_350",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi'] > 30) & (dataframe[\"close\"] < dataframe['bb_lowerband'])"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "bbrsi_410",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi'] < 40) & (dataframe['close'] < dataframe['bb_lowerband'])"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "bbrsi_5",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi'] > 30) & (dataframe[\"close\"] < dataframe['bb_lowerband'])"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "bbrsi_809",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi'] > 30) & (dataframe['close'] < dataframe['bb_lowerband'])"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "bbrsi_924",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi'] > 5) & (dataframe[\"close\"] < dataframe['bb_lowerband3'])"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "bbrsi_941",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi'] < 74) & (dataframe['close'] < dataframe['bb_middleband'])"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "bbrsi_bcd",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi'] > 40) & (dataframe['close'] < dataframe['bb_lowerband1'])"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "bbrsi_final",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < dataframe['bb_lowerband1'])"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "bbrsi_for_hyperopts",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < dataframe['bb_lowerband']) & (dataframe['rsi'] <= 31)"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "bbrsi_naive",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi'] > 25) & (dataframe['close'] < dataframe['bb_lowerband'])"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "bbrsi_naive_strategy_904",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi'] > 25) & (dataframe['close'] < dataframe['bb_lowerband'])"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "bbrsi_optimized_strategy",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi'] > 38) & (dataframe['close'] < dataframe['bb_lowerband'])"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "bbrsi_optimized_strategy_286",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi'] > 10) & (dataframe['close'] < dataframe['bb_lowerband_2sd'])"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "bbrsi_optimized_strategy_635",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi'] > 12) & (dataframe['close'] < dataframe['bb_lowerband_2sd'])"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "bbrsi_optimized_strategy_905",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < dataframe['bb_lowerband_3sd'])"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "bbrsi_train",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < dataframe['bb_lowerband1'])"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "bbrsi_v2",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < dataframe['bb_lowerband'])"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "bbrsi_v3",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < dataframe['bb_lowerband'])"
+   }
+  ],
+  "note": "stds=3"
+ },
+ {
+  "id": "bbrsis",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['sma5'] >= dataframe['sma75']) & (dataframe['sma75'] >= dataframe['sma200'])"
+   },
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < dataframe['bb_lowerband'])"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "bbrsittfv1",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi'] < 30) & (dataframe['close'] < dataframe['bb_lowerband'])"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "bestV2",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['EWO'] > self.ewo_high.value)"
+   },
+   {
+    "label": "mean_reversion",
+    "confidence": "medium",
+    "evidence": "(dataframe['close'] < (dataframe[f'ma_buy_"
+   }
+  ],
+  "note": "two EWO-based entry conditions"
+ }
+]

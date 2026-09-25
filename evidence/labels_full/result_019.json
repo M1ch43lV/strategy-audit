@@ -1,0 +1,307 @@
+[
+ {
+  "id": "ClucHAnix_hhll_Futures_2",
+  "primary": "other",
+  "labels": [],
+  "note": "No concrete entry/exit logic; delegates to inherited populate_buy_trend"
+ },
+ {
+  "id": "ClucHAnix_hhll_Futures_2_2",
+  "primary": "other",
+  "labels": [],
+  "note": "No concrete entry/exit logic; delegates to inherited populate_buy_trend"
+ },
+ {
+  "id": "ClucHAnix_hhll_TB",
+  "primary": "other",
+  "labels": [],
+  "note": "Trailing buy mechanism; no base entry signal shown"
+ },
+ {
+  "id": "ClucHAwerk",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "dataframe['ha_close'].lt(dataframe['lower'].shift())"
+   },
+   {
+    "label": "volatility",
+    "confidence": "medium",
+    "evidence": "dataframe['bbdelta'].gt(dataframe['ha_close'] * params['bbdelta-close'])"
+   }
+  ]
+ },
+ {
+  "id": "ClucHAwerk_BTC",
+  "primary": "other",
+  "labels": [],
+  "note": "No indicator or entry/exit code shown"
+ },
+ {
+  "id": "ClucHAwerk_ETH",
+  "primary": "other",
+  "labels": [],
+  "note": "No indicator or entry/exit code shown"
+ },
+ {
+  "id": "ClucHAwerk_USD",
+  "primary": "other",
+  "labels": [],
+  "note": "No indicator or entry/exit code shown"
+ },
+ {
+  "id": "ClucMay72018",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < 0.985 * dataframe['bb_lowerband']) &"
+   }
+  ]
+ },
+ {
+  "id": "ClucMay72018_2",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < 0.985 * dataframe['bb_lowerband']) &"
+   }
+  ]
+ },
+ {
+  "id": "ClucMay72018_3",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < 0.985 * dataframe['bb_lowerband']) &"
+   }
+  ]
+ },
+ {
+  "id": "ClucMay72018_4",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < 0.985 * dataframe['bb_lowerband']) &"
+   }
+  ]
+ },
+ {
+  "id": "ClucModDCA",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "medium",
+    "evidence": "(dataframe['rsi_4'] < int(self.lambo1_rsi_4_limit.value)) &"
+   }
+  ]
+ },
+ {
+  "id": "ClucV5M1",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "dataframe['close'].lt(dataframe['lower'].shift()) &"
+   }
+  ]
+ },
+ {
+  "id": "Cluckie",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < params['close-bblower'] * dataframe['lower-bb2']) &"
+   }
+  ]
+ },
+ {
+  "id": "Cnn_Lstm_multivarie_regression_leneaire_canaux_strategie_py",
+  "primary": "statistical",
+  "labels": [
+   {
+    "label": "statistical",
+    "confidence": "high",
+    "evidence": "dataframe['upper_channel'] = predictions + 1.96 * model.scale_"
+   }
+  ]
+ },
+ {
+  "id": "CofiBitStrategy",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(qtpylib.crossed_above(dataframe[\"fastk\"], dataframe[\"fastd\"]))"
+   }
+  ]
+ },
+ {
+  "id": "CofiBitStrategy_126",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(qtpylib.crossed_above(dataframe['fastk'], dataframe['fastd'])) &"
+   }
+  ]
+ },
+ {
+  "id": "CofiBitStrategy_3",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(qtpylib.crossed_above(dataframe['fastk'], dataframe['fastd'])) &"
+   }
+  ]
+ },
+ {
+  "id": "CofiBitStrategy_4",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(qtpylib.crossed_above(dataframe['fastk'], dataframe['fastd'])) &"
+   }
+  ]
+ },
+ {
+  "id": "CofiBitStrategy_5",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(qtpylib.crossed_above(dataframe['fastk'], dataframe['fastd'])) &"
+   }
+  ]
+ },
+ {
+  "id": "CofiBitStrategy_838",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(qtpylib.crossed_above(dataframe['fastk'], dataframe['fastd'])) &"
+   }
+  ]
+ },
+ {
+  "id": "Comb_ho4_7_H9",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "(dataframe['EWO'] > self.ewo_high.value) &"
+   }
+  ]
+ },
+ {
+  "id": "Comb_ho4_7_H9_2",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "(dataframe['EWO'] > self.ewo_high.value) &"
+   }
+  ]
+ },
+ {
+  "id": "CombinedBinHAndCluc",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "dataframe['close'].lt(dataframe['lower'].shift()) &"
+   }
+  ]
+ },
+ {
+  "id": "CombinedBinHAndCluc2021",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi'] < 12) & (dataframe['close'] < dataframe['bb_lowerband4'])"
+   }
+  ]
+ },
+ {
+  "id": "CombinedBinHAndCluc2021Bull",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi'] < 12) & (dataframe['close'] < dataframe['bb_lowerband4'])"
+   }
+  ]
+ },
+ {
+  "id": "CombinedBinHAndClucHyper",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "dataframe[f'close'].lt(dataframe[f'lower_{buy_a_time_window}'].shift()) &"
+   }
+  ]
+ },
+ {
+  "id": "CombinedBinHAndClucHyperStrategy",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "dataframe['close'].lt(dataframe['lower'].shift()) &"
+   }
+  ]
+ },
+ {
+  "id": "CombinedBinHAndClucHyperV0",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "dataframe[f'close'].lt(dataframe[f'lower_{buy_a_time_window}'].shift()) &"
+   }
+  ]
+ },
+ {
+  "id": "CombinedBinHAndClucHyperV3",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "dataframe[f'close'].lt(dataframe[f'lower_{buy_a_time_window}'].shift()) &"
+   }
+  ]
+ }
+]

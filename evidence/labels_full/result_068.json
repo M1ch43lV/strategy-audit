@@ -1,0 +1,339 @@
+[
+ {
+  "id": "ReinforcedQuickie_v2",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] <= dataframe['bb_lowerband'])"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "(dataframe['average'].shift(5) > dataframe['average'].shift(4))"
+   }
+  ],
+  "note": "dual-path entry: oversold dips and momentum"
+ },
+ {
+  "id": "ReinforcedSmoothScalp",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "qtpylib.crossed_above(dataframe['fastk'], dataframe['fastd'])"
+   }
+  ]
+ },
+ {
+  "id": "ReinforcedSmoothScalp2",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "qtpylib.crossed_above(dataframe['fastk'], dataframe['fastd'])"
+   }
+  ]
+ },
+ {
+  "id": "ReinforcedSmoothScalpS",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "qtpylib.crossed_above(dataframe['fastk'], dataframe['fastd'])"
+   }
+  ]
+ },
+ {
+  "id": "ReinforcedSmoothScalp_117",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "qtpylib.crossed_above(dataframe['fastk'], dataframe['fastd'])"
+   }
+  ]
+ },
+ {
+  "id": "ReinforcedSmoothScalp_2",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "qtpylib.crossed_above(dataframe['fastk'], dataframe['fastd'])"
+   }
+  ]
+ },
+ {
+  "id": "ReinforcedSmoothScalp_3",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "qtpylib.crossed_above(dataframe['fastk'], dataframe['fastd'])"
+   }
+  ]
+ },
+ {
+  "id": "ReinforcedSmoothScalp_4",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "qtpylib.crossed_above(dataframe['fastk'], dataframe['fastd'])"
+   }
+  ]
+ },
+ {
+  "id": "ReinforcedSmoothScalp_450",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "qtpylib.crossed_above(dataframe['fastk'], dataframe['fastd'])"
+   }
+  ]
+ },
+ {
+  "id": "ReinforcedSmoothScalp_5",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "qtpylib.crossed_above(dataframe['fastk'], dataframe['fastd'])"
+   }
+  ]
+ },
+ {
+  "id": "ReinforcedSmoothScalp_97",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "qtpylib.crossed_above(dataframe['fastk'], dataframe['fastd'])"
+   }
+  ]
+ },
+ {
+  "id": "Renco1",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['trend'] == True) & (dataframe['prev_trend'] == False)"
+   }
+  ]
+ },
+ {
+  "id": "Renko",
+  "primary": "pattern",
+  "labels": [
+   {
+    "label": "pattern",
+    "confidence": "high",
+    "evidence": "if row['previous-trend'] == False and row['trend'] == True"
+   }
+  ]
+ },
+ {
+  "id": "RenkoYolo",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['adx'] > params['adx'])"
+   }
+  ]
+ },
+ {
+  "id": "ReplayDetStrategy",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "dataframe.loc[dataframe[\"close\"] > dataframe[\"sma\"], \"enter_long\"] = 1"
+   }
+  ]
+ },
+ {
+  "id": "RingRongv2",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe[\"adx\"] > 25)"
+   },
+   {
+    "label": "mean_reversion",
+    "confidence": "medium",
+    "evidence": "(dataframe[\"close\"] <= dataframe['bb_lowerband'])"
+   }
+  ]
+ },
+ {
+  "id": "RiskParityPortfolio",
+  "primary": "other",
+  "labels": [],
+  "note": "Portfolio rebalancing signal: enters when risk-parity allocation > 0 on rebalance day"
+ },
+ {
+  "id": "RobotradingBody",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "medium",
+    "evidence": "(dataframe['open'] > dataframe['close'] )"
+   }
+  ]
+ },
+ {
+  "id": "RocMomentumStrategy",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe[\"roc\"] > 0) & (dataframe[\"roc_prev\"] <= 0)"
+   }
+  ]
+ },
+ {
+  "id": "Rockwell",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['macd'] > dataframe['macdsignal'])"
+   }
+  ]
+ },
+ {
+  "id": "RotatorTSLearn",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "low",
+    "evidence": "dataframe[[\"enter_long\", \"enter_tag\"]] = (1, \"always_enter\")"
+   }
+  ],
+  "note": "rotation/learning strategy, always enters"
+ },
+ {
+  "id": "Roth01",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['mfi'] < 24) & (dataframe['close'] < dataframe['bb_low'])"
+   }
+  ]
+ },
+ {
+  "id": "Roth02",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < dataframe['bb_low']) & (dataframe['fastd'] > 18)"
+   }
+  ]
+ },
+ {
+  "id": "Roth03",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < dataframe['bb_low']) & (dataframe['fastd'] > 37)"
+   }
+  ]
+ },
+ {
+  "id": "RsiBollingerStrategy",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe[\"close\"] <= dataframe[\"bb_lower\"]) & (dataframe[\"rsi\"]"
+   }
+  ]
+ },
+ {
+  "id": "RsiDivergenceStrategy",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe[\"rsi\"] < 45) & (dataframe[\"rsi_rising\"] == 1)"
+   }
+  ]
+ },
+ {
+  "id": "RsiQuickStrat",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "qtpylib.crossed_above(dataframe['RSI'], dataframe['SMMA'])"
+   }
+  ]
+ },
+ {
+  "id": "RsiStrategy",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['RSI'] < dataframe['buy_rsi'])"
+   }
+  ]
+ },
+ {
+  "id": "Rsiqui",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "qtpylib.crossed_above(dataframe['rsi_gra'], 0)"
+   }
+  ]
+ },
+ {
+  "id": "RsiquiV2",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "qtpylib.crossed_above(dataframe['rsi_gra'], 0)"
+   }
+  ]
+ }
+]

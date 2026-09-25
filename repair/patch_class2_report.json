@@ -1,5 +1,23 @@
 [
  {
+  "strategy": "BinClucMadSMACore",
+  "rule": [
+   "legacy_signal_int_literal"
+  ],
+  "repair_rules": [
+   "legacy_signal_int_literal"
+  ],
+  "action": "patched",
+  "reason": [
+   "23 assignment(s) of a literal 0/1 into a column this file itself declares bool (signal column, or assigned True/False elsewhere in the same file) - the same value under a different spelling"
+  ],
+  "file": "repos/remiotore_ccxt-freqtrade/strategies/BinClucMadSMACore.py",
+  "population": "repaired",
+  "repair_class": "class2",
+  "source_tree": "class2-overlay",
+  "equivalence_status": "strict_equivalent"
+ },
+ {
   "strategy": "AlexBandSniperV10AI",
   "rule": [
    "alex_dynamic_optimization_gate",

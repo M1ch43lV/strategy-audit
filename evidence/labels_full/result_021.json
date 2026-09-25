@@ -1,0 +1,414 @@
+[
+ {
+  "id": "CombinedBinHClucAndMADV5",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi_1h'] < 15) &                                                # Buy only at dip"
+   },
+   {
+    "label": "volatility",
+    "confidence": "medium",
+    "evidence": "(dataframe['close'] < 0.99 * dataframe['bb_lowerband']) &"
+   }
+  ],
+  "note": "Bollinger band dip with oversold RSI filter; volume checks gate entry"
+ },
+ {
+  "id": "CombinedBinHClucAndMADV5_2",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi_1h'] < 15) &                                                # Buy only at dip"
+   },
+   {
+    "label": "volatility",
+    "confidence": "medium",
+    "evidence": "(dataframe['close'] < 0.99 * dataframe['bb_lowerband']) &"
+   }
+  ],
+  "note": "Same as V5; uses populate_entry_trend method"
+ },
+ {
+  "id": "CombinedBinHClucAndMADV6",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < 0.99 * dataframe['bb_lowerband']) &"
+   }
+  ],
+  "note": "Dip buying below lower Bollinger band; added volume pump exclusion"
+ },
+ {
+  "id": "CombinedBinHClucAndMADV6_3",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < 0.99 * dataframe['bb_lowerband']) &"
+   }
+  ],
+  "note": "Same as V6"
+ },
+ {
+  "id": "CombinedBinHClucAndMADV9",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] <  dataframe['bb_lowerband'] * self.buy_bb20_close_bblowerband_safe_1.value) &"
+   }
+  ],
+  "note": "Parameterized lower band dip with volume and candle-shape filters"
+ },
+ {
+  "id": "CombinedBinHClucAndMADV9_5",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] <  dataframe['bb_lowerband'] * self.buy_bb20_close_bblowerband_safe_1.value) &"
+   }
+  ],
+  "note": "Same as V9"
+ },
+ {
+  "id": "CombinedBinHClucAndMADV9_8",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] <  dataframe['bb_lowerband'] * self.buy_bb20_close_bblowerband_safe_1.value) &"
+   }
+  ],
+  "note": "Same as V9; uses populate_entry_trend"
+ },
+ {
+  "id": "CombinedBinHClucAndMADV9_858",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < dataframe['bb_lowerband'] * self.buy_bb20_close_bblowerband_safe_1.value) &"
+   }
+  ],
+  "note": "Same as V9"
+ },
+ {
+  "id": "CombinedBinHClucAndSMAOffset_2",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < dataframe['ma_offset_buy']) &"
+   }
+  ],
+  "note": "Dip buying below offset MA; multiple guards on candle shape and dip depth"
+ },
+ {
+  "id": "CombinedOptimizedStrategy",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe[\"tema\"] <= dataframe[\"bb_middleband\"])"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "& (dataframe[\"tema\"] > dataframe[\"tema\"].shift(1))"
+   }
+  ],
+  "note": "Tema bounce off lower Bollinger band; green candle confirmation"
+ },
+ {
+  "id": "CombinedStrategy",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['adx'] > 25) &  # ADX indicando tendência forte"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "(dataframe['macd'] > dataframe['macdsignal']) &"
+   }
+  ],
+  "note": "ADX-confirmed trend with MACD momentum entry and RSI filter"
+ },
+ {
+  "id": "Combined_Indicators",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < 0.98863 * dataframe['bb_lowerband'])"
+   },
+   {
+    "label": "volatility",
+    "confidence": "medium",
+    "evidence": "dataframe['bbdelta'].gt(dataframe['close'] * 0.00703) &"
+   }
+  ],
+  "note": "Combines BinHV45 volatility pattern with ClucMay dip-buying logic"
+ },
+ {
+  "id": "Combined_NFIv6_SMA",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi_fast'] < 35)"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "(dataframe['uptrend_1h'] > 0)"
+   }
+  ],
+  "note": "RSI oversold entry with 1h uptrend filter and EMA checks"
+ },
+ {
+  "id": "Combined_NFIv6_SMA_3",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi_fast'] < 35)"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "(dataframe['uptrend_1h'] > 0)"
+   }
+  ],
+  "note": "Same as Combined_NFIv6_SMA"
+ },
+ {
+  "id": "Combined_NFIv6_SMA_863",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi_fast'] < 35)"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "(dataframe['uptrend_1h'] > 0)"
+   }
+  ],
+  "note": "Same as Combined_NFIv6_SMA"
+ },
+ {
+  "id": "Combined_NFIv7_SMA",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi_fast'] < 35)"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "(dataframe['uptrend_1h'] > 0)"
+   }
+  ],
+  "note": "Same core logic as v6; different Bollinger band exit reference"
+ },
+ {
+  "id": "Combined_NFIv7_SMA_bAdBoY_20211030",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi_fast'] < 35)"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "(dataframe['uptrend_1h'] > 0)"
+   }
+  ],
+  "note": "Same logic with different stoploss"
+ },
+ {
+  "id": "ComboHold",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "low",
+    "evidence": "self.buy_macdcross_enabled.value &"
+   },
+   {
+    "label": "mean_reversion",
+    "confidence": "low",
+    "evidence": "self.buy_bigdrop_enabled.value &"
+   }
+  ],
+  "note": "Multi-condition aggregator (NDrop, NSeq, EMABounce, MACDCross, BigDrop, FisherBB, BBBHold, BTCNDrop); entry logic incomplete"
+ },
+ {
+  "id": "CompleteIndicatorStrategy2",
+  "primary": "pattern",
+  "labels": [
+   {
+    "label": "pattern",
+    "confidence": "high",
+    "evidence": "dataframe['hammer'] = pd.to_numeric(ta.CDLHAMMER(dataframe)"
+   }
+  ],
+  "note": "Candlestick pattern recognition: hammer, shooting star, morning/evening star, engulfing, harami"
+ },
+ {
+  "id": "CompositeScoreStrategy",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe[\"macd_hist\"] > 0).astype(int)"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "(dataframe[\"ema20\"] > dataframe[\"ema50\"]).astype(int)"
+   }
+  ],
+  "note": "Composite score from RSI, MACD, EMA alignment, ADX; enters on threshold"
+ },
+ {
+  "id": "ConsecutiveDipFuturesStrategyFutures",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe[\"consecutive_dip\"] &\n                (dataframe[\"rsi\"] < self.rsi_threshold.value)"
+   },
+   {
+    "label": "volatility",
+    "confidence": "medium",
+    "evidence": "(dataframe[\"adx\"] > 25)"
+   }
+  ],
+  "note": "Multiple down candles with oversold RSI; trend-gated"
+ },
+ {
+  "id": "ConsensusShort",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "low",
+    "evidence": "c.evaluate_rsi()"
+   }
+  ],
+  "note": "Consensus multi-indicator evaluation; entry logic truncated; uses RMI and SSL"
+ },
+ {
+  "id": "ConsensusShort_2",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "low",
+    "evidence": "c.evaluate_rsi()"
+   }
+  ],
+  "note": "Consensus evaluation; simpler exit logic on consensus threshold"
+ },
+ {
+  "id": "ConsensusShort_3",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "low",
+    "evidence": "c.evaluate_rsi()"
+   }
+  ],
+  "note": "Same as ConsensusShort with RMI and SSL channels"
+ },
+ {
+  "id": "ConstantMixBasket",
+  "primary": "other",
+  "labels": [],
+  "note": "No entry/exit logic defined"
+ },
+ {
+  "id": "Consumer",
+  "primary": "other",
+  "labels": [],
+  "note": "Aggregates signals from producer strategies (NFIX, Cluc, BB_RPB) via WebSocket API"
+ },
+ {
+  "id": "Consumer5",
+  "primary": "other",
+  "labels": [],
+  "note": "Multi-producer aggregator; entry code truncated"
+ },
+ {
+  "id": "Conviction_Adaptive_Scalper",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['mom_3'] > 0) &"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "trend_up &\n            vwap_slope_ok &"
+   }
+  ],
+  "note": "VWAP slope momentum scalper with volume spike and order-flow bias confirmation"
+ },
+ {
+  "id": "CoppockCurveStrategy",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe[\"coppock\"] > 0) & (dataframe[\"coppock_prev\"] <= 0)"
+   }
+  ],
+  "note": "Coppock Curve (ROC-based) zero-crossing; trend-gated with RSI overbought guard"
+ },
+ {
+  "id": "CopyLitmusMinMaxBroadClassificationStrategy",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "low",
+    "evidence": "dataframe[\"DI_values\"] < self.DI_threshold.value"
+   }
+  ],
+  "note": "FreqAI machine learning with min/max classification thresholds; TA crossing logic incomplete"
+ }
+]

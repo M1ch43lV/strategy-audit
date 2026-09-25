@@ -1,0 +1,312 @@
+[
+ {
+  "id": "NowoIchimoku1hV2",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "df['is_cloud_green'] = df['lead_1'] > df['lead_2']"
+   }
+  ]
+ },
+ {
+  "id": "NowoIchimoku5mV2",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "df['is_cloud_green'] & conversion_line_above_base_line"
+   }
+  ]
+ },
+ {
+  "id": "NowotnyIchimokuV1",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(df['cloud_green'].shift(-25)) & (df['conversion_line'] > df['base_line'])"
+   }
+  ]
+ },
+ {
+  "id": "Nst53",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < dataframe['bb_lowerband3'] * self.buy_bb_factor.value)"
+   },
+   {
+    "label": "volatility",
+    "confidence": "medium",
+    "evidence": "(dataframe['bb_width'] > self.buy_bb_width.value)"
+   }
+  ]
+ },
+ {
+  "id": "OBOnly",
+  "primary": "other",
+  "labels": [],
+  "note": "always buys every candle, never exits; baseline/control"
+ },
+ {
+  "id": "OBOnlyV3",
+  "primary": "other",
+  "labels": [],
+  "note": "random buy signal; no deterministic trading logic"
+ },
+ {
+  "id": "OBOnlyV4",
+  "primary": "other",
+  "labels": [],
+  "note": "random-weighted buy signal based on delta threshold"
+ },
+ {
+  "id": "OBOnlyWSv2bband",
+  "primary": "other",
+  "labels": [],
+  "note": "no entry or exit logic defined; incomplete strategy"
+ },
+ {
+  "id": "ONS_Portfolio",
+  "primary": "other",
+  "labels": [],
+  "note": "always enters; driven by optimal non-sparse portfolio rebalancing"
+ },
+ {
+  "id": "ONUR",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "(dataframe['close'] > dataframe['bb_middleband'])"
+   }
+  ]
+ },
+ {
+  "id": "ORBAlgo",
+  "primary": "breakout",
+  "labels": [
+   {
+    "label": "breakout",
+    "confidence": "high",
+    "evidence": "orb_high = dataframe.loc[dataframe[\"is_orb\"]].groupby(\"session_id\")[\"high\"].max()"
+   }
+  ]
+ },
+ {
+  "id": "Obelisk",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < (dataframe[zema] * self.low_offset.value))"
+   }
+  ]
+ },
+ {
+  "id": "ObeliskIM_v1_1",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "dataframe['cloud_green_strong'] > 0"
+   }
+  ]
+ },
+ {
+  "id": "ObeliskRSI_v6_1",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "qtpylib.crossed_below(dataframe['rsi'], params['bull-buy-rsi-value'])"
+   }
+  ]
+ },
+ {
+  "id": "ObeliskRSI_v6_1_319",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "qtpylib.crossed_below(dataframe['rsi'], params['bull-buy-rsi-value'])"
+   }
+  ]
+ },
+ {
+  "id": "ObeliskRSI_v6_1_375",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "qtpylib.crossed_below(dataframe['rsi'], params['bull-buy-rsi-value'])"
+   }
+  ]
+ },
+ {
+  "id": "ObeliskRSI_v6_1_668",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "qtpylib.crossed_below(dataframe['rsi'], params['bull-buy-rsi-value'])"
+   }
+  ]
+ },
+ {
+  "id": "Obelisk_3EMA_StochRSI_ATR",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "qtpylib.crossed_above(dataframe['go_long'], 0)"
+   }
+  ]
+ },
+ {
+  "id": "Obelisk_3EMA_StochRSI_ATR_259",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "qtpylib.crossed_above(dataframe['go_long'], 0)"
+   }
+  ]
+ },
+ {
+  "id": "Obelisk_Ichimoku_Slow_v1",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "dataframe['buy_criteria'] = (dataframe['tenkan_sen'] > dataframe['kijun_sen'])"
+   }
+  ]
+ },
+ {
+  "id": "Obelisk_Ichimoku_Slow_v1_1",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "dataframe.loc[dataframe['go_long'] > 0 , 'buy'] = 1"
+   }
+  ]
+ },
+ {
+  "id": "Obelisk_Ichimoku_Slow_v1_1_370",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "dataframe.loc[dataframe['go_long'] > 0 , 'buy'] = 1"
+   }
+  ]
+ },
+ {
+  "id": "Obelisk_Ichimoku_Slow_v1_1_674",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "dataframe.loc[dataframe['go_long'] > 0 , 'buy'] = 1"
+   }
+  ]
+ },
+ {
+  "id": "Obelisk_Ichimoku_Slow_v1_2",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['trending'] > 0) & (dataframe['entry_ok'] > 0)"
+   }
+  ]
+ },
+ {
+  "id": "Obelisk_Ichimoku_Slow_v1_3",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['trending'] > 0) & (dataframe['entry_ok'] > 0)"
+   }
+  ]
+ },
+ {
+  "id": "Obelisk_Ichimoku_Slow_v1_3_338",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['trending'] > 0) & (dataframe['entry_ok'] > 0)"
+   }
+  ]
+ },
+ {
+  "id": "Obelisk_Ichimoku_Slow_v1_671",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['tenkan_sen'] > dataframe['kijun_sen'])"
+   }
+  ]
+ },
+ {
+  "id": "Obelisk_Ichimoku_ZEMA_v1",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < (dataframe[zema] * self.low_offset.value))"
+   }
+  ]
+ },
+ {
+  "id": "Obelisk_Ichimoku_ZEMA_v1_555",
+  "primary": "breakout",
+  "labels": [
+   {
+    "label": "breakout",
+    "confidence": "high",
+    "evidence": "qtpylib.crossed_above(dataframe['close'], (dataframe[zema] * self.low_offset.value))"
+   }
+  ]
+ },
+ {
+  "id": "Obelisk_TradePro_Ichi_v1_1",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] > dataframe['senkou_a']) & (dataframe['close'] > dataframe['senkou_b'])"
+   }
+  ]
+ }
+]

@@ -1,0 +1,387 @@
+[
+ {
+  "id": "SlopeV2",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['plus_di']    > self.threshold_di_buy.value)"
+   }
+  ],
+  "note": null
+ },
+ {
+  "id": "SlopeV3",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['plus_di']    > self.plus_di_buy.value) &"
+   }
+  ],
+  "note": null
+ },
+ {
+  "id": "SlopeV4",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['plus_di']    > self.plus_di.value) &"
+   }
+  ],
+  "note": null
+ },
+ {
+  "id": "SlopeV5",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['plus_di']    > self.plus_di.value) &"
+   }
+  ],
+  "note": null
+ },
+ {
+  "id": "SlopeV6",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['minus_di']   < dataframe['plus_di']) &"
+   }
+  ],
+  "note": null
+ },
+ {
+  "id": "SlopeV8",
+  "primary": "pattern",
+  "labels": [
+   {
+    "label": "pattern",
+    "confidence": "high",
+    "evidence": "maxima_idx = argrelextrema(dataframe['close'].values, np.greater, order=order)[0]"
+   }
+  ],
+  "note": null
+ },
+ {
+  "id": "SlowPotato",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['low'] <= dataframe['low'].rolling(1440).mean()) &"
+   }
+  ],
+  "note": null
+ },
+ {
+  "id": "SlowPotato_358",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['low'] <= dataframe['low'].rolling(288).mean()) &"
+   }
+  ],
+  "note": null
+ },
+ {
+  "id": "Slowbro",
+  "primary": "breakout",
+  "labels": [
+   {
+    "label": "breakout",
+    "confidence": "high",
+    "evidence": "qtpylib.crossed_above(dataframe['close'],dataframe[f\"30d-low_{self.inf_timeframe}\"])"
+   }
+  ],
+  "note": null
+ },
+ {
+  "id": "SmaCrossStrategy",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "qtpylib.crossed_above(dataframe['buy_quick_sma'], dataframe['buy_slow_sma'])"
+   }
+  ],
+  "note": null
+ },
+ {
+  "id": "SmaRsi",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "((dataframe['rsi'] < 21) & (dataframe['smaShort'] > dataframe['smaLong']))"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "(dataframe['smaShort'] > dataframe['smaLong'])"
+   }
+  ],
+  "note": null
+ },
+ {
+  "id": "SmaRsiStrategy",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi'] > 50) &\n                (qtpylib.crossed_above(dataframe['close'], dataframe['sma21']))"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "qtpylib.crossed_above(dataframe['close'], dataframe['sma21'])"
+   }
+  ],
+  "note": null
+ },
+ {
+  "id": "SmaRsiStrategy_386",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi'] > 50) &\n                (qtpylib.crossed_above(dataframe['close'], dataframe['sma21']))"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "qtpylib.crossed_above(dataframe['close'], dataframe['sma21'])"
+   }
+  ],
+  "note": null
+ },
+ {
+  "id": "SmaRsiStrategy_59",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi'] > 50) &\n                (qtpylib.crossed_above(dataframe['close'], dataframe['sma21']))"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "qtpylib.crossed_above(dataframe['close'], dataframe['sma21'])"
+   }
+  ],
+  "note": null
+ },
+ {
+  "id": "SmaRsiStrategy_plot",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi'] > 50) &\n                (qtpylib.crossed_above(dataframe['close'], dataframe['sma21']))"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "qtpylib.crossed_above(dataframe['close'], dataframe['sma21'])"
+   }
+  ],
+  "note": null
+ },
+ {
+  "id": "Smart5MinStrategy",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "cond_drop = dataframe['drop_pct'] > self.drop_pct\n        cond_rsi = dataframe['rsi'] < 30"
+   }
+  ],
+  "note": null
+ },
+ {
+  "id": "SmartMoneyConceptsFreqAI",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "high",
+    "evidence": "df[\"&-trend_prediction\"] == \"up\""
+   }
+  ],
+  "note": "FreqAI ML classification model predicts trend direction"
+ },
+ {
+  "id": "SmartMoneyStrategy",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < dataframe['ema_200']) &\n                    (dataframe['mfi'] < 35)"
+   }
+  ],
+  "note": null
+ },
+ {
+  "id": "SmartMoneyStrategyHyperopt",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < dataframe['ema_200']) &\n                    (dataframe['mfi'] < self.buy_mfi.value)"
+   }
+  ],
+  "note": null
+ },
+ {
+  "id": "SmidoltStrategy",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] > dataframe['trend']) &\n            (dataframe['obv'] > dataframe['obv'].shift(1))"
+   }
+  ],
+  "note": null
+ },
+ {
+  "id": "SmoothOperator",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['cci'].shift(1) < -100)\n                            & (dataframe['rsi'].shift(1) < 30)"
+   }
+  ],
+  "note": null
+ },
+ {
+  "id": "SmoothOperator_10",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['cci'].shift(1) < -100)\n                            & (dataframe['rsi'].shift(1) < 30)"
+   }
+  ],
+  "note": null
+ },
+ {
+  "id": "SmoothOperator_2",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['cci'].shift(1) < -100)\n                            & (dataframe['rsi'].shift(1) < 30)"
+   }
+  ],
+  "note": null
+ },
+ {
+  "id": "SmoothOperator_3",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['cci'].shift(1) < -100)\n                            & (dataframe['rsi'].shift(1) < 30)"
+   }
+  ],
+  "note": null
+ },
+ {
+  "id": "SmoothOperator_4",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['cci'].shift(1) < -100)\n                            & (dataframe['rsi'].shift(1) < 30)"
+   }
+  ],
+  "note": null
+ },
+ {
+  "id": "SmoothScalp",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['fastk'] < 30) &\n                        (dataframe['fastd'] < 30) &"
+   }
+  ],
+  "note": null
+ },
+ {
+  "id": "SmoothScalp_121",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['fastk'] < 30) &\n                        (dataframe['fastd'] < 30) &"
+   }
+  ],
+  "note": null
+ },
+ {
+  "id": "SmoothScalp_2",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['fastk'] < 30) &\n                        (dataframe['fastd'] < 30) &"
+   }
+  ],
+  "note": null
+ },
+ {
+  "id": "SmoothScalp_3",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['fastk'] < 30) &\n                        (dataframe['fastd'] < 30) &"
+   }
+  ],
+  "note": null
+ },
+ {
+  "id": "SmoothScalp_321",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['fastk'] < 30) &\n                        (dataframe['fastd'] < 30) &"
+   }
+  ],
+  "note": null
+ }
+]

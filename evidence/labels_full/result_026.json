@@ -1,0 +1,422 @@
+[
+ {
+  "id": "DuperFivish",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] <= dataframe['bb_lowerband'])"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "(dataframe['ema_{}'.format(self.EMA_SHORT_TERM)] < dataframe['ema_{}'.format(self.EMA_LONG_TERM)])"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "Dyna_opti",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'].lt(dataframe['bb_lowerband'].shift()))"
+   },
+   {
+    "label": "volatility",
+    "confidence": "medium",
+    "evidence": "dataframe['bbdelta'].gt(dataframe['close'] * self.bbdelta_close.value)"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "E0V1E",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['EWO'] > self.buy_ewo.value)"
+   },
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi_slow'] < dataframe['rsi_slow'].shift(1))"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "E0V1E2",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['EWO'] > self.buy_ewo.value)"
+   },
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi_slow'] < dataframe['rsi_slow'].shift(1))"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "E0V1EAI",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['&-rsi_slow'] < dataframe['rsi_shifted'])"
+   }
+  ],
+  "note": "ML model overlay; inherent RSI/SMA dip-buy logic"
+ },
+ {
+  "id": "E0V1EFt",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi_slow'] < dataframe['rsi_slow'].shift(1))"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "E0V1EN",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi_slow'] < dataframe['rsi_slow'].shift(1))"
+   },
+   {
+    "label": "volatility",
+    "confidence": "medium",
+    "evidence": "(dataframe['24h_change_pct'] > self.buy_24h_min_pct1.value)"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "E0V1E_13",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['EWO'] > self.buy_ewo.value)"
+   },
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi_slow'] < dataframe['rsi_slow'].shift(1))"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "E0V1E_14",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['EWO'] > self.buy_ewo.value)"
+   },
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi_slow'] < dataframe['rsi_slow'].shift(1))"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "E0V1E_15",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['EWO'] > self.buy_ewo.value)"
+   },
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi_slow'] < dataframe['rsi_slow'].shift(1))"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "E0V1E_16",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['EWO'] > self.buy_ewo.value)"
+   },
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi_slow'] < dataframe['rsi_slow'].shift(1))"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "E0V1E_17",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['EWO'] > self.buy_ewo.value)"
+   },
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi_slow'] < dataframe['rsi_slow'].shift(1))"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "E0V1E_18",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi_slow'] < dataframe['rsi_slow'].shift(1))"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "E0V1E_20",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi_slow'] < dataframe['rsi_slow'].shift(1))"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "E0V1E_20230915",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi_slow'] < dataframe['rsi_slow'].shift(1))"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "E0V1E_20231014_0847",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi_slow'] < dataframe['rsi_slow'].shift(1))"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "E0V1E_20231017_1059",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi_slow'] < dataframe['rsi_slow'].shift(1))"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "E0V1E_20231019_1032",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi_slow'] < dataframe['rsi_slow'].shift(1))"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "E0V1E_20240111_1625",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi_slow'] < dataframe['rsi_slow'].shift(1))"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "E0V1E_2024_2",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi_slow'] < dataframe['rsi_slow'].shift(1))"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "E0V1E_22",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi_slow'] < dataframe['rsi_slow'].shift(1))"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "E0V1E_23",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['EWO'] > self.buy_ewo.value)"
+   },
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi_slow'] < dataframe['rsi_slow'].shift(1))"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "E0V1E_24",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi_slow'] < dataframe['rsi_slow'].shift(1))"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "E0V1E_25",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi_slow'] < dataframe['rsi_slow'].shift(1))"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "E0V1E_26",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi_slow'] < dataframe['rsi_slow'].shift(1))"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "E0V1E_27",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi_slow'] < dataframe['rsi_slow'].shift(1))"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "E0V1E_28",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi_slow'] < dataframe['rsi_slow'].shift(1))"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "E0V1E_3",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi_slow'] < dataframe['rsi_slow'].shift(1))"
+   },
+   {
+    "label": "volatility",
+    "confidence": "medium",
+    "evidence": "(dataframe['24h_change_pct'] > self.buy_24h_min_pct1.value)"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "E0V1E_30",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi_slow'] < dataframe['rsi_slow'].shift(1))"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "E0V1E_35",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi_slow'] < dataframe['rsi_slow'].shift(1))"
+   }
+  ],
+  "note": ""
+ }
+]

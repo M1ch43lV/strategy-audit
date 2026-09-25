@@ -1,0 +1,357 @@
+[
+ {
+  "id": "Ichimoku_v2",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['cloud_green'] == True)"
+   }
+  ]
+ },
+ {
+  "id": "Ichimoku_v20",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] > dataframe['close'].shift(60))"
+   },
+   {
+    "label": "breakout",
+    "confidence": "medium",
+    "evidence": "(qtpylib.crossed_above(dataframe['close'], dataframe['senkou_a']))"
+   }
+  ]
+ },
+ {
+  "id": "Ichimoku_v21",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] > dataframe['close'].shift(90))"
+   },
+   {
+    "label": "breakout",
+    "confidence": "medium",
+    "evidence": "(qtpylib.crossed_above(dataframe['close'], dataframe['senkou_a']))"
+   }
+  ]
+ },
+ {
+  "id": "Ichimoku_v22",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "informative = self.dp.get_pair_dataframe(pair=metadata['pair'], timeframe=inf_tf)"
+   }
+  ]
+ },
+ {
+  "id": "Ichimoku_v23",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] > dataframe['senkou_a']) &"
+   },
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['close'].shift(1) > dataframe['close'].shift(2))"
+   }
+  ]
+ },
+ {
+  "id": "Ichimoku_v24",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(qtpylib.crossed_above(dataframe['close'], dataframe['senkou_a']))"
+   }
+  ]
+ },
+ {
+  "id": "Ichimoku_v25",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(qtpylib.crossed_above(dataframe['close'].shift(2), dataframe['senkou_a']))"
+   }
+  ]
+ },
+ {
+  "id": "Ichimoku_v26_1d",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "informative = self.dp.get_pair_dataframe(pair=metadata['pair'], timeframe=inf_tf)"
+   }
+  ]
+ },
+ {
+  "id": "Ichimoku_v27_1d",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "informative = self.dp.get_pair_dataframe(pair=metadata['pair'], timeframe=inf_tf)"
+   }
+  ]
+ },
+ {
+  "id": "Ichimoku_v28_1d",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(qtpylib.crossed_below(dataframe['close_1d'], dataframe['senkou_b_1d']))"
+   }
+  ]
+ },
+ {
+  "id": "Ichimoku_v29_1d",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(qtpylib.crossed_above(dataframe['close'].shift(2), dataframe['senkou_a']))"
+   },
+   {
+    "label": "pattern",
+    "confidence": "high",
+    "evidence": "(dataframe['CDLEVENINGDOJISTAR_1d'] != 0)"
+   }
+  ]
+ },
+ {
+  "id": "Ichimoku_v3",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(qtpylib.crossed_above(dataframe['tenkan'], dataframe['kijun']))"
+   }
+  ]
+ },
+ {
+  "id": "Ichimoku_v30",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(qtpylib.crossed_above(dataframe['close'].shift(2), dataframe['senkou_a']))"
+   },
+   {
+    "label": "pattern",
+    "confidence": "high",
+    "evidence": "(dataframe['CDLEVENINGDOJISTAR'] != 0)"
+   }
+  ]
+ },
+ {
+  "id": "Ichimoku_v31",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "dataframe_inf = self.dp.get_pair_dataframe(pair=metadata['pair'], timeframe=self.inf_tf)"
+   }
+  ]
+ },
+ {
+  "id": "Ichimoku_v31_Heikin_227",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "& dataframe['slowMA'] > dataframe['fastMA']"
+   }
+  ]
+ },
+ {
+  "id": "Ichimoku_v32",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(qtpylib.crossed_above(dataframe['ha_close'].shift(2), dataframe['senkou_a']))"
+   }
+  ]
+ },
+ {
+  "id": "Ichimoku_v33",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(qtpylib.crossed_above(dataframe['close'].shift(2), dataframe['senkou_a']))"
+   }
+  ]
+ },
+ {
+  "id": "Ichimoku_v34",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(qtpylib.crossed_above(dataframe['close'].shift(2), dataframe['senkou_a']))"
+   }
+  ]
+ },
+ {
+  "id": "Ichimoku_v35",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "informative = self.dp.get_pair_dataframe(pair=metadata['pair'], timeframe=inf_tf)"
+   }
+  ]
+ },
+ {
+  "id": "Ichimoku_v35_SAR_1d",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "informative = self.dp.get_pair_dataframe(pair=metadata['pair'], timeframe=inf_tf)"
+   }
+  ]
+ },
+ {
+  "id": "Ichimoku_v36_SAR_1s",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "informative = self.dp.get_pair_dataframe(pair=metadata['pair'], timeframe=inf_tf)"
+   }
+  ]
+ },
+ {
+  "id": "Ichimoku_v37",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "dataframe_inf = self.dp.get_pair_dataframe(pair=metadata['pair'], timeframe=self.inf_tf)"
+   }
+  ]
+ },
+ {
+  "id": "Ichimoku_v38_HeikinAshi",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "dataframe_inf = self.dp.get_pair_dataframe(pair=metadata['pair'], timeframe=self.inf_tf)"
+   }
+  ]
+ },
+ {
+  "id": "Ichimoku_v4",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(qtpylib.crossed_above(dataframe['tenkan'], dataframe['kijun']))"
+   }
+  ]
+ },
+ {
+  "id": "Ichimoku_v5",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(qtpylib.crossed_above(dataframe['tenkan'], dataframe['kijun']))"
+   }
+  ]
+ },
+ {
+  "id": "Ichimoku_v6",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(qtpylib.crossed_above(dataframe['tenkan'], dataframe['kijun']))"
+   }
+  ]
+ },
+ {
+  "id": "Ichimoku_v7",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] > dataframe['senkou_a']) &"
+   }
+  ]
+ },
+ {
+  "id": "Ichimoku_v8",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(qtpylib.crossed_above(dataframe['tenkan'], dataframe['kijun']))"
+   }
+  ]
+ },
+ {
+  "id": "Ichimoku_v9",
+  "primary": "breakout",
+  "labels": [
+   {
+    "label": "breakout",
+    "confidence": "high",
+    "evidence": "(qtpylib.crossed_above(dataframe['close'], dataframe['senkou_a']))"
+   }
+  ]
+ },
+ {
+  "id": "Ichis",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['tenkan_sen'] > dataframe['kijun_sen'])"
+   }
+  ]
+ }
+]

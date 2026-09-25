@@ -1,0 +1,573 @@
+[
+ {
+  "id": "ClucHAnix",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['ha_close'].lt(dataframe['lower'].shift()))"
+   },
+   {
+    "label": "volatility",
+    "confidence": "medium",
+    "evidence": "(dataframe['bbdelta'].gt(dataframe['ha_close'] * params['bbdelta-close']))"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "(dataframe['rocr_1h'].gt(self.rocr_1h.value))"
+   }
+  ]
+ },
+ {
+  "id": "ClucHAnix2",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['ha_close'].lt(dataframe['lower'].shift()))"
+   },
+   {
+    "label": "volatility",
+    "confidence": "medium",
+    "evidence": "(dataframe['bbdelta'].gt(dataframe['ha_close'] * params['bbdelta-close']))"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "(dataframe['rocr_1h'].gt(params['rocr-1h']))"
+   }
+  ]
+ },
+ {
+  "id": "ClucHAnix2_562",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['ha_close'].lt(dataframe['lower'].shift()))"
+   },
+   {
+    "label": "volatility",
+    "confidence": "medium",
+    "evidence": "(dataframe['bbdelta'].gt(dataframe['ha_close'] * params['bbdelta-close']))"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "(dataframe['rocr_1h'].gt(params['rocr-1h']))"
+   }
+  ]
+ },
+ {
+  "id": "ClucHAnix5m",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi_4'] < int(self.lambo1_rsi_4_limit.value))"
+   },
+   {
+    "label": "volatility",
+    "confidence": "medium",
+    "evidence": "(dataframe['fastd'] = stoch_fast['fastd'])"
+   }
+  ],
+  "note": "Entry code truncated; visible conditions show oversold RSI logic"
+ },
+ {
+  "id": "ClucHAnix5m_interface_v3",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi_4'] < int(self.lambo1_rsi_4_limit.value))"
+   }
+  ],
+  "note": "Entry code truncated; RSI oversold entries visible"
+ },
+ {
+  "id": "ClucHAnixE01VEOffsets",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['ha_close'].lt(dataframe['lower'].shift()))"
+   },
+   {
+    "label": "volatility",
+    "confidence": "medium",
+    "evidence": "(dataframe['bbdelta'].gt(dataframe['ha_close'] * params['bbdelta-close']))"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "(dataframe['rocr_1h'].gt(params['rocr-1h']))"
+   }
+  ]
+ },
+ {
+  "id": "ClucHAnixV1",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi_14'] < int(self.lambo2_rsi_14_limit.value))"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "(dataframe['adx'] > params['adx'])"
+   }
+  ],
+  "note": "Entry truncated; visible conditions include oversold RSI and ADX trend filter"
+ },
+ {
+  "id": "ClucHAnixV2",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['macd_1d'] > dataframe['macdsignal_1d'])"
+   },
+   {
+    "label": "mean_reversion",
+    "confidence": "medium",
+    "evidence": "(dataframe['ha_close'].lt(dataframe['lower'].shift()))"
+   }
+  ]
+ },
+ {
+  "id": "ClucHAnixV2_267",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['macd_1d'] > dataframe['macdsignal_1d'])"
+   },
+   {
+    "label": "mean_reversion",
+    "confidence": "medium",
+    "evidence": "(dataframe['ha_close'].lt(dataframe['lower'].shift()))"
+   }
+  ]
+ },
+ {
+  "id": "ClucHAnix_0",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['ha_close'].lt(dataframe['lower'].shift()))"
+   },
+   {
+    "label": "volatility",
+    "confidence": "medium",
+    "evidence": "(dataframe['bbdelta'].gt(dataframe['ha_close'] * params['bbdelta-close']))"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "(dataframe['rocr_1h'].gt(params['rocr-1h']))"
+   }
+  ]
+ },
+ {
+  "id": "ClucHAnix_11",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['ha_close'].lt(dataframe['lower'].shift()))"
+   },
+   {
+    "label": "volatility",
+    "confidence": "medium",
+    "evidence": "(dataframe['bbdelta'].gt(dataframe['ha_close'] * params['bbdelta-close']))"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "(dataframe['rocr_1h'].gt(params['rocr-1h']))"
+   }
+  ]
+ },
+ {
+  "id": "ClucHAnix_2",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['ha_close'].lt(dataframe['lower'].shift()))"
+   },
+   {
+    "label": "volatility",
+    "confidence": "medium",
+    "evidence": "(dataframe['bbdelta'].gt(dataframe['ha_close'] * params['bbdelta-close']))"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "(dataframe['rocr_1h'].gt(params['rocr-1h']))"
+   }
+  ]
+ },
+ {
+  "id": "ClucHAnix_231",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi_14'] < int(self.lambo2_rsi_14_limit.value))"
+   },
+   {
+    "label": "volatility",
+    "confidence": "medium",
+    "evidence": "(dataframe['bbdelta'].gt(dataframe['ha_close'] * params['bbdelta-close']))"
+   }
+  ],
+  "note": "Entry code truncated; combines lambo2 and clucha conditions"
+ },
+ {
+  "id": "ClucHAnix_3",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['ha_close'].lt(dataframe['lower'].shift()))"
+   },
+   {
+    "label": "volatility",
+    "confidence": "medium",
+    "evidence": "(dataframe['bbdelta'].gt(dataframe['ha_close'] * self.bbdelta_close.value))"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "(dataframe['rocr_1h'].gt(self.rocr_1h.value))"
+   }
+  ]
+ },
+ {
+  "id": "ClucHAnix_5M_E0V1E",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['ha_close'].lt(dataframe['lower'].shift()))"
+   },
+   {
+    "label": "volatility",
+    "confidence": "medium",
+    "evidence": "(dataframe['bbdelta'].gt(dataframe['ha_close'] * params['bbdelta-close']))"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "(dataframe['rocr_1h'].gt(params['rocr-1h']))"
+   }
+  ]
+ },
+ {
+  "id": "ClucHAnix_5M_E0V1E_DYNAMIC_TB",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "medium",
+    "evidence": "dataframe = super().populate_buy_trend(dataframe, metadata)"
+   }
+  ],
+  "note": "Trailing buy wrapper over parent strategy; inherits base mean_reversion logic"
+ },
+ {
+  "id": "ClucHAnix_5m",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['ha_close'].lt(dataframe['lower'].shift()))"
+   },
+   {
+    "label": "volatility",
+    "confidence": "medium",
+    "evidence": "(dataframe['bbdelta'].gt(dataframe['ha_close'] * self.bbdelta_close.value))"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "(dataframe['rocr_1h'].gt(self.rocr_1h.value))"
+   }
+  ]
+ },
+ {
+  "id": "ClucHAnix_5m1",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['ha_close'].lt(dataframe['lower'].shift()))"
+   },
+   {
+    "label": "volatility",
+    "confidence": "medium",
+    "evidence": "(dataframe['bbdelta'].gt(dataframe['ha_close'] * self.bbdelta_close.value))"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "(dataframe['rocr_1h'].gt(self.rocr_1h.value))"
+   }
+  ]
+ },
+ {
+  "id": "ClucHAnix_5m1c",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['ha_close'].lt(dataframe['lower'].shift()))"
+   },
+   {
+    "label": "volatility",
+    "confidence": "medium",
+    "evidence": "(dataframe['bbdelta'].gt(dataframe['ha_close'] * self.bbdelta_close.value))"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "(dataframe['rocr_1h'].gt(self.rocr_1h.value))"
+   }
+  ]
+ },
+ {
+  "id": "ClucHAnix_5mTB1",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "medium",
+    "evidence": "dataframe = super().populate_buy_trend(dataframe, metadata)"
+   }
+  ],
+  "note": "Trailing buy wrapper; inherits base mean_reversion from parent"
+ },
+ {
+  "id": "ClucHAnix_5mTB1_2",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rocr_1h'].gt(self.rocr_1h.value))"
+   },
+   {
+    "label": "volatility",
+    "confidence": "medium",
+    "evidence": "(dataframe['bbdelta'].gt(dataframe['ha_close'] * self.bbdelta_close.value))"
+   }
+  ]
+ },
+ {
+  "id": "ClucHAnix_5mTB1_3",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['ha_close'].lt(dataframe['lower'].shift()))"
+   },
+   {
+    "label": "volatility",
+    "confidence": "medium",
+    "evidence": "(dataframe['bbdelta'].gt(dataframe['ha_close'] * self.bbdelta_close.value))"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "(dataframe['rocr_1h'].gt(self.rocr_1h.value))"
+   }
+  ]
+ },
+ {
+  "id": "ClucHAnix_5mTB1_711",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['ha_close'].lt(dataframe['lower'].shift()))"
+   },
+   {
+    "label": "volatility",
+    "confidence": "medium",
+    "evidence": "(dataframe['bbdelta'].gt(dataframe['ha_close'] * self.bbdelta_close.value))"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "(dataframe['rocr_1h'].gt(self.rocr_1h.value))"
+   }
+  ]
+ },
+ {
+  "id": "ClucHAnix_5mTB1_733",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['ha_close'].lt(dataframe['lower'].shift()))"
+   },
+   {
+    "label": "volatility",
+    "confidence": "medium",
+    "evidence": "(dataframe['bbdelta'].gt(dataframe['ha_close'] * self.bbdelta_close.value))"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "(dataframe['rocr_1h'].gt(self.rocr_1h.value))"
+   }
+  ]
+ },
+ {
+  "id": "ClucHAnix_5m_0",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['ha_close'].lt(dataframe['lower'].shift()))"
+   },
+   {
+    "label": "volatility",
+    "confidence": "medium",
+    "evidence": "(dataframe['bbdelta'].gt(dataframe['ha_close'] * self.bbdelta_close.value))"
+   }
+  ]
+ },
+ {
+  "id": "ClucHAnix_5m_268",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['ha_close'].lt(dataframe['lower'].shift()))"
+   },
+   {
+    "label": "volatility",
+    "confidence": "medium",
+    "evidence": "(dataframe['bbdelta'].gt(dataframe['ha_close'] * self.bbdelta_close.value))"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "(dataframe['rocr_1h'].gt(self.rocr_1h.value))"
+   }
+  ]
+ },
+ {
+  "id": "ClucHAnix_5m_5",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['ha_close'].lt(dataframe['lower'].shift()))"
+   },
+   {
+    "label": "volatility",
+    "confidence": "medium",
+    "evidence": "(dataframe['bbdelta'].gt(dataframe['ha_close'] * self.bbdelta_close.value))"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "(dataframe['rocr_1h'].gt(self.rocr_1h.value))"
+   }
+  ]
+ },
+ {
+  "id": "ClucHAnix_5m_7",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['ha_close'].lt(dataframe['lower'].shift()))"
+   },
+   {
+    "label": "volatility",
+    "confidence": "medium",
+    "evidence": "(dataframe['bbdelta'].gt(dataframe['ha_close'] * self.bbdelta_close.value))"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "(dataframe['rocr_1h'].gt(self.rocr_1h.value))"
+   }
+  ]
+ },
+ {
+  "id": "ClucHAnix_5m_736",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['ha_close'].lt(dataframe['lower'].shift()))"
+   },
+   {
+    "label": "volatility",
+    "confidence": "medium",
+    "evidence": "(dataframe['bbdelta'].gt(dataframe['ha_close'] * self.bbdelta_close.value))"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "(dataframe['rocr_1h'].gt(self.rocr_1h.value))"
+   }
+  ]
+ },
+ {
+  "id": "ClucHAnix_5m_8",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['ha_close'].lt(dataframe['lower'].shift()))"
+   },
+   {
+    "label": "volatility",
+    "confidence": "medium",
+    "evidence": "(dataframe['bbdelta'].gt(dataframe['ha_close'] * self.bbdelta_close.value))"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "(dataframe['rocr_1h'].gt(self.rocr_1h.value))"
+   }
+  ]
+ }
+]

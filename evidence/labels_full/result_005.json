@@ -1,0 +1,367 @@
+[
+ {
+  "id": "AverageStrategyMario69",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "qtpylib.crossed_above(\n                    dataframe[f'ema{self.buy_range_short.value}'],"
+   }
+  ]
+ },
+ {
+  "id": "AverageStrategy_2",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "qtpylib.crossed_above(dataframe['maShort'], dataframe['maMedium'])"
+   }
+  ]
+ },
+ {
+  "id": "AverageStrategy_3",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "qtpylib.crossed_above(dataframe['maShort'], dataframe['maMedium'])"
+   }
+  ]
+ },
+ {
+  "id": "AverageStrategy_391",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "qtpylib.crossed_above(\n                    dataframe[f'ema{self.buy_range_short.value}'],"
+   }
+  ]
+ },
+ {
+  "id": "AwesomeEWOLambo",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['EWO'] > self.ewo_high.value) &"
+   },
+   {
+    "label": "mean_reversion",
+    "confidence": "medium",
+    "evidence": "(dataframe['rsi_fast'] <35)&"
+   }
+  ]
+ },
+ {
+  "id": "AwesomeEWOLambo_Shorts",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['EWO'] < self.ewo_high.value) &  # INVERTED: < (ewo_high is negative)"
+   }
+  ]
+ },
+ {
+  "id": "AwesomeMacd",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['ao'].shift() < 0)"
+   }
+  ]
+ },
+ {
+  "id": "AwesomeMacdS",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['ao'].shift() < 0)"
+   }
+  ]
+ },
+ {
+  "id": "AwesomeMacd_131",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['ao'].shift() < 0)"
+   }
+  ]
+ },
+ {
+  "id": "AwesomeMacd_2",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['ao'] > dataframe['ao'].shift())"
+   }
+  ]
+ },
+ {
+  "id": "AwesomeMacd_215",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['ao'].shift() < 0)"
+   }
+  ]
+ },
+ {
+  "id": "AwesomeMacd_3",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['ao'].shift() < 0)"
+   }
+  ]
+ },
+ {
+  "id": "AwesomeStrategy",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['mfi'] < 20)"
+   },
+   {
+    "label": "volatility",
+    "confidence": "medium",
+    "evidence": "(dataframe['bbw_expansion'] == 1)"
+   }
+  ]
+ },
+ {
+  "id": "AwesomeStrategy20240418",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['roc'] >= self.SELL_ROC)"
+   }
+  ]
+ },
+ {
+  "id": "BATS_contest",
+  "primary": "breakout",
+  "labels": [
+   {
+    "label": "breakout",
+    "confidence": "high",
+    "evidence": "dataframe['close'] == dataframe[f'close_high_{self.close_high_periods.value}']"
+   }
+  ]
+ },
+ {
+  "id": "BB10fall",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(df['close'] < df[\"buyThreshold10\"]) &"
+   }
+  ]
+ },
+ {
+  "id": "BBBHold",
+  "primary": "breakout",
+  "labels": [
+   {
+    "label": "breakout",
+    "confidence": "high",
+    "evidence": "(dataframe['open'] < dataframe['bb_lowerband']) &\n            (dataframe['close'] >= dataframe['bb_lowerband'])"
+   },
+   {
+    "label": "mean_reversion",
+    "confidence": "medium",
+    "evidence": "(dataframe['mfi'] <= self.buy_mfi.value)"
+   }
+  ]
+ },
+ {
+  "id": "BBBHold_2",
+  "primary": "breakout",
+  "labels": [
+   {
+    "label": "breakout",
+    "confidence": "high",
+    "evidence": "(dataframe['open'] < dataframe['bb_lowerband']) &\n            (dataframe['close'] >= dataframe['bb_lowerband'])"
+   }
+  ]
+ },
+ {
+  "id": "BBBHold_3",
+  "primary": "breakout",
+  "labels": [
+   {
+    "label": "breakout",
+    "confidence": "high",
+    "evidence": "(dataframe['open'] < dataframe['bb_lowerband']) &\n            (dataframe['close'] >= dataframe['bb_lowerband'])"
+   }
+  ]
+ },
+ {
+  "id": "BBBreakoutStrategy",
+  "primary": "breakout",
+  "labels": [
+   {
+    "label": "breakout",
+    "confidence": "high",
+    "evidence": "dataframe['close'] > dataframe['upperband']"
+   },
+   {
+    "label": "volatility",
+    "confidence": "medium",
+    "evidence": "(dataframe['iii_sum'] > 0)"
+   }
+  ]
+ },
+ {
+  "id": "BBKCBounce",
+  "primary": "breakout",
+  "labels": [
+   {
+    "label": "breakout",
+    "confidence": "high",
+    "evidence": "(qtpylib.crossed_above(dataframe['close'], dataframe['bb_lowerband']))"
+   }
+  ]
+ },
+ {
+  "id": "BBL3H1Strategy",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < dataframe['bb_lowerband3'])"
+   }
+  ]
+ },
+ {
+  "id": "BBMod",
+  "primary": "volatility",
+  "labels": [
+   {
+    "label": "volatility",
+    "confidence": "high",
+    "evidence": "(dataframe['bb_delta'] > self.buy_bb_delta.value) &"
+   },
+   {
+    "label": "mean_reversion",
+    "confidence": "medium",
+    "evidence": "(dataframe['srsi_fk'] < self.buy_srsi_fk.value)"
+   }
+  ]
+ },
+ {
+  "id": "BBMod1",
+  "primary": "volatility",
+  "labels": [
+   {
+    "label": "volatility",
+    "confidence": "high",
+    "evidence": "(dataframe['bb_delta'] > self.buy_bb_delta.value) &"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "(dataframe['ema_26'] > dataframe['ema_12']) &"
+   }
+  ]
+ },
+ {
+  "id": "BBMod1DCA",
+  "primary": "other",
+  "labels": [],
+  "note": "Position adjustment only, no entry/exit logic provided"
+ },
+ {
+  "id": "BBMod1_0",
+  "primary": "volatility",
+  "labels": [
+   {
+    "label": "volatility",
+    "confidence": "high",
+    "evidence": "(dataframe['bb_delta'] > self.buy_bb_delta.value) &"
+   }
+  ]
+ },
+ {
+  "id": "BBMod1_2",
+  "primary": "volatility",
+  "labels": [
+   {
+    "label": "volatility",
+    "confidence": "high",
+    "evidence": "(dataframe['bb_delta'] > self.buy_bb_delta.value) &"
+   }
+  ]
+ },
+ {
+  "id": "BBMod1_3",
+  "primary": "volatility",
+  "labels": [
+   {
+    "label": "volatility",
+    "confidence": "high",
+    "evidence": "(dataframe['bb_delta'] > self.buy_bb_delta.value) &"
+   }
+  ]
+ },
+ {
+  "id": "BBModCE",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['EWO'] > self.buy_ewo_high.value) &"
+   },
+   {
+    "label": "mean_reversion",
+    "confidence": "medium",
+    "evidence": "(dataframe['rsi_slow'] < dataframe['rsi_slow'].shift(1)) &"
+   }
+  ]
+ },
+ {
+  "id": "BBModCEV1",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['cti'] < self.buy_cti_32.value)"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "(dataframe['rsi_slow'] < dataframe['rsi_slow'].shift(1)) &"
+   }
+  ]
+ }
+]

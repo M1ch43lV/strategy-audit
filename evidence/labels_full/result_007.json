@@ -1,0 +1,500 @@
+[
+ {
+  "id": "BBRSITV5",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi_4'] < 25)"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "(dataframe['EWO'] > self.ewo_high.value)"
+   }
+  ]
+ },
+ {
+  "id": "BBRSITV_239",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "qtpylib.crossed_below(dataframe['rsi'], (dataframe[f'basis_"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "(dataframe['EWO'] >  self.ewo_high.value)"
+   }
+  ]
+ },
+ {
+  "id": "BBRSITV_542",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi'] < (dataframe[f'basis_{self.for_ma_length"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "(dataframe['EWO'] >  self.ewo_high.value)"
+   }
+  ]
+ },
+ {
+  "id": "BBRSI_648",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < dataframe['bb_lowerband'])"
+   }
+  ]
+ },
+ {
+  "id": "BBRSI_815",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < dataframe['bb_lowerband'])"
+   }
+  ]
+ },
+ {
+  "id": "BBRSIoriginal",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe[\"close\"] < dataframe['bb_lowerband3'] )"
+   }
+  ]
+ },
+ {
+  "id": "BBRSIv2",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < dataframe['bb_lowerband'])"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "(dataframe[\"tema\"] > dataframe[\"tema\"].shift(1))"
+   }
+  ]
+ },
+ {
+  "id": "BB_DCAv2",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "medium",
+    "evidence": "(dataframe['tpct_change_1'] < 0.08)"
+   }
+  ],
+  "note": "DCA with crash/dip detection; entry code truncated"
+ },
+ {
+  "id": "BB_RPB",
+  "primary": "breakout",
+  "labels": [
+   {
+    "label": "breakout",
+    "confidence": "high",
+    "evidence": "(dataframe['bb_delta'] > self.buy_bb_delta.value)"
+   },
+   {
+    "label": "mean_reversion",
+    "confidence": "medium",
+    "evidence": "(dataframe[f'rmi_length_{self.buy_rmi_length.value}'] <"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "(dataframe['ema_26'] > dataframe['ema_12'])"
+   }
+  ],
+  "note": "Entry code truncated; squeeze-off with band expansion"
+ },
+ {
+  "id": "BB_RPB_3c",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(qtpylib.crossed_above(dataframe['fastk'], dataframe['"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "(dataframe['adx'] > self.buy_adx.value)"
+   },
+   {
+    "label": "pattern",
+    "confidence": "medium",
+    "evidence": "is_clucHA = ("
+   }
+  ],
+  "note": "Entry code truncated; Stochastic cross with ADX trend confirmation"
+ },
+ {
+  "id": "BB_RPB_3c_dca",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(qtpylib.crossed_above(dataframe['fastk'], dataframe['"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "(dataframe['adx'] > self.buy_adx.value)"
+   }
+  ],
+  "note": "DCA variant; entry code truncated"
+ },
+ {
+  "id": "BB_RPB_TSL",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe[f'rmi_length_{self.buy_rmi_length.value}'] <"
+   },
+   {
+    "label": "breakout",
+    "confidence": "medium",
+    "evidence": "(dataframe['bb_delta'] > self.buy_bb_delta.value)"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "(dataframe['ema_26'] > dataframe['ema_12'])"
+   }
+  ],
+  "note": "Entry code truncated; dip buying with trend filter"
+ },
+ {
+  "id": "BB_RPB_TSL_140",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe[f'rmi_length_{self.buy_rmi_length.value}'] <"
+   },
+   {
+    "label": "breakout",
+    "confidence": "medium",
+    "evidence": "(dataframe['bb_delta'] > self.buy_bb_delta.value)"
+   }
+  ],
+  "note": "Entry code truncated; dip with band expansion"
+ },
+ {
+  "id": "BB_RPB_TSL_2",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe[f'rmi_length_{self.buy_rmi_length.value}'] <"
+   },
+   {
+    "label": "breakout",
+    "confidence": "medium",
+    "evidence": "(dataframe['bb_delta'] > self.buy_bb_delta.value)"
+   }
+  ],
+  "note": "Entry code truncated; 3m timeframe variant"
+ },
+ {
+  "id": "BB_RPB_TSL_221",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe[f'rmi_length_{self.buy_rmi_length.value}'] <"
+   },
+   {
+    "label": "breakout",
+    "confidence": "medium",
+    "evidence": "(dataframe['bb_delta'] > self.buy_bb_delta.value)"
+   }
+  ],
+  "note": "Entry code truncated; dip with squeeze-off detection"
+ },
+ {
+  "id": "BB_RPB_TSL_2_2",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe[f'rmi_length_{self.buy_rmi_length.value}'] <"
+   },
+   {
+    "label": "breakout",
+    "confidence": "medium",
+    "evidence": "(dataframe['bb_delta'] > self.buy_bb_delta.value)"
+   }
+  ],
+  "note": "Entry code truncated; 3m timeframe"
+ },
+ {
+  "id": "BB_RPB_TSL_3",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe[f'rmi_length_{self.buy_rmi_length.value}'] <"
+   },
+   {
+    "label": "breakout",
+    "confidence": "medium",
+    "evidence": "(dataframe['bb_delta'] > self.buy_bb_delta.value)"
+   }
+  ],
+  "note": "Entry code truncated"
+ },
+ {
+  "id": "BB_RPB_TSL_4",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe[f'rmi_length_{self.buy_rmi_length.value}'] <"
+   },
+   {
+    "label": "breakout",
+    "confidence": "medium",
+    "evidence": "(dataframe['bb_delta'] > self.buy_bb_delta.value)"
+   }
+  ],
+  "note": "Entry code truncated"
+ },
+ {
+  "id": "BB_RPB_TSL_5",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe[f'rmi_length_{self.buy_rmi_length.value}'] <"
+   },
+   {
+    "label": "breakout",
+    "confidence": "medium",
+    "evidence": "(dataframe['bb_delta'] > self.buy_bb_delta.value)"
+   }
+  ],
+  "note": "Entry code truncated; includes custom exit with CMF, EMA, pmax"
+ },
+ {
+  "id": "BB_RPB_TSL_600",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe[f'rmi_length_{self.buy_rmi_length.value}'] <"
+   },
+   {
+    "label": "breakout",
+    "confidence": "medium",
+    "evidence": "(dataframe['bb_delta'] > self.buy_bb_delta.value)"
+   }
+  ],
+  "note": "Entry code truncated"
+ },
+ {
+  "id": "BB_RPB_TSL_BI",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe[f'rmi_length_{self.buy_rmi_length.value}'] <"
+   },
+   {
+    "label": "breakout",
+    "confidence": "medium",
+    "evidence": "(dataframe['bb_delta'] > self.buy_bb_delta.value)"
+   }
+  ],
+  "note": "Entry code truncated"
+ },
+ {
+  "id": "BB_RPB_TSL_BIV1",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe[f'rmi_length_{self.buy_rmi_length.value}'] <"
+   },
+   {
+    "label": "breakout",
+    "confidence": "medium",
+    "evidence": "(dataframe['bb_delta'] > self.buy_bb_delta.value)"
+   }
+  ],
+  "note": "Entry code truncated"
+ },
+ {
+  "id": "BB_RPB_TSL_BI_2",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe[f'rmi_length_{self.buy_rmi_length.value}'] <"
+   },
+   {
+    "label": "breakout",
+    "confidence": "medium",
+    "evidence": "(dataframe['bb_delta'] > self.buy_bb_delta.value)"
+   }
+  ],
+  "note": "Entry code truncated"
+ },
+ {
+  "id": "BB_RPB_TSL_BI_3",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe[f'rmi_length_{self.buy_rmi_length.value}'] <"
+   },
+   {
+    "label": "breakout",
+    "confidence": "medium",
+    "evidence": "(dataframe['bb_delta'] > self.buy_bb_delta.value)"
+   }
+  ],
+  "note": "Entry code truncated; uses populate_entry_trend method"
+ },
+ {
+  "id": "BB_RPB_TSL_BI_v4_EWO2_v3",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe[f'rmi_length_{self.buy_rmi_length.value}'] <"
+   },
+   {
+    "label": "breakout",
+    "confidence": "medium",
+    "evidence": "(dataframe['bb_delta'] > self.buy_bb_delta.value)"
+   }
+  ],
+  "note": "Entry code truncated"
+ },
+ {
+  "id": "BB_RPB_TSL_ClucHAnix_BB_RPB_MOD_CTT_Dynamic_Offsets_COMBINED_MOD_TraNz_1",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "dataframe[f'ma_buy_{self.ewo_candles_buy.value}'] = ta.EMA"
+   },
+   {
+    "label": "breakout",
+    "confidence": "medium",
+    "evidence": "(dataframe['bb_delta'] > self.buy_bb_delta.value)"
+   }
+  ],
+  "note": "Entry code truncated; EMA-based momentum with band delta"
+ },
+ {
+  "id": "BB_RPB_TSL_RNG",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe[f'rmi_length_{self.buy_rmi_length.value}'] <"
+   },
+   {
+    "label": "breakout",
+    "confidence": "medium",
+    "evidence": "(dataframe['bb_delta'] > self.buy_bb_delta.value)"
+   }
+  ],
+  "note": "Entry code truncated; includes BTC threshold dump detection"
+ },
+ {
+  "id": "BB_RPB_TSL_RNG_2",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe[f'rmi_length_{self.buy_rmi_length.value}'] <"
+   },
+   {
+    "label": "breakout",
+    "confidence": "medium",
+    "evidence": "(dataframe['bb_delta'] > self.buy_bb_delta.value)"
+   }
+  ],
+  "note": "Entry code truncated; BTC range detection variant"
+ },
+ {
+  "id": "BB_RPB_TSL_RNG_2_0",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe[f'rmi_length_{self.buy_rmi_length.value}'] <"
+   },
+   {
+    "label": "breakout",
+    "confidence": "medium",
+    "evidence": "(dataframe['bb_delta'] > self.buy_bb_delta.value)"
+   }
+  ],
+  "note": "Entry code truncated; use_sell_signal=False"
+ },
+ {
+  "id": "BB_RPB_TSL_RNG_2_2",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe[f'rmi_length_{self.buy_rmi_length.value}'] <"
+   },
+   {
+    "label": "breakout",
+    "confidence": "medium",
+    "evidence": "(dataframe['bb_delta'] > self.buy_bb_delta.value)"
+   }
+  ],
+  "note": "Entry code truncated; use_sell_signal=False variant"
+ }
+]

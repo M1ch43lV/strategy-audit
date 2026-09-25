@@ -1,0 +1,337 @@
+[
+ {
+  "id": "emaSignalStrategy",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] <= dataframe['lower_band'])"
+   }
+  ],
+  "note": null
+ },
+ {
+  "id": "ema_2",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "qtpylib.crossed_above(dataframe['close'], dataframe['bb_lower'])"
+   }
+  ],
+  "note": null
+ },
+ {
+  "id": "ema_9_18",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['ema9'] > dataframe['ema18'])"
+   }
+  ],
+  "note": null
+ },
+ {
+  "id": "ema_strat_15m_prod",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe[\"EMA_QUICK\"] > dataframe[\"EMA_SLOW\"])"
+   }
+  ],
+  "note": null
+ },
+ {
+  "id": "emacross",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "qtpylib.crossed_above(dataframe['ema10'], dataframe['ema50'])"
+   }
+  ],
+  "note": null
+ },
+ {
+  "id": "emacrossover",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "dataframe['buy-fastMA'] > dataframe['buy-slowMA']"
+   }
+  ],
+  "note": null
+ },
+ {
+  "id": "ep3mas2",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "qtpylib.crossed_above(dataframe[self.epcat2.value], dataframe['epm5'])"
+   }
+  ],
+  "note": null
+ },
+ {
+  "id": "epretrace",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe[self.epcat1.value] < (dataframe[self.epcat1.value].shift(1).rolling"
+   }
+  ],
+  "note": null
+ },
+ {
+  "id": "epsvjedi",
+  "primary": "pattern",
+  "labels": [
+   {
+    "label": "pattern",
+    "confidence": "high",
+    "evidence": "dataframe['fib_236'] = dataframe['highest'] - dataframe['range'] * 0.236"
+   }
+  ],
+  "note": "Fibonacci retracement levels"
+ },
+ {
+  "id": "evil",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "qtpylib.crossed_above(dataframe[\"rsi\"], self.buy_rsi.value)"
+   }
+  ],
+  "note": null
+ },
+ {
+  "id": "expired_v2",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "qtpylib.crossed_above(...impulse_macd..., ...impulse_macdsignal...)"
+   }
+  ],
+  "note": null
+ },
+ {
+  "id": "f_ott_strategy",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "qtpylib.crossed_above(dataframe[\"var\"], dataframe[\"ott\"])"
+   }
+  ],
+  "note": null
+ },
+ {
+  "id": "f_scalp2",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "((dataframe['rsi'] < 30)) & qtpylib.crossed_above"
+   }
+  ],
+  "note": "RSI oversold entry"
+ },
+ {
+  "id": "f_supertrend_strategy",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "== \"up\" )"
+   }
+  ],
+  "note": "SuperTrend trend indicator"
+ },
+ {
+  "id": "f_supertrend_strategy_2",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "== \"up\" )"
+   }
+  ],
+  "note": "SuperTrend trend indicator"
+ },
+ {
+  "id": "fa_01_strategy",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < dataframe['ema100']) &"
+   }
+  ],
+  "note": null
+ },
+ {
+  "id": "fa_bifrost_strategy",
+  "primary": "other",
+  "labels": [],
+  "note": "Uses external ML prediction model, not technical indicators"
+ },
+ {
+  "id": "fa_m8_strategy",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi'] > var_rsi) &"
+   }
+  ],
+  "note": "Extreme RSI momentum entry"
+ },
+ {
+  "id": "fa_m8_strategy_193",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi'] < self.buy_rsi.value if"
+   }
+  ],
+  "note": null
+ },
+ {
+  "id": "fahmibah",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi_4'] < self.lambo1_rsi_4_limit.value)"
+   }
+  ],
+  "note": "RSI oversold with Heikin-Ashi"
+ },
+ {
+  "id": "fahmibah_270",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['ha_close'] < dataframe['bb20_2_low']"
+   }
+  ],
+  "note": null
+ },
+ {
+  "id": "falconTrader",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe[f'rmi_length_{self.buy_rmi_length.value}']"
+   },
+   {
+    "label": "volatility",
+    "confidence": "medium",
+    "evidence": "(dataframe['bb_delta'] > self.buy_bb_delta.value)"
+   }
+  ],
+  "note": null
+ },
+ {
+  "id": "fast",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['EWO'] > self.ewo_high.value)"
+   }
+  ],
+  "note": "Elliott Wave Oscillator momentum"
+ },
+ {
+  "id": "fast_supertrend",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "== \"up\" )"
+   }
+  ],
+  "note": "SuperTrend trend indicator"
+ },
+ {
+  "id": "file_loading_strategy",
+  "primary": "other",
+  "labels": [],
+  "note": "Trades from external file signals, not indicator-based"
+ },
+ {
+  "id": "file_loading_strategy_3",
+  "primary": "other",
+  "labels": [],
+  "note": "Trades from external file signals, not indicator-based"
+ },
+ {
+  "id": "file_loading_strategy_5",
+  "primary": "other",
+  "labels": [],
+  "note": "Trades from external file signals, not indicator-based"
+ },
+ {
+  "id": "fixed_riskreward_loss",
+  "primary": "other",
+  "labels": [],
+  "note": "Always enters, exit via ATR stoploss only"
+ },
+ {
+  "id": "flawless_lambo",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "qtpylib.crossed_above(dataframe['close'], dataframe['bb.lower'])"
+   }
+  ],
+  "note": null
+ },
+ {
+  "id": "flawless_lambo_0",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "qtpylib.crossed_above(dataframe['close'], dataframe['bb.lower'])"
+   }
+  ],
+  "note": null
+ }
+]

@@ -1,0 +1,423 @@
+[
+ {
+  "id": "CombinedBinHAndClucV2",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "dataframe['close'].lt(dataframe['lower'].shift())"
+   }
+  ]
+ },
+ {
+  "id": "CombinedBinHAndClucV2_326",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "dataframe['close'].lt(dataframe['lower'].shift())"
+   }
+  ]
+ },
+ {
+  "id": "CombinedBinHAndClucV3",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "dataframe['close'].lt(dataframe['lower'].shift())"
+   }
+  ]
+ },
+ {
+  "id": "CombinedBinHAndClucV4",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "dataframe['close'].lt(dataframe['lower'].shift())"
+   }
+  ]
+ },
+ {
+  "id": "CombinedBinHAndClucV4WS",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "low",
+    "evidence": "No entry/exit code provided"
+   }
+  ],
+  "note": "Empty indicator and entry/exit code"
+ },
+ {
+  "id": "CombinedBinHAndClucV5",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "dataframe['close'].lt(dataframe['lower'].shift())"
+   }
+  ]
+ },
+ {
+  "id": "CombinedBinHAndClucV5Hyperoptable",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "dataframe['close'] < (dataframe['lower'].shift())"
+   }
+  ]
+ },
+ {
+  "id": "CombinedBinHAndClucV6",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "dataframe['close'].lt(dataframe['lower'].shift())"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "(dataframe['ema_50'] > dataframe['ema_200'])"
+   }
+  ]
+ },
+ {
+  "id": "CombinedBinHAndClucV6H",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "dataframe['close'].lt(dataframe['lower'].shift())"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "(dataframe['ema_50'] > dataframe['ema_200'])"
+   }
+  ]
+ },
+ {
+  "id": "CombinedBinHAndClucV6H_589",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "dataframe['close'].lt(dataframe['lower'].shift())"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "(dataframe['ema_50'] > dataframe['ema_200'])"
+   }
+  ]
+ },
+ {
+  "id": "CombinedBinHAndClucV6_2",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "dataframe['close'].lt(dataframe['lower'].shift())"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "(dataframe['ema_50'] > dataframe['ema_200'])"
+   }
+  ]
+ },
+ {
+  "id": "CombinedBinHAndClucV7",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "dataframe['close'].lt(dataframe['lower'].shift())"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "(dataframe['ema_50'] > dataframe['ema_200'])"
+   }
+  ]
+ },
+ {
+  "id": "CombinedBinHAndClucV7_702",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "dataframe['close'].lt(dataframe['lower'].shift())"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "(dataframe['ema_50'] > dataframe['ema_200'])"
+   }
+  ]
+ },
+ {
+  "id": "CombinedBinHAndClucV8",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "dataframe[\"close\"].lt(dataframe[\"lower\"].shift())"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "(dataframe[\"ema_50\"] > dataframe[\"ema_200\"])"
+   }
+  ]
+ },
+ {
+  "id": "CombinedBinHAndClucV8Hyper",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "dataframe['close'].lt(dataframe['lower'].shift())"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "(dataframe['ema_50'] > dataframe['ema_200'])"
+   }
+  ]
+ },
+ {
+  "id": "CombinedBinHAndClucV8Hyper_2",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "dataframe['close'].lt(dataframe['lower'].shift())"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "(dataframe['ema_50'] > dataframe['ema_200'])"
+   }
+  ]
+ },
+ {
+  "id": "CombinedBinHAndClucV8XH",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "dataframe['close'].lt(dataframe['lower'].shift())"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "(dataframe['ema_50'] > dataframe['ema_200'])"
+   }
+  ]
+ },
+ {
+  "id": "CombinedBinHAndClucV8XHO",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "dataframe['close'].lt(dataframe['lower'].shift())"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "(dataframe['ema_50'] > dataframe['ema_200'])"
+   }
+  ]
+ },
+ {
+  "id": "CombinedBinHAndClucV8_1",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "dataframe['close'].lt(dataframe['lower'].shift())"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "(dataframe['ema_50'] > dataframe['ema_200'])"
+   }
+  ]
+ },
+ {
+  "id": "CombinedBinHAndClucV8_2",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "dataframe[\"close\"].lt(dataframe[\"lower\"].shift())"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "(dataframe[\"ema_50\"] > dataframe[\"ema_200\"])"
+   }
+  ]
+ },
+ {
+  "id": "CombinedBinHAndClucV8_3",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "dataframe['close'].lt(dataframe['lower'].shift())"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "(dataframe['ema_50'] > dataframe['ema_200'])"
+   }
+  ]
+ },
+ {
+  "id": "CombinedBinHAndClucV8_4",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "dataframe['close'].lt(dataframe['lower'].shift())"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "(dataframe['ema_50'] > dataframe['ema_200'])"
+   }
+  ]
+ },
+ {
+  "id": "CombinedBinHAndClucV8_5",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "dataframe[\"close\"].lt(dataframe[\"lower\"].shift())"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "(dataframe[\"ema_50\"] > dataframe[\"ema_200\"])"
+   }
+  ]
+ },
+ {
+  "id": "CombinedBinHAndCluc_2",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "dataframe['close'].lt(dataframe['lower'].shift())"
+   }
+  ]
+ },
+ {
+  "id": "CombinedBinHAndCluc_219",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "dataframe['close'].lt(dataframe['lower'].shift())"
+   }
+  ]
+ },
+ {
+  "id": "CombinedBinHAndCluc_453",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "dataframe['close'].lt(dataframe['lower'].shift())"
+   }
+  ]
+ },
+ {
+  "id": "CombinedBinHAndCluc_455",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "dataframe['close'].lt(dataframe['lower'].shift())"
+   }
+  ]
+ },
+ {
+  "id": "CombinedBinHAndCluc_783",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "dataframe['close'].lt(dataframe['lower'].shift())"
+   }
+  ]
+ },
+ {
+  "id": "CombinedBinHClucAndMADV3",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "dataframe['close'].lt(dataframe['lower'].shift())"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "(dataframe['ema_26'] > dataframe['ema_12'])"
+   }
+  ]
+ },
+ {
+  "id": "CombinedBinHClucAndMADV3_2",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "dataframe['close'].lt(dataframe['lower'].shift())"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "(dataframe['ema_26'] > dataframe['ema_12'])"
+   }
+  ]
+ }
+]

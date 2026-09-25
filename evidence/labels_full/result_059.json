@@ -1,0 +1,412 @@
+[
+ {
+  "id": "NostalgiaForInfinityNext_76",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "ema_{} > dataframe['ema_200'])\n        if self.buy_01_protection__ema_slow.value:\n            buy_01_protections.append(dataframe[f\"ema_{self.buy_01_protection__ema_slow_len.value}_1h\"] > dataframe['ema_200_1h']"
+   }
+  ]
+ },
+ {
+  "id": "NostalgiaForInfinityNext_772SLMod",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "if global_buy_protection_params[\"ema_fast\"]:\n                    item_buy_protection_list.append(dataframe[f\"ema_{global_buy_protection_params['ema_fast_len']}\"] > dataframe['ema_200'])"
+   }
+  ]
+ },
+ {
+  "id": "NostalgiaForInfinityNext_818",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "item_buy_protection_list.append(\n                        dataframe[f\"ema_{global_buy_protection_params['ema_fast_len']}\"] > dataframe['ema_200'])"
+   }
+  ]
+ },
+ {
+  "id": "NostalgiaForInfinityNext_919",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "if global_buy_protection_params[\"ema_fast\"].value:\n                item_buy_protection_list.append(dataframe[f\"ema_{global_buy_protection_params['ema_fast_len'].value}\"] > dataframe['ema_200'])"
+   }
+  ]
+ },
+ {
+  "id": "NostalgiaForInfinityNext_960",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "if global_buy_protection_params[\"ema_fast\"].value:\n                item_buy_protection_list.append(dataframe[f\"ema_{global_buy_protection_params['ema_fast_len'].value}\"] > dataframe['ema_200'])"
+   }
+  ]
+ },
+ {
+  "id": "NostalgiaForInfinityNext_98",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "if global_buy_protection_params[\"ema_fast\"]:\n                    item_buy_protection_list.append(dataframe[f\"ema_{global_buy_protection_params['ema_fast_len']}\"] > dataframe['ema_200'])"
+   }
+  ]
+ },
+ {
+  "id": "NostalgiaForInfinityNext_ChangeToTower_V2",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "if global_buy_protection_params[\"ema_fast\"].value:\n                item_buy_protection_list.append(dataframe[f\"ema_{global_buy_protection_params['ema_fast_len'].value}\"] > dataframe['ema_200'])"
+   }
+  ]
+ },
+ {
+  "id": "NostalgiaForInfinityNext_ChangeToTower_V5_2",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "if global_buy_protection_params[\"ema_fast\"]:\n                    item_buy_protection_list.append(dataframe[f\"ema_{global_buy_protection_params['ema_fast_len']}\"] > dataframe['ema_200'])"
+   }
+  ]
+ },
+ {
+  "id": "NostalgiaForInfinityNext_ChangeToTower_V5_3",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "if global_buy_protection_params[\"ema_fast\"]:\n                    item_buy_protection_list.append(dataframe[f\"ema_{global_buy_protection_params['ema_fast_len']}\"] > dataframe['ema_200'])"
+   }
+  ]
+ },
+ {
+  "id": "NostalgiaForInfinityNext_ChangeToTower_V6",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "if global_buy_protection_params[\"ema_fast\"].value:\n                item_buy_protection_list.append(dataframe[f\"ema_{global_buy_protection_params['ema_fast_len'].value}\"] > dataframe['ema_200'])"
+   }
+  ]
+ },
+ {
+  "id": "NostalgiaForInfinityNext_ChangeToTower_V6_Short",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "& (dataframe[\"rsi_14\"] < dataframe[\"rsi_14\"].shift(1))  # RSI declining\n                & (dataframe[\"rsi_14\"].shift(1) > dataframe[\"rsi_14\"].shift(2))  # Was rising, now turning"
+   }
+  ]
+ },
+ {
+  "id": "NostalgiaForInfinityNext_maximizer",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "if global_buy_protection_params[\"ema_fast\"]:\n                    item_buy_protection_list.append(dataframe[f\"ema_{global_buy_protection_params['ema_fast_len']}\"] > dataframe['ema_200'])"
+   }
+  ]
+ },
+ {
+  "id": "NostalgiaForInfinityV1",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < dataframe['sma_9']) &\n                (dataframe['close'] < dataframe['lower'].shift()) &\n                (dataframe['close'] < 0.992 * dataframe['bb_lowerband'])"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "(dataframe['ema_50'] > dataframe['ema_200']) &\n                (dataframe['ema_50_1h'] > dataframe['ema_200_1h'])"
+   }
+  ]
+ },
+ {
+  "id": "NostalgiaForInfinityV2",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < dataframe['sma_9']) &\n                (dataframe['close'] < self.buy_bb20_close_bblowerband.value * dataframe['bb_lowerband'])"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "(dataframe['close'] > dataframe['ema_200']) &\n                (dataframe['ema_50'] > dataframe['ema_200'])"
+   }
+  ]
+ },
+ {
+  "id": "NostalgiaForInfinityV3",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['safe_dips']) &\n                (dataframe['rsi'] < self.buy_rsi_1.value) &\n                (dataframe['mfi'] < self.buy_mfi_1.value)"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "(dataframe['ema_50_1h'] > dataframe['ema_200_1h']) &\n                (dataframe['sma_200'] > dataframe['sma_200'].shift(20))"
+   }
+  ]
+ },
+ {
+  "id": "NostalgiaForInfinityV3_2",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['safe_dips']) &\n                (dataframe['rsi'] < self.buy_rsi_1.value) &\n                (dataframe['mfi'] < self.buy_mfi_1.value)"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "(dataframe['ema_50_1h'] > dataframe['ema_200_1h']) &\n                (dataframe['sma_200'] > dataframe['sma_200'].shift(20))"
+   }
+  ]
+ },
+ {
+  "id": "NostalgiaForInfinityV4",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi'] < dataframe['rsi_1h'] - self.buy_rsi_1h_diff_2.value) &\n                (dataframe['mfi'] < self.buy_mfi_2.value) &\n                (dataframe['close'] < (dataframe['bb_lowerband'] * self.buy_bb_offset_2"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "(dataframe['ema_50_1h'] > dataframe['ema_200_1h']) &\n                (dataframe['safe_pump_48_1h'])"
+   }
+  ]
+ },
+ {
+  "id": "NostalgiaForInfinityV4HO",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi'] < dataframe['rsi_1h'] - self.buy_rsi_1h_diff_2.value) &\n                (dataframe['mfi'] < self.buy_mfi_2.value) &\n                (dataframe['close'] < (dataframe['bb_lowerband'] * self.buy_bb_offset_2"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "(dataframe['ema_50_1h'] > dataframe['ema_200_1h']) &\n                (dataframe['safe_pump_48_1h'])"
+   }
+  ]
+ },
+ {
+  "id": "NostalgiaForInfinityV5",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['safe_dips_strict']) &\n                (dataframe['rsi'] < dataframe['rsi_1h'] - self.buy_rsi_1h_diff_2.value) &\n                (dataframe['mfi'] < self.buy_mfi_2.value) &\n                (dataframe['close'] < (dataframe['bb_lowerband'] * self.buy_bb_offset_2"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "(dataframe['ema_50_1h'] > dataframe['ema_200_1h']) &\n                (dataframe['sma_200'] > dataframe['sma_200'].shift(50))"
+   }
+  ]
+ },
+ {
+  "id": "NostalgiaForInfinityV5MultiOffsetAndHO",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['safe_dips_strict']) &\n                (dataframe['rsi'] < dataframe['rsi_1h'] - self.buy_rsi_1h_diff_2.value) &\n                (dataframe['close'] < (dataframe['bb_lowerband'] * self.buy_bb_offset_2"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "(dataframe['ema_50_1h'] > dataframe['ema_200_1h']) &\n                (dataframe['sma_200'] > dataframe['sma_200'].shift(50))"
+   }
+  ]
+ },
+ {
+  "id": "NostalgiaForInfinityV5MultiOffsetAndHO2",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['safe_dips_strict']) &\n                (dataframe['rsi'] < dataframe['rsi_1h'] - self.buy_rsi_1h_diff_2.value) &\n                (dataframe['close'] < (dataframe['bb_lowerband'] * self.buy_bb_offset_2"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "(dataframe['ema_50_1h'] > dataframe['ema_200_1h']) &\n                (dataframe['sma_200'] > dataframe['sma_200'].shift(50))"
+   }
+  ]
+ },
+ {
+  "id": "NostalgiaForInfinityV6",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "if self.buy_01_protection__ema_fast.value:\n            buy_01_protections.append(dataframe[f\"ema_{self.buy_01_protection__ema_fast_len.value}\"] > dataframe['ema_200'])"
+   },
+   {
+    "label": "mean_reversion",
+    "confidence": "medium",
+    "evidence": "if self.buy_01_protection__safe_dips.value:\n            buy_01_protections.append(dataframe[f\"safe_dips_{self.buy_01_protection__safe_dips_type.value}\"])"
+   }
+  ]
+ },
+ {
+  "id": "NostalgiaForInfinityV6HO",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "if self.buy_01_protection__ema_fast.value:\n            buy_01_protections.append(dataframe[f\"ema_{self.buy_01_protection__ema_fast_len.value}\"] > dataframe['ema_200'])"
+   },
+   {
+    "label": "mean_reversion",
+    "confidence": "medium",
+    "evidence": "if self.buy_01_protection__safe_dips.value:\n            buy_01_protections.append(dataframe[f\"safe_dips_{self.buy_01_protection__safe_dips_type.value}\"])"
+   }
+  ]
+ },
+ {
+  "id": "NostalgiaForInfinityV6_911",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "if self.buy_01_protection__ema_fast.value:\n            buy_01_protections.append(dataframe[f\"ema_{self.buy_01_protection__ema_fast_len.value}\"] > dataframe['ema_200'])"
+   },
+   {
+    "label": "mean_reversion",
+    "confidence": "medium",
+    "evidence": "if self.buy_01_protection__safe_dips.value:\n            buy_01_protections.append(dataframe[f\"safe_dips_{self.buy_01_protection__safe_dips_type.value}\"])"
+   }
+  ]
+ },
+ {
+  "id": "NostalgiaForInfinityV7",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "if self.buy_01_protection__ema_fast.value:\n            buy_01_protections.append(dataframe[f\"ema_{self.buy_01_protection__ema_fast_len.value}\"] > dataframe['ema_200'])"
+   },
+   {
+    "label": "mean_reversion",
+    "confidence": "medium",
+    "evidence": "if self.buy_01_protection__safe_dips.value:\n            buy_01_protections.append(dataframe[f\"safe_dips_{self.buy_01_protection__safe_dips_type.value}\"])"
+   }
+  ]
+ },
+ {
+  "id": "NostalgiaForInfinityV7_2",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "if self.buy_01_protection__ema_fast.value:\n            buy_01_protections.append(dataframe[f\"ema_{self.buy_01_protection__ema_fast_len.value}\"] > dataframe['ema_200'])"
+   },
+   {
+    "label": "mean_reversion",
+    "confidence": "medium",
+    "evidence": "if self.buy_01_protection__safe_dips.value:\n            buy_01_protections.append(dataframe[f\"safe_dips_{self.buy_01_protection__safe_dips_type.value}\"])"
+   }
+  ]
+ },
+ {
+  "id": "NostalgiaForInfinityV7_476",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "if self.buy_01_protection__ema_fast.value:\n            buy_01_protections.append(dataframe[f\"ema_{self.buy_01_protection__ema_fast_len.value}\"] > dataframe['ema_200'])"
+   },
+   {
+    "label": "mean_reversion",
+    "confidence": "medium",
+    "evidence": "if self.buy_01_protection__safe_dips.value:\n            buy_01_protections.append(dataframe[f\"safe_dips_{self.buy_01_protection__safe_dips_type.value}\"])"
+   }
+  ]
+ },
+ {
+  "id": "NostalgiaForInfinityV7_7",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "if self.buy_01_protection__ema_fast.value:\n            buy_01_protections.append(dataframe[f\"ema_{self.buy_01_protection__ema_fast_len.value}\"] > dataframe['ema_200'])"
+   },
+   {
+    "label": "mean_reversion",
+    "confidence": "medium",
+    "evidence": "if self.buy_01_protection__safe_dips.value:\n            buy_01_protections.append(dataframe[f\"safe_dips_{self.buy_01_protection__safe_dips_type.value}\"])"
+   }
+  ]
+ },
+ {
+  "id": "NostalgiaForInfinityV7_7_2",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "if global_buy_protection_params[\"ema_fast\"]:\n                    item_buy_protection_list.append(dataframe[f\"ema_{global_buy_protection_params['ema_fast_len']}\"] > dataframe['ema_200'])"
+   }
+  ]
+ },
+ {
+  "id": "NostalgiaForInfinityV7_SMA",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi_fast'] < 35)\n                    &\n                    (dataframe['close'] < dataframe['ma_lower'])\n                    &\n                    (dataframe['open'] > dataframe['ma_lower'])"
+   }
+  ]
+ }
+]

@@ -1,0 +1,417 @@
+[
+ {
+  "id": "A9AV",
+  "primary": "volume_flow",
+  "labels": [
+   {
+    "label": "volume_flow",
+    "confidence": "high",
+    "evidence": "(dataframe['volume'] > dataframe['SMA_9'])"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "(dataframe['close'].shift(1) < dataframe['close'])"
+   }
+  ]
+ },
+ {
+  "id": "ADXDM",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "dataframe['adx'] > self.buy_adx.value"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "dataframe['dm_delta'] < 0"
+   }
+  ]
+ },
+ {
+  "id": "ADXDM_2",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "dataframe['adx'] > self.buy_adx.value"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "dataframe['dm_delta'] < 0"
+   }
+  ]
+ },
+ {
+  "id": "ADXMomentum",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['adx'] > 25) &"
+   },
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['mom'] > 0) &"
+   }
+  ]
+ },
+ {
+  "id": "ADXMomentumOtimizeHyperOpt",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['adx'] > 25) &"
+   },
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['mom'] > 0) &"
+   }
+  ]
+ },
+ {
+  "id": "ADXMomentum_3",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['adx'] > self.buy_adx.value) &"
+   },
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['mom'] > self.buy_mom.value) &"
+   }
+  ]
+ },
+ {
+  "id": "ADXMomentum_4",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['adx'] > 25) &"
+   },
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['mom'] < 0) &"
+   }
+  ]
+ },
+ {
+  "id": "ADXMomentum_416",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe[\"adx\"] > 26)"
+   },
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe[\"mom\"] > 0)"
+   }
+  ]
+ },
+ {
+  "id": "ADXMomentum_430",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['adx'] > 25) &"
+   },
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['mom'] > 0) &"
+   }
+  ]
+ },
+ {
+  "id": "ADXStochastic",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['adx'] > self.buy_adx_threshold.value) &"
+   },
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(qtpylib.crossed_above(dataframe['fastk'], dataframe['fastd']))"
+   }
+  ]
+ },
+ {
+  "id": "ADX_15M_USDT",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['adx'] > 16) &"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "(qtpylib.crossed_above( dataframe['plus_di'],dataframe['minus_di']))"
+   }
+  ]
+ },
+ {
+  "id": "ADX_15M_USDT2",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(qtpylib.crossed_above(dataframe['minus_di'], dataframe['plus_di']))"
+   }
+  ]
+ },
+ {
+  "id": "ADX_Boll_Strategy",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < dataframe['bb_lowerband'])"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "(dataframe['adx'] > 25) &"
+   }
+  ]
+ },
+ {
+  "id": "ADX_PRICE_GRID_Strategy_Future_v7",
+  "primary": "grid",
+  "labels": [
+   {
+    "label": "grid",
+    "confidence": "high",
+    "evidence": "position_adjustment_enable = True"
+   }
+  ]
+ },
+ {
+  "id": "ADX_RSI",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "((dataframe[\"rsi\"] <= self.buy_rsi.value)) &"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "((dataframe[\"adx\"] >= self.buy_adx.value)) &"
+   }
+  ]
+ },
+ {
+  "id": "AEMA",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['below_avg_low']) &"
+   },
+   {
+    "label": "volatility",
+    "confidence": "medium",
+    "evidence": "(dataframe['volatility_scores_1d'] >= 4)"
+   }
+  ]
+ },
+ {
+  "id": "AIAgentTradingStrategy",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['ema10'] > dataframe['ema50']),"
+   },
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['macd'] > dataframe['macdsignal']),"
+   }
+  ]
+ },
+ {
+  "id": "ARIMASTR",
+  "primary": "statistical",
+  "labels": [
+   {
+    "label": "statistical",
+    "confidence": "high",
+    "evidence": "self.arima_model[pair] = auto_arima(train, start_p=1, start_q=1"
+   }
+  ]
+ },
+ {
+  "id": "ARIMA_15",
+  "primary": "statistical",
+  "labels": [
+   {
+    "label": "statistical",
+    "confidence": "high",
+    "evidence": "self.arima_model[pair] = auto_arima(train, start_p=1, start_q=1"
+   }
+  ]
+ },
+ {
+  "id": "ARIMA_5",
+  "primary": "statistical",
+  "labels": [
+   {
+    "label": "statistical",
+    "confidence": "high",
+    "evidence": "dataframe = super().populate_entry_trend(dataframe, metadata)"
+   }
+  ]
+ },
+ {
+  "id": "ASDTSRockwellTrading",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['macd'] > dataframe['macdsignal'])"
+   }
+  ]
+ },
+ {
+  "id": "ASDTSRockwellTrading_2",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['macd'] > dataframe['macdsignal'])"
+   }
+  ]
+ },
+ {
+  "id": "ASDTSRockwellTrading_3",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['macd'] > dataframe['macdsignal'])"
+   }
+  ]
+ },
+ {
+  "id": "ASDTSRockwellTrading_97",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['macd'] > dataframe['macdsignal'])"
+   }
+  ]
+ },
+ {
+  "id": "ActionZone",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['fastMA'] > dataframe['slowMA']) &"
+   }
+  ]
+ },
+ {
+  "id": "AdaptiveMAStrategy",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe[\"kama_fast\"] > dataframe[\"kama_slow\"])"
+   }
+  ]
+ },
+ {
+  "id": "AdaptiveRegime",
+  "primary": "breakout",
+  "labels": [
+   {
+    "label": "breakout",
+    "confidence": "high",
+    "evidence": "trending & (dataframe[\"close\"] > up)"
+   },
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "ranging & (dataframe[\"close\"] < dataframe[\"bb_low\"])"
+   }
+  ]
+ },
+ {
+  "id": "AdaptiveRegimeLong",
+  "primary": "breakout",
+  "labels": [
+   {
+    "label": "breakout",
+    "confidence": "high",
+    "evidence": "dataframe[\"enter_short\"] = 0"
+   }
+  ]
+ },
+ {
+  "id": "AdaptiveRenkoStrategy",
+  "primary": "pattern",
+  "labels": [
+   {
+    "label": "pattern",
+    "confidence": "high",
+    "evidence": "last_brick_direction == 1 and prev_brick_direction == -1"
+   }
+  ]
+ },
+ {
+  "id": "AdaptiveStrategy",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi'] < self.rsi_low.value) &"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['ema50'] > dataframe['ema200']) &"
+   }
+  ]
+ }
+]

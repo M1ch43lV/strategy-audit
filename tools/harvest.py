@@ -61,7 +61,7 @@ _ROOT = (os.environ.get("AUDIT_ROOT") or
 sys.path.insert(0, _ROOT)
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 from tools.harness import find_strategies
-from tools import malware_gate, strategy_classification, strategy_status_page
+from tools import label_intake, malware_gate, strategy_classification, strategy_status_page
 from evidence import (execution_profiles, market_phase_hypothesis,
                       semantic_duplicates, strategy_status)
 
@@ -447,6 +447,8 @@ def refresh_intake_evidence(fresh_repos=None):
     print(u"refreshing strategy classification...", flush=True)
     if strategy_classification.main([]) != 0:
         return 1
+    print(u"labelling new strategies (logic labels, second opinion where required)...", flush=True)
+    label_intake.main([])  # never fatal: an unreachable model leaves rows for the next intake
     print(u"refreshing preregistered phase hypotheses...", flush=True)
     if market_phase_hypothesis.main([]) != 0:
         return 1

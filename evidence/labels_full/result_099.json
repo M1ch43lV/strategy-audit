@@ -1,0 +1,397 @@
+[
+ {
+  "id": "m",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "qtpylib.crossed_above(dataframe['ema20'], dataframe['ema50'])"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "(dataframe['ha_open'] < dataframe['ha_close'])"
+   }
+  ],
+  "note": null
+ },
+ {
+  "id": "ma_crossover",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "qtpylib.crossed_above(dataframe['ema10'], dataframe['sma20'])"
+   }
+  ],
+  "note": null
+ },
+ {
+  "id": "ma_super_strategy",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi'] < 30) & (dataframe['close'] < dataframe['bb_lowerband'])"
+   }
+  ],
+  "note": null
+ },
+ {
+  "id": "mabStra",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['buy-mojoMA'].div(dataframe['buy-fastMA']) > self.buy_div_min.value)"
+   }
+  ],
+  "note": null
+ },
+ {
+  "id": "mabStra_2",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['buy-mojoMA'].div(dataframe['buy-fastMA']) > self.buy_div_min.value)"
+   }
+  ],
+  "note": null
+ },
+ {
+  "id": "mabStra_309",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['buy-mojoMA'].div(dataframe['buy-fastMA']) > self.buy_div_min.value)"
+   }
+  ],
+  "note": null
+ },
+ {
+  "id": "mabStra_353",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['buy-mojoMA'].div(dataframe['buy-fastMA']) > self.buy_div_min.value)"
+   }
+  ],
+  "note": null
+ },
+ {
+  "id": "mabStra_425",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['buy-fastMA'].div(dataframe['buy-slowMA']) > self.buy_params['buy-div-min'])"
+   }
+  ],
+  "note": null
+ },
+ {
+  "id": "mabStra_979",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['buy-fastMA'].div(dataframe['buy-slowMA']) > self.buy_params['buy-div-min'])"
+   }
+  ],
+  "note": null
+ },
+ {
+  "id": "macd",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['macdhist_1d'] > 0)"
+   }
+  ],
+  "note": null
+ },
+ {
+  "id": "macd19",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "qtpylib.crossed_above(dataframe[f'impulse_macd_{...}'], dataframe[f'impulse_macdsignal_{...}'])"
+   }
+  ],
+  "note": null
+ },
+ {
+  "id": "macdPlus",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "qtpylib.crossed_above(dataframe[f'impulse_macd_{...}'], dataframe[f'impulse_macdsignal_{...}'])"
+   }
+  ],
+  "note": null
+ },
+ {
+  "id": "macd_recovery",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi'].rolling(8).min() < 41)"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "qtpylib.crossed_above(dataframe['macd'], dataframe['macdsignal'])"
+   }
+  ],
+  "note": null
+ },
+ {
+  "id": "macd_strategy",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi'] > 50)& (dataframe['fastk'] > 50)"
+   }
+  ],
+  "note": null
+ },
+ {
+  "id": "mad",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < dataframe['bb_lowerband']"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "(dataframe['close'] > dataframe['ema_200'])"
+   }
+  ],
+  "note": null
+ },
+ {
+  "id": "madridImpro",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe[\"rsi\"] < 51) & (dataframe['close'] < dataframe['bb_middleband'])"
+   }
+  ],
+  "note": null
+ },
+ {
+  "id": "madrid_ribbon",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['ema5'] > dataframe['ema10']) & (dataframe['ema10'] > dataframe['ema15'])"
+   }
+  ],
+  "note": null
+ },
+ {
+  "id": "madrid_ribbon_1h",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['ema5'] > dataframe['ema10']) & (dataframe['ema10'] > dataframe['ema15'])"
+   }
+  ],
+  "note": null
+ },
+ {
+  "id": "madrid_ribbon_4h",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['ema5'] > dataframe['ema10']) & (dataframe['ema10'] > dataframe['ema15'])"
+   }
+  ],
+  "note": null
+ },
+ {
+  "id": "madrid_ribbon_8h",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['ema5'] > dataframe['ema10']) & (dataframe['ema10'] > dataframe['ema15'])"
+   }
+  ],
+  "note": null
+ },
+ {
+  "id": "main",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi'] < self.rsi_oversold)"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "(dataframe['fast_ema'] > dataframe['slow_ema'])"
+   }
+  ],
+  "note": null
+ },
+ {
+  "id": "main2",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi'] < self.rsi_oversold)"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "(dataframe['fast_ema'] > dataframe['slow_ema'])"
+   }
+  ],
+  "note": null
+ },
+ {
+  "id": "maninew",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['adx'] > 25)"
+   }
+  ],
+  "note": null
+ },
+ {
+  "id": "many",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['adx'] > 20) & (dataframe['plus_di'] > dataframe['minus_di'])"
+   }
+  ],
+  "note": null
+ },
+ {
+  "id": "manybtc",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['adx'] > 20) & (dataframe['plus_di'] > dataframe['minus_di'])"
+   }
+  ],
+  "note": null
+ },
+ {
+  "id": "manytest",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['adx'] > 20) & (dataframe['plus_di'] > dataframe['minus_di'])"
+   }
+  ],
+  "note": null
+ },
+ {
+  "id": "maqun888",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "rsi_6_condition = dataframe['rsi_6'] < 40"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "macd_hollow_condition = (dataframe['macd_hist'] > 0)"
+   }
+  ],
+  "note": null
+ },
+ {
+  "id": "maqun999",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "rsi_6_condition = dataframe['rsi_6'] < 40"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "macd_hollow_condition = (dataframe['macd_hist'] > 0)"
+   }
+  ],
+  "note": null
+ },
+ {
+  "id": "mark_strat",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "dataframe['close'] < dataframe['bb_lowerband']"
+   }
+  ],
+  "note": null
+ },
+ {
+  "id": "mark_strat_opt",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi'] < 34) & (dataframe['close'] < dataframe['bb_lowerband4'])"
+   }
+  ],
+  "note": null
+ }
+]

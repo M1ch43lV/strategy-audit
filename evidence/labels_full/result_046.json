@@ -1,0 +1,367 @@
+[
+ {
+  "id": "Long",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['macd'] > dataframe['macdsignal']) &"
+   }
+  ]
+ },
+ {
+  "id": "LongShortRangeTradingMachetesV1",
+  "primary": "other",
+  "labels": [],
+  "note": "entry and exit delegated to custom hooks; logic not visible in fact sheet"
+ },
+ {
+  "id": "LongShortRangeTradingMachetesV1_1",
+  "primary": "other",
+  "labels": [],
+  "note": "entry and exit delegated to custom hooks; logic not visible in fact sheet"
+ },
+ {
+  "id": "LookaheadStrategy",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "& (dataframe[\"close\"] > dataframe[\"ema_50_1h\"])"
+   }
+  ]
+ },
+ {
+  "id": "LorentzianClassification",
+  "primary": "other",
+  "labels": [],
+  "note": "ML-based Lorentzian distance classifier using RSI, WT, CCI, ADX as features"
+ },
+ {
+  "id": "LowSeason",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi'] < 30) &"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "(dataframe['macd'] > dataframe['macdsignal']) &"
+   }
+  ]
+ },
+ {
+  "id": "Low_BB",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] <= 0.98 * dataframe['bb_lowerband'])"
+   }
+  ]
+ },
+ {
+  "id": "Low_BBHO",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] <= self.buy_limit.value * dataframe['bb_lowerband'])"
+   }
+  ]
+ },
+ {
+  "id": "Low_BBHO2",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] <= self.buy_limit.value * dataframe['bb_lowerband'])"
+   }
+  ]
+ },
+ {
+  "id": "Low_BB_126",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] <= 0.98 * dataframe['bb_lowerband'])"
+   }
+  ]
+ },
+ {
+  "id": "Low_BB_2",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] <= 0.98 * dataframe['bb_lowerband'])"
+   }
+  ]
+ },
+ {
+  "id": "Low_BB_3",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] <= 0.98 * dataframe['bb_lowerband'])"
+   }
+  ]
+ },
+ {
+  "id": "LuxOSC",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(qtpylib.crossed_above(dataframe['osc'], int(self.cross_buy"
+   }
+  ]
+ },
+ {
+  "id": "M5FftRsi",
+  "primary": "other",
+  "labels": [],
+  "note": "FFT-based RSI filtering with harmonic analysis; actual entry signals not visible"
+ },
+ {
+  "id": "MA",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "qtpylib.crossed_above(dataframe['ema8'], dataframe['ema21'])"
+   }
+  ]
+ },
+ {
+  "id": "MAC",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['ema50'] > dataframe['ema200']) &"
+   }
+  ]
+ },
+ {
+  "id": "MACD",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['macd'] > dataframe['macdsignal'])"
+   }
+  ]
+ },
+ {
+  "id": "MACD00001Strategy",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['adx'] > 20)"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "(dataframe['macd'] > dataframe['macdsignal']) &"
+   }
+  ]
+ },
+ {
+  "id": "MACD003",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['mfi'] < self.buy_mfi.value) |"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "(qtpylib.crossed_above(dataframe['macd'], dataframe['macdsignal']))"
+   }
+  ]
+ },
+ {
+  "id": "MACD003_2",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['mfi'] < self.buy_mfi.value) |"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "(qtpylib.crossed_above(dataframe['macd'], dataframe['macdsignal']))"
+   }
+  ]
+ },
+ {
+  "id": "MACD9fall",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(df['12-26 EMA diff'] > df['12-26 EMA diff EMA 9']) &"
+   },
+   {
+    "label": "pattern",
+    "confidence": "medium",
+    "evidence": "(df[\"FallorRise for2d AvgInt\"].shift(1) == \"fall2\")"
+   }
+  ]
+ },
+ {
+  "id": "MACDCCI",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['macd'] > dataframe['macdsignal']) &"
+   }
+  ]
+ },
+ {
+  "id": "MACDCross",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "crossed_above(dataframe['macd'], dataframe['macdsignal'])"
+   }
+  ]
+ },
+ {
+  "id": "MACDCross_2",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "crossed_above(dataframe['macd'], dataframe['macdsignal'])"
+   }
+  ]
+ },
+ {
+  "id": "MACDCrossoverWithTrend",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['low'] > dataframe['ema100']) &"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "crossed_above(dataframe['macd'], dataframe['macdsignal'])"
+   }
+  ]
+ },
+ {
+  "id": "MACDEMA200",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe[\"close\"] > dataframe[\"ema200\"])"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "crossed_above(dataframe[\"macd\"], dataframe[\"macdsignal\"])"
+   }
+  ]
+ },
+ {
+  "id": "MACDPeakStrategy",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi'] < 35) &"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "(dataframe['macd'] > dataframe['macdsignal']) &"
+   }
+  ]
+ },
+ {
+  "id": "MACDRL",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi'].rolling(8).min() < 41) &"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "(dataframe['close'] > dataframe[f'ema200_{self.ema200"
+   }
+  ]
+ },
+ {
+  "id": "MACDRS",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi'].rolling(8).min() < 41) &"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "crossed_above(dataframe['macd'], dataframe['macdsignal'])"
+   }
+  ]
+ },
+ {
+  "id": "MACDRSI",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['macdhist1'] > 0) &"
+   },
+   {
+    "label": "statistical",
+    "confidence": "low",
+    "evidence": "(dataframe['macdhist1'].shift(-1) < 0)"
+   }
+  ]
+ }
+]

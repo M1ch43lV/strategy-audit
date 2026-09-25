@@ -1,0 +1,360 @@
+[
+ {
+  "id": "UniversalMACD",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['umacd'].between(self.buy_umacd_min.value, self.buy_umacd_max.value))"
+   }
+  ]
+ },
+ {
+  "id": "UniversalTrendStrategy",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(df['ema_fast'] > df['ema_slow']) & (df['adx'] > self.adx_trend.value)"
+   },
+   {
+    "label": "mean_reversion",
+    "confidence": "medium",
+    "evidence": "side & (df['close'] < df['bb_lower'])"
+   }
+  ]
+ },
+ {
+  "id": "UpSliceStrategy",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] > dataframe['close'].shift(1)) & (dataframe['tema'] > dataframe['tema'].shift(1))"
+   }
+  ]
+ },
+ {
+  "id": "Uptrend",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['mama'] > dataframe['fama']) & (dataframe['mama_diff_ratio'] > 0.04)"
+   }
+  ]
+ },
+ {
+  "id": "Usdcmbespot",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "dataframe['trend_close_5m'] > dataframe['senkou_a'] AND senkou_b checks"
+   }
+  ]
+ },
+ {
+  "id": "UziChan",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "((dataframe['close'] < dataframe['uc_low']) | (dataframe['open'] < dataframe['uc_low']))"
+   },
+   {
+    "label": "volume_flow",
+    "confidence": "medium",
+    "evidence": "(dataframe['co'] > dataframe['co'].shift())"
+   }
+  ]
+ },
+ {
+  "id": "UziChan2",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "((dataframe['close'] < dataframe['uc_low']) | (dataframe['open'] < dataframe['uc_low']))"
+   },
+   {
+    "label": "volume_flow",
+    "confidence": "medium",
+    "evidence": "(dataframe['co'] > dataframe['co'].shift())"
+   }
+  ]
+ },
+ {
+  "id": "UziChanTB",
+  "primary": "grid",
+  "labels": [
+   {
+    "label": "grid",
+    "confidence": "medium",
+    "evidence": "self.trailing_buy() state management and 'allow_trailing' triggering DCA orders"
+   }
+  ]
+ },
+ {
+  "id": "UziChanTB2",
+  "primary": "grid",
+  "labels": [
+   {
+    "label": "grid",
+    "confidence": "medium",
+    "evidence": "self.trailing_buy() state management and 'allow_trailing' triggering DCA orders"
+   }
+  ]
+ },
+ {
+  "id": "V87XH",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] > dataframe['ema_200_1h']) & (dataframe['ema_50'] > dataframe['ema_200'])"
+   },
+   {
+    "label": "mean_reversion",
+    "confidence": "medium",
+    "evidence": "dataframe['bb40_2_low'].shift() and dip threshold checks"
+   }
+  ]
+ },
+ {
+  "id": "VMCipherBDivergencesStrategy",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['wt1'] < -53) & (dataframe['wt1'] > dataframe['wt2'])"
+   }
+  ]
+ },
+ {
+  "id": "VWAP",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < dataframe['vwap_low']) & (dataframe['rsi'] < 35)"
+   },
+   {
+    "label": "volume_flow",
+    "confidence": "medium",
+    "evidence": "(dataframe['tcp_percent_4'] > 0.04)"
+   }
+  ]
+ },
+ {
+  "id": "VWAPAlarm",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "high",
+    "evidence": "Empty entry/exit conditions; alerts only, no trading signals"
+   }
+  ],
+  "note": "Alarm/monitoring strategy, no actual entry/exit logic"
+ },
+ {
+  "id": "VWAPAlarm5M",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "high",
+    "evidence": "Empty entry/exit conditions; alerts only, no trading signals"
+   }
+  ],
+  "note": "Alarm/monitoring strategy, no actual entry/exit logic"
+ },
+ {
+  "id": "VWAPAlarmPositive",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "high",
+    "evidence": "Empty entry/exit conditions; alerts only, no trading signals"
+   }
+  ],
+  "note": "Alarm/monitoring strategy, no actual entry/exit logic"
+ },
+ {
+  "id": "VWAPStrategy",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['VWAP_signal'] == 1) & (dataframe['close'] <= dataframe['BBL_14_2.0']) & (dataframe['rsi'] < 45)"
+   }
+  ]
+ },
+ {
+  "id": "VWAPStrategy_03",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['VWAP_signal'] == 2) & (dataframe['close'] <= dataframe['lower_band'])"
+   }
+  ]
+ },
+ {
+  "id": "VWAPStrategy_04",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['VWAP_signal'] == 2) & (dataframe['close'] <= dataframe['lower_band'])"
+   }
+  ]
+ },
+ {
+  "id": "VWAPStrategy_05",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['VWAP_signal'] == 2) & (dataframe['close'] <= dataframe['lower_band'])"
+   }
+  ]
+ },
+ {
+  "id": "VWAPStrategy_06",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['VWAP_signal'] == 2) & (dataframe['close'] <= dataframe['lower_band'])"
+   }
+  ]
+ },
+ {
+  "id": "VWAPStrategy_08",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['VWAP_signal'] == 2) & (dataframe['close'] <= dataframe['lower_band'])"
+   }
+  ]
+ },
+ {
+  "id": "VWAPStrategy_09",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['VWAP_signal'] == 2) & (dataframe['close'] <= dataframe['lower_band'])"
+   }
+  ]
+ },
+ {
+  "id": "VWAPStrategy_1",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['VWAP_signal'] == 2) & (dataframe['close'] <= dataframe['BBL_14_2.0'])"
+   }
+  ]
+ },
+ {
+  "id": "VWAPStrategy_10",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['VWAP_signal'] == 2) & (dataframe['close'] <= dataframe['lower_band'])"
+   }
+  ]
+ },
+ {
+  "id": "VWAPStrategy_11",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['VWAP_signal'] == 2) & (dataframe['close'] <= dataframe['lower_band'])"
+   }
+  ]
+ },
+ {
+  "id": "VWAPStrategy_12",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['VWAP_signal'] == 2) & (dataframe['close'] <= dataframe['lower_band'])"
+   }
+  ]
+ },
+ {
+  "id": "VWAPStrategy_13",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['VWAP_signal'] == 2) & (dataframe['close'] <= dataframe['lower_band'])"
+   }
+  ]
+ },
+ {
+  "id": "VWAPStrategy_14",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['VWAP_signal'] == 2) & (dataframe['close'] <= dataframe['lower_band'])"
+   }
+  ]
+ },
+ {
+  "id": "VWAPStrategy_15",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['VWAP_signal'] == 2) & (dataframe['close'] <= dataframe['lower_band'])"
+   }
+  ]
+ },
+ {
+  "id": "VWAPStrategy_16",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['VWAP_signal'] == 2) & (dataframe['close'] < dataframe['lower_band'])"
+   }
+  ]
+ }
+]

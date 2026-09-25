@@ -1,0 +1,360 @@
+[
+ {
+  "id": "DevilStra_2",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "high",
+    "evidence": "condition_generator(dataframe, buy_operator, buy_indicator,"
+   }
+  ],
+  "note": "indicator names determined by runtime parameters, no concrete logic visible"
+ },
+ {
+  "id": "DevilStra_679",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "high",
+    "evidence": "condition_generator(dataframe, buy_operator, buy_indicator,"
+   }
+  ],
+  "note": "indicator names via runtime parameters, no concrete logic"
+ },
+ {
+  "id": "DevilStra_866",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "high",
+    "evidence": "condition_generator(dataframe, buy_operator, buy_indicator,"
+   }
+  ],
+  "note": "indicator names determined by runtime parameters"
+ },
+ {
+  "id": "Diamond",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "high",
+    "evidence": "dataframe[self.buy_fast_key.value].shift(self.buy_horizontal_push.value),"
+   }
+  ],
+  "note": "indicator names are runtime parameters only"
+ },
+ {
+  "id": "Diamond_2",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "high",
+    "evidence": "dataframe[self.buy_fast_key.value].shift(self.buy_horizontal_push.value),"
+   }
+  ],
+  "note": "indicator names are runtime parameters"
+ },
+ {
+  "id": "Diamond_7",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "high",
+    "evidence": "dataframe[self.buy_fast_key.value].shift(self.buy_horizontal_push.value),"
+   }
+  ],
+  "note": "indicator names via runtime parameters"
+ },
+ {
+  "id": "Dimond",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "qtpylib.crossed_above(dataframe['buy_ema_fast'].shift(self.buy_shift.value),"
+   }
+  ]
+ },
+ {
+  "id": "DiscoveredAlphaV2",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe[\"close\"] < dataframe[\"ma_buy\"])"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "(dataframe[\"EWO\"] > self.ewo_high.value)"
+   }
+  ]
+ },
+ {
+  "id": "DivergenceStrategy",
+  "primary": "pattern",
+  "labels": [
+   {
+    "label": "pattern",
+    "confidence": "high",
+    "evidence": "dataframe['rsi'].iloc[pivot] > dataframe['rsi'].iloc[pivot + self.maxbars]"
+   }
+  ]
+ },
+ {
+  "id": "Divergences",
+  "primary": "pattern",
+  "labels": [
+   {
+    "label": "pattern",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi'] <= 40) & (dataframe['bullish_div'])"
+   }
+  ]
+ },
+ {
+  "id": "Do",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['24h_change'] <= -15)"
+   },
+   {
+    "label": "pattern",
+    "confidence": "medium",
+    "evidence": "(dataframe['hammer'] != 0)"
+   }
+  ]
+ },
+ {
+  "id": "DoesNothing",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "high",
+    "evidence": "dataframe.loc[(), 'buy'] = 1"
+   }
+  ],
+  "note": "no entry logic (empty buy conditions)"
+ },
+ {
+  "id": "DoesNothingStrategy",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "high",
+    "evidence": "dataframe.loc[(), 'buy'] = 1"
+   }
+  ],
+  "note": "no entry logic"
+ },
+ {
+  "id": "DoesNothingStrategyLog",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "high",
+    "evidence": "dataframe.loc[(), 'enter_long'] = 0"
+   }
+  ],
+  "note": "no entry logic"
+ },
+ {
+  "id": "DoesNothingStrategy_10",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "high",
+    "evidence": "dataframe.loc[(), 'buy'] = 1"
+   }
+  ],
+  "note": "no entry logic"
+ },
+ {
+  "id": "DoesNothingStrategy_2",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "high",
+    "evidence": "dataframe['enter_long'] = 0"
+   }
+  ],
+  "note": "no entry logic"
+ },
+ {
+  "id": "DoesNothingStrategy_3",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "high",
+    "evidence": "dataframe.loc[(), 'buy'] = 1"
+   }
+  ],
+  "note": "no entry logic"
+ },
+ {
+  "id": "Doge",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "high",
+    "evidence": "dataframe['date'].isin(tw)"
+   }
+  ],
+  "note": "trades on hardcoded timestamps only, not technical logic"
+ },
+ {
+  "id": "DonchianBounce",
+  "primary": "breakout",
+  "labels": [
+   {
+    "label": "breakout",
+    "confidence": "high",
+    "evidence": "qtpylib.crossed_above(dataframe['close'], dataframe['dc_lower'])"
+   }
+  ]
+ },
+ {
+  "id": "DonchianBounce_2",
+  "primary": "breakout",
+  "labels": [
+   {
+    "label": "breakout",
+    "confidence": "high",
+    "evidence": "qtpylib.crossed_above(dataframe['close'], dataframe['dc_lower'])"
+   }
+  ]
+ },
+ {
+  "id": "DonchianBreakoutStrategy",
+  "primary": "breakout",
+  "labels": [
+   {
+    "label": "breakout",
+    "confidence": "high",
+    "evidence": "(dataframe[\"close\"] > dataframe[\"dc_high\"])"
+   }
+  ]
+ },
+ {
+  "id": "DonchianChannel",
+  "primary": "breakout",
+  "labels": [
+   {
+    "label": "breakout",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] >= dataframe[level])"
+   }
+  ]
+ },
+ {
+  "id": "DonchianChannel_2",
+  "primary": "breakout",
+  "labels": [
+   {
+    "label": "breakout",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] >= dataframe[level])"
+   }
+  ]
+ },
+ {
+  "id": "DoubleBollingerStrategy",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < dataframe['bb_lowerband20'])"
+   }
+  ]
+ },
+ {
+  "id": "DoubleEMACrossoverWithTrend",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "qtpylib.crossed_above(dataframe['ema9'], dataframe['ema21'])"
+   }
+  ]
+ },
+ {
+  "id": "DoubleEMACrossoverWithTrend_158",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "qtpylib.crossed_above(dataframe['ema9'], dataframe['ema21'])"
+   }
+  ]
+ },
+ {
+  "id": "DoubleEMACrossoverWithTrend_197",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "qtpylib.crossed_above(dataframe['ema9'], dataframe['ema21'])"
+   }
+  ]
+ },
+ {
+  "id": "DoubleEMACrossoverWithTrend_37",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "qtpylib.crossed_above(dataframe['ema9'], dataframe['ema21'])"
+   }
+  ]
+ },
+ {
+  "id": "Dracula",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "medium",
+    "evidence": "(prev['bb_bbl_i'] == 1)"
+   },
+   {
+    "label": "volume_flow",
+    "confidence": "medium",
+    "evidence": "(dataframe['cmf'] > 0)"
+   }
+  ]
+ },
+ {
+  "id": "DualModelPolymarketPortfolio",
+  "primary": "statistical",
+  "labels": [
+   {
+    "label": "statistical",
+    "confidence": "high",
+    "evidence": "(dataframe[\"ml_edge\"] >= self.MIN_EDGE)"
+   }
+  ]
+ }
+]

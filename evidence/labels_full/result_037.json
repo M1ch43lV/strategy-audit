@@ -1,0 +1,217 @@
+[
+ {
+  "id": "GnF",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "dataframe['momentum'] = (dataframe['close'] - ma) / ma"
+   },
+   {
+    "label": "volatility",
+    "confidence": "high",
+    "evidence": "dataframe['volatility'] = atr / dataframe['close']"
+   },
+   {
+    "label": "volume_flow",
+    "confidence": "high",
+    "evidence": "(dataframe['volume_up'] - dataframe['volume_down']) / volume_total"
+   }
+  ]
+ },
+ {
+  "id": "GnF_V2",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "dataframe['momentum'] = (dataframe['close'] - ma) / ma"
+   },
+   {
+    "label": "volatility",
+    "confidence": "high",
+    "evidence": "dataframe['volatility'] = ta.NATR(dataframe, timeperiod=14)"
+   },
+   {
+    "label": "volume_flow",
+    "confidence": "high",
+    "evidence": "(dataframe['volume_up'] - dataframe['volume_down']) / volume_total"
+   }
+  ]
+ },
+ {
+  "id": "GodCard",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "dataframe['close'] < dataframe['bb_lowerband']"
+   }
+  ]
+ },
+ {
+  "id": "GodStra",
+  "primary": "other",
+  "labels": [],
+  "note": "Dynamic entry logic; indicators selected via buy_params keys at runtime"
+ },
+ {
+  "id": "GodStraNew",
+  "primary": "other",
+  "labels": [],
+  "note": "Indicators and operators determined by buy_indicator/buy_operator params"
+ },
+ {
+  "id": "GodStraNew40",
+  "primary": "other",
+  "labels": [],
+  "note": "Indicators and operators determined by buy_indicator/buy_operator params"
+ },
+ {
+  "id": "GodStraNew7",
+  "primary": "other",
+  "labels": [],
+  "note": "Indicators and operators determined by buy_indicator/buy_operator params"
+ },
+ {
+  "id": "GodStraNewFTX5000",
+  "primary": "other",
+  "labels": [],
+  "note": "Indicators and operators determined by buy_indicator/buy_operator params"
+ },
+ {
+  "id": "GodStraNewOpt",
+  "primary": "other",
+  "labels": [],
+  "note": "Indicators and operators determined by buy_indicator/buy_operator params"
+ },
+ {
+  "id": "GodStraNewOpt2",
+  "primary": "other",
+  "labels": [],
+  "note": "Indicators and operators determined by buy_indicator/buy_operator params"
+ },
+ {
+  "id": "GodStraNewOpt3",
+  "primary": "other",
+  "labels": [],
+  "note": "Indicators and operators determined by buy_indicator/buy_operator params"
+ },
+ {
+  "id": "GodStraNewOpt4",
+  "primary": "other",
+  "labels": [],
+  "note": "Indicators and operators determined by buy_indicator/buy_operator params"
+ },
+ {
+  "id": "GodStraNewOpt500016",
+  "primary": "other",
+  "labels": [],
+  "note": "Indicators and operators determined by buy_indicator/buy_operator params"
+ },
+ {
+  "id": "GodStraNewOptQuick",
+  "primary": "other",
+  "labels": [],
+  "note": "Indicators and operators determined by buy_indicator/buy_operator params"
+ },
+ {
+  "id": "GodStraNewOpt_2",
+  "primary": "other",
+  "labels": [],
+  "note": "Indicators and operators determined by buy_indicator/buy_operator params"
+ },
+ {
+  "id": "GodStraNew_414",
+  "primary": "other",
+  "labels": [],
+  "note": "Indicators and operators determined by buy_indicator/buy_operator params"
+ },
+ {
+  "id": "GodStraNew_56",
+  "primary": "other",
+  "labels": [],
+  "note": "Indicators and operators determined by buy_indicator/buy_operator params"
+ },
+ {
+  "id": "GodStraNew_800",
+  "primary": "other",
+  "labels": [],
+  "note": "Indicators and operators determined by buy_indicator/buy_operator params"
+ },
+ {
+  "id": "GodStraNew_SMAonly",
+  "primary": "other",
+  "labels": [],
+  "note": "Indicators and operators determined by buy_indicator/buy_operator params"
+ },
+ {
+  "id": "GodStraNew_SMAonly_2",
+  "primary": "other",
+  "labels": [],
+  "note": "Indicators and operators determined by buy_indicator/buy_operator params"
+ },
+ {
+  "id": "GodStraNew_SMAonly_3",
+  "primary": "other",
+  "labels": [],
+  "note": "Indicators and operators determined by buy_indicator/buy_operator params"
+ },
+ {
+  "id": "GodStraOpt",
+  "primary": "other",
+  "labels": [],
+  "note": "Dynamic entry logic; indicators selected via buy_params keys at runtime"
+ },
+ {
+  "id": "GodStraOpt2",
+  "primary": "other",
+  "labels": [],
+  "note": "Dynamic entry logic; indicators selected via buy_params keys at runtime"
+ },
+ {
+  "id": "GodStraQuick",
+  "primary": "other",
+  "labels": [],
+  "note": "Indicators and operators determined by buy_indicator/buy_operator params"
+ },
+ {
+  "id": "GodStra_193",
+  "primary": "other",
+  "labels": [],
+  "note": "Dynamic entry logic; indicators selected via buy_params keys at runtime"
+ },
+ {
+  "id": "GodStra_2",
+  "primary": "other",
+  "labels": [],
+  "note": "Dynamic entry logic; indicators selected via buy_params keys at runtime"
+ },
+ {
+  "id": "GodStra_23",
+  "primary": "other",
+  "labels": [],
+  "note": "Dynamic entry logic; indicators selected via buy_params keys at runtime"
+ },
+ {
+  "id": "GodStra_4",
+  "primary": "other",
+  "labels": [],
+  "note": "Dynamic entry logic; indicators selected via buy_params keys at runtime"
+ },
+ {
+  "id": "GodStra_402",
+  "primary": "other",
+  "labels": [],
+  "note": "Dynamic entry logic; indicators selected via buy_params keys at runtime"
+ },
+ {
+  "id": "GodStra_410",
+  "primary": "other",
+  "labels": [],
+  "note": "Dynamic entry logic; indicators selected via buy_params keys at runtime"
+ }
+]

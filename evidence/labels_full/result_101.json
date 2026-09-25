@@ -1,0 +1,334 @@
+[
+ {
+  "id": "new",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "conditions.append(dataframe[key] < dataframe[past_key])"
+   }
+  ]
+ },
+ {
+  "id": "new30minStrategy",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] <= dataframe['lower_band']) &"
+   }
+  ]
+ },
+ {
+  "id": "new5minStrat",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] <= dataframe['lower_band']) &"
+   }
+  ]
+ },
+ {
+  "id": "new5minStrategy",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] <= dataframe['lower_band']) &"
+   }
+  ]
+ },
+ {
+  "id": "newIchimokuStrategy",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] >= dataframe['span_a']) &"
+   }
+  ]
+ },
+ {
+  "id": "newPercentileStrategy",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] <= dataframe['lower_band']) &"
+   }
+  ]
+ },
+ {
+  "id": "newVWAPstrat",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] <= dataframe['lower_band']) &"
+   }
+  ]
+ },
+ {
+  "id": "newVWAPstrat4",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] <= dataframe['lower_band']) &"
+   }
+  ]
+ },
+ {
+  "id": "new_strat",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "qtpylib.crossed_above(dataframe['ZLEMA'], dataframe['pm_40_3_40_9'])"
+   }
+  ]
+ },
+ {
+  "id": "new_strat_1616",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['fast_slope'] > 0) & (dataframe['slow_slope'] > 0)"
+   }
+  ]
+ },
+ {
+  "id": "new_turtle",
+  "primary": "breakout",
+  "labels": [
+   {
+    "label": "breakout",
+    "confidence": "medium",
+    "evidence": "dataframe['hiLimit']-dataframe['avgTR']*self.Multiplier"
+   }
+  ],
+  "note": "Turtle Trading system; sheet truncated"
+ },
+ {
+  "id": "new_turtle_roi",
+  "primary": "breakout",
+  "labels": [
+   {
+    "label": "breakout",
+    "confidence": "medium",
+    "evidence": "dataframe['hiLimit']-dataframe['avgTR']*self.Multiplier"
+   }
+  ],
+  "note": "Turtle Trading system; sheet truncated"
+ },
+ {
+  "id": "newstrategy4",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < dataframe['bb_lowerband3']"
+   }
+  ]
+ },
+ {
+  "id": "newstrategy4_dca_2",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['ewo'] > self.ewo_high.value)"
+   }
+  ]
+ },
+ {
+  "id": "newstrategy4_yuanshi",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < dataframe['bb_lowerband3']"
+   }
+  ]
+ },
+ {
+  "id": "newstrategy53",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < dataframe['bb_lowerband3']"
+   }
+  ]
+ },
+ {
+  "id": "newstrategy53_2",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < dataframe['bb_lowerband3']"
+   }
+  ]
+ },
+ {
+  "id": "newstrategy53_22",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < dataframe['bb_lowerband3']"
+   }
+  ]
+ },
+ {
+  "id": "newstrategy53_23",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < dataframe['bb_lowerband3']"
+   }
+  ]
+ },
+ {
+  "id": "newstrategy53_24",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < dataframe['bb_lowerband3']"
+   }
+  ]
+ },
+ {
+  "id": "newstrategy53_26",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < dataframe['bb_lowerband3']"
+   }
+  ]
+ },
+ {
+  "id": "newstrategy53_27",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < dataframe['bb_lowerband3']"
+   }
+  ]
+ },
+ {
+  "id": "newstrategy53_test",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < dataframe['bb_lowerband3']"
+   }
+  ]
+ },
+ {
+  "id": "newstrategy5_1",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < dataframe['bb_lowerband3']"
+   }
+  ]
+ },
+ {
+  "id": "newstrategy5_1_2",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < dataframe['bb_lowerband3']"
+   }
+  ]
+ },
+ {
+  "id": "newstrategy_modify_support",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < dataframe['bb_lowerband3']"
+   }
+  ]
+ },
+ {
+  "id": "newstrategy_modify_support_fin",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < dataframe['bb_lowerband'])"
+   }
+  ]
+ },
+ {
+  "id": "newstrategy_modify_support_ft",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < dataframe['bb_lowerband3']"
+   }
+  ]
+ },
+ {
+  "id": "nexuslite",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe[f'tdfi_{self.lookback.value}'] < -dataframe"
+   }
+  ]
+ },
+ {
+  "id": "nexuslite_btc",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe[f'tdfi_{self.lookback.value}'] > dataframe"
+   }
+  ]
+ }
+]

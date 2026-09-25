@@ -1,0 +1,376 @@
+[
+ {
+  "id": "nfl",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi_fast'] < 35) & (dataframe['close'] < dataframe['ma_lower'])"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "(dataframe['uptrend_1h'] > 0)"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "nostaljiaforinfinitynext",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "dataframe[f\"ema_{global_buy_protection_params['ema_fast_len'].value}\"] > dataframe['ema_200']"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "one",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['ADX'] > 30) & (dataframe['HMA12'] > dataframe['HMA_1h'])"
+   },
+   {
+    "label": "volume_flow",
+    "confidence": "medium",
+    "evidence": "(dataframe['OBV'] > dataframe['OBV'].shift(1))"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "ours",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['emalow'] > dataframe['emahigh']) & (dataframe['emahigh'] > dataframe['emalong'])"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "pcb20",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi_ma_slope'] > 0) & (dataframe['rsi_ma'] >= self.buy_rsil.value)"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "percentileRSI",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] <= dataframe['lower_band']) & (dataframe['rsi'] < 45)"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "percentileStrat",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] <= dataframe['lower_band']) & (dataframe['rsi'] < 45)"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "picasso15m",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['adx'] > self.adx_long_min_1.value) & (dataframe['trend_l'] == 1)"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "picasso5mSL15",
+  "primary": "pattern",
+  "labels": [
+   {
+    "label": "pattern",
+    "confidence": "high",
+    "evidence": "(dataframe['hammer'] != 0)"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "piravlos0",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < (dataframe['ema_14'] * self.lambo1_ema_14_factor.value)) & (dataframe['rsi_4'] < int(self.lambo1_rsi_4_limit.value))"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "piravlos1",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < (dataframe['ema_14'] * self.lambo1_ema_14_factor.value)) & (dataframe['rsi_4'] < int(self.lambo1_rsi_4_limit.value))"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "piravlos2",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < (dataframe['ema_14'] * self.lambo1_ema_14_factor.value)) & (dataframe['rsi_4'] < int(self.lambo1_rsi_4_limit.value))"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "plasma_cutter",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['buy-fastMA'].div(dataframe['buy-slowMA']) > self.buy_params['buy-div-min'])"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "pmaxTest",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi_fast'] < 35) & (dataframe['cci'] <= -91)"
+   },
+   {
+    "label": "breakout",
+    "confidence": "medium",
+    "evidence": "(dataframe['close'].rolling(288).max() >= (dataframe['close'] * 1.10 ))"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "pol313",
+  "primary": "volatility",
+  "labels": [
+   {
+    "label": "volatility",
+    "confidence": "high",
+    "evidence": "(dataframe['kc_width'] > self.buy_width.value) & (dataframe['kc_percent'] > self.buy_percent.value)"
+   },
+   {
+    "label": "breakout",
+    "confidence": "medium",
+    "evidence": "(dataframe['close'] < dataframe['kc_lower'])"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "powerx_tpsl",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi'] > rsi_level) & (dataframe['stochd'] > stochd_level) & (dataframe['macd'] > dataframe['macd_signal'])"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "powerxhopt_2",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi'] > self.rsi_hline.value) & (dataframe['slowd'] > self.stoch_hline.value) & (dataframe[\"macdhist\"] > 0)"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "price_down_latest_v25",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < (dataframe['ema_14'] * self.lambo2_ema_14_factor.value)) & (dataframe['rsi_4'] < int(self.lambo2_rsi_4_limit.value)) & (dataframe['cci_25'] < -120.0)"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "prime",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] > dataframe['ema9']) & (dataframe['close'] > dataframe['ema21'])"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "pso",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "qtpylib.crossed_above(dataframe[\"smart_money_index\"], dataframe[f\"smart_money_index_slow_ma_long_{self.smart_money_index_slow_ma_long.value}\"])"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "qrsi",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "medium",
+    "evidence": "(dataframe['rsi'] < 60) & (dataframe['close'] > dataframe['ma'])"
+   }
+  ],
+  "note": "weak oversold signal with MA filter"
+ },
+ {
+  "id": "quantum_hybrid_strategy",
+  "primary": "other",
+  "labels": [],
+  "note": "entry code incomplete, indicators show pattern analysis but no logic"
+ },
+ {
+  "id": "quantumfirst",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < dataframe['sma']) & (dataframe['fisher_rsi_norma'] < 38.9)"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "quick_buy_strategy",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] > dataframe['bb_midband'])"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "quick_buy_strategy_2",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] > dataframe['bb_midband'])"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "rad_testing",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(qtpylib.crossed_below(dataframe['rad'], 23)) & (dataframe['sma'] > dataframe['close'])"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "radtest",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(qtpylib.crossed_below(dataframe['rad'], 23)) & (dataframe['sma'] > dataframe['close'])"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "red",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < (dataframe['ema_14'] * self.lambo1_ema_14_factor.value)) & (dataframe['rsi_4'] < int(self.lambo1_rsi_4_limit.value))"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "redditMA",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "qtpylib.crossed_above(dataframe['FASTMA'], dataframe['SLOWMA'])"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "reinforced_scalp",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['mfi'] < 30) & (dataframe['fastk'] < 30) & (dataframe['cci'] < -150)"
+   }
+  ],
+  "note": ""
+ }
+]

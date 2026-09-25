@@ -1,0 +1,237 @@
+[
+  {
+    "id": "VolBreak_RSI_Adaptive",
+    "primary": "breakout",
+    "labels": [
+      {
+        "label": "breakout",
+        "confidence": "high",
+        "evidence": "(dataframe[\"close\"] > dataframe[\"breakout_upper\"])"
+      }
+    ],
+    "note": ""
+  },
+  {
+    "id": "percentileRSI",
+    "primary": "mean_reversion",
+    "labels": [
+      {
+        "label": "mean_reversion",
+        "confidence": "high",
+        "evidence": "(dataframe['close'] <= dataframe['lower_band'])"
+      },
+      {
+        "label": "volume_flow",
+        "confidence": "medium",
+        "evidence": "dataframe['VWAP_signal'] == 2"
+      }
+    ],
+    "note": ""
+  },
+  {
+    "id": "FastSupertrend_2",
+    "primary": "trend_following",
+    "labels": [
+      {
+        "label": "trend_following",
+        "confidence": "high",
+        "evidence": "(dataframe[f'supertrend_1_buy_{...}'] == 'up')"
+      }
+    ],
+    "note": ""
+  },
+  {
+    "id": "NostalgiaForInfinityX8",
+    "primary": "momentum",
+    "labels": [
+      {
+        "label": "momentum",
+        "confidence": "medium",
+        "evidence": "rsi_3_1h, ROC_9_1d, STOCHRSIk_14_14_3_3"
+      }
+    ],
+    "note": "Complex multi-timeframe multi-indicator strategy"
+  },
+  {
+    "id": "ZaratustraV15",
+    "primary": "trend_following",
+    "labels": [
+      {
+        "label": "trend_following",
+        "confidence": "medium",
+        "evidence": "(dataframe['adx'] > dataframe['mdi'])"
+      },
+      {
+        "label": "volume_flow",
+        "confidence": "medium",
+        "evidence": "(dataframe['obv'] > dataframe['obv'].shift(1))"
+      },
+      {
+        "label": "breakout",
+        "confidence": "medium",
+        "evidence": "qtpylib.crossed_above(dataframe['close'], dataframe['bb_upperband'])"
+      }
+    ],
+    "note": ""
+  },
+  {
+    "id": "CryptoFrogHO3A3",
+    "primary": "volatility",
+    "labels": [
+      {
+        "label": "volatility",
+        "confidence": "medium",
+        "evidence": "(dataframe['bbw_expansion'] == 1)"
+      },
+      {
+        "label": "mean_reversion",
+        "confidence": "medium",
+        "evidence": "(dataframe['mfi'] < 20)"
+      },
+      {
+        "label": "breakout",
+        "confidence": "low",
+        "evidence": "(dataframe['close'] < dataframe['sar'])"
+      }
+    ],
+    "note": ""
+  },
+  {
+    "id": "IchiV1_Marius_fixed_2",
+    "primary": "trend_following",
+    "labels": [
+      {
+        "label": "trend_following",
+        "confidence": "high",
+        "evidence": "Ichimoku cloud position analysis across multiple timeframes"
+      }
+    ],
+    "note": ""
+  },
+  {
+    "id": "Squeeze002",
+    "primary": "volatility",
+    "labels": [
+      {
+        "label": "volatility",
+        "confidence": "high",
+        "evidence": "qtpylib.crossed_above(dataframe['sqz_val'], 0)"
+      },
+      {
+        "label": "momentum",
+        "confidence": "medium",
+        "evidence": "dataframe['macd'] > dataframe['macdsignal']"
+      }
+    ],
+    "note": ""
+  },
+  {
+    "id": "HPStrategyV6",
+    "primary": "mean_reversion",
+    "labels": [
+      {
+        "label": "mean_reversion",
+        "confidence": "high",
+        "evidence": "(dataframe['cci'] < -100)"
+      }
+    ],
+    "note": ""
+  },
+  {
+    "id": "roger17",
+    "primary": "trend_following",
+    "labels": [
+      {
+        "label": "trend_following",
+        "confidence": "high",
+        "evidence": "(dataframe['sma20'] > dataframe['sma50'])"
+      },
+      {
+        "label": "mean_reversion",
+        "confidence": "medium",
+        "evidence": "(dataframe['bb_percent'] < 0.2)"
+      },
+      {
+        "label": "pattern",
+        "confidence": "medium",
+        "evidence": "candlestick pattern recognition (CDL3INSIDE, CDLHAMMER, etc.)"
+      }
+    ],
+    "note": ""
+  },
+  {
+    "id": "NASOSRv6_private_Reinuvader_20211121",
+    "primary": "momentum",
+    "labels": [
+      {
+        "label": "momentum",
+        "confidence": "high",
+        "evidence": "(dataframe['EWO'] > self.ewo_high.value)"
+      }
+    ],
+    "note": ""
+  },
+  {
+    "id": "DonchianChannel_2",
+    "primary": "breakout",
+    "labels": [
+      {
+        "label": "breakout",
+        "confidence": "high",
+        "evidence": "(dataframe['close'] >= dataframe[level]) where level='dc_upper'"
+      },
+      {
+        "label": "trend_following",
+        "confidence": "medium",
+        "evidence": "dataframe['adx'] >= self.buy_adx.value"
+      }
+    ],
+    "note": ""
+  },
+  {
+    "id": "TheForceOptimized",
+    "primary": "momentum",
+    "labels": [
+      {
+        "label": "momentum",
+        "confidence": "high",
+        "evidence": "(dataframe['macd'] > dataframe['macdsignal'])"
+      }
+    ],
+    "note": ""
+  },
+  {
+    "id": "newstrategy5_1",
+    "primary": "mean_reversion",
+    "labels": [
+      {
+        "label": "mean_reversion",
+        "confidence": "high",
+        "evidence": "(dataframe['close'] < dataframe['bb_lowerband3'] * self.buy_bb_factor.value)"
+      },
+      {
+        "label": "momentum",
+        "confidence": "medium",
+        "evidence": "dataframe['srsi_fk'] < self.buy_srsi_fk.value"
+      }
+    ],
+    "note": ""
+  },
+  {
+    "id": "newstrategy53_24",
+    "primary": "mean_reversion",
+    "labels": [
+      {
+        "label": "mean_reversion",
+        "confidence": "high",
+        "evidence": "(dataframe['close'] < dataframe['bb_lowerband3'] * self.buy_bb_factor.value)"
+      },
+      {
+        "label": "momentum",
+        "confidence": "medium",
+        "evidence": "dataframe['srsi_fk'] < self.buy_srsi_fk.value"
+      }
+    ],
+    "note": ""
+  }
+]

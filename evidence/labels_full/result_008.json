@@ -1,0 +1,535 @@
+[
+ {
+  "id": "BB_RPB_TSL_RNG_2_4",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe[f'rmi_length_{self.buy_rmi_length.value}'] < self.buy_rmi.value)"
+   },
+   {
+    "label": "volatility",
+    "confidence": "medium",
+    "evidence": "(dataframe['bb_width'] > self.buy_bb_width.value)"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "(dataframe['ema_26'] > dataframe['ema_12'])"
+   }
+  ]
+ },
+ {
+  "id": "BB_RPB_TSL_RNG_3",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe[f'rmi_length_{self.buy_rmi_length.value}']  <  self.buy_rmi.value)"
+   },
+   {
+    "label": "volatility",
+    "confidence": "medium",
+    "evidence": "(dataframe['bb_width'] > self.buy_bb_width.value)"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "(dataframe['ema_26'] > dataframe['ema_12'])"
+   }
+  ]
+ },
+ {
+  "id": "BB_RPB_TSL_RNG_5",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe[f'rmi_length_{self.buy_rmi_length.value}'] < self.buy_rmi.value)"
+   },
+   {
+    "label": "volatility",
+    "confidence": "medium",
+    "evidence": "(dataframe['bb_width'] > self.buy_bb_width.value)"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "(dataframe['ema_26'] > dataframe['ema_12'])"
+   }
+  ]
+ },
+ {
+  "id": "BB_RPB_TSL_RNG_724",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe[f'rmi_length_{self.buy_rmi_length.value}'] < self.buy_rmi.value)"
+   },
+   {
+    "label": "volatility",
+    "confidence": "medium",
+    "evidence": "(dataframe['bb_width'] > self.buy_bb_width.value)"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "(dataframe['ema_26'] > dataframe['ema_12'])"
+   }
+  ]
+ },
+ {
+  "id": "BB_RPB_TSL_RNG_TBS",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe[f'rmi_length_{self.buy_rmi_length.value}'] < self.buy_rmi.value)"
+   },
+   {
+    "label": "volatility",
+    "confidence": "medium",
+    "evidence": "(dataframe['bb_width'] > self.buy_bb_width.value)"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "(dataframe['ema_26'] > dataframe['ema_12'])"
+   }
+  ]
+ },
+ {
+  "id": "BB_RPB_TSL_RNG_TBS_GOLD",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe[f'rmi_length_{self.buy_rmi_length.value}'] < self.buy_rmi.value)"
+   },
+   {
+    "label": "volatility",
+    "confidence": "medium",
+    "evidence": "(dataframe['bb_width'] > self.buy_bb_width.value)"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "(dataframe['ema_26'] > dataframe['ema_12'])"
+   }
+  ]
+ },
+ {
+  "id": "BB_RPB_TSL_RNG_V2_20211008",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe[f'rmi_length_{self.buy_rmi_length.value}'] < self.buy_rmi.value)"
+   },
+   {
+    "label": "volatility",
+    "confidence": "medium",
+    "evidence": "(dataframe['bb_width'] > self.buy_bb_width.value)"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "(dataframe['ema_26'] > dataframe['ema_12'])"
+   }
+  ]
+ },
+ {
+  "id": "BB_RPB_TSL_RNG_VWAP",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe[f'rmi_length_{self.buy_rmi_length.value}'] < self.buy_rmi.value)"
+   },
+   {
+    "label": "volatility",
+    "confidence": "medium",
+    "evidence": "(dataframe['bb_width'] > self.buy_bb_width.value)"
+   },
+   {
+    "label": "volume_flow",
+    "confidence": "low",
+    "evidence": "vwap_low, vwap, vwap_high = vmap_b(dataframe, 20, 1)"
+   }
+  ]
+ },
+ {
+  "id": "BB_RPB_TSL_RNG_VWAP_0",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe[f'rmi_length_{self.buy_rmi_length.value}'] < self.buy_rmi.value)"
+   },
+   {
+    "label": "volatility",
+    "confidence": "medium",
+    "evidence": "(dataframe['bb_width'] > self.buy_bb_width.value)"
+   },
+   {
+    "label": "volume_flow",
+    "confidence": "low",
+    "evidence": "vwap_low, vwap, vwap_high = vmap_b(dataframe, 20, 1)"
+   }
+  ]
+ },
+ {
+  "id": "BB_RPB_TSL_SMA_Tranz",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['close_1h'].rolling(24).max() > (dataframe['close'] * 1.03))"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "(dataframe[f\"ema_{self.buy_12_protection__ema_fast_len.value}\"] > dataframe['ema_200'])"
+   }
+  ]
+ },
+ {
+  "id": "BB_RPB_TSL_SMA_Tranz_1",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['close_1h'].rolling(24).max() > (dataframe['close'] * 1.03))"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "(dataframe[f\"ema_{self.buy_12_protection__ema_fast_len.value}\"] > dataframe['ema_200'])"
+   }
+  ]
+ },
+ {
+  "id": "BB_RPB_TSL_SMA_Tranz_1_5_2_MAIN",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['close_1h'].rolling(24).max() > (dataframe['close'] * 1.03))"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "(dataframe[f\"ema_{self.buy_12_protection__ema_fast_len.value}\"] > dataframe['ema_200'])"
+   }
+  ]
+ },
+ {
+  "id": "BB_RPB_TSL_SMA_Tranz_TB_1_1_1",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe[f'rmi_length_{self.buy_rmi_length.value}'] < self.buy_rmi.value)"
+   },
+   {
+    "label": "volatility",
+    "confidence": "medium",
+    "evidence": "(dataframe['bb_lowerband2'] < dataframe['kc_lowerband_28_1'])"
+   }
+  ]
+ },
+ {
+  "id": "BB_RPB_TSL_SMA_Tranz_TB_MOD",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe[f'rmi_length_{self.buy_rmi_length.value}'] < self.buy_rmi.value)"
+   },
+   {
+    "label": "volatility",
+    "confidence": "medium",
+    "evidence": "(dataframe['bb_lowerband2'] < dataframe['kc_lowerband_28_1'])"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "(dataframe['ema_26'] > dataframe['ema_12'])"
+   }
+  ]
+ },
+ {
+  "id": "BB_RPB_TSL_Trailing",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "high",
+    "evidence": "trailing_buy['allow_trailing'] = True"
+   }
+  ],
+  "note": "Trailing order wrapper without own entry logic; inherits from parent strategy"
+ },
+ {
+  "id": "BB_RPB_TSL_Tranz",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe[f'rmi_length_{self.buy_rmi_length.value}'] < self.buy_rmi.value)"
+   },
+   {
+    "label": "volatility",
+    "confidence": "medium",
+    "evidence": "(dataframe['bb_lowerband2'] < dataframe['kc_lowerband_28_1'])"
+   }
+  ]
+ },
+ {
+  "id": "BB_RPB_TSL_Tranz_TrailingBuy",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "high",
+    "evidence": "trailing_buy['allow_trailing'] = True"
+   }
+  ],
+  "note": "Trailing order wrapper without own entry logic; inherits from parent strategy"
+ },
+ {
+  "id": "BB_RPB_TSL_c7c477d_20211030",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe[f'rmi_length_{self.buy_rmi_length.value}'] < self.buy_rmi.value)"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['tenkan_sen_1h'] > dataframe['kijun_sen_1h'])"
+   }
+  ]
+ },
+ {
+  "id": "BB_RPB_TSL_jilv220_github_20211008",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe[f'rmi_length_{self.buy_rmi_length.value}'] < self.buy_rmi.value)"
+   },
+   {
+    "label": "volatility",
+    "confidence": "medium",
+    "evidence": "(dataframe['bb_width'] > self.buy_bb_width.value)"
+   }
+  ]
+ },
+ {
+  "id": "BB_RPB_TSL_meneguzzo",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe[f'rmi_length_{self.buy_rmi_length.value}'] < self.buy_rmi.value)"
+   },
+   {
+    "label": "volatility",
+    "confidence": "medium",
+    "evidence": "(dataframe['bb_lowerband2'] < dataframe['kc_lowerband_28_1'])"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "(dataframe['ema_26'] > dataframe['ema_12'])"
+   }
+  ]
+ },
+ {
+  "id": "BB_RPB_TSL_v102",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe[f'rmi_length_{self.buy_rmi_length.value}'] < self.buy_rmi.value)"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['tenkan_sen_1h'] > dataframe['kijun_sen_1h'])"
+   }
+  ]
+ },
+ {
+  "id": "BB_RPB_TSL_v104",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe[f'rmi_length_{self.buy_rmi_length.value}'] < self.buy_rmi.value)"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "(dataframe['ema_26'] > dataframe['ema_12'])"
+   }
+  ]
+ },
+ {
+  "id": "BB_RPB_TSLmeneguzzo",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe[f'rmi_length_{self.buy_rmi_length.value}'] < self.buy_rmi.value)"
+   },
+   {
+    "label": "volatility",
+    "confidence": "medium",
+    "evidence": "(dataframe['bb_lowerband2'] < dataframe['kc_lowerband_28_1'])"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "(dataframe['ema_26'] > dataframe['ema_12'])"
+   }
+  ]
+ },
+ {
+  "id": "BB_RPB_TSLmeneguzzo_3",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe[f'rmi_length_{self.buy_rmi_length.value}'] < self.buy_rmi.value)"
+   },
+   {
+    "label": "volatility",
+    "confidence": "medium",
+    "evidence": "(dataframe['bb_lowerband2'] < dataframe['kc_lowerband_28_1'])"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "(dataframe['ema_26'] > dataframe['ema_12'])"
+   }
+  ]
+ },
+ {
+  "id": "BB_RPB_TSLmeneguzzo_3_2",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe[f'rmi_length_{self.buy_rmi_length.value}'] < self.buy_rmi.value)"
+   },
+   {
+    "label": "volatility",
+    "confidence": "medium",
+    "evidence": "(dataframe['bb_lowerband2'] < dataframe['kc_lowerband_28_1'])"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "(dataframe['ema_26'] > dataframe['ema_12'])"
+   }
+  ]
+ },
+ {
+  "id": "BB_RSI",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < dataframe['bb_lowerband']) &"
+   }
+  ]
+ },
+ {
+  "id": "BB_RTR",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'].rolling(48).max() >= (dataframe['close'] * 1.05))"
+   },
+   {
+    "label": "volatility",
+    "confidence": "medium",
+    "evidence": "(dataframe['bb_delta'] > self.buy_bb_delta.value)"
+   }
+  ]
+ },
+ {
+  "id": "BB_RTR3c",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'].rolling(48).max() >= (dataframe['close'] * 1.05))"
+   },
+   {
+    "label": "volatility",
+    "confidence": "medium",
+    "evidence": "(dataframe['bb_delta'] > self.buy_bb_delta.value)"
+   }
+  ]
+ },
+ {
+  "id": "BB_RTR_2",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'].rolling(48).max() >= (dataframe['close'] * 1.125))"
+   },
+   {
+    "label": "volatility",
+    "confidence": "medium",
+    "evidence": "(dataframe['tpct_change_1'] < 0.08) &"
+   }
+  ]
+ },
+ {
+  "id": "BB_RTR_dca",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "high",
+    "evidence": "position_adjustment_enable = True"
+   }
+  ],
+  "note": "Position adjustment for DCA (dollar-cost averaging); no discrete entry logic"
+ }
+]

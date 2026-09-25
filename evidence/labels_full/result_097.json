@@ -1,0 +1,352 @@
+[
+ {
+  "id": "hyperoptforrsi",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi'] > self.rsi_hline.value )"
+   }
+  ]
+ },
+ {
+  "id": "iRNWE_dca",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['ichimoku_valid_1h'] > 0)"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "dataframe['EWO'] = EWO(dataframe, self.fast_ewo.value"
+   }
+  ]
+ },
+ {
+  "id": "ichi",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] > dataframe['leading_senkou_span_a'])"
+   }
+  ]
+ },
+ {
+  "id": "ichiV1",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "conditions.append(dataframe['trend_close_5m'] > dataframe['senkou_a'])"
+   }
+  ]
+ },
+ {
+  "id": "ichiV1_3",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "conditions.append(dataframe['trend_close_5m'] > dataframe['senkou_a'])"
+   }
+  ]
+ },
+ {
+  "id": "ichiV1_4",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "conditions.append(dataframe['trend_close_5m'] > dataframe['senkou_a'])"
+   }
+  ]
+ },
+ {
+  "id": "ichiV1_6",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "conditions.append(dataframe['trend_close_5m'] > dataframe['senkou_a'])"
+   }
+  ]
+ },
+ {
+  "id": "ichiV1_Marius",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['trend_close_15m'] > dataframe['senkou_a'])"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "(dataframe['fan_magnitude_gain'] >= self.buy_min_fan_magnitude_gain"
+   }
+  ]
+ },
+ {
+  "id": "ichiV1_Marius_fixed",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['trend_close_15m'] > dataframe['senkou_a'])"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "(dataframe['fan_magnitude_gain'] >= self.buy_min_fan_magnitude_gain"
+   }
+  ]
+ },
+ {
+  "id": "ichiV1_n1",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "conditions.append(dataframe['trend_close_5m'] > dataframe['senkou_a'])"
+   }
+  ]
+ },
+ {
+  "id": "ichiV1_plus",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "conditions.append(dataframe['trend_close_5m'] > dataframe['senkou_a'])"
+   },
+   {
+    "label": "volatility",
+    "confidence": "medium",
+    "evidence": "dataframe['adx'] = ta.ADX(dataframe)"
+   }
+  ]
+ },
+ {
+  "id": "ichiV1_pro2",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "conditions.append(dataframe['rsi_9'] < 35)"
+   }
+  ]
+ },
+ {
+  "id": "ichiV1_trailing",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "conditions.append(dataframe['trend_close_5m'] > dataframe['senkou_a'])"
+   }
+  ]
+ },
+ {
+  "id": "ichiV2_1",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "conditions.append(dataframe['fan_magnitude_gain'] >= 1.002)"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "conditions.append(dataframe['trend_close_5m'] > dataframe['trend_open_5m'])"
+   }
+  ]
+ },
+ {
+  "id": "ichiV2_2",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "conditions.append(dataframe['trend_close_5m'] > dataframe['senkou_a'])"
+   }
+  ]
+ },
+ {
+  "id": "ichiV2_5",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "conditions.append(dataframe['trend_close_5m'] > dataframe['senkou_a'])"
+   }
+  ]
+ },
+ {
+  "id": "ichiV3",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "conditions.append(dataframe['trend_close_5m'].shift(1) > dataframe['senkou_a'])"
+   }
+  ]
+ },
+ {
+  "id": "ichiV3_1",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "conditions.append(dataframe['trend_close_5m'] > dataframe['senkou_a'])"
+   }
+  ]
+ },
+ {
+  "id": "ichi_v1",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "conditions.append(dataframe['trend_close_5m'] > dataframe['senkou_a'])"
+   }
+  ]
+ },
+ {
+  "id": "ichi_v1hyperopt",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "conditions.append(dataframe['trend_close_5m'] > dataframe['senkou_a'])"
+   }
+  ]
+ },
+ {
+  "id": "ichi_v1new2",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "conditions.append(dataframe['trend_close_5m'] > dataframe['senkou_a'])"
+   }
+  ]
+ },
+ {
+  "id": "ichi_v2",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "conditions.append(dataframe['trend_close_5m'] > dataframe['senkou_a'])"
+   }
+  ]
+ },
+ {
+  "id": "ichimoku",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] > dataframe['cloud_green'])"
+   }
+  ]
+ },
+ {
+  "id": "ichimoku_2",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['macd'] > dataframe['macdsignal'])"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "(dataframe['sar'] < dataframe['open'])"
+   }
+  ]
+ },
+ {
+  "id": "ichimoku_638",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['cloud_red']==True)"
+   }
+  ]
+ },
+ {
+  "id": "ichimoku_strategy_2",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] > dataframe['cloud_green'])"
+   },
+   {
+    "label": "volume_flow",
+    "confidence": "medium",
+    "evidence": "(dataframe['volume'] > dataframe['volume'].rolling(window=20)"
+   }
+  ]
+ },
+ {
+  "id": "ichitest",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "ichimoku = ftt.ichimoku(dataframe,"
+   }
+  ]
+ },
+ {
+  "id": "im_test",
+  "primary": "other",
+  "labels": [],
+  "note": "Entry/exit logic determined at runtime via parameterized comparisons"
+ },
+ {
+  "id": "indicator_mix",
+  "primary": "other",
+  "labels": [],
+  "note": "Entry/exit conditions created dynamically from runtime parameters"
+ },
+ {
+  "id": "indicator_mix_2",
+  "primary": "other",
+  "labels": [],
+  "note": "Entry/exit conditions created dynamically from runtime parameters"
+ }
+]

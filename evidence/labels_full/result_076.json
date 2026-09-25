@@ -1,0 +1,380 @@
+[
+ {
+  "id": "Solipsis_v2_6",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'].lt(dataframe['lower'].shift())"
+   },
+   {
+    "label": "volatility",
+    "confidence": "medium",
+    "evidence": "dataframe['bbdelta'].gt(dataframe['close'] * 0.008)"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "Solipsis_v3",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "medium",
+    "evidence": "(dataframe['rmi-dn-trend'] == 1)"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "Solipsis_v3_fuck",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "medium",
+    "evidence": "(dataframe['rmi-dn-trend'] == 1)"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "Solipsis_v4",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['rmi-up-trend'] == 1)"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "Solipsis_v4_2",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['rmi-up-trend'] == 1)"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "Solipsis_v4_3",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['rmi-up-trend'] == 1)"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "Solipsis_v5",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['rmi-up-trend'] == 1)"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "SpringAlarm",
+  "primary": "other",
+  "labels": [],
+  "note": "buy_criteria undefined; logic not shown in fact sheet"
+ },
+ {
+  "id": "Squeeze001",
+  "primary": "volatility",
+  "labels": [
+   {
+    "label": "volatility",
+    "confidence": "high",
+    "evidence": "(dataframe['sqz_val'] < -self.buy_sqz_band.value)"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "Squeeze001_2",
+  "primary": "volatility",
+  "labels": [
+   {
+    "label": "volatility",
+    "confidence": "high",
+    "evidence": "(dataframe['sqz_val'] < -self.buy_sqz_band.value)"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "Squeeze002",
+  "primary": "volatility",
+  "labels": [
+   {
+    "label": "volatility",
+    "confidence": "high",
+    "evidence": "qtpylib.crossed_above(dataframe['sqz_val'], 0)"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "Squeeze002_2",
+  "primary": "volatility",
+  "labels": [
+   {
+    "label": "volatility",
+    "confidence": "high",
+    "evidence": "qtpylib.crossed_above(dataframe['sqz_val'], 0)"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "SqueezeMomentum",
+  "primary": "volatility",
+  "labels": [
+   {
+    "label": "volatility",
+    "confidence": "high",
+    "evidence": "((is_sqzOff) & (dataframe[f'val_{self.BB_length.value}']"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "(dataframe[f'val_{self.BB_length.value}'] < 0)"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "SqueezeMomentumStrategy",
+  "primary": "volatility",
+  "labels": [
+   {
+    "label": "volatility",
+    "confidence": "high",
+    "evidence": "(dataframe[\"squeeze_release\"] == 1)"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "(dataframe[\"momentum\"] > dataframe[\"momentum_prev\"])"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "SqueezeMomentum_2",
+  "primary": "volatility",
+  "labels": [
+   {
+    "label": "volatility",
+    "confidence": "high",
+    "evidence": "qtpylib.crossed_above(dataframe['sqz_val'], 0)"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "(dataframe['close'] > dataframe['open'])"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "SqueezeMomentum_3",
+  "primary": "volatility",
+  "labels": [
+   {
+    "label": "volatility",
+    "confidence": "high",
+    "evidence": "qtpylib.crossed_above(dataframe['sqz_val'], 0)"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "SqueezeOff",
+  "primary": "volatility",
+  "labels": [
+   {
+    "label": "volatility",
+    "confidence": "high",
+    "evidence": "(dataframe['sqz_off'] == True) & (dataframe['sqz_off'].shift(1)"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "SqueezeOff_2",
+  "primary": "volatility",
+  "labels": [
+   {
+    "label": "volatility",
+    "confidence": "high",
+    "evidence": "(dataframe['sqz_off'] == True) & (dataframe['sqz_off'].shift(1)"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "StandardStrategy",
+  "primary": "volatility",
+  "labels": [
+   {
+    "label": "volatility",
+    "confidence": "high",
+    "evidence": "(dataframe['bb_width'] / dataframe['bb_width_past_1'] > 1.14)"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "(dataframe['rsi'] > dataframe['rsi'].shift(1))"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "StarRise",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < dataframe['mama'])"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "StarRise_V2",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "inherits from StarRise parent class entry logic"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "StarRise_V3",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "inherits from StarRise parent class entry logic"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "StarRise_strat",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < dataframe['mama'])"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "StarRise_strat3",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < dataframe['mama'])"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "Stavix",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "dataframe['close'].lt(dataframe['lower'].shift())"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "Stavix2",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] > dataframe['senkou_span_a'])"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "Stavix5",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "qtpylib.crossed_above(dataframe['avg_price'], dataframe['super_trend'])"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "SteveLava",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "(dataframe['close'] > dataframe['ema_slow'])"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "rsi_cond checks multiple RSI periods rising"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "Stinkfist",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "(dataframe['rmi-up-trend'] == 1)"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "Stinkfist_BTC",
+  "primary": "other",
+  "labels": [],
+  "note": "No indicator or entry code shown in fact sheet"
+ }
+]

@@ -1,0 +1,329 @@
+[
+ {
+  "id": "Anomaly_jump",
+  "primary": "other",
+  "labels": [],
+  "note": "Empty sheet; no trading logic found"
+ },
+ {
+  "id": "Anomaly_macd",
+  "primary": "other",
+  "labels": [],
+  "note": "Empty sheet; no trading logic found"
+ },
+ {
+  "id": "Anomaly_mfi",
+  "primary": "other",
+  "labels": [],
+  "note": "Empty sheet; no trading logic found"
+ },
+ {
+  "id": "Anomaly_minmax",
+  "primary": "other",
+  "labels": [],
+  "note": "Empty sheet; no trading logic found"
+ },
+ {
+  "id": "Anomaly_nseq",
+  "primary": "other",
+  "labels": [],
+  "note": "Empty sheet; no trading logic found"
+ },
+ {
+  "id": "Anomaly_over",
+  "primary": "other",
+  "labels": [],
+  "note": "Empty sheet; no trading logic found"
+ },
+ {
+  "id": "Anomaly_profit",
+  "primary": "other",
+  "labels": [],
+  "note": "Empty sheet; no trading logic found"
+ },
+ {
+  "id": "Anomaly_pv",
+  "primary": "other",
+  "labels": [],
+  "note": "Empty sheet; no trading logic found"
+ },
+ {
+  "id": "Anomaly_slope",
+  "primary": "other",
+  "labels": [],
+  "note": "Empty sheet; no trading logic found"
+ },
+ {
+  "id": "Anomaly_smooth",
+  "primary": "other",
+  "labels": [],
+  "note": "Empty sheet; no trading logic found"
+ },
+ {
+  "id": "Anomaly_stochastic",
+  "primary": "other",
+  "labels": [],
+  "note": "Empty sheet; no trading logic found"
+ },
+ {
+  "id": "Anomaly_swing",
+  "primary": "other",
+  "labels": [],
+  "note": "Empty sheet; no trading logic found"
+ },
+ {
+  "id": "AntigravityGridStrategy",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe[\"rsi_falling\"]) & (dataframe[\"close\"] > dataframe[\"bb_lower\"])"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe[\"adx\"] >= 20) & (dataframe[\"adx\"] < 50) &"
+   },
+   {
+    "label": "volatility",
+    "confidence": "medium",
+    "evidence": "(dataframe[\"bb_expanding\"]) & (dataframe[\"bb_width\"] > 0.022)"
+   }
+  ]
+ },
+ {
+  "id": "AntigravityStrategy",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "volatility",
+    "confidence": "medium",
+    "evidence": "conditions.append(dataframe[\"regime\"] != \"high-volatility\")"
+   }
+  ],
+  "note": "ML-model driven entry; regime filter avoids high volatility"
+ },
+ {
+  "id": "AntigravityStrategyV3",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "volatility",
+    "confidence": "medium",
+    "evidence": "conditions.append(dataframe[\"regime\"] != \"high-volatility\")"
+   }
+  ],
+  "note": "ML-model driven entry; regime filter avoids high volatility"
+ },
+ {
+  "id": "Apollo11",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "qtpylib.crossed_above(dataframe[\"s1_ema_sm\"], dataframe[\"s1_ema_md\"])"
+   },
+   {
+    "label": "breakout",
+    "confidence": "medium",
+    "evidence": "qtpylib.crossed_above(dataframe[\"s2_fib_lower_band\"], dataframe[\"s2_bb_lower_band\"])"
+   },
+   {
+    "label": "mean_reversion",
+    "confidence": "medium",
+    "evidence": "dataframe[\"low\"] < dataframe[\"s3_bb_lowerband\"]"
+   }
+  ]
+ },
+ {
+  "id": "Apollo11_162",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "qtpylib.crossed_above(dataframe[\"s1_ema_sm\"], dataframe[\"s1_ema_md\"])"
+   },
+   {
+    "label": "breakout",
+    "confidence": "medium",
+    "evidence": "qtpylib.crossed_above(dataframe[\"s2_fib_lower_band\"], dataframe[\"s2_bb_lower_band\"])"
+   },
+   {
+    "label": "mean_reversion",
+    "confidence": "low",
+    "evidence": "dataframe[\"low\"] < dataframe[\"s3_bb_lowerband\"]"
+   }
+  ]
+ },
+ {
+  "id": "Apollo13",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "qtpylib.crossed_above(dataframe['s1_ema_sm'], dataframe['s1_ema_md'])"
+   },
+   {
+    "label": "breakout",
+    "confidence": "medium",
+    "evidence": "qtpylib.crossed_above(dataframe['s2_fib_lower_band'], dataframe['s2_bb_lower_band'])"
+   },
+   {
+    "label": "mean_reversion",
+    "confidence": "low",
+    "evidence": "dataframe['low'] < dataframe['s3_bb_lowerband']"
+   }
+  ]
+ },
+ {
+  "id": "Apoxkurd_1",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "((df['pdi'] > df['mdi']) & (df['adx'] > 21)) &"
+   },
+   {
+    "label": "pattern",
+    "confidence": "medium",
+    "evidence": "(df['fractal_low'] == 1)"
+   }
+  ]
+ },
+ {
+  "id": "Aquma1",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "medium",
+    "evidence": "dataframe['RSI'] < 40,\n            dataframe['close'] > dataframe['EMA_20']"
+   }
+  ],
+  "note": "ML model driven; mean_reversion elements in long entry (RSI < 40)"
+ },
+ {
+  "id": "Aquma7",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['sha_color'] == \"green\") & (df_sha_prev == \"green\")"
+   },
+   {
+    "label": "volume_flow",
+    "confidence": "medium",
+    "evidence": "(dataframe['cdv'] > dataframe['cdv_sma50'])"
+   }
+  ]
+ },
+ {
+  "id": "Argrelextrema",
+  "primary": "breakout",
+  "labels": [
+   {
+    "label": "breakout",
+    "confidence": "high",
+    "evidence": "(qtpylib.crossed_below(dataframe[\"low\"], dataframe[\"minima\"]))"
+   }
+  ]
+ },
+ {
+  "id": "AroonTrendStrategy",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe[\"aroon_up\"] > 70) & (dataframe[\"aroon_down\"] < 30)"
+   }
+  ]
+ },
+ {
+  "id": "Astro",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(df['rsi'] < 40) &"
+   },
+   {
+    "label": "pattern",
+    "confidence": "medium",
+    "evidence": "(df[harmonious_aspects].sum(axis=1) > 0)"
+   }
+  ],
+  "note": "Astrological pattern gating mean-reversion entry"
+ },
+ {
+  "id": "AstroQAV4",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "pattern",
+    "confidence": "medium",
+    "evidence": "(df[\"minima\"].shift(1) == 1)"
+   }
+  ],
+  "note": "ML and astrological aspects drive signals; pattern recognition on minima"
+ },
+ {
+  "id": "AtrTrailingStopStrategy",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe[\"ema20\"] > dataframe[\"ema50\"]) & (dataframe[\"adx\"] > 22)"
+   }
+  ]
+ },
+ {
+  "id": "AutoArimaTripleV1",
+  "primary": "other",
+  "labels": [],
+  "note": "ARIMA prediction model; no traditional trading logic found"
+ },
+ {
+  "id": "Auto_EI_t4c0s",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['EWO'] < dataframe['EWO_DN_FIB'])"
+   }
+  ],
+  "note": "Elliot Wave Oscillator levels trigger momentum entries"
+ },
+ {
+  "id": "Auto_EI_t4c0s_Shorts",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['EWO'] < dataframe['EWO_DN_FIB'])"
+   }
+  ],
+  "note": "Short-side Elliot Wave Oscillator momentum strategy"
+ },
+ {
+  "id": "AverageStrategy",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "qtpylib.crossed_above(dataframe['maShort'], dataframe['maMedium'])"
+   }
+  ]
+ }
+]

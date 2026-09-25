@@ -1,0 +1,347 @@
+[
+ {
+  "id": "Stinkfist_ETH",
+  "primary": "other",
+  "labels": [],
+  "note": "No visible entry/exit logic"
+ },
+ {
+  "id": "Stoch",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(qtpylib.crossed_above(dataframe['rsi'], self.buy_params['rsi-lower-band']))"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "& (qtpylib.crossed_above(dataframe['stoch-slowk'], dataframe['stoch-slowd']))"
+   }
+  ]
+ },
+ {
+  "id": "StochRSITEMA",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "conditions.append(qtpylib.crossed_above(\n            dataframe['stoch-slowd'], params['stoch-lower-band']))"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "conditions.append(qtpylib.crossed_above(\n            dataframe['stoch-slowk'], dataframe['stoch-slowd']))"
+   }
+  ]
+ },
+ {
+  "id": "StochasticCciStrategy",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "& (dataframe[\"slowk\"] < 30)"
+   }
+  ]
+ },
+ {
+  "id": "StochasticOversoldStrategy",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "& (dataframe[\"stoch_k\"] < 30)"
+   }
+  ]
+ },
+ {
+  "id": "StochasticRsiStrategy",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe[\"stoch_rsi\"] > 20) & (dataframe[\"stoch_rsi_prev\"] <= 20)"
+   }
+  ]
+ },
+ {
+  "id": "StopLossStrategy",
+  "primary": "other",
+  "labels": [],
+  "note": "No entry/exit logic, only stoploss parameters"
+ },
+ {
+  "id": "Strat",
+  "primary": "other",
+  "labels": [],
+  "note": "Entry on MACD < macdsignal, logic unclear or inverted"
+ },
+ {
+  "id": "Strategy",
+  "primary": "other",
+  "labels": [],
+  "note": "No concrete entry/exit logic; delegates to parent"
+ },
+ {
+  "id": "Strategy001",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "qtpylib.crossed_above(dataframe['ema20'], dataframe['ema50'])"
+   }
+  ]
+ },
+ {
+  "id": "Strategy001_419",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "qtpylib.crossed_above(dataframe['ema20'], dataframe['ema50'])"
+   }
+  ]
+ },
+ {
+  "id": "Strategy001_426",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "qtpylib.crossed_above(dataframe['ema20'], dataframe['ema50'])"
+   }
+  ]
+ },
+ {
+  "id": "Strategy001_custom_exit",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "qtpylib.crossed_above(dataframe['ema20'], dataframe['ema50'])"
+   }
+  ]
+ },
+ {
+  "id": "Strategy001_custom_sell",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "qtpylib.crossed_above(dataframe['ema20'], dataframe['ema50'])"
+   }
+  ]
+ },
+ {
+  "id": "Strategy001_custom_sell_2",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "qtpylib.crossed_above(dataframe['ema20'], dataframe['ema50'])"
+   }
+  ]
+ },
+ {
+  "id": "Strategy001_custom_sell_3",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "qtpylib.crossed_above(dataframe['ema20'], dataframe['ema50'])"
+   }
+  ]
+ },
+ {
+  "id": "Strategy001_custom_sell_857",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "qtpylib.crossed_above(dataframe['ema20'], dataframe['ema50'])"
+   }
+  ]
+ },
+ {
+  "id": "Strategy002",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi'] < 30) &\n                (dataframe['slowk'] < 20) &\n                (dataframe['bb_lowerband'] > dataframe['close'])"
+   },
+   {
+    "label": "pattern",
+    "confidence": "low",
+    "evidence": "(dataframe['CDLHAMMER'] == 100)"
+   }
+  ]
+ },
+ {
+  "id": "Strategy002_155",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi'] < 30) &\n                (dataframe['slowk'] < 20) &\n                (dataframe['bb_lowerband'] > dataframe['close'])"
+   }
+  ]
+ },
+ {
+  "id": "Strategy002_439",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi'] < 30) &\n                (dataframe['slowk'] < 20) &\n                (dataframe['bb_lowerband'] > dataframe['close'])"
+   }
+  ]
+ },
+ {
+  "id": "Strategy002_621",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi'] < 30) &\n                (dataframe['slowk'] < 20) &\n                (dataframe['bb_lowerband'] > dataframe['close'])"
+   }
+  ]
+ },
+ {
+  "id": "Strategy002_64",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi'] < 30) &\n                (dataframe['slowk'] < 20) &\n                (dataframe['bb_lowerband'] > dataframe['close'])"
+   }
+  ]
+ },
+ {
+  "id": "Strategy003",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi'] < 28) &\n                (dataframe['close'] < dataframe['sma'])"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "low",
+    "evidence": "(dataframe['ema50'] > dataframe['ema100'])"
+   }
+  ]
+ },
+ {
+  "id": "Strategy003_13",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi'] < 28) &\n                (dataframe['close'] < dataframe['sma'])"
+   }
+  ]
+ },
+ {
+  "id": "Strategy003_2",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "conditions.append(dataframe['close'] < dataframe['sma'])"
+   }
+  ]
+ },
+ {
+  "id": "Strategy003_74",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi'] < 28) &\n                (dataframe['close'] < dataframe['sma'])"
+   }
+  ]
+ },
+ {
+  "id": "Strategy003_869",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi'] < 28) &\n                (dataframe['close'] < dataframe['sma'])"
+   }
+  ]
+ },
+ {
+  "id": "Strategy004",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "(\n                    (dataframe['adx'] > 50) |\n                    (dataframe['slowadx'] > 26)\n                )"
+   },
+   {
+    "label": "mean_reversion",
+    "confidence": "medium",
+    "evidence": "(dataframe['cci'] < -100)"
+   }
+  ]
+ },
+ {
+  "id": "Strategy004_302",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "(\n                    (dataframe['adx'] > 50) |\n                    (dataframe['slowadx'] > 26)\n                )"
+   },
+   {
+    "label": "mean_reversion",
+    "confidence": "medium",
+    "evidence": "(dataframe['cci'] < -100)"
+   }
+  ]
+ },
+ {
+  "id": "Strategy004_395",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "conditions.append((\n                (dataframe['adx'] > self.buy_adx.value)"
+   },
+   {
+    "label": "mean_reversion",
+    "confidence": "medium",
+    "evidence": "conditions.append(dataframe['cci'] < self.buy_cci.value)"
+   }
+  ]
+ }
+]

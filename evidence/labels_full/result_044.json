@@ -1,0 +1,391 @@
+[
+ {
+  "id": "JustROCR6",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['rocr_499'] > 1.20) & (dataframe['rocr_200'] > 1.15)"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "KAMACCIRSI",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "qtpylib.crossed_above(dataframe['rsi'], params['rsi-limit'])"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "dataframe['buy-kama-short'] > dataframe['buy-kama-long']"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "KAMACCIRSI_new",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "qtpylib.crossed_above(dataframe['rsi'], params['rsi-limit'])"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "qtpylib.crossed_above(dataframe['kama-short'], dataframe['kama-long'])"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "KC_BB",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['r_14'] < -80) & (dataframe['r_14'] > -90)"
+   },
+   {
+    "label": "volatility",
+    "confidence": "medium",
+    "evidence": "(dataframe['kc_bb_delta'] < 1.5) & (dataframe['kc_bb_delta'] > 0.928)"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "KMM",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe[\"minima\"] == 1) & (dataframe[\"kalman_estimate\"] < dataframe['close'])"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "Kalman",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "qtpylib.crossed_above(dataframe['kf_predict_diff'], self.entry_kf_diff)"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "KamaFama_2025",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['r_14'] < -61.3) & (dataframe['mama_diff'] < -0.025)"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "KamaFama_2_20250115",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['r_14'] < -61.3) & (dataframe['mama_diff'] < -0.025)"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "KamaFama_3_1",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['mama'] > dataframe['kama']) & (dataframe['kama'] > dataframe['fama'])"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "KamaFama_3_3",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['mama'] > dataframe['kama']) & (dataframe['kama'] > dataframe['fama'])"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "KamaRsi2",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "dataframe['close'] < dataframe['kama-short']"
+   }
+  ],
+  "note": "dip-buying when price falls below short KAMA"
+ },
+ {
+  "id": "Kamaflage",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['kama-3'] > dataframe['kama-21']) & (dataframe['macd'] > dataframe['macdsignal'])"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "Kdj",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "dataframe['t3'] > dataframe['t3'].shift(1)"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "KeltnerBounce",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] > dataframe['kc_lowerband']) & (dataframe['close'].shift(1) <= dataframe['kc_lowerband'])"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "KeltnerBounce_2",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] > dataframe['kc_lowerband']) & (dataframe['close'].shift(1) <= dataframe['kc_lowerband'])"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "KeltnerBounce_Shorts",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < dataframe['kc_upperband']) & (dataframe['close'].shift(1) >= dataframe['kc_upperband'])"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "KeltnerChannelStrategy",
+  "primary": "breakout",
+  "labels": [
+   {
+    "label": "breakout",
+    "confidence": "high",
+    "evidence": "(dataframe[\"close\"] > dataframe[\"kc_upper\"]) & (dataframe[\"adx\"] > 25)"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "dataframe[\"adx\"] > 25"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "KeltnerChannels",
+  "primary": "breakout",
+  "labels": [
+   {
+    "label": "breakout",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] >= dataframe['kc_upperband'])"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "KeltnerChannels_2",
+  "primary": "breakout",
+  "labels": [
+   {
+    "label": "breakout",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] >= dataframe['kc_upperband'])"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "KeltnerRSI",
+  "primary": "breakout",
+  "labels": [
+   {
+    "label": "breakout",
+    "confidence": "high",
+    "evidence": "qtpylib.crossed_above(dataframe['close'], dataframe['kc_upperband'])"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "dataframe[\"rsi\"] > dataframe['hline']"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "KeltnerRSI_USDT_8h",
+  "primary": "breakout",
+  "labels": [
+   {
+    "label": "breakout",
+    "confidence": "high",
+    "evidence": "qtpylib.crossed_above(dataframe['close'], dataframe['kc_upperband'])"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "dataframe[\"rsi\"] > dataframe['hline']"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "KeltnerRSIdos",
+  "primary": "breakout",
+  "labels": [
+   {
+    "label": "breakout",
+    "confidence": "high",
+    "evidence": "qtpylib.crossed_above(dataframe['close'], dataframe[f\"kc_upperband_{self.window_range.value}_{self.atrs_range.value}\"])"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "KitchenSink",
+  "primary": "other",
+  "labels": [],
+  "note": "entry based on sum of parametric indicators; concrete logic not shown"
+ },
+ {
+  "id": "Kj73",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['cdc_az_v3'] == 1) & (dataframe['rsi'] < 30)"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "fast_ema > slow_ema triggers entry"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "Klassi",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['ADX'] > 30)"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "LSV1",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['trend_close_5m'] > dataframe['senkou_a']) & (dataframe['trend_close_5m'] > dataframe['senkou_b'])"
+   }
+  ],
+  "note": "Ichimoku cloud above price"
+ },
+ {
+  "id": "LSV2",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['trend_close_5m'] > dataframe['senkou_a']) & (dataframe['trend_close_5m'] > dataframe['senkou_b'])"
+   }
+  ],
+  "note": "Ichimoku cloud above price"
+ },
+ {
+  "id": "LSv3",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['trend_close_5m'] > dataframe['senkou_a']) & (dataframe['trend_close_5m'] > dataframe['senkou_b'])"
+   }
+  ],
+  "note": "Ichimoku cloud above price"
+ },
+ {
+  "id": "LSv3_Full",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['trend_close_5m'] > dataframe['senkou_a']) & (dataframe['trend_close_5m'] > dataframe['senkou_b'])"
+   }
+  ],
+  "note": "Ichimoku cloud above price"
+ },
+ {
+  "id": "Lateralus",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < dataframe['lower-bb1'].shift()) & (dataframe['close'] <= dataframe['close'].shift())"
+   }
+  ],
+  "note": "dip buying below lower Bollinger Band"
+ }
+]

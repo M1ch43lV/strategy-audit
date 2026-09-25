@@ -1,0 +1,2515 @@
+{
+ "schema": "strategy-labels-pilot-1",
+ "prompt_sha256": "sha256_beca0ba87f7f124a",
+ "model": "claude-haiku-4-5",
+ "labelled_at": "2026-09-25T08:59:21+00:00",
+ "labels": [
+  "trend_following",
+  "momentum",
+  "mean_reversion",
+  "breakout",
+  "volatility",
+  "grid",
+  "volume_flow",
+  "pattern",
+  "statistical",
+  "other"
+ ],
+ "strategies": {
+  "Auto_EI_t4c0s": {
+   "source_sha256": "sha256_0a6a7fc6f5cc7ca38737697fa1005c32d24ad453afaa2ca28b2728da0521a886",
+   "facts": {
+    "timeframe": "5m",
+    "speed": "scalp",
+    "scalper": true,
+    "can_short": false,
+    "leverage_hook": false,
+    "futures_capable": false,
+    "dca": false,
+    "ml_ai": false,
+    "hooks": [
+     "custom_entry_price",
+     "custom_exit",
+     "custom_stoploss"
+    ]
+   },
+   "primary": "momentum",
+   "labels": [
+    {
+     "label": "momentum",
+     "confidence": "high",
+     "evidence": "(dataframe['EWO'] < dataframe['EWO_DN_FIB']) & (dataframe['buy_decision'] > self.fib_dn.value)",
+     "flags": []
+    }
+   ],
+   "note": "EWO oscillator crossing levels drives entry"
+  },
+  "Auto_EI_t4c0s_Shorts": {
+   "source_sha256": "sha256_33596e1d6ea20499a43b155f2b4e5d8eee155bddfbef98dda763afa23b1e05c2",
+   "facts": {
+    "timeframe": "5m",
+    "speed": "scalp",
+    "scalper": true,
+    "can_short": true,
+    "leverage_hook": false,
+    "futures_capable": true,
+    "dca": false,
+    "ml_ai": false,
+    "hooks": [
+     "custom_entry_price",
+     "custom_exit",
+     "custom_stoploss"
+    ]
+   },
+   "primary": "momentum",
+   "labels": [
+    {
+     "label": "momentum",
+     "confidence": "high",
+     "evidence": "(dataframe['EWO'] < dataframe['EWO_DN_FIB']) & (dataframe['sell_decision'] > self.fib_dns.value)",
+     "flags": []
+    }
+   ],
+   "note": "EWO-based oscillator momentum for shorts"
+  },
+  "strat3": {
+   "source_sha256": "sha256_bfc0bd42e934d45ecd8f8afff3aeda029e6a84eb5715bc7ae9757846076b307f",
+   "facts": {
+    "timeframe": "5m",
+    "speed": "scalp",
+    "scalper": true,
+    "can_short": false,
+    "leverage_hook": false,
+    "futures_capable": false,
+    "dca": false,
+    "ml_ai": false,
+    "hooks": [
+     "informative_pairs"
+    ]
+   },
+   "primary": "other",
+   "labels": [
+    {
+     "label": "other",
+     "confidence": "low",
+     "evidence": "dataframe.loc[((dataframe['buysignal'])), 'buy'] = 1",
+     "flags": []
+    }
+   ],
+   "note": "buysignal origin not visible in code; ADX, SAR, Stoch present but not in entry rule"
+  },
+  "strat9": {
+   "source_sha256": "sha256_3c9d0e6abf8fd85d10f256c3f2d1e756e5ad2a81fb8667137d4e7f8b6495d34b",
+   "facts": {
+    "timeframe": "5m",
+    "speed": "scalp",
+    "scalper": true,
+    "can_short": false,
+    "leverage_hook": true,
+    "futures_capable": true,
+    "dca": true,
+    "ml_ai": false,
+    "hooks": [
+     "adjust_trade_position",
+     "leverage"
+    ]
+   },
+   "primary": "pattern",
+   "labels": [
+    {
+     "label": "pattern",
+     "confidence": "high",
+     "evidence": "(dataframe['bull_fvg'] & dataframe['uptrend_1h'] & (dataframe['market_score'] > 60))",
+     "flags": []
+    }
+   ],
+   "note": "Fair Value Gap pattern with trend filter"
+  },
+  "SmartMoneyStrategy": {
+   "source_sha256": "sha256_f89d1e0ec3dd685a6214d917e5d3beda8b003a44e8a528af6e3a70fe415944c3",
+   "facts": {
+    "timeframe": "30m",
+    "speed": "intraday",
+    "scalper": false,
+    "can_short": false,
+    "leverage_hook": false,
+    "futures_capable": false,
+    "dca": false,
+    "ml_ai": false,
+    "hooks": []
+   },
+   "primary": "mean_reversion",
+   "labels": [
+    {
+     "label": "mean_reversion",
+     "confidence": "high",
+     "evidence": "(dataframe['close'] < dataframe['ema_200']) & (dataframe['mfi'] < 35) & (dataframe['cmf'] < -0.07)",
+     "flags": []
+    },
+    {
+     "label": "volume_flow",
+     "confidence": "medium",
+     "evidence": "(dataframe['mfi'] < 35) & (dataframe['cmf'] < -0.07)",
+     "flags": []
+    }
+   ],
+   "note": "Buys weakness below trend with volume/MFI confirmation"
+  },
+  "SmartMoneyStrategyHyperopt": {
+   "source_sha256": "sha256_f89d1e0ec3dd685a6214d917e5d3beda8b003a44e8a528af6e3a70fe415944c3",
+   "facts": {
+    "timeframe": "1h",
+    "speed": "intraday",
+    "scalper": false,
+    "can_short": false,
+    "leverage_hook": false,
+    "futures_capable": false,
+    "dca": false,
+    "ml_ai": false,
+    "hooks": []
+   },
+   "primary": "mean_reversion",
+   "labels": [
+    {
+     "label": "mean_reversion",
+     "confidence": "high",
+     "evidence": "(dataframe['close'] < dataframe['ema_200']) & (dataframe['mfi'] < self.buy_mfi.value)",
+     "flags": []
+    }
+   ],
+   "note": "Same logic as SmartMoneyStrategy, hyperoptable parameters"
+  },
+  "ViNBuyPct": {
+   "source_sha256": "sha256_bee88cbc23310656aba1731f91d9df39fe80027795334c93a78a52fe04bfa01e",
+   "facts": {
+    "timeframe": "5m",
+    "speed": "scalp",
+    "scalper": true,
+    "can_short": false,
+    "leverage_hook": false,
+    "futures_capable": false,
+    "dca": false,
+    "ml_ai": false,
+    "hooks": []
+   },
+   "primary": "mean_reversion",
+   "labels": [
+    {
+     "label": "mean_reversion",
+     "confidence": "high",
+     "evidence": "(df[f\"pctchange_{i}\"] / df[f\"bb_pctchange_{i}_lo\"]).between(1.01, 1.39)",
+     "flags": []
+    }
+   ],
+   "note": "Buys near lower Bollinger band after weakness"
+  },
+  "ViNBuyPctLc2": {
+   "source_sha256": "sha256_bee88cbc23310656aba1731f91d9df39fe80027795334c93a78a52fe04bfa01e",
+   "facts": {
+    "timeframe": "5m",
+    "speed": "scalp",
+    "scalper": true,
+    "can_short": false,
+    "leverage_hook": false,
+    "futures_capable": false,
+    "dca": false,
+    "ml_ai": false,
+    "hooks": []
+   },
+   "primary": "mean_reversion",
+   "labels": [
+    {
+     "label": "mean_reversion",
+     "confidence": "high",
+     "evidence": "(pctchange / bb_pctchange_lo).between(1.01, 1.39)",
+     "flags": []
+    }
+   ],
+   "note": "Bollinger band mean-reversion with dynamic bands"
+  },
+  "Lateralus": {
+   "source_sha256": "sha256_77b0369ed0de8a7b22c2b5757b3862fa346e614fd00e274bcc65dbe0047c0330",
+   "facts": {
+    "timeframe": "5m",
+    "speed": "scalp",
+    "scalper": true,
+    "can_short": false,
+    "leverage_hook": false,
+    "futures_capable": false,
+    "dca": false,
+    "ml_ai": false,
+    "hooks": [
+     "confirm_trade_entry",
+     "informative_pairs"
+    ]
+   },
+   "primary": "mean_reversion",
+   "labels": [
+    {
+     "label": "mean_reversion",
+     "confidence": "high",
+     "evidence": "(dataframe['close'] < dataframe['lower-bb1'].shift()) & (dataframe['close'] <= dataframe['close'].shift())",
+     "flags": []
+    }
+   ],
+   "note": "Bollinger band dip-buy with trend context"
+  },
+  "Lateralus_Slow": {
+   "source_sha256": "sha256_77b0369ed0de8a7b22c2b5757b3862fa346e614fd00e274bcc65dbe0047c0330",
+   "facts": {
+    "timeframe": "1h",
+    "speed": "intraday",
+    "scalper": false,
+    "can_short": false,
+    "leverage_hook": false,
+    "futures_capable": false,
+    "dca": false,
+    "ml_ai": false,
+    "hooks": []
+   },
+   "primary": "other",
+   "labels": [
+    {
+     "label": "other",
+     "confidence": "low",
+     "evidence": "minimal_roi and stoploss only; entry/exit code not visible",
+     "flags": [
+      "evidence_not_verbatim"
+     ]
+    }
+   ],
+   "note": "Insufficient data in sheet"
+  },
+  "EMA_Fibonacci_V2": {
+   "source_sha256": "sha256_abf32bc3a7f3293727a000601c5c198bd9d6e938682c265cccc91a38c4f0cbf3",
+   "facts": {
+    "timeframe": "5m",
+    "speed": "scalp",
+    "scalper": true,
+    "can_short": true,
+    "leverage_hook": true,
+    "futures_capable": true,
+    "dca": false,
+    "ml_ai": true,
+    "hooks": [
+     "leverage"
+    ]
+   },
+   "primary": "trend_following",
+   "labels": [
+    {
+     "label": "trend_following",
+     "confidence": "high",
+     "evidence": "(dataframe['ema_34'] > dataframe['ema_55']) & (dataframe['ema_55'] > dataframe['ema_89']) & (dataframe['ema_89'] > dataframe['ema_144'])",
+     "flags": []
+    },
+    {
+     "label": "momentum",
+     "confidence": "medium",
+     "evidence": "(dataframe['pdi_34'] > dataframe['pdi_55']) & (dataframe['pdi_55'] > dataframe['pdi_89'])",
+     "flags": []
+    }
+   ],
+   "note": "Fibonacci EMA alignment for trend; PLUS_DI momentum"
+  },
+  "EMA_Fibonacci_V3": {
+   "source_sha256": "sha256_8e1fe29e425978ff0ee8e156e6a9cb10008159f8d9f4178126d25b9dbac3efe8",
+   "facts": {
+    "timeframe": "5m",
+    "speed": "scalp",
+    "scalper": true,
+    "can_short": true,
+    "leverage_hook": true,
+    "futures_capable": true,
+    "dca": false,
+    "ml_ai": true,
+    "hooks": [
+     "leverage"
+    ]
+   },
+   "primary": "trend_following",
+   "labels": [
+    {
+     "label": "trend_following",
+     "confidence": "high",
+     "evidence": "(dataframe['pdi_34'] > dataframe['pdi_55']) & (dataframe['pdi_55'] > dataframe['pdi_89']) & (dataframe['pdi_89'] > dataframe['pdi_144'])",
+     "flags": []
+    }
+   ],
+   "note": "Directional indicator alignment signals trend"
+  },
+  "EMA_Fibonacci_V4": {
+   "source_sha256": "sha256_7d6607eac98854660b9adecee4434d76ea72e1ef4bfed651b8acac7e23d5d131",
+   "facts": {
+    "timeframe": "5m",
+    "speed": "scalp",
+    "scalper": true,
+    "can_short": true,
+    "leverage_hook": true,
+    "futures_capable": true,
+    "dca": false,
+    "ml_ai": true,
+    "hooks": [
+     "leverage"
+    ]
+   },
+   "primary": "trend_following",
+   "labels": [
+    {
+     "label": "trend_following",
+     "confidence": "high",
+     "evidence": "(dataframe['pdi_34'] > dataframe['pdi_55']) & (dataframe['pdi_55'] > dataframe['pdi_89']) & (dataframe['pdi_89'] > dataframe['pdi_144'])",
+     "flags": []
+    }
+   ],
+   "note": "Fibonacci directional momentum trend alignment"
+  },
+  "ClucCrypSlow": {
+   "source_sha256": "sha256_2d6888947f19f2ac3cf84d07cb792d6d00dc3c93a1ec7939f8590472f407f2d8",
+   "facts": {
+    "timeframe": "",
+    "speed": "unknown",
+    "scalper": false,
+    "can_short": false,
+    "leverage_hook": false,
+    "futures_capable": false,
+    "dca": false,
+    "ml_ai": false,
+    "hooks": [
+     "informative_pairs"
+    ]
+   },
+   "primary": "mean_reversion",
+   "labels": [
+    {
+     "label": "mean_reversion",
+     "confidence": "low",
+     "evidence": "dataframe['bb1-delta'].gt(dataframe['close'] * params['bbdelta-close']) & dataframe['close'].lt(dataframe['lower-bb1'].shift())",
+     "flags": [
+      "evidence_not_verbatim"
+     ]
+    },
+    {
+     "label": "trend_following",
+     "confidence": "medium",
+     "evidence": "(dataframe['coin-fiat-adx'] > params['adx']) & (dataframe['coin-fiat-aroon-up'] > params['aroon'])",
+     "flags": []
+    }
+   ],
+   "note": "BB mean-reversion gated by multi-timeframe trend"
+  },
+  "ClucCrypSlow_BTC": {
+   "source_sha256": "sha256_2d6888947f19f2ac3cf84d07cb792d6d00dc3c93a1ec7939f8590472f407f2d8",
+   "facts": {
+    "timeframe": "15m",
+    "speed": "intraday",
+    "scalper": false,
+    "can_short": false,
+    "leverage_hook": false,
+    "futures_capable": false,
+    "dca": false,
+    "ml_ai": false,
+    "hooks": []
+   },
+   "primary": "other",
+   "labels": [
+    {
+     "label": "other",
+     "confidence": "low",
+     "evidence": "timeframe='15m'; entry/exit code not visible in sheet",
+     "flags": [
+      "evidence_not_verbatim"
+     ]
+    }
+   ],
+   "note": "Incomplete sheet data"
+  },
+  "ClucCrypSlow_ETH": {
+   "source_sha256": "sha256_2d6888947f19f2ac3cf84d07cb792d6d00dc3c93a1ec7939f8590472f407f2d8",
+   "facts": {
+    "timeframe": "15m",
+    "speed": "intraday",
+    "scalper": false,
+    "can_short": false,
+    "leverage_hook": false,
+    "futures_capable": false,
+    "dca": false,
+    "ml_ai": false,
+    "hooks": []
+   },
+   "primary": "other",
+   "labels": [],
+   "note": "No entry/exit code visible"
+  },
+  "StrategyScalpingFast": {
+   "source_sha256": "sha256_9cedf6bf96ca582c6bf7d35541f96b05bed481b97bb62ab0f4eb62a6a64e05a3",
+   "facts": {
+    "timeframe": "1m",
+    "speed": "scalp",
+    "scalper": true,
+    "can_short": false,
+    "leverage_hook": false,
+    "futures_capable": false,
+    "dca": false,
+    "ml_ai": false,
+    "hooks": []
+   },
+   "primary": "mean_reversion",
+   "labels": [
+    {
+     "label": "mean_reversion",
+     "confidence": "low",
+     "evidence": "(dataframe['open'] < dataframe['ema_low']) & (dataframe['mfi'] < 30)",
+     "flags": [
+      "evidence_not_verbatim"
+     ]
+    },
+    {
+     "label": "momentum",
+     "confidence": "medium",
+     "evidence": "(qtpylib.crossed_above(dataframe['fastk'], dataframe['fastd']))",
+     "flags": []
+    }
+   ],
+   "note": ""
+  },
+  "StrategyScalpingFast2": {
+   "source_sha256": "sha256_2db927e231f91ec7a6c8b3286319b75f8ab40fe26487bd189711cc4dfe94456d",
+   "facts": {
+    "timeframe": "1m",
+    "speed": "scalp",
+    "scalper": true,
+    "can_short": false,
+    "leverage_hook": false,
+    "futures_capable": false,
+    "dca": false,
+    "ml_ai": false,
+    "hooks": []
+   },
+   "primary": "mean_reversion",
+   "labels": [
+    {
+     "label": "mean_reversion",
+     "confidence": "high",
+     "evidence": "conditions.append(dataframe['open'] < dataframe['ema_low'])",
+     "flags": []
+    },
+    {
+     "label": "momentum",
+     "confidence": "medium",
+     "evidence": "conditions.append(qtpylib.crossed_above(dataframe['fastk'], dataframe['fastd']))",
+     "flags": []
+    }
+   ],
+   "note": ""
+  },
+  "StrategyScalpingFast2_3": {
+   "source_sha256": "sha256_664c347c9f3e049c46a582fe08ead128af6602518c43db07228bce4709694234",
+   "facts": {
+    "timeframe": "1m",
+    "speed": "scalp",
+    "scalper": true,
+    "can_short": false,
+    "leverage_hook": false,
+    "futures_capable": false,
+    "dca": false,
+    "ml_ai": false,
+    "hooks": []
+   },
+   "primary": "mean_reversion",
+   "labels": [
+    {
+     "label": "mean_reversion",
+     "confidence": "high",
+     "evidence": "conditions.append(dataframe['open'] < dataframe['ema_low'])",
+     "flags": []
+    },
+    {
+     "label": "momentum",
+     "confidence": "medium",
+     "evidence": "conditions.append(qtpylib.crossed_above(dataframe['fastk'], dataframe['fastd']))",
+     "flags": []
+    }
+   ],
+   "note": ""
+  },
+  "ichimoku": {
+   "source_sha256": "sha256_e0930c0641c0c7677b971519988447339df25656772fcb0ba483f851dd29bae0",
+   "facts": {
+    "timeframe": "1m",
+    "speed": "scalp",
+    "scalper": true,
+    "can_short": false,
+    "leverage_hook": false,
+    "futures_capable": false,
+    "dca": false,
+    "ml_ai": false,
+    "hooks": [
+     "informative_pairs"
+    ]
+   },
+   "primary": "trend_following",
+   "labels": [
+    {
+     "label": "trend_following",
+     "confidence": "low",
+     "evidence": "(dataframe['cloud_red']==True) & (dataframe['tenkan'] > dataframe['kijun'])",
+     "flags": [
+      "evidence_not_verbatim"
+     ]
+    }
+   ],
+   "note": ""
+  },
+  "ichimoku_2": {
+   "source_sha256": "sha256_5aabb0b92a822c4be5ba73a5cf79fe8e78cad35c857f01a9bd515174570fb265",
+   "facts": {
+    "timeframe": "",
+    "speed": "unknown",
+    "scalper": false,
+    "can_short": false,
+    "leverage_hook": false,
+    "futures_capable": false,
+    "dca": false,
+    "ml_ai": false,
+    "hooks": []
+   },
+   "primary": "trend_following",
+   "labels": [
+    {
+     "label": "trend_following",
+     "confidence": "high",
+     "evidence": "(dataframe['open'] > dataframe['senkou_span_",
+     "flags": []
+    },
+    {
+     "label": "momentum",
+     "confidence": "medium",
+     "evidence": "(dataframe['macd'] > dataframe['macdsignal'])",
+     "flags": []
+    }
+   ],
+   "note": ""
+  },
+  "ichimoku_638": {
+   "source_sha256": "sha256_0997d87df2b21a9e57151a92c8d2167dca17dc6c7130162978b68ef0deb42623",
+   "facts": {
+    "timeframe": "15m",
+    "speed": "intraday",
+    "scalper": false,
+    "can_short": false,
+    "leverage_hook": false,
+    "futures_capable": false,
+    "dca": false,
+    "ml_ai": false,
+    "hooks": [
+     "informative_pairs"
+    ]
+   },
+   "primary": "trend_following",
+   "labels": [
+    {
+     "label": "trend_following",
+     "confidence": "low",
+     "evidence": "(dataframe['cloud_red']==True) & (dataframe['tenkan']>dataframe['kijun'])",
+     "flags": [
+      "evidence_not_verbatim"
+     ]
+    }
+   ],
+   "note": ""
+  },
+  "IchiV1_Marius_fixed_2": {
+   "source_sha256": "sha256_2877b1bdc88ec8ee3cbbfa460868b2d130597675e831b5a63b0b88c2811a65f6",
+   "facts": {
+    "timeframe": "5m",
+    "speed": "scalp",
+    "scalper": true,
+    "can_short": false,
+    "leverage_hook": false,
+    "futures_capable": false,
+    "dca": true,
+    "ml_ai": false,
+    "hooks": [
+     "adjust_trade_position",
+     "confirm_trade_entry",
+     "custom_sell",
+     "custom_stoploss",
+     "informative_pairs"
+    ]
+   },
+   "primary": "trend_following",
+   "labels": [
+    {
+     "label": "trend_following",
+     "confidence": "low",
+     "evidence": "Ichimoku cloud position analysis across multiple timeframes",
+     "flags": [
+      "evidence_not_verbatim"
+     ]
+    }
+   ],
+   "note": ""
+  },
+  "ichiV1_Marius": {
+   "source_sha256": "sha256_58117f40bb1b4a64bd067ce8caf5dfe7e6d20a0d46e43c346f0cf751128aef95",
+   "facts": {
+    "timeframe": "5m",
+    "speed": "scalp",
+    "scalper": true,
+    "can_short": false,
+    "leverage_hook": false,
+    "futures_capable": false,
+    "dca": true,
+    "ml_ai": false,
+    "hooks": [
+     "adjust_trade_position",
+     "confirm_trade_entry",
+     "custom_sell",
+     "custom_stoploss",
+     "informative_pairs"
+    ]
+   },
+   "primary": "trend_following",
+   "labels": [
+    {
+     "label": "trend_following",
+     "confidence": "high",
+     "evidence": "(dataframe['trend_close_8h'] > dataframe['trend_close_6h'])&",
+     "flags": []
+    }
+   ],
+   "note": ""
+  },
+  "ichiV1_Marius_fixed": {
+   "source_sha256": "sha256_23dfd3379451224f2afc8872a6f80ca5acbcf8adb29cd22aa6b4c47a08c155d2",
+   "facts": {
+    "timeframe": "5m",
+    "speed": "scalp",
+    "scalper": true,
+    "can_short": false,
+    "leverage_hook": false,
+    "futures_capable": false,
+    "dca": true,
+    "ml_ai": false,
+    "hooks": [
+     "adjust_trade_position",
+     "confirm_trade_entry",
+     "custom_sell",
+     "custom_stoploss",
+     "informative_pairs"
+    ]
+   },
+   "primary": "trend_following",
+   "labels": [
+    {
+     "label": "trend_following",
+     "confidence": "low",
+     "evidence": "Ichimoku cloud indicators for trend state",
+     "flags": [
+      "evidence_not_verbatim"
+     ]
+    }
+   ],
+   "note": "Ichimoku cloud-based trend detection"
+  },
+  "SmoothScalp": {
+   "source_sha256": "sha256_0364d41573bbaa271449efa84c2b8daa2160c284dd643eada173cc5e3cb01f1f",
+   "facts": {
+    "timeframe": "1m",
+    "speed": "scalp",
+    "scalper": true,
+    "can_short": false,
+    "leverage_hook": false,
+    "futures_capable": false,
+    "dca": false,
+    "ml_ai": false,
+    "hooks": []
+   },
+   "primary": "mean_reversion",
+   "labels": [
+    {
+     "label": "mean_reversion",
+     "confidence": "low",
+     "evidence": "(dataframe['open'] < dataframe['ema_low']) & (dataframe['mfi'] < 30)",
+     "flags": [
+      "evidence_not_verbatim"
+     ]
+    },
+    {
+     "label": "momentum",
+     "confidence": "medium",
+     "evidence": "(qtpylib.crossed_above(dataframe['fastk'], dataframe['fastd']))",
+     "flags": []
+    }
+   ],
+   "note": ""
+  },
+  "SmoothScalp_321": {
+   "source_sha256": "sha256_0bcfbd23ee7c5e8dd8bc442b08ddb7da7396317aa160d6b24baf7a178dc93afd",
+   "facts": {
+    "timeframe": "1m",
+    "speed": "scalp",
+    "scalper": true,
+    "can_short": false,
+    "leverage_hook": false,
+    "futures_capable": false,
+    "dca": false,
+    "ml_ai": false,
+    "hooks": []
+   },
+   "primary": "mean_reversion",
+   "labels": [
+    {
+     "label": "mean_reversion",
+     "confidence": "low",
+     "evidence": "(dataframe['open'] < dataframe['ema_low']) & (dataframe['mfi'] < 30)",
+     "flags": [
+      "evidence_not_verbatim"
+     ]
+    },
+    {
+     "label": "momentum",
+     "confidence": "medium",
+     "evidence": "(qtpylib.crossed_above(dataframe['fastk'], dataframe['fastd']))",
+     "flags": []
+    }
+   ],
+   "note": ""
+  },
+  "SmoothScalp_831": {
+   "source_sha256": "sha256_754f3e1266f624264716eff03b6a980a9ce11ae9e1a54764c5f0cbf67cea4dc7",
+   "facts": {
+    "timeframe": "1m",
+    "speed": "scalp",
+    "scalper": true,
+    "can_short": false,
+    "leverage_hook": false,
+    "futures_capable": false,
+    "dca": false,
+    "ml_ai": false,
+    "hooks": []
+   },
+   "primary": "mean_reversion",
+   "labels": [
+    {
+     "label": "mean_reversion",
+     "confidence": "low",
+     "evidence": "(dataframe['open'] < dataframe['ema_low']) & (dataframe['mfi'] < 30)",
+     "flags": [
+      "evidence_not_verbatim"
+     ]
+    },
+    {
+     "label": "momentum",
+     "confidence": "medium",
+     "evidence": "(qtpylib.crossed_above(dataframe['fastk'], dataframe['fastd']))",
+     "flags": []
+    }
+   ],
+   "note": ""
+  },
+  "BigZ04_TSL1": {
+   "source_sha256": "sha256_75bcb4a2db31b2fb5a2bfa03f5b549581e6b30b28aa2a0b9de16a3eb5e84efcd",
+   "facts": {
+    "timeframe": "5m",
+    "speed": "scalp",
+    "scalper": true,
+    "can_short": false,
+    "leverage_hook": false,
+    "futures_capable": false,
+    "dca": false,
+    "ml_ai": false,
+    "hooks": [
+     "custom_sell",
+     "custom_stoploss",
+     "informative_pairs"
+    ]
+   },
+   "primary": "mean_reversion",
+   "labels": [
+    {
+     "label": "mean_reversion",
+     "confidence": "high",
+     "evidence": "(dataframe['close'] < dataframe['bb_lowerband'] * 0.993)",
+     "flags": []
+    }
+   ],
+   "note": ""
+  },
+  "BigZ04_TSL4": {
+   "source_sha256": "sha256_51f93fa45411d5a48849fd54e0c056f09fa3e2f7e75eeb26e9e955edbb5c2eea",
+   "facts": {
+    "timeframe": "5m",
+    "speed": "scalp",
+    "scalper": true,
+    "can_short": false,
+    "leverage_hook": false,
+    "futures_capable": false,
+    "dca": false,
+    "ml_ai": false,
+    "hooks": [
+     "custom_sell",
+     "custom_stoploss",
+     "informative_pairs"
+    ]
+   },
+   "primary": "mean_reversion",
+   "labels": [
+    {
+     "label": "mean_reversion",
+     "confidence": "high",
+     "evidence": "(dataframe['close'] < dataframe['bb_lowerband'] * 0.993)",
+     "flags": []
+    }
+   ],
+   "note": ""
+  },
+  "BigZ04_TSL4_69": {
+   "source_sha256": "sha256_615bb151d3f2516d75b55cd3cf794c7c0762e62051885d2359245f483805c04f",
+   "facts": {
+    "timeframe": "5m",
+    "speed": "scalp",
+    "scalper": true,
+    "can_short": false,
+    "leverage_hook": false,
+    "futures_capable": false,
+    "dca": false,
+    "ml_ai": false,
+    "hooks": [
+     "custom_sell",
+     "custom_stoploss",
+     "informative_pairs"
+    ]
+   },
+   "primary": "mean_reversion",
+   "labels": [
+    {
+     "label": "mean_reversion",
+     "confidence": "high",
+     "evidence": "(dataframe['close'] < dataframe['bb_lowerband'] * 0.993)",
+     "flags": []
+    },
+    {
+     "label": "momentum",
+     "confidence": "medium",
+     "evidence": "(dataframe['hist'] > 0) &\n                (dataframe['hist'].shift() > 0)",
+     "flags": []
+    }
+   ],
+   "note": ""
+  },
+  "BB_RTR": {
+   "source_sha256": "sha256_cb984e5d3d0777596de5a88223faa966412a49e47f312c38b136092e41a4f31d",
+   "facts": {
+    "timeframe": "5m",
+    "speed": "scalp",
+    "scalper": true,
+    "can_short": false,
+    "leverage_hook": false,
+    "futures_capable": false,
+    "dca": false,
+    "ml_ai": false,
+    "hooks": [
+     "custom_sell",
+     "custom_stoploss",
+     "informative_pairs"
+    ]
+   },
+   "primary": "mean_reversion",
+   "labels": [
+    {
+     "label": "mean_reversion",
+     "confidence": "medium",
+     "evidence": "(dataframe['bb_delta'] > self.buy_bb_delta.value)",
+     "flags": []
+    },
+    {
+     "label": "momentum",
+     "confidence": "medium",
+     "evidence": "((dataframe['EWO'] > -5.585))",
+     "flags": []
+    }
+   ],
+   "note": ""
+  },
+  "BB_RTR_dca_0": {
+   "source_sha256": "sha256_f72ad44d405fcdfd0d566ebec0922320381589c3830c3d03ab22a3987be2822e",
+   "facts": {
+    "timeframe": "5m",
+    "speed": "scalp",
+    "scalper": true,
+    "can_short": false,
+    "leverage_hook": false,
+    "futures_capable": false,
+    "dca": false,
+    "ml_ai": false,
+    "hooks": [
+     "custom_sell",
+     "custom_stoploss",
+     "informative_pairs"
+    ]
+   },
+   "primary": "momentum",
+   "labels": [
+    {
+     "label": "momentum",
+     "confidence": "high",
+     "evidence": "min_EWO_check = ( (dataframe['EWO'] > -5.585) )",
+     "flags": []
+    },
+    {
+     "label": "mean_reversion",
+     "confidence": "medium",
+     "evidence": "pump_protection_strict = (\n                (dataframe['close'].rolling(48).max()",
+     "flags": []
+    }
+   ],
+   "note": ""
+  },
+  "BB_RTR_dca_157": {
+   "source_sha256": "sha256_8155ea7a4fea1d2983b0593e9058bc789e99a00000d7a72ddc11d617382f93eb",
+   "facts": {
+    "timeframe": "5m",
+    "speed": "scalp",
+    "scalper": true,
+    "can_short": false,
+    "leverage_hook": false,
+    "futures_capable": false,
+    "dca": false,
+    "ml_ai": false,
+    "hooks": [
+     "custom_sell",
+     "custom_stoploss",
+     "informative_pairs"
+    ]
+   },
+   "primary": "momentum",
+   "labels": [
+    {
+     "label": "momentum",
+     "confidence": "high",
+     "evidence": "min_EWO_check = ( (dataframe['EWO'] > -5.585) )",
+     "flags": []
+    },
+    {
+     "label": "mean_reversion",
+     "confidence": "medium",
+     "evidence": "pump_protection_strict = (\n                (dataframe['close'].rolling(48).max()",
+     "flags": []
+    }
+   ],
+   "note": ""
+  },
+  "MabStra": {
+   "source_sha256": "sha256_63fcdd4567ba1cd9f4312e8804316ee150df41e393e21dce168d3440b5e162c9",
+   "facts": {
+    "timeframe": "4h",
+    "speed": "swing",
+    "scalper": false,
+    "can_short": false,
+    "leverage_hook": false,
+    "futures_capable": false,
+    "dca": false,
+    "ml_ai": false,
+    "hooks": []
+   },
+   "primary": "trend_following",
+   "labels": [
+    {
+     "label": "trend_following",
+     "confidence": "high",
+     "evidence": "(dataframe['buy-mojoMA'].div(dataframe['buy-fastMA'])\n                    > self.buy_div_min.value)",
+     "flags": []
+    }
+   ],
+   "note": ""
+  },
+  "mabStra_309": {
+   "source_sha256": "sha256_62ee7b4bcf7d4d884d1792c802aa6f2e39d124218c590fcc07a8fa2d4c5ec768",
+   "facts": {
+    "timeframe": "4h",
+    "speed": "swing",
+    "scalper": false,
+    "can_short": false,
+    "leverage_hook": false,
+    "futures_capable": false,
+    "dca": false,
+    "ml_ai": false,
+    "hooks": []
+   },
+   "primary": "trend_following",
+   "labels": [
+    {
+     "label": "trend_following",
+     "confidence": "high",
+     "evidence": "(dataframe['buy-mojoMA'].div(dataframe['buy-fastMA'])\n                    > self.buy_div_min.value)",
+     "flags": []
+    }
+   ],
+   "note": ""
+  },
+  "mabStra_979": {
+   "source_sha256": "sha256_dc7e23b204e852f43ca2aed0b23fd3cf37fae393c29190cb4ef639baff660ae6",
+   "facts": {
+    "timeframe": "1h",
+    "speed": "intraday",
+    "scalper": false,
+    "can_short": false,
+    "leverage_hook": false,
+    "futures_capable": false,
+    "dca": false,
+    "ml_ai": false,
+    "hooks": []
+   },
+   "primary": "trend_following",
+   "labels": [
+    {
+     "label": "trend_following",
+     "confidence": "high",
+     "evidence": "(dataframe['buy-fastMA'].div(dataframe['buy-slowMA'])\n                    > self.buy_params['buy-div-min'])",
+     "flags": []
+    }
+   ],
+   "note": ""
+  },
+  "Zeus": {
+   "source_sha256": "sha256_23662b687769f48d45f4a8702651b5322f3e34bc796f965d3e71952cb1dee042",
+   "facts": {
+    "timeframe": "4h",
+    "speed": "swing",
+    "scalper": false,
+    "can_short": false,
+    "leverage_hook": false,
+    "futures_capable": false,
+    "dca": false,
+    "ml_ai": false,
+    "hooks": []
+   },
+   "primary": "trend_following",
+   "labels": [
+    {
+     "label": "trend_following",
+     "confidence": "high",
+     "evidence": "IND = 'trend_ichimoku_base'\n        REAL = self.buy_real.value",
+     "flags": []
+    }
+   ],
+   "note": ""
+  },
+  "Zeus_257": {
+   "source_sha256": "sha256_8b18493b72674f9b0ff27f05a2fc445775047b02a858366d2795b78468eb04c7",
+   "facts": {
+    "timeframe": "4h",
+    "speed": "swing",
+    "scalper": false,
+    "can_short": false,
+    "leverage_hook": false,
+    "futures_capable": false,
+    "dca": false,
+    "ml_ai": false,
+    "hooks": []
+   },
+   "primary": "trend_following",
+   "labels": [
+    {
+     "label": "trend_following",
+     "confidence": "high",
+     "evidence": "IND = 'trend_ichimoku_base'\n        REAL = self.buy_real.value",
+     "flags": []
+    }
+   ],
+   "note": ""
+  },
+  "Zeus_862": {
+   "source_sha256": "sha256_894b153e36e8112da3efab9940b0d7a9fecca7147fd5d5c61a3fcb845e88eb71",
+   "facts": {
+    "timeframe": "4h",
+    "speed": "swing",
+    "scalper": false,
+    "can_short": false,
+    "leverage_hook": false,
+    "futures_capable": false,
+    "dca": false,
+    "ml_ai": false,
+    "hooks": []
+   },
+   "primary": "trend_following",
+   "labels": [
+    {
+     "label": "trend_following",
+     "confidence": "high",
+     "evidence": "IND = 'trend_ichimoku_base'\n        REAL = self.buy_real.value",
+     "flags": []
+    }
+   ],
+   "note": ""
+  },
+  "VWAPStrategy": {
+   "source_sha256": "sha256_4aa9eda34672cbd2e543fcd42e187c9332c9f2bcf17d6c35042e3dff3c7fd65b",
+   "facts": {
+    "timeframe": "5m",
+    "speed": "scalp",
+    "scalper": true,
+    "can_short": false,
+    "leverage_hook": false,
+    "futures_capable": false,
+    "dca": false,
+    "ml_ai": false,
+    "hooks": [
+     "custom_stoploss"
+    ]
+   },
+   "primary": "volume_flow",
+   "labels": [
+    {
+     "label": "volume_flow",
+     "confidence": "high",
+     "evidence": "(dataframe['VWAP_signal'] == 1) &\n            (dataframe['close'] <= dataframe['BBL_14_2.0'])",
+     "flags": []
+    },
+    {
+     "label": "mean_reversion",
+     "confidence": "medium",
+     "evidence": "(dataframe['close'] <= dataframe['BBL_14_2.0']) &\n            (dataframe['rsi'] < 45)",
+     "flags": []
+    }
+   ],
+   "note": ""
+  },
+  "VWAPStrategy_11": {
+   "source_sha256": "sha256_0f49e599a4538b274c50d0535601b3ab8f36dd613b6b36b1d307d279639492b8",
+   "facts": {
+    "timeframe": "5m",
+    "speed": "scalp",
+    "scalper": true,
+    "can_short": false,
+    "leverage_hook": false,
+    "futures_capable": false,
+    "dca": false,
+    "ml_ai": false,
+    "hooks": [
+     "custom_stoploss"
+    ]
+   },
+   "primary": "volume_flow",
+   "labels": [
+    {
+     "label": "volume_flow",
+     "confidence": "high",
+     "evidence": "(dataframe['VWAP_signal'] == 2) & # Buy when VWAP_signal",
+     "flags": []
+    },
+    {
+     "label": "mean_reversion",
+     "confidence": "medium",
+     "evidence": "(dataframe['close'] <= dataframe['lower_band']) &",
+     "flags": []
+    }
+   ],
+   "note": ""
+  },
+  "VWAPStrategy_2": {
+   "source_sha256": "sha256_9e72979e9118a4eb764368c7cc267938a31590814d516b7db63152ec9d0d4d58",
+   "facts": {
+    "timeframe": "5m",
+    "speed": "scalp",
+    "scalper": true,
+    "can_short": false,
+    "leverage_hook": false,
+    "futures_capable": false,
+    "dca": false,
+    "ml_ai": false,
+    "hooks": [
+     "custom_stoploss"
+    ]
+   },
+   "primary": "volume_flow",
+   "labels": [
+    {
+     "label": "volume_flow",
+     "confidence": "high",
+     "evidence": "(dataframe['VWAP_signal'] == 2) & # Buy when VWAP_signal",
+     "flags": []
+    },
+    {
+     "label": "mean_reversion",
+     "confidence": "medium",
+     "evidence": "(dataframe['close'] <= dataframe['lower_band']) &",
+     "flags": []
+    }
+   ],
+   "note": ""
+  },
+  "BinHV27": {
+   "source_sha256": "sha256_62b8250f065c4767b639e129bbb7e778db8715558db6b0a8bb5570bf4a00ae25",
+   "facts": {
+    "timeframe": "5m",
+    "speed": "scalp",
+    "scalper": true,
+    "can_short": false,
+    "leverage_hook": false,
+    "futures_capable": false,
+    "dca": false,
+    "ml_ai": false,
+    "hooks": []
+   },
+   "primary": "trend_following",
+   "labels": [
+    {
+     "label": "trend_following",
+     "confidence": "high",
+     "evidence": "dataframe['adx'].gt(25) &\n                dataframe['bigdown'] &",
+     "flags": []
+    },
+    {
+     "label": "momentum",
+     "confidence": "medium",
+     "evidence": "dataframe['rsi'].ge(dataframe['rsi'].shift()) &",
+     "flags": []
+    }
+   ],
+   "note": ""
+  },
+  "BinHV27_5": {
+   "source_sha256": "sha256_e6fee5bf11c612d1ba86e669c8f91d6bf96734a37ca6fae2f6ba2a243d584b7f",
+   "facts": {
+    "timeframe": "5m",
+    "speed": "scalp",
+    "scalper": true,
+    "can_short": false,
+    "leverage_hook": false,
+    "futures_capable": false,
+    "dca": false,
+    "ml_ai": false,
+    "hooks": []
+   },
+   "primary": "trend_following",
+   "labels": [
+    {
+     "label": "trend_following",
+     "confidence": "high",
+     "evidence": "dataframe['adx'].gt(25) &\n                dataframe['bigdown'] &",
+     "flags": []
+    },
+    {
+     "label": "momentum",
+     "confidence": "medium",
+     "evidence": "dataframe['rsi'].ge(dataframe['rsi'].shift()) &",
+     "flags": []
+    }
+   ],
+   "note": ""
+  },
+  "BinHV45_613": {
+   "source_sha256": "sha256_d91954bda5e967aab2af209f7c22b40212a3e387fd7d521451dd31084a14dccc",
+   "facts": {
+    "timeframe": "1m",
+    "speed": "scalp",
+    "scalper": true,
+    "can_short": false,
+    "leverage_hook": false,
+    "futures_capable": false,
+    "dca": false,
+    "ml_ai": false,
+    "hooks": []
+   },
+   "primary": "mean_reversion",
+   "labels": [
+    {
+     "label": "mean_reversion",
+     "confidence": "high",
+     "evidence": "dataframe['close'].lt(dataframe['lower'].shift())",
+     "flags": []
+    }
+   ],
+   "note": ""
+  },
+  "MACDStrategy": {
+   "source_sha256": "sha256_354b4a91525320c0ae8f6557df4f22341785e492870b9b107187444140a79f08",
+   "facts": {
+    "timeframe": "5m",
+    "speed": "scalp",
+    "scalper": true,
+    "can_short": false,
+    "leverage_hook": false,
+    "futures_capable": false,
+    "dca": false,
+    "ml_ai": false,
+    "hooks": []
+   },
+   "primary": "momentum",
+   "labels": [
+    {
+     "label": "momentum",
+     "confidence": "high",
+     "evidence": "(dataframe['macd'] > dataframe['macdsignal'])",
+     "flags": []
+    },
+    {
+     "label": "mean_reversion",
+     "confidence": "medium",
+     "evidence": "(dataframe['cci'] <= -50.0)",
+     "flags": []
+    }
+   ],
+   "note": ""
+  },
+  "MACDStrategy_127": {
+   "source_sha256": "sha256_865b895c074400c52ae7afc69937bb650e218d165e017b07fdd49ccaacddadb6",
+   "facts": {
+    "timeframe": "5m",
+    "speed": "scalp",
+    "scalper": true,
+    "can_short": false,
+    "leverage_hook": false,
+    "futures_capable": false,
+    "dca": false,
+    "ml_ai": false,
+    "hooks": []
+   },
+   "primary": "momentum",
+   "labels": [
+    {
+     "label": "momentum",
+     "confidence": "high",
+     "evidence": "(dataframe['macd'] > dataframe['macdsignal'])",
+     "flags": []
+    },
+    {
+     "label": "mean_reversion",
+     "confidence": "medium",
+     "evidence": "(dataframe['cci'] <= self.buy_cci.value)",
+     "flags": []
+    }
+   ],
+   "note": ""
+  },
+  "MACDStrategyv01": {
+   "source_sha256": "sha256_3e2a1ffa91ac24a86bd0d3fe10bab8ce995cb9be670eb3d8bc81c9dd92737aac",
+   "facts": {
+    "timeframe": "15m",
+    "speed": "intraday",
+    "scalper": false,
+    "can_short": false,
+    "leverage_hook": false,
+    "futures_capable": false,
+    "dca": false,
+    "ml_ai": false,
+    "hooks": []
+   },
+   "primary": "momentum",
+   "labels": [
+    {
+     "label": "momentum",
+     "confidence": "high",
+     "evidence": "(dataframe['macd'] > dataframe['macdsignal'])",
+     "flags": []
+    },
+    {
+     "label": "mean_reversion",
+     "confidence": "medium",
+     "evidence": "(dataframe['cci'] <= -186)",
+     "flags": []
+    }
+   ],
+   "note": ""
+  },
+  "BBRSI": {
+   "source_sha256": "sha256_8a5058ea5a2ef3b66265c01dd977a580222545edc1fbf63d9ed7fe12591d1f73",
+   "facts": {
+    "timeframe": "1h",
+    "speed": "intraday",
+    "scalper": false,
+    "can_short": false,
+    "leverage_hook": false,
+    "futures_capable": false,
+    "dca": false,
+    "ml_ai": false,
+    "hooks": []
+   },
+   "primary": "mean_reversion",
+   "labels": [
+    {
+     "label": "mean_reversion",
+     "confidence": "high",
+     "evidence": "(dataframe['close'] < dataframe['bb_lowerband'])",
+     "flags": []
+    }
+   ],
+   "note": ""
+  },
+  "bbrsi_286": {
+   "source_sha256": "sha256_d39432b549ab4b4454b8c99a52cce804196e6ee5ba73ae7a173d13b064a0955a",
+   "facts": {
+    "timeframe": "1h",
+    "speed": "intraday",
+    "scalper": false,
+    "can_short": false,
+    "leverage_hook": false,
+    "futures_capable": false,
+    "dca": false,
+    "ml_ai": false,
+    "hooks": [
+     "informative_pairs"
+    ]
+   },
+   "primary": "mean_reversion",
+   "labels": [
+    {
+     "label": "mean_reversion",
+     "confidence": "high",
+     "evidence": "(dataframe[\"close\"] < dataframe['bb_lowerband'])",
+     "flags": []
+    }
+   ],
+   "note": ""
+  },
+  "bbrsi_v3": {
+   "source_sha256": "sha256_3c03b2e5e3fff9dee5c0e7810622f4c7ca19ba807c8fc925b0a4bbe1a9d5152b",
+   "facts": {
+    "timeframe": "30m",
+    "speed": "intraday",
+    "scalper": false,
+    "can_short": false,
+    "leverage_hook": false,
+    "futures_capable": false,
+    "dca": false,
+    "ml_ai": false,
+    "hooks": [
+     "informative_pairs"
+    ]
+   },
+   "primary": "mean_reversion",
+   "labels": [
+    {
+     "label": "mean_reversion",
+     "confidence": "high",
+     "evidence": "(dataframe['close'] < dataframe['bb_lowerband'])",
+     "flags": []
+    }
+   ],
+   "note": ""
+  },
+  "EI3v2_tag_cofi_green": {
+   "source_sha256": "sha256_54ee97a63c383c599a330d8ebe34bb455d9ac5a81502a1f573deb0d5bb21dc53",
+   "facts": {
+    "timeframe": "5m",
+    "speed": "scalp",
+    "scalper": true,
+    "can_short": false,
+    "leverage_hook": false,
+    "futures_capable": false,
+    "dca": false,
+    "ml_ai": false,
+    "hooks": [
+     "custom_sell",
+     "informative_pairs"
+    ]
+   },
+   "primary": "momentum",
+   "labels": [
+    {
+     "label": "momentum",
+     "confidence": "high",
+     "evidence": "(dataframe['EWO'] > self.ewo_high.value)",
+     "flags": []
+    },
+    {
+     "label": "mean_reversion",
+     "confidence": "medium",
+     "evidence": "(dataframe['rsi_fast'] <35)",
+     "flags": []
+    }
+   ],
+   "note": "EWO momentum with dip-buy and lambo2 conditions"
+  },
+  "EI3v2_tag_cofi_green_3474790687_mod7_dema": {
+   "source_sha256": "sha256_93d1d86205290d6a4d00e4f0d37e475727b54ff0ed2197418d7f03d52bd8fe6b",
+   "facts": {
+    "timeframe": "5m",
+    "speed": "scalp",
+    "scalper": true,
+    "can_short": false,
+    "leverage_hook": false,
+    "futures_capable": false,
+    "dca": false,
+    "ml_ai": false,
+    "hooks": [
+     "custom_sell",
+     "informative_pairs"
+    ]
+   },
+   "primary": "momentum",
+   "labels": [
+    {
+     "label": "momentum",
+     "confidence": "high",
+     "evidence": "(dataframe['EWO'] > self.ewo_high.value)",
+     "flags": []
+    },
+    {
+     "label": "mean_reversion",
+     "confidence": "medium",
+     "evidence": "(dataframe['rsi_fast'] < 35)",
+     "flags": []
+    }
+   ],
+   "note": "EWO momentum with optional lambo2 and dip filters"
+  },
+  "EI3v2_tag_cofi_green_rknfish": {
+   "source_sha256": "sha256_ba7e238b2977e07fb87f31e15baec32198b5af2d2ceb0385c3e1302cf8f9b125",
+   "facts": {
+    "timeframe": "5m",
+    "speed": "scalp",
+    "scalper": true,
+    "can_short": false,
+    "leverage_hook": false,
+    "futures_capable": false,
+    "dca": false,
+    "ml_ai": false,
+    "hooks": [
+     "custom_exit",
+     "informative_pairs"
+    ]
+   },
+   "primary": "momentum",
+   "labels": [
+    {
+     "label": "momentum",
+     "confidence": "high",
+     "evidence": "(dataframe[\"EWO\"] > self.ewo_high.value)",
+     "flags": []
+    },
+    {
+     "label": "mean_reversion",
+     "confidence": "medium",
+     "evidence": "(dataframe[\"rsi_fast\"] < 35)",
+     "flags": []
+    }
+   ],
+   "note": "EWO momentum with lambo2 and dip-buy conditions"
+  },
+  "VolBreak_RSI_Adaptive": {
+   "source_sha256": "sha256_7c18c62c2166c0cc5acb8e98a98c37f9cc8648f588eb8b1daaee44d1dc731a1e",
+   "facts": {
+    "timeframe": "1h",
+    "speed": "intraday",
+    "scalper": false,
+    "can_short": false,
+    "leverage_hook": false,
+    "futures_capable": false,
+    "dca": false,
+    "ml_ai": false,
+    "hooks": []
+   },
+   "primary": "breakout",
+   "labels": [
+    {
+     "label": "breakout",
+     "confidence": "high",
+     "evidence": "(dataframe[\"close\"] > dataframe[\"breakout_upper\"])",
+     "flags": []
+    }
+   ],
+   "note": ""
+  },
+  "percentileRSI": {
+   "source_sha256": "sha256_8e4c3621a9ce661e3ca2ffdddd039a92115514adad7b11cba459f71b5ac4c40f",
+   "facts": {
+    "timeframe": "15m",
+    "speed": "intraday",
+    "scalper": false,
+    "can_short": false,
+    "leverage_hook": false,
+    "futures_capable": false,
+    "dca": false,
+    "ml_ai": false,
+    "hooks": [
+     "custom_stoploss"
+    ]
+   },
+   "primary": "mean_reversion",
+   "labels": [
+    {
+     "label": "mean_reversion",
+     "confidence": "high",
+     "evidence": "(dataframe['close'] <= dataframe['lower_band'])",
+     "flags": []
+    },
+    {
+     "label": "volume_flow",
+     "confidence": "medium",
+     "evidence": "dataframe['VWAP_signal'] == 2",
+     "flags": []
+    }
+   ],
+   "note": ""
+  },
+  "FastSupertrend_2": {
+   "source_sha256": "sha256_26472e1d10387db57513aa323bc4a63ca24432fb47f52915f164a10736e15ba5",
+   "facts": {
+    "timeframe": "1h",
+    "speed": "intraday",
+    "scalper": false,
+    "can_short": false,
+    "leverage_hook": false,
+    "futures_capable": false,
+    "dca": false,
+    "ml_ai": false,
+    "hooks": []
+   },
+   "primary": "trend_following",
+   "labels": [
+    {
+     "label": "trend_following",
+     "confidence": "low",
+     "evidence": "(dataframe[f'supertrend_1_buy_{...}'] == 'up')",
+     "flags": [
+      "evidence_not_verbatim"
+     ]
+    }
+   ],
+   "note": ""
+  },
+  "NostalgiaForInfinityX8": {
+   "source_sha256": "sha256_14762b0c6bddd77d61bb035c4ec351de0db49b21adba1b2a486d35d715032e85",
+   "facts": {
+    "timeframe": "5m",
+    "speed": "scalp",
+    "scalper": true,
+    "can_short": false,
+    "leverage_hook": true,
+    "futures_capable": true,
+    "dca": true,
+    "ml_ai": false,
+    "hooks": [
+     "adjust_trade_position",
+     "confirm_trade_entry",
+     "custom_exit",
+     "informative_pairs",
+     "leverage"
+    ]
+   },
+   "primary": "momentum",
+   "labels": [
+    {
+     "label": "momentum",
+     "confidence": "low",
+     "evidence": "rsi_3_1h, ROC_9_1d, STOCHRSIk_14_14_3_3",
+     "flags": [
+      "evidence_not_verbatim"
+     ]
+    }
+   ],
+   "note": "Complex multi-timeframe multi-indicator strategy"
+  },
+  "ZaratustraV15": {
+   "source_sha256": "sha256_be41551bf6a0ac677fa679419dfdc32ecae0ec3864910eeafe9c6ab56733760b",
+   "facts": {
+    "timeframe": "5m",
+    "speed": "scalp",
+    "scalper": true,
+    "can_short": true,
+    "leverage_hook": true,
+    "futures_capable": true,
+    "dca": false,
+    "ml_ai": false,
+    "hooks": [
+     "leverage"
+    ]
+   },
+   "primary": "trend_following",
+   "labels": [
+    {
+     "label": "trend_following",
+     "confidence": "medium",
+     "evidence": "(dataframe['adx'] > dataframe['mdi'])",
+     "flags": []
+    },
+    {
+     "label": "volume_flow",
+     "confidence": "medium",
+     "evidence": "(dataframe['obv'] > dataframe['obv'].shift(1))",
+     "flags": []
+    },
+    {
+     "label": "breakout",
+     "confidence": "medium",
+     "evidence": "qtpylib.crossed_above(dataframe['close'], dataframe['bb_upperband'])",
+     "flags": []
+    }
+   ],
+   "note": ""
+  },
+  "CryptoFrogHO3A3": {
+   "source_sha256": "sha256_2a4d958d77b85caa3c2b599d872f34347764c5ea9051ecc8b7e92940edb57a62",
+   "facts": {
+    "timeframe": "5m",
+    "speed": "scalp",
+    "scalper": true,
+    "can_short": false,
+    "leverage_hook": false,
+    "futures_capable": false,
+    "dca": false,
+    "ml_ai": false,
+    "hooks": [
+     "custom_stoploss",
+     "informative_pairs"
+    ]
+   },
+   "primary": "volatility",
+   "labels": [
+    {
+     "label": "volatility",
+     "confidence": "medium",
+     "evidence": "(dataframe['bbw_expansion'] == 1)",
+     "flags": []
+    },
+    {
+     "label": "mean_reversion",
+     "confidence": "medium",
+     "evidence": "(dataframe['mfi'] < 20)",
+     "flags": []
+    },
+    {
+     "label": "breakout",
+     "confidence": "low",
+     "evidence": "(dataframe['close'] < dataframe['sar'])",
+     "flags": []
+    }
+   ],
+   "note": ""
+  },
+  "Squeeze002": {
+   "source_sha256": "sha256_1d5af582dc985bba10fcf0c73675f533980cf3087f703bef9a949c232af5d5d2",
+   "facts": {
+    "timeframe": "Config.timeframe",
+    "speed": "position",
+    "scalper": false,
+    "can_short": false,
+    "leverage_hook": false,
+    "futures_capable": false,
+    "dca": false,
+    "ml_ai": false,
+    "hooks": [
+     "informative_pairs"
+    ]
+   },
+   "primary": "volatility",
+   "labels": [
+    {
+     "label": "volatility",
+     "confidence": "high",
+     "evidence": "qtpylib.crossed_above(dataframe['sqz_val'], 0)",
+     "flags": []
+    },
+    {
+     "label": "momentum",
+     "confidence": "medium",
+     "evidence": "dataframe['macd'] > dataframe['macdsignal']",
+     "flags": []
+    }
+   ],
+   "note": ""
+  },
+  "HPStrategyV6": {
+   "source_sha256": "sha256_c847de21df000a5d3438e6112c4b505e99508a1caea5d3a2e4b7cd92035c0f7e",
+   "facts": {
+    "timeframe": "15m",
+    "speed": "intraday",
+    "scalper": false,
+    "can_short": false,
+    "leverage_hook": true,
+    "futures_capable": true,
+    "dca": true,
+    "ml_ai": false,
+    "hooks": [
+     "adjust_trade_position",
+     "confirm_trade_entry",
+     "custom_stoploss",
+     "leverage"
+    ]
+   },
+   "primary": "mean_reversion",
+   "labels": [
+    {
+     "label": "mean_reversion",
+     "confidence": "high",
+     "evidence": "(dataframe['cci'] < -100)",
+     "flags": []
+    }
+   ],
+   "note": ""
+  },
+  "roger17": {
+   "source_sha256": "sha256_67963d2da509fb942b11dcb47ed2b28c093b66fe14933ee6b6c2191d6d5d598a",
+   "facts": {
+    "timeframe": "15m",
+    "speed": "intraday",
+    "scalper": false,
+    "can_short": false,
+    "leverage_hook": false,
+    "futures_capable": false,
+    "dca": false,
+    "ml_ai": false,
+    "hooks": [
+     "custom_stoploss"
+    ]
+   },
+   "primary": "trend_following",
+   "labels": [
+    {
+     "label": "trend_following",
+     "confidence": "high",
+     "evidence": "(dataframe['sma20'] > dataframe['sma50'])",
+     "flags": []
+    },
+    {
+     "label": "mean_reversion",
+     "confidence": "medium",
+     "evidence": "(dataframe['bb_percent'] < 0.2)",
+     "flags": []
+    },
+    {
+     "label": "pattern",
+     "confidence": "low",
+     "evidence": "candlestick pattern recognition (CDL3INSIDE, CDLHAMMER, etc.)",
+     "flags": [
+      "evidence_not_verbatim"
+     ]
+    }
+   ],
+   "note": ""
+  },
+  "NASOSRv6_private_Reinuvader_20211121": {
+   "source_sha256": "sha256_060fcb0aca71c8e7cc6d39427b978187058d65deedeb47e5ff8e57d9b73fc1f8",
+   "facts": {
+    "timeframe": "5m",
+    "speed": "scalp",
+    "scalper": true,
+    "can_short": false,
+    "leverage_hook": false,
+    "futures_capable": false,
+    "dca": false,
+    "ml_ai": false,
+    "hooks": [
+     "custom_sell",
+     "custom_stoploss",
+     "informative_pairs"
+    ]
+   },
+   "primary": "momentum",
+   "labels": [
+    {
+     "label": "momentum",
+     "confidence": "high",
+     "evidence": "(dataframe['EWO'] > self.ewo_high.value)",
+     "flags": []
+    }
+   ],
+   "note": ""
+  },
+  "DonchianChannel_2": {
+   "source_sha256": "sha256_a6436c96f041732c1b084d55459879857a4a5b4e9d4aac05c47907b81c1c0d86",
+   "facts": {
+    "timeframe": "Config.timeframe",
+    "speed": "position",
+    "scalper": false,
+    "can_short": false,
+    "leverage_hook": false,
+    "futures_capable": false,
+    "dca": false,
+    "ml_ai": false,
+    "hooks": [
+     "informative_pairs"
+    ]
+   },
+   "primary": "breakout",
+   "labels": [
+    {
+     "label": "breakout",
+     "confidence": "low",
+     "evidence": "(dataframe['close'] >= dataframe[level]) where level='dc_upper'",
+     "flags": [
+      "evidence_not_verbatim"
+     ]
+    },
+    {
+     "label": "trend_following",
+     "confidence": "medium",
+     "evidence": "dataframe['adx'] >= self.buy_adx.value",
+     "flags": []
+    }
+   ],
+   "note": ""
+  },
+  "TheForceOptimized": {
+   "source_sha256": "sha256_7f8d4929f94ae6dc66a0fd2b91d2fa2783f697e2eb34e61f92cf149d05150e14",
+   "facts": {
+    "timeframe": "15m",
+    "speed": "intraday",
+    "scalper": false,
+    "can_short": false,
+    "leverage_hook": false,
+    "futures_capable": false,
+    "dca": false,
+    "ml_ai": false,
+    "hooks": []
+   },
+   "primary": "momentum",
+   "labels": [
+    {
+     "label": "momentum",
+     "confidence": "high",
+     "evidence": "(dataframe['macd'] > dataframe['macdsignal'])",
+     "flags": []
+    }
+   ],
+   "note": ""
+  },
+  "newstrategy5_1": {
+   "source_sha256": "sha256_9246ee4522d4abf80bf587f1f745317b6f6418d1668db828456ad1939583de27",
+   "facts": {
+    "timeframe": "5m",
+    "speed": "scalp",
+    "scalper": true,
+    "can_short": false,
+    "leverage_hook": false,
+    "futures_capable": false,
+    "dca": true,
+    "ml_ai": false,
+    "hooks": [
+     "adjust_trade_position",
+     "custom_sell",
+     "custom_stoploss",
+     "informative_pairs"
+    ]
+   },
+   "primary": "mean_reversion",
+   "labels": [
+    {
+     "label": "mean_reversion",
+     "confidence": "high",
+     "evidence": "(dataframe['close'] < dataframe['bb_lowerband3'] * self.buy_bb_factor.value)",
+     "flags": []
+    },
+    {
+     "label": "momentum",
+     "confidence": "medium",
+     "evidence": "dataframe['srsi_fk'] < self.buy_srsi_fk.value",
+     "flags": []
+    }
+   ],
+   "note": ""
+  },
+  "newstrategy53_24": {
+   "source_sha256": "sha256_b42abe8fd496557bda206080ecb22b9695ed2661116bc71ca35861b5c3b97dee",
+   "facts": {
+    "timeframe": "5m",
+    "speed": "scalp",
+    "scalper": true,
+    "can_short": false,
+    "leverage_hook": false,
+    "futures_capable": false,
+    "dca": true,
+    "ml_ai": false,
+    "hooks": [
+     "custom_sell",
+     "informative_pairs"
+    ]
+   },
+   "primary": "mean_reversion",
+   "labels": [
+    {
+     "label": "mean_reversion",
+     "confidence": "high",
+     "evidence": "(dataframe['close'] < dataframe['bb_lowerband3'] * self.buy_bb_factor.value)",
+     "flags": []
+    },
+    {
+     "label": "momentum",
+     "confidence": "medium",
+     "evidence": "dataframe['srsi_fk'] < self.buy_srsi_fk.value",
+     "flags": []
+    }
+   ],
+   "note": ""
+  },
+  "CombinedBinHAndClucV6H": {
+   "source_sha256": "sha256_49f29842e1a1cd7beceeb3a3c5ae0229cf73d7b4432b9a687d21e30fbfb79fb8",
+   "facts": {
+    "timeframe": "5m",
+    "speed": "scalp",
+    "scalper": true,
+    "can_short": false,
+    "leverage_hook": false,
+    "futures_capable": false,
+    "dca": false,
+    "ml_ai": false,
+    "hooks": [
+     "custom_stoploss",
+     "informative_pairs"
+    ]
+   },
+   "primary": "mean_reversion",
+   "labels": [
+    {
+     "label": "mean_reversion",
+     "confidence": "low",
+     "evidence": "close < dataframe['lower'].shift()",
+     "flags": [
+      "evidence_not_verbatim"
+     ]
+    },
+    {
+     "label": "trend_following",
+     "confidence": "low",
+     "evidence": "ema_50 > dataframe['ema_200']",
+     "flags": [
+      "evidence_not_verbatim"
+     ]
+    }
+   ],
+   "note": ""
+  },
+  "KeltnerBounce_Shorts": {
+   "source_sha256": "sha256_8a9f4a0c14f7ab4e0959c38e2e29e388f0ad275facdbafa9db25e77b3e2e3afd",
+   "facts": {
+    "timeframe": "Config.timeframe",
+    "speed": "position",
+    "scalper": false,
+    "can_short": true,
+    "leverage_hook": true,
+    "futures_capable": true,
+    "dca": false,
+    "ml_ai": false,
+    "hooks": [
+     "informative_pairs",
+     "leverage"
+    ]
+   },
+   "primary": "mean_reversion",
+   "labels": [
+    {
+     "label": "mean_reversion",
+     "confidence": "low",
+     "evidence": "close > dataframe['kc_middleband'] after close.shift(1) >= kc_upperband",
+     "flags": [
+      "evidence_not_verbatim"
+     ]
+    },
+    {
+     "label": "momentum",
+     "confidence": "low",
+     "evidence": "fisher_rsi >= (-1 * self.buy_fisher.value)",
+     "flags": [
+      "evidence_not_verbatim"
+     ]
+    }
+   ],
+   "note": ""
+  },
+  "SqueezeMomentum_2": {
+   "source_sha256": "sha256_d4ae61961f15871030816e2e9becbeb112ee154d1b4df66dfc064c6ed5c0cf6a",
+   "facts": {
+    "timeframe": "Config.timeframe",
+    "speed": "position",
+    "scalper": false,
+    "can_short": false,
+    "leverage_hook": false,
+    "futures_capable": false,
+    "dca": false,
+    "ml_ai": false,
+    "hooks": [
+     "informative_pairs"
+    ]
+   },
+   "primary": "volatility",
+   "labels": [
+    {
+     "label": "volatility",
+     "confidence": "low",
+     "evidence": "sqz_val < -self.buy_sqz_band.value",
+     "flags": [
+      "evidence_not_verbatim"
+     ]
+    },
+    {
+     "label": "momentum",
+     "confidence": "high",
+     "evidence": "qtpylib.crossed_above(dataframe['sqz_accel'], 0)",
+     "flags": []
+    }
+   ],
+   "note": ""
+  },
+  "AdvancedRiskFilterStrategy": {
+   "source_sha256": "sha256_bcb660284ad4c60c18008f6019034cfa452b51415222de7f6a2376b8f3848015",
+   "facts": {
+    "timeframe": "5m",
+    "speed": "scalp",
+    "scalper": true,
+    "can_short": false,
+    "leverage_hook": false,
+    "futures_capable": false,
+    "dca": true,
+    "ml_ai": false,
+    "hooks": [
+     "adjust_trade_position"
+    ]
+   },
+   "primary": "other",
+   "labels": [
+    {
+     "label": "other",
+     "confidence": "medium",
+     "evidence": "risk_score >= 0.4",
+     "flags": []
+    }
+   ],
+   "note": "Remora risk API filtering, not technical indicators"
+  },
+  "aquma3": {
+   "source_sha256": "sha256_436f1ac52a2bf9e1ca94b2fda5bb5dd6831e6019c86ed9700103369daf96a988",
+   "facts": {
+    "timeframe": "5m",
+    "speed": "scalp",
+    "scalper": true,
+    "can_short": true,
+    "leverage_hook": false,
+    "futures_capable": true,
+    "dca": true,
+    "ml_ai": false,
+    "hooks": [
+     "adjust_trade_position",
+     "custom_exit",
+     "custom_stoploss",
+     "informative_pairs"
+    ]
+   },
+   "primary": "mean_reversion",
+   "labels": [
+    {
+     "label": "mean_reversion",
+     "confidence": "low",
+     "evidence": "close < dataframe['bb_lowerband3'] * self.buy_bb_factor",
+     "flags": [
+      "evidence_not_verbatim"
+     ]
+    },
+    {
+     "label": "trend_following",
+     "confidence": "low",
+     "evidence": "btc_ema_fast < btc_ema_slow for down filter",
+     "flags": [
+      "evidence_not_verbatim"
+     ]
+    }
+   ],
+   "note": ""
+  },
+  "AlexBattleTankKillerV3": {
+   "source_sha256": "sha256_500f45285b3b35e669559b89210ad3194907ee9cfaada76fbe162348f54324ab",
+   "facts": {
+    "timeframe": "15m",
+    "speed": "intraday",
+    "scalper": false,
+    "can_short": false,
+    "leverage_hook": true,
+    "futures_capable": true,
+    "dca": true,
+    "ml_ai": false,
+    "hooks": [
+     "adjust_trade_position",
+     "custom_entry_price",
+     "custom_stoploss",
+     "leverage"
+    ]
+   },
+   "primary": "pattern",
+   "labels": [
+    {
+     "label": "pattern",
+     "confidence": "low",
+     "evidence": "df['[6/8]P'], df['[4/8]P'], df['[2/8]P'] levels",
+     "flags": [
+      "evidence_not_verbatim"
+     ]
+    }
+   ],
+   "note": "Murray Levels (MML) grid pattern system"
+  },
+  "DCAGRID": {
+   "source_sha256": "sha256_b6e11ee61c3da0890de0311a2a5849305469019df8c396d13269026e2a7da883",
+   "facts": {
+    "timeframe": "1m",
+    "speed": "scalp",
+    "scalper": true,
+    "can_short": false,
+    "leverage_hook": false,
+    "futures_capable": false,
+    "dca": true,
+    "ml_ai": false,
+    "hooks": [
+     "adjust_trade_position"
+    ]
+   },
+   "primary": "grid",
+   "labels": [
+    {
+     "label": "grid",
+     "confidence": "low",
+     "evidence": "position_adjustment_enable=True, max_entry_position_adjustment=-1",
+     "flags": [
+      "evidence_not_verbatim"
+     ]
+    }
+   ],
+   "note": "DCA grid with unlimited position adjustments"
+  },
+  "twinturboV8_2": {
+   "source_sha256": "sha256_5afe4f4cb98cd46a38a0a232cc70d8491cc361b8a5a267133293308ea9b8693e",
+   "facts": {
+    "timeframe": "5m",
+    "speed": "scalp",
+    "scalper": true,
+    "can_short": false,
+    "leverage_hook": false,
+    "futures_capable": false,
+    "dca": true,
+    "ml_ai": false,
+    "hooks": [
+     "adjust_trade_position",
+     "custom_entry_price",
+     "custom_sell",
+     "custom_stoploss",
+     "informative_pairs"
+    ]
+   },
+   "primary": "momentum",
+   "labels": [
+    {
+     "label": "momentum",
+     "confidence": "low",
+     "evidence": "EWO > dataframe['EWO'].shift(1) with EWO in band",
+     "flags": [
+      "evidence_not_verbatim"
+     ]
+    },
+    {
+     "label": "trend_following",
+     "confidence": "low",
+     "evidence": "hma_50 trend filter used",
+     "flags": [
+      "evidence_not_verbatim"
+     ]
+    }
+   ],
+   "note": ""
+  },
+  "HPStrategyTFJPAConfirmV3_9": {
+   "source_sha256": "sha256_754a483122220c3bb9cab86676b5e799622da14d86a2cff5d496fda0e18148b3",
+   "facts": {
+    "timeframe": "5m",
+    "speed": "scalp",
+    "scalper": true,
+    "can_short": false,
+    "leverage_hook": false,
+    "futures_capable": false,
+    "dca": true,
+    "ml_ai": false,
+    "hooks": [
+     "adjust_trade_position",
+     "confirm_trade_entry",
+     "custom_exit",
+     "informative_pairs"
+    ]
+   },
+   "primary": "pattern",
+   "labels": [
+    {
+     "label": "pattern",
+     "confidence": "low",
+     "evidence": "CDLDOJI, CDLDRAGONFLYDOJI candlestick patterns",
+     "flags": [
+      "evidence_not_verbatim"
+     ]
+    },
+    {
+     "label": "statistical",
+     "confidence": "low",
+     "evidence": "fibonacci_retracements < 0.786",
+     "flags": [
+      "evidence_not_verbatim"
+     ]
+    }
+   ],
+   "note": ""
+  },
+  "SimpleRSI_Shorts": {
+   "source_sha256": "sha256_3158b4254edadbfc9344fc93abaab0d67beee4e3c0f2db8c7f5a5c201d6e48b2",
+   "facts": {
+    "timeframe": "1d",
+    "speed": "position",
+    "scalper": false,
+    "can_short": true,
+    "leverage_hook": true,
+    "futures_capable": true,
+    "dca": false,
+    "ml_ai": false,
+    "hooks": [
+     "confirm_trade_entry",
+     "custom_stoploss",
+     "leverage"
+    ]
+   },
+   "primary": "momentum",
+   "labels": [
+    {
+     "label": "momentum",
+     "confidence": "low",
+     "evidence": "RSI <= minRSI.value & RSI.shift(1) > minRSI.value",
+     "flags": [
+      "evidence_not_verbatim"
+     ]
+    }
+   ],
+   "note": ""
+  },
+  "ZaratustraV26": {
+   "source_sha256": "sha256_717e7e1518d06e985cbaf368a46c6132d94d5d0bdd309920a5b97c9825a4b7e7",
+   "facts": {
+    "timeframe": "5m",
+    "speed": "scalp",
+    "scalper": true,
+    "can_short": true,
+    "leverage_hook": true,
+    "futures_capable": true,
+    "dca": true,
+    "ml_ai": false,
+    "hooks": [
+     "adjust_trade_position",
+     "leverage"
+    ]
+   },
+   "primary": "mean_reversion",
+   "labels": [
+    {
+     "label": "mean_reversion",
+     "confidence": "low",
+     "evidence": "RSI < 30 & close < BBL or RSI > 70 & close > BBU",
+     "flags": [
+      "evidence_not_verbatim"
+     ]
+    }
+   ],
+   "note": ""
+  },
+  "DcaTpShort_3": {
+   "source_sha256": "sha256_49d93567de2be0ab17451cadbf46373a07a5e46f2cb4a19622399ed964143bac",
+   "facts": {
+    "timeframe": "30m",
+    "speed": "intraday",
+    "scalper": false,
+    "can_short": true,
+    "leverage_hook": true,
+    "futures_capable": true,
+    "dca": true,
+    "ml_ai": false,
+    "hooks": [
+     "adjust_trade_position",
+     "custom_stoploss",
+     "leverage"
+    ]
+   },
+   "primary": "trend_following",
+   "labels": [
+    {
+     "label": "trend_following",
+     "confidence": "low",
+     "evidence": "ema9_30 < ema21_30 < ema99_30",
+     "flags": [
+      "evidence_not_verbatim"
+     ]
+    },
+    {
+     "label": "breakout",
+     "confidence": "low",
+     "evidence": "close > bb_upperband",
+     "flags": [
+      "evidence_not_verbatim"
+     ]
+    }
+   ],
+   "note": ""
+  },
+  "Lmao": {
+   "source_sha256": "sha256_3df15e64392b77bb0b517fb98d75215956ba2766150b2fc1a3a02d43f342fcfd",
+   "facts": {
+    "timeframe": "5m",
+    "speed": "scalp",
+    "scalper": true,
+    "can_short": false,
+    "leverage_hook": false,
+    "futures_capable": false,
+    "dca": true,
+    "ml_ai": false,
+    "hooks": [
+     "adjust_trade_position",
+     "custom_exit",
+     "custom_stoploss",
+     "informative_pairs"
+    ]
+   },
+   "primary": "mean_reversion",
+   "labels": [
+    {
+     "label": "mean_reversion",
+     "confidence": "low",
+     "evidence": "close < dataframe['bb_lowerband3'] * self.buy_bb_factor",
+     "flags": [
+      "evidence_not_verbatim"
+     ]
+    },
+    {
+     "label": "volatility",
+     "confidence": "low",
+     "evidence": "bb_delta > threshold, bb_width expansion",
+     "flags": [
+      "evidence_not_verbatim"
+     ]
+    }
+   ],
+   "note": ""
+  },
+  "slope_is_dopeCT": {
+   "source_sha256": "sha256_47da11d4bceed1ebf42c8f5aa2a03f81a65e2d71cd939af134b7559804a9b6ca",
+   "facts": {
+    "timeframe": "15m",
+    "speed": "intraday",
+    "scalper": false,
+    "can_short": false,
+    "leverage_hook": false,
+    "futures_capable": false,
+    "dca": true,
+    "ml_ai": false,
+    "hooks": [
+     "custom_stoploss"
+    ]
+   },
+   "primary": "trend_following",
+   "labels": [
+    {
+     "label": "trend_following",
+     "confidence": "low",
+     "evidence": "fast_slope > threshold & slow_slope > threshold",
+     "flags": [
+      "evidence_not_verbatim"
+     ]
+    }
+   ],
+   "note": ""
+  }
+ }
+}

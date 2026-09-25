@@ -1,0 +1,443 @@
+[
+ {
+  "id": "MyExampleLSTMStrategy",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "high",
+    "evidence": "df['&-target'] > self.threshold_buy.value"
+   }
+  ],
+  "note": "Machine learning model output (freqai) drives entry, not interpretable indicators"
+ },
+ {
+  "id": "MyNewStrategy",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "qtpylib.crossed_above(dataframe['rsi'], self.buy_rsi.value)"
+   }
+  ]
+ },
+ {
+  "id": "MyStrategy",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['ema_fast'] > dataframe['ema_slow'])"
+   },
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['macd'] > dataframe['macdsignal'])"
+   },
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi'] < 30)"
+   }
+  ]
+ },
+ {
+  "id": "MyStrategyNew10",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "medium",
+    "evidence": "main_indicator, crossed_indicator, operator = self.get_indicators_pair"
+   }
+  ],
+  "note": "Indicators chosen at runtime via hyperopt, concrete logic unknown"
+ },
+ {
+  "id": "MyStrategyTemplate",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "high",
+    "evidence": "(\n            ),\n            'buy'] = 1"
+   }
+  ],
+  "note": "Empty template skeleton with no entry/exit logic"
+ },
+ {
+  "id": "MyTestStrategy",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "high",
+    "evidence": "if index % 2 == 0:\n                dataframe.iloc[index"
+   }
+  ],
+  "note": "Test strategy alternating buys by index, not a real trading strategy"
+ },
+ {
+  "id": "My_Custom_Strategy",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "dataframe['cti'] < self.buy_params['buy_cti_32']"
+   }
+  ]
+ },
+ {
+  "id": "My_Updated_Strategy",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "dataframe['cti'] < self.buy_params['buy_cti_32']"
+   }
+  ]
+ },
+ {
+  "id": "My_div",
+  "primary": "pattern",
+  "labels": [
+   {
+    "label": "pattern",
+    "confidence": "high",
+    "evidence": "(dataframe[\"regular_bear_div_rsi\"] == True)"
+   },
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi'] < 30)"
+   }
+  ]
+ },
+ {
+  "id": "NASOSRv6",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['EWO'] > self.ewo_high.value)"
+   },
+   {
+    "label": "mean_reversion",
+    "confidence": "medium",
+    "evidence": "(dataframe['rsi_fast'] < 35)"
+   }
+  ]
+ },
+ {
+  "id": "NASOSRv6_private_Reinuvader_20211121",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['EWO'] > self.ewo_high.value)"
+   },
+   {
+    "label": "mean_reversion",
+    "confidence": "medium",
+    "evidence": "(dataframe['rsi_fast'] < 35)"
+   }
+  ]
+ },
+ {
+  "id": "NASOSv4",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['EWO'] > self.ewo_high.value)"
+   },
+   {
+    "label": "mean_reversion",
+    "confidence": "medium",
+    "evidence": "(dataframe['rsi_fast'] < 35)"
+   }
+  ]
+ },
+ {
+  "id": "NASOSv4Futures",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe[\"rsi\"] < 50)"
+   }
+  ]
+ },
+ {
+  "id": "NASOSv4HO",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['EWO'] > self.ewo_high.value)"
+   },
+   {
+    "label": "mean_reversion",
+    "confidence": "medium",
+    "evidence": "(dataframe['rsi_fast'] < 35)"
+   }
+  ]
+ },
+ {
+  "id": "NASOSv4_2",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['EWO'] > self.ewo_high.value)"
+   },
+   {
+    "label": "mean_reversion",
+    "confidence": "medium",
+    "evidence": "(dataframe['rsi_fast'] < 35)"
+   }
+  ]
+ },
+ {
+  "id": "NASOSv4_3",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['EWO'] > self.ewo_high.value)"
+   },
+   {
+    "label": "mean_reversion",
+    "confidence": "medium",
+    "evidence": "(dataframe['rsi_fast'] < 35)"
+   }
+  ]
+ },
+ {
+  "id": "NASOSv4_563",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['EWO'] > self.ewo_high.value)"
+   },
+   {
+    "label": "mean_reversion",
+    "confidence": "medium",
+    "evidence": "(dataframe['rsi_fast'] < 35)"
+   }
+  ]
+ },
+ {
+  "id": "NASOSv4_BOTH",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['EWO'] > self.ewo_high.value)"
+   },
+   {
+    "label": "mean_reversion",
+    "confidence": "medium",
+    "evidence": "(dataframe['rsi_fast'] < 35)"
+   }
+  ]
+ },
+ {
+  "id": "NASOSv4_SMA",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['EWO'] > self.ewo_high.value)"
+   },
+   {
+    "label": "mean_reversion",
+    "confidence": "medium",
+    "evidence": "(dataframe['rsi_fast'] < 35)"
+   }
+  ]
+ },
+ {
+  "id": "NASOSv4_SMA_interface_v3",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe[\"EWO\"] > self.ewo_high.value)"
+   },
+   {
+    "label": "mean_reversion",
+    "confidence": "medium",
+    "evidence": "(dataframe[\"rsi_fast\"] < 35)"
+   }
+  ]
+ },
+ {
+  "id": "NASOSv4customexit2",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['EWO'] > self.ewo_high.value)"
+   },
+   {
+    "label": "mean_reversion",
+    "confidence": "medium",
+    "evidence": "(dataframe['rsi_fast'] < 35)"
+   }
+  ]
+ },
+ {
+  "id": "NASOSv5",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['EWO'] > self.ewo_high.value)"
+   },
+   {
+    "label": "mean_reversion",
+    "confidence": "medium",
+    "evidence": "(dataframe['rsi_fast'] < self.rsi_fast_buy.value)"
+   }
+  ]
+ },
+ {
+  "id": "NASOSv5HO",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "low",
+    "evidence": "minimal_roi = {\"0\": 0.1}"
+   }
+  ],
+  "note": "No indicator, entry, or exit code provided"
+ },
+ {
+  "id": "NASOSv5PD",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['EWO'] > self.ewo_high.value)"
+   },
+   {
+    "label": "mean_reversion",
+    "confidence": "medium",
+    "evidence": "(dataframe['rsi_fast'] < self.rsi_fast_buy.value)"
+   }
+  ]
+ },
+ {
+  "id": "NASOSv5SL",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "low",
+    "evidence": "trailing_stop = False"
+   }
+  ],
+  "note": "Minimal class attributes only, no indicator or entry/exit code"
+ },
+ {
+  "id": "NASOSv5_16",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['EWO'] > self.ewo_high.value)"
+   },
+   {
+    "label": "mean_reversion",
+    "confidence": "medium",
+    "evidence": "(dataframe['rsi_fast'] < self.rsi_fast_buy.value)"
+   }
+  ]
+ },
+ {
+  "id": "NASOSv5_antipump",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['EWO'] > self.ewo_high.value)"
+   },
+   {
+    "label": "mean_reversion",
+    "confidence": "medium",
+    "evidence": "(dataframe['rsi_fast'] < self.rsi_fast_buy.value)"
+   }
+  ]
+ },
+ {
+  "id": "NASOSv5_antipump_625",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['EWO'] > self.ewo_high.value)"
+   },
+   {
+    "label": "mean_reversion",
+    "confidence": "medium",
+    "evidence": "(dataframe['rsi_fast'] < self.rsi_fast_buy.value)"
+   }
+  ]
+ },
+ {
+  "id": "NASOSv5_mod1",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['EWO'] > self.ewo_high.value)"
+   },
+   {
+    "label": "mean_reversion",
+    "confidence": "medium",
+    "evidence": "(dataframe['rsi_fast'] < self.rsi_fast_buy.value)"
+   }
+  ]
+ },
+ {
+  "id": "NASOSv5_mod1_DanMod",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['EWO'] > self.ewo_high.value)"
+   },
+   {
+    "label": "mean_reversion",
+    "confidence": "medium",
+    "evidence": "(dataframe['rsi_fast'] < self.rsi_fast_buy.value)"
+   }
+  ]
+ }
+]

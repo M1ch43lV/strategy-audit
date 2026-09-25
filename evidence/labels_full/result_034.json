@@ -1,0 +1,357 @@
+[
+ {
+  "id": "FisherHull",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['fisher_rsi'] < -0.5) &"
+   }
+  ]
+ },
+ {
+  "id": "FisherTransformStrategy",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe[\"fisher\"] > 0) & (dataframe[\"fisher_prev\"] <= 0)"
+   }
+  ]
+ },
+ {
+  "id": "FisherTrendStrategy",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe[\"rsi\"] < oversold) &"
+   }
+  ]
+ },
+ {
+  "id": "FiveMinCrossAbove",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(qtpylib.crossed_above(dataframe['rsi8'], 30)) &"
+   }
+  ]
+ },
+ {
+  "id": "FixedRiskRewardLoss",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "high",
+    "evidence": "dataframe.loc[:, 'buy'] = 1"
+   }
+  ],
+  "note": "Always buy, never sell - no real trading logic"
+ },
+ {
+  "id": "FlawlessVictory",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < dataframe['bb_lowerband'])"
+   }
+  ]
+ },
+ {
+  "id": "Flawless_Lambov2",
+  "primary": "breakout",
+  "labels": [
+   {
+    "label": "breakout",
+    "confidence": "high",
+    "evidence": "(qtpylib.crossed_above(dataframe['close'], dataframe['bb.lower']))"
+   },
+   {
+    "label": "volume_flow",
+    "confidence": "medium",
+    "evidence": "(dataframe['OBVSlope'] > 0) &"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "(dataframe['plus.di.slope'] > 0) &"
+   }
+  ]
+ },
+ {
+  "id": "Flow",
+  "primary": "volume_flow",
+  "labels": [
+   {
+    "label": "volume_flow",
+    "confidence": "high",
+    "evidence": "(dataframe[\"ofi\"].abs() > self.absorption_threshold.value)"
+   }
+  ]
+ },
+ {
+  "id": "ForexRobootSuperScalper",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['ema_short'] > dataframe['ema_medium']) &"
+   }
+  ]
+ },
+ {
+  "id": "ForexSignal",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['ema8'] > dataframe['ema13']) &"
+   }
+  ]
+ },
+ {
+  "id": "FractalDimensionStrategy",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['macdhist'] > 0)"
+   }
+  ]
+ },
+ {
+  "id": "Fractals",
+  "primary": "pattern",
+  "labels": [
+   {
+    "label": "pattern",
+    "confidence": "high",
+    "evidence": "dataframe[f'fractal_{self.fractal_len.value}'] == -1"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "dataframe[f'adx_{self.adx_len.value}'] > 25"
+   }
+  ]
+ },
+ {
+  "id": "FrankenStrat",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < (dataframe[f'ema_{self.base_nb_candles_buy.value}']"
+   }
+  ]
+ },
+ {
+  "id": "FrayLIVEBTC15m",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "(qtpylib.crossed_above(dataframe['frsi'], self.buy_frsi.value)) &"
+   }
+  ]
+ },
+ {
+  "id": "FrayStratBTC",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(qtpylib.crossed_above(dataframe['rsi'], self.buy_rsi.value)) &"
+   }
+  ]
+ },
+ {
+  "id": "FreqAIHybridStrategy",
+  "primary": "statistical",
+  "labels": [
+   {
+    "label": "statistical",
+    "confidence": "medium",
+    "evidence": "z = (target - mean) / (std + 1e-12)"
+   }
+  ]
+ },
+ {
+  "id": "FreqGym_2",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "low",
+    "evidence": "action = self.rl_model_predict(dataframe)"
+   }
+  ],
+  "note": "RL model prediction - logic not visible"
+ },
+ {
+  "id": "FreqGym_normalized",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "low",
+    "evidence": "action = self.rl_model_predict(dataframe)"
+   }
+  ],
+  "note": "RL model prediction - logic not visible"
+ },
+ {
+  "id": "FreqGym_normalized_0",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "low",
+    "evidence": "action = self.rl_model_predict(dataframe)"
+   }
+  ],
+  "note": "RL model prediction - logic not visible"
+ },
+ {
+  "id": "FreqGym_normalized_2",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "low",
+    "evidence": "action = self.rl_model_predict(dataframe)"
+   }
+  ],
+  "note": "RL model prediction - logic not visible"
+ },
+ {
+  "id": "FreqGym_normalized_3",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "low",
+    "evidence": "action = self.rl_model_predict(dataframe)"
+   }
+  ],
+  "note": "RL model prediction - logic not visible"
+ },
+ {
+  "id": "FreqGym_normalized_412",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "low",
+    "evidence": "action = self.rl_model_predict(dataframe)"
+   }
+  ],
+  "note": "RL model prediction - logic not visible"
+ },
+ {
+  "id": "FreqGym_rscaler",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "low",
+    "evidence": "action = self.rl_model_predict(dataframe)"
+   }
+  ],
+  "note": "RL model prediction - logic not visible"
+ },
+ {
+  "id": "FreqGym_rscaler_2",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "low",
+    "evidence": "action = self.rl_model_predict(dataframe)"
+   }
+  ],
+  "note": "RL model prediction - logic not visible"
+ },
+ {
+  "id": "FreqSignalsWebhookDataProvider",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "high",
+    "evidence": "dataframe[\"enter_long\"] = 0"
+   }
+  ],
+  "note": "No trading logic, webhook data provider"
+ },
+ {
+  "id": "FreqaiBinaryClassStrategy",
+  "primary": "statistical",
+  "labels": [
+   {
+    "label": "statistical",
+    "confidence": "medium",
+    "evidence": "df[\"min\"] >= self.minima_threhsold"
+   }
+  ]
+ },
+ {
+  "id": "FreqaiExampleHybridStrategy",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(qtpylib.crossed_above(df['rsi'], self.buy_rsi.value)) &"
+   }
+  ]
+ },
+ {
+  "id": "FreqaiExampleStrategy",
+  "primary": "statistical",
+  "labels": [
+   {
+    "label": "statistical",
+    "confidence": "medium",
+    "evidence": "df[\"&-s_close\"] > 0.01"
+   }
+  ]
+ },
+ {
+  "id": "FreqaiExampleStrategy_2",
+  "primary": "statistical",
+  "labels": [
+   {
+    "label": "statistical",
+    "confidence": "medium",
+    "evidence": "df[\"&-s_close\"] > df[\"target_roi\"]"
+   }
+  ]
+ },
+ {
+  "id": "FreqaiExampleStrategy_5",
+  "primary": "statistical",
+  "labels": [
+   {
+    "label": "statistical",
+    "confidence": "medium",
+    "evidence": "df[\"&-s_close\"] > df[\"target_roi\"]"
+   }
+  ]
+ }
+]

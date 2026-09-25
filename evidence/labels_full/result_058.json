@@ -1,0 +1,347 @@
+[
+ {
+  "id": "NewStrategy",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['ema_50'] > dataframe['ema_100']) &"
+   },
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['macd'] > dataframe['macdsignal']) &"
+   },
+   {
+    "label": "volatility",
+    "confidence": "medium",
+    "evidence": "(dataframe['atr'] > dataframe['atr'].rolling(14).mean() * 1.1)"
+   }
+  ]
+ },
+ {
+  "id": "NewsHeliusBitqueryML",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "trend_long  = df[\"ema50\"] > df[\"ema200\"]"
+   },
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "macd_cross_up   = (df[\"macd\"] > df[\"macd_sig\"]) & (df[\"macd\"].shift(1)"
+   }
+  ]
+ },
+ {
+  "id": "NfiNextModded",
+  "primary": "breakout",
+  "labels": [
+   {
+    "label": "breakout",
+    "confidence": "medium",
+    "evidence": "(dataframe[\"close\"] <= dataframe[\"low\"].shift().rolling(288).min())"
+   }
+  ]
+ },
+ {
+  "id": "NimmV20",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "dataframe['trend_close_5m'] > dataframe['senkou_a']"
+   }
+  ]
+ },
+ {
+  "id": "NoLost",
+  "primary": "other",
+  "labels": [],
+  "note": "No real entry logic; buy condition is False, always sells"
+ },
+ {
+  "id": "NormalizerStrategy",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['pct_sum'] < .2) &"
+   }
+  ]
+ },
+ {
+  "id": "NormalizerStrategyHO2",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['pct_sum'] < .2) &"
+   }
+  ]
+ },
+ {
+  "id": "Nostalgia",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "dataframe[f\"ema_{...}\"] > dataframe['ema_200']"
+   }
+  ]
+ },
+ {
+  "id": "NostalgiaForInfinity772martinsk3",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "dataframe[f\"ema_{global_buy_protection_params['ema_fast_len']}\"] > dataframe['ema_200']"
+   }
+  ]
+ },
+ {
+  "id": "NostalgiaForInfinityNext",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "dataframe[f\"ema_{global_buy_protection_params['ema_fast_len']}\"] > dataframe['ema_200']"
+   }
+  ]
+ },
+ {
+  "id": "NostalgiaForInfinityNext1",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "dataframe[f\"ema_{global_buy_protection_params['ema_fast_len']}\"] > dataframe['ema_200']"
+   }
+  ]
+ },
+ {
+  "id": "NostalgiaForInfinityNext1_327",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "dataframe[f\"ema_{global_buy_protection_params['ema_fast_len']}\"] > dataframe['ema_200']"
+   }
+  ]
+ },
+ {
+  "id": "NostalgiaForInfinityNext2",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "dataframe[f\"ema_{global_buy_protection_params['ema_fast_len'].value}\"] > dataframe['ema_200']"
+   }
+  ]
+ },
+ {
+  "id": "NostalgiaForInfinityNext2_0",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "dataframe[f\"ema_{global_buy_protection_params['ema_fast_len']}\"] > dataframe['ema_200']"
+   }
+  ]
+ },
+ {
+  "id": "NostalgiaForInfinityNext772",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "dataframe[f\"ema_{global_buy_protection_params['ema_fast_len']}\"] > dataframe['ema_200']"
+   }
+  ]
+ },
+ {
+  "id": "NostalgiaForInfinityNext7_15_5",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "dataframe[f\"ema_{global_buy_protection_params['ema_fast_len']}\"] > dataframe['ema_200']"
+   }
+  ]
+ },
+ {
+  "id": "NostalgiaForInfinityNextGen",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "dataframe[f\"ema_{global_buy_protection_params['ema_fast_len']}\"] > dataframe['ema_200']"
+   }
+  ]
+ },
+ {
+  "id": "NostalgiaForInfinityNextGen_141",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "dataframe[f\"ema_{global_buy_protection_params['ema_fast_len']}\"] > dataframe['ema_200']"
+   }
+  ]
+ },
+ {
+  "id": "NostalgiaForInfinityNextGen_2",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "dataframe[f\"ema_{global_buy_protection_params['ema_fast_len']}\"] > dataframe['ema_200']"
+   }
+  ]
+ },
+ {
+  "id": "NostalgiaForInfinityNextGen_3",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "dataframe[f\"ema_{global_buy_protection_params['ema_fast_len']}\"] > dataframe['ema_200']"
+   }
+  ]
+ },
+ {
+  "id": "NostalgiaForInfinityNextGen_TSL",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "dataframe[f\"ema_{global_buy_protection_params['ema_fast_len']}\"] > dataframe['ema_200']"
+   }
+  ]
+ },
+ {
+  "id": "NostalgiaForInfinityNextV7155",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "dataframe[f\"ema_{global_buy_protection_params['ema_fast_len']}\"] > dataframe['ema_200']"
+   }
+  ]
+ },
+ {
+  "id": "NostalgiaForInfinityNextW",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "dataframe[f\"ema_{global_buy_protection_params['ema_fast_len']}\"] > dataframe['ema_200']"
+   }
+  ]
+ },
+ {
+  "id": "NostalgiaForInfinityNext_0",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "dataframe[f\"ema_{global_buy_protection_params['ema_fast_len']}\"] > dataframe['ema_200']"
+   }
+  ]
+ },
+ {
+  "id": "NostalgiaForInfinityNext_105",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "dataframe[f\"ema_{global_buy_protection_params['ema_fast_len']}\"] > dataframe['ema_200']"
+   }
+  ]
+ },
+ {
+  "id": "NostalgiaForInfinityNext_134",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "dataframe[f\"ema_{global_buy_protection_params['ema_fast_len']}\"] > dataframe['ema_200']"
+   }
+  ]
+ },
+ {
+  "id": "NostalgiaForInfinityNext_2",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "dataframe[f\"ema_{global_buy_protection_params['ema_fast_len'].value}\"] > dataframe['ema_200']"
+   }
+  ]
+ },
+ {
+  "id": "NostalgiaForInfinityNext_223",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "buy_01_protections.append(dataframe[f\"ema_{self.buy_01_protection__ema_fast_len.value}\"]"
+   },
+   {
+    "label": "volatility",
+    "confidence": "medium",
+    "evidence": "(dataframe['close'] > dataframe['bb20_2_upp'])"
+   }
+  ]
+ },
+ {
+  "id": "NostalgiaForInfinityNext_272",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "dataframe[f\"ema_{global_buy_protection_params['ema_fast_len']}\"] > dataframe['ema_200']"
+   }
+  ]
+ },
+ {
+  "id": "NostalgiaForInfinityNext_75",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "dataframe[f\"ema_{global_buy_protection_params['ema_fast_len']}\"] > dataframe['ema_200']"
+   }
+  ]
+ }
+]

@@ -1,0 +1,320 @@
+[
+ {
+  "id": "Mimic_F",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi_slow'] < dataframe['rsi_slow'].shift(1)) &\n                (dataframe['rsi_fast'] < self.buy_rsi_fast_32.value) &\n                (dataframe['close'] < dataframe['sma_15']"
+   }
+  ],
+  "note": "RSI declining + oversold conditions + price below MA"
+ },
+ {
+  "id": "MinVarianceBasket",
+  "primary": "other",
+  "labels": [],
+  "note": "No entry/exit logic defined"
+ },
+ {
+  "id": "MiniLambo",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < (dataframe['ema_14'] * self.lambo2_ema_14_factor.value))\n                & (dataframe['rsi_4'] < int(self.lambo2_rsi_4_limit.value))\n                & (dataframe['rsi_14'] < int(self.lambo2_rsi_14_limit.value))"
+   }
+  ],
+  "note": "Price below EMA with dual RSI oversold"
+ },
+ {
+  "id": "MiniLambo2",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < (dataframe['ema_14'] * self.lambo2_ema_14_factor.value))\n                & (dataframe['rsi_4'] < int(self.lambo2_rsi_4_limit.value))\n                & (dataframe['rsi_14'] < int(self.lambo2_rsi_14_limit.value))"
+   }
+  ],
+  "note": "Identical to MiniLambo"
+ },
+ {
+  "id": "MiniLambo_TBS",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "medium",
+    "evidence": "set 'allow_trailing' to True for {metadata['pair']} to start trailing!!!"
+   }
+  ],
+  "note": "Trailing buy overlay on parent MiniLambo mean-reversion logic"
+ },
+ {
+  "id": "MinimumVariancePortfolio",
+  "primary": "statistical",
+  "labels": [
+   {
+    "label": "statistical",
+    "confidence": "high",
+    "evidence": "weights_df = self._compute_mvp_weights(aligned_prices)\n                    self.mvp_weights_cache[cache_key] = weights_df"
+   }
+  ],
+  "note": "Portfolio optimization using minimum variance weights"
+ },
+ {
+  "id": "Minmax",
+  "primary": "pattern",
+  "labels": [
+   {
+    "label": "pattern",
+    "confidence": "high",
+    "evidence": "min_peaks = argrelextrema(slice['close'].values, np.less, order=lookback_size)\n                max_peaks = argrelextrema(slice['close'].values, np.greater, order=lookback_size)"
+   }
+  ],
+  "note": "Detects local price extrema as trade signals"
+ },
+ {
+  "id": "MlpSpeculativeStrategy",
+  "primary": "other",
+  "labels": [],
+  "note": "ML neural network model prediction; no interpretable technical logic"
+ },
+ {
+  "id": "MomStrategy",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "dataframe['mom'] = ta.MOM(dataframe['close'].values, 10)\n        dataframe.loc[(dataframe['mom'] > 0) & (dataframe['volume'] > 0), 'signal'] = 1"
+   }
+  ],
+  "note": "Momentum crossing zero as entry trigger"
+ },
+ {
+  "id": "MomentumBasket",
+  "primary": "other",
+  "labels": [],
+  "note": "Only defines momentum indicator; no entry/exit logic"
+ },
+ {
+  "id": "MomentumCCITrendStrategy",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "dataframe['cci_long_cross_above_zero'] = qtpylib.crossed_above(dataframe['cci_long'], 0)"
+   }
+  ],
+  "note": "CCI crossing zero as entry signal"
+ },
+ {
+  "id": "MomentumMeanReversionV1",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi_slow'] < dataframe['rsi_slow'].shift()) &\n            (dataframe['rsi_fast'] < self.buy_rsi_fast.value) &\n            (dataframe['close'] < dataframe['sma_15'] * self.buy_sma_ratio.value)"
+   }
+  ],
+  "note": "RSI declining + oversold + price below SMA"
+ },
+ {
+  "id": "MomentumRegimeBasket",
+  "primary": "other",
+  "labels": [],
+  "note": "Entry/exit gated by internal hold flag; logic not shown in code"
+ },
+ {
+  "id": "MomentumRegimeBasket15m",
+  "primary": "other",
+  "labels": [],
+  "note": "Entry/exit gated by internal hold flag; logic not shown in code"
+ },
+ {
+  "id": "MomentumRegimeBasket15mFast",
+  "primary": "other",
+  "labels": [],
+  "note": "No indicator or entry/exit code provided"
+ },
+ {
+  "id": "MomentumScoreStrategy",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "dataframe[\"score\"] = (\n            (dataframe[\"rsi\"] > 50).astype(int)\n            + (dataframe[\"adx\"] > 20).astype(int)\n            + (dataframe[\"ema20\"] > dataframe[\"ema50\"]).astype(int)\n            + (dataframe[\"roc\"] > 0).astype(int)"
+   }
+  ],
+  "note": "Composite momentum: ROC>0, RSI>50, EMA alignment, ADX confirmation"
+ },
+ {
+  "id": "Momentumv2",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "qtpylib.crossed_above(dataframe['macd'], dataframe['macdsignal'])\n        conditions.append(dataframe['close'] > dataframe['ema'])"
+   }
+  ],
+  "note": "MACD crossing with EMA trend filter"
+ },
+ {
+  "id": "Monday2Friday",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "qtpylib.crossed_above(dataframe['macd'], dataframe['macdsignal'])"
+   }
+  ],
+  "note": "MACD crossing; day-of-week filter applied"
+ },
+ {
+  "id": "Money",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi'] < self.buy_rsi.value) &  # Signal: RSI less than buy_rsi\n                (dataframe['ema_short'] > dataframe['ema_long'])"
+   }
+  ],
+  "note": "EMA alignment (short > long) as primary trend signal"
+ },
+ {
+  "id": "MoneyFlowStrategy",
+  "primary": "volume_flow",
+  "labels": [
+   {
+    "label": "volume_flow",
+    "confidence": "high",
+    "evidence": "dataframe[\"mfi\"] > 20) & (dataframe[\"mfi_prev\"] <= 20)\n            & (dataframe[\"ema50\"] > dataframe[\"ema100\"])\n            & (dataframe[\"rsi\"] < 65)"
+   }
+  ],
+  "note": "MFI crossing above 20 as primary entry signal"
+ },
+ {
+  "id": "Money_m5",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi'] < self.buy_rsi.value) &  # Signal: RSI less than buy_rsi\n                (dataframe['ema_short'] > dataframe['ema_long'])"
+   }
+  ],
+  "note": "Same as Money; 5m timeframe variant"
+ },
+ {
+  "id": "MoniGoManiHyperStrategy",
+  "primary": "other",
+  "labels": [],
+  "note": "Logic delegated to parent class methods; not visible in sheet"
+ },
+ {
+  "id": "MontrealStrategy",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe[\"rsi\"] > 30)\n                & (dataframe[\"close\"] < dataframe[\"bb2_lowerband\"])"
+   }
+  ],
+  "note": "Price below 2-std Bollinger band (mean reversion)"
+ },
+ {
+  "id": "MostOfAll",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "qtpylib.crossed_above(dataframe['most'], dataframe['exma'])"
+   }
+  ],
+  "note": "MOST indicator crossing above; trend-following signal"
+ },
+ {
+  "id": "MovingGridStrategy",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "long_condition = (\n            (dataframe['rsi'] < 30) &\n            atr_rising &\n            volume_above_ma &\n            (dataframe['trend_direction'] == 1)"
+   }
+  ],
+  "note": "RSI oversold entry with trend alignment"
+ },
+ {
+  "id": "MtfScalper",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "aligned_bullish = main_trend_up & confirm_trend_up & filter_trend_up"
+   }
+  ],
+  "note": "Multi-timeframe EMA alignment as primary entry; ADX confirmation"
+ },
+ {
+  "id": "MultiActionZone",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['resample_{}_fastMA'.format(...)] > dataframe['resample_{}_slowMA'.format(...)])\n                & (dataframe['close'] > dataframe['fastMA'])"
+   }
+  ],
+  "note": "EMA crossover (fast>slow) with resampled multi-timeframe filter"
+ },
+ {
+  "id": "MultiFactorConfluenceStrategy",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "((dataframe[\"macd_hist\"] > 0) & (dataframe[\"macd_hist_prev\"] <= 0)).astype(int)"
+   }
+  ],
+  "note": "MACD histogram crossing zero as primary; RSI, VWAP, Stochastic as confluence"
+ },
+ {
+  "id": "MultiMA_TSL",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['ewo'] < self.ewo_low.value)\n                |\n                (\n                    (dataframe['ewo'] > self.ewo_high.value)\n                    &\n                    (dataframe['rsi'] < self.rsi_buy_trima.value)"
+   }
+  ],
+  "note": "EWO (Elliott Wave Oscillator) crossing as entry gate"
+ },
+ {
+  "id": "MultiMA_TSL3",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < dataframe['trima_offset_buy'])\n                            &\n                            (dataframe['pm'] <= dataframe['pmax_thresh']"
+   }
+  ],
+  "note": "EWO-driven entry with Heikin-Ashi/PMAX filters"
+ }
+]

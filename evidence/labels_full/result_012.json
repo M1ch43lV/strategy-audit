@@ -1,0 +1,408 @@
+[
+ {
+  "id": "BinClucMadDevelop",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe[\"ema_50\"] > dataframe[\"ema_200\"]) & (dataframe[\"ema_50_1h\"] > dataframe[\"ema_200_1h\"])"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "BinClucMadDevelop_197",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe[\"ema_50\"] > dataframe[\"ema_200\"]) & (dataframe[\"ema_50_1h\"] > dataframe[\"ema_200_1h\"])"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "BinClucMadDevelop_2",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe[\"ema_50\"] > dataframe[\"ema_200\"]) & (dataframe[\"ema_50_1h\"] > dataframe[\"ema_200_1h\"])"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "BinClucMadDevelop_99",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe[\"ema_50\"] > dataframe[\"ema_200\"]) & (dataframe[\"ema_50_1h\"] > dataframe[\"ema_200_1h\"])"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "BinClucMadSMA",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe[\"close\"] > dataframe[\"ema_200_1h\"]) & (dataframe[\"ema_50\"] > dataframe[\"ema_200\"])"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "BinClucMadSMACore",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe[\"close\"] > dataframe[\"ema_200_1h\"]) & (dataframe[\"ema_50\"] > dataframe[\"ema_200\"])"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "BinClucMadSMADevelop",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe[\"close\"] > dataframe[\"ema_200_1h\"]) & (dataframe[\"ema_50\"] > dataframe[\"ema_200\"])"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "BinClucMadSMADevelop_100",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe[\"close\"] > dataframe[\"ema_200_1h\"]) & (dataframe[\"ema_50\"] > dataframe[\"ema_200\"])"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "BinClucMadSMADevelop_2",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe[\"close\"] > dataframe[\"ema_200_1h\"]) & (dataframe[\"ema_50\"] > dataframe[\"ema_200\"])"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "BinClucMadSMA_2",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe[\"close\"] > dataframe[\"ema_200_1h\"]) & (dataframe[\"ema_50\"] > dataframe[\"ema_200\"])"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "BinClucMadSMA_v3",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe[\"close\"] > dataframe[\"ema_200_1h\"]) & (dataframe[\"ema_50\"] > dataframe[\"ema_200\"])"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "BinClucMadSMAv1",
+  "primary": "other",
+  "labels": [],
+  "note": "no entry/exit code in sheet"
+ },
+ {
+  "id": "BinClucMadSMAv2",
+  "primary": "other",
+  "labels": [],
+  "note": "no entry/exit code in sheet"
+ },
+ {
+  "id": "BinClucMadV1",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe[\"close\"] < 0.99 * dataframe[\"bb_lowerband\"])"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe[\"close\"] > dataframe[\"ema_200\"]) & (dataframe[\"close\"] > dataframe[\"ema_200_1h\"])"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "BinClucMadv1",
+  "primary": "other",
+  "labels": [],
+  "note": "no entry/exit code in sheet"
+ },
+ {
+  "id": "BinClucMadv2",
+  "primary": "other",
+  "labels": [],
+  "note": "no entry/exit code in sheet"
+ },
+ {
+  "id": "BinHModWhiteHOV0",
+  "primary": "volatility",
+  "labels": [
+   {
+    "label": "volatility",
+    "confidence": "high",
+    "evidence": "(dataframe['space'] > self.bb_width.value)"
+   },
+   {
+    "label": "mean_reversion",
+    "confidence": "medium",
+    "evidence": "(dataframe['bottom'] < dataframe['lower'].shift())"
+   }
+  ],
+  "note": "space is rolling mean of Bollinger band width"
+ },
+ {
+  "id": "BinHV27",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "dataframe['adx'].gt(25) & dataframe['bigdown']"
+   },
+   {
+    "label": "mean_reversion",
+    "confidence": "medium",
+    "evidence": "dataframe['emarsi'].le(20)"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "BinHV27CombinedStrategy",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "df['adx'] > a1 & df['bigdown']"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "BinHV27F",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "dataframe['adx'].gt(self.buy_adx1.value) & dataframe['bigdown']"
+   },
+   {
+    "label": "mean_reversion",
+    "confidence": "medium",
+    "evidence": "dataframe['emarsi'].le(self.buy_emarsi1.value)"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "BinHV27F_2",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "dataframe['adx'].gt(self.buy_adx1.value) & dataframe['bigdown']"
+   },
+   {
+    "label": "mean_reversion",
+    "confidence": "medium",
+    "evidence": "dataframe['emarsi'].le(self.buy_emarsi1.value)"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "BinHV27V1",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "dataframe['adx'].gt(25) & dataframe['bigdown']"
+   },
+   {
+    "label": "mean_reversion",
+    "confidence": "medium",
+    "evidence": "dataframe['emarsi'].le(20)"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "BinHV27_1",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "dataframe['adx'].gt(25) & dataframe['bigdown']"
+   },
+   {
+    "label": "mean_reversion",
+    "confidence": "medium",
+    "evidence": "dataframe['emarsi'].le(20)"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "BinHV27_104",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "dataframe['adx'].gt(25) & dataframe['bigdown']"
+   },
+   {
+    "label": "mean_reversion",
+    "confidence": "medium",
+    "evidence": "dataframe['emarsi'].le(20)"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "BinHV27_2",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "dataframe['adx'].gt(25) & dataframe['bigdown']"
+   },
+   {
+    "label": "mean_reversion",
+    "confidence": "medium",
+    "evidence": "dataframe['emarsi'].le(20)"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "BinHV27_253",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "dataframe[\"adx\"].gt(25) & dataframe[\"bigdown\"]"
+   },
+   {
+    "label": "mean_reversion",
+    "confidence": "medium",
+    "evidence": "dataframe[\"emarsi\"].le(20)"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "BinHV27_254",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "dataframe['adx'].gt(self.buy_adx1.value) & dataframe['bigdown']"
+   },
+   {
+    "label": "mean_reversion",
+    "confidence": "medium",
+    "evidence": "dataframe['emarsi'].le(self.buy_emarsi1.value)"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "BinHV27_3",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "dataframe['adx'].gt(self.buy_adx_1.value) & dataframe['bigdown']"
+   },
+   {
+    "label": "mean_reversion",
+    "confidence": "medium",
+    "evidence": "dataframe['emarsi'].le(20)"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "BinHV27_32",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "dataframe['adx'].gt(25) & dataframe['bigdown']"
+   },
+   {
+    "label": "mean_reversion",
+    "confidence": "medium",
+    "evidence": "dataframe['emarsi'].le(20)"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "BinHV27_387",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "dataframe['adx'].gt(25) & dataframe['bigdown']"
+   },
+   {
+    "label": "mean_reversion",
+    "confidence": "medium",
+    "evidence": "dataframe['emarsi'].le(20)"
+   }
+  ],
+  "note": ""
+ }
+]

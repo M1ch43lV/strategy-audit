@@ -1,0 +1,378 @@
+[
+ {
+  "id": "IchisV1_2",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "dataframe['trend_close_5m'] > dataframe['senkou_a']"
+   }
+  ],
+  "note": "Ichimoku cloud position alignment across multiple timeframes"
+ },
+ {
+  "id": "ImprovedSampleStrategy",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "qtpylib.crossed_above(dataframe[\"rsi\"], self.buy_rsi.value)"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "(dataframe[\"adx\"] > 25)"
+   },
+   {
+    "label": "mean_reversion",
+    "confidence": "medium",
+    "evidence": "(dataframe[\"close\"] < dataframe[\"bb_lower\"])"
+   }
+  ],
+  "note": "Mixed: RSI cross is primary signal; ADX and BB also present"
+ },
+ {
+  "id": "ImprovedTVStrategy",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['macd'] > dataframe['macdsignal']) & (dataframe['adx'] > self.adx_threshold.value)"
+   }
+  ],
+  "note": "ADX trend gate combined with MACD and moving average alignment"
+ },
+ {
+  "id": "ImprovedTrader",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi'] < self.buy_rsi.value)"
+   },
+   {
+    "label": "volatility",
+    "confidence": "medium",
+    "evidence": "(dataframe['volatility'] > dataframe['volatility'].mean())"
+   }
+  ],
+  "note": "Entry on oversold RSI with elevated volatility gate"
+ },
+ {
+  "id": "ImpulseMACDVolumeStrategy",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe[\"macd\"] > dataframe[\"macdsignal\"])"
+   },
+   {
+    "label": "volume_flow",
+    "confidence": "medium",
+    "evidence": "(dataframe[\"volume\"] > dataframe[\"volume_avg\"])"
+   }
+  ],
+  "note": "MACD cross with volume confirmation"
+ },
+ {
+  "id": "ImpulseV1",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(qtpylib.crossed_above(df[f'sh_{self.ma_length.value}'], 0))"
+   }
+  ],
+  "note": "Derivative zero-crossing detects price acceleration away from midband"
+ },
+ {
+  "id": "IndicatorforRL",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(qtpylib.crossed_above(dataframe['rsi'], 30))"
+   }
+  ],
+  "note": "RSI oversold entry with momentum confirmation"
+ },
+ {
+  "id": "IndividualCrossSMA",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "qtpylib.crossed_above(dataframe[f'{compra}_{self.buy_params[compra]}'], dataframe[f'{venta}_{self.sell_params[venta]}'])"
+   }
+  ],
+  "note": "Moving average crossover pattern"
+ },
+ {
+  "id": "Infinite_ROI",
+  "primary": "other",
+  "labels": [],
+  "note": "No entry logic implemented (empty populate_buy_trend)"
+ },
+ {
+  "id": "Infinity",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] > dataframe[f\"ema_{...}\"])"
+   }
+  ],
+  "note": "EMA alignment and SMA200 rising trend conditions"
+ },
+ {
+  "id": "Infinity_0",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] > dataframe[f\"ema_{...}\"])"
+   }
+  ],
+  "note": "EMA alignment trend conditions"
+ },
+ {
+  "id": "Infinity_1",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] > dataframe[f\"ema_{...}\"])"
+   }
+  ],
+  "note": "EMA alignment trend conditions"
+ },
+ {
+  "id": "InformativeDecoratorTest",
+  "primary": "other",
+  "labels": [],
+  "note": "No entry logic (buy/sell both return 0)"
+ },
+ {
+  "id": "InformativeSample",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['ema20'] > dataframe['ema50'])"
+   }
+  ],
+  "note": "EMA alignment with higher timeframe confirmation"
+ },
+ {
+  "id": "Insomnia",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "((dataframe[f'rsi_{self.buy_rsi.value}'] < self.buy_rsi_compare_long.value)"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "(dataframe['close'] > dataframe[f'sma_{self.buy_sma_12.value}_12h'])"
+   }
+  ],
+  "note": "Oversold RSI entry with multi-timeframe SMA alignment confirmation"
+ },
+ {
+  "id": "Insomnia_short",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(qtpylib.crossed_below(dataframe['SSL'], dataframe['close']))"
+   }
+  ],
+  "note": "SSL channel and direction-based trend following"
+ },
+ {
+  "id": "Inverse",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(qtpylib.crossed_above(dataframe[f'fisher_cci_{self.buy_fisher_length.value}'], self.buy_fisher_cci_1.value))"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "(dataframe[f'ssl_up_{self.info_timeframe}'] > dataframe[f'ssl_down_{self.info_timeframe}'])"
+   }
+  ],
+  "note": "Fisher_CCI oscillator cross with trend filters"
+ },
+ {
+  "id": "InverseV2",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(qtpylib.crossed_above(dataframe[f'fisher_cci_{self.buy_fisher_length.value}'], self.buy_fisher_cci_1.value))"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "(dataframe[f'ssl_up_{self.info_timeframe}'] > dataframe[f'ssl_down_{self.info_timeframe}'])"
+   }
+  ],
+  "note": "Fisher_CCI cross with SSL and EMA trend alignment"
+ },
+ {
+  "id": "InverseVolBasket",
+  "primary": "other",
+  "labels": [],
+  "note": "No entry/exit logic implemented"
+ },
+ {
+  "id": "InverseVolatilityPortfolio",
+  "primary": "other",
+  "labels": [],
+  "note": "Portfolio rebalancing based on inverse volatility parity, not directional signal"
+ },
+ {
+  "id": "JT_V04",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rocr'] < 0.95) & (dataframe['ema_fast'] <= 0.988*dataframe['bb_lowerband'])"
+   },
+   {
+    "label": "volatility",
+    "confidence": "medium",
+    "evidence": "Buying at BB lower band on ROCR weakness"
+   }
+  ],
+  "note": "Entry into weakness at band extremes"
+ },
+ {
+  "id": "JohnisHyperOpt",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi_4'] < int(self.lambo1_rsi_4_limit.value))"
+   }
+  ],
+  "note": "Lambo conditions: very low RSI on short timeframes"
+ },
+ {
+  "id": "JohnisHyperOpt2",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi_4'] < int(self.lambo1_rsi_4_limit.value))"
+   }
+  ],
+  "note": "Lambo conditions: very low RSI entries"
+ },
+ {
+  "id": "JohnisHyperOpt3",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi_4'] < int(self.lambo1_rsi_4_limit.value))"
+   }
+  ],
+  "note": "Lambo conditions: oversold RSI entries"
+ },
+ {
+  "id": "JuicyTrend",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "buy = dataframe['ma1'] > dataframe['ma2']"
+   }
+  ],
+  "note": "MA alignment with optional StochRSI and trend confirmation"
+ },
+ {
+  "id": "JustROCR",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "dataframe['rocr'] > 1.10"
+   }
+  ],
+  "note": "Pure rate of change momentum signal"
+ },
+ {
+  "id": "JustROCR2",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "dataframe['rocr'] > 1.20"
+   }
+  ],
+  "note": "Rate of change momentum at higher threshold"
+ },
+ {
+  "id": "JustROCR3",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "dataframe['rocr'] > 1.10"
+   }
+  ],
+  "note": "Rate of change momentum signal"
+ },
+ {
+  "id": "JustROCR4",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['rocr'] > 1.20) & (dataframe['rocr_200'] > 1.15)"
+   }
+  ],
+  "note": "Multi-timeframe momentum confirmation"
+ },
+ {
+  "id": "JustROCR5",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['rocr'] > 1.10) & (dataframe['rocr_2'] > 1.01)"
+   }
+  ],
+  "note": "Multi-period ROCR momentum"
+ }
+]

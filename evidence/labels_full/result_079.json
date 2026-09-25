@@ -1,0 +1,349 @@
+[
+ {
+  "id": "SuperIchi",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "tenkan_b' > dataframe['kijun_b']) &  (dataframe['tenkan_b'].shift(1) < dataframe['kijun_b'].shift"
+   }
+  ],
+  "note": null
+ },
+ {
+  "id": "SuperMacd",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "dataframe[f'supertrend_1_buy'] == 'up') & (dataframe[f'supertrend_2_buy'] == 'up') & (dataframe[f'supertrend_3_buy'] == 'up')"
+   }
+  ],
+  "note": null
+ },
+ {
+  "id": "SuperReversal_mtf",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe[\"super_trend_direction_1h\"] == 1) & (dataframe[\"ema_short_1h\"] > dataframe[\"ema_long_1h\"])"
+   }
+  ],
+  "note": null
+ },
+ {
+  "id": "SuperReversal_mtf_5min",
+  "primary": "other",
+  "labels": [],
+  "note": "No indicator, entry, or exit code provided"
+ },
+ {
+  "id": "SuperTrend",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi'] < 30) & (dataframe['close'] < dataframe['bb_lowerband'])"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "(dataframe['ema12'] > dataframe['ema50'])"
+   }
+  ],
+  "note": null
+ },
+ {
+  "id": "SuperTrendPure",
+  "primary": "breakout",
+  "labels": [
+   {
+    "label": "breakout",
+    "confidence": "high",
+    "evidence": "qtpylib.crossed_above(dataframe['close'], dataframe['st'])"
+   }
+  ],
+  "note": null
+ },
+ {
+  "id": "SuperTrendPure_583",
+  "primary": "breakout",
+  "labels": [
+   {
+    "label": "breakout",
+    "confidence": "high",
+    "evidence": "qtpylib.crossed_above(dataframe['close'], dataframe['st'])"
+   }
+  ],
+  "note": null
+ },
+ {
+  "id": "SuperTrend_154",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['ST_long'] < dataframe['close'])"
+   }
+  ],
+  "note": null
+ },
+ {
+  "id": "Supertrend",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe[\"supertrend_3_12\"] == \"up\") & (dataframe[\"supertrend_1_10\"] == \"up\")"
+   }
+  ],
+  "note": null
+ },
+ {
+  "id": "SupertrendStrategy",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "((dataframe['supertrend_direction_1'] + dataframe['supertrend_direction_2'] + dataframe['supertrend_direction_3']) >= 1)"
+   }
+  ],
+  "note": null
+ },
+ {
+  "id": "SupertrendStrategy_713",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "((dataframe['supertrend_direction_1'] + dataframe['supertrend_direction_2'] + dataframe['supertrend_direction_3']) >= 1)"
+   }
+  ],
+  "note": null
+ },
+ {
+  "id": "Supertrend_151",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "dataframe[f'supertrend_1_buy_{self.buy_m1.value}_{self.buy_p1.value}'] == 'up'"
+   }
+  ],
+  "note": null
+ },
+ {
+  "id": "Supertrend_2",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "dataframe[f'supertrend_1_buy_{self.buy_m1.value}_{self.buy_p1.value}'] == 'up'"
+   }
+  ],
+  "note": null
+ },
+ {
+  "id": "Supertrend_296",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'].shift(2) < dataframe['ema200'])"
+   }
+  ],
+  "note": "dip buy below 200-EMA after supertrend alignment"
+ },
+ {
+  "id": "Supertrend_3",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "dataframe[f'supertrend_1_buy'] == 'up'"
+   }
+  ],
+  "note": null
+ },
+ {
+  "id": "Supertrend_4",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "dataframe[f'supertrend_1_buy_{self.buy_m1.value}_{self.buy_p1.value}'] == 'up'"
+   }
+  ],
+  "note": null
+ },
+ {
+  "id": "Supertrend_460",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'].shift(2) < dataframe['ema200'])"
+   }
+  ],
+  "note": "dip buy below 200-EMA after supertrend alignment"
+ },
+ {
+  "id": "Supertrend_6",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe[\"supertrend_3_12\"] == \"up\")"
+   }
+  ],
+  "note": null
+ },
+ {
+  "id": "Supertrend_771",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe[\"supertrend_3_12\"] == \"up\")"
+   }
+  ],
+  "note": null
+ },
+ {
+  "id": "Supertrend_ORIG",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "dataframe[params['buy-price']] > dataframe['supertrend']"
+   }
+  ],
+  "note": "SAR or SuperTrend as trend-following indicator"
+ },
+ {
+  "id": "Supertrend_mod1",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe[\"supertrend_3_12\"] == \"up\")"
+   }
+  ],
+  "note": null
+ },
+ {
+  "id": "SwingHigh",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe[\"macd\"] > dataframe[\"macdsignal\"])"
+   }
+  ],
+  "note": null
+ },
+ {
+  "id": "SwingHighToSky",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe[f'cci-{self.buy_cciTime.value}'] < self.buy_cci.value) &"
+   }
+  ],
+  "note": "CCI and RSI at oversold extremes"
+ },
+ {
+  "id": "SwingTradingDmiStrategy",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] > dataframe['sar']) & (dataframe['close'] > dataframe['sma']) &"
+   }
+  ],
+  "note": "ADX, DMI, SAR trend confirmation"
+ },
+ {
+  "id": "Swing_High_To_Sky",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['cci-'+str(cciBuyTP)] < cciBuyVal) &"
+   }
+  ],
+  "note": "CCI and RSI oversold signals"
+ },
+ {
+  "id": "Swing_High_To_Sky_629",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['macd'] > dataframe['macdsignal'])"
+   }
+  ],
+  "note": null
+ },
+ {
+  "id": "Swing_High_To_Sky_865",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['cci-'+str(cciBuyTP)] < cciBuyVal) &"
+   }
+  ],
+  "note": "CCI and RSI oversold signals"
+ },
+ {
+  "id": "TAD",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "qtpylib.crossed_below(dataframe[982:998]['rsi'], 66.7).any()"
+   }
+  ],
+  "note": "RSI crossing below then oversold entry"
+ },
+ {
+  "id": "TA_Collector_v1",
+  "primary": "other",
+  "labels": [],
+  "note": "Data collector only; buy and sell always 0"
+ },
+ {
+  "id": "TA_Collector_v1_0",
+  "primary": "other",
+  "labels": [],
+  "note": "Data collector only; buy and sell always 0"
+ }
+]

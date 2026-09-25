@@ -1,0 +1,447 @@
+[
+ {
+  "id": "NFI7MOHO",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi'] > self.sell_rsi_bb_1.value) &\n(dataframe['close'] > dataframe['bb20_2_upp'])"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "dataframe[f\"ema_{self.buy_01_protection__ema_fast_len.value}\"] > dataframe['ema_200']"
+   }
+  ],
+  "note": "Entry truncated; mean reversion indicated by overbought exit above BB upper band"
+ },
+ {
+  "id": "NFI7_7_2",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "dataframe[f\"ema_{global_buy_protection_params['ema_fast_len']}\"] > dataframe['ema_200']"
+   }
+  ],
+  "note": "Entry logic largely hidden by truncation; relies on EMA trend filters; exit is null"
+ },
+ {
+  "id": "NFINextMOHO",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < (dataframe['bb_lowerband'] * self.buy_bb_offset_2.value))"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['ema_50_1h'] > dataframe['ema_200_1h']) &\n(dataframe['sma_200'] > dataframe['sma_200'].shift(50))"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "(((dataframe['close'] - dataframe['open'].rolling(36).min()) / dataframe['open'].rolling(36).min()) > self.buy_min_inc_1.value)"
+   }
+  ],
+  "note": "Buys oversold conditions (RSI/MFI weak) within uptrend; dip-buying pattern"
+ },
+ {
+  "id": "NFINextMOHO2",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < (dataframe['bb_lowerband'] * self.buy_bb_offset_2.value))"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['ema_50_1h'] > dataframe['ema_200_1h']) &\n(dataframe['sma_200'] > dataframe['sma_200'].shift(50))"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "(((dataframe['close'] - dataframe['open'].rolling(36).min()) / dataframe['open'].rolling(36).min()) > self.buy_min_inc_1.value)"
+   }
+  ],
+  "note": "Identical logic to NFINextMOHO; trend-filtered dip-buying"
+ },
+ {
+  "id": "NFINextMultiOffsetAndHO",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "dataframe[f\"ema_{global_buy_protection_params['ema_fast_len'].value}\"] > dataframe['ema_200']"
+   },
+   {
+    "label": "volatility",
+    "confidence": "low",
+    "evidence": "dataframe['close'] > dataframe[f'{i}_offset_sell']"
+   }
+  ],
+  "note": "Entry truncated; exit uses MA-offset levels; unclear primary logic"
+ },
+ {
+  "id": "NFINextMultiOffsetAndHO2",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "dataframe[f\"ema_{global_buy_protection_params['ema_fast_len'].value}\"] > dataframe['ema_200']"
+   },
+   {
+    "label": "other",
+    "confidence": "medium",
+    "evidence": "not_empty_volume = dataframe['volume'].rolling(window=72, min_periods=72)"
+   }
+  ],
+  "note": "Entry volume-gated; trailing_stop enabled; exit via MA offset"
+ },
+ {
+  "id": "NFIV5HYPERALL",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < (dataframe['bb_lowerband'] * self.buy_bb_offset_2.value))"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['ema_50_1h'] > dataframe['ema_200_1h']) &\n(dataframe['sma_200'] > dataframe['sma_200'].shift(50))"
+   },
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(((dataframe['close'] - dataframe['open'].rolling(36).min()) / dataframe['open'].rolling(36).min()) > self.buy_min_inc_1.value)"
+   }
+  ],
+  "note": "Same entry/exit as NFINextMOHO; dip-buying within uptrend"
+ },
+ {
+  "id": "NFIV6HYPER",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi'] > self.sell_rsi_bb_1.value) &\n(dataframe['close'] > dataframe['bb_upperband'])"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "dataframe[f\"ema_{self.buy_01_protection__ema_fast_len.value}\"] > dataframe['ema_200']"
+   }
+  ],
+  "note": "Entry truncated; exit at RSI overbought above BB; similar to NFI7MOHO"
+ },
+ {
+  "id": "NFIV7_SMA",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi_fast'] < 35)\n&\n(dataframe['close'] < dataframe['ma_lower'])\n&\n(dataframe['open'] > dataframe['ma_lower'])"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['uptrend_1h'] > 0)"
+   }
+  ],
+  "note": "Buys RSI oversold (< 35) within uptrend; mean-reverting entry with trend filter"
+ },
+ {
+  "id": "NFIV8_SMA",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi_fast'] < 35)\n&\n(dataframe['close'] < dataframe['ma_lower'])\n&\n(dataframe['open'] > dataframe['ma_lower'])"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['uptrend_1h'] > 0)"
+   }
+  ],
+  "note": "Same entry logic as NFIV7_SMA with protection params; oversold mean-reversion"
+ },
+ {
+  "id": "NFIX7Risk",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "low",
+    "evidence": ""
+   }
+  ],
+  "note": "No code provided"
+ },
+ {
+  "id": "NFIX_BB_RPB",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "medium",
+    "evidence": "dataframe[f\"ema_{global_buy_protection_params['ema_fast_len']}\"] > dataframe['ema_200']"
+   },
+   {
+    "label": "volatility",
+    "confidence": "medium",
+    "evidence": "custom_stoploss and Bollinger Band RPB (Reversal Pattern) logic"
+   }
+  ],
+  "note": "Entry truncated; BB-RPB label suggests reversal pattern at Bollinger Bands"
+ },
+ {
+  "id": "NFIX_BB_RPB_c7c477d_20211030",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "medium",
+    "evidence": "dataframe[f\"ema_{global_buy_protection_params['ema_fast_len']}\"] > dataframe['ema_200']"
+   },
+   {
+    "label": "volatility",
+    "confidence": "medium",
+    "evidence": "custom_stoploss and Bollinger Band logic"
+   }
+  ],
+  "note": "Variant of NFIX_BB_RPB; entry truncated; custom_sell and custom_stoploss hooks"
+ },
+ {
+  "id": "NFIX_BB_RPB_v103",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "medium",
+    "evidence": "dataframe[f\"ema_{global_buy_protection_params['ema_fast_len']}\"] > dataframe['ema_200']"
+   },
+   {
+    "label": "volatility",
+    "confidence": "medium",
+    "evidence": "confirm_trade_entry and custom_stoploss hooks with Bollinger Band logic"
+   }
+  ],
+  "note": "Version 103 of NFIX_BB_RPB; entry truncated"
+ },
+ {
+  "id": "NFi_772_KC",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "dataframe[f\"ema_{global_buy_protection_params['ema_fast_len']}\"] > dataframe['ema_200']"
+   },
+   {
+    "label": "volatility",
+    "confidence": "low",
+    "evidence": "KC (Keltner Channel) logic implied by strategy name and custom_sell"
+   }
+  ],
+  "note": "Entry truncated; Keltner Channel strategy; EMA trend filters visible"
+ },
+ {
+  "id": "NNPredict",
+  "primary": "statistical",
+  "labels": [
+   {
+    "label": "statistical",
+    "confidence": "high",
+    "evidence": "(dataframe['predicted_gain'] > dataframe['target_profit'])\n&\n(dataframe['close'] < dataframe['local_mean'])"
+   },
+   {
+    "label": "mean_reversion",
+    "confidence": "medium",
+    "evidence": "(dataframe['close'] < dataframe['local_mean']) - buys below mean"
+   }
+  ],
+  "note": "Neural network regression model predicting future gain/loss; mean-reverting position entry"
+ },
+ {
+  "id": "NNPredict_AdditiveAttention",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "low",
+    "evidence": ""
+   }
+  ],
+  "note": "No code provided; likely NN variant"
+ },
+ {
+  "id": "NNPredict_Attention",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "low",
+    "evidence": ""
+   }
+  ],
+  "note": "No code provided; likely NN variant"
+ },
+ {
+  "id": "NNPredict_CNN",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "low",
+    "evidence": ""
+   }
+  ],
+  "note": "No code provided; likely NN variant"
+ },
+ {
+  "id": "NNPredict_GRU",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "low",
+    "evidence": ""
+   }
+  ],
+  "note": "No code provided; likely NN variant"
+ },
+ {
+  "id": "NNPredict_LSTM",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "low",
+    "evidence": ""
+   }
+  ],
+  "note": "No code provided; likely NN variant"
+ },
+ {
+  "id": "NNPredict_LSTM0",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "low",
+    "evidence": ""
+   }
+  ],
+  "note": "No code provided; likely NN variant"
+ },
+ {
+  "id": "NNPredict_LSTM2",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "low",
+    "evidence": ""
+   }
+  ],
+  "note": "No code provided; likely NN variant"
+ },
+ {
+  "id": "NNPredict_LSTM3",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "low",
+    "evidence": ""
+   }
+  ],
+  "note": "No code provided; likely NN variant"
+ },
+ {
+  "id": "NNPredict_MLP",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "low",
+    "evidence": ""
+   }
+  ],
+  "note": "No code provided; likely NN variant"
+ },
+ {
+  "id": "NNPredict_Multihead",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "low",
+    "evidence": ""
+   }
+  ],
+  "note": "No code provided; likely NN variant"
+ },
+ {
+  "id": "NNPredict_NBeats",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "low",
+    "evidence": ""
+   }
+  ],
+  "note": "No code provided; likely NN variant"
+ },
+ {
+  "id": "NNPredict_NHiTS",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "low",
+    "evidence": ""
+   }
+  ],
+  "note": "No code provided; likely NN variant"
+ },
+ {
+  "id": "NNPredict_NLinear",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "low",
+    "evidence": ""
+   }
+  ],
+  "note": "No code provided; likely NN variant"
+ },
+ {
+  "id": "NNPredict_Ray",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "low",
+    "evidence": ""
+   }
+  ],
+  "note": "No code provided; likely NN variant"
+ }
+]

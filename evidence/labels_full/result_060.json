@@ -1,0 +1,442 @@
+[
+ {
+  "id": "NostalgiaForInfinityV7_SMAv2",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi_fast'] < 35)\n                    &\n                    (dataframe['close'] < dataframe['ma_lower'])"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['uptrend_1h'] > 0)"
+   }
+  ]
+ },
+ {
+  "id": "NostalgiaForInfinityV7_SMAv2_1",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi_fast'] < 35)\n                    &\n                    (dataframe['close'] < dataframe['ma_lower'])"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['uptrend_1h'] > 0)"
+   }
+  ]
+ },
+ {
+  "id": "NostalgiaForInfinityV8",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "item_buy_protection_list.append(dataframe[f\"ema_{global_buy_protection_params['ema_fast_len'].value}\"] > dataframe['ema_200'])"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "dataframe['sma_200'] > dataframe['sma_200'].shift(int(global_buy_protection_params['sma200_rising_val'].value))"
+   }
+  ]
+ },
+ {
+  "id": "NostalgiaForInfinityV8_9_1",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "item_buy_protection_list.append(dataframe[f\"ema_{global_buy_protection_params['ema_fast_len'].value}\"] > dataframe['ema_200'])"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "dataframe['sma_200'] > dataframe['sma_200'].shift(int(global_buy_protection_params['sma200_rising_val'].value))"
+   }
+  ]
+ },
+ {
+  "id": "NostalgiaForInfinityX",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "item_buy_protection_list.append(dataframe[f\"ema_{global_buy_protection_params['ema_fast_len']}\"] > dataframe['ema_200'])"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "dataframe['sma_200'] > dataframe['sma_200'].shift(int(global_buy_protection_params['sma200_rising_val']))"
+   }
+  ]
+ },
+ {
+  "id": "NostalgiaForInfinityX2",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "item_buy_logic.append(dataframe['ema_12_1h'] > dataframe['ema_26_1h'])\n                    item_buy_logic.append(dataframe['ema_12_1h'] > dataframe['ema_200_1h'])"
+   },
+   {
+    "label": "volatility",
+    "confidence": "high",
+    "evidence": "item_buy_logic.append(dataframe['hl_pct_change_6_1h'] < 0.4)\n          item_buy_logic.append(dataframe['hl_pct_change_12_1h'] < 0.5)"
+   }
+  ]
+ },
+ {
+  "id": "NostalgiaForInfinityX2_11",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "item_buy_logic.append(dataframe['ema_12_1h'] > dataframe['ema_26_1h'])\n                    item_buy_logic.append(dataframe['ema_12_1h'] > dataframe['ema_200_1h'])"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "item_buy_logic.append(dataframe['sma_12_1h'] > dataframe['sma_26_1h'])\n                    item_buy_logic.append(dataframe['sma_12_1h'] > dataframe['sma_200_1h'])"
+   }
+  ]
+ },
+ {
+  "id": "NostalgiaForInfinityX2_13",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "item_buy_logic.append(dataframe['ema_12_1h'] > dataframe['ema_26_1h'])\n                    item_buy_logic.append(dataframe['ema_12_1h'] > dataframe['ema_200_1h'])"
+   },
+   {
+    "label": "volatility",
+    "confidence": "medium",
+    "evidence": "item_buy_logic.append(dataframe['hl_pct_change_24_1h'] < 3.0)"
+   }
+  ]
+ },
+ {
+  "id": "NostalgiaForInfinityX2_14",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "item_buy_logic.append(dataframe['ema_12_1h'] > dataframe['ema_26_1h'])\n                    item_buy_logic.append(dataframe['ema_12_1h'] > dataframe['ema_200_1h'])"
+   },
+   {
+    "label": "volatility",
+    "confidence": "medium",
+    "evidence": "item_buy_logic.append(dataframe['hl_pct_change_24_1h'] < 3.0)"
+   }
+  ]
+ },
+ {
+  "id": "NostalgiaForInfinityX2_2",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "item_buy_logic.append(dataframe['sma_50'] > dataframe['sma_200'])\n                    item_buy_logic.append(dataframe['sma_50_1h'] > dataframe['sma_200_1h'])"
+   },
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "item_buy_logic.append(dataframe['ema_26'] > dataframe['ema_12'])\n                    item_buy_logic.append((dataframe['ema_26'] - dataframe['ema_12']) > (dataframe['open'] * 0.01))"
+   }
+  ]
+ },
+ {
+  "id": "NostalgiaForInfinityX2_234",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "item_buy_logic.append(dataframe['rsi_14'] < 30.0)"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "item_buy_logic.append(dataframe['sma_50'] > dataframe['sma_200'])\n                    item_buy_logic.append(dataframe['sma_50_1h'] > dataframe['sma_200_1h'])"
+   }
+  ]
+ },
+ {
+  "id": "NostalgiaForInfinityX2_237",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "item_buy_logic.append(dataframe['sma_50'] > dataframe['sma_200'])\n                    item_buy_logic.append(dataframe['sma_50_1h'] > dataframe['sma_200_1h'])"
+   },
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "item_buy_logic.append(dataframe['ema_26'] > dataframe['ema_12'])\n                    item_buy_logic.append((dataframe['ema_26'] - dataframe['ema_12']) > (dataframe['open'] * 0.01))"
+   }
+  ]
+ },
+ {
+  "id": "NostalgiaForInfinityX2_3",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "item_buy_logic.append(dataframe['sma_50'] > dataframe['sma_200'])\n                    item_buy_logic.append(dataframe['sma_50_1h'] > dataframe['sma_200_1h'])"
+   },
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "item_buy_logic.append(dataframe['ema_26'] > dataframe['ema_12'])\n                    item_buy_logic.append((dataframe['ema_26'] - dataframe['ema_12']) > (dataframe['open'] * 0.01))"
+   }
+  ]
+ },
+ {
+  "id": "NostalgiaForInfinityX2_4",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "item_buy_logic.append(dataframe['sma_50'] > dataframe['sma_200'])\n                    item_buy_logic.append(dataframe['sma_50_1h'] > dataframe['sma_200_1h'])"
+   },
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "item_buy_logic.append(dataframe['ema_26'] > dataframe['ema_12'])\n                    item_buy_logic.append((dataframe['ema_26'] - dataframe['ema_12']) > (dataframe['open'] * 0.01))"
+   }
+  ]
+ },
+ {
+  "id": "NostalgiaForInfinityX2_5",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "item_buy_logic.append(dataframe['sma_50'] > dataframe['sma_200'])\n                    item_buy_logic.append(dataframe['sma_50_1h'] > dataframe['sma_200_1h'])"
+   },
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "item_buy_logic.append(dataframe['ema_26'] > dataframe['ema_12'])\n                    item_buy_logic.append((dataframe['ema_26'] - dataframe['ema_12']) > (dataframe['open'] * 0.01))"
+   }
+  ]
+ },
+ {
+  "id": "NostalgiaForInfinityX2_8",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "item_buy_logic.append(dataframe['close'] < (dataframe['bb20_2_low'] * 0.999))"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "item_buy_logic.append(dataframe['ema_26'] > dataframe['ema_12'])\n                    item_buy_logic.append(dataframe['ema_26'] > dataframe['ema_200'])"
+   }
+  ]
+ },
+ {
+  "id": "NostalgiaForInfinityX2_92",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "item_buy_logic.append(dataframe['rsi_14'] < 30.0)"
+   }
+  ]
+ },
+ {
+  "id": "NostalgiaForInfinityX2_93",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "item_buy_logic.append(dataframe['rsi_14'] < 30.0)"
+   }
+  ]
+ },
+ {
+  "id": "NostalgiaForInfinityX3",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "item_buy_protection_list = [True]\n      if not self.config[\"runmode\"].value in (\"live\", \"dry_run\")"
+   }
+  ]
+ },
+ {
+  "id": "NostalgiaForInfinityX4",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "long_entry_logic.append(df[\"protections_long_global\"] == True)"
+   }
+  ]
+ },
+ {
+  "id": "NostalgiaForInfinityX5",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "long_entry_logic.append(reduce(lambda x, y: x & y, item_buy_protection_list))"
+   }
+  ]
+ },
+ {
+  "id": "NostalgiaForInfinityX6",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "long_entry_logic.append(re"
+   }
+  ]
+ },
+ {
+  "id": "NostalgiaForInfinityX7",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "roc_9_1d = np_view(\"ROC_9_1d\")\n    aroonu_14_4h = np_view(\"AROONU_14_4h\")\n    stochrsi_k_4h = np_view(\"STOCHRSIk_14_14_3_3_4h\")"
+   },
+   {
+    "label": "volatility",
+    "confidence": "high",
+    "evidence": "orange_h = np_view(\"ORANGE_H\")\n    orange_l = np_view(\"ORANGE_L\")"
+   }
+  ]
+ },
+ {
+  "id": "NostalgiaForInfinityX8",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "roc_9_1d = np_view(\"ROC_9_1d\")\n    aroonu_14_4h = np_view(\"AROONU_14_4h\")\n    stochrsi_k_4h = np_view(\"STOCHRSIk_14_14_3_3_4h\")"
+   },
+   {
+    "label": "volatility",
+    "confidence": "high",
+    "evidence": "orange_h = np_view(\"ORANGE_H\")\n    orange_l = np_view(\"ORANGE_L\")"
+   }
+  ]
+ },
+ {
+  "id": "NostalgiaForInfinityX_2",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "if self.buy_01_protection__ema_fast.value:\n            buy_01_protections.append(dataframe[f\"ema_...\"} > dataframe['ema_200'])"
+   },
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi'] > self.sell_rsi_bb_1.value) &\n                (dataframe['close'] > dataframe['bb20_2_upp'])"
+   }
+  ]
+ },
+ {
+  "id": "NostalgiaForInfinityXw",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "if global_buy_protection_params[\"ema_fast\"]:\n                    item_buy_protection_list.append(dataframe[f\"ema_..."
+   },
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "if global_buy_protection_params[\"sma200_rising\"]:\n                    item_buy_protection_list.append(dataframe['sma_200'] >"
+   }
+  ]
+ },
+ {
+  "id": "NostalgiaForInfinity_7_13_0",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "if global_buy_protection_params[\"ema_fast\"]:\n                    item_buy_protection_list.append(dataframe[f\"ema_..."
+   },
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "if global_buy_protection_params[\"sma200_rising\"]:\n                    item_buy_protection_list.append(dataframe['sma_200'] >"
+   }
+  ]
+ },
+ {
+  "id": "NostalgiaForSimplicity",
+  "primary": "other",
+  "labels": [],
+  "note": "plugin-based entry/exit; logic determined at runtime by indicators array"
+ },
+ {
+  "id": "NostalgiaVIP",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "if self.buy_01_protection__ema_fast.value:\n            buy_01_protections.append(dataframe[f\"ema_..."
+   },
+   {
+    "label": "mean_reversion",
+    "confidence": "medium",
+    "evidence": "(dataframe['rsi'] > self.sell_rsi_bb_1.value) &\n                (dataframe['close'] > dataframe['bb20_2_upp'])"
+   }
+  ]
+ },
+ {
+  "id": "Nostalgia_2",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "if global_buy_protection_params[\"ema_fast\"].value:\n                item_buy_protection_list.append(dataframe[f\"ema_..."
+   },
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "if global_buy_protection_params[\"sma200_rising\"].value:\n                item_buy_protection_list.append(dataframe['sma_200'] > dataframe['sma_200'].shift"
+   }
+  ]
+ }
+]

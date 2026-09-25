@@ -1,0 +1,437 @@
+[
+ {
+  "id": "Bandtastic_2",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "dataframe[\"close\"] < dataframe['bb_lowerband1']"
+   },
+   {
+    "label": "volatility",
+    "confidence": "medium",
+    "evidence": "bollinger1, bollinger2, bollinger3, bollinger4 at 1,2,3,4 stds"
+   }
+  ],
+  "note": "Multi-band Bollinger approach for dip-buying"
+ },
+ {
+  "id": "BaseNNStrategy",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "high",
+    "evidence": ""
+   }
+  ],
+  "note": "Neural network base class; no concrete entry/exit logic"
+ },
+ {
+  "id": "BaseStrategy",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "high",
+    "evidence": ""
+   }
+  ],
+  "note": "Abstract base class with deferred get_entry_conditions/get_exit_conditions"
+ },
+ {
+  "id": "BasketStrategy",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "dataframe.loc[dataframe[\"close\"] < thresh, \"enter_long\"] = 1"
+   },
+   {
+    "label": "grid",
+    "confidence": "medium",
+    "evidence": "position_adjustment_enable = True"
+   }
+  ],
+  "note": "Buys below Bollinger middle band with position scaling"
+ },
+ {
+  "id": "BbRoi",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['ema20'] > dataframe['ema200'])"
+   },
+   {
+    "label": "mean_reversion",
+    "confidence": "medium",
+    "evidence": "(dataframe['close'] < dataframe['bb_upperband'])"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "BbStage",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['ema20'] > dataframe['ema200'])"
+   },
+   {
+    "label": "mean_reversion",
+    "confidence": "medium",
+    "evidence": "(dataframe['close'] < dataframe['bb_upperband'])"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "BbWidthExpansionStrategy",
+  "primary": "volatility",
+  "labels": [
+   {
+    "label": "volatility",
+    "confidence": "high",
+    "evidence": "(dataframe[\"bb_width\"] > dataframe[\"bb_width_ma\"])"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "(dataframe[\"close\"] > dataframe[\"ema50\"])"
+   }
+  ],
+  "note": "Enters on Bollinger band expansion with trend filter"
+ },
+ {
+  "id": "Bb_3",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['ema20'] > dataframe['ema200'])"
+   },
+   {
+    "label": "mean_reversion",
+    "confidence": "medium",
+    "evidence": "(dataframe['close'] < dataframe['bb_upperband'])"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "BbandRsi",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi'] < 30) & (dataframe['close'] < dataframe['bb_lowerband'])"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "BbandRsiHO",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi'] < self.buy_rsi_limit.value) & (dataframe['close'] < dataframe['bb_lowerband'])"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "BbandRsiRolling",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi'].rolling(8).min() < 37) & (dataframe['close'] < dataframe['bb_lowerband'])"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "BbandRsi_125",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi'] < 30) & (dataframe['close'].shift(-1) < dataframe['bb_lowerband'])"
+   }
+  ],
+  "note": "Buys bounce after band dip with oversold RSI"
+ },
+ {
+  "id": "BbandRsi_2",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi'] < self.buy_rsi.value) & (dataframe['close'] < self.bbscalar_buy.value * dataframe['bb_lowerband'])"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "BbandRsi_3",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi'] < 30) & (dataframe['close'] < dataframe['bb_lowerband'])"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "BbandRsi_825",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi'] < 30) & (dataframe['close'] < dataframe['bb_lowerband'])"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "BbandRsi_852",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi'] < 30) & (dataframe['close'] < dataframe['bb_lowerband'])"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "BbandRsiv1",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi'] < 20) & (qtpylib.crossed_above(dataframe['close'], dataframe['bb_lowerband2']))"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "BcmbigzDevelop",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "high",
+    "evidence": ""
+   }
+  ],
+  "note": "Entry code truncated; many parameterized conditions"
+ },
+ {
+  "id": "BcmbigzDevelop_199",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "high",
+    "evidence": ""
+   }
+  ],
+  "note": "Entry code truncated; many parameterized conditions"
+ },
+ {
+  "id": "BcmbigzV1",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['cmf'] < -0.435) & (dataframe['rsi'] < 22)"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "(dataframe['close'] > dataframe['ema_200_1h'])"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "BearBull3",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "dataframe['close'].lt(dataframe['lower'].shift())"
+   },
+   {
+    "label": "volatility",
+    "confidence": "medium",
+    "evidence": "dataframe['bbdelta'].gt(dataframe['close'] * 0.014)"
+   }
+  ],
+  "note": "MACD regime filter with Bollinger dip-buy"
+ },
+ {
+  "id": "BeastBotXBLR6",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < dataframe['bb_lowerband3'] * self.buy_bb_factor.value)"
+   },
+   {
+    "label": "volatility",
+    "confidence": "medium",
+    "evidence": "(dataframe['bb_delta'] > self.buy_bb_delta.value) & (dataframe['bb_width'] > self.buy_bb_width.value)"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "BeastBotXBLR7",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < dataframe['bb_lowerband3'] * self.buy_bb_factor.value)"
+   },
+   {
+    "label": "volatility",
+    "confidence": "medium",
+    "evidence": "(dataframe['bb_delta'] > self.buy_bb_delta.value) & (dataframe['bb_width'] > self.buy_bb_width.value)"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "Bebop",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "high",
+    "evidence": ""
+   }
+  ],
+  "note": "Parameterized Bebop algorithm; entry/exit logic unknown"
+ },
+ {
+  "id": "Best5m",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['fast_sma'] > dataframe['slow_sma'])"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "(dataframe['rsi'] < self.rsi_buy_threshold.value)"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "BestProfitable5MinStrategy",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['fast_sma'] > dataframe['slow_sma'])"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "(dataframe['rsi'] < self.rsi_buy_threshold.value)"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "BestSingleAssetPortfolio",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "high",
+    "evidence": ""
+   }
+  ],
+  "note": "Portfolio rotation by momentum rank; not pair-specific logic"
+ },
+ {
+  "id": "BestSpot",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['ema_200'] > dataframe['ema_300'])"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "(dataframe['kama'] > dataframe['fama'])"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "BigDrop",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] <= dataframe['bb_lowerband'])"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "dataframe['fisher_rsi'] < self.buy_fisher.value"
+   }
+  ],
+  "note": "Buying after sharp price drop with oversold indicators"
+ },
+ {
+  "id": "BigDrop_2",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] <= dataframe['bb_lowerband'])"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "dataframe['fisher_rsi'] < self.buy_fisher.value"
+   }
+  ],
+  "note": "Buying after sharp price drop with oversold indicators"
+ }
+]

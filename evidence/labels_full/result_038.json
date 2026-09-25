@@ -1,0 +1,332 @@
+[
+ {
+  "id": "GodStra_5",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "dataframe['ema_short_buy'] > dataframe['ema_long_buy']"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "dataframe['macd'] > dataframe['macdsignal']"
+   },
+   {
+    "label": "mean_reversion",
+    "confidence": "medium",
+    "evidence": "dataframe['close'] > dataframe['bb_middleband']"
+   }
+  ],
+  "note": null
+ },
+ {
+  "id": "GodStra_969",
+  "primary": "other",
+  "labels": [],
+  "note": "Entry logic determined entirely by runtime parameters; no fixed indicator logic in sheet"
+ },
+ {
+  "id": "GodStra_All_Indicator",
+  "primary": "other",
+  "labels": [],
+  "note": "Entry logic determined by condition_generator with runtime-only parameters; no concrete strategy"
+ },
+ {
+  "id": "GodStra_v2_EAI",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] > dataframe[self.trend_indicator_short])"
+   }
+  ],
+  "note": null
+ },
+ {
+  "id": "GodStra_v3",
+  "primary": "other",
+  "labels": [],
+  "note": "Entry logic determined by condition_generator with runtime-only parameters"
+ },
+ {
+  "id": "GodStra_v4",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] > dataframe['ema_200']) & (dataframe['adx'] > 25)"
+   },
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "qtpylib.crossed_above(dataframe['macd_hist'], 0)"
+   },
+   {
+    "label": "breakout",
+    "confidence": "high",
+    "evidence": "dataframe['close'] > dataframe['bb_upper']"
+   }
+  ],
+  "note": null
+ },
+ {
+  "id": "Godie",
+  "primary": "breakout",
+  "labels": [
+   {
+    "label": "breakout",
+    "confidence": "high",
+    "evidence": "dataframe['high'] >= dataframe['highest_high']"
+   },
+   {
+    "label": "mean_reversion",
+    "confidence": "medium",
+    "evidence": "dataframe['close'] < dataframe['vwap_low']"
+   }
+  ],
+  "note": null
+ },
+ {
+  "id": "Gold7",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['srsi_fk'] >= 90) & (dataframe['srsi_fd'] >= 90)"
+   }
+  ],
+  "note": null
+ },
+ {
+  "id": "Gold8",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi'] < 32) & (dataframe['r_14'] < -98.0)"
+   }
+  ],
+  "note": null
+ },
+ {
+  "id": "GoldHedgeZeroMACD",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "qtpylib.crossed_above(dataframe['macd'], 0)"
+   }
+  ],
+  "note": null
+ },
+ {
+  "id": "GoldenCrossStrategy",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe[\"ema50_prev\"] <= dataframe[\"ema200_prev\"])"
+   }
+  ],
+  "note": null
+ },
+ {
+  "id": "Goose1",
+  "primary": "pattern",
+  "labels": [
+   {
+    "label": "pattern",
+    "confidence": "high",
+    "evidence": "if last_candle['doji_candle'] == 1"
+   }
+  ],
+  "note": "Elliot wave pattern detection; doji lockout for safety"
+ },
+ {
+  "id": "GreenRedCandle",
+  "primary": "pattern",
+  "labels": [
+   {
+    "label": "pattern",
+    "confidence": "high",
+    "evidence": "dataframe['close'] > dataframe['open']"
+   }
+  ],
+  "note": null
+ },
+ {
+  "id": "Guacamole",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['kama-3'] > dataframe['kama-21']) & (dataframe['macd'] > dataframe['macdsignal'])"
+   }
+  ],
+  "note": null
+ },
+ {
+  "id": "Gumbo1",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "dataframe['EWO'] < self.ewo_low.value"
+   }
+  ],
+  "note": null
+ },
+ {
+  "id": "GuruSkippyasurmuni",
+  "primary": "other",
+  "labels": [],
+  "note": "Entry logic determined by condition_generator with runtime-only parameters"
+ },
+ {
+  "id": "GuruSkippyasurmuni_strategy",
+  "primary": "other",
+  "labels": [],
+  "note": "Entry logic determined by condition_generator with runtime-only parameters"
+ },
+ {
+  "id": "GuruSkippyasurmuni_strategy_3",
+  "primary": "other",
+  "labels": [],
+  "note": "Entry logic determined by condition_generator with runtime-only parameters"
+ },
+ {
+  "id": "GuruSkippyasurmuni_strategy_4",
+  "primary": "other",
+  "labels": [],
+  "note": "Entry logic determined by condition_generator with runtime-only parameters"
+ },
+ {
+  "id": "GymStrategy",
+  "primary": "other",
+  "labels": [],
+  "note": "Reinforcement learning model; no interpretable logic in code"
+ },
+ {
+  "id": "GymStrategy_2",
+  "primary": "other",
+  "labels": [],
+  "note": "Reinforcement learning model; no interpretable logic in code"
+ },
+ {
+  "id": "HA",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "qtpylib.crossed_above(dataframe['ema20'], dataframe['ema50'])"
+   }
+  ],
+  "note": null
+ },
+ {
+  "id": "HEAD_SHOULDER",
+  "primary": "pattern",
+  "labels": [
+   {
+    "label": "pattern",
+    "confidence": "high",
+    "evidence": "dataframe[f'signal'] == 1"
+   }
+  ],
+  "note": null
+ },
+ {
+  "id": "HEW",
+  "primary": "pattern",
+  "labels": [
+   {
+    "label": "pattern",
+    "confidence": "high",
+    "evidence": "recent_down_patterns == 1"
+   }
+  ],
+  "note": "Wave-based pattern detection via FFT analysis"
+ },
+ {
+  "id": "HLHB",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(qtpylib.crossed_above(dataframe['ema5'], dataframe['ema10'])) & (dataframe['adx'] > 25)"
+   }
+  ],
+  "note": null
+ },
+ {
+  "id": "HLMSuperSmoth7",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "dataframe['rsi'] > dataframe['rsi'].shift()"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "dataframe['supertrend_direction'] > 0"
+   }
+  ],
+  "note": null
+ },
+ {
+  "id": "HMMv3",
+  "primary": "other",
+  "labels": [],
+  "note": "Hidden Markov Model determines signals; no interpretable logic"
+ },
+ {
+  "id": "HPSDivergence",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "dataframe['higher_tf_trend'] > 1"
+   }
+  ],
+  "note": null
+ },
+ {
+  "id": "HPStrategy",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < (dataframe['ema_14'] * self.lambo2_ema_14_factor.value))"
+   }
+  ],
+  "note": null
+ },
+ {
+  "id": "HPStrategyLeverage",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "dataframe['rsi'] < self.rsi_buy_limit.value"
+   }
+  ],
+  "note": null
+ }
+]

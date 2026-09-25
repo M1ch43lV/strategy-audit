@@ -1,0 +1,351 @@
+[
+ {
+  "id": "MultiMA_TSL3_Mod",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "qtpylib.crossed_below(dataframe['sar'], dataframe['pmax_thresh'])"
+   }
+  ]
+ },
+ {
+  "id": "MultiMA_TSL3a",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < dataframe['trima_offset_buy'])"
+   }
+  ]
+ },
+ {
+  "id": "MultiMA_TSL3b",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < dataframe['trima_offset_buy'])"
+   }
+  ]
+ },
+ {
+  "id": "MultiMA_TSL5",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "tv_hma(dataframe, int(self.base_nb_candles_buy_hma.value))"
+   }
+  ]
+ },
+ {
+  "id": "MultiMA_TSL_138",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < dataframe['ema_offset_buy'])"
+   }
+  ]
+ },
+ {
+  "id": "MultiMA_TSL_461",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < dataframe['trima_offset_buy'])"
+   }
+  ]
+ },
+ {
+  "id": "MultiMA_TSL_618",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < dataframe['trima_offset_buy'])"
+   }
+  ]
+ },
+ {
+  "id": "MultiMA_TSL_76",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < dataframe['ema_offset_buy'])"
+   }
+  ]
+ },
+ {
+  "id": "MultiMA_TSLho",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < dataframe['sma_offset_buy'])"
+   }
+  ]
+ },
+ {
+  "id": "MultiMA_TSLk",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < dataframe['trima_offset_buy'])"
+   },
+   {
+    "label": "volatility",
+    "confidence": "medium",
+    "evidence": "dataframe['sqzmi'] = fta.SQZMI(dataframe)"
+   }
+  ]
+ },
+ {
+  "id": "MultiMa",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "dataframe[f\"buy-ma-{i}\"].shift(shift) > dataframe[f\"buy-ma-{i-1}\"]"
+   }
+  ]
+ },
+ {
+  "id": "MultiMaX",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "qtpylib.crossed_below(dataframe['buy_ema_fast'],dataframe['buy_ema_slow']*self.buy_ema_push.value)"
+   }
+  ]
+ },
+ {
+  "id": "MultiMa_2",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "dataframe[key] < dataframe[past_key]"
+   }
+  ]
+ },
+ {
+  "id": "MultiMa_544",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "dataframe[f\"buy-ma-{i}\"].shift(shift) > dataframe[f\"buy-ma-{i-1}\"]"
+   }
+  ]
+ },
+ {
+  "id": "MultiOffsetLamboV0",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < dataframe[f'{i}_offset_buy'])"
+   }
+  ]
+ },
+ {
+  "id": "MultiRSI",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi'] < (dataframe['resample_{}_rsi'.format("
+   }
+  ]
+ },
+ {
+  "id": "MultiRSI2",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi'].shift(1) <= 35)"
+   }
+  ]
+ },
+ {
+  "id": "MultiRSIBBand",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": ".shift(1) <= 50)"
+   }
+  ]
+ },
+ {
+  "id": "MultiRSICMF",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi'] < (dataframe['resample_{}_rsi'"
+   },
+   {
+    "label": "volume_flow",
+    "confidence": "medium",
+    "evidence": "(dataframe['resample_{}_cmf'.format(self.get_ticker_indicator"
+   }
+  ]
+ },
+ {
+  "id": "MultiRSIVfi",
+  "primary": "volume_flow",
+  "labels": [
+   {
+    "label": "volume_flow",
+    "confidence": "high",
+    "evidence": "(dataframe['vfi'] >= dataframe['vfima'])"
+   },
+   {
+    "label": "mean_reversion",
+    "confidence": "medium",
+    "evidence": "(dataframe['rsi'] < (dataframe['resample_{}_rsi'"
+   }
+  ]
+ },
+ {
+  "id": "MultiRSI_136",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi'] < (dataframe['resample_{}_rsi'"
+   }
+  ]
+ },
+ {
+  "id": "MultiRSI_2",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi'] < (dataframe['resample_{}_rsi'"
+   }
+  ]
+ },
+ {
+  "id": "MultiRSI_211",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi'] < (dataframe['resample_{}_rsi'"
+   }
+  ]
+ },
+ {
+  "id": "MultiRSI_3",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi'] < (dataframe['resample_{}_rsi'"
+   }
+  ]
+ },
+ {
+  "id": "MultiTargetClassifierTestStrategy",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "high",
+    "evidence": "df[\"do_predict\"] == 1"
+   }
+  ],
+  "note": "ML classifier, no interpretable logic in indicators"
+ },
+ {
+  "id": "MultiTargetRegressorTestStrategy",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "high",
+    "evidence": "df[\"do_predict\"] == 1"
+   }
+  ],
+  "note": "ML regressor, no interpretable logic in indicators"
+ },
+ {
+  "id": "MultiTimeframeStrategy_v1",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi'] < self.buy_rsi_compare_long_1h.value)"
+   }
+  ]
+ },
+ {
+  "id": "MultiVARDivergence",
+  "primary": "pattern",
+  "labels": [
+   {
+    "label": "pattern",
+    "confidence": "high",
+    "evidence": "(df['pos_reg_any'])"
+   }
+  ],
+  "note": "divergence detection across indicators"
+ },
+ {
+  "id": "MyAwesomeStrategy",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['ao'].shift() < 0)"
+   }
+  ]
+ },
+ {
+  "id": "MyAwesomeStrategy_262",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "high",
+    "evidence": "if self.buy_trigger.value == 'bb_lower':"
+   }
+  ],
+  "note": "entry depends on runtime parameter selection"
+ }
+]

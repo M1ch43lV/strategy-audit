@@ -1,0 +1,358 @@
+[
+ {
+  "id": "HeikinAshiStrategy",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "& (dataframe[\"adx\"] > 20)\n            & (dataframe[\"close\"] > dataframe[\"ema50\"])"
+   },
+   {
+    "label": "pattern",
+    "confidence": "medium",
+    "evidence": "(dataframe[\"ha_bullish\"] == 1)\n            & (dataframe[\"ha_bullish_prev\"] == 1)\n            & (dataframe[\"ha_bullish_prev2\"] == 0)"
+   }
+  ]
+ },
+ {
+  "id": "Heracles",
+  "primary": "volatility",
+  "labels": [
+   {
+    "label": "volatility",
+    "confidence": "high",
+    "evidence": "d = DFIND.shift(self.buy_indicator_shift.value).div(\n            DFCRS.shift(self.buy_crossed_indicator_shift.value))"
+   }
+  ]
+ },
+ {
+  "id": "HeraclesOpt2",
+  "primary": "volatility",
+  "labels": [
+   {
+    "label": "volatility",
+    "confidence": "high",
+    "evidence": "d.between(self.buy_div_min.value, self.buy_div_max.value)"
+   }
+  ]
+ },
+ {
+  "id": "HeraclesOptimize",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "high",
+    "evidence": "IND = self.buy_params['buy-indicator-0']"
+   }
+  ],
+  "note": "indicator names known only at runtime via buy_params"
+ },
+ {
+  "id": "Heracles_2",
+  "primary": "volatility",
+  "labels": [
+   {
+    "label": "volatility",
+    "confidence": "high",
+    "evidence": "d = DFIND.shift(self.buy_indicator_shift.value).div(\n            DFCRS.shift(self.buy_crossed_indicator_shift.value))"
+   }
+  ]
+ },
+ {
+  "id": "Heracles_281",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "high",
+    "evidence": "IND = self.buy_params['buy-indicator-0']"
+   }
+  ],
+  "note": "indicator names known only at runtime via buy_params"
+ },
+ {
+  "id": "Heracles_3",
+  "primary": "volatility",
+  "labels": [
+   {
+    "label": "volatility",
+    "confidence": "high",
+    "evidence": "d = DFIND.shift(self.buy_indicator_shift.value).div(\n            DFCRS.shift(self.buy_crossed_indicator_shift.value))"
+   }
+  ]
+ },
+ {
+  "id": "Heracles_4",
+  "primary": "volatility",
+  "labels": [
+   {
+    "label": "volatility",
+    "confidence": "high",
+    "evidence": "d = DFIND.shift(self.buy_indicator_shift.value).div(\n            DFCRS.shift(self.buy_crossed_indicator_shift.value))"
+   }
+  ]
+ },
+ {
+  "id": "Heracles_5",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "high",
+    "evidence": "IND = self.buy_params['buy-indicator-0']"
+   }
+  ],
+  "note": "indicator names known only at runtime via buy_params"
+ },
+ {
+  "id": "Heracles_516",
+  "primary": "volatility",
+  "labels": [
+   {
+    "label": "volatility",
+    "confidence": "high",
+    "evidence": "d = DFIND.shift(self.buy_indicator_shift.value).div(\n            DFCRS.shift(self.buy_crossed_indicator_shift.value))"
+   }
+  ]
+ },
+ {
+  "id": "Heracles_83",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "high",
+    "evidence": "IND = self.buy_params['buy-indicator-0']"
+   }
+  ],
+  "note": "indicator names known only at runtime via buy_params"
+ },
+ {
+  "id": "Heracles_942",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "high",
+    "evidence": "IND = self.buy_params['buy-indicator-0']"
+   }
+  ],
+  "note": "indicator names known only at runtime via buy_params"
+ },
+ {
+  "id": "HighFreqDemo",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe[\"close\"] > dataframe[\"ema9\"])\n            & (dataframe[\"ema9\"] > dataframe[\"ema21\"])"
+   }
+  ]
+ },
+ {
+  "id": "HighLeverageTrendFollowing",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] > dataframe['trend']) &\n            (dataframe['close'].shift(1) <= dataframe['trend'].shift(1))"
+   },
+   {
+    "label": "volume_flow",
+    "confidence": "medium",
+    "evidence": "(dataframe['obv'] > dataframe['obv'].shift(1))"
+   }
+  ]
+ },
+ {
+  "id": "HigherHighStrategy",
+  "primary": "pattern",
+  "labels": [
+   {
+    "label": "pattern",
+    "confidence": "high",
+    "evidence": "(dataframe[\"hh\"] == 1) & (dataframe[\"hl\"] == 1)\n            & (dataframe[\"hh_prev\"] == 1)"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "& (dataframe[\"adx\"] > 20)\n            & (dataframe[\"close\"] > dataframe[\"ema50\"])"
+   }
+  ]
+ },
+ {
+  "id": "HilbertSineWave",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] <= dataframe['support_green'])"
+   }
+  ]
+ },
+ {
+  "id": "Horizon_2",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['fast_sma'] > dataframe['slow_sma'])"
+   }
+  ]
+ },
+ {
+  "id": "HourBasedStrategy",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "high",
+    "evidence": "dataframe['hour'].between(min, max)"
+   }
+  ],
+  "note": "time-of-day based entry, not technical indicators"
+ },
+ {
+  "id": "HourBasedStrategy_417",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "high",
+    "evidence": "dataframe['hour'].between(min, max)"
+   }
+  ],
+  "note": "time-of-day based entry, not technical indicators"
+ },
+ {
+  "id": "HourBasedStrategy_5m",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "high",
+    "evidence": "dataframe['minute'].between(self.buy_hour_min.value, self.buy_hour_max.value)"
+   }
+  ],
+  "note": "time-of-minute based entry, not technical indicators"
+ },
+ {
+  "id": "HurstCycle3",
+  "primary": "statistical",
+  "labels": [
+   {
+    "label": "statistical",
+    "confidence": "high",
+    "evidence": "yf = fft(close[-n:]); freq = np.fft.fftfreq(n); power = np.abs(yf) ** 2"
+   }
+  ]
+ },
+ {
+  "id": "HurstCycle7",
+  "primary": "breakout",
+  "labels": [
+   {
+    "label": "breakout",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] > dataframe['vtl_up']) &\n            (dataframe['close'].shift() < dataframe['vtl_up'].shift())"
+   }
+  ]
+ },
+ {
+  "id": "HurstCycleV4",
+  "primary": "statistical",
+  "labels": [
+   {
+    "label": "statistical",
+    "confidence": "high",
+    "evidence": "freq, power = perform_fft(dataframe['ha_close'], window_size=self.u_window_size.value)"
+   }
+  ]
+ },
+ {
+  "id": "HurstCycleV5",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['lr_mid_rsi'] < 35) &\n            (dataframe['close'].rolling(5).min() < dataframe['vtl_up'])"
+   }
+  ]
+ },
+ {
+  "id": "HurstCycleV5RSI",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['lr_mid_rsi'] < self.rsibuy_thres.value) &\n                (dataframe['close'].rolling(5).min() < dataframe['vtl_up'])"
+   }
+  ]
+ },
+ {
+  "id": "HurstCycleV6",
+  "primary": "statistical",
+  "labels": [
+   {
+    "label": "statistical",
+    "confidence": "high",
+    "evidence": "freq, power = perform_fft(dataframe['ha_close'], window_size=self.u_window_size.value)"
+   }
+  ]
+ },
+ {
+  "id": "HyperStra_GSN_SMAOnly",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "high",
+    "evidence": "self.condition_maker(dataframe=dataframe,\n                                                     indicator=self.buy_1_indicator.value"
+   }
+  ],
+  "note": "condition logic determined by runtime parameters"
+ },
+ {
+  "id": "HyperStra_SMAOnly",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "high",
+    "evidence": "self.condition_maker(dataframe=dataframe,\n                                                     indicator=self.buy_1_indicator.value"
+   }
+  ],
+  "note": "condition logic determined by runtime parameters"
+ },
+ {
+  "id": "HyperoptableStrategy",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi'] < self.buy_rsi.value) &\n                (dataframe['fastd'] < 35)"
+   }
+  ]
+ },
+ {
+  "id": "IFutures",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "low",
+    "evidence": "No indicator or entry code provided"
+   }
+  ],
+  "note": "insufficient information to label"
+ }
+]

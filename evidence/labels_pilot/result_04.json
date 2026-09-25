@@ -1,0 +1,152 @@
+[
+  {
+    "id": "BinHV45_613",
+    "primary": "mean_reversion",
+    "labels": [
+      {
+        "label": "mean_reversion",
+        "confidence": "high",
+        "evidence": "dataframe['close'].lt(dataframe['lower'].shift())"
+      }
+    ],
+    "note": ""
+  },
+  {
+    "id": "MACDStrategy",
+    "primary": "momentum",
+    "labels": [
+      {
+        "label": "momentum",
+        "confidence": "high",
+        "evidence": "(dataframe['macd'] > dataframe['macdsignal'])"
+      },
+      {
+        "label": "mean_reversion",
+        "confidence": "medium",
+        "evidence": "(dataframe['cci'] <= -50.0)"
+      }
+    ],
+    "note": ""
+  },
+  {
+    "id": "MACDStrategy_127",
+    "primary": "momentum",
+    "labels": [
+      {
+        "label": "momentum",
+        "confidence": "high",
+        "evidence": "(dataframe['macd'] > dataframe['macdsignal'])"
+      },
+      {
+        "label": "mean_reversion",
+        "confidence": "medium",
+        "evidence": "(dataframe['cci'] <= self.buy_cci.value)"
+      }
+    ],
+    "note": ""
+  },
+  {
+    "id": "MACDStrategyv01",
+    "primary": "momentum",
+    "labels": [
+      {
+        "label": "momentum",
+        "confidence": "high",
+        "evidence": "(dataframe['macd'] > dataframe['macdsignal'])"
+      },
+      {
+        "label": "mean_reversion",
+        "confidence": "medium",
+        "evidence": "(dataframe['cci'] <= -186)"
+      }
+    ],
+    "note": ""
+  },
+  {
+    "id": "BBRSI",
+    "primary": "mean_reversion",
+    "labels": [
+      {
+        "label": "mean_reversion",
+        "confidence": "high",
+        "evidence": "(dataframe['close'] < dataframe['bb_lowerband'])"
+      }
+    ],
+    "note": ""
+  },
+  {
+    "id": "bbrsi_286",
+    "primary": "mean_reversion",
+    "labels": [
+      {
+        "label": "mean_reversion",
+        "confidence": "high",
+        "evidence": "(dataframe[\"close\"] < dataframe['bb_lowerband'])"
+      }
+    ],
+    "note": ""
+  },
+  {
+    "id": "bbrsi_v3",
+    "primary": "mean_reversion",
+    "labels": [
+      {
+        "label": "mean_reversion",
+        "confidence": "high",
+        "evidence": "(dataframe['close'] < dataframe['bb_lowerband'])"
+      }
+    ],
+    "note": ""
+  },
+  {
+    "id": "EI3v2_tag_cofi_green",
+    "primary": "momentum",
+    "labels": [
+      {
+        "label": "momentum",
+        "confidence": "high",
+        "evidence": "(dataframe['EWO'] > self.ewo_high.value)"
+      },
+      {
+        "label": "mean_reversion",
+        "confidence": "medium",
+        "evidence": "(dataframe['rsi_fast'] <35)"
+      }
+    ],
+    "note": "EWO momentum with dip-buy and lambo2 conditions"
+  },
+  {
+    "id": "EI3v2_tag_cofi_green_3474790687_mod7_dema",
+    "primary": "momentum",
+    "labels": [
+      {
+        "label": "momentum",
+        "confidence": "high",
+        "evidence": "(dataframe['EWO'] > self.ewo_high.value)"
+      },
+      {
+        "label": "mean_reversion",
+        "confidence": "medium",
+        "evidence": "(dataframe['rsi_fast'] < 35)"
+      }
+    ],
+    "note": "EWO momentum with optional lambo2 and dip filters"
+  },
+  {
+    "id": "EI3v2_tag_cofi_green_rknfish",
+    "primary": "momentum",
+    "labels": [
+      {
+        "label": "momentum",
+        "confidence": "high",
+        "evidence": "(dataframe[\"EWO\"] > self.ewo_high.value)"
+      },
+      {
+        "label": "mean_reversion",
+        "confidence": "medium",
+        "evidence": "(dataframe[\"rsi_fast\"] < 35)"
+      }
+    ],
+    "note": "EWO momentum with lambo2 and dip-buy conditions"
+  }
+]

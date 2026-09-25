@@ -1,0 +1,452 @@
+[
+ {
+  "id": "EI3v2_tag_cofi_green_2_4",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi_fast'] <35)&\n                (dataframe['close'] < (dataframe[f'ma_buy_"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "(dataframe['EWO'] > self.ewo_high.value) &"
+   }
+  ]
+ },
+ {
+  "id": "EI3v2_tag_cofi_green_2_5",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi_fast'] <35)&\n                (dataframe['close'] < (dataframe[f'ma_buy_"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "(dataframe['EWO'] > self.ewo_high.value) &"
+   }
+  ]
+ },
+ {
+  "id": "EI3v2_tag_cofi_green_3",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi_fast'] <35)&\n                (dataframe['close'] < (dataframe[f'ma_buy_"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "(dataframe['EWO'] > self.ewo_high.value) &"
+   }
+  ]
+ },
+ {
+  "id": "EI3v2_tag_cofi_green_3474790687",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi_fast'] <35)&\n                (dataframe['close'] < (dataframe[f'ma_buy_"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "(dataframe['EWO'] > self.ewo_high.value) &"
+   }
+  ]
+ },
+ {
+  "id": "EI3v2_tag_cofi_green_3474790687_1999",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi_fast'] <35)&\n                (dataframe['close'] < (dataframe[f'ma_buy_"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "(dataframe['EWO'] > self.ewo_high.value) &"
+   }
+  ]
+ },
+ {
+  "id": "EI3v2_tag_cofi_green_3474790687_interface_v3",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe[\"rsi_fast\"] < 35)\n            & ("
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "& (dataframe[\"EWO\"] > self.ewo_high.value)"
+   }
+  ]
+ },
+ {
+  "id": "EI3v2_tag_cofi_green_3474790687_mod7",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi_fast'] <35)&\n                (dataframe['close'] < (dataframe[f'ma_buy_"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "(dataframe['EWO'] > self.ewo_high.value) &"
+   }
+  ]
+ },
+ {
+  "id": "EI3v2_tag_cofi_green_3474790687_mod7_dema",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi_fast'] <35)&\n                (dataframe['close'] < (dataframe[f'ma_buy_"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "(dataframe['EWO'] > self.ewo_high.value) &"
+   }
+  ]
+ },
+ {
+  "id": "EI3v2_tag_cofi_green_3474790687_mod7_dema_interface_v3",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe[\"rsi_fast\"] < 35)\n            & ("
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "& (dataframe[\"EWO\"] > self.ewo_high.value)"
+   }
+  ]
+ },
+ {
+  "id": "EI3v2_tag_cofi_green_3474790687_mod7_zema",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi_fast'] <35)&\n                (dataframe['close'] < (dataframe[f'ma_buy_"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "(dataframe['EWO'] > self.ewo_high.value) &"
+   }
+  ]
+ },
+ {
+  "id": "EI3v2_tag_cofi_green_4",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi_fast'] <35)&\n                (dataframe['close'] < (dataframe[f'ma_buy_"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "(dataframe['EWO'] > self.ewo_high.value) &"
+   }
+  ]
+ },
+ {
+  "id": "EI3v2_tag_cofi_green_5",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi_fast'] <35)&\n                (dataframe['close'] < (dataframe[f'ma_buy_"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "(dataframe['EWO'] > self.ewo_high.value) &"
+   }
+  ]
+ },
+ {
+  "id": "EI3v2_tag_cofi_green_7",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi_fast'] < 35) &\n                (dataframe['close'] < (dataframe[f'ma_buy_"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "(dataframe['EWO'] > self.ewo_high.value) &"
+   }
+  ]
+ },
+ {
+  "id": "EI3v2_tag_cofi_green_Future_Long_2",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi_fast'] <35)&\n                (dataframe['close'] < (dataframe[f'ma_enter_long_"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "(dataframe['EWO'] > self.ewo_high.value) &"
+   }
+  ]
+ },
+ {
+  "id": "EI3v2_tag_cofi_green_Future_Long_3",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi_fast'] <35)&\n                (dataframe['close'] < (dataframe[f'ma_enter_long_"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "(dataframe['EWO'] > self.ewo_high.value) &"
+   }
+  ]
+ },
+ {
+  "id": "EI3v2_tag_cofi_green_Short",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi_fast'] > 65)&\n                (dataframe['close'] > (dataframe[f'ma_enter_short_"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "(dataframe['EWO'] < self.ewo_high.value) &"
+   }
+  ]
+ },
+ {
+  "id": "EI3v2_tag_cofi_green_mod7_dema2",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi_fast'] <35)&\n                (dataframe['close'] < (dataframe[f'ma_buy_"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "(dataframe['EWO'] > self.ewo_high.value) &"
+   }
+  ]
+ },
+ {
+  "id": "EI3v2_tag_cofi_green_remod2_zema",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi_fast'] < 35)&\n                (dataframe['close'] < (dataframe[f'ma_buy_"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "(dataframe['EWO'] > self.ewo_high.value) &"
+   }
+  ]
+ },
+ {
+  "id": "EI3v2_tag_cofi_green_rknfish",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe[\"rsi_fast\"] < 35)\n            & (\n                dataframe[\"close\"]\n                < dataframe[f\"ma_buy_"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "& (dataframe[\"EWO\"] > self.ewo_high.value)"
+   }
+  ]
+ },
+ {
+  "id": "EI4_t4c0s_V2",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi_fast'] < 35) & (dataframe['close'] < dataframe['ma_lo'])"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "(dataframe['EWO'] > dataframe['EWO_MEAN_UP'])"
+   },
+   {
+    "label": "pattern",
+    "confidence": "low",
+    "evidence": "qtpylib.crossed_above(dataframe['fastk'], dataframe['fastd'])"
+   }
+  ]
+ },
+ {
+  "id": "EI4_t4c0s_V2_2",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi_fast'] < 35 ) &\n                (dataframe['close'] < dataframe['ma_lo'])"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "(dataframe['EWO'] > dataframe['EWO_MEAN_UP'])"
+   }
+  ]
+ },
+ {
+  "id": "EI4_t4c0s_V2_2_Shorts",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi_fast'] > 60) &  # CHANGED from 65 to 60\n                (dataframe['close'] > dataframe['ma_hi'])"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "(dataframe['EWO'] < dataframe['EWO_MEAN_DN'])"
+   }
+  ]
+ },
+ {
+  "id": "EMA003",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['ema7'] > dataframe['ema25']) &\n                    (dataframe['ema7'].shift(1) <= dataframe['ema25'].shift(1))"
+   }
+  ]
+ },
+ {
+  "id": "EMA003_2",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['ema7'] > dataframe['ema25']) &\n                    (dataframe['ema7'].shift(1) <= dataframe['ema25'].shift(1))"
+   }
+  ]
+ },
+ {
+  "id": "EMA50",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "qtpylib.crossed_above(dataframe['close'], dataframe['ema50'])"
+   }
+  ]
+ },
+ {
+  "id": "EMA50H4",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['distance_low_ema50'] > 0) &\n            (dataframe['distance_low_ema50'] <= 1)"
+   }
+  ]
+ },
+ {
+  "id": "EMA520015_V17",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['close'].shift(1) < dataframe['ema20'])\n                           & (dataframe['close'] > dataframe['ema20'])"
+   }
+  ]
+ },
+ {
+  "id": "EMABBRSI",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "qtpylib.crossed_above(dataframe['close'], dataframe['bb_lowerband3'])"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "qtpylib.crossed_above(dataframe['ema50'], dataframe['ema200'])"
+   }
+  ]
+ },
+ {
+  "id": "EMABounce",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "qtpylib.crossed_above(dataframe['ema_angle'], 0)"
+   }
+  ]
+ },
+ {
+  "id": "EMABounce_2",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "qtpylib.crossed_above(dataframe['ema_angle'], 0)"
+   }
+  ]
+ }
+]

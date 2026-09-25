@@ -1,0 +1,361 @@
+[
+ {
+  "id": "BinanceWS",
+  "primary": "other",
+  "labels": [],
+  "note": "No code provided"
+ },
+ {
+  "id": "BinanceWS_2",
+  "primary": "other",
+  "labels": [],
+  "note": "No code provided"
+ },
+ {
+  "id": "Bins",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "dataframe['adx'].gt(self.buy_adx1.value)"
+   }
+  ],
+  "note": "ADX-driven trend confirmation with MA alignment"
+ },
+ {
+  "id": "BitcoinMLStrategy",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "high",
+    "evidence": "preds = self.model.predict(dataframe)"
+   }
+  ],
+  "note": "ML-based predictions, not traditional indicators"
+ },
+ {
+  "id": "BlendBasket",
+  "primary": "other",
+  "labels": [],
+  "note": "No entry/exit logic shown"
+ },
+ {
+  "id": "BlueEyes_MPP_v1",
+  "primary": "other",
+  "labels": [],
+  "note": "Pivots and trending logic not fully exposed"
+ },
+ {
+  "id": "BlueSeaTik",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "medium",
+    "evidence": "(dataframe['rsi'] < self.rsi_treshold.value)"
+   }
+  ],
+  "note": "Oscillator oversold + swing detection"
+ },
+ {
+  "id": "Boll",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < dataframe['bbu']) & (dataframe['high'] >= dataframe['bbu'])"
+   }
+  ],
+  "note": "Band bounce pattern"
+ },
+ {
+  "id": "BollingerBandStrategy",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "dataframe['close'] < dataframe['lowerband']"
+   }
+  ],
+  "note": "Band extremes with volume filter"
+ },
+ {
+  "id": "BollingerBounce",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['open'] < dataframe['bb_lowerband']) & (dataframe['close'] >= dataframe['bb_lowerband'])"
+   }
+  ],
+  "note": "Lower band touch-and-bounce"
+ },
+ {
+  "id": "BollingerBounceStrategy",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe[\"close\"] < dataframe[\"bb_lower\"])"
+   }
+  ]
+ },
+ {
+  "id": "BollingerBounce_2",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['open'] < dataframe['bb_lowerband']) & (dataframe['close'] >= dataframe['bb_lowerband'])"
+   }
+  ],
+  "note": "Lower band touch-and-bounce"
+ },
+ {
+  "id": "BollingerBounce_Shorts",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['open'] > dataframe['bb_upperband']) & (dataframe['close'] <= dataframe['bb_upperband'])"
+   }
+  ],
+  "note": "Upper band touch-and-bounce for shorts"
+ },
+ {
+  "id": "BollingerMACD_Reverse_signal",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(qtpylib.crossed_below(dataframe['close'], dataframe['bb_lowerband']))"
+   }
+  ],
+  "note": "Reversal entry against move direction"
+ },
+ {
+  "id": "BollingerMACD_V1",
+  "primary": "breakout",
+  "labels": [
+   {
+    "label": "breakout",
+    "confidence": "high",
+    "evidence": "(qtpylib.crossed_above(dataframe['close'], dataframe['bb_upperband']))"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "(dataframe['macd'] > 0)"
+   }
+  ],
+  "note": "Band cross with momentum confirmation"
+ },
+ {
+  "id": "BollingerMACD_V2",
+  "primary": "breakout",
+  "labels": [
+   {
+    "label": "breakout",
+    "confidence": "high",
+    "evidence": "(qtpylib.crossed_above(dataframe['close'], dataframe['bb_upperband']))"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "(dataframe['macd'] > 0)"
+   }
+  ],
+  "note": "Band cross with momentum confirmation"
+ },
+ {
+  "id": "BollingerMACD_V3",
+  "primary": "breakout",
+  "labels": [
+   {
+    "label": "breakout",
+    "confidence": "high",
+    "evidence": "(qtpylib.crossed_above(dataframe['close'], dataframe['bb_upperband']))"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "(dataframe['macd'] > 0)"
+   }
+  ],
+  "note": "Band cross with momentum confirmation"
+ },
+ {
+  "id": "BoomBasticStrategy",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "long_conditions.append(dataframe['trend_close_5m'] > dataframe['senkou_a'])"
+   },
+   {
+    "label": "pattern",
+    "confidence": "medium",
+    "evidence": "heikinashi = qtpylib.heikinashi(dataframe)"
+   }
+  ],
+  "note": "Ichimoku cloud + Heikin-Ashi trend"
+ },
+ {
+  "id": "BoomBasticStrategyV2",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "long_conditions.append(dataframe['trend_close_5m'] > dataframe['senkou_a'])"
+   },
+   {
+    "label": "pattern",
+    "confidence": "medium",
+    "evidence": "heikinashi = qtpylib.heikinashi(dataframe)"
+   }
+  ],
+  "note": "Ichimoku cloud + Heikin-Ashi trend"
+ },
+ {
+  "id": "BopTrendStrategy",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['bop_ma'] > 0) & (dataframe['bop_ma_prev'] <= 0)"
+   }
+  ],
+  "note": "BOP momentum crossing with trend filter"
+ },
+ {
+  "id": "BotE",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "high",
+    "evidence": "(dataframe['b'] > 0.7) & (dataframe['s'] < 0.3)"
+   }
+  ],
+  "note": "Custom indicators b and s, logic not exposed"
+ },
+ {
+  "id": "BreakEven",
+  "primary": "other",
+  "labels": [],
+  "note": "No entry/exit signals defined"
+ },
+ {
+  "id": "BreakStrategy",
+  "primary": "breakout",
+  "labels": [
+   {
+    "label": "breakout",
+    "confidence": "high",
+    "evidence": "dataframe.loc[(dataframe['signal'] == 1), 'buy'] = 1"
+   }
+  ],
+  "note": "Low/high reversal extremes"
+ },
+ {
+  "id": "BreakoutFlash",
+  "primary": "breakout",
+  "labels": [
+   {
+    "label": "breakout",
+    "confidence": "high",
+    "evidence": "(dataframe['resistance_breakout'] & (dataframe['close'] > dataframe['resistance_level']))"
+   },
+   {
+    "label": "volatility",
+    "confidence": "medium",
+    "evidence": "(dataframe['atr'] > dataframe['atr'].rolling(14).mean())"
+   }
+  ],
+  "note": "Resistance break with ATR expansion"
+ },
+ {
+  "id": "BreakoutSpecialist",
+  "primary": "breakout",
+  "labels": [
+   {
+    "label": "breakout",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] > dataframe['resistance']) & (dataframe['volume'] > dataframe['volume_mean'] * 1.5)"
+   }
+  ],
+  "note": "Price-level break with volume expansion"
+ },
+ {
+  "id": "BreakoutStrategy",
+  "primary": "breakout",
+  "labels": [
+   {
+    "label": "breakout",
+    "confidence": "high",
+    "evidence": "dataframe['close'] > dataframe[f'upper_peak_{self.buy_peak_order.value}']"
+   }
+  ],
+  "note": "N-bar peak breakout"
+ },
+ {
+  "id": "BullishEngulfingStrategy",
+  "primary": "pattern",
+  "labels": [
+   {
+    "label": "pattern",
+    "confidence": "high",
+    "evidence": "dataframe['engulfing'] > 0) | (dataframe['hammer'] > 0)"
+   }
+  ],
+  "note": "Candlestick patterns with trend context"
+ },
+ {
+  "id": "BuyAllSellAllStrategy",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "high",
+    "evidence": "dataframe['buy'] = np.random.randint(0, 2, size=len(dataframe))"
+   }
+  ],
+  "note": "Random signals"
+ },
+ {
+  "id": "BuyDips",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "qtpylib.crossed_above(dataframe['macd'], dataframe['macdsignal'])"
+   }
+  ],
+  "note": "MACD momentum crossing"
+ },
+ {
+  "id": "BuyDips_2",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "qtpylib.crossed_above(dataframe['macd'], dataframe['macdsignal'])"
+   }
+  ],
+  "note": "MACD momentum crossing"
+ }
+]

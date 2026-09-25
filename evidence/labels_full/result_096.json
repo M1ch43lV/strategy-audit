@@ -1,0 +1,387 @@
+[
+ {
+  "id": "freqai_rl_test_strat",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "high",
+    "evidence": "df[\"&-action\"] == 1"
+   }
+  ],
+  "note": "FreqAI RL model output; no traditional trading logic"
+ },
+ {
+  "id": "freqai_test_classifier",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "high",
+    "evidence": "df['&s-up_or_down'] == 'up'"
+   }
+  ],
+  "note": "FreqAI classifier output; no visible indicators"
+ },
+ {
+  "id": "freqai_test_multimodel_classifier_strat",
+  "primary": "statistical",
+  "labels": [
+   {
+    "label": "statistical",
+    "confidence": "high",
+    "evidence": "df[\"&-s_close\"] > df[\"target_roi\"]"
+   }
+  ],
+  "note": "z-score entry when close exceeds mean+1.25 std"
+ },
+ {
+  "id": "freqai_test_multimodel_strat",
+  "primary": "statistical",
+  "labels": [
+   {
+    "label": "statistical",
+    "confidence": "high",
+    "evidence": "df[\"&-s_close\"] > df[\"target_roi\"]"
+   }
+  ],
+  "note": "z-score entry when close exceeds mean+1.25 std"
+ },
+ {
+  "id": "freqai_test_strat",
+  "primary": "statistical",
+  "labels": [
+   {
+    "label": "statistical",
+    "confidence": "high",
+    "evidence": "df[\"&-s_close\"] > df[\"target_roi\"]"
+   }
+  ],
+  "note": "z-score entry when close exceeds mean+1.25 std"
+ },
+ {
+  "id": "futures_testv1",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "supertrend_1_buy and supertrend_2_buy and supertrend_3_buy all == \"up\""
+   }
+  ],
+  "note": "Triple SuperTrend alignment confirms uptrend"
+ },
+ {
+  "id": "g1",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "dataframe['close'] < dataframe['bb_lowerband3'] * self.buy_bb_factor.value"
+   },
+   {
+    "label": "volatility",
+    "confidence": "medium",
+    "evidence": "dataframe['bb_width'] > self.buy_bb_width.value"
+   }
+  ],
+  "note": "DIP signal: buys lower BB breaks with BB expansion"
+ },
+ {
+  "id": "gettinMoist",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "dataframe['moist'] = qtpylib.crossed_above(dataframe['macd'], dataframe['macdsignal'])"
+   },
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "dataframe['throbbing'] = dataframe['roc'] > dataframe['roc'].rolling(12).mean()"
+   }
+  ],
+  "note": "MACD cross + ROC acceleration above MA"
+ },
+ {
+  "id": "godstrat",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "low",
+    "evidence": "reduce(lambda x, y: x & y, conditions)"
+   }
+  ],
+  "note": "Parameterized indicator entry; logic not determinable"
+ },
+ {
+  "id": "gpt_reversal",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi_15m'] < 30)"
+   }
+  ],
+  "note": "Buys RSI oversold (< 30) with trend confirmation"
+ },
+ {
+  "id": "grad",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(df['frac_diff'] > 0) & (df['frac_diff'].shift() < 0)"
+   }
+  ],
+  "note": "Gradient zero-crossing detects velocity turn positive"
+ },
+ {
+  "id": "haGradient",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "medium",
+    "evidence": "freq, power = perform_fft(dataframe['ha_close']"
+   }
+  ],
+  "note": "FFT harmonic cycle detection + trend analysis"
+ },
+ {
+  "id": "hacimlifit1",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "dataframe[\"close\"] < dataframe[\"open\"]*self.buy_cs.value"
+   },
+   {
+    "label": "volume_flow",
+    "confidence": "medium",
+    "evidence": "dataframe['volcheck'] == True"
+   }
+  ],
+  "note": "Dips + whale volume confirmation + uptrend filter"
+ },
+ {
+  "id": "hacker_noon",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe[\"rsi\"] < 20)"
+   }
+  ],
+  "note": "RSI oversold entry; exits on fisher strength signal"
+ },
+ {
+  "id": "hacker_noon1",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe[\"rsi\"] < 29)"
+   }
+  ],
+  "note": "RSI oversold entry; exits on fisher strength signal"
+ },
+ {
+  "id": "hansen",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "dataframe['close'].lt(dataframe['lower'].shift())"
+   }
+  ],
+  "note": "BinHV45 and ClucMay72018: dip-buying strategies"
+ },
+ {
+  "id": "hansencandlepatternV1",
+  "primary": "pattern",
+  "labels": [
+   {
+    "label": "pattern",
+    "confidence": "high",
+    "evidence": "(dataframe['3LINESTRIKE'] < 0)|(dataframe['EVENINGSTAR'] > 0)"
+   }
+  ],
+  "note": "Candlestick pattern recognition (Engulfing, Harami, etc)"
+ },
+ {
+  "id": "harvester",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "dataframe['close'] < dataframe['bb_lowerband3']"
+   }
+  ],
+  "note": "DIP signal with BTC/SHIB correlation checks"
+ },
+ {
+  "id": "heikin",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['emao'] < dataframe['emac'])"
+   }
+  ],
+  "note": "Heikin Ashi open < close indicates uptrend"
+ },
+ {
+  "id": "heikin_419",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(qtpylib.crossed_above(dataframe['close'], dataframe['hma16']))"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "dataframe['yasin1'] > dataframe['yasin']"
+   }
+  ],
+  "note": "TMA trend indicator with price cross"
+ },
+ {
+  "id": "helkin",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "low",
+    "evidence": "dataframe,shit(1)['haclosestrat']"
+   }
+  ],
+  "note": "Code has syntax errors; logic cannot be determined"
+ },
+ {
+  "id": "heraclesBTCBULL",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "low",
+    "evidence": "DFIND = dataframe[IND]; (DFIND < DFCRS)"
+   }
+  ],
+  "note": "Indicators selected at runtime from buy_params"
+ },
+ {
+  "id": "heraclesDOGEBTCBULL",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "low",
+    "evidence": "DFIND = dataframe[IND]; (DFIND < DFCRS)"
+   }
+  ],
+  "note": "Indicators selected at runtime from buy_params"
+ },
+ {
+  "id": "hlhb",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['adx'] > 25)"
+   }
+  ],
+  "note": "RSI/EMA crossovers + ADX trend confirmation"
+ },
+ {
+  "id": "hlhb_423",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['adx'] > 25)"
+   }
+  ],
+  "note": "RSI/EMA crossovers + ADX trend confirmation"
+ },
+ {
+  "id": "hlhb_946",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['adx'] > 25)"
+   }
+  ],
+  "note": "RSI/EMA crossovers + ADX trend confirmation"
+ },
+ {
+  "id": "hodl",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "high",
+    "evidence": "dataframe['buy'] = 1"
+   }
+  ],
+  "note": "Buy-and-hold: enters every candle, never exits"
+ },
+ {
+  "id": "hodl_2",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "high",
+    "evidence": "dataframe[\"buy\"] = 1"
+   }
+  ],
+  "note": "Buy-and-hold: enters every candle, never exits"
+ },
+ {
+  "id": "hungry2",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] > dataframe['close'].shift(1) * (1 + self.buy_threshold.value))"
+   }
+  ],
+  "note": "Buys upside velocity with state tracking"
+ },
+ {
+  "id": "hyperoptable_strategy_5",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['adx'] > 65) & (dataframe['plus_di'] > self.buy_plusdi.value)"
+   },
+   {
+    "label": "mean_reversion",
+    "confidence": "medium",
+    "evidence": "(dataframe['rsi'] < self.buy_rsi.value)"
+   }
+  ],
+  "note": "Strong trend entry (ADX>65) OR oversold+trend"
+ }
+]

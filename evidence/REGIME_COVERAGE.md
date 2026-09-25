@@ -18,20 +18,22 @@ each result to file size, temporal edges, row count, and duplicate count.
 
 | Status | Strategy profiles |
 |---|---:|
-| `PASS` | 1300 |
-| `PENDING` | 57 |
+| `PASS` | 3034 |
+| `PENDING` | 198 |
 
 ## Run profiles
 
 | Run profile / status | Strategies |
 |---|---:|
-| `futures_long / PASS` | 56 |
-| `futures_long_short / PASS` | 128 |
-| `futures_long_short / PENDING` | 14 |
-| `futures_short / PASS` | 14 |
-| `spot_long / PASS` | 1102 |
-| `spot_long / PENDING` | 40 |
-| `unknown / PENDING` | 3 |
+| `futures_long / PASS` | 127 |
+| `futures_long / PENDING` | 5 |
+| `futures_long_short / PASS` | 330 |
+| `futures_long_short / PENDING` | 40 |
+| `futures_short / PASS` | 15 |
+| `futures_short / PENDING` | 1 |
+| `spot_long / PASS` | 2562 |
+| `spot_long / PENDING` | 146 |
+| `unknown / PENDING` | 6 |
 
 ## Pending data conditions
 
@@ -39,9 +41,9 @@ Counts are row counts and may overlap.
 
 | Condition | Rows |
 |---|---:|
-| Unsupported, missing, or unknown timeframe/profile | 56 |
-| One or more required pair files missing | 0 |
-| One or more temporal edges incomplete | 1 |
+| Unsupported, missing, or unknown timeframe/profile | 187 |
+| One or more required pair files missing | 7 |
+| One or more temporal edges incomplete | 4 |
 | Futures mark/funding feed incomplete | 0 |
 | Pair-specific interior gaps | 0 |
 | Duplicate candles | 0 |

@@ -1,0 +1,393 @@
+[
+ {
+  "id": "DS_Green_5m_Bull",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi_fast'] < 35) &"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "(dataframe['EWO'] > self.ewo_high.value) &"
+   }
+  ]
+ },
+ {
+  "id": "DS_Green_5mv2",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi_fast'] < 35) &"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "(dataframe['EWO'] > self.ewo_high.value) &"
+   }
+  ]
+ },
+ {
+  "id": "DS_Green_5mv3",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi_fast'] < 35) &"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "(dataframe['EWO'] > self.ewo_high.value) &"
+   }
+  ]
+ },
+ {
+  "id": "DS_Green_5mv5",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi_fast'] < 35) &"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "(dataframe['EWO'] > self.ewo_high.value) &"
+   }
+  ]
+ },
+ {
+  "id": "DT_250102_01",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] <= dataframe[f'{tf}_bb_lowerband'])"
+   }
+  ]
+ },
+ {
+  "id": "DWT",
+  "primary": "statistical",
+  "labels": [
+   {
+    "label": "statistical",
+    "confidence": "high",
+    "evidence": "qtpylib.crossed_above(dataframe['dwt_model_diff'],"
+   }
+  ],
+  "note": "DWT (Wavelet) model predicts price; entry on model divergence"
+ },
+ {
+  "id": "DWTHO",
+  "primary": "statistical",
+  "labels": [
+   {
+    "label": "statistical",
+    "confidence": "high",
+    "evidence": "qtpylib.crossed_above(dataframe['dwt_model_diff'],"
+   }
+  ],
+  "note": "DWT model crossing signal for entry/exit"
+ },
+ {
+  "id": "DWT_Leveraged",
+  "primary": "statistical",
+  "labels": [
+   {
+    "label": "statistical",
+    "confidence": "high",
+    "evidence": "qtpylib.crossed_above(dataframe['dwt_model_diff'],"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "dataframe['inf_candle-dn-trend'] == 1"
+   }
+  ]
+ },
+ {
+  "id": "DWT_Leveraged_recent",
+  "primary": "statistical",
+  "labels": [
+   {
+    "label": "statistical",
+    "confidence": "high",
+    "evidence": "qtpylib.crossed_above(dataframe['dwt_model_diff'],"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "dataframe['inf_candle-dn-trend'] == 1"
+   }
+  ]
+ },
+ {
+  "id": "DWT_Leveraged_recentHO",
+  "primary": "statistical",
+  "labels": [
+   {
+    "label": "statistical",
+    "confidence": "high",
+    "evidence": "qtpylib.crossed_above(dataframe['dwt_model_diff'],"
+   }
+  ]
+ },
+ {
+  "id": "DWT_LongShort",
+  "primary": "statistical",
+  "labels": [
+   {
+    "label": "statistical",
+    "confidence": "high",
+    "evidence": "qtpylib.crossed_above(dataframe['dwt_model_diff'],"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "(dataframe['rmi-dn-trend'] == 1)"
+   }
+  ]
+ },
+ {
+  "id": "DWT_LongShortHO",
+  "primary": "statistical",
+  "labels": [
+   {
+    "label": "statistical",
+    "confidence": "high",
+    "evidence": "qtpylib.crossed_above(dataframe['dwt_model_diff'],"
+   }
+  ]
+ },
+ {
+  "id": "DWT_Predict",
+  "primary": "statistical",
+  "labels": [
+   {
+    "label": "statistical",
+    "confidence": "high",
+    "evidence": "(dataframe['model_diff'] >= self.entry_model_diff.value)"
+   }
+  ],
+  "note": "ML model prediction; enters when price diverges from forecast"
+ },
+ {
+  "id": "DWT_Predict2",
+  "primary": "statistical",
+  "labels": [
+   {
+    "label": "statistical",
+    "confidence": "high",
+    "evidence": "(dataframe['model_diff'] >= self.entry_model_diff.value)"
+   }
+  ]
+ },
+ {
+  "id": "DWT_lev_short",
+  "primary": "statistical",
+  "labels": [
+   {
+    "label": "statistical",
+    "confidence": "high",
+    "evidence": "qtpylib.crossed_above(dataframe['dwt_model_diff'],"
+   }
+  ]
+ },
+ {
+  "id": "DWT_lev_simple",
+  "primary": "statistical",
+  "labels": [
+   {
+    "label": "statistical",
+    "confidence": "high",
+    "evidence": "qtpylib.crossed_above(dataframe['dwt_model_diff'],"
+   }
+  ]
+ },
+ {
+  "id": "DWT_short",
+  "primary": "statistical",
+  "labels": [
+   {
+    "label": "statistical",
+    "confidence": "high",
+    "evidence": "qtpylib.crossed_below(dataframe['dwt_model_diff'],"
+   }
+  ]
+ },
+ {
+  "id": "DailyBuyStrategy3",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['ema_short'] > dataframe['ema_long'])"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "(dataframe['macd'] > dataframe['macdsignal']) &"
+   }
+  ]
+ },
+ {
+  "id": "DailyCandleStrategy",
+  "primary": "pattern",
+  "labels": [
+   {
+    "label": "pattern",
+    "confidence": "high",
+    "evidence": "self.bullish_candlestick_patterns.items()"
+   }
+  ]
+ },
+ {
+  "id": "Danke",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe[f'ema_{...}'] > dataframe['ema_200'])"
+   }
+  ]
+ },
+ {
+  "id": "Darq",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "qtpylib.crossed_above(dataframe[f'ema_short_"
+   },
+   {
+    "label": "volatility",
+    "confidence": "medium",
+    "evidence": "dataframe['adx_14'] > self.pos_entry_adx.value"
+   }
+  ]
+ },
+ {
+  "id": "DarqV2",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "qtpylib.crossed_above(dataframe[f'ema_short_"
+   },
+   {
+    "label": "volatility",
+    "confidence": "medium",
+    "evidence": "dataframe['adx_14'] > self.pos_entry_adx.value"
+   }
+  ]
+ },
+ {
+  "id": "DcaBitcoin",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "high",
+    "evidence": "(dataframe['volume'] > 0)"
+   }
+  ],
+  "note": "Dollar-cost averaging; buys on any volume, no signal logic"
+ },
+ {
+  "id": "DcaTpShort_3",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['ema9_30'] < dataframe['ema21_30'])"
+   }
+  ]
+ },
+ {
+  "id": "DefaultStrategy",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['adx'] > 30) & (dataframe['plus_di'] > 0.5)"
+   }
+  ]
+ },
+ {
+  "id": "DefaultStrategy_0",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['adx'] > 30) & (dataframe['plus_di'] > 0.5)"
+   }
+  ]
+ },
+ {
+  "id": "DemaCrossStrategy",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe[\"dema20\"] > dataframe[\"dema50\"]) &"
+   }
+  ]
+ },
+ {
+  "id": "DevDsl2Approx",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe[\"close\"] < dataframe[\"bb_lowerband2\"]"
+   },
+   {
+    "label": "volatility",
+    "confidence": "medium",
+    "evidence": "dataframe[\"bbdelta\"] / dataframe[\"close\"]"
+   }
+  ]
+ },
+ {
+  "id": "DevilStra",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "low",
+    "evidence": "condition_generator(...)"
+   }
+  ],
+  "note": "Parameterized strategy; trading logic determined at runtime"
+ },
+ {
+  "id": "DevilStra2",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "low",
+    "evidence": "condition_generator(...)"
+   }
+  ],
+  "note": "Parameterized strategy; logic cannot be determined from code"
+ }
+]

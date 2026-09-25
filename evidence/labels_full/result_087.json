@@ -1,0 +1,426 @@
+[
+ {
+  "id": "VolumeBreakoutStrategy",
+  "primary": "breakout",
+  "labels": [
+   {
+    "label": "breakout",
+    "confidence": "high",
+    "evidence": "(dataframe[\"breakout_up\"] == 1)"
+   },
+   {
+    "label": "volume_flow",
+    "confidence": "medium",
+    "evidence": "(dataframe[\"vol_ratio\"] > self.vol_mult.value)"
+   }
+  ],
+  "note": null
+ },
+ {
+  "id": "VolumeEMA_Strategy",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "dataframe[['ema5', 'ema12']].min(axis=1) > dataframe[['ema34', 'ema50']].max(axis=1)"
+   },
+   {
+    "label": "volatility",
+    "confidence": "medium",
+    "evidence": "((dataframe['atr_24h'] < 0.9 * dataframe['avg_atr_7d'])"
+   }
+  ],
+  "note": null
+ },
+ {
+  "id": "VolumeSupertrendStrategy",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['in_uptrend'] == True) & (dataframe['in_uptrend'].shift(1) == False)"
+   }
+  ],
+  "note": null
+ },
+ {
+  "id": "VortexStrategy",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe[\"vi_plus\"] > dataframe[\"vi_minus\"])"
+   }
+  ],
+  "note": null
+ },
+ {
+  "id": "VwapReversionStrategy",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe[\"below_vwap\"] == 0) & (dataframe[\"below_vwap_prev\"] == 1)"
+   }
+  ],
+  "note": null
+ },
+ {
+  "id": "WTAI",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "(df['tema'] > df['tema'].shift(1))"
+   },
+   {
+    "label": "volume_flow",
+    "confidence": "low",
+    "evidence": "(df['mfi_slope'] >= self.mfi_buy_slope.value)"
+   }
+  ],
+  "note": "Primary logic is ML-based via FreqAI do_predict signal"
+ },
+ {
+  "id": "WTDMIPRICEDCAStrategyFuture",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe[f'plus_di_{self.inf_tf}'] > dataframe[f'minus_di_{self.inf_tf}'])"
+   }
+  ],
+  "note": null
+ },
+ {
+  "id": "WTDMIPRICESDCAtrategy",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe[f'plus_di_{self.inf_tf}'] > dataframe[f'minus_di_{self.inf_tf}'])"
+   }
+  ],
+  "note": null
+ },
+ {
+  "id": "WTHO",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "dataframe[f'wave_t1_{self.buy_wt1_length.value}'] > dataframe[f'wave_t2_{self.buy_wt2_length.value}']"
+   },
+   {
+    "label": "volume_flow",
+    "confidence": "medium",
+    "evidence": "dataframe[f'mfi_sma{self.mfi_sma_length.value}'] <= self.buy_mfi.value"
+   }
+  ],
+  "note": null
+ },
+ {
+  "id": "WTRSIAI",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "(df['rsi'] >  self.buy_rsi.value)"
+   }
+  ],
+  "note": "Primary logic is ML-based via FreqAI with Wave Trend guards"
+ },
+ {
+  "id": "WTX3",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "((dataframe['wt1'] > dataframe['wt2']) & (dataframe['wt1'].shift() <= dataframe['wt2'].shift()))"
+   },
+   {
+    "label": "volume_flow",
+    "confidence": "medium",
+    "evidence": "(dataframe['fast_money_flow'] > dataframe['slow_money_flow'])"
+   }
+  ],
+  "note": null
+ },
+ {
+  "id": "WaveTrendStra",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(qtpylib.crossed_above(dataframe[\"wt1\"], dataframe[\"wt2\"]))"
+   }
+  ],
+  "note": null
+ },
+ {
+  "id": "WaveTrendStra_v0",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(qtpylib.crossed_above(dataframe[\"wt1\"], dataframe[\"wt2\"]))"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "(dataframe['adx'] > 25)"
+   }
+  ],
+  "note": null
+ },
+ {
+  "id": "WenRarri",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe[\"close\"].shift(1) > dataframe[\"BB_LOWER_20\"]) & (dataframe[\"STOCH_k_14_3_3\"] < 20)"
+   }
+  ],
+  "note": null
+ },
+ {
+  "id": "WhaleSupertrend",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['direction_10_3.0'] > 0).astype(int)"
+   }
+  ],
+  "note": "Uses majority vote of 6 Supertrend indicators"
+ },
+ {
+  "id": "WhenLambo",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "qtpylib.crossed_above(dataframe['HMA_9_5M'], dataframe['HMA_13_5M'])"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "(dataframe['macd_1h'] > dataframe['macdsignal_1h'])"
+   }
+  ],
+  "note": null
+ },
+ {
+  "id": "WilliamsRStrategy",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe[\"willr\"] > -80) & (dataframe[\"willr_prev\"] <= -80)"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "(dataframe[\"ema50\"] > dataframe[\"ema200\"])"
+   }
+  ],
+  "note": null
+ },
+ {
+  "id": "WyckoffStrategygpt",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "low",
+    "evidence": "(dataframe['close'] < dataframe['ema200']) & (dataframe['close'] > dataframe['ema50'])"
+   }
+  ],
+  "note": "Logic doesn't follow Wyckoff accumulation/distribution theory"
+ },
+ {
+  "id": "XMRMultiTimeframeStrategy",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(df['rsi'] < 35) & (df['close'] < df['bb_middleband'])"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "medium",
+    "evidence": "df['ema_fast_15'] > df['ema_slow_15']"
+   }
+  ],
+  "note": null
+ },
+ {
+  "id": "XebTradeStrat",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['ema5'] > dataframe['ema10']) & (dataframe['ema5'] .shift(1) < dataframe['ema10'].shift(1))"
+   }
+  ],
+  "note": null
+ },
+ {
+  "id": "XebTradeStrat_638",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "(dataframe['ema5'] > dataframe['ema10']) & (dataframe['ema5'] .shift(1) < dataframe['ema10'].shift(1))"
+   }
+  ],
+  "note": null
+ },
+ {
+  "id": "XtraThicc",
+  "primary": "pattern",
+  "labels": [
+   {
+    "label": "pattern",
+    "confidence": "high",
+    "evidence": "(dataframe['color'] == 'green') & (dataframe['color'].shift(1) == 'green')"
+   },
+   {
+    "label": "volatility",
+    "confidence": "medium",
+    "evidence": "(dataframe['xtra-thicc'] == 1)"
+   }
+  ],
+  "note": null
+ },
+ {
+  "id": "YOLO",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['adx'] > params['adx']) & (dataframe['aroon-up'] > params['aroon-up'])"
+   }
+  ],
+  "note": null
+ },
+ {
+  "id": "YorganStrategy",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi_fast'] < 35)"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "(dataframe['EWO'] > self.ewo_high.value)"
+   }
+  ],
+  "note": null
+ },
+ {
+  "id": "YorganStrategy_2",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi_fast'] < 35)"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "(dataframe['EWO'] > self.ewo_high.value)"
+   }
+  ],
+  "note": null
+ },
+ {
+  "id": "YouPig",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['cci'].shift(1) < -100) & (dataframe['rsi'].shift(1) < 30)"
+   }
+  ],
+  "note": null
+ },
+ {
+  "id": "YourStrat",
+  "primary": "other",
+  "labels": [],
+  "note": "No trading logic defined (empty strategy)"
+ },
+ {
+  "id": "YoyoActionStrategy",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "low",
+    "evidence": "(dataframe['bullish'] = dataframe['macd'] > 0)"
+   }
+  ],
+  "note": "Entry code truncated; uses signal_buy flag from incomplete populate_indicators"
+ },
+ {
+  "id": "ZScoreMeanReversionStrategy",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe[\"zscore\"] < self.zscore_entry.value)"
+   },
+   {
+    "label": "volatility",
+    "confidence": "medium",
+    "evidence": "(dataframe[\"bb_width\"] > 0.02)"
+   }
+  ],
+  "note": null
+ },
+ {
+  "id": "ZTV16X",
+  "primary": "breakout",
+  "labels": [
+   {
+    "label": "breakout",
+    "confidence": "high",
+    "evidence": "(qtpylib.crossed_above(dataframe['close'], dataframe['bbu']))"
+   },
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['adx'] > self.adx_threshold.value)"
+   }
+  ],
+  "note": null
+ }
+]

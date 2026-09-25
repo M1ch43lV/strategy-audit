@@ -1,0 +1,353 @@
+[
+ {
+  "id": "BuyHoldBasket",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "high",
+    "evidence": "dataframe[\"enter_long\"] = 1"
+   }
+  ],
+  "note": "Always enters on every candle; no exit signal—buy-and-hold only"
+ },
+ {
+  "id": "BuyNStoploss",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "high",
+    "evidence": "if not self.bought_once and self.buy_zone_price_top >= current"
+   }
+  ],
+  "note": "Fixed price zone entry; no indicator-based logic"
+ },
+ {
+  "id": "BuyNStoplossNProfit",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "high",
+    "evidence": "if not self.bought_once and self.buy_zone_price_top >= current"
+   }
+  ],
+  "note": "Fixed price zone entry with profit target"
+ },
+ {
+  "id": "BuyOnly",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "dataframe[\"open\"] <= dataframe[\"bb_lowerband\"]"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "qtpylib.crossed_above(dataframe[\"rsi\"], 30)"
+   }
+  ]
+ },
+ {
+  "id": "BuyOrDie",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['close_prev'] < dataframe['hma_20_prev'])"
+   }
+  ]
+ },
+ {
+  "id": "BuyRegions",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] <= lower_limit)"
+   },
+   {
+    "label": "volatility",
+    "confidence": "medium",
+    "evidence": "(dataframe['bb_width'] >= self.entry_bb_width.value)"
+   }
+  ]
+ },
+ {
+  "id": "BuzzzMoneyV1",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['ema_50_1h'] > dataframe['ema_100_1h'])"
+   },
+   {
+    "label": "momentum",
+    "confidence": "medium",
+    "evidence": "(dataframe['lame_ao'] > dataframe['lame_ao'].shift())"
+   }
+  ]
+ },
+ {
+  "id": "Bzed",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < dataframe['bb_lowerband_3sd'])"
+   }
+  ]
+ },
+ {
+  "id": "CBPete9",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < dataframe['bb_lowerband']"
+   }
+  ]
+ },
+ {
+  "id": "CCDeltaHyperopt",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['ema10'] > dataframe['ema20'])"
+   }
+  ]
+ },
+ {
+  "id": "CCIStrategy",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe[\"cci_one\"] < -100)"
+   }
+  ]
+ },
+ {
+  "id": "CCIStrategy_2",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['cci_one'] < -100)"
+   }
+  ]
+ },
+ {
+  "id": "CCIStrategy_3",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['cci_one'] < -100)"
+   }
+  ]
+ },
+ {
+  "id": "CCIStrategy_4",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['cci_one'] < -100)"
+   }
+  ]
+ },
+ {
+  "id": "CCIStrategy_5",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['cci_one'] < -100)"
+   }
+  ]
+ },
+ {
+  "id": "CCI_BB",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe[\"close\"] < dataframe['bb_lowerband1'])"
+   }
+  ]
+ },
+ {
+  "id": "CDCActionZone",
+  "primary": "trend_following",
+  "labels": [
+   {
+    "label": "trend_following",
+    "confidence": "high",
+    "evidence": "(dataframe['FastMA'] > dataframe['SlowMA'])"
+   }
+  ]
+ },
+ {
+  "id": "CHTP_vtest",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['rsi'] < 30)"
+   }
+  ]
+ },
+ {
+  "id": "CMCWinner",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['cci'].shift(1) < -100)"
+   }
+  ]
+ },
+ {
+  "id": "CME",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "low",
+    "evidence": "dataframe['signal'] == 1"
+   }
+  ],
+  "note": "Signal computed in external method; logic cannot be inferred"
+ },
+ {
+  "id": "COPY_HL",
+  "primary": "other",
+  "labels": [
+   {
+    "label": "other",
+    "confidence": "medium",
+    "evidence": "if ratio_pc>self.change_threshold:"
+   }
+  ],
+  "note": "Copies positions from external account; not inherent market logic"
+ },
+ {
+  "id": "CTIBS",
+  "primary": "momentum",
+  "labels": [
+   {
+    "label": "momentum",
+    "confidence": "high",
+    "evidence": "qtpylib.crossed_above(df['smooth_slope_sma'], self.smooth_bull"
+   }
+  ]
+ },
+ {
+  "id": "Canals",
+  "primary": "pattern",
+  "labels": [
+   {
+    "label": "pattern",
+    "confidence": "high",
+    "evidence": "(dataframe['osc'] == dataframe['prevMin'])"
+   }
+  ],
+  "note": "Pivot low/high pattern detection"
+ },
+ {
+  "id": "Candle2",
+  "primary": "pattern",
+  "labels": [
+   {
+    "label": "pattern",
+    "confidence": "high",
+    "evidence": "dataframe['close_position'] * 3 + dataframe['close_comparison']"
+   }
+  ]
+ },
+ {
+  "id": "Cci",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['cci'] < -198)"
+   }
+  ]
+ },
+ {
+  "id": "CciMeanReversionStrategy",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe[\"cci\"] > -100) & (dataframe[\"cci_prev\"] <= -100)"
+   }
+  ]
+ },
+ {
+  "id": "Cenderawasih_1b",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < dataframe['hma_offset_buy'])"
+   }
+  ]
+ },
+ {
+  "id": "Cenderawasih_2_kucoin",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < dataframe['vwma_offset_buy'])"
+   }
+  ]
+ },
+ {
+  "id": "Cenderawasih_3",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < dataframe['hma_offset_buy'])"
+   }
+  ]
+ },
+ {
+  "id": "Cenderawasih_30m",
+  "primary": "mean_reversion",
+  "labels": [
+   {
+    "label": "mean_reversion",
+    "confidence": "high",
+    "evidence": "(dataframe['close'] < dataframe['hma_offset_buy'])"
+   }
+  ]
+ }
+]
