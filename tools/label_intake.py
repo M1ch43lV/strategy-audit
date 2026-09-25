@@ -23,11 +23,12 @@ import io
 import json
 import os
 import sys
+from concurrent.futures import ThreadPoolExecutor
 
 _ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, _ROOT)
 
-from tools import label_check, label_consensus, label_runner  # noqa: E402
+from tools import families_page, label_check, label_consensus, label_runner  # noqa: E402
 from tools import strategy_labels as sl  # noqa: E402
 from tools import strategy_ideas as si  # noqa: E402
 
@@ -50,22 +51,34 @@ def _save(store):
         json.dump(store, handle, ensure_ascii=False, indent=1)
 
 
+def _attach(store, sid, entry, sheets):
+    """Keep a DeepSeek answer: its labels as second opinion (rule) and its description."""
+    item = store["strategies"][sid]
+    checked = sl.store_item(entry, sl._norm(sheets[sid]), item)
+    if label_consensus.needs_second_opinion(item) and not item.get("second_opinion"):
+        item["second_opinion"] = {
+            "model": label_check.MODEL, "primary": checked["primary"],
+            "labels": [{"label": l["label"], "confidence": l["confidence"]} for l in checked["labels"]]}
+    text = " ".join(str(entry.get("description") or "").split())
+    if text and not item.get("description"):
+        item["description"] = {"model": label_check.MODEL, "text": text[:700]}
+
+
 def second_opinion(store, sheets) -> int:
-    """Ask DeepSeek for every record under the rule that has no second opinion yet."""
-    todo = [sid for sid, item in store["strategies"].items()
-            if label_consensus.status(item) == "pending" and sid in sheets]
+    """One DeepSeek request per strategy that needs a second opinion or a family description."""
+    wanted = families_page.undescribed_members() if os.path.exists(families_page.PAGE_DATA) else set()
+    todo = [sid for sid, item in store["strategies"].items() if sid in sheets and (
+        label_consensus.status(item) == "pending" or (sid in wanted and not item.get("description")))]
     done = 0
-    for chunk in _chunks(todo, label_check.PER_CALL):
-        rows = [{"id": sid, "sheet": sheets[sid]} for sid in chunk]
-        for entry in label_check._safe(rows):
-            sid = entry.get("id")
-            if sid not in chunk:
-                continue
-            checked = sl.store_item(entry, sl._norm(sheets[sid]), store["strategies"][sid])
-            store["strategies"][sid]["second_opinion"] = {
-                "model": label_check.MODEL, "primary": checked["primary"],
-                "labels": [{"label": l["label"], "confidence": l["confidence"]} for l in checked["labels"]]}
-            done += 1
+    chunks = _chunks(todo, label_check.PER_CALL)
+    requests = [[{"id": sid, "sheet": sheets[sid]} for sid in chunk] for chunk in chunks]
+    with ThreadPoolExecutor(8) as pool:
+        for chunk, answer in zip(chunks, pool.map(label_check._safe, requests)):
+            for entry in answer:
+                if entry.get("id") in chunk:
+                    _attach(store, entry["id"], entry, sheets)
+                    done += 1
+            _save(store)
     return done
 
 

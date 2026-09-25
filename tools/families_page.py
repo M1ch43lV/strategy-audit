@@ -45,6 +45,14 @@ def _members_rows(members, profiles, store):
     return rows
 
 
+def undescribed_members() -> set:
+    """Members of families (2+ strategies) that no hand-written description covers."""
+    families = json.load(io.open(sf.OUTPUT, encoding="utf-8"))
+    described = {f["name"] for f in json.load(io.open(PAGE_DATA, encoding="utf-8"))["families"]}
+    return {m for fam in families["families"] if fam["size"] >= 2
+            and not any(st in described for st in fam["stems"]) for m in fam["members"]}
+
+
 def build() -> dict:
     families = json.load(io.open(sf.OUTPUT, encoding="utf-8"))
     store = json.load(io.open(sl.FULL_STORE, encoding="utf-8"))
@@ -76,6 +84,14 @@ def build() -> dict:
             item["described_stem"] = main["name"]
             if len(ideas) > 1:
                 item["other_descriptions"] = [{"stem": d["name"], "idea_html": d["idea_html"]} for d in ideas[1:]]
+        if not ideas:
+            texts = [(m, (store["strategies"].get(m) or {}).get("description")) for m in fam["members"]]
+            texts = [(m, d["text"]) for m, d in texts if d]
+            if texts:
+                item["idea_html"] = "<code>%s</code>: %s" % (html.escape(texts[0][0]), html.escape(texts[0][1]))
+                item["described_by_model"] = True
+                if len(texts) > 1:
+                    item["other_descriptions"] = [{"stem": m, "idea_html": html.escape(t)} for m, t in texts[1:]]
         out.append(item)
     intro = json.load(io.open(PAGE_DATA, encoding="utf-8"))["intro_paras"]
     intro = intro[:1] + [
@@ -85,7 +101,9 @@ def build() -> dict:
         "from the entry and exit code by Haiku 4.5, each with a verbatim code snippet as evidence "
         "(<code>evidence/STRATEGY_LABELS.json</code>). A family carries a label when more than half of its "
         "members do; other labels show as <em>variants</em>. Labels describe the logic, not its quality, "
-        "and a family without a written description shows its members only."]
+        "and a family without a written description shows its members only. Where the description was "
+        "written by DeepSeek Flash from the fact sheet (the same request that gives the second opinion on the "
+        "label), it says so in <code>evidence/STRATEGY_LABELS.json</code> and is a reading of the code, not a test result."]
     return {"intro_paras": intro, "families": out,
             "labels": list(sl.LABELS), "prompt_sha256": store.get("prompt_sha256"), "model": store.get("model")}
 

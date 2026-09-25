@@ -51,9 +51,17 @@ def draw() -> None:
     print(len(rows), "sampled ->", os.path.relpath(SAMPLE, _ROOT))
 
 
+DESCRIBE = ("\n\nEvery object MUST carry the `description` field of the output format: two or three plain "
+            "English sentences saying what the strategy does (what triggers the entry, what ends the trade, "
+            "timeframe, any notable protection or stoploss idea), written from the fact sheet only. No "
+            "quality or profit judgement, no advice.")
+
+
 def _call(rows):
+    """One request: logic classification and a written description for every strategy in `rows`."""
     rules = io.open(sl.PROMPT, encoding="utf-8").read()
-    prompt = (rules + "\n\nLabel every strategy below. Answer with the JSON array only, no prose, no code fence.\n\n"
+    rules = rules.replace('  "note":', '  "description": "<two or three sentences, see below>",\n  "note":', 1) + DESCRIBE
+    prompt = (rules + "\n\nLabel and describe every strategy below. Answer with the JSON array only, no prose, no code fence.\n\n"
               + json.dumps([{"id": r["id"], "sheet": r["sheet"]} for r in rows], ensure_ascii=False))
     body = json.dumps({"model": MODEL, "messages": [{"role": "user", "content": prompt}],
                        "temperature": 0}).encode()
