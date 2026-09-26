@@ -37873,6 +37873,243 @@
       "timeframe": "5m",
       "timerange": "20190101-20190401"
     },
+    "CombinedBinHClucAndSMAOffset": {
+      "available_prefix_candles": 106125,
+      "chosen_ladder_days": 7,
+      "chosen_startup_candle_count": 2016,
+      "cohort": "lookahead_pass",
+      "columns": [
+        {
+          "from_strategy": true,
+          "startup_candle_count": 200
+        },
+        {
+          "from_strategy": false,
+          "startup_candle_count": 288
+        },
+        {
+          "from_strategy": false,
+          "startup_candle_count": 576
+        },
+        {
+          "from_strategy": false,
+          "startup_candle_count": 2016
+        },
+        {
+          "from_strategy": false,
+          "startup_candle_count": 4032
+        }
+      ],
+      "debug_log": "user_data/convergence_logs/CombinedBinHClucAndSMAOffset-a9b7af3a-ladder.log",
+      "declared_max_drift_pct": 25.881,
+      "declared_startup_candle_count": 200,
+      "declared_warmup_override": null,
+      "drift_threshold_pct": 1.0,
+      "drifts": {
+        "EWO": [
+          25.881,
+          22.68,
+          -0.597,
+          -0.0,
+          0.0
+        ],
+        "bb_lowerband": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "bb_upperband": [
+          -0.0,
+          -0.0,
+          -0.0,
+          -0.0,
+          -0.0
+        ],
+        "bbdelta": [
+          -0.0,
+          -0.0,
+          -0.0,
+          -0.0,
+          -0.0
+        ],
+        "ema_100_1h": [
+          -0.047,
+          0.007,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "ema_200": [
+          0.12,
+          0.105,
+          -0.003,
+          -0.0,
+          0.0
+        ],
+        "ema_200_1h": [
+          -1.395,
+          0.123,
+          0.007,
+          0.0,
+          -0.0
+        ],
+        "ema_26": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "ema_50": [
+          -0.0,
+          0.0,
+          -0.0,
+          0.0,
+          0.0
+        ],
+        "ema_50_1h": [
+          0.001,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "ema_slow": [
+          -0.0,
+          0.0,
+          -0.0,
+          0.0,
+          0.0
+        ],
+        "lower": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "ma_buy": [
+          -0.0,
+          -0.0,
+          -0.0,
+          -0.0,
+          -0.0
+        ],
+        "ma_offset_buy": [
+          -0.0,
+          -0.0,
+          -0.0,
+          -0.0,
+          -0.0
+        ],
+        "ma_offset_sell": [
+          -0.0,
+          -0.0,
+          -0.0,
+          -0.0,
+          -0.0
+        ],
+        "ma_sell": [
+          -0.0,
+          -0.0,
+          -0.0,
+          -0.0,
+          -0.0
+        ],
+        "mfi": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "rsi": [
+          -0.0,
+          -0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "rsi_1h": [
+          0.0,
+          -0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "sma_200": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "sma_200_1h": [
+          0.0,
+          0.0,
+          -0.0,
+          0.0,
+          0.0
+        ],
+        "sma_200_dec": [
+          null,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "sma_5": [
+          -0.0,
+          -0.0,
+          -0.0,
+          -0.0,
+          -0.0
+        ],
+        "ssl_down_1h": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "ssl_up_1h": [
+          -0.0,
+          -0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "elapsed_s": 105.3,
+      "file_derived_period": null,
+      "implementation_id": "CombinedBinHClucAndSMAOffset:ed24d5046d88",
+      "invocation": "freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy CombinedBinHClucAndSMAOffset --strategy-path user_data/profile_bias_strategies/CombinedBinHClucAndSMAOffset-a9b7af3a --timerange 20200301-20200601 --no-color --startup-candle 288 576 2016 4032",
+      "ladder_candles": [
+        288,
+        576,
+        2016,
+        4032
+      ],
+      "ladder_days": [
+        1,
+        2,
+        7,
+        14
+      ],
+      "max_drift_indicator": "ema_50_1h",
+      "max_drift_pct": 0.0,
+      "needed_no_override": false,
+      "output_sha256": "sha256_37ac33965eb082b24a40ca066a48309b2548407412dd9bcc072f9974de71ea19",
+      "returncode": 0,
+      "run_profile": "spot_long",
+      "runtime_id": "docker:sha256:385a287ced73c5326334598adabb078c6cf55f12fd0ed30149354b606ad6148a",
+      "state": "converged",
+      "strategy_id": "CombinedBinHClucAndSMAOffset",
+      "timeframe": "5m",
+      "timerange": "20200301-20200601"
+    },
     "CombinedBinHClucAndSMAOffset_2": {
       "available_prefix_candles": 106125,
       "chosen_ladder_days": 7,

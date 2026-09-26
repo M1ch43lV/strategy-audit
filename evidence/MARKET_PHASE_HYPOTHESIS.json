@@ -2444,6 +2444,10 @@
       "assumed_market_regime": "bull_trend;range_choppy;range_quiet",
       "assumed_market_regime_evidence": "logic(none) undecided, type(mean_reversion,momentum,scalping); direction(long_only): bear excluded"
     },
+    "CombinedBinHClucAndSMAOffset": {
+      "assumed_market_regime": "range_choppy;range_quiet",
+      "assumed_market_regime_evidence": "logic(none) undecided, type(mean_reversion,scalping); direction(long_only): bear excluded"
+    },
     "CombinedBinHClucAndSMAOffset_2": {
       "assumed_market_regime": "range_choppy;range_quiet",
       "assumed_market_regime_evidence": "logic(none) undecided, type(mean_reversion,scalping); direction(long_only): bear excluded"

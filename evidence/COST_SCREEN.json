@@ -64258,6 +64258,421 @@
       "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61",
       "trades": 2131
     },
+    "CombinedBinHClucAndSMAOffset": {
+      "baseline_mean_profit_pct": 1.3132,
+      "baseline_profit_abs": 527.824,
+      "break_even_slippage_bps_per_side": 65.67,
+      "by_regime": {
+        "btc": {
+          "BEAR": {
+            "all": {
+              "break_even_slippage_bps_per_side": 159.82,
+              "episodes": 9,
+              "mean_profit_pct": 3.1965,
+              "reasons": [],
+              "status": "PASS",
+              "stressed": {
+                "0.0005": {
+                  "mean_profit_pct": 3.0965,
+                  "survives": true
+                },
+                "0.0010": {
+                  "mean_profit_pct": 2.9965,
+                  "survives": true
+                },
+                "0.0020": {
+                  "mean_profit_pct": 2.7965,
+                  "survives": true
+                }
+              },
+              "trades": 24
+            },
+            "validation": {
+              "break_even_slippage_bps_per_side": 47.84,
+              "episodes": 4,
+              "mean_profit_pct": 0.9568,
+              "reasons": [],
+              "status": "PASS",
+              "stressed": {
+                "0.0005": {
+                  "mean_profit_pct": 0.8568,
+                  "survives": true
+                },
+                "0.0010": {
+                  "mean_profit_pct": 0.7568,
+                  "survives": true
+                },
+                "0.0020": {
+                  "mean_profit_pct": 0.5568,
+                  "survives": true
+                }
+              },
+              "trades": 12
+            }
+          },
+          "BULL": {
+            "all": {
+              "break_even_slippage_bps_per_side": 63.46,
+              "episodes": 15,
+              "mean_profit_pct": 1.2692,
+              "reasons": [],
+              "status": "PASS",
+              "stressed": {
+                "0.0005": {
+                  "mean_profit_pct": 1.1692,
+                  "survives": true
+                },
+                "0.0010": {
+                  "mean_profit_pct": 1.0692,
+                  "survives": true
+                },
+                "0.0020": {
+                  "mean_profit_pct": 0.8692,
+                  "survives": true
+                }
+              },
+              "trades": 161
+            },
+            "validation": {
+              "break_even_slippage_bps_per_side": 44.46,
+              "episodes": 5,
+              "mean_profit_pct": 0.8892,
+              "reasons": [],
+              "status": "PASS",
+              "stressed": {
+                "0.0005": {
+                  "mean_profit_pct": 0.7892,
+                  "survives": true
+                },
+                "0.0010": {
+                  "mean_profit_pct": 0.6892,
+                  "survives": true
+                },
+                "0.0020": {
+                  "mean_profit_pct": 0.4892,
+                  "survives": true
+                }
+              },
+              "trades": 30
+            }
+          },
+          "SIDEWAYS": {
+            "all": {
+              "break_even_slippage_bps_per_side": 63.58,
+              "episodes": 6,
+              "mean_profit_pct": 1.2715,
+              "reasons": [],
+              "status": "PASS",
+              "stressed": {
+                "0.0005": {
+                  "mean_profit_pct": 1.1715,
+                  "survives": true
+                },
+                "0.0010": {
+                  "mean_profit_pct": 1.0715,
+                  "survives": true
+                },
+                "0.0020": {
+                  "mean_profit_pct": 0.8715,
+                  "survives": true
+                }
+              },
+              "trades": 19
+            },
+            "validation": {
+              "break_even_slippage_bps_per_side": -69.14,
+              "episodes": 2,
+              "mean_profit_pct": -1.3828,
+              "reasons": [
+                "below_trade_floor"
+              ],
+              "status": "NA",
+              "stressed": {
+                "0.0005": {
+                  "mean_profit_pct": -1.4828,
+                  "survives": false
+                },
+                "0.0010": {
+                  "mean_profit_pct": -1.5828,
+                  "survives": false
+                },
+                "0.0020": {
+                  "mean_profit_pct": -1.7828,
+                  "survives": false
+                }
+              },
+              "trades": 3
+            }
+          },
+          "TRANSITION": {
+            "all": {
+              "break_even_slippage_bps_per_side": 34.03,
+              "episodes": 16,
+              "mean_profit_pct": 0.6807,
+              "reasons": [],
+              "status": "PASS",
+              "stressed": {
+                "0.0005": {
+                  "mean_profit_pct": 0.5807,
+                  "survives": true
+                },
+                "0.0010": {
+                  "mean_profit_pct": 0.4807,
+                  "survives": true
+                },
+                "0.0020": {
+                  "mean_profit_pct": 0.2807,
+                  "survives": true
+                }
+              },
+              "trades": 59
+            },
+            "validation": {
+              "break_even_slippage_bps_per_side": 82.78,
+              "episodes": 5,
+              "mean_profit_pct": 1.6557,
+              "reasons": [],
+              "status": "PASS",
+              "stressed": {
+                "0.0005": {
+                  "mean_profit_pct": 1.5557,
+                  "survives": true
+                },
+                "0.0010": {
+                  "mean_profit_pct": 1.4557,
+                  "survives": true
+                },
+                "0.0020": {
+                  "mean_profit_pct": 1.2557,
+                  "survives": true
+                }
+              },
+              "trades": 19
+            }
+          }
+        },
+        "coin": {
+          "BEAR": {
+            "all": {
+              "break_even_slippage_bps_per_side": 9.32,
+              "episodes": 5,
+              "mean_profit_pct": 0.1864,
+              "reasons": [
+                "below_trade_floor"
+              ],
+              "status": "NA",
+              "stressed": {
+                "0.0005": {
+                  "mean_profit_pct": 0.0864,
+                  "survives": true
+                },
+                "0.0010": {
+                  "mean_profit_pct": -0.0136,
+                  "survives": false
+                },
+                "0.0020": {
+                  "mean_profit_pct": -0.2136,
+                  "survives": false
+                }
+              },
+              "trades": 6
+            },
+            "validation": {
+              "episodes": 0,
+              "reasons": [
+                "no_trades_in_state"
+              ],
+              "status": "NA",
+              "trades": 0
+            }
+          },
+          "BULL": {
+            "all": {
+              "break_even_slippage_bps_per_side": 63.51,
+              "episodes": 49,
+              "mean_profit_pct": 1.2703,
+              "reasons": [],
+              "status": "PASS",
+              "stressed": {
+                "0.0005": {
+                  "mean_profit_pct": 1.1703,
+                  "survives": true
+                },
+                "0.0010": {
+                  "mean_profit_pct": 1.0703,
+                  "survives": true
+                },
+                "0.0020": {
+                  "mean_profit_pct": 0.8703,
+                  "survives": true
+                }
+              },
+              "trades": 166
+            },
+            "validation": {
+              "break_even_slippage_bps_per_side": 48.27,
+              "episodes": 10,
+              "mean_profit_pct": 0.9654,
+              "reasons": [],
+              "status": "PASS",
+              "stressed": {
+                "0.0005": {
+                  "mean_profit_pct": 0.8654,
+                  "survives": true
+                },
+                "0.0010": {
+                  "mean_profit_pct": 0.7654,
+                  "survives": true
+                },
+                "0.0020": {
+                  "mean_profit_pct": 0.5654,
+                  "survives": true
+                }
+              },
+              "trades": 44
+            }
+          },
+          "SIDEWAYS": {
+            "all": {
+              "break_even_slippage_bps_per_side": 95.11,
+              "episodes": 24,
+              "mean_profit_pct": 1.9021,
+              "reasons": [],
+              "status": "PASS",
+              "stressed": {
+                "0.0005": {
+                  "mean_profit_pct": 1.8021,
+                  "survives": true
+                },
+                "0.0010": {
+                  "mean_profit_pct": 1.7021,
+                  "survives": true
+                },
+                "0.0020": {
+                  "mean_profit_pct": 1.5021,
+                  "survives": true
+                }
+              },
+              "trades": 49
+            },
+            "validation": {
+              "break_even_slippage_bps_per_side": 73.76,
+              "episodes": 6,
+              "mean_profit_pct": 1.4753,
+              "reasons": [
+                "below_trade_floor"
+              ],
+              "status": "NA",
+              "stressed": {
+                "0.0005": {
+                  "mean_profit_pct": 1.3753,
+                  "survives": true
+                },
+                "0.0010": {
+                  "mean_profit_pct": 1.2753,
+                  "survives": true
+                },
+                "0.0020": {
+                  "mean_profit_pct": 1.0753,
+                  "survives": true
+                }
+              },
+              "trades": 9
+            }
+          },
+          "TRANSITION": {
+            "all": {
+              "break_even_slippage_bps_per_side": 47.84,
+              "episodes": 33,
+              "mean_profit_pct": 0.9568,
+              "reasons": [],
+              "status": "PASS",
+              "stressed": {
+                "0.0005": {
+                  "mean_profit_pct": 0.8568,
+                  "survives": true
+                },
+                "0.0010": {
+                  "mean_profit_pct": 0.7568,
+                  "survives": true
+                },
+                "0.0020": {
+                  "mean_profit_pct": 0.5568,
+                  "survives": true
+                }
+              },
+              "trades": 42
+            },
+            "validation": {
+              "break_even_slippage_bps_per_side": 44.14,
+              "episodes": 7,
+              "mean_profit_pct": 0.8828,
+              "reasons": [],
+              "status": "PASS",
+              "stressed": {
+                "0.0005": {
+                  "mean_profit_pct": 0.7828,
+                  "survives": true
+                },
+                "0.0010": {
+                  "mean_profit_pct": 0.6828,
+                  "survives": true
+                },
+                "0.0020": {
+                  "mean_profit_pct": 0.4828,
+                  "survives": true
+                }
+              },
+              "trades": 11
+            }
+          }
+        }
+      },
+      "cost_pass_regimes": [
+        "btc:BULL",
+        "btc:BEAR",
+        "btc:TRANSITION",
+        "coin:BULL",
+        "coin:TRANSITION"
+      ],
+      "cost_pass_regimes_all_windows": [
+        "btc:BULL",
+        "btc:BEAR",
+        "btc:SIDEWAYS",
+        "btc:TRANSITION",
+        "coin:BULL",
+        "coin:SIDEWAYS",
+        "coin:TRANSITION"
+      ],
+      "main_timeframe": "5m",
+      "mean_profit_below_caution": false,
+      "reasons": [],
+      "regime_basis": "fixed_stake_per_trade_ratio",
+      "regime_window": "validation_from_2024-01-01",
+      "status": "PASS",
+      "stressed": {
+        "0.0005": {
+          "mean_profit_pct": 1.2132,
+          "net_profit_abs": 487.6358,
+          "net_profit_pct": 48.7636,
+          "survives": true
+        },
+        "0.0010": {
+          "mean_profit_pct": 1.1132,
+          "net_profit_abs": 447.4477,
+          "net_profit_pct": 44.7448,
+          "survives": true
+        },
+        "0.0020": {
+          "mean_profit_pct": 0.9132,
+          "net_profit_abs": 367.0714,
+          "net_profit_pct": 36.7071,
+          "survives": true
+        }
+      },
+      "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61",
+      "trades": 263
+    },
     "CombinedBinHClucAndSMAOffset_2": {
       "baseline_mean_profit_pct": 1.3132,
       "baseline_profit_abs": 527.824,

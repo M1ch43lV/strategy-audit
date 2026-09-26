@@ -3041,6 +3041,11 @@
       "timeframe": "5m",
       "timeframe_evidence": "timeframe_attr"
     },
+    "CombinedBinHClucAndSMAOffset": {
+      "strategy_type": "mean_reversion;scalping",
+      "timeframe": "5m",
+      "timeframe_evidence": "timeframe_attr"
+    },
     "CombinedBinHClucAndSMAOffset_2": {
       "strategy_type": "mean_reversion;scalping",
       "timeframe": "5m",

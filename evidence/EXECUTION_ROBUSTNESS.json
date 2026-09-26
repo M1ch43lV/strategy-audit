@@ -4282,6 +4282,16 @@
       "status": "PASS",
       "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61"
     },
+    "CombinedBinHClucAndSMAOffset": {
+      "basis": "owner_rule_at_or_below_5m",
+      "detail_timeframe": null,
+      "main_timeframe": "5m",
+      "reasons": [
+        "baseline_at_detail_granularity"
+      ],
+      "status": "PASS",
+      "thresholds_sha256": "sha256_08e3ff0a1ac8bb7b0720f7adbd47ec32a87a38e3f77a98457804374b9e0a2d61"
+    },
     "CombinedBinHClucAndSMAOffset_2": {
       "basis": "owner_rule_at_or_below_5m",
       "detail_timeframe": null,

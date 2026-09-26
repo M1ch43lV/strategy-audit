@@ -17,6 +17,16 @@
       "source": "frequenthippo",
       "strategy": "BB_RPB_TSL_jilv220_github_20211008",
       "url": "https://frequenthippo.ddns.net/wp-content/uploads/strategies/BB_RPB_TSL_jilv220_github_20211008.py"
+    },
+    {
+      "adopted_at": "2026-09-26T04:20:12+00:00",
+      "bytes": 25212,
+      "owner_approved": "Owner answered 'Ja, aufnehmen' (2026-09-26) to adopting this file for closing the FrequentHippo top-10 check chain",
+      "reason": "rank 2 of the public ranking; the site published the measured file, no repository exists",
+      "sha256": "sha256_ed24d5046d884a200ac9274a5064e739a7630277f7d563bb9cb3000925fcd55d",
+      "source": "frequenthippo",
+      "strategy": "CombinedBinHClucAndSMAOffset",
+      "url": "https://frequenthippo.ddns.net/wp-content/uploads/strategies/CombinedBinHClucAndSMAOffset.py"
     }
   ],
   "schema_version": 1

@@ -1,13 +1,13 @@
 {
   "measurement_scope": "canonical_pooled_native_pair_universe",
   "results": {
-    "BinClucMadSMACore": {
-      "attempted_at": "2026-09-25T09:17:03+00:00",
-      "canonical_sha256": "sha256_e725b37b23d24ece5542f8af913259320bff4b530d90986e24c7f206a2b85076",
+    "CombinedBinHClucAndSMAOffset": {
+      "attempted_at": "2026-09-26T04:37:45+00:00",
+      "canonical_sha256": "sha256_ed24d5046d884a200ac9274a5064e739a7630277f7d563bb9cb3000925fcd55d",
       "class1_rules": [],
-      "debug_log": "user_data/profile_smoke_logs/BinClucMadSMACore-ddd17da2.log",
-      "elapsed_s": 139.9,
-      "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy BinClucMadSMACore --strategy-path repair/patched/repos/remiotore_ccxt-freqtrade/strategies --timerange 20200401-20260821 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/BinClucMadSMACore-ddd17da2 --cache none",
+      "debug_log": "user_data/profile_smoke_logs/CombinedBinHClucAndSMAOffset-a9b7af3a.log",
+      "elapsed_s": 135.9,
+      "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy CombinedBinHClucAndSMAOffset --strategy-path repos/frequenthippo --timerange 20200401-20260821 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/CombinedBinHClucAndSMAOffset-a9b7af3a --cache none",
       "measurement_scope": "canonical_pooled_native_pair_universe",
       "mode": "spot",
       "pairs": [

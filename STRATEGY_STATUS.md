@@ -1,13 +1,13 @@
-# Strategy status - current evidence for all 3232 rows
+# Strategy status - current evidence for all 3233 rows
 
-**Generated 2026-09-25 19:21:45 by `evidence/strategy_status.py`.** Regenerate it rather than editing it.
+**Generated 2026-09-26 06:42:20 by `evidence/strategy_status.py`.** Regenerate it rather than editing it.
 
 **This table decides nothing.** Admission happens only in
 `evidence/eligibility_expansion_adjudicate.py`; this is a reading of what has
 already been decided, collected from the smoke, bias, full-window,
 adjudication and convergence stores.
 
-**Completed full-backtest closure.** 691 rows carry an exact, successful
+**Completed full-backtest closure.** 692 rows carry an exact, successful
 canonical pooled Stage-7 full-backtest identity (source hash, run profile and
 mode timerange). Their `technical_chain_complete=true` closes the technical
 work queue, even if a later diagnostic-window amendment made earlier evidence
@@ -39,24 +39,24 @@ reason to skip a check.
 records, so `last_tested_at` is recovered from what they leave behind:
 a result archive's filename, which carries the run's own clock, or
 failing that a log file's modification time, which is close but is the
-file's time and is labelled `log_mtime` for that reason. 1970 of 3232 rows
+file's time and is labelled `log_mtime` for that reason. 1970 of 3233 rows
 have neither and are left empty rather than given an invented time.
 
 ## Measurement
 
 | | Strategies |
 |---|---:|
-| in the manifest | 3232 |
-| measured at all | 1259 |
-| produced trades | 1024 |
-| carrying a run time | 1262 |
+| in the manifest | 3233 |
+| measured at all | 1260 |
+| produced trades | 1025 |
+| carrying a run time | 1263 |
 
 ## Cohort
 
 | Cohort | Strategies |
 |---|---:|
 | `not_tested_in_current_runtime` | 1848 |
-| `E1_expanded` | 708 |
+| `E1_expanded` | 709 |
 | `excluded` | 555 |
 | `pending` | 42 |
 | `not_a_strategy` | 36 |
@@ -68,13 +68,13 @@ have neither and are left empty rather than given an invented time.
 
 Both read from the strategy's own source by `strategy_classification.py`,
 not measured - see that module's docstring for the marker table and its
-limits. `timeframe` is blank on 165 rows the source does not state it for. `strategy_type` can be more than one label - most rows carry two or three - and is blank on 0 rows where no marker matched at all, so its counts below add up to more than 3232.
+limits. `timeframe` is blank on 165 rows the source does not state it for. `strategy_type` can be more than one label - most rows carry two or three - and is blank on 0 rows where no marker matched at all, so its counts below add up to more than 3233.
 
 ### Timeframe
 
 | Timeframe | Strategies |
 |---|---:|
-| `5m` | 1816 |
+| `5m` | 1817 |
 | `1h` | 392 |
 | `15m` | 292 |
 | `1m` | 226 |
@@ -97,8 +97,8 @@ limits. `timeframe` is blank on 165 rows the source does not state it for. `stra
 
 | Type | Strategies |
 |---|---:|
-| `scalping` | 1827 |
-| `mean_reversion` | 1600 |
+| `scalping` | 1828 |
+| `mean_reversion` | 1601 |
 | `momentum` | 1505 |
 | `trend_following` | 747 |
 | `volatility_breakout` | 661 |
@@ -139,13 +139,13 @@ preregistration OPEN item 6; the amendment records it.
 | `bear_trend` | `coin_adx >= 25 and coin_minus_di > coin_plus_di` | 219 |
 | `bull_trend` | `coin_adx >= 25 and coin_plus_di > coin_minus_di` | 1828 |
 | `high_vol_shock` | `coin_realized_vol_30d >= 1.291, whatever the DMI state` | 507 |
-| `range_choppy` | `coin_adx < 20 and coin_realized_vol_30d >= 0.623` | 1498 |
-| `range_quiet` | `coin_adx < 20 and coin_realized_vol_30d < 0.623` | 1406 |
+| `range_choppy` | `coin_adx < 20 and coin_realized_vol_30d >= 0.623` | 1499 |
+| `range_quiet` | `coin_adx < 20 and coin_realized_vol_30d < 0.623` | 1407 |
 | `transition` | `20 <= coin_adx < 25` | 488 |
 
 A row may carry more than one phase, and 504 carry none: 251 are model-driven, where the indicators are features of a model and say nothing about which phase it favours, and 253 name no phase-bearing marker at all. Both are left blank rather than given an invented prior - a blank is itself testable, as the prediction that the row is phase-neutral.
 
-`bear_trend` is rare by construction: 2846 of 3232 rows are long-only and a long-only strategy cannot earn in a sustained downtrend, so the direction gate removes it whatever the indicators suggest.
+`bear_trend` is rare by construction: 2847 of 3233 rows are long-only and a long-only strategy cannot earn in a sustained downtrend, so the direction gate removes it whatever the indicators suggest.
 
 ## Test duration
 
@@ -155,11 +155,11 @@ look-ahead/recursion pair, a later native look-ahead
 re-measurement, the warm-up ladder, a wave B recursion attempt, and
 the eight-pair full-window backtest actually ran for it - see
 `test_duration` in evidence/strategy_status.py for why this is a sum rather
-than a pick-one-source figure. 1955 of 3232 rows carry no stamp at all,
+than a pick-one-source figure. 1955 of 3233 rows carry no stamp at all,
 either because nothing has run yet or because no runner on that
 path records its own time.
 
-Summed across the 1277 rows that do: **128.4 hours** of this audit's own compute so far.
+Summed across the 1278 rows that do: **128.6 hours** of this audit's own compute so far.
 
 ### Slowest 15
 
@@ -303,7 +303,7 @@ carries the command it was produced by. **`recorded`** is the argv that
 actually ran. **`reconstructed`** is derived from the run profile and
 the window, because nothing stored the call before 2026-09-01; it is
 labelled because a reconstruction is a different claim from a
-recording. 2549 of 7739 commands are recorded so far, and every new run
+recording. 2552 of 7742 commands are recorded so far, and every new run
 adds one.
 
 There is one column per gate, not one per row. A row can carry three
@@ -323,7 +323,7 @@ evaluate a single signal without it. The warm-up ladder passes
 `--startup-candle` with every rung at once, which is why one run
 reports the whole ladder.
 
-## Passing - 708 strategies
+## Passing - 709 strategies
 
 Every original gate returned `PASS`: measured in its native mode,
 produced trades, clean look-ahead and recursion, complete candle
@@ -485,6 +485,7 @@ coverage, no published trap.
 | `CombinedBinHClucAndMADV5` | `spot_long` | `E1_expanded` | 1331 | `convergence:2016:warmup_supplied` | 2026-09-07 13:44:55 | [archive](user_data/profile_smoke/CombinedBinHClucAndMADV5-f746355d-2026-09-07_13-44-55.zip) [log](user_data/convergence_logs/CombinedBinHClucAndMADV5-ladder.log) |
 | `CombinedBinHClucAndMADV6` | `spot_long` | `E1_expanded` | 1309 | `convergence:2016:warmup_supplied` | 2026-09-05 16:45:42 | [archive](user_data/profile_smoke/CombinedBinHClucAndMADV6-13156fb3-2026-09-05_16-45-42.zip) [log](user_data/convergence_logs/CombinedBinHClucAndMADV6-ladder.log) |
 | `CombinedBinHClucAndMADV9` | `spot_long` | `E1_expanded` | 2131 | `convergence:2016:warmup_supplied` | 2026-09-05 16:48:09 | [archive](user_data/profile_smoke/CombinedBinHClucAndMADV9-35d68152-2026-09-05_16-48-09.zip) [log](user_data/convergence_logs/CombinedBinHClucAndMADV9-ladder.log) |
+| `CombinedBinHClucAndSMAOffset` | `spot_long` | `E1_expanded` | 7 | `convergence:2016:warmup_supplied` | 2026-09-26 04:28:02 | [archive](user_data/profile_smoke/CombinedBinHClucAndSMAOffset-a9b7af3a-smoke_20200301_20200601-9c543975-2026-09-26_04-28-02.zip) [log](user_data/convergence_logs/CombinedBinHClucAndSMAOffset-a9b7af3a-ladder.log) |
 | `CombinedBinHClucAndSMAOffset_2` | `spot_long` | `E1_expanded` | 7 | `convergence:2016:warmup_supplied` | 2026-09-25 07:19:30 | [archive](user_data/profile_smoke/CombinedBinHClucAndSMAOffset_2-1c9b26a2-smoke_20200301_20200601-9c543975-2026-09-25_07-19-30.zip) [log](user_data/convergence_logs/CombinedBinHClucAndSMAOffset_2-1c9b26a2-ladder.log) |
 | `Combined_Indicators` | `spot_long` | `E1_expanded` | 235 | `convergence:1440:warmup_supplied` | 2026-09-09 16:32:48 | [archive](user_data/profile_smoke/Combined_Indicators-8c5e3bcf-2026-09-09_16-32-48.zip) [log](user_data/convergence_logs/Combined_Indicators-ladder.log) |
 | `Combined_NFIv6_SMA` | `spot_long` | `E1_expanded` | 740 | `convergence:2016:warmup_supplied` | 2026-09-05 16:49:33 | [archive](user_data/profile_smoke/Combined_NFIv6_SMA-cd9c21e5-2026-09-05_16-49-33.zip) [log](user_data/convergence_logs/Combined_NFIv6_SMA-ladder.log) |
@@ -1965,6 +1966,12 @@ The calls behind each, one per gate:
   backtest   [recorded] freqtrade backtesting --config profile_spot_config.json --strategy CombinedBinHClucAndMADV9 --strategy-path repos/PeetCrypto_freqtrade-stuff --timerange 20200401-20260821 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/CombinedBinHClucAndMADV9-35d68152 --cache none
   lookahead  [reconstructed] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy CombinedBinHClucAndMADV9 --strategy-path user_data/profile_bias_strategies/CombinedBinHClucAndMADV9 --timerange 20190101-20190401 --no-color
   recursive  [recorded] freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy CombinedBinHClucAndMADV9 --strategy-path user_data/profile_bias_strategies/CombinedBinHClucAndMADV9 --timerange 20190101-20190401 --no-color --startup-candle 288 576 2016 4032
+  ```
+- `CombinedBinHClucAndSMAOffset`
+  ```
+  backtest   [recorded] freqtrade backtesting --config runtime/profile_spot_config.json --strategy CombinedBinHClucAndSMAOffset --strategy-path repos/frequenthippo --timerange 20200301-20200601 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/CombinedBinHClucAndSMAOffset-a9b7af3a-smoke_20200301_20200601-9c543975 --cache none
+  lookahead  [recorded] freqtrade lookahead-analysis --config user_data/profile_configs/bias_spot.json --strategy CombinedBinHClucAndSMAOffset --strategy-path user_data/profile_bias_strategies/CombinedBinHClucAndSMAOffset-a9b7af3a --timerange 20200101-20220101 --no-color
+  recursive  [recorded] freqtrade recursive-analysis --config user_data/profile_configs/bias_spot.json --strategy CombinedBinHClucAndSMAOffset --strategy-path user_data/profile_bias_strategies/CombinedBinHClucAndSMAOffset-a9b7af3a --timerange 20200301-20200601 --no-color --startup-candle 288 576 2016 4032
   ```
 - `CombinedBinHClucAndSMAOffset_2`
   ```
@@ -7605,7 +7612,7 @@ Wave `C_measurement_recovery` - 1:
 
 | Wave | Strategies |
 |---|---:|
-| `(none)` | 2336 |
+| `(none)` | 2337 |
 | `not_scheduled` | 390 |
 | `C_measurement_recovery` | 229 |
 | `D_recursive_drift` | 121 |

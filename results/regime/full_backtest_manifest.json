@@ -5771,6 +5771,45 @@
       "trades": 2131,
       "trades_sha256": "sha256_3de3bfd4a3eeb6f8de7e6715c1f789e09427172713406d091d473641f727c852"
     },
+    "CombinedBinHClucAndSMAOffset": {
+      "archive": "user_data/profile_smoke/CombinedBinHClucAndSMAOffset-a9b7af3a-2026-09-26_04-40-25.zip",
+      "archive_sha256": "sha256_dd03f9642cfa1ce7898fbdcc4b37537beb3cf65317f0a89673d43f72db87c19c",
+      "artifact_key": "",
+      "attempted_at": "2026-09-26T04:40:28+00:00",
+      "canonical_sha256": "sha256_ed24d5046d884a200ac9274a5064e739a7630277f7d563bb9cb3000925fcd55d",
+      "class1_rules": [],
+      "config_overrides": {},
+      "elapsed_s": 160.9,
+      "invocation": "freqtrade backtesting --config runtime/profile_spot_config.json --strategy CombinedBinHClucAndSMAOffset --strategy-path repos/frequenthippo --timerange 20200401-20260821 --fee 0.001 --export trades --backtest-directory user_data/profile_smoke/CombinedBinHClucAndSMAOffset-a9b7af3a --cache none",
+      "long_trades": 263,
+      "measurement_scope": "canonical_pooled_native_pair_universe",
+      "mode": "spot",
+      "pairs": [
+        "BTC/USDT",
+        "ETH/USDT",
+        "LTC/USDT",
+        "XRP/USDT",
+        "ADA/USDT",
+        "XLM/USDT",
+        "XMR/USDT",
+        "DASH/USDT"
+      ],
+      "repair_state": {
+        "config_overrides": {},
+        "config_source": "",
+        "data_files": [],
+        "python_paths": [],
+        "rules": []
+      },
+      "run_profile": "spot_long",
+      "runtime_config_sha256": "sha256_7ce7b962ba2f95441b0655a780ac8603d0f06628d9285617aa2a9e673b6c4bc9",
+      "runtime_id": "docker:sha256:385a287ced73c5326334598adabb078c6cf55f12fd0ed30149354b606ad6148a",
+      "short_trades": 0,
+      "status": "measured",
+      "timerange": "20200401-20260821",
+      "trades": 263,
+      "trades_sha256": "sha256_333760b4654d457a2d69c8c386cd15a76f35e60872ed4edc32b00e689570edab"
+    },
     "CombinedBinHClucAndSMAOffset_2": {
       "archive": "user_data/profile_smoke/CombinedBinHClucAndSMAOffset_2-1c9b26a2-2026-09-25_07-31-27.zip",
       "archive_sha256": "sha256_e7fc4391b2c5635eb929803035d6985277195408583f7bc2be7e1501a7605282",

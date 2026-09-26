@@ -114156,6 +114156,58 @@
      }
     ]
    }
+  },
+  "CombinedBinHClucAndSMAOffset": {
+   "source_sha256": "sha256_ed24d5046d884a200ac9274a5064e739a7630277f7d563bb9cb3000925fcd55d",
+   "facts": {
+    "timeframe": "5m",
+    "speed": "scalp",
+    "scalper": true,
+    "can_short": false,
+    "leverage_hook": false,
+    "futures_capable": false,
+    "dca": false,
+    "ml_ai": false,
+    "hooks": [
+     "custom_sell",
+     "custom_stoploss",
+     "informative_pairs"
+    ]
+   },
+   "primary": "mean_reversion",
+   "labels": [
+    {
+     "label": "mean_reversion",
+     "confidence": "high",
+     "evidence": "(dataframe['close'] < dataframe['ma_offset_buy']) &",
+     "flags": []
+    },
+    {
+     "label": "trend_following",
+     "confidence": "medium",
+     "evidence": "(dataframe['ema_50'] > dataframe['ema_200']) &",
+     "flags": []
+    }
+   ],
+   "note": "",
+   "second_opinion": {
+    "model": "deepseek-v4-flash",
+    "primary": "mean_reversion",
+    "labels": [
+     {
+      "label": "mean_reversion",
+      "confidence": "high"
+     },
+     {
+      "label": "trend_following",
+      "confidence": "medium"
+     }
+    ]
+   },
+   "description": {
+    "model": "deepseek-v4-flash",
+    "text": "On a 5m timeframe, this strategy enters long when price is below ma_offset_buy and below the previous lower Bollinger band, with additional dip and tail conditions, while longer-term EMA alignment and the 1h EMA200 confirm an uptrend. It exits when price closes above the upper Bollinger band for four consecutive candles or when RSI exceeds sell_rsi_main. It uses a -0.99 stoploss, a 10 minimal_roi, and includes custom_stoploss and custom_sell hooks."
+   }
   }
  }
 }

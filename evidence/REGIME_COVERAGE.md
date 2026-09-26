@@ -18,7 +18,7 @@ each result to file size, temporal edges, row count, and duplicate count.
 
 | Status | Strategy profiles |
 |---|---:|
-| `PASS` | 3034 |
+| `PASS` | 3035 |
 | `PENDING` | 198 |
 
 ## Run profiles
@@ -31,7 +31,7 @@ each result to file size, temporal edges, row count, and duplicate count.
 | `futures_long_short / PENDING` | 40 |
 | `futures_short / PASS` | 15 |
 | `futures_short / PENDING` | 1 |
-| `spot_long / PASS` | 2562 |
+| `spot_long / PASS` | 2563 |
 | `spot_long / PENDING` | 146 |
 | `unknown / PENDING` | 6 |
 

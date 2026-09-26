@@ -127,3 +127,5 @@ BB_RPB_TSL_jilv220_github_20211008,1,resource_inconclusive,141,2735,3500m
 BB_RPB_TSL_jilv220_github_20211008,solo,measured,175,6479,15500m
 BinClucMadSMACore,1,resource_inconclusive,141,1099,3500m
 BinClucMadSMACore,solo,measured,180,6103,15500m
+CombinedBinHClucAndSMAOffset,1,resource_inconclusive,137,2875,3500m
+CombinedBinHClucAndSMAOffset,solo,measured,163,6260,15500m
