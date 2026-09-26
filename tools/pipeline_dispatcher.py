@@ -346,7 +346,8 @@ def _command(action: dict) -> list[str]:
     if action["gate"] in DISABLED_GATED_GATES:
         raise DispatchError("Model 1/2/3 gated backtests are owner-paused")
     if action["gate"] == REGIME_GATE:
-        return [sys.executable, "-m", "tools.regime_evaluation"]
+        return [PS, "-NoProfile", "-ExecutionPolicy", "Bypass", "-File",
+                str(ROOT / "runtime" / "regime_evaluation_docker.ps1")]
     if action["gate"] == "parallel_full":
         return [sys.executable, str(ROOT / "runtime" / "full_batch_parallel.py"),
                 *[a for name in action["names"] for a in ("--strategy", name)]]
@@ -535,7 +536,7 @@ def selftest() -> None:
     fresh = {"strategies": {"E": {"strategy_id": "E", "open_work": "first_measurement_in_current_runtime",
                                   "run_profile": "spot_long"}}}
     assert pick(fresh, regime_stale=lambda: True)["gate"] == "smoke"    # strategy work comes first
-    assert _command({"gate": REGIME_GATE})[-1] == "tools.regime_evaluation"
+    assert _command({"gate": REGIME_GATE})[-1].endswith("regime_evaluation_docker.ps1")
     late = {"strategies": {"F": {"strategy_id": "F", "open_work": "", "cohort": "E1_expanded", "full_backtest_status": "measured", "technical_chain_complete": True,
                                  "execution_robustness_status": "PASS", "timeframe": "1h"}}}
     hit = pick(late, window_stale=lambda: ({"F": "20200401-20260821"}, {}), regime_stale=lambda: False)
