@@ -63,7 +63,8 @@ CLASSIFICATION = os.path.join(_ROOT, "evidence", "STRATEGY_CLASSIFICATION.json")
 BUNDLE = os.path.join(_ROOT, "evidence", "STRATEGY_IDEAS_INPUT.json")
 IDEAS = os.path.join(_ROOT, "evidence", "STRATEGY_IDEAS.json")
 DATES = os.path.join(_ROOT, "evidence", "SOURCE_DATES.json")
-PAGE = os.path.join(_ROOT, "strategy_ideas.html")
+# Not strategy_ideas.html: that name belongs to the page tools/families_page.py fills.
+PAGE = os.path.join(_ROOT, "strategy_ideas_legacy.html")
 
 # Caps keep the bundle readable for a model instead of dumping a 200 KB file:
 # what matters is which indicators are used, how entry and exit are decided, and
@@ -597,7 +598,7 @@ def main(argv=None):
     parser.add_argument("--bundle", action="store_true",
                         help="write evidence/STRATEGY_IDEAS_INPUT.json for the given strategies")
     parser.add_argument("--render", action="store_true",
-                        help="write strategy_ideas.html from the ideas store")
+                        help="write strategy_ideas_legacy.html from the ideas store")
     parser.add_argument("--check", action="store_true",
                         help="fail if an idea describes a revision the corpus no longer holds")
     parser.add_argument("--strategies", default="",

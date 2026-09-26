@@ -1,0 +1,262 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Every GitHub repository the Freqtrade strategies of the audit come from, with what each actually contributed.">
+<style>html{color-scheme:light dark}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>Strategy provenance</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+  :root{
+    --bg:#F5F8F8; --surface:#FFFFFF; --sunk:#EDF2F1;
+    --ink:#10201F; --muted:#5B6E6D; --faint:#859896;
+    --line:#DCE5E4; --line-soft:#E8EFEE;
+    --accent:#0B6B63; --accent-soft:#0B6B6322; --flag:#96682C; --flag-soft:#96682C1F;
+  }
+  @media (prefers-color-scheme:dark){
+    :root:not([data-theme="light"]){
+      --bg:#0D1413; --surface:#131C1B; --sunk:#101817;
+      --ink:#E3ECEB; --muted:#869C9A; --faint:#637876;
+      --line:#22302E; --line-soft:#1B2625;
+      --accent:#46BBAC; --accent-soft:#46BBAC26; --flag:#C99A55; --flag-soft:#C99A5522;
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#0D1413; --surface:#131C1B; --sunk:#101817;
+    --ink:#E3ECEB; --muted:#869C9A; --faint:#637876;
+    --line:#22302E; --line-soft:#1B2625;
+    --accent:#46BBAC; --accent-soft:#46BBAC26; --flag:#C99A55; --flag-soft:#C99A5522;
+  }
+
+  *{box-sizing:border-box}
+  body{
+    background:var(--bg); color:var(--ink);
+    font-family:"Source Serif 4",Georgia,"Times New Roman",serif;
+    font-size:17px; line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:1080px; margin:0 auto; padding:56px 28px 96px; display:flex; flex-direction:column; gap:44px}
+
+  header{display:flex; flex-direction:column; gap:14px}
+  .eyebrow{
+    font-family:"JetBrains Mono",ui-monospace,monospace; font-size:11.5px; font-weight:600;
+    letter-spacing:.16em; text-transform:uppercase; color:var(--accent);
+  }
+  h1{
+    font-family:Archivo,"Helvetica Neue",Arial,sans-serif; font-weight:700;
+    font-size:clamp(30px,4.6vw,46px); line-height:1.06; letter-spacing:-.022em;
+    margin:0; text-wrap:balance;
+  }
+  .lede{max-width:62ch; color:var(--muted); font-size:18px; margin:0}
+
+  .stats{
+    display:grid; grid-template-columns:repeat(auto-fit,minmax(158px,1fr)); gap:1px;
+    background:var(--line); border:1px solid var(--line); border-radius:3px; overflow:hidden;
+  }
+  .stat{background:var(--surface); padding:18px 20px; display:flex; flex-direction:column; gap:5px}
+  .stat b{
+    font-family:"JetBrains Mono",ui-monospace,monospace; font-weight:600;
+    font-size:27px; letter-spacing:-.03em; font-variant-numeric:tabular-nums; line-height:1;
+  }
+  .stat span{
+    font-family:Archivo,sans-serif; font-size:11.5px; font-weight:600; letter-spacing:.09em;
+    text-transform:uppercase; color:var(--muted);
+  }
+
+  section{display:flex; flex-direction:column; gap:16px}
+  h2{
+    font-family:Archivo,sans-serif; font-weight:600; font-size:15px; letter-spacing:.04em;
+    text-transform:uppercase; color:var(--muted); margin:0;
+    padding-bottom:10px; border-bottom:1px solid var(--line);
+  }
+  p{margin:0; max-width:66ch}
+  .note{color:var(--muted); font-size:15.5px}
+  a{color:var(--accent); text-decoration-thickness:1px; text-underline-offset:2px}
+  a:focus-visible{outline:2px solid var(--accent); outline-offset:2px; border-radius:2px}
+
+  .scroller{overflow-x:auto; border:1px solid var(--line); border-radius:3px; background:var(--surface)}
+  table{border-collapse:collapse; width:100%; min-width:660px}
+  thead th{
+    position:sticky; top:0; background:var(--surface);
+    font-family:Archivo,sans-serif; font-size:11px; font-weight:600; letter-spacing:.085em;
+    text-transform:uppercase; color:var(--muted); text-align:left;
+    padding:13px 14px; border-bottom:1px solid var(--line); white-space:nowrap;
+  }
+  thead th.n{text-align:right}
+  tbody tr{border-bottom:1px solid var(--line-soft)}
+  tbody tr:last-child{border-bottom:0}
+  td{padding:9px 14px; vertical-align:middle}
+  td.repo{
+    font-family:"JetBrains Mono",ui-monospace,monospace; font-size:13px;
+    white-space:nowrap; max-width:340px; overflow:hidden; text-overflow:ellipsis;
+  }
+  td.num{
+    text-align:right; font-family:"JetBrains Mono",ui-monospace,monospace;
+    font-size:13.5px; font-variant-numeric:tabular-nums; color:var(--muted);
+  }
+  .barcell{width:190px; min-width:120px; padding-left:4px}
+  .bar{display:block; height:7px; border-radius:1px; background:var(--accent); min-width:1px}
+  tr.zero td.repo a{color:var(--flag)}
+  tr.zero{background:var(--flag-soft)}
+  tr.zero .bar{background:transparent}
+  .yield{color:var(--accent); font-weight:600}
+  .nil{color:var(--faint)}
+
+  .callout{
+    background:var(--sunk); border-left:2px solid var(--flag);
+    padding:20px 22px; border-radius:0 3px 3px 0;
+    display:flex; flex-direction:column; gap:11px;
+  }
+  .callout h3{
+    font-family:Archivo,sans-serif; font-size:14px; font-weight:600; letter-spacing:.02em;
+    margin:0; color:var(--ink);
+  }
+  .repolist{font-family:"JetBrains Mono",ui-monospace,monospace; font-size:12.5px; line-height:2; color:var(--muted)}
+  .repolist a{color:var(--flag)}
+
+  footer{border-top:1px solid var(--line); padding-top:18px; color:var(--faint); font-size:14px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="eyebrow">Sources of the strategy corpus</div>
+    <h1>Strategy provenance</h1>
+    <p class="lede">Every GitHub repository the Freqtrade strategies of this audit come from &mdash; and what each one actually contributed.</p>
+  </header>
+  <div class="stats">
+    <div class="stat"><b>83</b><span>repositories</span></div>
+    <div class="stat"><b>5,369</b><span>classes found</span></div>
+    <div class="stat"><b>2,982</b><span>of which unique</span></div>
+    <div class="stat"><b>121</b><span>currently eligible</span></div>
+  </div>
+  <section>
+    <h2>What the numbers mean</h2>
+    <p>The 83 repositories hold 5,369 strategy classes, but only <strong>2,982</strong> of them are distinct. The rest are copies: the same strategy turns up in several collections, often unchanged. <em>Unique</em> counts how many strategies are credited to a repository as their first place of discovery &mdash; that is its real contribution.</p>
+    <p class="note">The last column shows how many of a repository&rsquo;s strategies have passed the checks so far. The number is strict: it requires a valid measurement, clean coverage and both bias checks. It is still growing while the expansion waves are worked through.</p>
+  </section>
+  <section>
+    <h2>The 83 sources</h2>
+    <div class="scroller">
+      <table>
+        <thead>
+          <tr>
+            <th>Repository</th>
+            <th class="n">found</th>
+            <th class="n">unique</th>
+            <th></th>
+            <th class="n">files</th>
+            <th class="n">eligible</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td class="repo"><a href="https://github.com/remiotore/ccxt-freqtrade" target="_blank" rel="noopener">remiotore/ccxt-freqtrade</a></td><td class="num">2393</td><td class="num">1918</td><td class="barcell"><span class="bar" style="width:100.0%"></span></td><td class="num">1879</td><td class="num"><span class="nil">&mdash;</span></td></tr>
+          <tr><td class="repo"><a href="https://github.com/PeetCrypto/freqtrade-stuff" target="_blank" rel="noopener">PeetCrypto/freqtrade-stuff</a></td><td class="num">342</td><td class="num">307</td><td class="barcell"><span class="bar" style="width:16.01%"></span></td><td class="num">386</td><td class="num"><span class="yield">75</span></td></tr>
+          <tr><td class="repo"><a href="https://github.com/davidzr/freqtrade-strategies" target="_blank" rel="noopener">davidzr/freqtrade-strategies</a></td><td class="num">459</td><td class="num">168</td><td class="barcell"><span class="bar" style="width:8.76%"></span></td><td class="num">173</td><td class="num"><span class="yield">22</span></td></tr>
+          <tr><td class="repo"><a href="https://github.com/TheoBrigitte/freqtrade" target="_blank" rel="noopener">TheoBrigitte/freqtrade</a></td><td class="num">219</td><td class="num">117</td><td class="barcell"><span class="bar" style="width:6.1%"></span></td><td class="num">120</td><td class="num"><span class="yield">11</span></td></tr>
+          <tr><td class="repo"><a href="https://github.com/mlsys-io/PortfolioBench" target="_blank" rel="noopener">mlsys-io/PortfolioBench</a></td><td class="num">67</td><td class="num">66</td><td class="barcell"><span class="bar" style="width:3.44%"></span></td><td class="num">66</td><td class="num"><span class="yield">1</span></td></tr>
+          <tr><td class="repo"><a href="https://github.com/jaredrsommer/freqtradestrategies" target="_blank" rel="noopener">jaredrsommer/freqtradestrategies</a></td><td class="num">553</td><td class="num">61</td><td class="barcell"><span class="bar" style="width:3.18%"></span></td><td class="num">62</td><td class="num"><span class="nil">&mdash;</span></td></tr>
+          <tr><td class="repo"><a href="https://github.com/hamidreza07/freqai-strategy" target="_blank" rel="noopener">hamidreza07/freqai-strategy</a></td><td class="num">94</td><td class="num">55</td><td class="barcell"><span class="bar" style="width:2.87%"></span></td><td class="num">55</td><td class="num"><span class="yield">3</span></td></tr>
+          <tr><td class="repo"><a href="https://github.com/vaskosmihaylov/nfi-custom-strategies" target="_blank" rel="noopener">vaskosmihaylov/nfi-custom-strategies</a></td><td class="num">79</td><td class="num">36</td><td class="barcell"><span class="bar" style="width:1.88%"></span></td><td class="num">46</td><td class="num"><span class="nil">&mdash;</span></td></tr>
+          <tr><td class="repo"><a href="https://github.com/LazyPigPig/freqtrade-grid" target="_blank" rel="noopener">LazyPigPig/freqtrade-grid</a></td><td class="num">34</td><td class="num">31</td><td class="barcell"><span class="bar" style="width:1.62%"></span></td><td class="num">25</td><td class="num"><span class="nil">&mdash;</span></td></tr>
+          <tr><td class="repo"><a href="https://github.com/Foxel05/freqtrade-stuff" target="_blank" rel="noopener">Foxel05/freqtrade-stuff</a></td><td class="num">30</td><td class="num">30</td><td class="barcell"><span class="bar" style="width:1.56%"></span></td><td class="num">30</td><td class="num"><span class="yield">2</span></td></tr>
+          <tr><td class="repo"><a href="https://github.com/MelvynClark/Freqtrade-Strategy" target="_blank" rel="noopener">MelvynClark/Freqtrade-Strategy</a></td><td class="num">22</td><td class="num">22</td><td class="barcell"><span class="bar" style="width:1.15%"></span></td><td class="num">22</td><td class="num"><span class="nil">&mdash;</span></td></tr>
+          <tr><td class="repo"><a href="https://github.com/kemplail/freqtrade-stuff" target="_blank" rel="noopener">kemplail/freqtrade-stuff</a></td><td class="num">45</td><td class="num">16</td><td class="barcell"><span class="bar" style="width:0.83%"></span></td><td class="num">16</td><td class="num"><span class="nil">&mdash;</span></td></tr>
+          <tr><td class="repo"><a href="https://github.com/djienne/YOUTUBE_STRATEGIES_FREQTRADE" target="_blank" rel="noopener">djienne/YOUTUBE_STRATEGIES_FREQTRADE</a></td><td class="num">19</td><td class="num">16</td><td class="barcell"><span class="bar" style="width:0.83%"></span></td><td class="num">17</td><td class="num"><span class="nil">&mdash;</span></td></tr>
+          <tr><td class="repo"><a href="https://github.com/markdregan/FreqAI-Marcos-Lopez-De-Prado" target="_blank" rel="noopener">markdregan/FreqAI-Marcos-Lopez-De-Prado</a></td><td class="num">26</td><td class="num">14</td><td class="barcell"><span class="bar" style="width:0.73%"></span></td><td class="num">30</td><td class="num"><span class="nil">&mdash;</span></td></tr>
+          <tr><td class="repo"><a href="https://github.com/webclinic017/strategies-freqtrade-" target="_blank" rel="noopener">webclinic017/strategies-freqtrade-</a></td><td class="num">55</td><td class="num">8</td><td class="barcell"><span class="bar" style="width:0.42%"></span></td><td class="num">140</td><td class="num"><span class="nil">&mdash;</span></td></tr>
+          <tr><td class="repo"><a href="https://github.com/brookmiles/freqtrade-stuff" target="_blank" rel="noopener">brookmiles/freqtrade-stuff</a></td><td class="num">14</td><td class="num">8</td><td class="barcell"><span class="bar" style="width:0.42%"></span></td><td class="num">8</td><td class="num"><span class="nil">&mdash;</span></td></tr>
+          <tr><td class="repo"><a href="https://github.com/AlexCryptoKing/freqailstm" target="_blank" rel="noopener">AlexCryptoKing/freqailstm</a></td><td class="num">8</td><td class="num">8</td><td class="barcell"><span class="bar" style="width:0.42%"></span></td><td class="num">7</td><td class="num"><span class="nil">&mdash;</span></td></tr>
+          <tr><td class="repo"><a href="https://github.com/nateemma/strategies" target="_blank" rel="noopener">nateemma/strategies</a></td><td class="num">10</td><td class="num">7</td><td class="barcell"><span class="bar" style="width:0.36%"></span></td><td class="num">22</td><td class="num"><span class="yield">1</span></td></tr>
+          <tr><td class="repo"><a href="https://github.com/mikedigriz/freqtrade-strategy-mikedigriz" target="_blank" rel="noopener">mikedigriz/freqtrade-strategy-mikedigriz</a></td><td class="num">7</td><td class="num">7</td><td class="barcell"><span class="bar" style="width:0.36%"></span></td><td class="num">7</td><td class="num"><span class="nil">&mdash;</span></td></tr>
+          <tr><td class="repo"><a href="https://github.com/freqtrade/freqtrade-strategies" target="_blank" rel="noopener">freqtrade/freqtrade-strategies</a></td><td class="num">68</td><td class="num">6</td><td class="barcell"><span class="bar" style="width:0.31%"></span></td><td class="num">6</td><td class="num"><span class="yield">2</span></td></tr>
+          <tr><td class="repo"><a href="https://github.com/eovie/freqtrade_strs" target="_blank" rel="noopener">eovie/freqtrade_strs</a></td><td class="num">11</td><td class="num">6</td><td class="barcell"><span class="bar" style="width:0.31%"></span></td><td class="num">8</td><td class="num"><span class="nil">&mdash;</span></td></tr>
+          <tr><td class="repo"><a href="https://github.com/iterativv/NostalgiaForInfinity" target="_blank" rel="noopener">iterativv/NostalgiaForInfinity</a></td><td class="num">11</td><td class="num">6</td><td class="barcell"><span class="bar" style="width:0.31%"></span></td><td class="num">5</td><td class="num"><span class="nil">&mdash;</span></td></tr>
+          <tr><td class="repo"><a href="https://github.com/flaviosiotto/freqtrade-strategy" target="_blank" rel="noopener">flaviosiotto/freqtrade-strategy</a></td><td class="num">8</td><td class="num">6</td><td class="barcell"><span class="bar" style="width:0.31%"></span></td><td class="num">6</td><td class="num"><span class="nil">&mdash;</span></td></tr>
+          <tr><td class="repo"><a href="https://github.com/MMR-19/freqtrade-strategies" target="_blank" rel="noopener">MMR-19/freqtrade-strategies</a></td><td class="num">7</td><td class="num">6</td><td class="barcell"><span class="bar" style="width:0.31%"></span></td><td class="num">7</td><td class="num"><span class="nil">&mdash;</span></td></tr>
+          <tr><td class="repo"><a href="https://github.com/ShahAnuj2610/my-freqtrade" target="_blank" rel="noopener">ShahAnuj2610/my-freqtrade</a></td><td class="num">53</td><td class="num">5</td><td class="barcell"><span class="bar" style="width:0.26%"></span></td><td class="num">7</td><td class="num"><span class="nil">&mdash;</span></td></tr>
+          <tr><td class="repo"><a href="https://github.com/Kureshi25/cryptobot" target="_blank" rel="noopener">Kureshi25/cryptobot</a></td><td class="num">5</td><td class="num">4</td><td class="barcell"><span class="bar" style="width:0.21%"></span></td><td class="num">5</td><td class="num"><span class="nil">&mdash;</span></td></tr>
+          <tr><td class="repo"><a href="https://github.com/DutchCryptoDad/FreqtradeBotStrategyDevelopmentForBeginners" target="_blank" rel="noopener">DutchCryptoDad/FreqtradeBotStrategyDevelopmentForBeginners</a></td><td class="num">4</td><td class="num">3</td><td class="barcell"><span class="bar" style="width:0.16%"></span></td><td class="num">3</td><td class="num"><span class="nil">&mdash;</span></td></tr>
+          <tr><td class="repo"><a href="https://github.com/Vijay190899/Trade-Bot" target="_blank" rel="noopener">Vijay190899/Trade-Bot</a></td><td class="num">3</td><td class="num">3</td><td class="barcell"><span class="bar" style="width:0.16%"></span></td><td class="num">3</td><td class="num"><span class="nil">&mdash;</span></td></tr>
+          <tr><td class="repo"><a href="https://github.com/phuchust/freqtrade_strategy" target="_blank" rel="noopener">phuchust/freqtrade_strategy</a></td><td class="num">24</td><td class="num">2</td><td class="barcell"><span class="bar" style="width:0.1%"></span></td><td class="num">3</td><td class="num"><span class="yield">1</span></td></tr>
+          <tr><td class="repo"><a href="https://github.com/titouannwtt/freqtrade-ultimate" target="_blank" rel="noopener">titouannwtt/freqtrade-ultimate</a></td><td class="num">19</td><td class="num">2</td><td class="barcell"><span class="bar" style="width:0.1%"></span></td><td class="num">3</td><td class="num"><span class="nil">&mdash;</span></td></tr>
+          <tr><td class="repo"><a href="https://github.com/bustillo/freqtrade-strategies" target="_blank" rel="noopener">bustillo/freqtrade-strategies</a></td><td class="num">3</td><td class="num">2</td><td class="barcell"><span class="bar" style="width:0.1%"></span></td><td class="num">2</td><td class="num"><span class="nil">&mdash;</span></td></tr>
+          <tr><td class="repo"><a href="https://github.com/DonaldSimpson/remora-freqtrade" target="_blank" rel="noopener">DonaldSimpson/remora-freqtrade</a></td><td class="num">2</td><td class="num">2</td><td class="barcell"><span class="bar" style="width:0.1%"></span></td><td class="num">2</td><td class="num"><span class="nil">&mdash;</span></td></tr>
+          <tr><td class="repo"><a href="https://github.com/anakein/beastbotXB" target="_blank" rel="noopener">anakein/beastbotXB</a></td><td class="num">2</td><td class="num">2</td><td class="barcell"><span class="bar" style="width:0.1%"></span></td><td class="num">2</td><td class="num"><span class="yield">1</span></td></tr>
+          <tr><td class="repo"><a href="https://github.com/frequenthippo" target="_blank" rel="noopener">frequenthippo</a></td><td class="num">2</td><td class="num">2</td><td class="barcell"><span class="bar" style="width:0.1%"></span></td><td class="num">3</td><td class="num"><span class="nil">&mdash;</span></td></tr>
+          <tr><td class="repo"><a href="https://github.com/ingpawat/freqtrade-strategy-with-backtest" target="_blank" rel="noopener">ingpawat/freqtrade-strategy-with-backtest</a></td><td class="num">2</td><td class="num">2</td><td class="barcell"><span class="bar" style="width:0.1%"></span></td><td class="num">2</td><td class="num"><span class="nil">&mdash;</span></td></tr>
+          <tr><td class="repo"><a href="https://github.com/titouannwtt/freqtrade-france-strategies-kac-index" target="_blank" rel="noopener">titouannwtt/freqtrade-france-strategies-kac-index</a></td><td class="num">2</td><td class="num">2</td><td class="barcell"><span class="bar" style="width:0.1%"></span></td><td class="num">1</td><td class="num"><span class="nil">&mdash;</span></td></tr>
+          <tr><td class="repo"><a href="https://github.com/yeboster/liquidity-sweep-freqtrade" target="_blank" rel="noopener">yeboster/liquidity-sweep-freqtrade</a></td><td class="num">2</td><td class="num">2</td><td class="barcell"><span class="bar" style="width:0.1%"></span></td><td class="num">2</td><td class="num"><span class="nil">&mdash;</span></td></tr>
+          <tr><td class="repo"><a href="https://github.com/werkkrew/freqtrade-strategies" target="_blank" rel="noopener">werkkrew/freqtrade-strategies</a></td><td class="num">50</td><td class="num">1</td><td class="barcell"><span class="bar" style="width:0.05%"></span></td><td class="num">10</td><td class="num"><span class="nil">&mdash;</span></td></tr>
+          <tr><td class="repo"><a href="https://github.com/thinkong/freqtradestrategies" target="_blank" rel="noopener">thinkong/freqtradestrategies</a></td><td class="num">31</td><td class="num">1</td><td class="barcell"><span class="bar" style="width:0.05%"></span></td><td class="num">6</td><td class="num"><span class="nil">&mdash;</span></td></tr>
+          <tr><td class="repo"><a href="https://github.com/ShahAnuj2610/my-freqtrade-nfi-nextgen" target="_blank" rel="noopener">ShahAnuj2610/my-freqtrade-nfi-nextgen</a></td><td class="num">4</td><td class="num">1</td><td class="barcell"><span class="bar" style="width:0.05%"></span></td><td class="num">1</td><td class="num"><span class="nil">&mdash;</span></td></tr>
+          <tr><td class="repo"><a href="https://github.com/cyberjunky/freqtrade_strategy" target="_blank" rel="noopener">cyberjunky/freqtrade_strategy</a></td><td class="num">4</td><td class="num">1</td><td class="barcell"><span class="bar" style="width:0.05%"></span></td><td class="num">1</td><td class="num"><span class="nil">&mdash;</span></td></tr>
+          <tr><td class="repo"><a href="https://github.com/Juusseli/Trade" target="_blank" rel="noopener">Juusseli/Trade</a></td><td class="num">3</td><td class="num">1</td><td class="barcell"><span class="bar" style="width:0.05%"></span></td><td class="num">1</td><td class="num"><span class="nil">&mdash;</span></td></tr>
+          <tr><td class="repo"><a href="https://github.com/jerome-benoit/freqai-strategies" target="_blank" rel="noopener">jerome-benoit/freqai-strategies</a></td><td class="num">2</td><td class="num">1</td><td class="barcell"><span class="bar" style="width:0.05%"></span></td><td class="num">1</td><td class="num"><span class="nil">&mdash;</span></td></tr>
+          <tr><td class="repo"><a href="https://github.com/miwtoo/ft-action-zone" target="_blank" rel="noopener">miwtoo/ft-action-zone</a></td><td class="num">2</td><td class="num">1</td><td class="barcell"><span class="bar" style="width:0.05%"></span></td><td class="num">1</td><td class="num"><span class="nil">&mdash;</span></td></tr>
+          <tr><td class="repo"><a href="https://github.com/Bananajoexxc/RegimeFilterStrategy-Freqtrade" target="_blank" rel="noopener">Bananajoexxc/RegimeFilterStrategy-Freqtrade</a></td><td class="num">1</td><td class="num">1</td><td class="barcell"><span class="bar" style="width:0.05%"></span></td><td class="num">1</td><td class="num"><span class="yield">1</span></td></tr>
+          <tr><td class="repo"><a href="https://github.com/HeyMrRobot/Freqtrade-Adaptive-Renko-Strategy" target="_blank" rel="noopener">HeyMrRobot/Freqtrade-Adaptive-Renko-Strategy</a></td><td class="num">1</td><td class="num">1</td><td class="barcell"><span class="bar" style="width:0.05%"></span></td><td class="num">1</td><td class="num"><span class="nil">&mdash;</span></td></tr>
+          <tr><td class="repo"><a href="https://github.com/Lijunnan0113/Lijunnan0113-Lijunnan_Freqtrade_Strategy" target="_blank" rel="noopener">Lijunnan0113/Lijunnan0113-Lijunnan_Freqtrade_Strategy</a></td><td class="num">1</td><td class="num">1</td><td class="barcell"><span class="bar" style="width:0.05%"></span></td><td class="num">1</td><td class="num"><span class="nil">&mdash;</span></td></tr>
+          <tr><td class="repo"><a href="https://github.com/Mohamed-sm/Freqtrade-RLStrategy-IA" target="_blank" rel="noopener">Mohamed-sm/Freqtrade-RLStrategy-IA</a></td><td class="num">1</td><td class="num">1</td><td class="barcell"><span class="bar" style="width:0.05%"></span></td><td class="num">1</td><td class="num"><span class="nil">&mdash;</span></td></tr>
+          <tr><td class="repo"><a href="https://github.com/OfficialGIGA/freqtrade-ml-strategy" target="_blank" rel="noopener">OfficialGIGA/freqtrade-ml-strategy</a></td><td class="num">1</td><td class="num">1</td><td class="barcell"><span class="bar" style="width:0.05%"></span></td><td class="num">1</td><td class="num"><span class="nil">&mdash;</span></td></tr>
+          <tr><td class="repo"><a href="https://github.com/TomtomEh/freqtrade-websocket" target="_blank" rel="noopener">TomtomEh/freqtrade-websocket</a></td><td class="num">1</td><td class="num">1</td><td class="barcell"><span class="bar" style="width:0.05%"></span></td><td class="num">2</td><td class="num"><span class="nil">&mdash;</span></td></tr>
+          <tr><td class="repo"><a href="https://github.com/XXA222/HPRL" target="_blank" rel="noopener">XXA222/HPRL</a></td><td class="num">1</td><td class="num">1</td><td class="barcell"><span class="bar" style="width:0.05%"></span></td><td class="num">1</td><td class="num"><span class="nil">&mdash;</span></td></tr>
+          <tr><td class="repo"><a href="https://github.com/audit-authored/lookahead-rewrites" target="_blank" rel="noopener">audit-authored/lookahead-rewrites</a></td><td class="num">1</td><td class="num">1</td><td class="barcell"><span class="bar" style="width:0.05%"></span></td><td class="num">1</td><td class="num"><span class="nil">&mdash;</span></td></tr>
+          <tr><td class="repo"><a href="https://github.com/darkvolg/trendrider-strategy" target="_blank" rel="noopener">darkvolg/trendrider-strategy</a></td><td class="num">1</td><td class="num">1</td><td class="barcell"><span class="bar" style="width:0.05%"></span></td><td class="num">1</td><td class="num"><span class="nil">&mdash;</span></td></tr>
+          <tr><td class="repo"><a href="https://github.com/djienne/AVELLANEDA_MARKET_MAKING_FREQTRADE" target="_blank" rel="noopener">djienne/AVELLANEDA_MARKET_MAKING_FREQTRADE</a></td><td class="num">1</td><td class="num">1</td><td class="barcell"><span class="bar" style="width:0.05%"></span></td><td class="num">1</td><td class="num"><span class="nil">&mdash;</span></td></tr>
+          <tr><td class="repo"><a href="https://github.com/djienne/COPY_WALLET_HYPERLIQUID" target="_blank" rel="noopener">djienne/COPY_WALLET_HYPERLIQUID</a></td><td class="num">1</td><td class="num">1</td><td class="barcell"><span class="bar" style="width:0.05%"></span></td><td class="num">1</td><td class="num"><span class="nil">&mdash;</span></td></tr>
+          <tr><td class="repo"><a href="https://github.com/hippocritical/delist_scraper" target="_blank" rel="noopener">hippocritical/delist_scraper</a></td><td class="num">1</td><td class="num">1</td><td class="barcell"><span class="bar" style="width:0.05%"></span></td><td class="num">1</td><td class="num"><span class="nil">&mdash;</span></td></tr>
+          <tr><td class="repo"><a href="https://github.com/keithorange/FreqTradeCustomOrders" target="_blank" rel="noopener">keithorange/FreqTradeCustomOrders</a></td><td class="num">1</td><td class="num">1</td><td class="barcell"><span class="bar" style="width:0.05%"></span></td><td class="num">8</td><td class="num"><span class="nil">&mdash;</span></td></tr>
+          <tr><td class="repo"><a href="https://github.com/mmartel86/freqtrade-setup" target="_blank" rel="noopener">mmartel86/freqtrade-setup</a></td><td class="num">1</td><td class="num">1</td><td class="barcell"><span class="bar" style="width:0.05%"></span></td><td class="num">1</td><td class="num"><span class="nil">&mdash;</span></td></tr>
+          <tr><td class="repo"><a href="https://github.com/seannowotny/FlawlessVictoryPort" target="_blank" rel="noopener">seannowotny/FlawlessVictoryPort</a></td><td class="num">1</td><td class="num">1</td><td class="barcell"><span class="bar" style="width:0.05%"></span></td><td class="num">1</td><td class="num"><span class="yield">1</span></td></tr>
+          <tr><td class="repo"><a href="https://github.com/songhuaxueyue-tech/trend-regime-transformer" target="_blank" rel="noopener">songhuaxueyue-tech/trend-regime-transformer</a></td><td class="num">1</td><td class="num">1</td><td class="barcell"><span class="bar" style="width:0.05%"></span></td><td class="num">1</td><td class="num"><span class="nil">&mdash;</span></td></tr>
+          <tr><td class="repo"><a href="https://github.com/titouannwtt/freqtrade-france-strategies_simple_vwap" target="_blank" rel="noopener">titouannwtt/freqtrade-france-strategies_simple_vwap</a></td><td class="num">1</td><td class="num">1</td><td class="barcell"><span class="bar" style="width:0.05%"></span></td><td class="num">1</td><td class="num"><span class="nil">&mdash;</span></td></tr>
+          <tr class="zero"><td class="repo"><a href="https://github.com/keithorange/HUGE_FreqTrade_Strategy_Collection" target="_blank" rel="noopener">keithorange/HUGE_FreqTrade_Strategy_Collection</a></td><td class="num">472</td><td class="num">0</td><td class="barcell"><span class="bar" style="width:0.0%"></span></td><td class="num">&mdash;</td><td class="num"><span class="nil">&mdash;</span></td></tr>
+          <tr class="zero"><td class="repo"><a href="https://github.com/p-zombie/freqtrade" target="_blank" rel="noopener">p-zombie/freqtrade</a></td><td class="num">34</td><td class="num">0</td><td class="barcell"><span class="bar" style="width:0.0%"></span></td><td class="num">&mdash;</td><td class="num"><span class="nil">&mdash;</span></td></tr>
+          <tr class="zero"><td class="repo"><a href="https://github.com/nancyjimenezbnoewowo/NostalgiaForInfinity" target="_blank" rel="noopener">nancyjimenezbnoewowo/NostalgiaForInfinity</a></td><td class="num">9</td><td class="num">0</td><td class="barcell"><span class="bar" style="width:0.0%"></span></td><td class="num">1</td><td class="num"><span class="nil">&mdash;</span></td></tr>
+          <tr class="zero"><td class="repo"><a href="https://github.com/i1ya/freqtrade-strategies" target="_blank" rel="noopener">i1ya/freqtrade-strategies</a></td><td class="num">8</td><td class="num">0</td><td class="barcell"><span class="bar" style="width:0.0%"></span></td><td class="num">&mdash;</td><td class="num"><span class="nil">&mdash;</span></td></tr>
+          <tr class="zero"><td class="repo"><a href="https://github.com/devbootstrap/optimize-trading-strategy-using-freqtrade" target="_blank" rel="noopener">devbootstrap/optimize-trading-strategy-using-freqtrade</a></td><td class="num">5</td><td class="num">0</td><td class="barcell"><span class="bar" style="width:0.0%"></span></td><td class="num">&mdash;</td><td class="num"><span class="nil">&mdash;</span></td></tr>
+          <tr class="zero"><td class="repo"><a href="https://github.com/hansen1015/freqtrade_strategy" target="_blank" rel="noopener">hansen1015/freqtrade_strategy</a></td><td class="num">5</td><td class="num">0</td><td class="barcell"><span class="bar" style="width:0.0%"></span></td><td class="num">&mdash;</td><td class="num"><span class="nil">&mdash;</span></td></tr>
+          <tr class="zero"><td class="repo"><a href="https://github.com/jilv220/BB_RPB_TSL" target="_blank" rel="noopener">jilv220/BB_RPB_TSL</a></td><td class="num">3</td><td class="num">0</td><td class="barcell"><span class="bar" style="width:0.0%"></span></td><td class="num">&mdash;</td><td class="num"><span class="nil">&mdash;</span></td></tr>
+          <tr class="zero"><td class="repo"><a href="https://github.com/devbootstrap/freqtrade-hyperopt-running-in-cloud-example" target="_blank" rel="noopener">devbootstrap/freqtrade-hyperopt-running-in-cloud-example</a></td><td class="num">2</td><td class="num">0</td><td class="barcell"><span class="bar" style="width:0.0%"></span></td><td class="num">&mdash;</td><td class="num"><span class="nil">&mdash;</span></td></tr>
+          <tr class="zero"><td class="repo"><a href="https://github.com/imsatoshi/GeneTrader" target="_blank" rel="noopener">imsatoshi/GeneTrader</a></td><td class="num">2</td><td class="num">0</td><td class="barcell"><span class="bar" style="width:0.0%"></span></td><td class="num">&mdash;</td><td class="num"><span class="nil">&mdash;</span></td></tr>
+          <tr class="zero"><td class="repo"><a href="https://github.com/keryc/crypto-bot" target="_blank" rel="noopener">keryc/crypto-bot</a></td><td class="num">2</td><td class="num">0</td><td class="barcell"><span class="bar" style="width:0.0%"></span></td><td class="num">&mdash;</td><td class="num"><span class="nil">&mdash;</span></td></tr>
+          <tr class="zero"><td class="repo"><a href="https://github.com/mohammadmoth/Freqtrade-Strategy" target="_blank" rel="noopener">mohammadmoth/Freqtrade-Strategy</a></td><td class="num">2</td><td class="num">0</td><td class="barcell"><span class="bar" style="width:0.0%"></span></td><td class="num">&mdash;</td><td class="num"><span class="nil">&mdash;</span></td></tr>
+          <tr class="zero"><td class="repo"><a href="https://github.com/obseries/freqtrade-strategy-ichiv1" target="_blank" rel="noopener">obseries/freqtrade-strategy-ichiv1</a></td><td class="num">2</td><td class="num">0</td><td class="barcell"><span class="bar" style="width:0.0%"></span></td><td class="num">1</td><td class="num"><span class="nil">&mdash;</span></td></tr>
+          <tr class="zero"><td class="repo"><a href="https://github.com/shadowp2810/technical_indicators_cryptos" target="_blank" rel="noopener">shadowp2810/technical_indicators_cryptos</a></td><td class="num">2</td><td class="num">0</td><td class="barcell"><span class="bar" style="width:0.0%"></span></td><td class="num">2</td><td class="num"><span class="nil">&mdash;</span></td></tr>
+          <tr class="zero"><td class="repo"><a href="https://github.com/Netanelshoshan/freqAI-LSTM" target="_blank" rel="noopener">Netanelshoshan/freqAI-LSTM</a></td><td class="num">1</td><td class="num">0</td><td class="barcell"><span class="bar" style="width:0.0%"></span></td><td class="num">&mdash;</td><td class="num"><span class="nil">&mdash;</span></td></tr>
+          <tr class="zero"><td class="repo"><a href="https://github.com/Rikj000/MoniGoMani" target="_blank" rel="noopener">Rikj000/MoniGoMani</a></td><td class="num">1</td><td class="num">0</td><td class="barcell"><span class="bar" style="width:0.0%"></span></td><td class="num">1</td><td class="num"><span class="nil">&mdash;</span></td></tr>
+          <tr class="zero"><td class="repo"><a href="https://github.com/botenesp/freqtrade_strategies" target="_blank" rel="noopener">botenesp/freqtrade_strategies</a></td><td class="num">1</td><td class="num">0</td><td class="barcell"><span class="bar" style="width:0.0%"></span></td><td class="num">&mdash;</td><td class="num"><span class="nil">&mdash;</span></td></tr>
+          <tr class="zero"><td class="repo"><a href="https://github.com/froggleston/cryptofrog-strategies" target="_blank" rel="noopener">froggleston/cryptofrog-strategies</a></td><td class="num">1</td><td class="num">0</td><td class="barcell"><span class="bar" style="width:0.0%"></span></td><td class="num">&mdash;</td><td class="num"><span class="nil">&mdash;</span></td></tr>
+          <tr class="zero"><td class="repo"><a href="https://github.com/beanbocchi/money-generator" target="_blank" rel="noopener">beanbocchi/money-generator</a></td><td class="num">0</td><td class="num">0</td><td class="barcell"><span class="bar" style="width:0.0%"></span></td><td class="num">1</td><td class="num"><span class="nil">&mdash;</span></td></tr>
+          <tr class="zero"><td class="repo"><a href="https://github.com/freqtrade/berlinguyinca-trading-strategies" target="_blank" rel="noopener">freqtrade/berlinguyinca-trading-strategies</a></td><td class="num">0</td><td class="num">0</td><td class="barcell"><span class="bar" style="width:0.0%"></span></td><td class="num">&mdash;</td><td class="num"><span class="nil">&mdash;</span></td></tr>
+          <tr class="zero"><td class="repo"><a href="https://github.com/logs" target="_blank" rel="noopener">logs</a></td><td class="num">0</td><td class="num">0</td><td class="barcell"><span class="bar" style="width:0.0%"></span></td><td class="num">&mdash;</td><td class="num"><span class="nil">&mdash;</span></td></tr>
+          <tr class="zero"><td class="repo"><a href="https://github.com/raphant/lazyft" target="_blank" rel="noopener">raphant/lazyft</a></td><td class="num">0</td><td class="num">0</td><td class="barcell"><span class="bar" style="width:0.0%"></span></td><td class="num">&mdash;</td><td class="num"><span class="nil">&mdash;</span></td></tr>
+          <tr class="zero"><td class="repo"><a href="https://github.com/yalcin/freqtrade-mcp" target="_blank" rel="noopener">yalcin/freqtrade-mcp</a></td><td class="num">0</td><td class="num">0</td><td class="barcell"><span class="bar" style="width:0.0%"></span></td><td class="num">&mdash;</td><td class="num"><span class="nil">&mdash;</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="note">Sorted by unique contribution. Highlighted rows contributed not a single strategy that had not already been found elsewhere.</p>
+  </section>
+  <section>
+    <h2>Collections with no contribution of their own</h2>
+    <div class="callout">
+      <h3>17 repositories contain nothing but copies</h3>
+      <p class="note">They are not worthless &mdash; they show how widely individual strategies are spread. For the analysis they do not count as independent observations, though; otherwise a much-copied strategy would multiply its own result. The largest example is <code>keithorange/HUGE_FreqTrade_Strategy_Collection</code> with 472 classes and not a single first find.</p>
+      <div class="repolist"><a href="https://github.com/keithorange/HUGE_FreqTrade_Strategy_Collection" target="_blank" rel="noopener">keithorange/HUGE_FreqTrade_Strategy_Collection</a> &middot; <a href="https://github.com/p-zombie/freqtrade" target="_blank" rel="noopener">p-zombie/freqtrade</a> &middot; <a href="https://github.com/nancyjimenezbnoewowo/NostalgiaForInfinity" target="_blank" rel="noopener">nancyjimenezbnoewowo/NostalgiaForInfinity</a> &middot; <a href="https://github.com/i1ya/freqtrade-strategies" target="_blank" rel="noopener">i1ya/freqtrade-strategies</a> &middot; <a href="https://github.com/devbootstrap/optimize-trading-strategy-using-freqtrade" target="_blank" rel="noopener">devbootstrap/optimize-trading-strategy-using-freqtrade</a> &middot; <a href="https://github.com/hansen1015/freqtrade_strategy" target="_blank" rel="noopener">hansen1015/freqtrade_strategy</a> &middot; <a href="https://github.com/jilv220/BB_RPB_TSL" target="_blank" rel="noopener">jilv220/BB_RPB_TSL</a> &middot; <a href="https://github.com/devbootstrap/freqtrade-hyperopt-running-in-cloud-example" target="_blank" rel="noopener">devbootstrap/freqtrade-hyperopt-running-in-cloud-example</a> &middot; <a href="https://github.com/imsatoshi/GeneTrader" target="_blank" rel="noopener">imsatoshi/GeneTrader</a> &middot; <a href="https://github.com/keryc/crypto-bot" target="_blank" rel="noopener">keryc/crypto-bot</a> &middot; <a href="https://github.com/mohammadmoth/Freqtrade-Strategy" target="_blank" rel="noopener">mohammadmoth/Freqtrade-Strategy</a> &middot; <a href="https://github.com/obseries/freqtrade-strategy-ichiv1" target="_blank" rel="noopener">obseries/freqtrade-strategy-ichiv1</a> &middot; <a href="https://github.com/shadowp2810/technical_indicators_cryptos" target="_blank" rel="noopener">shadowp2810/technical_indicators_cryptos</a> &middot; <a href="https://github.com/Netanelshoshan/freqAI-LSTM" target="_blank" rel="noopener">Netanelshoshan/freqAI-LSTM</a> &middot; <a href="https://github.com/Rikj000/MoniGoMani" target="_blank" rel="noopener">Rikj000/MoniGoMani</a> &middot; <a href="https://github.com/botenesp/freqtrade_strategies" target="_blank" rel="noopener">botenesp/freqtrade_strategies</a> &middot; <a href="https://github.com/froggleston/cryptofrog-strategies" target="_blank" rel="noopener">froggleston/cryptofrog-strategies</a></div>
+    </div>
+  </section>
+  <section>
+    <h2>Without usable strategy classes</h2>
+    <p class="note">5 repositories were downloaded but held no strategy class in the corpus&rsquo;s sense &mdash; tools and side projects rather than trading logic.</p>
+    <div class="repolist"><a href="https://github.com/beanbocchi/money-generator" target="_blank" rel="noopener">beanbocchi/money-generator</a> &middot; <a href="https://github.com/freqtrade/berlinguyinca-trading-strategies" target="_blank" rel="noopener">freqtrade/berlinguyinca-trading-strategies</a> &middot; <a href="https://github.com/logs" target="_blank" rel="noopener">logs</a> &middot; <a href="https://github.com/raphant/lazyft" target="_blank" rel="noopener">raphant/lazyft</a> &middot; <a href="https://github.com/yalcin/freqtrade-mcp" target="_blank" rel="noopener">yalcin/freqtrade-mcp</a></div>
+  </section>
+  <footer>
+    Compiled from <code>corpus_sources.json</code>, <code>EXECUTION_PROFILES.csv</code> and <code>REGIME_ELIGIBILITY.csv</code> of the audit. 61 of the 83 repositories yield at least one unique strategy.
+  </footer>
+</div>
+</body>
+</html>

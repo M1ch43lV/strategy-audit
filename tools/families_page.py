@@ -7,7 +7,7 @@ least two strategies). Logic labels come from `evidence/STRATEGY_LABELS.json`
 The written descriptions in `evidence/STRATEGY_IDEAS.json` belong to a family stem; each is
 attached to the family that stem now belongs to, so a family without a description says so.
 
-    python -m tools.families_page              # writes strategy_ideas_data.json
+    python -m tools.families_page              # writes strategy_ideas_data.json and embeds it in strategy_ideas.html
 """
 from __future__ import annotations
 
@@ -15,6 +15,7 @@ import html
 import io
 import json
 import os
+import re
 import sys
 
 _ROOT = (os.environ.get("AUDIT_ROOT") or
@@ -27,7 +28,9 @@ from tools import strategy_labels as sl  # noqa: E402
 
 OUTPUT = os.path.join(_ROOT, "strategy_ideas_data.json")
 IDEAS = os.path.join(_ROOT, "evidence", "STRATEGY_IDEAS.json")
-PAGE_DATA = os.path.join(_ROOT, "artifact_index_data.json")
+PAGE_DATA = os.path.join(_ROOT, "strategy_ideas_descriptions.json")
+PAGE = os.path.join(_ROOT, "strategy_ideas.html")
+_EMBED = re.compile(r'(<script type="application/json" id="page-data">).*?(</script>)', re.S)
 
 
 def _members_rows(members, profiles, store):
@@ -108,6 +111,19 @@ def build() -> dict:
             "labels": list(sl.LABELS), "prompt_sha256": store.get("prompt_sha256"), "model": store.get("model")}
 
 
+def embed(data: dict) -> bool:
+    """Replace the JSON block inside strategy_ideas.html so the page opens without a server."""
+    if not os.path.exists(PAGE):
+        return False
+    page = io.open(PAGE, encoding="utf-8").read()
+    blob = json.dumps(data, ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/")
+    updated, hits = _EMBED.subn(lambda m: m.group(1) + blob + m.group(2), page, count=1)
+    if not hits:
+        raise SystemExit("%s has no page-data block to fill" % os.path.relpath(PAGE, _ROOT))
+    io.open(PAGE, "w", encoding="utf-8", newline="\n").write(updated)
+    return True
+
+
 def main() -> int:
     if not os.path.exists(PAGE_DATA):
         # first run: keep the hand-written descriptions the page had before this builder
@@ -118,6 +134,8 @@ def main() -> int:
         json.dump(data, handle, ensure_ascii=False, separators=(",", ":"))
     print("%d families, %d strategies -> %s" % (len(data["families"]),
           sum(f["count"] for f in data["families"]), os.path.relpath(OUTPUT, _ROOT)))
+    if embed(data):
+        print("embedded in %s" % os.path.relpath(PAGE, _ROOT))
     return 0
 
 

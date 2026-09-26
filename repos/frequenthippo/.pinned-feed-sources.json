@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "sources": [
+    {
+      "commit": "52c4bd40414645f079a980cf4486dc7af4061efb",
+      "owner_approval": "Owner instruction 2026-09-26: Test die heruntergeladene Strategie; die heruntergeladene Strategy soll sich im repo Ordner befinden.",
+      "path": "AIRA%20-%20open%20code%20v2/strategies/pivot-supertrend/RUSTOBSTRAT2.py",
+      "post_id": 104907,
+      "post_url": "https://frequenthippo.ddns.net/github_roboticautomations_freqtradestrategies__rustobstrat2__20260915_233254/",
+      "repository": "RoboticAutomations/freqtradestrategies",
+      "repository_id": 1234193193,
+      "source_sha256": "fa2e67ad320aafa4f8ebdf641b9f6a3709133cda29bfdd6ffda49338fd5bb14e",
+      "url": "https://raw.githubusercontent.com/RoboticAutomations/freqtradestrategies/52c4bd40414645f079a980cf4486dc7af4061efb/AIRA%20-%20open%20code%20v2/strategies/pivot-supertrend/RUSTOBSTRAT2.py"
+    }
+  ]
+}
