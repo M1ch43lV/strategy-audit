@@ -1,130 +1,131 @@
 <!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1"><style>:root{color-scheme:light}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
 
-<title>Gating-Hypothese</title>
+<title>Gating Hypothesis</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap">
 <style>
 /*__COMMON_CSS__*/
 </style>
 
 <div class="wrap">
-<div class="zoomctrl" role="group" aria-label="Tabellenzoom">
-  <button type="button" id="zoom-out" aria-label="Tabellen verkleinern">&minus;</button>
+<div class="zoomctrl" role="group" aria-label="Table zoom">
+  <button type="button" id="zoom-out" aria-label="Shrink tables">&minus;</button>
   <span class="zlabel" id="zoom-label">100%</span>
-  <button type="button" id="zoom-in" aria-label="Tabellen vergr&ouml;&szlig;ern">+</button>
+  <button type="button" id="zoom-in" aria-label="Enlarge tables">+</button>
 </div>
 
 <header>
-  <div class="eyebrow">Modell 1/2/3 &middot; Entry-Gate nach Marktphase &middot; Stand {{generated}}</div>
-  <h1>Gating-Hypothese</h1>
-  <p class="subtitle">Bringt es etwas, eine Strategie nur in einer bestimmten Marktphase handeln zu lassen? Pilot mit 25 Strategien und 33 Gate-Kandidaten: Modell 1 gated nach der BTC-Phase, Modell 2 nach der Phase des Coins, Modell 3 nach beiden zugleich. Die Exits bleiben unverändert.</p>
+  <div class="eyebrow">Models 1/2/3 &middot; Entry gate by market phase &middot; As of {{generated}}</div>
+  <h1>Gating Hypothesis</h1>
+  <p class="subtitle">Does it help to let a strategy trade only in a particular market phase? Pilot with 25 strategies and 33 gate candidates: Model 1 gates on the BTC phase, Model 2 on the coin's own phase, Model 3 on both at once. The exits stay unchanged.</p>
   <div class="metabar">
-    <span><b>25</b> Basis-Strategien</span>
-    <span><b>33</b> Gate-Kandidaten</span>
-    <span>Validation <b>{{val_start}}</b> bis <b>{{val_end}}</b></span>
-    <span>Auswahl aus Modell 0, Stand <b>2026-09-15</b></span>
+    <span><b>25</b> base strategies</span>
+    <span><b>33</b> gate candidates</span>
+    <span>Validation <b>{{val_start}}</b> to <b>{{val_end}}</b></span>
+    <span>Selection from Model 0, as of <b>2026-09-15</b></span>
   </div>
 </header>
 
-<nav class="toc" aria-label="Inhalt">
-  <a href="#gate-result">Ergebnis</a>
-  <a href="#sec-gating">Pilot und Auswahl</a>
-  <a href="#gate-fazit">Fazit</a>
-  <a href="{{main_url}}" target="_blank" rel="noopener">&#8598; Regime-Spezialisten (Modell 0)</a>
+<nav class="toc" aria-label="Contents">
+  <a href="#gate-result">Result</a>
+  <a href="#sec-gating">Pilot and selection</a>
+  <a href="#gate-fazit">Conclusion</a>
+  <a href="{{main_url}}" target="_blank" rel="noopener">&#8598; Regime specialists (Model 0)</a>
 </nav>
 
-<div class="callout warn" id="gate-result"><span class="dot">&#9888;</span><div><b>Ergebnis: bisher nicht bewährt.</b> Für die 31 Ein-Zustand-Kandidaten gibt es keinen belastbaren Beleg, dass zusätzliches Entry-Gating den Excess-Return systematisch verbessert: Modell 1 verbessert 16 von 31, Modell 2 neun von 31, Modell 3 vierzehn von 31, keines ist von einem Münzwurf zu unterscheiden. Modell 1 und 3 kappen im Median 60&nbsp;% der Trades. Die Begründung steht unten im Abschnitt &bdquo;Fazit&ldquo;. Diese Auswertung ist eine <b>Momentaufnahme</b> der gegateten Läufe und wurde bei der Neuberechnung der Modell-0-Zahlen am 2026-09-20 nicht neu gerechnet; die Auswahl der Kandidaten beruht auf Modell 0 vom 2026-09-15.</div></div>
+<div class="callout warn" id="gate-result"><span class="dot">&#9888;</span><div><b>Result: not proven so far.</b> For the 31 single-state candidates there is no reliable evidence that additional entry gating systematically improves the excess return: Model 1 improves 16 of 31, Model 2 nine of 31, Model 3 fourteen of 31, and none of them can be told apart from a coin flip. Models 1 and 3 cut a median 60&nbsp;% of the trades. The reasoning is in the &ldquo;Conclusion&rdquo; section below. This evaluation is a <b>snapshot</b> of the gated runs and was not recalculated when the Model 0 figures were recalculated on 2026-09-20; the candidate selection rests on Model 0 as of 2026-09-15.</div></div>
 
 <details class="fold" id="legend">
-  <summary>Legende: Markierungen und Kennzahlen <span class="sub">* Futures &middot; # DCA &middot; Spalten</span></summary>
+  <summary>Legend: markers and metrics <span class="sub">* futures &middot; # DCA &middot; columns</span></summary>
   <div class="foldbody">
-<div class="callout info"><span class="dot">&#8505;</span><div><b>* = Futures-Strategie, in jeder Tabelle auf dieser Seite.</b> Markiert jede Strategie mit <code class="mono">run_profile</code> <code class="mono">futures_long</code>/<code class="mono">futures_short</code>/<code class="mono">futures_long_short</code> in <code class="mono">evidence/EXECUTION_PROFILES.csv</code> &mdash; derselbe Spot/Futures-Split, den die Backtest-Pipeline selbst verwendet. Das ist keine Hebel-<i>Höhe</i>, sondern nur die Marktart: Futures/Margin erlaubt grundsätzlich Verluste über 100% des eigenen Einsatzes hinaus, Spot nicht. 2 der 25 Regime-Spezialisten-Piloten-<i>Strategien</i> (<code class="mono">FastSupertrend_optim3_rsi_80</code>, <code class="mono">FSampleStrategy</code> &mdash; genau die beiden, die auch das optionale <code class="mono">-trend</code>-Gate bekommen haben, siehe unten) sind so markiert &mdash; in den Modell-1/2/3-Tabellen entsprechend alle ihre Gate-Varianten (4 der 33 Kandidaten).</div></div>
-<div class="callout info"><span class="dot">&#8505;</span><div><b># = DCA-Strategie, in jeder Tabelle auf dieser Seite.</b> Markiert jede Strategie, die im eigenen Quellcode <code class="mono">position_adjustment_enable = True</code> gesetzt UND eine tatsächliche <code class="mono">adjust_trade_position()</code>-Methode implementiert hat &mdash; direkt am Code geprüft, nicht am breiteren <code class="mono">strategy_type</code>-Marker <code class="mono">grid_dca</code> aus <code class="mono">STRATEGY_STATUS.csv</code> (reiner Substring-Treffer auf <code class="mono">position_adjustment_enable</code>/<code class="mono">dca</code>/<code class="mono">grid</code> im Quelltext, ohne True-Prüfung und ohne Verhaltenscheck &mdash; {{n_dca_marker}} statt hier {{n_dca_verified}} Treffer). Bedeutung: die Strategie kann eine offene Position nachträglich aufstocken (oder verkleinern) statt nur einmalig ein- und auszusteigen &mdash; der feste $1000-Einsatz je Trade auf dieser Seite bildet zusätzliche Nachkäufe innerhalb desselben Trades nicht ab, der tatsächliche Kapitaleinsatz kann darüberliegen. 5 der 25 Regime-Spezialisten-Piloten-<i>Strategien</i> (<code class="mono">BB_RTR</code>, <code class="mono">OversoldReversion</code>, <code class="mono">cryptotank</code>, <code class="mono">eltoro1_4</code>, <code class="mono">eltoro1_4_simple</code>) sind so markiert.</div></div>
-<div class="callout info"><span class="dot">&#8505;</span><div><b>Kennzahlen.</b> Worst Trade, Sortino, Rendite p.a., Profit-Factor, FreqForge-Score, Episoden-Excess-LCB und Grade sind dieselben Kennzahlen wie im Artefakt <a href="{{main_url}}" target="_blank" rel="noopener">Regime-Spezialisten</a>, wo ihre Definition in der Legende steht; die Spaltenköpfe erklären sie auch als Tooltip. LCB heißt <i>Lower Confidence Bound</i> (untere Vertrauensgrenze): ein Wert, unter den der wahre mittlere Excess-Return mit 95&nbsp;% Sicherheit nicht fällt. Alle Zahlen dieser Seite gelten für das Validierungsfenster {{val_start}} bis {{val_end}}.</div></div>
-<div class="callout info"><span class="dot">&#8505;</span><div><b>Robustheit und Bestätigung.</b> Beide Spalten stammen aus Modell 0 (dem ungegateten Handelsverhalten). Für gegatete Kandidaten gibt es weder einen 5m-Detaillauf noch einen Discovery-Lauf; ihnen dieselben Marken zu geben, wäre irreführend. In der Auswahltabelle je ADX-Zustand, die aus Modell 0 stammt, stehen sie deshalb; in den Tabellen der gegateten Läufe nicht.</div></div>
+<div class="callout info"><span class="dot">&#8505;</span><div><b>* = futures strategy, in every table on this page.</b> Marks every strategy whose <code class="mono">run_profile</code> in <code class="mono">evidence/EXECUTION_PROFILES.csv</code> is <code class="mono">futures_long</code>/<code class="mono">futures_short</code>/<code class="mono">futures_long_short</code> &mdash; the same spot/futures split the backtest pipeline itself uses. It is not a leverage <i>amount</i>, only the market type: futures/margin can in principle lose more than 100% of the stake, spot cannot. 2 of the 25 regime-specialist pilot <i>strategies</i> (<code class="mono">FastSupertrend_optim3_rsi_80</code>, <code class="mono">FSampleStrategy</code> &mdash; exactly the two that also received the optional <code class="mono">-trend</code> gate, see below) are marked this way &mdash; in the Model 1/2/3 tables accordingly all their gate variants (4 of the 33 candidates).</div></div>
+<div class="callout info"><span class="dot">&#8505;</span><div><b># = DCA strategy, in every table on this page.</b> Marks every strategy that sets <code class="mono">position_adjustment_enable = True</code> in its own source code AND actually implements an <code class="mono">adjust_trade_position()</code> method &mdash; checked directly on the code, not on the broader <code class="mono">strategy_type</code> marker <code class="mono">grid_dca</code> from <code class="mono">STRATEGY_STATUS.csv</code> (a plain substring hit on <code class="mono">position_adjustment_enable</code>/<code class="mono">dca</code>/<code class="mono">grid</code> in the source, with no True check and no behavior check &mdash; {{n_dca_marker}} hits instead of {{n_dca_verified}} here). Meaning: the strategy can add to (or reduce) an open position afterwards instead of entering and exiting once &mdash; the fixed $1000 stake per trade on this page does not reproduce additional buys within the same trade, so the actual capital deployed can be higher. 5 of the 25 regime-specialist pilot <i>strategies</i> (<code class="mono">BB_RTR</code>, <code class="mono">OversoldReversion</code>, <code class="mono">cryptotank</code>, <code class="mono">eltoro1_4</code>, <code class="mono">eltoro1_4_simple</code>) are marked this way.</div></div>
+<div class="callout info"><span class="dot">&#8505;</span><div><b>Metrics.</b> Worst trade, Sortino, annual return, profit factor, FreqForge score, episode excess LCB and grade are the same metrics as in the <a href="{{main_url}}" target="_blank" rel="noopener">Regime specialists</a> artifact, where their definition is in the legend; the column headers also explain them as a tooltip. LCB means <i>lower confidence bound</i>: a value the true mean excess return does not fall below with 95&nbsp;% confidence. All figures on this page refer to the validation window {{val_start}} to {{val_end}}.</div></div>
+<div class="callout info"><span class="dot">&#8505;</span><div><b>Robustness and confirmation.</b> Both columns come from Model 0 (the ungated trading behavior). For gated candidates there is neither a 5m detail run nor a discovery run; giving them the same marks would be misleading. They therefore appear in the per-ADX-state selection table, which comes from Model 0, and not in the tables of the gated runs.</div></div>
   </div>
 </details>
 
 
 <section id="sec-gating">
   <div class="sectionhead">
-    <h2>Modell 1/2/3 &mdash; Regime-Spezialisten-Pilot</h2>
-    <span class="hint">25 Strategien, 33 Gate-Kandidaten &mdash; Top 10 je ADX-Zustand, LCB-Ranking</span>
+    <h2>Models 1/2/3 &mdash; regime-specialist pilot</h2>
+    <span class="hint">25 strategies, 33 gate candidates &mdash; top 10 per ADX state, LCB ranking</span>
   </div>
-  <p class="secintro">Modell 0 ist das natürliche, ungegatete Handelsverhalten und steht im Artefakt <a href="{{main_url}}" target="_blank" rel="noopener">Regime-Spezialisten</a>. Modell 1/2/3 fügen ein reines Entry-Gate hinzu, die Exits bleiben unverändert: <b>Modell 1</b> gated nach der BTC-Marktphase, <b>Modell 2</b> nach dem coin-eigenen Regime, <b>Modell 3</b> nach beiden gleichzeitig per UND-Verknüpfung (ein Long-Signal passiert nur, wenn BTC-Zustand <i>und</i> Coin-Zustand beide erlaubt sind). <b>Ersetzt seit 2026-09-14 den früheren 7-Strategien-Piloten komplett</b> &mdash; der war keine kuratierte Auswahl, sondern schlicht die ersten 7 Strategien alphabetisch, auf Nutzerwunsch verworfen (alte Ergebnisdateien bleiben als historische Spur liegen, werden hier aber nicht mehr gezeigt).</p>
-  <div class="callout info"><span class="dot">&#8505;</span><div><b>Vier symmetrische Ein-Zustand-Gates statt der alten Trendfolge-Kopplung.</b> <code class="mono">-uptrend</code>/<code class="mono">-downtrend</code>/<code class="mono">-sideways</code>/<code class="mono">-transition</code>: long UND short jeweils nur im genannten ADX-Zustand erlaubt. Ersetzt das alte <code class="mono">-trend</code>-Gate (long nur Uptrend, short nur Downtrend, ein kombinierter Kandidat) als Standard, weil dessen Richtungskopplung für manche Strategien in die falsche Richtung zeigt: zwei Kandidaten mit echtem Bear-Edge waren in ihrer gesamten Historie 0% Short-Trades &mdash; ein <code class="mono">-trend</code>-Gate hätte ihre komplette Bear-Aktivität blockiert, weil dessen Bear-Erlaubnis rein auf Short beschränkt ist. <code class="mono">-trend</code> bleibt als optionales fünftes Gate erhalten, aber nur für Kandidaten, die futures-fähig sind UND tatsächlich long- und short-Trades haben (geprüft an den Rohdaten, nicht am Futures/Spot-Label allein) &mdash; hier zwei: <code class="mono">FastSupertrend_optim3_rsi_80</code> und <code class="mono">FSampleStrategy</code>. Volle Herleitung inkl. der DeepSeek-v4-pro-Gegenprüfung in <code class="mono">REGIME_AUDIT_PLAN.md</code>.</div></div>
-  <div class="callout info"><span class="dot">&#8505;</span><div><b>Auswahl: direktes LCB-Ranking im Zielregime, nicht die Spanne zum schlechtesten Regime.</b> Ein erster Entwurf hätte nach der Spanne zwischen bestem und schlechtestem Regime sortiert &mdash; DeepSeek-v4-pro zeigte, dass das Kontrast statt Zielregime-Qualität misst und an echten Daten bestätigt: nur 4 von 10 Kandidaten überlappten zwischen Spannen- und direktem Ranking, wobei die Spanne Kandidaten mit nur mittelmäßigem Edge, aber katastrophalem Nebenregime bevorzugte. Stattdessen: je ADX-Zustand alle Kandidaten, die in genau diesem Zustand auf VALIDATION-Tier stehen, direkt nach <code class="mono">episode_excess_lcb</code> dort sortiert, nur <code class="mono">episode_excess_lcb &gt; 0</code> (statistisch echter Edge), Top 10, dedupliziert auf einen Kandidaten je Strategie-Familie (fast identische Parameter-Varianten reduziert auf den bestplatzierten Vertreter).</div></div>
-  <div class="callout warn"><span class="dot">&#9888;</span><div><b>ADX Uptrend hat nur einen einzigen Spezialisten im gesamten Bestand.</b> Von 584 Strategien (Modell-0-Stand 2026-09-15, auf dem diese Auswahl beruht) erreicht in ADX Uptrend nur <code class="mono">FastSupertrend_optim3_rsi_80</code> einen statistisch echten Edge (<code class="mono">episode_excess_lcb &gt; 0</code>) &mdash; passend zum bereits oben dokumentierten Befund, dass Uptrend das mit Abstand schwerste Regime gegen Buy&amp;Hold war. Die Uptrend-Tabelle unten hat deshalb absichtlich nur eine Strategie, kein Darstellungsfehler. {{uptrend_recount}}</div></div>
-  <div class="callout info"><span class="dot">&#8505;</span><div><b>Episoden-Excess-LCB / Grade, auch hier.</b> Dieselbe Kennzahl wie im Artefakt Regime-Spezialisten (volle Definition und Herleitung dort in der Legende) &mdash; eine 95%-Untergrenze auf den mittleren episodischen Excess-Return dieser Strategie in dieser Phase, nicht bloß deren nackter Mittelwert. Bei wenigen oder stark schwankenden Episoden fällt sie deutlich unter den Excess-Return-Wert selbst; unter 2 Episoden erscheint kein Wert. Grade ist die dazugehörige A-F-Note aus denselben fest eingefrorenen Schwellen. Rein deskriptiv, kein Ersatz für Tier oder Excess-Return-Ranking.</div></div>
-  <div class="callout info"><span class="dot">&#8505;</span><div><b>Gezeigt wird nur, wonach tatsächlich gegatet wurde.</b> BTC- und Coin-Regime werden für jeden Trade zwar immer beide gemessen, aber Modell 1 gatet ausschließlich nach BTC-Regime (deshalb nur diese Tabelle unten), Modell 2 ausschließlich nach Coin-Regime (deshalb nur diese). Modell 3 gatet nach beiden gleichzeitig (BTC UND Coin), deshalb <i>eine</i> kombinierte Tabelle statt zweier separater BTC-/Coin-Aufschlüsselungen &mdash; benchmarkt gegen die echte Schnittmenge aus BTC-Episode und Coin-Episode, nicht gegen eine der beiden Einzel-Episoden. Die meisten Kandidaten haben durch das symmetrische Ein-Zustand-Gate höchstens ein mögliches Phasen-Ergebnis (Konsistenz also 0% oder 100%); nur die beiden <code class="mono">-trend</code>-Kandidaten können zwei Phasen-Ergebnisse (Uptrend/Downtrend) und damit auch 50% Konsistenz erreichen.</div></div>
+  <p class="secintro">Model 0 is the natural, ungated trading behavior and is in the <a href="{{main_url}}" target="_blank" rel="noopener">Regime specialists</a> artifact. Models 1/2/3 add a pure entry gate, the exits stay unchanged: <b>Model 1</b> gates on the BTC market phase, <b>Model 2</b> on the coin's own regime, <b>Model 3</b> on both at once with an AND (a long signal only passes if the BTC state <i>and</i> the coin state are both allowed). <b>Replaces the earlier 7-strategy pilot completely since 2026-09-14</b> &mdash; that was not a curated selection but simply the first 7 strategies alphabetically, and was discarded at the owner's request (old result files remain as a historical trace but are no longer shown here).</p>
+  <div class="callout info"><span class="dot">&#8505;</span><div><b>Four symmetric single-state gates instead of the old trend-following coupling.</b> <code class="mono">-uptrend</code>/<code class="mono">-downtrend</code>/<code class="mono">-sideways</code>/<code class="mono">-transition</code>: long AND short are each allowed only in the named ADX state. Replaces the old <code class="mono">-trend</code> gate (long only in uptrend, short only in downtrend, one combined candidate) as the default, because its directional coupling points the wrong way for some strategies: two candidates with a real bear edge had 0% short trades in their entire history &mdash; a <code class="mono">-trend</code> gate would have blocked all of their bear activity, because its bear permission is restricted to short. <code class="mono">-trend</code> remains as an optional fifth gate, but only for candidates that are futures-capable AND actually have long and short trades (checked on the raw data, not on the futures/spot label alone) &mdash; two here: <code class="mono">FastSupertrend_optim3_rsi_80</code> and <code class="mono">FSampleStrategy</code>. Full derivation including the DeepSeek-v4-pro cross-check in <code class="mono">REGIME_AUDIT_PLAN.md</code>.</div></div>
+  <div class="callout info"><span class="dot">&#8505;</span><div><b>Selection: direct LCB ranking in the target regime, not the spread to the worst regime.</b> A first draft would have sorted by the spread between best and worst regime &mdash; DeepSeek-v4-pro pointed out that this measures contrast rather than target-regime quality, and real data confirmed it: only 4 of 10 candidates overlapped between the spread ranking and the direct ranking, with the spread favoring candidates with only a mediocre edge but a catastrophic side regime. Instead: per ADX state, all candidates that are at VALIDATION tier in exactly that state, sorted directly by <code class="mono">episode_excess_lcb</code> there, only <code class="mono">episode_excess_lcb &gt; 0</code> (a statistically real edge), top 10, deduplicated to one candidate per strategy family (near-identical parameter variants reduced to the best-ranked representative).</div></div>
+  <div class="callout warn"><span class="dot">&#9888;</span><div><b>ADX Uptrend has only a single specialist in the entire stock.</b> Of 584 strategies (Model 0 as of 2026-09-15, on which this selection rests) only <code class="mono">FastSupertrend_optim3_rsi_80</code> reaches a statistically real edge (<code class="mono">episode_excess_lcb &gt; 0</code>) in ADX Uptrend &mdash; in line with the finding documented above that uptrend was by far the hardest regime against buy &amp; hold. The uptrend table below therefore deliberately has only one strategy; it is not a display error. {{uptrend_recount}}</div></div>
+  <div class="callout info"><span class="dot">&#8505;</span><div><b>Episode excess LCB / grade, here too.</b> The same metric as in the Regime specialists artifact (full definition and derivation in its legend) &mdash; a 95% lower bound on this strategy's mean episodic excess return in this phase, not merely its bare mean. With few or strongly fluctuating episodes it falls well below the excess-return value itself; below 2 episodes no value appears. Grade is the corresponding A-F grade from the same fixed thresholds. Purely descriptive, no substitute for tier or excess-return ranking.</div></div>
+  <div class="callout info"><span class="dot">&#8505;</span><div><b>Only what was actually gated on is shown.</b> BTC and coin regime are both always measured for every trade, but Model 1 gates only on the BTC regime (hence only that table below), Model 2 only on the coin regime (hence only that one). Model 3 gates on both at once (BTC AND coin), hence <i>one</i> combined table instead of two separate BTC/coin breakdowns &mdash; benchmarked against the real intersection of the BTC episode and the coin episode, not against either single episode. Because of the symmetric single-state gate, most candidates have at most one possible phase result (consistency therefore 0% or 100%); only the two <code class="mono">-trend</code> candidates can reach two phase results (uptrend/downtrend) and thus also 50% consistency.</div></div>
 
   <div class="sectionhead" style="margin-top:22px;">
-    <h3 style="font-size:15px;font-weight:600;">Top 10 je ADX-Zustand &mdash; Auswahlgrundlage für Modell 1-3</h3>
+    <h3 style="font-size:15px;font-weight:600;">Top 10 per ADX state &mdash; basis for the selection for Models 1-3</h3>
   </div>
-  <p class="secintro">Direkt aus Modell 0 hergeleitet (<code class="mono">coin_specialist_table.csv</code>, VALIDATION-Tier), unabhängig von den gegateten Ergebnissen weiter unten &mdash; das ist die Auswahl, <i>bevor</i> irgendein Gate-Ergebnis existierte. Diese Kandidaten wurden anschließend tatsächlich durch <code class="mono">gated_backtest.py</code> gegatet gerechnet; die Ergebnisse dazu stehen in den Tabellen darunter.</p>
+  <p class="secintro">Derived directly from Model 0 (<code class="mono">coin_specialist_table.csv</code>, VALIDATION tier), independent of the gated results further down &mdash; this is the selection <i>before</i> any gate result existed. These candidates were then actually run gated through <code class="mono">gated_backtest.py</code>; the results are in the tables below.</p>
   <div id="top10-tables"></div>
 
   <div class="sectionhead" style="margin-top:22px;">
-    <h3 style="font-size:15px;font-weight:600;">Gesamtgewinn: gegatet vs. ungegatet</h3>
+    <h3 style="font-size:15px;font-weight:600;">Total gain: gated vs. ungated</h3>
   </div>
   <div class="chipbar" id="gated-compare-chips"></div>
   <div class="tablebox">
     <div class="scrollbody">
     <table class="plain" id="gated-compare-table">
       <thead><tr>
-        <th class="sortable" data-key="candidate_id">Kandidat<span class="arrow">&#9662;</span></th>
-        <th>Ziel-Regime</th>
-        <th class="sortable num active" data-key="m0">Modell 0 (ungegatet)<span class="arrow">&#9662;</span></th>
-        <th class="sortable num" data-key="model1">Modell 1 (BTC-Regime Gate)<span class="arrow">&#9662;</span></th>
-        <th class="sortable num" data-key="model2">Modell 2 (Coin-Regime Gate)<span class="arrow">&#9662;</span></th>
-        <th class="sortable num" data-key="model3">Modell 3 (Kombi-Gate)<span class="arrow">&#9662;</span></th>
+        <th class="sortable" data-key="candidate_id">Candidate<span class="arrow">&#9662;</span></th>
+        <th>Target regime</th>
+        <th class="sortable num active" data-key="m0">Model 0 (ungated)<span class="arrow">&#9662;</span></th>
+        <th class="sortable num" data-key="model1">Model 1 (BTC regime gate)<span class="arrow">&#9662;</span></th>
+        <th class="sortable num" data-key="model2">Model 2 (coin regime gate)<span class="arrow">&#9662;</span></th>
+        <th class="sortable num" data-key="model3">Model 3 (combined gate)<span class="arrow">&#9662;</span></th>
       </tr></thead>
       <tbody id="gated-compare-body"></tbody>
     </table>
     </div>
   </div>
-  <p class="secintro">Trade-Zahl in Klammern &mdash; fixer $1000-Einsatz je Trade wie in der Dollar-Ansicht des Artefakts Regime-Spezialisten. Modell 0 zeigt hier den <i>ungegateten Gesamtbestand der Basis-Strategie</i> &mdash; derselbe Vergleichswert für alle Gate-Varianten derselben Strategie (z.&nbsp;B. gilt <code class="mono">cryptotank</code>s Modell-0-Ergebnis gleichermaßen für <code class="mono">cryptotank-downtrend</code>, <code class="mono">-sideways</code> und <code class="mono">-transition</code>). Ziel-Regime leer = <code class="mono">-trend</code>-Kandidat (long Uptrend/short Downtrend, kein einzelner Zielzustand).</p>
+  <p class="secintro">Trade count in parentheses &mdash; fixed $1000 stake per trade as in the dollar view of the Regime specialists artifact. Model 0 here shows the <i>ungated total of the base strategy</i> &mdash; the same comparison value for all gate variants of the same strategy (e.g. <code class="mono">cryptotank</code>'s Model 0 result applies equally to <code class="mono">cryptotank-downtrend</code>, <code class="mono">-sideways</code> and <code class="mono">-transition</code>). Empty target regime = <code class="mono">-trend</code> candidate (long uptrend/short downtrend, no single target state).</p>
 
   <div class="tabs" style="margin-top:26px;">
-    <div class="tab active" data-target="gm-model1">Modell 1 · BTC-Regime Gate</div>
-    <div class="tab" data-target="gm-model2">Modell 2 · Coin-Regime Gate</div>
-    <div class="tab" data-target="gm-model3">Modell 3 · Kombi-Gate</div>
+    <div class="tab active" data-target="gm-model1">Model 1 · BTC regime gate</div>
+    <div class="tab" data-target="gm-model2">Model 2 · coin regime gate</div>
+    <div class="tab" data-target="gm-model3">Model 3 · combined gate</div>
   </div>
   <div class="tabpanel" id="gm-model1"><div id="gm-model1-content"></div></div>
   <div class="tabpanel" id="gm-model2" style="display:none"><div id="gm-model2-content"></div></div>
   <div class="tabpanel" id="gm-model3" style="display:none"><div id="gm-model3-content"></div></div>
 
   <div class="sectionhead" style="margin-top:26px;" id="gate-fazit">
-    <h3 style="font-size:15px;font-weight:600;">Fazit: Bringt das Gating etwas?</h3>
-    <span class="hint">2026-09-14, auf Nutzerfrage, DeepSeek-v4-pro-geprüft</span>
+    <h3 style="font-size:15px;font-weight:600;">Conclusion: does gating help?</h3>
+    <span class="hint">2026-09-14, on the owner's question, checked by DeepSeek-v4-pro</span>
   </div>
-  <p class="secintro">Direkter Vergleich je Kandidat: Modell 0 (ungegatet) exakt in seinem eigenen Zielregime (dieselbe Strategie in derselben Coin-Regime-Phase) gegen die drei gegateten Varianten &mdash; gleiche Metrik, gleiche Regime-Zuordnung, sonst nichts verändert. Nur die 31 Ein-Zustand-Kandidaten (ohne die 2 <code class="mono">-trend</code>-Kandidaten, die zwei Regime gleichzeitig abdecken).</p>
+  <p class="secintro">Direct comparison per candidate: Model 0 (ungated) exactly in its own target regime (the same strategy in the same coin-regime phase) against the three gated variants &mdash; same metric, same regime assignment, nothing else changed. Only the 31 single-state candidates (without the 2 <code class="mono">-trend</code> candidates, which cover two regimes at once).</p>
   <div class="tablebox">
     <table class="plain" data-nosort>
-      <thead><tr><th>Modell</th><th class="num">Excess-Return verbessert</th><th class="num">Median-Delta</th><th class="num">Trade-Erhalt (Median)</th><th class="num">Kandidaten &lt;10 Trades danach</th></tr></thead>
+      <thead><tr><th>Model</th><th class="num">Excess return improved</th><th class="num">Median delta</th><th class="num">Trades kept (median)</th><th class="num">Candidates &lt;10 trades afterwards</th></tr></thead>
       <tbody>
-        <tr><td><b>Modell 1</b> &middot; BTC-Regime-Gate</td><td class="num mono">16/31</td><td class="num val pos">+0,11pp</td><td class="num mono">40%</td><td class="num mono">10/31</td></tr>
-        <tr><td><b>Modell 2</b> &middot; Coin-Regime-Gate</td><td class="num mono">9/31</td><td class="num val neg-3">&minus;0,00pp</td><td class="num mono">100%</td><td class="num mono">0/31</td></tr>
-        <tr><td><b>Modell 3</b> &middot; Kombi-Gate</td><td class="num mono">14/31</td><td class="num val neg-3">&minus;0,55pp</td><td class="num mono">40%</td><td class="num mono">10/31</td></tr>
+        <tr><td><b>Model 1</b> &middot; BTC regime gate</td><td class="num mono">16/31</td><td class="num val pos">+0.11pp</td><td class="num mono">40%</td><td class="num mono">10/31</td></tr>
+        <tr><td><b>Model 2</b> &middot; coin regime gate</td><td class="num mono">9/31</td><td class="num val neg-3">&minus;0.00pp</td><td class="num mono">100%</td><td class="num mono">0/31</td></tr>
+        <tr><td><b>Model 3</b> &middot; combined gate</td><td class="num mono">14/31</td><td class="num val neg-3">&minus;0.55pp</td><td class="num mono">40%</td><td class="num mono">10/31</td></tr>
       </tbody>
     </table>
   </div>
-  <div class="callout info"><span class="dot">&#8505;</span><div><b>Modell 2 bringt strukturell fast nichts &mdash; nahezu tautologisch, kein Zufall.</b> 4 von 31 Kandidaten sind bit-für-bit identisch zu Modell 0 (gleiche Trade-Zahl, gleicher Excess-Return). Grund: die Kandidaten wurden überhaupt erst danach ausgewählt, in genau diesem Coin-Regime-Zustand einen statistisch echten Edge zu haben (Episoden-Excess-LCB-Ranking, siehe oben) &mdash; ein Gate auf dieselbe Dimension, nach der schon selektiert wurde, kann kaum noch etwas verändern. Das ist ein echter, informativer Befund über diese Auswahlmethode, aber keine allgemeine Aussage "Coin-Gating hilft nie": dieser Vergleich prüft den Nutzen eines Coin-Gates für bereits coin-regime-selektierte Kandidaten, nicht für unselektierte Strategien.</div></div>
-  <div class="callout info"><span class="dot">&#8505;</span><div><b>Modell 1/3 kappen im Schnitt die Hälfte der Trades, ohne belegbaren Gewinn.</b> BTC-Regime und Coin-Regime sind nur mäßig korreliert &mdash; nachgemessen statt nur angenommen: <code class="mono">regime_daily.csv</code>, 18.000 Tages-/Paar-Zeilen, Übereinstimmungsrate 53%, Cohen's Kappa 0,38 ("fair" nach Landis/Koch, deutlich unter "hoch"). Ein Gate auf die schwächer verwandte BTC-Dimension wirft also brauchbare Trades weg, ohne dass die Zusatzbedingung einen erkennbaren Mehrwert liefert &mdash; im Ergebnis nahe am Münzwurf, keine der beiden Richtungen (16/31 bzw. 14/31 verbessert) ist von 50% statistisch unterscheidbar.</div></div>
-  <div class="callout warn"><span class="dot">&#9888;</span><div><b>Einschränkungen dieser Aussage &mdash; von DeepSeek-v4-pro geprüft, hier übernommen.</b> Bei n=31 ist "16 von 31 verbessert" per Binomialtest nicht signifikant von 50% unterscheidbar &mdash; korrekt ist "kein signifikanter Effekt nachweisbar", nicht "kein Effekt". Mittelwerte sind ausreißeranfällig (bei 2&ndash;8 Trades nach dem Gate reißt ein einzelner Trade die Zahl): das FreqForge-Score-Delta liegt im Median bei &asymp;0 für alle drei Modelle, im Mittelwert aber bei Modell 1/3 durch wenige Ausreißer bei +6 Punkten, IQR reicht dabei von &minus;2 bis +8. Die 31 Kandidaten sind zudem nicht unabhängig (25 Basis-Strategien, manche mit mehreren Zielregimen, z.&nbsp;B. <code class="mono">cryptotank</code>) &mdash; reduziert die effektive Stichprobengröße weiter. Und: die Kandidaten sind bereits per Selektionskriterium auf einen Coin-Regime-Edge vorgefiltert, die Ergebnisse lassen sich nicht ungeprüft auf beliebige Strategien verallgemeinern.</div></div>
-  <div class="callout info"><span class="dot">&#8505;</span><div><b>Fazit.</b> Für diese 31 bereits regime-selektierten Spezialisten gibt es keinen belastbaren Beleg, dass zusätzliches Entry-Gating &mdash; gleich welcher Dimension &mdash; die Ergebnisse systematisch verbessert. Die Einzelfälle mit sichtbarer Verbesserung liegen im Rauschen einer zu kleinen Stichprobe, nicht in einem robusten Muster, bei spürbaren Kosten (bis zu 60% weniger Trades, ein Drittel der Kandidaten landet unter 10 Trades).</div></div>
+  <div class="callout info"><span class="dot">&#8505;</span><div><b>Model 2 structurally brings almost nothing &mdash; nearly tautological, not chance.</b> 4 of 31 candidates are bit-for-bit identical to Model 0 (same trade count, same excess return). Reason: the candidates were selected in the first place for having a statistically real edge in exactly this coin-regime state (episode excess LCB ranking, see above) &mdash; a gate on the same dimension that was already selected on can hardly change anything. This is a real, informative finding about this selection method, but not a general statement that &ldquo;coin gating never helps&rdquo;: this comparison tests the benefit of a coin gate for candidates already selected on coin regime, not for unselected strategies.</div></div>
+  <div class="callout info"><span class="dot">&#8505;</span><div><b>Models 1/3 cut half the trades on average without demonstrable gain.</b> BTC regime and coin regime are only moderately correlated &mdash; measured rather than merely assumed: <code class="mono">regime_daily.csv</code>, 18,000 day/pair rows, agreement rate 53%, Cohen's kappa 0.38 (&ldquo;fair&rdquo; by Landis/Koch, well below &ldquo;high&rdquo;). A gate on the more weakly related BTC dimension therefore throws away usable trades without the extra condition adding any visible value &mdash; the result is close to a coin flip, neither direction (16/31 and 14/31 improved) is statistically distinguishable from 50%.</div></div>
+  <div class="callout warn"><span class="dot">&#9888;</span><div><b>Limits of this statement &mdash; checked by DeepSeek-v4-pro, adopted here.</b> With n=31, &ldquo;16 of 31 improved&rdquo; is not significantly different from 50% by a binomial test &mdash; the correct reading is &ldquo;no significant effect demonstrable&rdquo;, not &ldquo;no effect&rdquo;. Means are outlier-prone (with 2&ndash;8 trades after the gate a single trade moves the figure): the FreqForge score delta is &asymp;0 at the median for all three models, but +6 points at the mean for Models 1/3 because of a few outliers, with the IQR running from &minus;2 to +8. The 31 candidates are also not independent (25 base strategies, some with several target regimes, e.g. <code class="mono">cryptotank</code>) &mdash; this reduces the effective sample size further. And: the candidates are already pre-filtered by the selection criterion on a coin-regime edge, so the results cannot be generalized to arbitrary strategies without checking.</div></div>
+  <div class="callout info"><span class="dot">&#8505;</span><div><b>Conclusion.</b> For these 31 already regime-selected specialists there is no reliable evidence that additional entry gating &mdash; on whichever dimension &mdash; systematically improves the results. The individual cases with a visible improvement lie in the noise of a sample that is too small, not in a robust pattern, at a noticeable cost (up to 60% fewer trades, a third of the candidates end up below 10 trades).</div></div>
 </section>
 
 <footer>
   <div class="prov">
-    Quelle: <code>regime/specialist_evaluation.py</code>, <code>regime/gated_attribution.py</code>, <code>tools/regime_specialists_page.py</code><br>
-    Daten: <code>results/regime/specialist_evaluation/model{1,2,3}_regime_specialists_v2/</code> (Momentaufnahme unter <code>tools/regime_specialists_data/</code>), Modell 0: <code>coin_specialist_table.csv</code><br>
-    Vollständige Herleitung: <code>REGIME_AUDIT_PLAN.md</code>
+    Source: <code>regime/specialist_evaluation.py</code>, <code>regime/gated_attribution.py</code>, <code>tools/regime_specialists_page.py</code><br>
+    Data: <code>results/regime/specialist_evaluation/model{1,2,3}_regime_specialists_v2/</code> (snapshot under <code>tools/regime_specialists_data/</code>), Model 0: <code>coin_specialist_table.csv</code><br>
+    Full derivation: <code>REGIME_AUDIT_PLAN.md</code>
   </div>
 </footer>
 
 </div>
 
 <script>
+var PAGE_LANG = 'en';
 const GATEDCOMPARE = __GATEDCOMPARE_JSON__;
 const GATEDDETAIL = __GATEDDETAIL_JSON__;
 const TOP10BYREGIME = __TOP10BYREGIME_JSON__;
@@ -165,11 +166,11 @@ function fmtGatedCell(cell){
     }).join('');
   }
   var chipsEl = document.getElementById('gated-compare-chips');
-  chipsEl.innerHTML = '<span class="chiplabel">Ziel-Regime</span>' +
+  chipsEl.innerHTML = '<span class="chiplabel">Target regime</span>' +
     GATED_COMPARE_REGIMES.map(function(r){
       return '<span class="chip active" data-value="' + r + '">' + stateLabel(r) + '</span>';
     }).join('') +
-    '<span class="chip active" data-value="NONE">Kein Ziel-Regime (-trend)</span>';
+    '<span class="chip active" data-value="NONE">No target regime (-trend)</span>';
   chipsEl.querySelectorAll('.chip').forEach(function(chip){
     chip.addEventListener('click', function(){
       var v = chip.getAttribute('data-value');
@@ -210,10 +211,10 @@ function renderTop10Tables(){
         robustCell(a) + confirmCell(a) + '<td>' + gates + '</td></tr>';
     }).join('');
     return '<h4 class="mono" style="font-size:11px;margin:16px 0 8px;color:var(--text-muted);text-transform:uppercase;letter-spacing:.05em;">' +
-      block.label + ' <span style="text-transform:none;letter-spacing:0;color:var(--accent-text);">&mdash; ' + rows.length + (rows.length === 1 ? ' Kandidat' : ' Kandidaten') + '</span></h4>' +
+      block.label + ' <span style="text-transform:none;letter-spacing:0;color:var(--accent-text);">&mdash; ' + rows.length + (rows.length === 1 ? ' candidate' : ' candidates') + '</span></h4>' +
       '<div class="tablebox"><div class="scrollbody"><table class="plain"><thead><tr>' +
-      '<th class="num">Rang</th><th>Strategie</th><th class="num">Trades</th><th class="num">Episoden</th>' +
-      '<th class="num">Excess-Return</th><th class="num">Episoden-Excess-LCB</th><th class="num">Grade</th><th class="num">Robustheit</th><th class="num">Bestätigung</th><th>Gate-Kandidat(en)</th>' +
+      '<th class="num">Rank</th><th>Strategy</th><th class="num">Trades</th><th class="num">Episodes</th>' +
+      '<th class="num">Excess return</th><th class="num">Episode excess LCB</th><th class="num">Grade</th><th class="num">Robustness</th><th class="num">Confirmation</th><th>Gate candidate(s)</th>' +
       '</tr></thead><tbody>' + body + '</tbody></table></div></div>';
   }).join('');
 }
@@ -226,7 +227,7 @@ var GATED_SORT_STATE = {};
 
 function renderGatedRegimeTable(rows, regimeLabel, key, tableId){
   if (!rows.length) {
-    return '<p class="secintro">Keine Strategie passt zum aktuellen Filter.</p>';
+    return '<p class="secintro">No strategy matches the current filter.</p>';
   }
   var sort = GATED_SORT_STATE[key];
   rows = rows.slice().sort(function(a, b){
@@ -260,24 +261,24 @@ function renderGatedRegimeTable(rows, regimeLabel, key, tableId){
       '<td class="num mono">' + Math.round(r.regime_consistency * 100) + '%</td></tr>';
   }).join('');
   return '<div class="tablebox"><div class="scrollbody"><table class="plain" id="' + tableId + '"><thead><tr>' +
-    '<th class="sortable' + (sort.sortKey === 'strategy_id' ? ' active' : '') + '" data-key="strategy_id">Kandidat<span class="arrow">&#9662;</span></th>' +
+    '<th class="sortable' + (sort.sortKey === 'strategy_id' ? ' active' : '') + '" data-key="strategy_id">Candidate<span class="arrow">&#9662;</span></th>' +
     '<th>' + regimeLabel + '</th>' +
-    th('trades', 'Trades') + th('episodes', 'Episoden') +
+    th('trades', 'Trades') + th('episodes', 'Episodes') +
     '<th>Tier</th>' +
-    th('excess_return', 'Excess-Return') + th('dollar_gain_usd', 'Dollar-Gewinn') +
-    th('benchmark_dollar_gain_usd', 'B&amp;H-Gewinn') + th('median_excess_return', 'Median Excess-Return') +
+    th('excess_return', 'Excess return') + th('dollar_gain_usd', 'Dollar gain') +
+    th('benchmark_dollar_gain_usd', 'B&amp;H gain') + th('median_excess_return', 'Median excess return') +
     th('max_drawdown', 'Max Drawdown') + th('worst_trade', 'Worst Trade') +
-    th('sortino', 'Sortino') + th('annualized_return', 'Rendite p.a.') +
-    th('profit_factor', 'Profit-Factor') + th('freqforge_score', 'FreqForge-Score') +
-    th('episode_excess_lcb', 'Episoden-Excess-LCB') + th('lcb_grade', 'Grade') +
-    th('regime_consistency', 'Konsistenz') +
+    th('sortino', 'Sortino') + th('annualized_return', 'Annual return') +
+    th('profit_factor', 'Profit factor') + th('freqforge_score', 'FreqForge score') +
+    th('episode_excess_lcb', 'Episode excess LCB') + th('lcb_grade', 'Grade') +
+    th('regime_consistency', 'Consistency') +
     '</tr></thead><tbody>' + body + '</tbody></table></div></div>';
 }
 
 var GATE_LABEL = {
-  model1: {btc: 'Gate-Kriterium'},
-  model2: {coin: 'Gate-Kriterium'},
-  model3: {joint: 'Gate-Kriterium, BTC UND Coin gleichzeitig'}
+  model1: {btc: 'Gate criterion'},
+  model2: {coin: 'Gate criterion'},
+  model3: {joint: 'Gate criterion, BTC AND coin at once'}
 };
 // Only the dimension(s) a model actually gates on get a table - the other
 // dimension is still measured per trade, but showing it here invited the
@@ -296,7 +297,7 @@ var GATED_FILTER_STATE = {};
   GATED_FILTER_STATE[key] = {regimes: new Set(GATED_REGIME_LIST), tiers: new Set(TIER_LIST)};
 });
 
-var LAYER_LABEL = {btc: 'BTC-Regime', coin: 'Coin-Regime', joint: 'Kombiniertes Regime (BTC ∧ Coin)'};
+var LAYER_LABEL = {btc: 'BTC regime', coin: 'Coin regime', joint: 'Combined regime (BTC ∧ coin)'};
 function gatedHeading(layer, key){
   return '<h4 class="mono" style="font-size:11px;margin:16px 0 8px;color:var(--text-muted);text-transform:uppercase;letter-spacing:.05em;">' +
     LAYER_LABEL[layer] +
@@ -344,10 +345,10 @@ function renderGatedModel(containerId, key){
     html += gatedHeading(layer, key) + '<div id="gm-' + key + '-' + layer + '-table"></div>';
   });
   if (d.universal.length) {
-    html += '<p class="secintro" style="margin-top:12px;"><b>' + d.universal.length + ' Universal-Kandidat(en)</b> (alle 4 Coin-Regime auf VALIDATION-Tier): ' +
+    html += '<p class="secintro" style="margin-top:12px;"><b>' + d.universal.length + ' universal candidate(s)</b> (all 4 coin regimes at VALIDATION tier): ' +
       d.universal.map(function(u){ return futuresLabel(u.strategy_id); }).join(', ') + '.</p>';
   } else {
-    html += '<p class="secintro" style="margin-top:12px;">Keine Strategie erreicht in diesem Modell alle vier Coin-Regime gleichzeitig auf VALIDATION-Tier &mdash; bei nur 33 Kandidaten, von denen die meisten ohnehin nur einen einzigen Zustand überhaupt erreichen können (symmetrisches Ein-Zustand-Gate, siehe Callout oben), reicht die Trade-Zahl pro Regime seltener für den Floor.</p>';
+    html += '<p class="secintro" style="margin-top:12px;">No strategy reaches all four coin regimes at VALIDATION tier at once in this model &mdash; with only 33 candidates, most of which can reach only a single state anyway (symmetric single-state gate, see the callout above), the trade count per regime rarely clears the floor.</p>';
   }
   document.getElementById(containerId).innerHTML = html;
   refreshGatedTables(key);

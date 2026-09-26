@@ -18,7 +18,8 @@ cost screen's own (`attribution.attribute`, `attach_benchmark`, `total_dollar_ga
 Writes `results/regime/specialist_evaluation/detail_5m_total_dollar_gain.csv`, one row per
 strategy that has a measured detail run, and the same runs' phase tables
 (`detail_5m_btc_specialist_table.csv`, `detail_5m_coin_specialist_table.csv`, with the daily
-returns of `regime/daily_return.py` in `detail_5m_phase_daily.csv`), computed by the evaluation's own
+returns of `regime/daily_return.py` in `detail_5m_phase_daily.csv`, and the discovery-against-validation pairs of
+`regime/discovery_comparison.py` in `detail_5m_discovery_vs_validation.csv`), computed by the evaluation's own
 `btc_specialist_table` / `coin_specialist_table`. Strategies at or below 5m have no rerun (owner rule) and
 no row. `--check` runs the same code on the baseline archives of a few strategies and compares
 the result with `strategy_total_dollar_gain.csv`; it must agree, or this module prices trades
@@ -37,7 +38,7 @@ import pandas as pd
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 from evidence import execution_robustness as er  # noqa: E402
-from regime import attribution, specialist_evaluation as se  # noqa: E402
+from regime import attribution, discovery_comparison as dc, specialist_evaluation as se  # noqa: E402
 
 OUTDIR = ROOT / "results" / "regime" / "specialist_evaluation"
 OUT = OUTDIR / "detail_5m_total_dollar_gain.csv"
@@ -48,11 +49,11 @@ CHUNK = 25
 def price(blocks: dict, with_phases: bool = False):
     """One row per strategy: the validation window of these native blocks, priced as the
     evaluation prices the baseline. With `with_phases`, returns (table, btc phases, coin phases,
-    daily returns per phase) instead of the table alone."""
+    daily returns per phase, discovery-vs-validation pairs) instead of the table alone."""
     archives = [{"strategy_id": s, "trades": b.get("trades") or [], "model": "model0"}
                 for s, b in blocks.items() if b.get("trades")]
     if not archives:
-        return (pd.DataFrame(),) * 4 if with_phases else pd.DataFrame()
+        return (pd.DataFrame(),) * 5 if with_phases else pd.DataFrame()
     frame = attribution.attribute(archives)
     leverage = {a["strategy_id"]: np.array([t.get("leverage") or 1.0 for t in a["trades"]],
                                            dtype=float) for a in archives}
@@ -68,7 +69,8 @@ def price(blocks: dict, with_phases: bool = False):
     table["daily_on_slots"] = table["strategy_id"].map(lambda s: daily.get(s, (None, None))[1])
     if not with_phases:
         return table
-    return (table, se.btc_specialist_table(priced), se.coin_specialist_table(priced), phase_daily(frame))
+    return (table, se.btc_specialist_table(priced), se.coin_specialist_table(priced), phase_daily(frame),
+            dc.paired_rows(priced))
 
 
 def phase_daily(frame: pd.DataFrame) -> pd.DataFrame:
@@ -135,15 +137,16 @@ def measured_blocks(strategies=None):
 def run(strategies=None):
     parts, archives = [], {}
     batch = {}
-    phases = {"btc": [], "coin": [], "daily": []}
+    phases = {"btc": [], "coin": [], "daily": [], "paired": []}
 
     def flush():
         if batch:
-            table, btc, coin, daily = price(dict(batch), with_phases=True)
+            table, btc, coin, daily, paired = price(dict(batch), with_phases=True)
             parts.append(table)
             phases["btc"].append(btc)
             phases["coin"].append(coin)
             phases["daily"].append(daily)
+            phases["paired"].append(paired)
             batch.clear()
 
     for strategy, archive, block in measured_blocks(strategies):
@@ -188,7 +191,8 @@ def main(argv=None) -> int:
     OUT.parent.mkdir(parents=True, exist_ok=True)
     table.to_csv(OUT, index=False, lineterminator="\n", float_format="%.12g")
     for name, file in (("btc", "detail_5m_btc_specialist_table.csv"), ("coin", "detail_5m_coin_specialist_table.csv"),
-                       ("daily", "detail_5m_phase_daily.csv")):
+                       ("daily", "detail_5m_phase_daily.csv"),
+                       ("paired", "detail_5m_discovery_vs_validation.csv")):
         phases[name].to_csv(OUTDIR / file, index=False, lineterminator="\n", float_format="%.12g")
     print("wrote %s: %d strategies; phase rows btc %d, coin %d" % (OUT, len(table), len(phases["btc"]), len(phases["coin"])))
     return 0

@@ -84,6 +84,17 @@ def paired_rows(trades: pd.DataFrame) -> pd.DataFrame:
     return frame
 
 
+def five_minute_basis(author: pd.DataFrame, detail: pd.DataFrame, above_5m) -> pd.DataFrame:
+    """The pairs on the 5m basis (owner decision 2026-09-26): a strategy above 5m takes its rows from the
+    5m detail run (`regime/detail_totals.py`), because a run at the author timeframe is not a real result
+    there; every other strategy keeps its baseline rows, which already are the 5m resolution. A strategy
+    above 5m without a detail run has no rows."""
+    above = set(above_5m)
+    keep = author[~author["strategy_id"].isin(above)]
+    rerun = detail[detail["strategy_id"].isin(above)]
+    return pd.concat([keep, rerun], ignore_index=True)
+
+
 def _spearman(x, y):
     from scipy import stats
     if len(x) < 8:

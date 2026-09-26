@@ -10,7 +10,7 @@ Stage-0 discovery scanner: it records pinned feed sources but never downloads
 them into `repos/`. `frequenthippo_ranking.py` belongs to the same review-only
 group: it turns a third party's published ranking into one rank per strategy and
 writes nothing. `strategy_ideas.py` is the other reader of its kind: it extracts
-the facts an interpretation needs, renders `strategy_ideas.html`, and prints the
+the facts an interpretation needs, renders `strategy_ideas_legacy.html` (the live `strategy_ideas.html` is filled by `families_page.py`), and prints the
 family ranking (`--rank`) that decides which families that page describes first.
 `source_dates.py` completes the set: it collects the dates that really exist per
 strategy (a date in the file name, the site's post date, the last commit in the

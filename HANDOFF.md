@@ -205,6 +205,7 @@ container exists. Inspect processes, locks, artifact timestamps, and the run log
   `tools.strategy_status_page`. Deleting a duplicate happens only at intake; afterwards a row is excluded, not deleted.
   Not touched by the purge: `candidate_spec_full_v1.json` and the model1/2/3 manifests (bound to the spec hash), the
   `ELIGIBILITY_EXPANSION_*` decision records, `REGIME_ELIGIBILITY.csv`, `NEW_REPO_CANDIDATES.json`, the run archives.
+- **Full backtest always 5m (owner decision 2026-09-26).** `regime/full_backtest.py` defaults to 5m detail candles above 5m; 1m is impractical over the full window. `regime_specialists.html` is now English, sorts by 5m by default and shows no author-timeframe result above 5m (`regime_gating.html` stays German). Open: the running text of the specialists page and the winner/discovery sections are still computed from author-timeframe data, and the old measured rows have not been rerun.
 - **The two result pages** (`regime_specialists.html`, `regime_gating.html`) are rebuilt with
   `python -m tools.regime_specialists_page` and always both, with the timestamp of that generation, before either is
   published. Rankings are recomputed whenever results change; only the floor and the rules are frozen.

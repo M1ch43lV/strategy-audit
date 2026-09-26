@@ -1,0 +1,381 @@
+<!doctype html><html lang="en"><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1"><style>:root{color-scheme:light}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+
+<title>Discovery and Validation Benchmark</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap">
+<style>
+/*__COMMON_CSS__*/
+</style>
+
+
+<div class="wrap">
+<div class="zoomctrl" role="group" aria-label="Table zoom">
+  <button type="button" id="zoom-out" aria-label="Shrink tables">&minus;</button>
+  <span class="zlabel" id="zoom-label">100%</span>
+  <button type="button" id="zoom-in" aria-label="Enlarge tables">+</button>
+</div>
+
+<header>
+  <div class="eyebrow">Whole-window benchmark &middot; every strategy with a 5m-resolution run &middot; As of {{generated}}</div>
+  <h1>Discovery and Validation benchmark</h1>
+  <p class="subtitle">How every strategy did over a whole window, not split by market phase, for the validation window and for the discovery window: dollar gain at a fixed stake against buy-and-hold, and Freqtrade&rsquo;s own report metrics. It is the plain benchmark; the market-phase analysis is in the Regime specialists page.</p>
+  <div class="metabar">
+    <span>Validation <b>{{val_start}}</b> to <b>{{val_end}}</b></span>
+    <span><b>{{n_gain_rows}}</b> strategies with a dollar result</span>
+    <span><b>{{n_gain_pos}}</b>/<b>{{n_gain_rows}}</b> with a positive total dollar gain</span>
+    <span><b>{{n_gain_beat}}</b>/<b>{{n_gain_rows}}</b> beat the benchmark in dollars</span>
+  </div>
+</header>
+
+<nav class="toc" aria-label="Contents">
+  <a href="#sec-total">Gain in dollars</a>
+  <a href="#sec-ft">Freqtrade metrics</a>
+  <a href="#sec-disc-total">Discovery: gain in dollars</a>
+  <a href="#sec-disc-ft">Discovery: Freqtrade metrics</a>
+  <a href="{{main_url}}" target="_blank" rel="noopener">&#8598; Regime specialists</a>
+</nav>
+
+<div class="callout info"><span class="dot">&#8505;</span><div><b>What this page is.</b> Every figure covers all trades of its window together, whatever the market phase. Two views of the same runs: our own pricing (a fixed $1000 stake per trade, no reinvestment, and the coin&rsquo;s buy-and-hold over exactly the same trades as the yardstick) and the report block Freqtrade itself writes for each backtest (compounding account, starting capital $1000). The two answer different questions, so they can disagree, see the note under the second table. Robustness and confirmation columns are the same annotations as on the Regime specialists page.</div></div>
+
+<details class="fold" id="legend">
+  <summary>Legend: markers and metrics <span class="sub">* futures &middot; # DCA &middot; &dagger; 5m rerun &middot; metrics &middot; LCB &middot; robustness</span></summary>
+  <div class="foldbody">
+<div class="callout info"><span class="dot">&#8505;</span><div><b>* = futures strategy, in every table on this page.</b> Marks every strategy whose <code class="mono">run_profile</code> in <code class="mono">evidence/EXECUTION_PROFILES.csv</code> is <code class="mono">futures_long</code>/<code class="mono">futures_short</code>/<code class="mono">futures_long_short</code> &mdash; the same spot/futures split the backtest pipeline itself uses. This is not a leverage <i>level</i>, only the market type: futures/margin can in principle lose more than 100% of the stake, spot cannot. {{n_futures_eval}} of the {{n_eval}} Model 0 strategies are marked this way.</div></div>
+<div class="callout info"><span class="dot">&#8505;</span><div><b># = DCA strategy, in every table on this page.</b> Marks every strategy whose own source code sets <code class="mono">position_adjustment_enable = True</code> AND implements an actual <code class="mono">adjust_trade_position()</code> method &mdash; checked directly on the code, not on the broader <code class="mono">strategy_type</code> marker <code class="mono">grid_dca</code> from <code class="mono">STRATEGY_STATUS.csv</code> (a plain substring hit on <code class="mono">position_adjustment_enable</code>/<code class="mono">dca</code>/<code class="mono">grid</code> in the source, with no True check and no behaviour check &mdash; {{n_dca_marker}} hits instead of the {{n_dca_verified}} here). Meaning: the strategy can add to (or reduce) an open position after entry instead of entering and exiting once &mdash; the fixed $1000 stake per trade on this page does not model additional buys within the same trade, so the capital actually deployed can be higher. {{n_dca_eval}} of the {{n_eval}} Model 0 strategies and {{n_dca_universal}} of the {{n_universal}} universal candidates are marked this way.</div></div>
+<div class="callout info"><span class="dot">&#8505;</span><div><b>&dagger; = rerun at 5m, in every table on this page.</b> This strategy's author timeframe is 1m; the backtest over all eight pairs did not run through in memory. The owner allowed a rerun of the unchanged strategy with <code class="mono">--timeframe 5m</code> (trial run, look-ahead, warm-up, recursion and full backtest were repeated at 5m for this). All figures for this strategy in the tables are those of the 5m run, so &ldquo;author&rdquo; and &ldquo;5m&rdquo; are the same. A 1m scalper at 5m is a different time resolution of the same rules, not the same behaviour.</div></div>
+<div class="callout info"><span class="dot">&#8505;</span><div><b>Worst trade / Sortino / return p.a. / profit factor / FreqForge score, in every table on this page.</b> All five are raw or point values from exactly this regime, not over the strategy's whole history. Profit factor = gross profit &divide; gross loss (&#8734; with zero losing trades &mdash; per the FreqForge convention the best case, not undefined; the same convention in every table on this page since 2026-09-14, before which another internal table deviated with NaN). Sortino shows <i>"no loss"</i> instead of a number when there was simply not a single losing trade in this regime (Freqtrade's own &ldquo;-100&rdquo; sentinel convention for a metric without downside dispersion &mdash; FreqForge treats that as the best case, not as an error). <b>Return p.a.</b> is a linear, <i>non</i>-compounding annual extrapolation (mean trade return &times; trades per year) &mdash; deliberately not a CAGR: with the fixed-$1000-per-trade bookkeeping used here (every trade its own fresh stake, nothing reinvested) a true compound-interest formula would explode astronomically at high trade frequency without saying anything about actual strategy quality (correction 2026-09-14, after a DeepSeek-v4-pro review of the whole metric code). Sortino is likewise annualised at trade level (square root of trades per year instead of the earlier dimensionally inconsistent mix of daily and per-trade metrics) and can still become large at very high trading frequency together with return p.a. &mdash; from 1,000 upward it is shown compactly with a K/M/B suffix, which is not rounding to a smaller number. The FreqForge score is a weighted 0-100 point value modelled on the six categories of <a href="https://github.com/baxr6/FreqForge" target="_blank" rel="noopener">github.com/baxr6/FreqForge</a>: Sortino 25%, drawdown control 25%, return p.a. 15%, liquidation safety 15%, profit factor 10%, worst-trade severity 10%. <b>Purely additional report columns, not a ranking criterion</b> &mdash; the "no single score" rule from <code class="mono">REGIME_AUDIT_PLAN.md</code> §17 still applies to tier and excess-return ranking. Liquidation safety feeds into the score but has been narrowed since 2026-09-14 to genuine forced liquidations (<code class="mono">exit_reason == "liquidation"</code>) instead of also counting harmless <code class="mono">force_exit</code> exits (e.g. end of the backtest window) &mdash; as a result it sits at 100 points for practically every strategy (only {{n_forced_exits}} of {{trades_mio}} million trades in the whole inventory are forced exits of any kind).</div></div>
+<div class="callout info"><span class="dot">&#8505;</span><div><b>Episode excess LCB / grade, in every table on this page &mdash; deliberately separate from the FreqForge score.</b> <b>LCB stands for <i>lower confidence bound</i>.</b> It is a value below which the true mean excess return does not fall with 95&nbsp;% confidence. A strategy's mean is only an estimate from a limited number of episodes; the lower bound says how much of it can still be believed in the unfavourable case. If it is above 0, the lead over buy-and-hold is statistically reliable. It answers directly "does trading beat B&amp;H, AND is that statistically reliable (many episodes), or just luckily good on a few?" Calculation, agreed with DeepSeek-v4-pro: for each independent episode the strategy return minus the buy-and-hold return <i>of that one episode</i> is formed, from that the mean and dispersion over all episodes, then the one-sided 95% lower bound <code class="mono">LCB = mean &minus; t(0.95, n&minus;1) &times; standard error</code>. Few or strongly fluctuating episodes automatically pull the bound deep into the negative &mdash; without a separate minimum-trade rule, the reliability is already in the formula. Grade is a Gainium-style A-F grade from fixed thresholds on the same LCB value (A: &gt;+2%, B: 0 to +2%, C: &minus;2% to 0, D: &minus;5% to &minus;2%, F: below) &mdash; fixed before any results were seen, not chosen afterwards to fit. With fewer than 2 episodes no value appears (EXPLORATORY strategies with 0-1 episodes in a phase cannot sensibly be bounded). <b>Likewise a purely additional column, no substitute for tier or excess-return ranking.</b>
+{{callout_robust}}
+  </div>
+</details>
+
+<section id="sec-total">
+  <div class="sectionhead">
+    <h2>Whole validation window: gain in dollars</h2>
+    <span class="hint">all market phases together &middot; $1000 stake per trade, no reinvestment &middot; all {{n_gain_rows}} strategies</span>
+  </div>
+  <p class="secintro">Supplements the excess-return percentage with an absolute amount: had every trade of the validation window been run with its own fresh $1000 stake, what does that add up to &mdash; for the strategy and, for comparison, for buy-and-hold of the respective coin over the same trades. The <i>Cost</i> column shows the mean gain per trade before and after 0.1&nbsp;% additional slippage per side; it is the trade-weighted mean of the four BTC phases.</p>
+  <div class="stats">
+    <div class="stat"><div class="n">{{n_gain_rows}} / {{n_eval}}</div><div class="l">strategies with &ge;1 validation trade get a dollar result</div></div>
+    <div class="stat"><div class="n">{{n_gain_pos}} / {{n_gain_rows}}</div><div class="l">with a positive total dollar gain</div></div>
+    <div class="stat"><div class="n">{{n_gain_beat}} / {{n_gain_rows}}</div><div class="l">also beat the benchmark in dollars</div></div>
+    <div class="stat"><div class="n">{{med_gain}}</div><div class="l">median total gain (median excess: {{med_excess}})</div></div>
+    <div class="stat"><div class="n">{{n_d5}}</div><div class="l">strategies with a measured 5m run and a dollar result</div></div>
+  </div>
+  <div class="callout info"><span class="dot">&#8505;</span><div><b>All figures are 5m.</b> Since 2026-09-26 the full backtest is always resolved at 5m: 1m cannot practically be tested over a window this long, and 5m is the most practical solution. A strategy above 5m counts with its 5m run only (a run at its own timeframe does not resolve the order of events inside a candle, so it is not a real result); a strategy above 5m without a finished 5m run has no figures. Strategies at or below 5m already run at that resolution. {{d5_check}}</div></div>
+  <div class="toolbar">
+    <input class="search" id="total-search" type="text" placeholder="Search strategy…">
+    <label class="okfilter"><input type="checkbox" id="total-ok"> robustness PASS only</label>
+    <label class="okfilter"><input type="checkbox" id="total-cf"> confirmed only (at least one phase)</label>
+
+    <span class="rowcount mono" id="total-count"></span>
+  </div>
+  <p class="secintro" id="rob-total-drop" style="margin:0 0 10px;max-width:none;"></p>
+  <div class="tablebox">
+    <div class="scrollbody">
+      <table class="plain" id="total-table">
+        <thead><tr>
+          <th class="sortable num active" data-key="rk">Rank without filter<span class="arrow">&#9662;</span></th>
+          <th class="sortable" data-key="strategy_id">Strategy<span class="arrow">&#9662;</span></th>
+          <th class="sortable" data-key="tf" title="Timeframe of the run the row comes from: 5m for a strategy above 5m, its own timeframe (1m, 3m or 5m) otherwise. Sorted by resolution.">Timeframe<span class="arrow">&#9662;</span></th>
+          <th class="sortable num" data-key="trades" title="Trades in the validation window">Trades<span class="arrow">&#9662;</span></th>
+          <th class="sortable num" data-key="dollar_gain_usd" title="Sum of the gains at a fixed $1,000 stake per trade">Total gain<span class="arrow">&#9662;</span></th>
+          <th class="sortable num" data-key="benchmark_dollar_gain_usd" title="Buy-and-hold of the coin over the same trades, per $1,000">Benchmark<span class="arrow">&#9662;</span></th>
+          <th class="sortable num" data-key="excess_dollar_gain_usd" title="Total gain minus benchmark">Excess ($)<span class="arrow">&#9662;</span></th>
+          <th class="sortable num" data-key="cm" title="Mean gain per trade before → after 0.1 % additional slippage per side">Cost avg. per trade<span class="arrow">&#9662;</span></th>
+          <th class="sortable num" data-key="dc" title="Daily return on the capital actually deployed, validation, after 0.1 % slippage per side. Flatters short trades.">Per day, deployed<span class="arrow">&#9662;</span></th>
+          <th class="sortable num" data-key="ds" title="Daily return on the capital provided (one slot per coin and day), validation, after 0.1 % slippage per side. Goal: 0.08 % per day.">Per day, provided<span class="arrow">&#9662;</span></th>
+          <th class="sortable num" data-key="ok">Robustness<span class="arrow">&#9662;</span></th>
+          <th class="sortable num" data-key="cq" title="Confirmation across discovery and validation. For universal candidates strict or mild, otherwise the number of confirmed phases.">Confirmation<span class="arrow">&#9662;</span></th>
+        </tr></thead>
+        <tbody id="total-body"></tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section id="sec-ft">
+  <div class="sectionhead">
+    <h2>Freqtrade's own metrics</h2>
+    <span class="hint">native backtest reporting, for every strategy with a 5m-resolution run</span>
+  </div>
+  <p class="secintro">With every backtest Freqtrade itself writes a complete comparison block: CAGR, Sharpe/Sortino/Calmar, profit factor, win rate, drawdown and its own simple buy&amp;hold comparison (<code class="mono">market_change</code>). These figures exist for every full-backtest run. Below: the block of every strategy that has a run at 5m resolution &mdash; the 5m detail run for a strategy above 5m, the baseline run for a strategy at or below 5m. The Timeframe column names the strategy&rsquo;s own timeframe; for a strategy above 5m the run is resolved with 5m detail candles. {{ft_intro_tail}}</p>
+
+  <div class="rules">
+    <div class="rule"><b>CAGR</b>Annual geometric growth: (final capital/starting capital)^(365/days) &minus; 1. With compounding over thousands of trades this can become astronomical.</div>
+    <div class="rule"><b>Sharpe ratio</b>Mean daily gain divided by its dispersion, annualised. Penalises every fluctuation, upward ones too. &gt;1 is generally considered usable, &gt;3 very good.</div>
+    <div class="rule"><b>Sortino ratio</b>Like Sharpe, but the dispersion is computed from losing trades only &mdash; upward gain outliers do not count as risk. Usually higher than Sharpe.</div>
+    <div class="rule"><b>Calmar ratio</b>Like Sharpe/Sortino, but the expected return is divided by the maximum drawdown instead of a dispersion. It explodes along with strong compounding, because the numerator already explodes.</div>
+    <div class="rule"><b>Profit factor</b>Sum of all winning trades (dollars) divided by the sum of all losing trades (absolute). 1.2 means: for every lost dollar, $1.20 of profit came in &mdash; independent of the win rate.</div>
+  </div>
+
+  <div class="callout warn"><span class="dot">&#9888;</span><div><b>Freqtrade's own Sharpe/Sortino/Calmar formula divides by the fixed starting capital, not by the current one.</b> With <code class="mono">stake_amount: "unlimited"</code> the dollar gain per trade grows with the compounding account balance, while the denominator still divides by the original $1000 &mdash; this structurally drives Sharpe/Sortino/Calmar here beyond the ranges usual in the financial literature (Sharpe 0&ndash;3). For <i>comparing strategies with each other</i> the values remain usable (all are subject to the same effect); as absolute metrics they are not.</div></div>
+
+  <div class="sectionhead" style="margin-top:22px;">
+    <h3 style="font-size:15px;font-weight:600;">Our evaluation vs. Freqtrade's native evaluation</h3>
+  </div>
+  <div class="tablebox">
+    <table class="plain" data-nosort>
+      <thead><tr><th>Dimension</th><th>Our evaluation</th><th>Freqtrade native</th></tr></thead>
+      <tbody>
+        <tr><td><b>Period</b></td><td>Validation window only, 2024-01-01 to the end</td><td>The whole canonical run, 2020-03 to 2026-08 (including the discovery window)</td></tr>
+        <tr><td><b>Capital deployed</b></td><td>Fixed $1000 stake per trade, no reinvestment</td><td><code class="mono">stake_amount: "unlimited"</code> &mdash; the full account balance is reinvested across up to 8 simultaneous positions</td></tr>
+        <tr><td><b>Regime resolution</b></td><td>Separate per BTC/coin regime</td><td>One total over the whole period, no regime breakdown</td></tr>
+        <tr><td><b>Benchmark</b></td><td>The coin's own spot buy&amp;hold over the whole ADX regime episode</td><td><code class="mono">market_change</code>: one buy&amp;hold over the whole period, all 8 pairs equally weighted</td></tr>
+        <tr><td><b>Answers</b></td><td>Is the strategy structurally better than mere holding in a particular market regime &mdash; controlled for compounding and data snooping?</td><td>How would the strategy actually have fared over the whole period with real reinvestment?</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+
+  <div class="toolbar">
+    <input class="search" id="ft-search" type="text" placeholder="Search strategy…">
+    <span class="rowcount mono" id="ft-count"></span>
+  </div>
+  <div class="tablebox">
+    <div class="scrollbody">
+      <table class="plain" id="ft-table">
+        <thead><tr>
+          <th class="sortable" data-key="strategy_id">Strategy<span class="arrow">&#9662;</span></th>
+          <th class="sortable" data-key="tf" title="Timeframe of the run the row comes from: 5m for a strategy above 5m, its own timeframe (1m, 3m or 5m) otherwise. Sorted by resolution.">Timeframe<span class="arrow">&#9662;</span></th>
+          <th class="sortable num" data-key="total_trades">Trades<span class="arrow">&#9662;</span></th>
+          <th class="sortable num" data-key="winrate">Win rate<span class="arrow">&#9662;</span></th>
+          <th class="sortable num" data-key="cagr">CAGR<span class="arrow">&#9662;</span></th>
+          <th class="sortable num active" data-key="sharpe">Sharpe<span class="arrow">&#9662;</span></th>
+          <th class="sortable num" data-key="sortino">Sortino<span class="arrow">&#9662;</span></th>
+          <th class="sortable num" data-key="calmar">Calmar<span class="arrow">&#9662;</span></th>
+          <th class="sortable num" data-key="profit_factor">Profit factor<span class="arrow">&#9662;</span></th>
+          <th class="sortable num" data-key="max_drawdown_account">Max DD<span class="arrow">&#9662;</span></th>
+          <th class="sortable num" data-key="final_balance">Final capital<span class="arrow">&#9662;</span></th>
+          <th class="sortable num" data-key="ok">Robustness<span class="arrow">&#9662;</span></th>
+          <th class="sortable num" data-key="ur">Confirmation<span class="arrow">&#9662;</span></th>
+        </tr></thead>
+        <tbody id="ft-body"></tbody>
+      </table>
+    </div>
+  </div>
+  <p class="secintro" style="margin-top:10px;">Final capital = $1000 starting capital, over the whole canonical period with real reinvestment. Max DD = largest drop from the previous peak, in % of the account. Source: <code class="mono">user_data/profile_smoke/&lt;strategy&gt;-*.zip</code>, Freqtrade's own backtest export.</p>
+</section>
+
+<section id="sec-disc-total">
+  <div class="sectionhead">
+    <h2>Discovery window: gain in dollars</h2>
+    <span class="hint">trades opened 2020-04 to 2023-12 &middot; $1000 stake per trade, no reinvestment &middot; {{n_disc_gain}} strategies</span>
+  </div>
+  <p class="secintro">The same view as the validation table above, for the discovery window: every trade opened before 2024-01-01, each with its own fresh $1000 stake, summed; the benchmark is buy-and-hold of the respective coin over the same trades. Same 5m basis (a strategy above 5m with its 5m run, every other with its baseline run). The discovery window is where the market-phase analysis chose its candidates, so a strategy that earns here and in validation is the stronger case. {{n_disc_pos}} of {{n_disc_gain}} strategies have a positive total gain. Computed by <code class="mono">regime/discovery_benchmark.py</code>.</p>
+  <div class="toolbar">
+    <input class="search" id="dtotal-search" type="text" placeholder="Search strategy…">
+    <span class="rowcount mono" id="dtotal-count"></span>
+  </div>
+  <div class="tablebox">
+    <div class="scrollbody">
+      <table class="plain" id="dtotal-table">
+        <thead><tr>
+          <th class="sortable num active" data-key="rk">Rank<span class="arrow">&#9662;</span></th>
+          <th class="sortable" data-key="strategy_id">Strategy<span class="arrow">&#9662;</span></th>
+          <th class="sortable" data-key="tf" title="Timeframe of the run the row comes from: 5m for a strategy above 5m, its own timeframe (1m, 3m or 5m) otherwise. Sorted by resolution.">Timeframe<span class="arrow">&#9662;</span></th>
+          <th class="sortable num" data-key="trades" title="Trades opened in the discovery window">Trades<span class="arrow">&#9662;</span></th>
+          <th class="sortable num" data-key="dollar_gain_usd" title="Sum of the gains at a fixed $1,000 stake per trade">Total gain<span class="arrow">&#9662;</span></th>
+          <th class="sortable num" data-key="benchmark_dollar_gain_usd" title="Buy-and-hold of the coin over the same trades, per $1,000">Benchmark<span class="arrow">&#9662;</span></th>
+          <th class="sortable num" data-key="excess_dollar_gain_usd" title="Total gain minus benchmark">Excess ($)<span class="arrow">&#9662;</span></th>
+          <th class="sortable num" data-key="per_trade" title="Mean gain per trade at a $1,000 stake">Per trade<span class="arrow">&#9662;</span></th>
+        </tr></thead>
+        <tbody id="dtotal-body"></tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section id="sec-disc-ft">
+  <div class="sectionhead">
+    <h2>Discovery window: Freqtrade's own metrics</h2>
+    <span class="hint">Freqtrade's report metrics over the trades opened 2020-04 to 2023-12 &middot; {{n_disc_ft}} strategies</span>
+  </div>
+  <p class="secintro">The metrics Freqtrade reports for a backtest (win rate, CAGR, Sharpe, Sortino, Calmar, profit factor, max drawdown, final capital), computed for the discovery window only. They come from the run's own trade list with Freqtrade's own functions (<code class="mono">freqtrade.data.metrics</code>), starting capital $1000 and the window 2020-04-01 to 2024-01-01; the account compounds as in the whole-period table above. A trade still open at the end of 2023 is counted when it opened, while a run that stopped at the end of 2023 would have closed it by force. The buy-and-hold comparison <code class="mono">market_change</code> is not recomputed for the window. The note on the starting-capital denominator above applies here too. Same 5m basis as the tables above.</p>
+  <div class="toolbar">
+    <input class="search" id="dft-search" type="text" placeholder="Search strategy…">
+    <span class="rowcount mono" id="dft-count"></span>
+  </div>
+  <div class="tablebox">
+    <div class="scrollbody">
+      <table class="plain" id="dft-table">
+        <thead><tr>
+          <th class="sortable" data-key="strategy_id">Strategy<span class="arrow">&#9662;</span></th>
+          <th class="sortable" data-key="tf" title="Timeframe of the run the row comes from: 5m for a strategy above 5m, its own timeframe (1m, 3m or 5m) otherwise. Sorted by resolution.">Timeframe<span class="arrow">&#9662;</span></th>
+          <th class="sortable num" data-key="total_trades">Trades<span class="arrow">&#9662;</span></th>
+          <th class="sortable num" data-key="winrate">Win rate<span class="arrow">&#9662;</span></th>
+          <th class="sortable num" data-key="cagr">CAGR<span class="arrow">&#9662;</span></th>
+          <th class="sortable num active" data-key="sharpe">Sharpe<span class="arrow">&#9662;</span></th>
+          <th class="sortable num" data-key="sortino">Sortino<span class="arrow">&#9662;</span></th>
+          <th class="sortable num" data-key="calmar">Calmar<span class="arrow">&#9662;</span></th>
+          <th class="sortable num" data-key="profit_factor">Profit factor<span class="arrow">&#9662;</span></th>
+          <th class="sortable num" data-key="max_drawdown_account">Max DD<span class="arrow">&#9662;</span></th>
+          <th class="sortable num" data-key="final_balance">Final capital<span class="arrow">&#9662;</span></th>
+        </tr></thead>
+        <tbody id="dft-body"></tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="prov">
+    Source: <code>regime/specialist_evaluation.py</code> (dollar gain), <code>regime/detail_totals.py</code> (the 5m runs), <code>tools/regime_specialists_page.py</code> (Freqtrade report block).
+    Data: <code>results/regime/specialist_evaluation/strategy_total_dollar_gain.csv</code>, <code>detail_5m_total_dollar_gain.csv</code>; discovery window: <code>discovery_total_dollar_gain.csv</code>, <code>discovery_native_stats.csv</code> (<code>regime/discovery_benchmark.py</code>).
+  </div>
+</footer>
+
+</div>
+<script>
+var PAGE_LANG = 'en';
+const TOTALGAIN = __TOTALGAIN_JSON__;
+const FTSTATS = __FTSTATS_JSON__;
+const DISCGAIN = __DISCGAIN_JSON__;
+const DISCFT = __DISCFT_JSON__;
+const DAILYTARGET = __DAILYTARGET_JSON__;
+const FUTURESSTRATEGIES = __FUTURESSTRATEGIES_JSON__;
+const DCASTRATEGIES = __DCASTRATEGIES_JSON__;
+const RECOVERY5MSTRATEGIES = __RECOVERY5MSTRATEGIES_JSON__;
+const REPOMAP = __REPOMAP_JSON__;
+
+/*__COMMON_JS__*/
+
+function effTf(r){ return r.tfm > 5 ? '5m' : (r.tf || '–'); }
+function fmtDaily(v){
+  if (v === null || v === undefined) return '–';
+  var p = v * 100;
+  var s = Math.abs(p) >= 10 ? Math.abs(p).toFixed(0) : Math.abs(p).toFixed(3);
+  return (p >= 0 ? '+' : '−') + dec(s) + ' %';
+}
+function dailyClass(v){
+  if (v === null || v === undefined) return '';
+  if (v >= DAILYTARGET) return 'pos';
+  return v >= 0 ? 'neg-1' : 'neg-3';
+}
+// ---- whole validation window: every strategy, author timeframe / 5m run side by side
+// (the author side is left out for strategies above 5m: it is not a real result there)
+(function renderTotal(){
+  var KEYS5 = {trades: 'd_trades', dollar_gain_usd: 'd_gain', benchmark_dollar_gain_usd: 'd_bench',
+               excess_dollar_gain_usd: 'd_excess', cm: 'd_cm', dc: 'd_dc', ds: 'd_ds', rk: 'rk'};
+  function why(r){
+    if (r.ok) return 'PASS';
+    if (r.xs === 'SENSITIVE') return '5m sensitive';
+    if (r.xs === 'PENDING') return '5m open';
+    if (r.xs === 'ERROR') return '5m error';
+    if (r.xs === 'PASS') return 'Cost ✗';
+    return '–';
+  }
+  function fmt2(v){ return (v >= 0 ? '+' : '−') + dec(Math.abs(v).toFixed(2)); }
+  function noteFor(r){
+    if (r.xs === 'ERROR') return 'The 5m run failed (time limit or error).';
+    if (r.xb === 'rule') return 'No separate 5m run: the strategy\'s timeframe is ' + r.tf + ', not above 5m (rule, not a measurement).';
+    if (r.xb === 'measured') return 'The 5m run has no trade in the validation window.';
+    return 'There is no 5m run for this strategy yet.';
+  }
+  // author / 5m; above 5m only the 5m figure is shown
+  function two(r, a, b){ return '<td class="num">' + (authorHidden(r) ? b : a) + '</td>'; }
+  function miss(r){ return '<span class="na5" title="' + noteFor(r) + '">–</span>'; }
+  var has5 = function(r){ return r.d_trades !== null && r.d_trades !== undefined; };
+  var api = wireSearchSortTable({
+    data: TOTALGAIN, tableId: 'total-table', bodyId: 'total-body',
+    countId: 'total-count', searchId: 'total-search',
+    defaultKey: 'rk', defaultDir: 1,
+    filter: function(r){
+      if (document.getElementById('total-ok').checked && !r.ok) return false;
+      if (document.getElementById('total-cf').checked && !((r.cn || 0) + (r.bn || 0) > 0)) return false;
+      return true;
+    },
+    keys5: KEYS5,
+    rowHtml: function(r){
+      var d = has5(r);
+      var cost = r.cm === null || r.cm === undefined ? '–' : fmt2(r.cm) + ' → ' + fmt2(r.c10) + ' %';
+      var cost5 = d && r.d_cm !== null && r.d_cm !== undefined ? fmt2(r.d_cm) + ' → ' + fmt2(r.d_c10) + ' %' : null;
+      return '<tr><td class="num mono">' + (r.rk === null || r.rk === undefined ? '–' : r.rk) + '</td><td><b>' + futuresLabel(r.strategy_id) + '</b></td>' +
+        '<td class="mono">' + effTf(r) + '</td>' +
+        two(r, '<span class="mono">' + r.trades + '</span>', d ? '<span class="mono">' + r.d_trades + '</span>' : miss(r)) +
+        two(r, '<span class="val ' + dollarClass(r.dollar_gain_usd) + '">' + fmtUsd(r.dollar_gain_usd) + '</span>', d ? '<span class="val ' + dollarClass(r.d_gain) + '">' + fmtUsd(r.d_gain) + '</span>' : miss(r)) +
+        two(r, '<span class="val ' + dollarClass(r.benchmark_dollar_gain_usd) + '">' + fmtUsd(r.benchmark_dollar_gain_usd) + '</span>', d ? '<span class="val ' + dollarClass(r.d_bench) + '">' + fmtUsd(r.d_bench) + '</span>' : miss(r)) +
+        two(r, '<span class="val ' + dollarClass(r.excess_dollar_gain_usd) + '">' + fmtUsd(r.excess_dollar_gain_usd) + '</span>', d ? '<span class="val ' + dollarClass(r.d_excess) + '">' + fmtUsd(r.d_excess) + '</span>' : miss(r)) +
+        two(r, '<span class="mono">' + cost + '</span>', cost5 ? '<span class="mono">' + cost5 + '</span>' : miss(r)) +
+        two(r, '<span class="val ' + dailyClass(r.dc) + '">' + fmtDaily(r.dc) + '</span>', d && r.d_dc !== null && r.d_dc !== undefined ? '<span class="val ' + dailyClass(r.d_dc) + '">' + fmtDaily(r.d_dc) + '</span>' : miss(r)) +
+        two(r, '<span class="val ' + dailyClass(r.ds) + '">' + fmtDaily(r.ds) + '</span>', d && r.d_ds !== null && r.d_ds !== undefined ? '<span class="val ' + dailyClass(r.d_ds) + '">' + fmtDaily(r.d_ds) + '</span>' : miss(r)) +
+        robustCell(r) + stratConfirmCell(r) + '</tr>';
+    },
+    extra: function(rows){
+      var only = document.getElementById('total-ok').checked;
+      var top = TOTALGAIN.filter(function(r){ return r.rk !== null && r.rk !== undefined; }).sort(function(a, b){ return a.rk - b.rk; }).slice(0, 10);
+      var lost = top.filter(function(r){ return !r.ok; });
+      document.getElementById('rob-total-drop').innerHTML = lost.length ?
+        '<b>Of the ten largest dollar winners (5m run), ' + lost.length + ' drop out:</b> ' + lost.map(function(r){
+          return futuresLabel(r.strategy_id) + ' (' + fmtUsd(r.d_gain) + ', ' + why(r) + (r.xs === 'PASS' && r.cv !== 'PASS' ? ', total cost ' + (r.cv === 'NA' ? 'not profitable' : 'not passed') : '') + ')';
+        }).join(', ') + '.' : 'All ten largest dollar winners pass robustness.';
+    }
+  });
+  ['total-ok', 'total-cf'].forEach(function(id){ document.getElementById(id).addEventListener('change', api.render); });
+})();
+
+// Freqtrade's own block, for the universal candidates: robustness and confirmation come from the same rows
+(function(){
+  var byId = {};
+  TOTALGAIN.forEach(function(u){ byId[u.strategy_id] = u; });
+  FTSTATS.forEach(function(r){
+    var u = byId[r.strategy_id] || {};
+    r.ok = u.ok || 0; r.xs = u.xs; r.ur = u.ur === undefined ? -1 : u.ur; r.us = u.us === undefined ? null : u.us;
+    r.up = u.up || 0; r.cn = u.cn || 0; r.bn = u.bn || 0; r.cq = u.cq || 0;
+  });
+})();
+wireSearchSortTable({
+  data: FTSTATS, tableId: 'ft-table', bodyId: 'ft-body',
+  countId: 'ft-count', searchId: 'ft-search',
+  defaultKey: 'sharpe', defaultDir: -1,
+  rowHtml: function(r){
+    return '<tr><td><b>' + futuresLabel(r.strategy_id) + '</b></td>' +
+      '<td class="mono">' + effTf(r) + '</td>' +
+      '<td class="num mono">' + r.total_trades + '</td>' +
+      '<td class="num mono">' + Math.round(r.winrate * 100) + '%</td>' +
+      '<td class="num val ' + signClass(r.cagr) + '">' + fmtCagr(r.cagr) + '</td>' +
+      '<td class="num val ' + signClass(r.sharpe) + '">' + fmtRatio(r.sharpe) + '</td>' +
+      '<td class="num val ' + signClass(r.sortino) + '">' + fmtRatio(r.sortino) + '</td>' +
+      '<td class="num val ' + signClass(r.calmar) + '">' + fmtRatio(r.calmar) + '</td>' +
+      '<td class="num val ' + signClass((r.profit_factor === null ? 0 : r.profit_factor) - 1) + '">' + (r.profit_factor === null ? '–' : r.profit_factor.toFixed(2)) + '</td>' +
+      '<td class="num mono">' + Math.round(r.max_drawdown_account * 100) + '%</td>' +
+      '<td class="num val ' + signClass(r.final_balance - r.starting_balance) + '">$' + Math.round(r.final_balance).toLocaleString(LOCALE) + '</td>' +
+      robustCell(r) + uconfirmCell(r) + '</tr>';
+  }
+});
+
+
+// ---- discovery window: gain in dollars and Freqtrade's own metrics, same 5m basis
+wireSearchSortTable({
+  data: DISCGAIN.map(function(r){ r.per_trade = r.trades ? r.dollar_gain_usd / r.trades : null; return r; }),
+  tableId: 'dtotal-table', bodyId: 'dtotal-body', countId: 'dtotal-count', searchId: 'dtotal-search',
+  defaultKey: 'rk', defaultDir: 1,
+  rowHtml: function(r){
+    function usd(v){ return v === null || v === undefined ? '–' : '<span class="val ' + dollarClass(v) + '">' + fmtUsd(v) + '</span>'; }
+    return '<tr><td class="num mono">' + r.rk + '</td><td><b>' + futuresLabel(r.strategy_id) + '</b></td>' +
+      '<td class="mono">' + effTf(r) + '</td><td class="num mono">' + r.trades + '</td>' +
+      '<td class="num">' + usd(r.dollar_gain_usd) + '</td><td class="num">' + usd(r.benchmark_dollar_gain_usd) + '</td>' +
+      '<td class="num">' + usd(r.excess_dollar_gain_usd) + '</td><td class="num">' + usd(r.per_trade) + '</td></tr>';
+  }
+});
+wireSearchSortTable({
+  data: DISCFT, tableId: 'dft-table', bodyId: 'dft-body', countId: 'dft-count', searchId: 'dft-search',
+  defaultKey: 'sharpe', defaultDir: -1,
+  rowHtml: function(r){
+    var pf = r.profit_factor === null || r.profit_factor === undefined ? null : r.profit_factor;
+    return '<tr><td><b>' + futuresLabel(r.strategy_id) + '</b></td>' +
+      '<td class="mono">' + effTf(r) + '</td>' +
+      '<td class="num mono">' + r.total_trades + '</td>' +
+      '<td class="num mono">' + Math.round(r.winrate * 100) + '%</td>' +
+      '<td class="num val ' + signClass(r.cagr) + '">' + fmtCagr(r.cagr) + '</td>' +
+      '<td class="num val ' + signClass(r.sharpe) + '">' + fmtRatio(r.sharpe) + '</td>' +
+      '<td class="num val ' + signClass(r.sortino) + '">' + fmtRatio(r.sortino) + '</td>' +
+      '<td class="num val ' + signClass(r.calmar) + '">' + fmtRatio(r.calmar) + '</td>' +
+      '<td class="num val ' + signClass((pf === null ? 0 : pf) - 1) + '">' + (pf === null ? '–' : pf.toFixed(2)) + '</td>' +
+      '<td class="num mono">' + Math.round(r.max_drawdown_account * 100) + '%</td>' +
+      '<td class="num val ' + signClass(r.final_balance - r.starting_balance) + '">$' + Math.round(r.final_balance).toLocaleString(LOCALE) + '</td></tr>';
+  }
+});
+
+</script>
+
+</body></html>

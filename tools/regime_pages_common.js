@@ -1,3 +1,9 @@
+// Language switch: every page sets PAGE_LANG = 'en' before this script; without it the helpers fall back to German.
+// T(de, en) picks the string, dec() the decimal separator.
+var EN = typeof PAGE_LANG !== 'undefined' && PAGE_LANG === 'en';
+var LOCALE = EN ? 'en-US' : 'de-DE';
+function T(de, en){ return EN ? en : de; }
+function dec(str){ return EN ? String(str) : String(str).replace('.', ','); }
 // Asterisk-marks a futures-mode strategy wherever its name is displayed -
 // added 2026-09-13 per explicit user request, after a max-drawdown question
 // showed most >100% figures were a bug, not leverage, but futures/margin
@@ -63,7 +69,7 @@ function valClass(v){
   return 'neg-3';
 }
 function fmtUsd(v){
-  const s = Math.round(Math.abs(v)).toLocaleString('de-DE');
+  const s = Math.round(Math.abs(v)).toLocaleString(LOCALE);
   return (v >= 0 ? '+$' : String.fromCharCode(8722) + '$') + s;
 }
 function dollarClass(v){
@@ -93,9 +99,9 @@ function fmtBigNumber(abs){
   // frequency (extreme annualization, not a bug - see the callout above the
   // table) - compact suffixes keep the column readable instead of a
   // ten-digit decimal.
-  if (abs >= 1e9) return (abs / 1e9).toFixed(1) + 'Mrd';
-  if (abs >= 1e6) return (abs / 1e6).toFixed(1) + 'Mio';
-  if (abs >= 1e3) return (abs / 1e3).toFixed(1) + 'Tsd';
+  if (abs >= 1e9) return (abs / 1e9).toFixed(1) + T('Mrd', 'B');
+  if (abs >= 1e6) return (abs / 1e6).toFixed(1) + T('Mio', 'M');
+  if (abs >= 1e3) return (abs / 1e3).toFixed(1) + T('Tsd', 'k');
   return abs.toFixed(2);
 }
 function fmtSortino(v){
@@ -103,7 +109,7 @@ function fmtSortino(v){
   // freqtrade's own "-100.0" broken-Sortino sentinel (no losing trades at
   // all) - FreqForge scores this best-in-class, not worst, so it is shown
   // as such rather than as a literal -100.00.
-  if (v <= -99.99) return 'kein Verlust';
+  if (v <= -99.99) return T('kein Verlust', 'no loss');
   return (v >= 0 ? '+' : String.fromCharCode(8722)) + fmtBigNumber(Math.abs(v));
 }
 function fmtAnnualizedReturn(v){
@@ -147,40 +153,41 @@ function fmtCagr(v){
    the claimed ADX state. It changes no ranking; it is a column. */
 function fmtConf(v){
   if (v === null || v === undefined) return '–';
-  return (v >= 0 ? '+' : '−') + Math.abs(100 * v).toFixed(1).replace('.', ',') + ' %';
+  return (v >= 0 ? '+' : '−') + Math.abs(100 * v).toFixed(1).replace('.', T(',', '.')) + ' %';
 }
 /* Confirmation across the discovery and the validation window (regime/discovery_comparison.py).
    cf: 2 confirmed, 1 floor in both windows but not confirmed, 0 no discovery floor.
    sc: the smaller of the two lower confidence bounds, the weakest link. */
 function confirmCell(r){
+  var score = '<span class="confscore" title="' + T('Score: die kleinere der beiden unteren Vertrauensgrenzen', 'Score: the smaller of the two lower confidence bounds') + '">' + fmtConf(r.sc) + '</span>';
   if (r.cf === 2) {
-    return '<td class="num"><span class="rbadge rb-ok" title="Floor in beiden Fenstern, und die untere Vertrauensgrenze des Excess-Returns liegt in der Discovery und in der Validation über 0.">bestätigt</span><span class="confscore" title="Score: die kleinere der beiden unteren Vertrauensgrenzen">' + fmtConf(r.sc) + '</span></td>';
+    return '<td class="num"><span class="rbadge rb-ok" title="' + T('Floor in beiden Fenstern, und die untere Vertrauensgrenze des Excess-Returns liegt in der Discovery und in der Validation über 0.', 'Floor in both windows, and the lower confidence bound of the excess return is above 0 in discovery and in validation.') + '">' + T('bestätigt', 'confirmed') + '</span>' + score + '</td>';
   }
   if (r.cf === 1) {
-    return '<td class="num"><span class="rbadge rb-warn" title="Floor in beiden Fenstern, aber mindestens eine untere Vertrauensgrenze liegt nicht über 0.">nicht bestätigt</span><span class="confscore" title="Score: die kleinere der beiden unteren Vertrauensgrenzen">' + fmtConf(r.sc) + '</span></td>';
+    return '<td class="num"><span class="rbadge rb-warn" title="' + T('Floor in beiden Fenstern, aber mindestens eine untere Vertrauensgrenze liegt nicht über 0.', 'Floor in both windows, but at least one lower confidence bound is not above 0.') + '">' + T('nicht bestätigt', 'not confirmed') + '</span>' + score + '</td>';
   }
-  return '<td class="num"><span class="rbadge rb-no" title="Die Strategie erreicht in dieser Phase in der Discovery den Floor nicht (weniger als 5 Episoden oder 10 Trades).">–</span></td>';
+  return '<td class="num"><span class="rbadge rb-no" title="' + T('Die Strategie erreicht in dieser Phase in der Discovery den Floor nicht (weniger als 5 Episoden oder 10 Trades).', 'The strategy does not reach the floor in this phase in discovery (fewer than 5 episodes or 10 trades).') + '">–</span></td>';
 }
 /* Universal candidates: 2 strict (confirmed in all four coin phases), 1 mild (better than
    Buy-and-Hold in both windows in at least three of the four phases), 0 neither. */
 function uconfirmCell(r){
   var cls = r.ur === 2 ? 'rb-ok' : (r.ur === 1 ? 'rb-warn' : 'rb-no');
-  var text = r.ur === 2 ? 'streng bestätigt' : (r.ur === 1 ? 'mild bestätigt' : 'nicht bestätigt');
-  var title = r.ur === 2 ? 'In allen vier Coin-Phasen bestätigt.' :
-    (r.ur === 1 ? 'Nicht in allen vier Phasen bestätigt, aber in ' + r.up + ' von 4 Phasen in beiden Fenstern besser als Buy-and-Hold (mildere Regel).' :
-    'In weniger als drei Phasen in beiden Fenstern besser als Buy-and-Hold.');
-  return '<td class="num"><span class="rbadge ' + cls + '" title="' + title + '">' + text + '</span><span class="confscore" title="Score der schwächsten Phase: die kleinere der beiden unteren Vertrauensgrenzen">' + fmtConf(r.us) + '</span></td>';
+  var text = r.ur === 2 ? T('streng bestätigt', 'strictly confirmed') : (r.ur === 1 ? T('mild bestätigt', 'mildly confirmed') : T('nicht bestätigt', 'not confirmed'));
+  var title = r.ur === 2 ? T('In allen vier Coin-Phasen bestätigt.', 'Confirmed in all four coin phases.') :
+    (r.ur === 1 ? T('Nicht in allen vier Phasen bestätigt, aber in ' + r.up + ' von 4 Phasen in beiden Fenstern besser als Buy-and-Hold (mildere Regel).', 'Not confirmed in all four phases, but better than buy-and-hold in both windows in ' + r.up + ' of 4 phases (milder rule).') :
+    T('In weniger als drei Phasen in beiden Fenstern besser als Buy-and-Hold.', 'Better than buy-and-hold in both windows in fewer than three phases.'));
+  return '<td class="num"><span class="rbadge ' + cls + '" title="' + title + '">' + text + '</span><span class="confscore" title="' + T('Score der schwächsten Phase: die kleinere der beiden unteren Vertrauensgrenzen', 'Score of the weakest phase: the smaller of the two lower confidence bounds') + '">' + fmtConf(r.us) + '</span></td>';
 }
 function robustCell(r){
   if (r.ok) {
-    return '<td class="num"><span class="rbadge rb-ok" title="5m-Detaillauf bestanden und Kostenstress (0,1 % Slippage je Seite) in diesem ADX-Zustand bestanden">PASS</span></td>';
+    return '<td class="num"><span class="rbadge rb-ok" title="' + T('5m-Detaillauf bestanden und Kostenstress (0,1 % Slippage je Seite) in diesem ADX-Zustand bestanden', '5m detail run passed and cost stress (0.1 % slippage per side) passed in this ADX state') + '">PASS</span></td>';
   }
   var text, cls = 'rb-no', title;
-  if (r.xs === 'SENSITIVE') { text = 'sensitiv'; cls = 'rb-warn'; title = 'Das Ergebnis ändert sich unter 5m-Detailkerzen wesentlich (Vorzeichen, mehr als 50 % Gewinnänderung oder mehr als 10 % andere Trades).'; }
-  else if (r.xs === 'PENDING') { text = '5m offen'; title = 'Timeframe über 5m; der 5m-Detaillauf steht noch aus.'; }
-  else if (r.xs === 'ERROR') { text = 'Fehler'; title = 'Der 5m-Detaillauf oder sein Vergleich ist fehlgeschlagen.'; }
-  else if (r.xs === 'PASS') { text = 'Kosten ✗'; cls = 'rb-warn'; title = 'Ausführung bestanden, aber der Gewinn in diesem Zustand übersteht 0,1 % zusätzlichen Slippage je Seite nicht oder hat zu wenige Trades.'; }
-  else { text = '–'; title = 'Kein Robustheitsergebnis für diese Strategie.'; }
+  if (r.xs === 'SENSITIVE') { text = T('sensitiv', 'sensitive'); cls = 'rb-warn'; title = T('Das Ergebnis ändert sich unter 5m-Detailkerzen wesentlich (Vorzeichen, mehr als 50 % Gewinnänderung oder mehr als 10 % andere Trades).', 'The result changes materially under 5m detail candles (sign, more than 50 % change in profit, or more than 10 % different trades).'); }
+  else if (r.xs === 'PENDING') { text = T('5m offen', '5m open'); title = T('Timeframe über 5m; der 5m-Detaillauf steht noch aus.', 'Timeframe above 5m; the 5m detail run is still pending.'); }
+  else if (r.xs === 'ERROR') { text = T('Fehler', 'Error'); title = T('Der 5m-Detaillauf oder sein Vergleich ist fehlgeschlagen.', 'The 5m detail run or its comparison failed.'); }
+  else if (r.xs === 'PASS') { text = T('Kosten ✗', 'Cost ✗'); cls = 'rb-warn'; title = T('Ausführung bestanden, aber der Gewinn in diesem Zustand übersteht 0,1 % zusätzlichen Slippage je Seite nicht oder hat zu wenige Trades.', 'Execution passed, but the profit in this state does not survive 0.1 % additional slippage per side, or has too few trades.'); }
+  else { text = '–'; title = T('Kein Robustheitsergebnis für diese Strategie.', 'No robustness result for this strategy.'); }
   return '<td class="num"><span class="rbadge ' + cls + '" title="' + title + '">' + text + '</span></td>';
 }
 document.querySelectorAll('.tabs').forEach(function(tabsEl){
@@ -237,34 +244,37 @@ document.querySelectorAll('.tabs').forEach(function(tabsEl){
    cn/bn: number of coin/BTC phases in which the strategy is confirmed. */
 function stratConfirmCell(r){
   var partial = (r.cn || 0) + (r.bn || 0) > 0;
-  var scoreText = partial ? '<span class="confscore" title="In wie vielen der vier Coin- und der vier BTC-Marktphasen die Strategie bestätigt ist.">Coin ' + (r.cn || 0) + '/4 · BTC ' + (r.bn || 0) + '/4</span>' : '';
+  var scoreText = partial ? '<span class="confscore" title="' + T('In wie vielen der vier Coin- und der vier BTC-Marktphasen die Strategie bestätigt ist.', 'In how many of the four coin and the four BTC market phases the strategy is confirmed.') + '">Coin ' + (r.cn || 0) + '/4 · BTC ' + (r.bn || 0) + '/4</span>' : '';
   var badge;
-  if (r.ur === 2) badge = '<span class="rbadge rb-ok" title="Universal-Kandidat, in allen vier Coin-Phasen in Discovery und Validation bestätigt.">streng bestätigt</span>';
-  else if (r.ur === 1) badge = '<span class="rbadge rb-warn" title="Universal-Kandidat, in mindestens drei der vier Coin-Phasen in beiden Fenstern besser als Buy-and-Hold (mildere Regel).">mild bestätigt</span>';
-  else if (partial) badge = '<span class="rbadge rb-warn" title="Nicht als Universal-Kandidat bestätigt, aber in einzelnen Marktphasen bestätigt.">teilweise</span>';
-  else if (r.ur === 0) badge = '<span class="rbadge rb-no" title="Universal-Kandidat, aber weder streng noch mild bestätigt.">nicht bestätigt</span>';
-  else badge = '<span class="rbadge rb-no" title="In keiner Marktphase in beiden Fenstern bestätigt.">–</span>';
+  if (r.ur === 2) badge = '<span class="rbadge rb-ok" title="' + T('Universal-Kandidat, in allen vier Coin-Phasen in Discovery und Validation bestätigt.', 'Universal candidate, confirmed in discovery and validation in all four coin phases.') + '">' + T('streng bestätigt', 'strictly confirmed') + '</span>';
+  else if (r.ur === 1) badge = '<span class="rbadge rb-warn" title="' + T('Universal-Kandidat, in mindestens drei der vier Coin-Phasen in beiden Fenstern besser als Buy-and-Hold (mildere Regel).', 'Universal candidate, better than buy-and-hold in both windows in at least three of the four coin phases (milder rule).') + '">' + T('mild bestätigt', 'mildly confirmed') + '</span>';
+  else if (partial) badge = '<span class="rbadge rb-warn" title="' + T('Nicht als Universal-Kandidat bestätigt, aber in einzelnen Marktphasen bestätigt.', 'Not confirmed as a universal candidate, but confirmed in individual market phases.') + '">' + T('teilweise', 'partly') + '</span>';
+  else if (r.ur === 0) badge = '<span class="rbadge rb-no" title="' + T('Universal-Kandidat, aber weder streng noch mild bestätigt.', 'Universal candidate, but neither strictly nor mildly confirmed.') + '">' + T('nicht bestätigt', 'not confirmed') + '</span>';
+  else badge = '<span class="rbadge rb-no" title="' + T('In keiner Marktphase in beiden Fenstern bestätigt.', 'Not confirmed in both windows in any market phase.') + '">–</span>';
   return '<td class="num" data-v="' + (r.cq || 0) + '">' + badge + scoreText + '</td>';
 }
 /* The same, inline, for the winner cards (one phase). */
 function confInline(r){
-  if (r.cf === 2) return '<span class="rbadge rb-ok" title="Floor in beiden Fenstern, untere Vertrauensgrenze in Discovery und Validation über 0. Score: die schwächere der beiden Grenzen.">bestätigt ' + fmtConf(r.sc) + '</span>';
-  if (r.cf === 1) return '<span class="rbadge rb-warn" title="Floor in beiden Fenstern, aber mindestens eine untere Vertrauensgrenze liegt nicht über 0.">nicht bestätigt</span>';
-  return '<span class="rbadge rb-no" title="In der Discovery unter dem Floor in dieser Phase.">–</span>';
+  if (r.cf === 2) return '<span class="rbadge rb-ok" title="' + T('Floor in beiden Fenstern, untere Vertrauensgrenze in Discovery und Validation über 0. Score: die schwächere der beiden Grenzen.', 'Floor in both windows, lower confidence bound above 0 in discovery and validation. Score: the weaker of the two bounds.') + '">' + T('bestätigt ', 'confirmed ') + fmtConf(r.sc) + '</span>';
+  if (r.cf === 1) return '<span class="rbadge rb-warn" title="' + T('Floor in beiden Fenstern, aber mindestens eine untere Vertrauensgrenze liegt nicht über 0.', 'Floor in both windows, but at least one lower confidence bound is not above 0.') + '">' + T('nicht bestätigt', 'not confirmed') + '</span>';
+  return '<span class="rbadge rb-no" title="' + T('In der Discovery unter dem Floor in dieser Phase.', 'Below the floor in discovery in this phase.') + '">–</span>';
 }
 
 /* ---- sorting for tables that have no sorter of their own (a click on any header) ---- */
 function parseNumberText(text){
   var t = String(text).replace(/−/g, '-').trim();
-  if (/^kein Verlust/.test(t) || t.charAt(0) === '∞') return Infinity;
-  var m = t.match(/^([-+]?)\$?\s?(\d[\d.,]*)(Tsd|Mio|Mrd)?/);
+  if (/^(kein Verlust|no loss)/.test(t) || t.charAt(0) === '∞') return Infinity;
+  var m = t.match(/^([-+]?)\$?\s?(\d[\d.,]*)(Tsd|Mio|Mrd|k|M|B)?/);
   if (!m) return null;
   var s = m[2];
-  if (/^\d{1,3}(\.\d{3})+(,\d+)?$/.test(s)) s = s.replace(/\./g, '');
-  s = s.replace(',', '.');
+  if (EN) s = s.replace(/,/g, '');
+  else {
+    if (/^\d{1,3}(\.\d{3})+(,\d+)?$/.test(s)) s = s.replace(/\./g, '');
+    s = s.replace(',', '.');
+  }
   var v = parseFloat(s);
   if (isNaN(v)) return null;
-  var mult = {Tsd: 1e3, Mio: 1e6, Mrd: 1e9}[m[3]] || 1;
+  var mult = {Tsd: 1e3, Mio: 1e6, Mrd: 1e9, k: 1e3, M: 1e6, B: 1e9}[m[3]] || 1;
   return (m[1] === '-' ? -1 : 1) * v * mult;
 }
 function cellSortValue(td){
@@ -308,7 +318,7 @@ function enableSort(table){
       order.sort(function(a, b){
         var ma = missing(a.v), mb = missing(b.v);
         if (ma || mb) return ma && mb ? a.k - b.k : (ma ? 1 : -1);
-        var c = numeric ? (a.v === b.v ? 0 : (a.v < b.v ? -1 : 1)) : String(a.v).localeCompare(String(b.v), 'de');
+        var c = numeric ? (a.v === b.v ? 0 : (a.v < b.v ? -1 : 1)) : String(a.v).localeCompare(String(b.v), LOCALE);
         return c === 0 ? a.k - b.k : c * dir;
       });
       order.forEach(function(o){ body.appendChild(o.r); });
@@ -394,6 +404,67 @@ var TERMS = {
   'adx sideways': 'ADX < 20: kein ausgeprägter Trend.',
   'adx transition': '20 ≤ ADX < 25: Übergangszone.'
 };
+var TERMS_EN = {
+  'strategy': 'Name of the FreqTrade strategy. * = futures strategy, # = DCA strategy, † = author timeframe 1m, rerun at 5m (see legend).',
+  'state': 'ADX market phase: uptrend, downtrend, sideways or transition. Definition in the section “ADX regime”.',
+  'regime': 'Kind of market phase: BTC (the state of BTC) or coin (the state of the traded coin).',
+  'phase': 'ADX market phase: uptrend, downtrend, sideways or transition.',
+  'weakest regime': 'The coin phase with this strategy\'s worst excess return. For a universal candidate it is the weak spot of the all-round claim.',
+  'trades': 'Number of trades opened in the window shown.',
+  'episodes': 'Contiguous stretches of a market phase (for example an uptrend over seven weeks). Each episode counts as one independent observation; the floor requires at least 5.',
+  'excess return': 'Return of the strategy in the episodes of this phase minus buy-and-hold over the same episodes. Above 0 means: better than holding.',
+  'dollar gain': 'Sum of the gains of all trades at a fixed $1,000 stake per trade, without reinvestment.',
+  'b&h gain': 'The same amount for buy-and-hold of the respective coin over the whole episodes.',
+  'excess in the weakest': 'Excess return in the coin phase in which this strategy is weakest.',
+  'median excess': 'Median of this strategy\'s excess returns over its four coin phases.',
+  'max drawdown': 'Largest drop of the gain curve at a fixed $1,000 stake, in percent of the capital deployed up to that point.',
+  'worst trade': 'The worst single trade in this phase, in percent of its stake.',
+  'sortino': 'Return divided by the dispersion of the losing trades, annualised. “no loss” means: there was no losing trade.',
+  'return p.a.': 'Mean trade return times trades per year. Extrapolated linearly, without compounding.',
+  'profit factor': 'Gross profit divided by gross loss. Above 1 means: more profit than loss. ∞ means: no losing trade.',
+  'freqforge score': 'Score from 0 to 100 from six categories after FreqForge (Sortino, drawdown, return, liquidation, profit factor, worst trade). An additional column only, not a ranking criterion.',
+  'episode excess lcb': 'LCB (lower confidence bound): lower 95 % confidence bound of the mean excess return per episode. Above 0 means: the lead is statistically reliable.',
+  'grade': 'Grade A to F from the LCB: A above +2 %, B 0 to +2 %, C −2 to 0 %, D −5 to −2 %, F below.',
+  'robustness': 'Stage 8b. PASS: the 5m detail run is passed (up to 5m by rule) and the profit survives 0.1 % additional slippage per side.',
+  'confirmation': 'Confirmed means: floor in discovery and validation, and the lower confidence bound is above 0 in both. The value next to it is the score, the weaker of the two bounds.',
+  'consistency': 'Share of the four coin phases in which the strategy beats buy-and-hold.',
+  'total gain': 'Sum of the gains of all validation trades at a fixed $1,000 stake per trade, all market phases together.',
+  'benchmark': 'Buy-and-hold of the respective coin over exactly the same trades (open to close), also $1,000 each.',
+  'excess ($)': 'Total gain minus benchmark, in dollars.',
+  'rank without filter': 'Rank by total gain of the 5m run among all strategies with a 5m dollar result, without robustness filter. Strategies at or below 5m rank by their own run.',
+  'share': 'Share of the strategies with robustness PASS.',
+  'pass': 'Strategies with robustness PASS (5m run and cost stress passed).',
+  '5m sensitive': 'Strategies whose result changes materially under 5m detail candles: different sign, more than 50 % change in profit, or more than 10 % different trade count.',
+  'cost ✗': 'Strategies that pass the 5m run but do not survive 0.1 % additional slippage per side in this phase.',
+  '5m open': 'Timeframe above 5m, but the 5m run is not finished (open or failed).',
+  'confirmed': 'Strategies confirmed in discovery and validation in this phase.',
+  'confirmed + pass': 'Confirmed and at the same time with robustness PASS.',
+  'strategies': 'Number of strategies with the floor in this phase (at least 5 episodes and 10 trades).',
+  'rank 1 without filter': 'The best strategy of the phase by excess return, without robustness filter.',
+  'rank 1 with pass': 'The best strategy of the phase by excess return among those with robustness PASS.',
+  'rank': 'Place in this list.',
+  'excess discovery': 'Excess return in discovery (before 2024-01-01).',
+  'excess validation': 'Excess return in validation (from 2024-01-01).',
+  'trades / episodes': 'Number of trades and episodes in the discovery window.',
+  'rank in validation': 'Place among all strategies with the floor in validation. “below floor”: fewer than 5 episodes or 10 trades, not ranked.',
+  'win rate': 'Share of winning trades.',
+  'cagr': 'Annual growth with compounding over the whole period: (final capital ÷ starting capital)^(365 ÷ days) − 1.',
+  'sharpe': 'Freqtrade\'s Sharpe ratio: mean daily gain divided by its dispersion, annualised.',
+  'calmar': 'Freqtrade\'s Calmar ratio: expected return divided by the maximum drawdown.',
+  'max dd': 'Largest drop from the previous peak, in percent of the account.',
+  'final capital': 'Account balance at the end with $1,000 start and real reinvestment.',
+  'coin': 'The trading pair against USDT.',
+  'start': 'First day of the episode.',
+  'end': 'Last day of the episode.',
+  'days': 'Duration of the episode in days.',
+  'total': 'Sum over all four states.',
+  'timeframe': 'The strategy\'s timeframe (from the author). Above 5m the run is resolved with 5m candles; the author-timeframe result is not shown.',
+  'adx uptrend': 'ADX ≥ 25 and +DI > −DI: strong uptrend.',
+  'adx downtrend': 'ADX ≥ 25 and −DI > +DI: strong downtrend.',
+  'adx sideways': 'ADX < 20: no pronounced trend.',
+  'adx transition': '20 ≤ ADX < 25: transition zone.'
+};
+if (EN) TERMS = TERMS_EN;
 function tipFor(label){
   var key = label.toLowerCase().replace(/\s+/g, ' ').trim();
   return TERMS[key] || null;
@@ -419,7 +490,7 @@ function decorate(){
 })();
 
 /* ---- Autor / 5m: which side a numeric column sorts by ---- */
-var SORT_BASIS = 'author';
+var SORT_BASIS = 'd5';
 var TABLE_RENDERS = [];
 function syncBasisUi(){
   Array.prototype.forEach.call(document.querySelectorAll('input[name="sort-basis"]'), function(el){ el.checked = el.value === SORT_BASIS; });
@@ -442,6 +513,8 @@ document.addEventListener('change', function(ev){
    (fields of the nested `x5` object) have a 5m side; every other key sorts by the row itself. */
 function basisValue(r, key, opts){
   if (SORT_BASIS === 'd5') {
+    // at or below 5m the author run already is the 5m resolution: sort by its own figure
+    if (r.tfm && r.tfm <= 5) return r[key];
     if (opts.keys5 && opts.keys5[key]) return r[opts.keys5[key]];
     if (opts.pairedKeys && opts.pairedKeys.indexOf(key) !== -1) return r.x5 ? r.x5[key] : null;
   }
@@ -451,20 +524,24 @@ function isMissing(v){ return v === null || v === undefined || (typeof v === 'nu
 
 /* ---- a cell with two figures, author timeframe / 5m rerun ---- */
 function why5(r){
-  if (r.x5 && r.x5.tier) return 'Im 5m-Lauf unter dem Floor in dieser Phase (' + r.x5.trades + ' Trades, ' + r.x5.episodes + ' Episoden): kein belastbares Ergebnis.';
-  if (r.tfm && r.tfm < 5) return 'Kein 5m-Lauf: der Timeframe der Strategie ist ' + r.tf + ' und liegt unter 5m (Regel, keine Messung).';
-  if (r.tfm > 5) return 'Kein verwertbarer 5m-Lauf: der Lauf ist fehlgeschlagen, oder die Strategie erreicht im 5m-Lauf nicht in allen vier Coin-Phasen den Floor.';
-  return 'Kein 5m-Wert.';
+  if (r.x5 && r.x5.tier) return T('Im 5m-Lauf unter dem Floor in dieser Phase (', 'Below the floor in the 5m run in this phase (') + r.x5.trades + T(' Trades, ', ' trades, ') + r.x5.episodes + T(' Episoden): kein belastbares Ergebnis.', ' episodes): no reliable result.');
+  if (r.tfm && r.tfm < 5) return T('Kein 5m-Lauf: der Timeframe der Strategie ist ' + r.tf + ' und liegt unter 5m (Regel, keine Messung).', 'No 5m run: the strategy\'s timeframe is ' + r.tf + ', below 5m (rule, not a measurement).');
+  if (r.tfm > 5) return T('Kein verwertbarer 5m-Lauf: der Lauf ist fehlgeschlagen, oder die Strategie erreicht im 5m-Lauf nicht in allen vier Coin-Phasen den Floor.', 'No usable 5m run: the run failed, or the strategy does not reach the floor in all four coin phases in the 5m run.');
+  return T('Kein 5m-Wert.', 'No 5m value.');
 }
 function fmtOrDash(f, v){ return isMissing(v) ? '<span class="na5">–</span>' : f(v); }
+/* Above 5m the author-timeframe run is not a real result (the order of events inside a candle is not
+   resolved), so only the 5m side is shown for those strategies. */
+function authorHidden(r){ return !!(r.tfm && r.tfm > 5); }
 function pairCell(f, r, k){
   var b = (r.x5 && !isMissing(r.x5[k])) ? f(r.x5[k]) : '<span class="na5" title="' + why5(r) + '">–</span>';
-  return '<td class="num">' + fmtOrDash(f, r[k]) + '<span class="slash">/</span>' + b + '</td>';
+  if (authorHidden(r)) return '<td class="num">' + b + '</td>';
+  return '<td class="num">' + fmtOrDash(f, r[k]) + '</td>';
 }
-/* header of a column that has both sides; the two halves of "Autor / 5m" are clickable */
+/* header of a column that has both sides; the two halves of "Author / 5m" are clickable */
 function pairTh(key, label, tip, extra){
   return '<th class="sortable num' + (extra || '') + '" data-key="' + key + '" title="' + tip + '">' + label +
-    '<span class="hb"><span class="hs" data-basis="author">Autor</span> / <span class="hs" data-basis="d5">5m</span></span><span class="arrow">&#9662;</span></th>';
+    '<span class="arrow">&#9662;</span></th>';
 }
 var F = {
   int: function(v){ return '<span class="mono">' + v + '</span>'; },
@@ -493,7 +570,7 @@ function wireSearchSortTable(opts){
     if (key === 'lcb_grade') { var g = basisValue(r, key, opts); return isMissing(g) ? null : gradeScore(g); }
     if (key === 'ur') return (r.ur === undefined ? -1 : r.ur) * 100 + (isMissing(r.us) ? -9 : r.us);
     if (key === 'cf') return r.cf * 100 + (isMissing(r.sc) ? -9 : r.sc);
-    if (key === 'tf') return r.tfm;
+    if (key === 'tf') return Math.min(r.tfm, 5);
     return basisValue(r, key, opts);
   }
   function render(){
@@ -504,11 +581,11 @@ function wireSearchSortTable(opts){
     rows.sort(function(a, b){
       var ma = isMissing(a.v), mb = isMissing(b.v);
       if (ma || mb) return ma && mb ? a.i - b.i : (ma ? 1 : -1);
-      var c = (typeof a.v === 'string' || typeof b.v === 'string') ? String(a.v).localeCompare(String(b.v), 'de') : (a.v === b.v ? 0 : (a.v < b.v ? -1 : 1));
+      var c = (typeof a.v === 'string' || typeof b.v === 'string') ? String(a.v).localeCompare(String(b.v), LOCALE) : (a.v === b.v ? 0 : (a.v < b.v ? -1 : 1));
       return c === 0 ? a.i - b.i : c * dir;
     });
     var shown = rows.map(function(o){ return o.r; });
-    count.textContent = shown.length + ' von ' + opts.data.length;
+    count.textContent = shown.length + T(' von ', ' of ') + opts.data.length;
     body.innerHTML = shown.map(opts.rowHtml).join('');
     if (opts.extra) opts.extra(shown);
   }

@@ -228,6 +228,8 @@ robustness and per-regime cost-screen stores under the owner rule. Publication
 then refreshes the status table, allowing verified-specialist qualification to
 be evaluated without changing E1 admission.
 
+**Owner decision 2026-09-26: the full backtest always runs at 5m detail.** `regime/full_backtest.py` now defaults to `--timeframe-detail auto`: 5m detail candles for every strategy whose own timeframe is above 5m (`none` switches it off, only `auto`, `none` and `5m` are accepted for canonical output). Reason: 1m cannot practically be tested over a window this long, and 5m is the most practical solution; a run at the author timeframe alone is not a real result above 5m, because the order of events inside a candle is not resolved. *Not yet migrated:* measured canonical rows produced before this date stay valid (the identity check is unchanged), the Stage 8b rerun described above still exists as a second run for them, and no rerun has been launched. The *Regime Specialists* page already hides the author-timeframe figures above 5m, ranks and sorts by the 5m figures by default, and is in English.
+
 Its accepted baselines include the owner-approved 5m OOM-recovery scope. Those
 records keep their retained 1m OOM provenance, but their accepted 5m archive is
 treated as already at the detail granularity for Stage 8b and is cost-screened

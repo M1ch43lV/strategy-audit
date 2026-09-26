@@ -1,289 +1,239 @@
-<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1"><style>:root{color-scheme:light}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<!doctype html><html lang="en"><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1"><style>:root{color-scheme:light}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
 
-<title>Regime-Spezialisten</title>
+<title>Regime Specialists</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap">
 <style>
 /*__COMMON_CSS__*/
 </style>
 
+
 <div class="wrap">
-<div class="zoomctrl" role="group" aria-label="Tabellenzoom">
-  <button type="button" id="zoom-out" aria-label="Tabellen verkleinern">&minus;</button>
+<div class="zoomctrl" role="group" aria-label="Table zoom">
+  <button type="button" id="zoom-out" aria-label="Shrink tables">&minus;</button>
   <span class="zlabel" id="zoom-label">100%</span>
-  <button type="button" id="zoom-in" aria-label="Tabellen vergr&ouml;&szlig;ern">+</button>
-  <span class="basisbar" title="Nach welcher Seite die Zahlenspalten mit zwei Werten (Autor / 5m) sortiert werden. Ein Klick auf &bdquo;Autor&ldquo; oder &bdquo;5m&ldquo; in einer Spaltenüberschrift wählt die Seite direkt.">Sortieren nach
-    <label><input type="radio" name="sort-basis" value="author" checked> Autor</label>
-    <label><input type="radio" name="sort-basis" value="d5"> 5m</label></span>
+  <button type="button" id="zoom-in" aria-label="Enlarge tables">+</button>
 </div>
 
 <header>
-  <div class="eyebrow">Specialist-/Universal-Auswertung · Voller Modell-0-Bestand · Stand {{generated}}</div>
-  <h1>Regime-Spezialisten</h1>
-  <p class="subtitle">Welche von {{n_eval}} erfolgreich attribuierten Strategien schlägt in welcher Marktlage ihren eigenen Exposure-matched Benchmark — und welche halten sich über alle vier Regime hinweg. Gerankt wird ausschließlich nach der präregistrierten Regel, nie nach roher Rendite.</p>
+  <div class="eyebrow">Specialist / universal evaluation · Full Model 0 inventory · As of {{generated}}</div>
+  <h1>Regime specialists</h1>
+  <p class="subtitle">Which of the {{n_eval}} successfully attributed strategies beat their own exposure-matched benchmark in which market phase &mdash; and which hold up across all four regimes. Ranking follows the preregistered rule only, never raw return.</p>
   <div class="metabar">
-    <span><b>{{n_eval}}</b> von {{n_eligible}} eligiblen Strategien</span>
-    <span><b>{{trades_total}}</b> Trades</span>
-    <span>Discovery <b>{{disc_start}}</b> bis <b>{{disc_end}}</b></span>
-    <span>Validation <b>{{val_start}}</b> bis <b>{{val_end}}</b></span>
-    <span><b>{{rows_btc}}</b>/<b>{{rows_coin}}</b> Strategien im VALIDATION-Tier, je Marktphase gezählt (BTC/Coin)</span>
-    <span><b>{{n_universal}}</b> Universal-Kandidaten</span>
-    <span><b>{{n_consistent}}</b> davon vollständig konsistent</span>
-    <span><b>{{n_gain_pos}}</b>/<b>{{n_gain_rows}}</b> mit positivem Gesamtgewinn in Dollar</span>
-    <span><b>{{n_verified_rows_btc}}</b>/<b>{{n_verified_rows_coin}}</b> davon mit Robustheits-PASS (BTC/Coin)</span>
-    <span><b>{{n_conf_btc}}</b>/<b>{{n_conf_coin}}</b> davon in Discovery und Validation bestätigt (BTC/Coin)</span>
+    <span><b>{{n_eval}}</b> of {{n_eligible}} eligible strategies</span>
+    <span><b>{{trades_total}}</b> trades</span>
+    <span>Discovery <b>{{disc_start}}</b> to <b>{{disc_end}}</b></span>
+    <span>Validation <b>{{val_start}}</b> to <b>{{val_end}}</b></span>
+    <span><b>{{rows_btc}}</b>/<b>{{rows_coin}}</b> strategies in the VALIDATION tier, counted per market phase (BTC/coin)</span>
+    <span><b>{{n_universal}}</b> universal candidates</span>
+    <span><b>{{n_consistent}}</b> of them fully consistent</span>
+    <span><b>{{n_verified_rows_btc}}</b>/<b>{{n_verified_rows_coin}}</b> of them with a robustness PASS (BTC/coin)</span>
+    <span><b>{{n_conf_btc}}</b>/<b>{{n_conf_coin}}</b> of them confirmed in discovery and validation (BTC/coin)</span>
   </div>
 </header>
 
-<nav class="toc" aria-label="Inhalt">
-  <a href="#sec-regeln">Regeln und Fenster</a>
-  <a href="#dv-section">Discovery gegen Validation</a>
-  <a href="#robust-section">Robuste Gewinner</a>
-  <a href="#sec-portfolio">Phasen-Portfolio</a>
-  <a href="#sec-total">Gesamtes Validierungsfenster</a>
-  <a href="#sec-spez">Tabellen je Marktphase</a>
-  <a href="#sec-funnel">Universal-Kandidaten</a>
-  <a href="#sec-ft">Freqtrade-Kennzahlen</a>
-  <a href="#sec-adx">ADX-Definition</a>
-  <a href="#sec-log">Änderungsprotokoll</a>
-  <a href="{{gating_url}}" target="_blank" rel="noopener">Gating-Hypothese &#8599;</a>
+<nav class="toc" aria-label="Contents">
+  <a href="#sec-regeln">Rules and windows</a>
+  <a href="#dv-section">Discovery vs. validation</a>
+  <a href="#robust-section">Robust winners</a>
+  <a href="#sec-portfolio">Phase portfolio</a>
+  <a href="#sec-spez">Tables per market phase</a>
+  <a href="#sec-adx">ADX definition</a>
+  <a href="#sec-log">Change log</a>
+  <a href="{{benchmark_url}}">Discovery and Validation benchmark &#8599;</a>
+  <a href="{{gating_url}}" target="_blank" rel="noopener">Gating hypothesis &#8599;</a>
 </nav>
 
 <details class="fold" id="legend">
-  <summary>Legende: Markierungen und Kennzahlen <span class="sub">* Futures &middot; # DCA &middot; &dagger; 5m-Neulauf &middot; Kennzahlen &middot; LCB &middot; Robustheit</span></summary>
+  <summary>Legend: markers and metrics <span class="sub">* futures &middot; # DCA &middot; &dagger; 5m rerun &middot; metrics &middot; LCB &middot; robustness</span></summary>
   <div class="foldbody">
-<div class="callout info"><span class="dot">&#8505;</span><div><b>* = Futures-Strategie, in jeder Tabelle auf dieser Seite.</b> Markiert jede Strategie mit <code class="mono">run_profile</code> <code class="mono">futures_long</code>/<code class="mono">futures_short</code>/<code class="mono">futures_long_short</code> in <code class="mono">evidence/EXECUTION_PROFILES.csv</code> &mdash; derselbe Spot/Futures-Split, den die Backtest-Pipeline selbst verwendet. Das ist keine Hebel-<i>Höhe</i>, sondern nur die Marktart: Futures/Margin erlaubt grundsätzlich Verluste über 100% des eigenen Einsatzes hinaus, Spot nicht. {{n_futures_eval}} der {{n_eval}} Modell-0-Strategien sind so markiert.</div></div>
-<div class="callout info"><span class="dot">&#8505;</span><div><b># = DCA-Strategie, in jeder Tabelle auf dieser Seite.</b> Markiert jede Strategie, die im eigenen Quellcode <code class="mono">position_adjustment_enable = True</code> gesetzt UND eine tatsächliche <code class="mono">adjust_trade_position()</code>-Methode implementiert hat &mdash; direkt am Code geprüft, nicht am breiteren <code class="mono">strategy_type</code>-Marker <code class="mono">grid_dca</code> aus <code class="mono">STRATEGY_STATUS.csv</code> (reiner Substring-Treffer auf <code class="mono">position_adjustment_enable</code>/<code class="mono">dca</code>/<code class="mono">grid</code> im Quelltext, ohne True-Prüfung und ohne Verhaltenscheck &mdash; {{n_dca_marker}} statt hier {{n_dca_verified}} Treffer). Bedeutung: die Strategie kann eine offene Position nachträglich aufstocken (oder verkleinern) statt nur einmalig ein- und auszusteigen &mdash; der feste $1000-Einsatz je Trade auf dieser Seite bildet zusätzliche Nachkäufe innerhalb desselben Trades nicht ab, der tatsächliche Kapitaleinsatz kann darüberliegen. {{n_dca_eval}} der {{n_eval}} Modell-0-Strategien und {{n_dca_universal}} der {{n_universal}} Universal-Kandidaten sind so markiert.</div></div>
-<div class="callout info"><span class="dot">&#8505;</span><div><b>&dagger; = auf 5m neu gerechnet, in jeder Tabelle auf dieser Seite.</b> Der Autor-Timeframe dieser Strategie ist 1m; der Backtest über alle acht Paare lief im Speicher nicht durch. Der Eigentümer hat einen Neulauf der unveränderten Strategie mit <code class="mono">--timeframe 5m</code> zugelassen (Probelauf, Look-ahead, Warm-up, Rekursion und Voll-Backtest wurden dafür auf 5m wiederholt). Alle Zahlen dieser Strategie in den Tabellen sind die des 5m-Laufs, &bdquo;Autor&ldquo; und &bdquo;5m&ldquo; sind daher gleich. Ein 1m-Scalper auf 5m ist eine andere Zeitauflösung derselben Regeln, nicht dasselbe Verhalten.</div></div>
-<div class="callout info"><span class="dot">&#8505;</span><div><b>Worst Trade / Sortino / Rendite p.a. / Profit-Factor / FreqForge-Score, in jeder Tabelle auf dieser Seite.</b> Alle fünf sind Rohwerte bzw. Punktwerte aus genau diesem Regime, nicht über die ganze Strategie-Historie. Profit-Factor = Bruttogewinn &divide; Bruttoverlust (&#8734; bei null Verlust-Trades &mdash; laut FreqForge-Konvention der Bestfall, nicht undefiniert; seit 2026-09-14 dieselbe Konvention in jeder Tabelle dieser Seite, vorher wich eine andere interne Tabelle mit NaN davon ab). Sortino zeigt <i>"kein Verlust"</i> statt einer Zahl, wenn es in diesem Regime schlicht keinen einzigen Verlust-Trade gab (Freqtrades eigene &bdquo;-100&ldquo;-Sentinel-Konvention f&uuml;r eine Kennzahl ohne Downside-Streuung &mdash; FreqForge wertet das als Bestfall, nicht als Fehler). <b>Rendite p.a.</b> ist eine lineare, <i>nicht</i> kompoundierende Jahreshochrechnung (mittlere Trade-Rendite &times; Trades pro Jahr) &mdash; bewusst kein CAGR: bei der hier verwendeten Fixed-$1000-je-Trade-Buchführung (jeder Trade sein eigener frischer Einsatz, nichts wird wiederangelegt) würde eine echte Zinseszins-Formel bei hoher Trade-Frequenz ins Astronomische explodieren, ohne etwas über die tatsächliche Strategiequalität auszusagen (Korrektur 2026-09-14, nach einer DeepSeek-v4-pro-Durchsicht des gesamten Metrik-Codes). Sortino wird ebenfalls auf Trade-Ebene annualisiert (Wurzel aus Trades-pro-Jahr statt der vorherigen, dimensional inkonsistenten Mischung aus Tages- und Trade-Kennzahlen) und kann bei sehr hoher Handelsfrequenz zusammen mit Rendite p.a. dennoch groß werden &mdash; ab 1.000 wird kompakt mit Tsd/Mio/Mrd-Suffix angezeigt, das ist keine Rundung auf eine kleinere Zahl. FreqForge-Score ist ein gewichteter 0-100-Punktwert, nachgebildet nach den sechs Kategorien von <a href="https://github.com/baxr6/FreqForge" target="_blank" rel="noopener">github.com/baxr6/FreqForge</a>: Sortino 25%, Drawdown-Kontrolle 25%, Rendite p.a. 15%, Liquidation-Safety 15%, Profit-Factor 10%, Worst-Trade-Severity 10%. <b>Rein zusätzliche Berichtsspalten, kein Ranking-Kriterium</b> &mdash; die Regel "kein Einzelscore" aus <code class="mono">REGIME_AUDIT_PLAN.md</code> §17 gilt weiterhin für Tier und Excess-Return-Ranking. Liquidation-Safety fließt in die Score-Berechnung ein, ist aber seit 2026-09-14 auf echte Zwangsliquidationen verengt (<code class="mono">exit_reason == "liquidation"</code>) statt vorher auch harmlose <code class="mono">force_exit</code>-Ausstiege (z. B. Backtest-Fensterende) mitzuzählen &mdash; liegt dadurch bei praktisch jeder Strategie bei 100 Punkten (nur {{n_forced_exits}} von {{trades_mio}} Mio. Trades im ganzen Bestand sind überhaupt Zwangsausstiege irgendeiner Art).</div></div>
-<div class="callout info"><span class="dot">&#8505;</span><div><b>Episoden-Excess-LCB / Grade, in jeder Tabelle auf dieser Seite &mdash; bewusst getrennt vom FreqForge-Score.</b> <b>LCB steht für <i>Lower Confidence Bound</i>, auf Deutsch <i>untere Vertrauensgrenze</i>.</b> Sie ist ein Wert, unter den der wahre mittlere Excess-Return mit 95&nbsp;% Sicherheit nicht fällt. Der Mittelwert einer Strategie ist nur eine Schätzung aus einer begrenzten Zahl von Episoden; die Untergrenze sagt, wie viel davon man auch im ungünstigen Fall noch glauben darf. Liegt sie über 0, ist der Vorsprung gegenüber Buy-and-Hold statistisch belastbar. Beantwortet direkt "schlägt Trading B&amp;H, UND ist das statistisch verlässlich (viele Episoden), oder nur zufällig gut bei wenigen"? Berechnung, mit DeepSeek-v4-pro abgestimmt: je unabhängiger Episode wird die Strategie-Rendite minus Buy-and-Hold-Rendite <i>dieser einen Episode</i> gebildet, daraus über alle Episoden Mittelwert und Streuung, dann die einseitige 95%-Untergrenze <code class="mono">LCB = Mittelwert &minus; t(0,95, n&minus;1) &times; Standardfehler</code>. Wenige oder stark schwankende Episoden ziehen die Grenze automatisch tief ins Negative &mdash; ganz ohne separate Mindest-Trade-Regel, die Verlässlichkeit steckt schon in der Formel. Grade ist eine Gainium-artige A-F-Note aus festen Schwellen auf denselben LCB-Wert (A: &gt;+2%, B: 0 bis +2%, C: &minus;2% bis 0, D: &minus;5% bis &minus;2%, F: darunter) &mdash; vor jeder Sichtung der Ergebnisse festgelegt, nicht nachträglich passend gewählt. Bei unter 2 Episoden erscheint kein Wert (EXPLORATORY-Strategien mit 0-1 Episoden in einer Phase lassen sich nicht sinnvoll bebändern). <b>Ebenfalls rein zusätzliche Spalte, kein Ersatz für Tier oder Excess-Return-Ranking.</b>
+<div class="callout info"><span class="dot">&#8505;</span><div><b>* = futures strategy, in every table on this page.</b> Marks every strategy whose <code class="mono">run_profile</code> in <code class="mono">evidence/EXECUTION_PROFILES.csv</code> is <code class="mono">futures_long</code>/<code class="mono">futures_short</code>/<code class="mono">futures_long_short</code> &mdash; the same spot/futures split the backtest pipeline itself uses. This is not a leverage <i>level</i>, only the market type: futures/margin can in principle lose more than 100% of the stake, spot cannot. {{n_futures_eval}} of the {{n_eval}} Model 0 strategies are marked this way.</div></div>
+<div class="callout info"><span class="dot">&#8505;</span><div><b># = DCA strategy, in every table on this page.</b> Marks every strategy whose own source code sets <code class="mono">position_adjustment_enable = True</code> AND implements an actual <code class="mono">adjust_trade_position()</code> method &mdash; checked directly on the code, not on the broader <code class="mono">strategy_type</code> marker <code class="mono">grid_dca</code> from <code class="mono">STRATEGY_STATUS.csv</code> (a plain substring hit on <code class="mono">position_adjustment_enable</code>/<code class="mono">dca</code>/<code class="mono">grid</code> in the source, with no True check and no behaviour check &mdash; {{n_dca_marker}} hits instead of the {{n_dca_verified}} here). Meaning: the strategy can add to (or reduce) an open position after entry instead of entering and exiting once &mdash; the fixed $1000 stake per trade on this page does not model additional buys within the same trade, so the capital actually deployed can be higher. {{n_dca_eval}} of the {{n_eval}} Model 0 strategies and {{n_dca_universal}} of the {{n_universal}} universal candidates are marked this way.</div></div>
+<div class="callout info"><span class="dot">&#8505;</span><div><b>&dagger; = rerun at 5m, in every table on this page.</b> This strategy's author timeframe is 1m; the backtest over all eight pairs did not run through in memory. The owner allowed a rerun of the unchanged strategy with <code class="mono">--timeframe 5m</code> (trial run, look-ahead, warm-up, recursion and full backtest were repeated at 5m for this). All figures for this strategy in the tables are those of the 5m run, so &ldquo;author&rdquo; and &ldquo;5m&rdquo; are the same. A 1m scalper at 5m is a different time resolution of the same rules, not the same behaviour.</div></div>
+<div class="callout info"><span class="dot">&#8505;</span><div><b>Worst trade / Sortino / return p.a. / profit factor / FreqForge score, in every table on this page.</b> All five are raw or point values from exactly this regime, not over the strategy's whole history. Profit factor = gross profit &divide; gross loss (&#8734; with zero losing trades &mdash; per the FreqForge convention the best case, not undefined; the same convention in every table on this page since 2026-09-14, before which another internal table deviated with NaN). Sortino shows <i>"no loss"</i> instead of a number when there was simply not a single losing trade in this regime (Freqtrade's own &ldquo;-100&rdquo; sentinel convention for a metric without downside dispersion &mdash; FreqForge treats that as the best case, not as an error). <b>Return p.a.</b> is a linear, <i>non</i>-compounding annual extrapolation (mean trade return &times; trades per year) &mdash; deliberately not a CAGR: with the fixed-$1000-per-trade bookkeeping used here (every trade its own fresh stake, nothing reinvested) a true compound-interest formula would explode astronomically at high trade frequency without saying anything about actual strategy quality (correction 2026-09-14, after a DeepSeek-v4-pro review of the whole metric code). Sortino is likewise annualised at trade level (square root of trades per year instead of the earlier dimensionally inconsistent mix of daily and per-trade metrics) and can still become large at very high trading frequency together with return p.a. &mdash; from 1,000 upward it is shown compactly with a K/M/B suffix, which is not rounding to a smaller number. The FreqForge score is a weighted 0-100 point value modelled on the six categories of <a href="https://github.com/baxr6/FreqForge" target="_blank" rel="noopener">github.com/baxr6/FreqForge</a>: Sortino 25%, drawdown control 25%, return p.a. 15%, liquidation safety 15%, profit factor 10%, worst-trade severity 10%. <b>Purely additional report columns, not a ranking criterion</b> &mdash; the "no single score" rule from <code class="mono">REGIME_AUDIT_PLAN.md</code> §17 still applies to tier and excess-return ranking. Liquidation safety feeds into the score but has been narrowed since 2026-09-14 to genuine forced liquidations (<code class="mono">exit_reason == "liquidation"</code>) instead of also counting harmless <code class="mono">force_exit</code> exits (e.g. end of the backtest window) &mdash; as a result it sits at 100 points for practically every strategy (only {{n_forced_exits}} of {{trades_mio}} million trades in the whole inventory are forced exits of any kind).</div></div>
+<div class="callout info"><span class="dot">&#8505;</span><div><b>Episode excess LCB / grade, in every table on this page &mdash; deliberately separate from the FreqForge score.</b> <b>LCB stands for <i>lower confidence bound</i>.</b> It is a value below which the true mean excess return does not fall with 95&nbsp;% confidence. A strategy's mean is only an estimate from a limited number of episodes; the lower bound says how much of it can still be believed in the unfavourable case. If it is above 0, the lead over buy-and-hold is statistically reliable. It answers directly "does trading beat B&amp;H, AND is that statistically reliable (many episodes), or just luckily good on a few?" Calculation, agreed with DeepSeek-v4-pro: for each independent episode the strategy return minus the buy-and-hold return <i>of that one episode</i> is formed, from that the mean and dispersion over all episodes, then the one-sided 95% lower bound <code class="mono">LCB = mean &minus; t(0.95, n&minus;1) &times; standard error</code>. Few or strongly fluctuating episodes automatically pull the bound deep into the negative &mdash; without a separate minimum-trade rule, the reliability is already in the formula. Grade is a Gainium-style A-F grade from fixed thresholds on the same LCB value (A: &gt;+2%, B: 0 to +2%, C: &minus;2% to 0, D: &minus;5% to &minus;2%, F: below) &mdash; fixed before any results were seen, not chosen afterwards to fit. With fewer than 2 episodes no value appears (EXPLORATORY strategies with 0-1 episodes in a phase cannot sensibly be bounded). <b>Likewise a purely additional column, no substitute for tier or excess-return ranking.</b>
 {{callout_robust}}
   </div>
 </details>
 
-<div class="callout info"><span class="dot">&#8505;</span><div><b>Modell 0, ungegatet.</b> Bewertet wird das natürliche Handelsverhalten jeder Strategie ohne Regime-Gate. Die gegateten Modelle 1 bis 3 (Entry-Gate nach Marktphase) stehen in einem eigenen Artefakt: <a href="{{gating_url}}" target="_blank" rel="noopener">Gating-Hypothese</a>.</div></div>
-<div class="callout warn"><span class="dot">&#9888;</span><div><b>Rang 1 ist bei dieser Stichprobengröße kein Gesamt-Sieger-Signal.</b> Je Regime-Spalte konkurrieren {{cand_range}} VALIDATION-Kandidaten. Ein einzelner erster Platz wird leicht von einer dünnen Stichprobe mit zufällig gutem Mittelwert gewonnen (z. B. 12-40 Trades). Belastbarer sind die Universal-Konsistenz und der Median-Excess-Return über alle vier Regime.</div></div>
+<div class="callout info"><span class="dot">&#8505;</span><div><b>Model 0, ungated.</b> What is evaluated is each strategy's natural trading behaviour without a regime gate. The gated models 1 to 3 (entry gate by market phase) are in their own artifact: <a href="{{gating_url}}" target="_blank" rel="noopener">Gating hypothesis</a>.</div></div>
+<div class="callout warn"><span class="dot">&#9888;</span><div><b>At this sample size, rank 1 is not an overall winner signal.</b> Per regime column, {{cand_range}} VALIDATION candidates compete. A single first place is easily won by a thin sample with a coincidentally good mean (e.g. 12-40 trades). More reliable are universal consistency and the median excess return across all four regimes.</div></div>
 
 <div class="stats">
-  <div class="stat"><div class="n">{{n_gain_rows}} / {{n_eval}}</div><div class="l">Strategien mit mindestens einer Marktphase im Validierungsfenster</div></div>
-  <div class="stat"><div class="n">{{n_floor_coin}}</div><div class="l">erreichen den Specialist-Floor in mindestens einem Coin-Regime</div></div>
-  <div class="stat"><div class="n">{{n_universal}}</div><div class="l">Universal-Kandidaten (alle 4 Coin-Regime auf VALIDATION-Tier)</div></div>
-  <div class="stat"><div class="n">{{n_consistent}}</div><div class="l">schlagen den Benchmark in wirklich jedem der vier Coin-Regime</div></div>
-  <div class="stat"><div class="n">{{n_verified_universal}}</div><div class="l">Universal-Kandidaten mit Robustheits-PASS in allen vier Coin-Regimen</div></div>
-  <div class="stat"><div class="n">{{n_univ_strict}} / {{n_univ_mild}}</div><div class="l">Universal-Kandidaten in Discovery und Validation bestätigt (streng / mild)</div></div>
+  <div class="stat"><div class="n">{{n_gain_rows}} / {{n_eval}}</div><div class="l">strategies with at least one market phase in the validation window</div></div>
+  <div class="stat"><div class="n">{{n_floor_coin}}</div><div class="l">reach the specialist floor in at least one coin regime</div></div>
+  <div class="stat"><div class="n">{{n_universal}}</div><div class="l">universal candidates (all 4 coin regimes at VALIDATION tier)</div></div>
+  <div class="stat"><div class="n">{{n_consistent}}</div><div class="l">beat the benchmark in every one of the four coin regimes</div></div>
+  <div class="stat"><div class="n">{{n_verified_universal}}</div><div class="l">universal candidates with a robustness PASS in all four coin regimes</div></div>
+  <div class="stat"><div class="n">{{n_univ_strict}} / {{n_univ_mild}}</div><div class="l">universal candidates confirmed in discovery and validation (strict / mild)</div></div>
 </div>
 
 <section id="sec-regeln">
-  <div class="sectionhead"><h2>Regel des Rankings</h2></div>
+  <div class="sectionhead"><h2>Ranking rule</h2></div>
   <div class="rules">
-    <div class="rule"><b>Split</b>Discovery 2020&ndash;03 bis 2023&ndash;12 · Validation ab 2024&ndash;01. Gerankt wird nur im Validation-Fenster.</div>
-    <div class="rule"><b>Specialist-Floor</b>&ge;5 Episoden UND &ge;10 Trades im selben Regime, sonst Tier EXPLORATORY &mdash; wird gemeldet, nie gerankt.</div>
-    <div class="rule"><b>Benchmark</b>Coin-eigenes Spot-Buy&amp;Hold über die gesamte ADX-Regime-Episode (erster bis letzter klassifizierter Tag), nicht nur über das Open&ndash;Close-Intervall des einzelnen Trades (merge_asof gegen 1-Minuten-Kerzen; bis 2026-09-11 war es das Trade-Intervall &mdash; siehe Callout unten).</div>
-    <div class="rule"><b>Kennzahl</b>Excess-Return = mittlere Episoden-Rendite minus mittlere Benchmark-Rendite &mdash; jede Episode wird zuerst für sich aufsummiert, dann erst über die Episoden gemittelt, nie über einzelne Trades (bis 2026-09-13 war es Letzteres &mdash; siehe Korrektur unten). Kein Einzelwert-Score, keine Auswahl nach bestem Ergebnis.</div>
-    <div class="rule"><b>Median Excess-Return</b>Median der eigenen Excess-Return-Werte einer Strategie über die Marktphasen, in denen sie den Floor erreicht (bis zu 4: BULL/BEAR/SIDEWAYS/TRANSITION bzw. die vier ADX-Zustände) &mdash; eine Ebene über Excess-Return selbst, nicht über Trades oder Episoden. Ein Median über nur 2-4 Werten ist einfach der mittlere (bei 4 Werten: Durchschnitt der beiden mittleren) Regime-Wert &mdash; robuster gegen ein einzelnes Ausreißer-Regime als der Mittelwert über alle vier, aber bei so wenigen Werten kein Ersatz für eine echte Verteilung.</div>
-    <div class="rule"><b>Dollar-Ansicht</b>Fixer $1000-Einsatz je Trade, keine Wiederanlage, einfache Summe &mdash; siehe Abschnitt unten für die verworfene Alternative.</div>
+    <div class="rule"><b>Split</b>Discovery 2020&ndash;03 to 2023&ndash;12 · validation from 2024&ndash;01. Ranking happens in the validation window only.</div>
+    <div class="rule"><b>Specialist floor</b>&ge;5 episodes AND &ge;10 trades in the same regime, otherwise tier EXPLORATORY &mdash; reported, never ranked.</div>
+    <div class="rule"><b>Benchmark</b>The coin's own spot buy&amp;hold over the whole ADX regime episode (first to last classified day), not only over the open&ndash;close interval of the single trade (merge_asof against 1-minute candles; until 2026-09-11 it was the trade interval &mdash; see the callout below).</div>
+    <div class="rule"><b>Metric</b>Excess return = mean episode return minus mean benchmark return &mdash; each episode is first summed on its own, and only then averaged over the episodes, never over single trades (until 2026-09-13 it was the latter &mdash; see the correction below). No single-value score, no selection by best result.</div>
+    <div class="rule"><b>Median excess return</b>Median of a strategy's own excess-return values over the market phases in which it reaches the floor (up to 4: BULL/BEAR/SIDEWAYS/TRANSITION or the four ADX states) &mdash; one level above excess return itself, not over trades or episodes. A median over only 2-4 values is simply the middle regime value (with 4 values: the average of the two middle ones) &mdash; more robust against a single outlier regime than the mean over all four, but with so few values no substitute for a real distribution.</div>
+    <div class="rule"><b>Dollar view</b>Fixed $1000 stake per trade, no reinvestment, plain sum &mdash; see the section below for the rejected alternative.</div>
   </div>
-  <h3 style="font-size:15px;font-weight:600;margin:22px 0 8px;">Die beiden Zeitfenster</h3>
+  <h3 style="font-size:15px;font-weight:600;margin:22px 0 8px;">The two time windows</h3>
   <div class="tablebox">
     <table class="plain" data-nosort>
-      <thead><tr><th>Fenster</th><th>Von</th><th>Bis (einschließlich)</th><th class="num" title="Kalendertage von Anfang bis Ende">Tage</th><th class="num" title="Trades, die in diesem Fenster eröffnet wurden">Trades</th><th>Wofür</th></tr></thead>
+      <thead><tr><th>Window</th><th>From</th><th>To (inclusive)</th><th class="num" title="Calendar days from start to end">Days</th><th class="num" title="Trades opened in this window">Trades</th><th>Purpose</th></tr></thead>
       <tbody>
-        <tr><td><b>Discovery</b></td><td class="mono">{{disc_start}}</td><td class="mono">{{disc_end}}</td><td class="num mono">{{disc_days}}</td><td class="num mono">{{disc_trades}}</td><td>Gegentest: dieselbe Auswertung, ohne Einfluss auf Rang, Tier oder Auswahl.</td></tr>
-        <tr><td><b>Validation</b></td><td class="mono">{{val_start}}</td><td class="mono">{{val_end}}</td><td class="num mono">{{val_days}}</td><td class="num mono">{{val_trades}}</td><td>Alle Ranglisten, Tiers, der Specialist-Floor und der Kostenstress.</td></tr>
+        <tr><td><b>Discovery</b></td><td class="mono">{{disc_start}}</td><td class="mono">{{disc_end}}</td><td class="num mono">{{disc_days}}</td><td class="num mono">{{disc_trades}}</td><td>Counter-test: the same evaluation, with no influence on rank, tier or selection.</td></tr>
+        <tr><td><b>Validation</b></td><td class="mono">{{val_start}}</td><td class="mono">{{val_end}}</td><td class="num mono">{{val_days}}</td><td class="num mono">{{val_trades}}</td><td>All rankings, tiers, the specialist floor and the cost stress.</td></tr>
       </tbody>
     </table>
   </div>
-  <p class="secintro" style="margin-top:8px;max-width:none;">Ein Trade gehört zu dem Fenster, in dem er <i>eröffnet</i> wurde; ein Trade, der vor {{val_start}} beginnt und danach endet, zählt zur Discovery. Die Backtests der Strategien laufen bis {{val_end}} und beginnen bei Spot-Strategien am {{bt_spot}}, bei Futures-Strategien am {{bt_futures}}; die Regime-Tabelle beginnt am {{disc_start}}. Die Grenze wurde am 2026-09-11 eingefroren.</p>
+  <p class="secintro" style="margin-top:8px;max-width:none;">A trade belongs to the window in which it was <i>opened</i>; a trade that starts before {{val_start}} and ends after it counts towards discovery. The strategies' backtests run until {{val_end}} and start on {{bt_spot}} for spot strategies and on {{bt_futures}} for futures strategies; the regime table starts on {{disc_start}}. The boundary was frozen on 2026-09-11.</p>
   <div class="callout info" style="margin-top:14px;"><span class="dot">&#8505;</span><div>
-    <b>Warum es einen Split zwischen Discovery und Validation gibt.</b>
-    <p style="margin:8px 0 0;max-width:none;"><b>Das Problem.</b> Hier werden hunderte Strategien in vier Marktphasen und zwei Regime-Arten (BTC und Coin) verglichen, also tausende Kombinationen. Bei so vielen Vergleichen glänzt immer einige zufällig. Wer eine Strategie für eine Marktphase auf denselben Daten findet, auf denen er sie bewertet, überschätzt sie fast zwangsläufig (Data-Snooping, mehrfaches Testen).</p>
-    <p style="margin:8px 0 0;max-width:none;"><b>Die Lösung.</b> Die Daten werden zeitlich in zwei Fenster geteilt: <i>Discovery</i> (2020-03 bis 2023-12) und <i>Validation</i> (2024-01 bis 2026-08). Beide werden mit derselben Auswertung und denselben Schwellen einzeln bewertet. Die Ranglisten dieser Seite beruhen ausschließlich auf der Validation; aus der Discovery fließt nichts in Rang, Tier oder Auswahl ein. Ihr Zweck ist der Gegentest im nächsten Abschnitt: Hält in der Validation, was sich in der Discovery bewährt hat? Die Grenze ist ein Kalenderdatum, das am 2026-09-11 eingefroren wurde. Sie wurde nur gegen Episodenzahlen geprüft, nie gegen Strategieergebnisse.</p>
-    <p style="margin:8px 0 0;max-width:none;"><b>Nicht verwechseln.</b> <i>EXPLORATORY</i> ist ein Tier (eine Strategie unter dem Specialist-Floor in einer Marktphase), kein Zeitfenster. Discovery und Validation sind die beiden Zeitfenster.</p>
-    <p style="margin:8px 0 0;max-width:none;"><b>Was daraus folgt.</b> Rang, Tier und Specialist-Floor gelten nur im Validation-Fenster; auch die Episoden für den Floor werden nur dort gezählt (Korrektur vom 2026-09-14). Der Kostenstress der Stufe 8b nutzt dasselbe Fenster. Die Schwellen von 5 Episoden und 10 Trades wurden gegen die Episodenzahlen dieses Fensters festgelegt (BTC: 15 bis 36 Episoden je Phase).</p>
-    <p style="margin:8px 0 0;max-width:none;"><b>Warum nach Kalender und nicht zufällig.</b> Eine Marktphase ist eine zusammenhängende Episode über Tage bis Monate. Würde man Trades zufällig auf beide Hälften verteilen, läge dieselbe Episode in beiden, und die Validation wäre keine unabhängige Prüfung mehr.</p>
-    <p style="margin:8px 0 0;max-width:none;"><b>Grenzen.</b> (1) Es gibt eine Grenze und ein Validierungsfenster von rund 2,7 Jahren; die zweite Hälfte ist zudem eine andere Marktlage als die erste, ein Befund, der dort nicht hält, kann an der Strategie oder an der Marktlage liegen. (2) Bis zum Vergleich unten wurde die Discovery nicht ausgewertet: Sie hat keine Auswahl getroffen und keine Rangliste erzeugt. (3) Die Validation ist kein vollständig gesperrtes Hold-out: Die Kandidaten für Modell 1 bis 3 wurden aus den Validation-Ergebnissen von Modell 0 gewählt (siehe Abschnitt weiter unten), ihre gegateten Ergebnisse im selben Fenster sind deshalb kein unabhängiger Test.</p>
+    <b>Why there is a split between discovery and validation.</b>
+    <p style="margin:8px 0 0;max-width:none;"><b>The problem.</b> Hundreds of strategies are compared here across four market phases and two regime kinds (BTC and coin), so thousands of combinations. With so many comparisons, some always shine by chance. Anyone who finds a strategy for a market phase on the same data on which they evaluate it almost inevitably overrates it (data snooping, multiple testing).</p>
+    <p style="margin:8px 0 0;max-width:none;"><b>The solution.</b> The data is split in time into two windows: <i>discovery</i> (2020-03 to 2023-12) and <i>validation</i> (2024-01 to 2026-08). Both are evaluated separately with the same evaluation and the same thresholds. The rankings on this page rest on the validation alone; nothing from discovery flows into rank, tier or selection. Its purpose is the counter-test in the next section: does what proved itself in discovery hold in validation? The boundary is a calendar date frozen on 2026-09-11. It was checked only against episode counts, never against strategy results.</p>
+    <p style="margin:8px 0 0;max-width:none;"><b>Do not confuse.</b> <i>EXPLORATORY</i> is a tier (a strategy below the specialist floor in a market phase), not a time window. Discovery and validation are the two time windows.</p>
+    <p style="margin:8px 0 0;max-width:none;"><b>What follows.</b> Rank, tier and specialist floor apply only in the validation window; the episodes for the floor are also counted only there (correction of 2026-09-14). The cost stress of stage 8b uses the same window. The thresholds of 5 episodes and 10 trades were set against the episode counts of this window (BTC: 15 to 36 episodes per phase).</p>
+    <p style="margin:8px 0 0;max-width:none;"><b>Why by calendar and not at random.</b> A market phase is a contiguous episode of days to months. If trades were distributed at random over both halves, the same episode would lie in both, and the validation would no longer be an independent test.</p>
+    <p style="margin:8px 0 0;max-width:none;"><b>Limits.</b> (1) There is one boundary and a validation window of about 2.7 years; the second half is also a different market situation from the first, so a finding that does not hold there may be due to the strategy or to the market. (2) Until the comparison below, discovery was not evaluated: it made no selection and produced no ranking. (3) The validation is not a fully locked hold-out: the candidates for models 1 to 3 were chosen from the validation results of model 0 (see the section further below), so their gated results in the same window are not an independent test.</p>
   </div></div>
 </section>
 
 <section class="robust" id="dv-section">
   <div class="sectionhead">
-    <h2>Discovery gegen Validation: hält, was sich bewährt hat?</h2>
-    <span class="hint">dieselbe Auswertung auf beiden Zeitfenstern, Strategie für Strategie</span>
+    <h2>Discovery vs. validation: does what proved itself hold?</h2>
+    <span class="hint">the same evaluation on both time windows, strategy by strategy</span>
   </div>
-  <p class="secintro">Für jede Strategie und jede Marktphase wird der Excess-Return einmal aus den Trades der Discovery (vor 2024-01-01) und einmal aus denen der Validation gerechnet, mit derselben Formel, demselben Benchmark und demselben Floor (mindestens 5 Episoden und 10 Trades <i>im jeweiligen Fenster</i>). Verglichen werden die Strategien, die den Floor in der jeweiligen Marktphase in <b>beiden</b> Fenstern erreichen. Nichts aus der Discovery fließt in die Ranglisten; das ist ein Gegentest, keine Auswahl.</p>
+  <p class="secintro">For each strategy and each market phase, the excess return is computed once from the trades of discovery (before 2024-01-01) and once from those of validation, with the same formula, the same benchmark and the same floor (at least 5 episodes and 10 trades <i>in the respective window</i>). The strategies compared are those that reach the floor in the respective market phase in <b>both</b> windows. Nothing from discovery flows into the rankings; this is a counter-test, not a selection.</p>
   <div class="callout info"><span class="dot">&#8505;</span><div id="dv-lead"></div></div>
 
-  <h3>Beständigkeit je Marktphase</h3>
+  <h3>Persistence per market phase</h3>
   <div class="tablebox">
     <table class="plain">
-      <thead><tr><th>Regime</th><th>Phase</th><th class="num" title="Strategien, die den Floor in dieser Marktphase in beiden Fenstern erreichen. D = Strategien mit Floor in der Discovery, V = in der Validation.">Strategien mit Floor in beiden Fenstern</th><th class="num" title="Spearman: 1 = dieselbe Reihenfolge in beiden Fenstern, 0 = kein Zusammenhang">Rang-Korrelation &rho;</th><th class="num" title="Von den Strategien, die in der Discovery besser als Buy-and-Hold waren: Anteil, der es in der Validation ebenfalls war. In Klammern: Anzahl der Strategien in dieser Gruppe.">Discovery besser als B&amp;H &rarr; Validation auch besser</th><th class="num" title="Von den Strategien, die in der Discovery nicht besser als Buy-and-Hold waren: Anteil, der es in der Validation war.">Discovery nicht besser &rarr; Validation besser</th><th class="num" title="Anteil aller verglichenen Strategien, die in der Validation besser als Buy-and-Hold waren, ohne die Discovery zu kennen.">Basisrate</th><th class="num" title="Die 10 % Strategien mit dem höchsten Excess in der Discovery: ihr Median-Excess in der Validation, daneben der Median aller Strategien.">Beste 10 % der Discovery: Median in Validation</th><th class="num" title="Von den Strategien, deren untere 95-%-Vertrauensgrenze (LCB) in der Discovery über 0 lag: Anteil, der in der Validation besser als Buy-and-Hold war.">Discovery-LCB &gt; 0 &rarr; Validation besser</th></tr></thead>
+      <thead><tr><th>Regime</th><th>Phase</th><th class="num" title="Strategies that reach the floor in this market phase in both windows. D = strategies with the floor in discovery, V = in validation.">Strategies with the floor in both windows</th><th class="num" title="Spearman: 1 = the same order in both windows, 0 = no relationship">Rank correlation &rho;</th><th class="num" title="Of the strategies that were better than buy-and-hold in discovery: the share that also was in validation. In brackets: the number of strategies in this group.">Discovery better than B&amp;H &rarr; validation also better</th><th class="num" title="Of the strategies that were not better than buy-and-hold in discovery: the share that was in validation.">Discovery not better &rarr; validation better</th><th class="num" title="Share of all compared strategies that were better than buy-and-hold in validation, without knowing discovery.">Base rate</th><th class="num" title="The top 10 % of strategies by excess in discovery: their median excess in validation, next to the median of all strategies.">Top 10 % of discovery: median in validation</th><th class="num" title="Of the strategies whose lower 95 % confidence bound (LCB) in discovery was above 0: the share that was better than buy-and-hold in validation.">Discovery LCB &gt; 0 &rarr; validation better</th></tr></thead>
       <tbody id="dv-table"></tbody>
     </table>
   </div>
   <div class="callout info" style="margin-top:12px;"><span class="dot">&#8505;</span><div>
-    <b>Die Spalten erklärt.</b>
-    <p style="margin:8px 0 0;max-width:none;"><b>&bdquo;Besser als B&amp;H&ldquo; (vorher &bdquo;positiv&ldquo;)</b> heißt: Mehrgewinn gegenüber Buy-and-Hold, also Excess-Return über 0. Es heißt nicht &bdquo;stimmt überein&ldquo;. Der Excess-Return einer Strategie in einer Marktphase ist ihre Rendite in den Episoden dieser Phase minus die Rendite von Buy-and-Hold über dieselben Episoden.</p>
-    <p style="margin:8px 0 0;max-width:none;"><b>Discovery besser als B&amp;H &rarr; Validation auch besser.</b> Man nimmt alle Strategien, die in der Discovery Buy-and-Hold in dieser Phase geschlagen haben, und zählt, wie viele davon es in der Validation wieder tun. 81&nbsp;% heißt: vier von fünf haben es wiederholt. Die Zahl in Klammern ist die Größe der Gruppe; bei 5 oder 16 Strategien sagt der Prozentwert kaum etwas.</p>
-    <p style="margin:8px 0 0;max-width:none;"><b>Discovery nicht besser &rarr; Validation besser.</b> Dasselbe für die übrigen Strategien: Wie viele waren in der Discovery nicht besser und wurden es in der Validation? Ein niedriger Wert hier bei hohem Wert links bedeutet: Wer in der Discovery nicht überzeugte, tat es meist auch später nicht.</p>
-    <p style="margin:8px 0 0;max-width:none;"><b>Basisrate.</b> Der Anteil aller verglichenen Strategien dieser Phase, die in der Validation besser als Buy-and-Hold sind, ohne die Discovery zu kennen. Sie ist die Vergleichslinie: Nur was deutlich darüber liegt, zeigt Beständigkeit. In fallenden Phasen ist sie hoch, weil dort fast jeder Long-Handel weniger verliert als Halten. Beispiel BTC-Abwärts: Basisrate <span id="ex-base"></span>, die Discovery-Besseren erreichen <span id="ex-given"></span>, also <span id="ex-lift"></span> Prozentpunkte darüber; nur dieser Abstand ist Beständigkeit.</p>
-    <p style="margin:8px 0 0;max-width:none;"><b>Beste 10&nbsp;% der Discovery: Median in Validation.</b> Man sortiert die Strategien nach ihrem Excess in der Discovery und nimmt die besten 10&nbsp;%. Angezeigt ist deren mittlerer Excess in der Validation, dahinter der Median aller Strategien. Beispiel BTC-Aufwärts: <b><span id="ex-top"></span> vs <span id="ex-all"></span></b> heißt, die Discovery-Besten haben in der Validation im Median einen Excess von <span id="ex-top2"></span> gegenüber Buy-and-Hold, alle zusammen <span id="ex-all2"></span>. Der Abstand beträgt <span id="ex-gap"></span> Prozentpunkte <span id="ex-dir"></span>. Ist die erste Zahl größer als die zweite, hilft die Auswahl in der Discovery; ein negativer Wert heißt schlechter als Buy-and-Hold.</p>
-    <p style="margin:8px 0 0;max-width:none;"><b>Discovery-LCB &gt; 0 &rarr; Validation besser.</b> LCB ist die untere 95-%-Vertrauensgrenze des mittleren Excess je Episode. Liegt sie über 0, war der Vorsprung gegenüber Buy-and-Hold in der Discovery statistisch belastbar und nicht nur ein Mittelwert aus wenigen Episoden. Die Spalte zeigt, wie viele dieser Strategien es in der Validation ebenfalls waren.</p>
+    <b>The columns explained.</b>
+    <p style="margin:8px 0 0;max-width:none;"><b>&ldquo;Better than B&amp;H&rdquo; (formerly &ldquo;positive&rdquo;)</b> means: extra gain over buy-and-hold, i.e. excess return above 0. It does not mean &ldquo;agrees&rdquo;. A strategy's excess return in a market phase is its return in the episodes of that phase minus the buy-and-hold return over the same episodes.</p>
+    <p style="margin:8px 0 0;max-width:none;"><b>Discovery better than B&amp;H &rarr; validation also better.</b> Take all strategies that beat buy-and-hold in this phase in discovery and count how many of them do so again in validation. 81&nbsp;% means: four out of five repeated it. The number in brackets is the size of the group; with 5 or 16 strategies the percentage says little.</p>
+    <p style="margin:8px 0 0;max-width:none;"><b>Discovery not better &rarr; validation better.</b> The same for the remaining strategies: how many were not better in discovery and became so in validation? A low value here alongside a high value on the left means: whoever did not convince in discovery mostly did not later either.</p>
+    <p style="margin:8px 0 0;max-width:none;"><b>Base rate.</b> The share of all compared strategies of this phase that are better than buy-and-hold in validation, without knowing discovery. It is the reference line: only what lies clearly above it shows persistence. In falling phases it is high, because there almost every long trade loses less than holding. Example BTC downward: base rate <span id="ex-base"></span>, the discovery-better ones reach <span id="ex-given"></span>, so <span id="ex-lift"></span> percentage points above it; only this gap is persistence.</p>
+    <p style="margin:8px 0 0;max-width:none;"><b>Top 10&nbsp;% of discovery: median in validation.</b> The strategies are sorted by their excess in discovery and the best 10&nbsp;% are taken. Shown is their mean excess in validation, followed by the median of all strategies. Example BTC upward: <b><span id="ex-top"></span> vs <span id="ex-all"></span></b> means that the discovery best had a median excess of <span id="ex-top2"></span> against buy-and-hold in validation, all together <span id="ex-all2"></span>. The gap is <span id="ex-gap"></span> percentage points <span id="ex-dir"></span>. If the first number is larger than the second, selecting in discovery helps; a negative value means worse than buy-and-hold.</p>
+    <p style="margin:8px 0 0;max-width:none;"><b>Discovery LCB &gt; 0 &rarr; validation better.</b> LCB is the lower 95 % confidence bound of the mean excess per episode. If it is above 0, the lead over buy-and-hold in discovery was statistically reliable and not just a mean from a few episodes. The column shows how many of these strategies also were in validation.</p>
   </div></div>
 
-  <h3>Jede Strategie ein Punkt: Discovery gegen Validation</h3>
-  <p class="secintro">Auf der waagerechten Achse der Excess-Return der Discovery, auf der senkrechten der der Validation. Punkte auf der Diagonale hielten ihren Wert genau, Punkte im oberen rechten Viertel waren in beiden Fenstern besser als Buy-and-Hold. Hervorgehoben sind Strategien mit Robustheits-PASS (Stufe 8b).</p>
+  <h3>Every strategy a point: discovery vs. validation</h3>
+  <p class="secintro">The horizontal axis is the excess return of discovery, the vertical axis that of validation. Points on the diagonal held their value exactly; points in the upper right quadrant were better than buy-and-hold in both windows. Strategies with a robustness PASS (stage 8b) are highlighted.</p>
   <div class="rtabs" id="dv-tabs">
-    <div class="rtab active" data-kind="coin">Coin-Regime</div>
-    <div class="rtab" data-kind="btc">BTC-Regime</div>
+    <div class="rtab active" data-kind="coin">Coin regime</div>
+    <div class="rtab" data-kind="btc">BTC regime</div>
   </div>
   <div class="rtabpanel"><div class="dvgrid" id="dv-scatter"></div></div>
 
-  <h3>Die fünf besten der Discovery je Phase &mdash; und was sie in der Validation taten</h3>
+  <h3>The five best of discovery per phase &mdash; and what they did in validation</h3>
   <div class="tablebox">
     <table class="plain">
-      <thead><tr><th>Phase</th><th class="num">Rang</th><th>Strategie</th><th class="num">Excess Discovery</th><th class="num">Trades / Episoden</th><th class="num">Excess Validation</th><th class="num">Rang in Validation</th><th class="num">Robustheit</th><th class="num">Bestätigung</th></tr></thead>
+      <thead><tr><th>Phase</th><th class="num">Rank</th><th>Strategy</th><th class="num">Excess discovery</th><th class="num">Trades / episodes</th><th class="num">Excess validation</th><th class="num">Rank in validation</th><th class="num">Robustness</th><th class="num">Confirmation</th></tr></thead>
       <tbody id="dv-top"></tbody>
     </table>
   </div>
-  <p class="secintro" style="margin-top:8px;max-width:none;"><b>&bdquo;Unter Floor&ldquo;</b> heißt: In der Validation hat die Strategie in dieser Marktphase weniger als 5 Episoden oder weniger als 10 Trades. Sie wird dort nicht gerankt (Tier EXPLORATORY), und ihr Excess-Return ist zu dünn belegt, um ihn zu zeigen. Die Klammer nennt, was sie in der Validation tatsächlich hatte. Bei einer Strategie, die in der Discovery in einer Phase oft gehandelt hat und in der Validation kaum, ist das kein Misserfolg, sondern fehlende Evidenz.</p>
+  <p class="secintro" style="margin-top:8px;max-width:none;"><b>&ldquo;Below floor&rdquo;</b> means: in validation the strategy has fewer than 5 episodes or fewer than 10 trades in this market phase. It is not ranked there (tier EXPLORATORY), and its excess return is too thinly supported to show. The bracket names what it actually had in validation. For a strategy that traded often in a phase in discovery and hardly at all in validation, this is not a failure but missing evidence.</p>
 
-  <h3>Bestätigung als Spalte: Kennzeichen und Score</h3>
+  <h3>Confirmation as a column: flag and score</h3>
   <div class="callout info"><span class="dot">&#8505;</span><div>
-    <p style="margin:0;max-width:none;"><b>Kennzeichen &bdquo;bestätigt&ldquo;.</b> Die Strategie erreicht in der Marktphase den Floor in <i>beiden</i> Fenstern, und die untere 95-%-Vertrauensgrenze (LCB, <i>Lower Confidence Bound</i>, siehe Erklärung oben) ihres Excess-Returns liegt in der Discovery <i>und</i> in der Validation über 0. Wer das erfüllt, war in beiden Fenstern belastbar besser als Buy-and-Hold. Zufällig gelingt das selten.</p>
-    <p style="margin:8px 0 0;max-width:none;"><b>Score.</b> Die kleinere der beiden Grenzen, also das schwächste Glied. Er ist nur hoch, wenn die Strategie in beiden Fenstern gut ist. Ähnlich <i>schlechte</i> Ergebnisse bringen nichts: Sie ergeben einen negativen Score und kein Kennzeichen. Der Score ändert kein Ranking; er steht als eigene Spalte neben der Robustheit und lässt sich sortieren.</p>
-    <p style="margin:8px 0 0;max-width:none;"><b>Universal-Kandidaten.</b> Streng gilt: in allen vier Coin-Phasen bestätigt. Trifft das nicht zu, gilt die mildere Regel: in mindestens drei der vier Phasen in beiden Fenstern besser als Buy-and-Hold (Excess über 0, Floor in beiden). Angezeigt wird die stärkste Regel, die zutrifft. Der Score eines Universal-Kandidaten ist der seiner schwächsten Phase; wer nur mild bestätigt ist, hat deshalb einen negativen Score, weil mindestens eine Phase statistisch nicht belastbar ist. <span id="cf-univ-counts"></span></p>
-    <p style="margin:8px 0 0;max-width:none;"><b>Stand der Regel.</b> Beide Fenster waren bei der Festlegung bekannt, und die mildere Universal-Regel wurde eingeführt, weil die strenge keinen einzigen Kandidaten übrig ließ. Die Regel ist deshalb nachträglich gewählt und beweist ihre Vorhersagekraft nicht. Sie ist ab dem 2026-09-20 eingefroren (Nachtrag in <code class="mono">REGIME_PREREGISTRATION.md</code>) und soll an Daten ab 2026-08-21 geprüft werden, die dafür noch nicht benutzt wurden.</p>
+    <p style="margin:0;max-width:none;"><b>Flag &ldquo;confirmed&rdquo;.</b> The strategy reaches the floor in the market phase in <i>both</i> windows, and the lower 95 % confidence bound (LCB, <i>lower confidence bound</i>, see the explanation above) of its excess return is above 0 in discovery <i>and</i> in validation. Whoever meets that was reliably better than buy-and-hold in both windows. This rarely happens by chance.</p>
+    <p style="margin:8px 0 0;max-width:none;"><b>Score.</b> The smaller of the two bounds, i.e. the weakest link. It is only high if the strategy is good in both windows. Similarly <i>bad</i> results earn nothing: they give a negative score and no flag. The score changes no ranking; it stands as its own column next to robustness and can be sorted.</p>
+    <p style="margin:8px 0 0;max-width:none;"><b>Universal candidates.</b> Strictly: confirmed in all four coin phases. If that does not hold, the milder rule applies: better than buy-and-hold in both windows in at least three of the four phases (excess above 0, floor in both). The strongest rule that applies is shown. A universal candidate's score is that of its weakest phase; whoever is only mildly confirmed therefore has a negative score, because at least one phase is not statistically reliable. <span id="cf-univ-counts"></span></p>
+    <p style="margin:8px 0 0;max-width:none;"><b>Status of the rule.</b> Both windows were known when it was set, and the milder universal rule was introduced because the strict one left not a single candidate. The rule was therefore chosen after the fact and does not prove predictive power. It has been frozen since 2026-09-20 (addendum in <code class="mono">REGIME_PREREGISTRATION.md</code>) and is to be tested on data from 2026-08-21 onward, which have not yet been used for it.</p>
   </div></div>
-  <div class="callout warn" style="margin-top:14px;"><span class="dot">&#9888;</span><div><b>Wie das zu lesen ist.</b> Die Beständigkeit ist hoch, aber sie beweist kein Phasenkönnen. Der Excess-Return misst gegen Buy-and-Hold der ganzen Phase. Eine Strategie, die wenig im Markt ist, gewinnt deshalb in fallenden Phasen fast immer gegen den Benchmark und verliert in Aufwärtsphasen, in beiden Fenstern gleichermaßen. Ein Teil der Rang-Korrelation ist also der Handelsstil (Marktzeit, Häufigkeit, Hebel), und der bleibt über Jahre gleich. Es sind außerdem dieselben Strategien in beiden Fenstern, keine unabhängigen Stichproben, und die Validation ist ein anderer Markt (2024 bis 2026). Wo die Korrelation niedrig ist, wie in BTC-Seitwärts, fehlt die Beständigkeit tatsächlich.</div></div>
+  <div class="callout warn" style="margin-top:14px;"><span class="dot">&#9888;</span><div><b>How to read this.</b> The persistence is high, but it does not prove phase skill. Excess return measures against buy-and-hold of the whole phase. A strategy that is rarely in the market therefore almost always beats the benchmark in falling phases and loses in rising phases, in both windows alike. Part of the rank correlation is thus trading style (time in market, frequency, leverage), and that stays the same for years. Also, these are the same strategies in both windows, not independent samples, and validation is a different market (2024 to 2026). Where the correlation is low, as in BTC sideways, persistence really is missing.</div></div>
 </section>
 
 <section class="robust" id="robust-section">
   <div class="sectionhead">
-    <h2>Gewinner unter Berücksichtigung der Robustheit (Stufe 8b)</h2>
-    <span class="hint">je Marktphase und über das gesamte Validierungsfenster</span>
+    <h2>Winners taking robustness into account (stage 8b)</h2>
+    <span class="hint">per market phase and over the whole validation window</span>
   </div>
-  <p class="secintro">Ein hoher Excess-Return sagt noch nicht, dass der Gewinn die Ausführung überlebt. Stufe 8b prüft zwei Dinge, und beide müssen für dieselbe Strategie in derselben Marktphase bestehen. Dieser Abschnitt zeigt dieselben Ranglisten wie die Tabellen je Marktphase weiter unten, aber nur mit den Strategien, die beides bestehen. Die Rangfolge ändert sich dadurch nicht: gefiltert wird nur, und der Rang in der ungefilterten Liste steht dabei.</p>
+  <p class="secintro">A high excess return does not yet say that the gain survives execution. Stage 8b checks two things, and both must pass for the same strategy in the same market phase. This section shows the same rankings as the tables per market phase further below, but only with the strategies that pass both. The order does not change as a result: only filtering happens, and the rank in the unfiltered list is shown alongside.</p>
   <div class="rules">
-    <div class="rule"><b>5m-Detaillauf</b>Derselbe Vollfenster-Backtest noch einmal, mit 5m-Kerzen für alles, was innerhalb einer Kerze passiert (Trailing-Stop, ROI, Stoploss). Ändert sich der Gewinn stark, ist die Strategie <i>sensitiv</i>. Bis 5m entfällt der Lauf; sie zählen per Entscheidung als bestanden &mdash; eine Regel, keine Messung.</div>
-    <div class="rule"><b>Kostenstress je Marktphase</b>Zusätzlich 0,1 % Slippage je Seite, gerechnet nur auf den Trades, die in dieser ADX-Phase eröffnet wurden (Validierungsfenster, mindestens 10 Trades). Ein Spezialist mit einer starken Phase wird so nicht durch seine schwachen Phasen abgewertet.</div>
+    <div class="rule"><b>5m detail run</b>The same full-window backtest once more, with 5m candles for everything that happens inside a candle (trailing stop, ROI, stoploss). If the gain changes strongly, the strategy is <i>sensitive</i>. Up to 5m the run is omitted; they count as passed by decision &mdash; a rule, not a measurement.</div>
+    <div class="rule"><b>Cost stress per market phase</b>Additionally 0.1 % slippage per side, computed only on the trades opened in this ADX phase (validation window, at least 10 trades). A specialist with one strong phase is thus not marked down by its weak phases.</div>
   </div>
 
-  <h3>Was die Robustheit an jeder Marktphase ändert</h3>
-  <p class="secintro">Jede Tabellenzeile ist eine Kombination aus Regime-Art und ADX-Phase. <b>Rang 1</b> zeigt, wer ohne Filter vorn liegt und wer mit Filter.</p>
+  <h3>What robustness changes in each market phase</h3>
+  <p class="secintro">Each table row is a combination of regime kind and ADX phase. <b>Rank 1</b> shows who leads without the filter and who with it.</p>
   <div class="tablebox">
     <table class="plain">
-      <thead><tr><th>Regime</th><th>Phase</th><th class="num">Strategien</th><th class="num">PASS</th><th class="num">Anteil</th><th class="num">5m sensitiv</th><th class="num">Kosten &#10007;</th><th class="num">5m offen</th><th class="num" title="Strategien, die in Discovery und Validation bestätigt sind">bestätigt</th><th class="num" title="bestätigt und Robustheits-PASS">bestätigt + PASS</th><th>Rang 1 ohne Filter</th><th>Rang 1 mit PASS</th></tr></thead>
+      <thead><tr><th>Regime</th><th>Phase</th><th class="num">Strategies</th><th class="num">PASS</th><th class="num">Share</th><th class="num">5m sensitive</th><th class="num">Cost &#10007;</th><th class="num">5m open</th><th class="num" title="Strategies confirmed in discovery and validation">confirmed</th><th class="num" title="confirmed and robustness PASS">confirmed + PASS</th><th>Rank 1 without filter</th><th>Rank 1 with PASS</th></tr></thead>
       <tbody id="rob-matrix"></tbody>
     </table>
   </div>
 
-  <h3>Gewinner je Marktphase &mdash; nur Strategien mit Robustheits-PASS</h3>
-  <p class="secintro">Die fünf besten Strategien je Phase nach Excess-Return, gefiltert auf PASS. Unter jeder Karte steht, wer aus der ungefilterten Top&nbsp;5 herausfällt und warum.</p>
+  <h3>Winners per market phase &mdash; only strategies with a robustness PASS</h3>
+  <p class="secintro">The five best strategies per phase by excess return, filtered to PASS. Under each card it says who drops out of the unfiltered top&nbsp;5 and why.</p>
   <div class="rtabs" id="rob-tabs">
-    <div class="rtab active" data-kind="btc">BTC-Regime</div>
-    <div class="rtab" data-kind="coin">Coin-Regime</div>
+    <div class="rtab active" data-kind="btc">BTC regime</div>
+    <div class="rtab" data-kind="coin">Coin regime</div>
   </div>
   <div class="rtabpanel"><div class="regimegrid" id="rob-winners"></div></div>
 
-  <h3>Universal-Kandidaten mit PASS in allen vier Coin-Phasen</h3>
-  <p class="secintro">Die strengste Lesart: der Kandidat erreicht den Specialist-Floor in allen vier Coin-Phasen, besteht den 5m-Lauf und übersteht den Kostenstress in jeder der vier Phasen einzeln.</p>
+  <h3>Universal candidates with PASS in all four coin phases</h3>
+  <p class="secintro">The strictest reading: the candidate reaches the specialist floor in all four coin phases, passes the 5m run and survives the cost stress in each of the four phases individually.</p>
   <div class="tablebox">
     <table class="plain">
-      <thead><tr><th>Strategie</th><th>Schwächstes Regime</th><th class="num">Excess im schwächsten</th><th class="num">Median Excess</th><th class="num">Konsistenz</th><th class="num">Trades</th><th class="num">Dollar-Gewinn</th><th class="num">Grade</th><th class="num">Robustheit</th><th class="num">Bestätigung</th></tr></thead>
+      <thead><tr><th>Strategy</th><th>Weakest regime</th><th class="num">Excess in the weakest</th><th class="num">Median excess</th><th class="num">Consistency</th><th class="num">Trades</th><th class="num">Dollar gain</th><th class="num">Grade</th><th class="num">Robustness</th><th class="num">Confirmation</th></tr></thead>
       <tbody id="rob-universal"></tbody>
     </table>
   </div>
-  <div class="callout warn" style="margin-top:14px;"><span class="dot">&#9888;</span><div><b>Was der Filter nicht leistet.</b> PASS ist eine notwendige, keine hinreichende Bedingung: fast jede Strategie mit einer gewinnbringenden Phase besteht den Kostenstress in dieser Phase, der Filter trennt also vor allem über den 5m-Lauf. Bei Strategien bis 5m ist dieser Teil eine Regel und keine Messung. Wo Baseline und 5m-Lauf in verschiedenen Laufzeiten gerechnet wurden, ist ein <i>sensitiv</i> nicht sauber vom Laufzeiteffekt getrennt; ein Kontrolllauf steht aus. &bdquo;5m offen&ldquo; heißt: Timeframe über 5m, Lauf noch nicht fertig, das Ergebnis kann sich noch ändern.</div></div>
+  <div class="callout warn" style="margin-top:14px;"><span class="dot">&#9888;</span><div><b>What the filter does not do.</b> PASS is a necessary, not a sufficient condition: almost every strategy with a profitable phase passes the cost stress in that phase, so the filter separates mainly through the 5m run. For strategies up to 5m this part is a rule and not a measurement. Where baseline and 5m run were computed in different runtimes, a <i>sensitive</i> is not cleanly separated from the runtime effect; a control run is pending. &ldquo;5m open&rdquo; means: timeframe above 5m, run not finished, the result can still change.</div></div>
 </section>
 
 <section id="sec-portfolio">
   <div class="sectionhead">
-    <h2>Phasen-Portfolio: eine Strategie je Marktphase</h2>
-    <span class="hint">Ziel: mindestens {{daily_target}} Rendite pro Tag auf das Kapital</span>
+    <h2>Phase portfolio: one strategy per market phase</h2>
+    <span class="hint">Goal: at least {{daily_target}} return per day on the capital</span>
   </div>
-  <p class="secintro">Die Frage: Welche Strategie soll in welcher ADX-Phase des Coins laufen, damit das Kapital im Schnitt mindestens {{daily_target}} pro Tag verdient und Buy-and-Hold in dieser Phase geschlagen wird? Die Auswahl ist eine Regel, keine Handarbeit: Robustheits-PASS in der Phase, in beiden Fenstern bestätigt (LCB über 0), eine Tagesrendite von mindestens {{daily_target}} <b>nach 0,1&nbsp;% Slippage je Seite</b> und über der von Buy-and-Hold, mindestens {{pf_min_trades}} Trades. In der Aufwärtsphase bleibt es bei Buy-and-Hold; das ist die Entscheidung des Eigentümers und zugleich das Ergebnis, weil dort keine Strategie die Regel erfüllt.</p>
-  <div class="callout info"><span class="dot">&#8505;</span><div><b>Zwei Lesarten der Tagesrendite.</b> Beide rechnen mit festem Einsatz je Trade, ohne Zinseszins.
-    <p style="margin:8px 0 0;max-width:none;"><b>Auf das eingesetzte Kapital:</b> Summe der Trade-Renditen geteilt durch die Kapitaltage, die die Trades tatsächlich gehalten wurden (mindestens eine Stunde je Trade). Kapital, das nichts tut, zählt nicht. Eine Strategie, die nur Minuten im Markt ist, erreicht hier leicht große Zahlen; diese Lesart schmeichelt kurzen Trades.</p>
-    <p style="margin:8px 0 0;max-width:none;"><b>Auf das bereitgestellte Kapital:</b> dieselbe Summe geteilt durch die Tage der Phase, ein Platz je Coin. Auch untätiges Kapital zählt. Das ist, was ein Konto je Tag und Einheit Kapital in dieser Phase verdient, und die strengere Zahl. <b>Die Tabelle rechnet mit dieser.</b> Buy-and-Hold ist immer voll investiert, dort sind beide gleich.</p></div></div>
+  <p class="secintro">The question: which strategy should run in which ADX phase of the coin so that the capital earns at least {{daily_target}} per day on average and buy-and-hold is beaten in that phase? The selection is a rule, not handwork: robustness PASS in the phase, confirmed in both windows (LCB above 0), a daily return of at least {{daily_target}} <b>after 0.1&nbsp;% slippage per side</b> and above that of buy-and-hold, at least {{pf_min_trades}} trades. In the upward phase it stays with buy-and-hold; that is the owner's decision and at the same time the result, because no strategy meets the rule there.</p>
+  <div class="callout info"><span class="dot">&#8505;</span><div><b>Two readings of the daily return.</b> Both use a fixed stake per trade, without compounding.
+    <p style="margin:8px 0 0;max-width:none;"><b>On the capital deployed:</b> sum of the trade returns divided by the capital days the trades were actually held (at least one hour per trade). Capital that does nothing does not count. A strategy that is in the market for only minutes easily reaches large numbers here; this reading flatters short trades.</p>
+    <p style="margin:8px 0 0;max-width:none;"><b>On the capital provided:</b> the same sum divided by the days of the phase, one slot per coin. Idle capital counts as well. This is what an account earns per day and unit of capital in this phase, and the stricter figure. <b>The table uses this one.</b> Buy-and-hold is always fully invested, so both are the same there.</p></div></div>
   <div class="tablebox">
     <table class="plain" id="pf-table" data-nosort>
       <thead><tr>
-        <th title="ADX-Marktphase des Coins">Phase</th>
-        <th class="num" title="Anteil der Coin-Tage im Validierungsfenster, die auf diese Phase entfallen; damit wird die Gesamtrendite gewichtet.">Anteil der Tage</th>
-        <th class="num" title="Buy-and-Hold des Coins über alle Episoden dieser Phase: Summe der Episoden-Renditen geteilt durch ihre Tage. Validation / Discovery.">Buy-and-Hold pro Tag (Val. / Disc.)</th>
-        <th title="Die nach der Regel gewählte Strategie; ohne Treffer Buy-and-Hold oder ein Kandidat ohne Bestätigung, so gekennzeichnet.">Empfehlung</th>
-        <th class="num" title="Tagesrendite auf das bereitgestellte Kapital nach 0,1 % Slippage je Seite, Validation; danach die Discovery vor Slippage (zum Vergleich, nicht zum Auswählen).">Pro Tag, bereitgestellt (Val. / Disc.)</th>
-        <th class="num" title="Tagesrendite auf das tatsächlich eingesetzte Kapital nach Slippage, Validation. Schmeichelt kurzen Trades.">Pro Tag, eingesetzt</th>
-        <th class="num" title="Trades und Episoden der Strategie in dieser Phase im Validierungsfenster">Trades / Episoden</th>
-        <th class="num" title="Stufe 8b in dieser Phase">Robustheit</th>
-        <th class="num" title="Bestätigung über Discovery und Validation">Bestätigung</th>
-        <th class="num" title="Ist das Ziel von {{daily_target}} pro Tag in der Validation nach Slippage erreicht?">Ziel</th>
+        <th title="ADX market phase of the coin">Phase</th>
+        <th class="num" title="Share of the coin days in the validation window that fall in this phase; the total return is weighted with it.">Share of days</th>
+        <th class="num" title="Buy-and-hold of the coin over all episodes of this phase: sum of the episode returns divided by their days. Validation / discovery.">Buy-and-hold per day (val. / disc.)</th>
+        <th title="The strategy chosen by the rule; with no hit buy-and-hold or a candidate without confirmation, marked as such.">Recommendation</th>
+        <th class="num" title="Daily return on the capital provided after 0.1 % slippage per side, validation; then discovery before slippage (for comparison, not for selection).">Per day, provided (val. / disc.)</th>
+        <th class="num" title="Daily return on the capital actually deployed after slippage, validation. Flatters short trades.">Per day, deployed</th>
+        <th class="num" title="Trades and episodes of the strategy in this phase in the validation window">Trades / episodes</th>
+        <th class="num" title="Stage 8b in this phase">Robustness</th>
+        <th class="num" title="Confirmation across discovery and validation">Confirmation</th>
+        <th class="num" title="Is the goal of {{daily_target}} per day reached in validation after slippage?">Goal</th>
       </tr></thead>
       <tbody id="pf-body"></tbody>
     </table>
   </div>
   <p class="secintro" id="pf-blend" style="margin-top:10px;max-width:none;"></p>
   <details class="fold" id="pf-more">
-    <summary>Weitere Kandidaten je Phase <span class="sub">wer die Regel ebenfalls erfüllt, und wer sie ohne Bestätigung erfüllt</span></summary>
+    <summary>More candidates per phase <span class="sub">who also meets the rule, and who meets it without confirmation</span></summary>
     <div class="foldbody"><div id="pf-more-body"></div></div>
   </details>
-  <div class="callout warn"><span class="dot">&#9888;</span><div><b>Wie belastbar das ist.</b> (1) Die Wahl beruht auf der Validation, dem Fenster, in dem auch die Rendite gemessen wird. Der Wert ist damit zu günstig; die Discovery-Spalte zeigt, was dieselbe Strategie im früheren Fenster verdiente, ohne Slippage. (2) Die Validation (2024 bis 2026) war ein Aufwärts-Markt; Buy-and-Hold verdient dort in drei von vier Phasen Geld, nur in der Übergangsphase nicht. In der Discovery liegt der Wechsel je Phase (ohne Slippage) nicht über Buy-and-Hold; der Vorsprung der Validation ist also zum Teil Auswahl-Effekt. (3) Eine Strategie, die nur in einer Phase handeln darf, läuft in der Praxis nicht wie im Gesamtlauf: das Gate ändert ihre Trades (siehe <a href="{{gating_url}}" target="_blank" rel="noopener">Gating-Hypothese</a>). Die Zahlen hier ordnen vorhandene Trades einer Phase zu und simulieren das Gate nicht. (4) Der Wechsel zwischen Strategien bei einem Phasenwechsel kostet zusätzlich, das ist nicht enthalten. (5) Das ADX-Regime kennt man erst mit einem Tag Verzögerung; die Zuordnung ist am Öffnungstag des Trades belegt.</div></div>
-</section>
-
-<section id="sec-total">
-  <div class="sectionhead">
-    <h2>Gesamtes Validierungsfenster: Gewinn in Dollar</h2>
-    <span class="hint">alle Marktphasen zusammen &middot; $1000 Einsatz je Trade, keine Wiederanlage &middot; alle {{n_gain_rows}} Strategien</span>
-  </div>
-  <p class="secintro">Ergänzt die Excess-Return-Prozentzahl um einen absoluten Betrag: wäre jeder Trade des Validierungsfensters mit einem eigenen frischen $1000-Einsatz gefahren worden, was bringt das in Summe &mdash; für die Strategie und, zum Vergleich, für Buy-and-Hold des jeweiligen Coins über dieselben Trades. Die Spalte <i>Kosten</i> zeigt den mittleren Gewinn je Trade vor und nach 0,1&nbsp;% zusätzlichem Slippage je Seite; sie ist das mit den Trades gewichtete Mittel der vier BTC-Phasen.</p>
-  <div class="stats">
-    <div class="stat"><div class="n">{{n_gain_rows}} / {{n_eval}}</div><div class="l">Strategien mit &ge;1 Validation-Trade bekommen ein Dollar-Ergebnis</div></div>
-    <div class="stat"><div class="n">{{n_gain_pos}} / {{n_gain_rows}}</div><div class="l">mit positivem Gesamtgewinn in Dollar</div></div>
-    <div class="stat"><div class="n">{{n_gain_beat}} / {{n_gain_rows}}</div><div class="l">schlagen den Benchmark auch in Dollar</div></div>
-    <div class="stat"><div class="n">{{med_gain}}</div><div class="l">Median Gesamtgewinn (Median Excess: {{med_excess}})</div></div>
-    <div class="stat"><div class="n">{{n_d5}}</div><div class="l">Strategien mit gemessenem 5m-Lauf und Dollar-Ergebnis</div></div>
-  </div>
-  <div class="callout info"><span class="dot">&#8505;</span><div><b>Autor-Timeframe / 5m.</b> In den Spalten Trades, Gesamtgewinn, Benchmark, Excess und Kosten steht links vom Schrägstrich das Ergebnis des Laufs im Timeframe der Strategie (das ist die Grundlage aller Ranglisten), rechts das Ergebnis des 5m-Detaillaufs der Stufe 8b: derselbe Backtest noch einmal mit 5m-Kerzen für alles, was innerhalb einer Kerze passiert. Ein 5m-Lauf ändert die Trades selbst, deshalb weichen beide Seiten voneinander ab. Für Strategien bis 5m gibt es keinen 5m-Lauf (Regel des Eigent&uuml;mers, keine Messung); dort steht rechts ein Strich. Beide Seiten werden mit derselben Rechnung bewertet (dieselben Regime-Tage, derselbe Benchmark, derselbe feste Einsatz). {{d5_check}}</div></div>
-  <div class="toolbar">
-    <input class="search" id="total-search" type="text" placeholder="Strategie suchen…">
-    <label class="okfilter"><input type="checkbox" id="total-ok"> nur Robustheits-PASS</label>
-    <label class="okfilter"><input type="checkbox" id="total-cf"> nur bestätigt (mind. eine Phase)</label>
-
-    <span class="rowcount mono" id="total-count"></span>
-  </div>
-  <p class="secintro" id="rob-total-drop" style="margin:0 0 10px;max-width:none;"></p>
-  <div class="tablebox">
-    <div class="scrollbody">
-      <table class="plain" id="total-table">
-        <thead><tr>
-          <th class="sortable num active" data-key="rk">Rang ohne Filter<span class="arrow">&#9662;</span></th>
-          <th class="sortable" data-key="strategy_id">Strategie<span class="arrow">&#9662;</span></th>
-          <th class="sortable" data-key="tf" title="Timeframe der Strategie (vom Autor). Über 5m gibt es einen 5m-Detaillauf, bis 5m nicht.">Timeframe<span class="arrow">&#9662;</span></th>
-          <th class="sortable num" data-key="trades" title="Trades im Validierungsfenster: Autor-Timeframe / 5m-Lauf">Trades<span class="hb"><span class="hs" data-basis="author">Autor</span> / <span class="hs" data-basis="d5">5m</span></span><span class="arrow">&#9662;</span></th>
-          <th class="sortable num" data-key="dollar_gain_usd" title="Summe der Gewinne bei festem 1.000-$-Einsatz je Trade: Autor-Timeframe / 5m-Lauf">Gesamtgewinn<span class="hb"><span class="hs" data-basis="author">Autor</span> / <span class="hs" data-basis="d5">5m</span></span><span class="arrow">&#9662;</span></th>
-          <th class="sortable num" data-key="benchmark_dollar_gain_usd" title="Buy-and-Hold des Coins über dieselben Trades, je 1.000 $: Autor-Timeframe / 5m-Lauf">Benchmark<span class="hb"><span class="hs" data-basis="author">Autor</span> / <span class="hs" data-basis="d5">5m</span></span><span class="arrow">&#9662;</span></th>
-          <th class="sortable num" data-key="excess_dollar_gain_usd" title="Gesamtgewinn minus Benchmark: Autor-Timeframe / 5m-Lauf">Excess ($)<span class="hb"><span class="hs" data-basis="author">Autor</span> / <span class="hs" data-basis="d5">5m</span></span><span class="arrow">&#9662;</span></th>
-          <th class="sortable num" data-key="cm" title="Mittlerer Gewinn je Trade vor → nach 0,1 % zusätzlichem Slippage je Seite: Autor-Timeframe / 5m-Lauf">Kosten Ø je Trade<span class="hb"><span class="hs" data-basis="author">Autor</span> / <span class="hs" data-basis="d5">5m</span></span><span class="arrow">&#9662;</span></th>
-          <th class="sortable num" data-key="dc" title="Tagesrendite auf das tatsächlich eingesetzte Kapital, Validation, nach 0,1 % Slippage je Seite: Autor-Timeframe / 5m-Lauf. Schmeichelt kurzen Trades.">Pro Tag, eingesetzt<span class="hb"><span class="hs" data-basis="author">Autor</span> / <span class="hs" data-basis="d5">5m</span></span><span class="arrow">&#9662;</span></th>
-          <th class="sortable num" data-key="ds" title="Tagesrendite auf das bereitgestellte Kapital (ein Platz je Coin und Tag), Validation, nach 0,1 % Slippage je Seite: Autor-Timeframe / 5m-Lauf. Ziel: 0,08 % pro Tag.">Pro Tag, bereitgestellt<span class="hb"><span class="hs" data-basis="author">Autor</span> / <span class="hs" data-basis="d5">5m</span></span><span class="arrow">&#9662;</span></th>
-          <th class="sortable num" data-key="ok">Robustheit<span class="arrow">&#9662;</span></th>
-          <th class="sortable num" data-key="cq" title="Bestätigung über Discovery und Validation. Bei Universal-Kandidaten streng oder mild, sonst die Zahl der bestätigten Phasen.">Bestätigung<span class="arrow">&#9662;</span></th>
-        </tr></thead>
-        <tbody id="total-body"></tbody>
-      </table>
-    </div>
-  </div>
+  <div class="callout warn"><span class="dot">&#9888;</span><div><b>How reliable this is.</b> (1) The choice rests on validation, the window in which the return is also measured. The value is therefore too favourable; the discovery column shows what the same strategy earned in the earlier window, without slippage. (2) Validation (2024 to 2026) was an upward market; buy-and-hold earns money there in three of four phases, only not in the transition phase. In discovery the switch per phase (without slippage) is not above buy-and-hold; the lead in validation is therefore partly a selection effect. (3) A strategy that may only trade in one phase does not run in practice as in the full run: the gate changes its trades (see the <a href="{{gating_url}}" target="_blank" rel="noopener">gating hypothesis</a>). The figures here assign existing trades to a phase and do not simulate the gate. (4) Switching between strategies at a phase change costs extra; that is not included. (5) The ADX regime is only known with a delay of one day; the assignment is documented on the day the trade opened.</div></div>
 </section>
 
 <section id="sec-spez">
   <div class="sectionhead">
-    <h2>Regime-Spezialisten</h2>
-    <span class="hint">alle VALIDATION-Kandidaten je Regime-Spalte, durchsuchbar und sortierbar</span>
+    <h2>Regime specialists</h2>
+    <span class="hint">all VALIDATION candidates per regime column, searchable and sortable</span>
   </div>
-  <p class="secintro">Zwei unabhängige Regime-Schichten: die BTC-Marktphase und die coin-eigene Regime-Klassifikation. Jeder Eintrag ist ein Strategie/Regime-Paar, das die Specialist-Floor-Schwelle (&ge;5 Episoden, &ge;10 Trades) erreicht.</p>
-  <div class="callout info"><span class="dot">&#8505;</span><div><b>Was der Prozentwert misst (seit 2026-09-12: pro Marktphase, nicht mehr pro Trade).</b> Der Benchmark ist ein simples Spot-Kaufen-und-Halten desselben Coins über die <i>gesamte</i> ADX-definierte Regime-Episode &mdash; vom ersten bis zum letzten Tag, an dem dieses Regime galt &mdash; unabhängig davon, wann genau innerhalb dieser Phase die Strategie ein- und ausgestiegen ist. Der gezeigte Prozentwert ist Strategie-Rendite minus dieser Phasen-Buy-and-Hold-Rendite, wobei jede Episode zuerst für sich aufsummiert und erst danach über die Episoden gemittelt wird (nicht über einzelne Trades &mdash; seit 2026-09-13, siehe Korrektur weiter unten). Damit kann eine reine 1x-Long-Strategie den Benchmark auch ohne Hebel und ohne Short schlagen: indem sie z. B. mehrere kleinere Trades statt einmal Halten über die ganze Phase fährt und dabei Rücksetzer innerhalb der Phase auslässt oder wiederholt güns­tiger ein- und teurer aussteigt. (Bis 2026-09-11 war der Benchmark stattdessen auf die eigene Trade-Dauer begrenzt &mdash; dort konnte ein ungehebelter Long praktisch nie mehr als 0% erreichen, siehe Amendment-Historie.)</div></div>
+  <p class="secintro">Two independent regime layers: the BTC market phase and the coin's own regime classification. Every entry is a strategy/regime pair that reaches the specialist-floor threshold (&ge;5 episodes, &ge;10 trades).</p>
+  <div class="callout info"><span class="dot">&#8505;</span><div><b>What the percentage measures (since 2026-09-12: per market phase, no longer per trade).</b> The benchmark is a simple spot buy-and-hold of the same coin over the <i>whole</i> ADX-defined regime episode &mdash; from the first to the last day this regime applied &mdash; regardless of when exactly within that phase the strategy entered and exited. The percentage shown is strategy return minus this phase buy-and-hold return, where each episode is first summed on its own and only then averaged over the episodes (not over single trades &mdash; since 2026-09-13, see the correction further below). A pure 1x long strategy can thus beat the benchmark even without leverage and without shorting: for example by running several smaller trades instead of holding once through the whole phase, skipping pullbacks within the phase or repeatedly entering cheaper and exiting dearer. (Until 2026-09-11 the benchmark was instead limited to the trade's own duration &mdash; there an unleveraged long could practically never reach more than 0%, see the amendment history.)</div></div>
   <div class="tabs">
-    <div class="tab active" data-target="panel-btc">BTC-Regime</div>
-    <div class="tab" data-target="panel-coin">Coin-Regime</div>
+    <div class="tab active" data-target="panel-btc">BTC regime</div>
+    <div class="tab" data-target="panel-coin">Coin regime</div>
   </div>
   <div class="tabpanel" id="panel-btc">
     <div id="rf-btc-content"></div>
@@ -292,187 +242,26 @@
     <div id="rf-coin-content"></div>
   </div>
   <div class="legend">
-    <span class="sw">Dollar-Gewinn / B&amp;H-Gewinn: Summe aller $1000-Einzeleinsätze dieser Strategie in diesem Regime bzw. dieselbe Summe für Buy&amp;Hold &mdash; Herleitung siehe "Gesamtgewinn in Dollar" unten</span>
+    <span class="sw">Dollar gain / B&amp;H gain: sum of all $1000 single stakes of this strategy in this regime, or the same sum for buy&amp;hold &mdash; for the derivation see "Total gain in dollars" below</span>
   </div>
-</section>
-
-<section id="sec-funnel">
-  <div class="sectionhead">
-    <h2>Von {{n_eligible}} Kandidaten zu {{n_universal}} Universal-Strategien</h2>
-    <span class="hint">jede Stufe erklärt, was aus welchem Grund herausfällt</span>
-  </div>
-  <p class="secintro">Direkte Antwort auf "was ist mit den restlichen {{n_not_measured}}": die fehlen nicht, weil diese Auswertung sie ausschließt &mdash; sie haben den Full-Backtest selbst nie abgeschlossen. Alles Weitere ist echte Auswertungslogik, kein Datenausfall.</p>
-  <div class="funnel">
-    <div class="frow">
-      <div class="flabel">Full-Backtest-eligible Strategien</div>
-      <div class="fcount">{{n_eligible}}</div>
-      <div class="ftrack"><div class="fbar" style="width:100%"></div></div>
-    </div>
-    <div class="fnote"><b>&minus;{{n_not_measured}}</b> nie gemessen &mdash; Full-Backtest selbst nie erfolgreich abgeschlossen: {{n_oom}}&times; <code class="mono">oom_confirmed</code> (Speicherbedarf der Strategie über 8 Paare &times; 6,5 Jahre, kein Konkurrenzproblem &mdash; auch mit 16GB/1 Worker bestätigt), {{n_perf}}&times; <code class="mono">performance_limited</code>, {{n_stake}}&times; <code class="mono">stake_overflow_confirmed</code>.</div>
-    <div class="frow">
-      <div class="flabel">Erfolgreich gemessen &amp; attribuiert (Modell 0)</div>
-      <div class="fcount">{{n_eval}} <span class="pct">{{pct_eval}}</span></div>
-      <div class="ftrack"><div class="fbar" style="width:{{w_eval}}%"></div></div>
-    </div>
-    <div class="fnote"><b>&minus;{{drop_no_validation}}</b> liefen durch, aber ohne einen einzigen Trade im Validierungsfenster (ab 2024-01-01) &mdash; derselbe mechanische Grund wie <code class="mono">ASDTSRockwellTrading</code> im 7er-Pilotlauf, jetzt in der Breite.</div>
-    <div class="frow">
-      <div class="flabel">&ge;1 Marktphase im Validierungsfenster</div>
-      <div class="fcount">{{n_gain_rows}} <span class="pct">{{pct_gain}}</span></div>
-      <div class="ftrack"><div class="fbar" style="width:{{w_gain}}%"></div></div>
-    </div>
-    <div class="fnote"><b>&minus;{{drop_exploratory}}</b> bleiben überall <code class="mono">EXPLORATORY</code> &mdash; genug Episoden, aber zu wenige Trades je Regime (der <code class="mono">ADXMomentum</code>-Fall aus dem Pilotlauf, jetzt {{drop_exploratory_word}}).</div>
-    <div class="frow">
-      <div class="flabel">Erreicht VALIDATION-Tier in &ge;1 Coin-Regime</div>
-      <div class="fcount">{{n_floor_coin}} <span class="pct">{{pct_floor}}</span></div>
-      <div class="ftrack"><div class="fbar" style="width:{{w_floor}}%"></div></div>
-    </div>
-    <div class="fnote"><b>&minus;{{drop_not_universal}}</b> erreichen VALIDATION-Tier in mindestens einem, aber nicht in allen vier Coin-Regimen &mdash; für eine Maximin-Aussage über alle Regime fehlt in mindestens einem die Evidenz.</div>
-    <div class="frow">
-      <div class="flabel">Universal-Kandidat &mdash; alle 4 Coin-Regime auf VALIDATION-Tier</div>
-      <div class="fcount">{{n_universal}} <span class="pct">{{pct_universal}}</span></div>
-      <div class="ftrack"><div class="fbar" style="width:{{w_universal}}%"></div></div>
-    </div>
-    <div class="fnote"><b>&minus;{{drop_not_consistent}}</b> schlagen den Benchmark nicht in wirklich jedem der vier Regime &mdash; mindestens ein Regime mit negativem Excess-Return. ADX-Uptrend-Phasen sind fast durchgehend der Ausreißer, siehe Callout unten &mdash; aber {{n_consistent}} Kandidaten schaffen es trotzdem in allen vieren.</div>
-    <div class="frow">
-      <div class="flabel">Vollständig konsistent &mdash; schlägt den Benchmark in allen 4</div>
-      <div class="fcount">{{n_consistent}} <span class="pct">{{pct_consistent}}</span></div>
-      <div class="ftrack"><div class="fbar" style="width:{{w_consistent}}%"></div></div>
-    </div>
-  </div>
-  <div class="callout warn" style="margin-top:14px;"><span class="dot">&#9888;</span><div><b>ADX Uptrend ist bei {{n_uptrend_weakest}} von {{n_universal}} Universal-Kandidaten ({{pct_uptrend_weakest}}) das schwächste Regime.</b> Gegen den phasenweiten Benchmark gemessen &mdash; einfaches Halten vom ersten bis zum letzten Tag der jeweiligen ADX-Uptrend-Episode &mdash; verliert praktisch jede Strategie einen Teil der Rally, weil sie zwischendurch Gewinne mitnimmt, aussteigt oder neu einsteigt statt durchzuhalten. {{uptrend_anecdote}} Das beantwortet die Ausgangsfrage für die große Mehrheit: ein ungehebelter 1x-Long, der einen ganzen Uptrend konsequent durchhält, schlägt aktives Timing hier fast immer. Die {{n_consistent}} Ausnahmen unten zeigen aber: unmöglich ist es nicht &mdash; bei ihnen ist nicht ADX Uptrend, sondern ADX Transition das (knapp) schwächste Regime.</div></div>
-</section>
-
-<section id="sec-konsistent">
-  <div class="sectionhead">
-    <h2>Vollständig konsistente Universal-Kandidaten</h2>
-    <span class="hint">regime_consistency = 1.0 &mdash; schlägt den Benchmark in jedem der vier Coin-Regime &mdash; aktuell {{n_consistent}} Strategien</span>
-  </div>
-  <p class="secintro">{{consistent_intro}}</p>
-  <div class="callout info"><span class="dot">&#8505;</span><div><b>Diese {{n_consistent_word}} Strategien sind im Kern eine Datei, nicht {{n_consistent_word}} unabhängige Strategien.</b> Mechanik: drei Supertrend-Lesungen auf derselben 1h-Kerze &mdash; nicht drei Zeitrahmen, drei <code class="mono">multiplier</code>/<code class="mono">period</code>-Paare &mdash; müssen für einen Einstieg übereinstimmen (3-von-3-AND); für den Ausstieg entscheidet nur noch die trägste der drei Lesungen allein. ROI ist ab <code class="mono">optim3</code> faktisch abgeschaltet (<code class="mono">{"0": 0.99}</code>), die eigentliche Gewinnmitnahme übernimmt ein Trailing Stop, der ab +2% Gewinn scharf wird und danach nur noch 0,1% Abstand zum bisherigen Höchstkurs zulässt. <code class="mono">FastSupertrend_optim3_rsi_80</code> &mdash; der einzige reale ADX-Uptrend-Spezialist des gesamten Bestands, siehe Callout oben zu * &mdash; ergänzt darauf nur einen RSI-EMA(14)-Filter, der Einstiege in bereits stark überkaufte/überverkaufte Kerzen blockiert. Herkunft: <span class="mono">juankysoriano</span> schrieb die Ursprungslogik (<code class="mono">freqtrade/freqtrade-strategies</code>), <span class="mono">perkmeister</span> baute daraus 2022 die numpy-optimierte "Fast"-Version (Issue&nbsp;#242, Logik unverändert), <span class="mono">TheoBrigitte/freqtrade</span> forkte weiter zu <code class="mono">optim3</code>/<code class="mono">_rsi_XX</code> (Futures-Shorts, asymmetrischer Exit, der RSI-Filter) &mdash; genau die Version, die dieser Bestand misst. Vollständige Herleitung mit Code-Ausschnitten und Quellenbelegen: <a href="https://claude.ai/artifact/RHddoXo3XhxGafPWem3Vw3" target="_blank" rel="noopener">FastSupertrend Dossier</a> (Englisch).</div></div>
-  <div class="toolbar">
-    <input class="search" id="consistent-search" type="text" placeholder="Strategie suchen…">
-    <span class="rowcount mono" id="consistent-count"></span>
-  </div>
-  <div class="tablebox">
-    <table class="plain" id="consistent-table">
-      <thead id="consistent-head"></thead>
-      <tbody id="consistent-body"></tbody>
-    </table>
-  </div>
-</section>
-
-<section id="sec-universal">
-  <div class="sectionhead">
-    <h2>Alle Universal-Kandidaten</h2>
-    <span class="hint">durchsuchbar, sortierbar</span>
-  </div>
-  <p class="secintro">Alle {{n_universal}} Strategien, die den Specialist-Floor in allen vier Coin-Regimen gleichzeitig erreichen &mdash; unabhängig davon, ob sie den Benchmark dort auch schlagen. Regime-Konsistenz = Anteil der vier Regime mit positivem Excess-Return.</p>
-  <div class="toolbar">
-    <input class="search" id="universal-search" type="text" placeholder="Strategie suchen…">
-    <span class="rowcount mono" id="universal-count"></span>
-  </div>
-  <div class="tablebox">
-    <div class="scrollbody">
-      <table class="plain" id="universal-table">
-        <thead id="universal-head"></thead>
-        <tbody id="universal-body"></tbody>
-      </table>
-    </div>
-  </div>
-</section>
-
-<section id="sec-ft">
-  <div class="sectionhead">
-    <h2>Freqtrade-eigene Kennzahlen</h2>
-    <span class="hint">natives Backtest-Reporting, für alle {{n_universal}} Universal-Kandidaten</span>
-  </div>
-  <p class="secintro">Freqtrade schreibt bei jedem Backtest selbst einen vollständigen Vergleichsblock: CAGR, Sharpe/Sortino/Calmar, Profit-Factor, Trefferquote, Drawdown und einen eigenen, simplen Buy&amp;Hold-Vergleich (<code class="mono">market_change</code>). Diese Zahlen liegen für jeden unserer {{n_measured_baselines}} Full-Backtest-Läufe bereits vor. Unten: derselbe Block für alle {{n_universal}} Universal-Kandidaten von oben (2026-09-14 erweitert, auf expliziten Nutzerwunsch &mdash; vorher stand hier nur eine feste Top-10-Dollar-Gewinner-Auswahl). {{ft_intro_tail}}</p>
-
-  <div class="rules">
-    <div class="rule"><b>CAGR</b>Jährliches geometrisches Wachstum: (Endkapital/Startkapital)^(365/Tage) &minus; 1. Bei Zinseszins über tausende Trades kann das astronomisch werden.</div>
-    <div class="rule"><b>Sharpe-Ratio</b>Ø täglicher Gewinn geteilt durch dessen Streuung, aufs Jahr hochgerechnet. Straft jede Schwankung, auch nach oben. &gt;1 gilt gemeinhin als brauchbar, &gt;3 als sehr gut.</div>
-    <div class="rule"><b>Sortino-Ratio</b>Wie Sharpe, aber die Streuung wird nur aus Verlust-Trades berechnet &mdash; Gewinn-Ausreißer nach oben zählen nicht als Risiko. Meist höher als Sharpe.</div>
-    <div class="rule"><b>Calmar-Ratio</b>Wie Sharpe/Sortino, aber der erwartete Ertrag wird durch den maximalen Drawdown geteilt statt durch eine Streuung. Explodiert bei starkem Zinseszins mit, weil schon der Zähler explodiert.</div>
-    <div class="rule"><b>Profit-Factor</b>Summe aller Gewinn-Trades (Dollar) geteilt durch Summe aller Verlust-Trades (absolut). 1,2 heißt: pro verlorenem Dollar kamen $1,20 Gewinn rein &mdash; unabhängig von der Trefferquote.</div>
-  </div>
-
-  <div class="callout warn"><span class="dot">&#9888;</span><div><b>Freqtrades eigene Sharpe/Sortino/Calmar-Formel teilt durch das feste Startkapital, nicht durch das jeweils aktuelle.</b> Bei <code class="mono">stake_amount: "unlimited"</code> wächst der Dollar-Gewinn pro Trade mit dem kompoundierenden Kontostand mit, während im Nenner weiterhin durch die ursprünglichen $1000 geteilt wird &mdash; das treibt Sharpe/Sortino/Calmar hier strukturell über die in der Finanzliteratur üblichen Bereiche (Sharpe 0&ndash;3) hinaus. Zum Strategien-<i>Vergleich untereinander</i> bleiben die Werte trotzdem brauchbar (alle unterliegen demselben Effekt); als absolute Kennzahl sind sie es nicht.</div></div>
-
-  <div class="sectionhead" style="margin-top:22px;">
-    <h3 style="font-size:15px;font-weight:600;">Unsere Auswertung vs. Freqtrades native Auswertung</h3>
-  </div>
-  <div class="tablebox">
-    <table class="plain" data-nosort>
-      <thead><tr><th>Dimension</th><th>Unsere Auswertung</th><th>Freqtrade nativ</th></tr></thead>
-      <tbody>
-        <tr><td><b>Zeitraum</b></td><td>Nur Validierungsfenster, 2024-01-01 bis Ende</td><td>Gesamter kanonischer Lauf, 2020-03 bis 2026-08 (inkl. Discovery-Fenster)</td></tr>
-        <tr><td><b>Kapitaleinsatz</b></td><td>Fixer $1000-Einsatz je Trade, keine Wiederanlage</td><td><code class="mono">stake_amount: "unlimited"</code> &mdash; voller Kontostand wird über bis zu 8 gleichzeitige Positionen reinvestiert</td></tr>
-        <tr><td><b>Regime-Auflösung</b></td><td>Getrennt je BTC-/Coin-Regime</td><td>Ein Gesamtwert über den ganzen Zeitraum, keine Regime-Aufschlüsselung</td></tr>
-        <tr><td><b>Benchmark</b></td><td>Coin-eigenes Spot-Buy&amp;Hold über die gesamte ADX-Regime-Episode</td><td><code class="mono">market_change</code>: ein Buy&amp;Hold über den ganzen Zeitraum, alle 8 Paare gleichgewichtet</td></tr>
-        <tr><td><b>Beantwortet</b></td><td>Ist die Strategie in einem bestimmten Marktregime strukturell besser als bloßes Halten &mdash; kontrolliert für Zinseszins und Data-Snooping?</td><td>Wie hätte sich die Strategie über den ganzen Zeitraum mit echtem Reinvestment tatsächlich geschlagen?</td></tr>
-      </tbody>
-    </table>
-  </div>
-
-  <div class="callout warn" style="margin-top:18px;"><span class="dot">&#9888;</span><div><b>Nur {{n_ft_profitable}} von {{n_universal}} ({{pct_ft_profitable}}) bleiben über den vollen Zeitraum inklusive Zinseszins profitabel.</b> Anders als bei der früheren, fest kuratierten Top-10-Dollar-Gewinner-Auswahl (dort naturgemäß 10/10 profitabel) ist "Universal-Kandidat" kein Profitabilitätskriterium &mdash; es verlangt nur genug Trades/Episoden in allen vier Coin-Regimen (Specialist-Floor), nicht einen positiven Gesamtgewinn. Der Widerspruch zur Validierungsfenster-Sicht oben ist trotzdem real möglich: eine Strategie kann im (kürzeren) Validierungsfenster mit fixem $1000-Einsatz je Trade gut abschneiden und trotzdem über den (längeren) Gesamtzeitraum mit echtem Reinvestment einbrechen, oder umgekehrt &mdash; unterschiedliche Zeiträume, unterschiedliche Kapitalmodelle, siehe Tabelle "Unsere Auswertung vs. Freqtrades native Auswertung" oben.</div></div>
-
-  <div class="toolbar">
-    <input class="search" id="ft-search" type="text" placeholder="Strategie suchen…">
-    <span class="rowcount mono" id="ft-count"></span>
-  </div>
-  <div class="tablebox">
-    <div class="scrollbody">
-      <table class="plain" id="ft-table">
-        <thead><tr>
-          <th class="sortable" data-key="strategy_id">Strategie<span class="arrow">&#9662;</span></th>
-          <th class="sortable num" data-key="total_trades">Trades<span class="arrow">&#9662;</span></th>
-          <th class="sortable num" data-key="winrate">Win-Rate<span class="arrow">&#9662;</span></th>
-          <th class="sortable num" data-key="cagr">CAGR<span class="arrow">&#9662;</span></th>
-          <th class="sortable num active" data-key="sharpe">Sharpe<span class="arrow">&#9662;</span></th>
-          <th class="sortable num" data-key="sortino">Sortino<span class="arrow">&#9662;</span></th>
-          <th class="sortable num" data-key="calmar">Calmar<span class="arrow">&#9662;</span></th>
-          <th class="sortable num" data-key="profit_factor">Profit-Factor<span class="arrow">&#9662;</span></th>
-          <th class="sortable num" data-key="max_drawdown_account">Max-DD<span class="arrow">&#9662;</span></th>
-          <th class="sortable num" data-key="final_balance">Endkapital<span class="arrow">&#9662;</span></th>
-          <th class="sortable num" data-key="ok">Robustheit<span class="arrow">&#9662;</span></th>
-          <th class="sortable num" data-key="ur">Bestätigung<span class="arrow">&#9662;</span></th>
-        </tr></thead>
-        <tbody id="ft-body"></tbody>
-      </table>
-    </div>
-  </div>
-  <p class="secintro" style="margin-top:10px;">Endkapital = $1000 Startkapital, über den ganzen kanonischen Zeitraum mit echtem Reinvestment. Max-DD = größter Einbruch vom bisherigen Höchststand, in % des Kontos. Quelle: <code class="mono">user_data/profile_smoke/&lt;Strategie&gt;-*.zip</code>, Freqtrades eigener Backtest-Export.</p>
 </section>
 
 <section id="sec-adx">
   <div class="sectionhead">
-    <h2>ADX-Regime: Definition und Zeiträume</h2>
-    <span class="hint">wie die vier Zustände (plus sechs Berichts-Phasen mit Volatilität) entstehen, und wann sie bei jedem der 8 Coins jeweils galten</span>
+    <h2>ADX regime: definition and periods</h2>
+    <span class="hint">how the four states arise, and when each applied to each of the 8 coins</span>
   </div>
-  <p class="secintro">Alle vier Zustände &mdash; ob für BTC oder für einen einzelnen Coin &mdash; entstehen aus derselben Regel, angewendet auf Tageskerzen: Wilder-DMI/ADX(14) (<code class="mono">talib.PLUS_DI</code>/<code class="mono">MINUS_DI</code>/<code class="mono">ADX</code>, Periode 14). Jedem Tag wird dabei der Zustand zugewiesen, den die am Vortag <i>abgeschlossene</i> Kerze ergab (ein voller Tag Verzögerung) &mdash; kein Blick in die Zukunft.</p>
+  <p class="secintro">All four states &mdash; whether for BTC or for a single coin &mdash; arise from the same rule applied to daily candles: Wilder DMI/ADX(14) (<code class="mono">talib.PLUS_DI</code>/<code class="mono">MINUS_DI</code>/<code class="mono">ADX</code>, period 14). Each day is assigned the state that the candle <i>completed</i> on the previous day produced (a full day of delay) &mdash; no look into the future.</p>
   <div class="rules">
-    <div class="rule"><b>ADX Uptrend</b>ADX &ge; 25 UND +DI &gt; &minus;DI &mdash; starker, gerichteter Aufwärtstrend.</div>
-    <div class="rule"><b>ADX Downtrend</b>ADX &ge; 25 UND &minus;DI &gt; +DI &mdash; starker, gerichteter Abwärtstrend.</div>
-    <div class="rule"><b>ADX Sideways</b>ADX &lt; 20, unabhängig von +DI/&minus;DI &mdash; kein ausgeprägter Trend in beide Richtungen.</div>
-    <div class="rule"><b>ADX Transition</b>20 &le; ADX &lt; 25 &mdash; Übergangszone zwischen Sideways und einem ausgeprägten Trend, Richtung noch nicht bestätigt.</div>
+    <div class="rule"><b>ADX uptrend</b>ADX &ge; 25 AND +DI &gt; &minus;DI &mdash; strong, directed upward trend.</div>
+    <div class="rule"><b>ADX downtrend</b>ADX &ge; 25 AND &minus;DI &gt; +DI &mdash; strong, directed downward trend.</div>
+    <div class="rule"><b>ADX sideways</b>ADX &lt; 20, regardless of +DI/&minus;DI &mdash; no pronounced trend in either direction.</div>
+    <div class="rule"><b>ADX transition</b>20 &le; ADX &lt; 25 &mdash; transition zone between sideways and a pronounced trend, direction not yet confirmed.</div>
   </div>
-  <div class="callout info"><span class="dot">&#8505;</span><div><b>Coin-Regime ist keine 8-Coin-Abstimmung &mdash; jeder Coin bekommt seinen eigenen, unabhängigen Zustand.</b> Die 8 Paare (BTC, ETH, LTC, XRP, ADA, XLM, XMR, DASH, je gegen USDT) durchlaufen exakt dieselbe Regel oben, aber jedes einzeln auf seinen eigenen Tageskerzen &mdash; nicht als Mehrheitsentscheid oder Durchschnitt über alle 8. "Coin-Regime" in den Tabellen dieser Seite ist immer der Zustand des einen Coins, auf dem der jeweilige Trade lief; ADA kann an einem Tag ADX Uptrend zeigen, während BTC am selben Tag ADX Sideways zeigt. "BTC-Regime" ist derselbe Mechanismus, nur für BTC selbst berechnet und dann allen 8 Paaren an diesem Tag als gemeinsamer Marktkontext zugeordnet (daher ist es für alle Paare an einem Tag identisch, Coin-Regime nicht). Getrennt davon existieren in <code class="mono">regime_daily.csv</code> auch Verbreitungs-Kennzahlen (<code class="mono">pct_coins_bull_state</code> u. &auml;., wie viel Prozent der 8 Coins gerade im selben Zustand stehen) &mdash; die fließen in keine Tabelle auf dieser Seite ein, sie sind reiner Zusatzkontext.</div></div>
-
-  <h3 style="font-size:15px;font-weight:600;margin:22px 0 8px;">Sechs Berichts-Phasen: Volatilität als zweite Dimension</h3>
-  <p class="secintro">Zusätzlich zur Richtung/Trendstärke oben wird für jeden Tag auch die annualisierte 30-Tage-realisierte Volatilität des Coins gemessen und daraus eine sechste, feinere Aufteilung abgeleitet (Amendment 2026-09-05, <code class="mono">REGIME_PREREGISTRATION.md</code>). Grund: ADX Sideways deckt zwei entgegengesetzte Marktverhalten ab &mdash; ruhige Drift und eine wild oszillierende Handelsspanne &mdash;, die für unterschiedliche Strategietypen (z.&nbsp;B. Grid- gegen Cointegrations-Strategien) genau gegensätzlich vorteilhaft sind; als eine Kategorie gemittelt verschwindet diese Spezialisierung im Durchschnitt.</p>
-  <div class="rules">
-    <div class="rule"><b>bull_trend</b>ADX &ge; 25 UND +DI &gt; &minus;DI &mdash; identisch mit ADX Uptrend.</div>
-    <div class="rule"><b>bear_trend</b>ADX &ge; 25 UND &minus;DI &gt; +DI &mdash; identisch mit ADX Downtrend.</div>
-    <div class="rule"><b>transition</b>20 &le; ADX &lt; 25 &mdash; identisch mit ADX Transition.</div>
-    <div class="rule"><b>range_quiet</b>ADX &lt; 20 UND Vol &lt; 0,623 &mdash; ruhige Seitwärtsphase.</div>
-    <div class="rule"><b>range_choppy</b>ADX &lt; 20 UND Vol &ge; 0,623 &mdash; dieselbe ADX-Schwelle wie range_quiet, aber deutlich mehr Bewegung innerhalb der Spanne.</div>
-    <div class="rule"><b>high_vol_shock</b>Vol &ge; 1,291 &mdash; unabhängig vom ADX-Zustand, überschreibt sogar bull_trend/bear_trend. Ein Tag im Top-Volatilitäts-Dezil zählt als Schock, egal wie ADX steht.</div>
-  </div>
-  <p class="secintro">Beide Schwellen (annualisierte 30-Tage-realisierte Log-Return-Volatilität) sind als feste Zahlen eingefroren, nicht als Quantil-Regel &mdash; einmalig über das gesamte Analysefenster gemessen (0,623 = Median über ADX-Sideways-Tage; 1,291 = 90. Perzentil über alle Paar-Tage), <i>bevor</i> irgendein Ergebnis pro Phase angesehen wurde, um eine nachträglich an bestimmte Strategien angepasste Schwelle auszuschließen. Über das eingefrorene Fenster teilen sie die Tage 23,6 / 19,3 / 17,9 / 15,2 / 14,0 / 10,0 Prozent auf die sechs Phasen auf.</p>
-  <div class="callout warn"><span class="dot">&#9888;</span><div><b>Reine Berichts-Ebene &mdash; entscheidet auf dieser Seite nichts.</b> Alle Tabellen unten (Regime-Spezialisten, Universal-Kandidaten, Modell 1/2/3) gruppieren weiterhin ausschließlich nach den vier Zuständen oben, nicht nach diesen sechs Phasen. Die 4-Zustands-Zuordnung entscheidet laut Preregistration allein über Attribution, Discovery/Validation-Split und Spezialisten-Schwelle; die Volatilitäts-Aufteilung kam bewusst erst danach als reine Beschreibungsebene hinzu, gerade damit sie diese Entscheidungsmaschinerie nicht berührt.</div></div>
+  <div class="callout info"><span class="dot">&#8505;</span><div><b>Coin regime is not an 8-coin vote &mdash; each coin gets its own independent state.</b> The 8 pairs (BTC, ETH, LTC, XRP, ADA, XLM, XMR, DASH, each against USDT) run through exactly the same rule above, but each on its own daily candles &mdash; not as a majority decision or average over all 8. "Coin regime" in the tables on this page is always the state of the one coin on which the respective trade ran; ADA can show ADX uptrend on a day when BTC shows ADX sideways on the same day. "BTC regime" is the same mechanism, only computed for BTC itself and then assigned to all 8 pairs on that day as a shared market context (hence it is identical for all pairs on a day, coin regime is not). Separately, <code class="mono">regime_daily.csv</code> also holds breadth metrics (<code class="mono">pct_coins_bull_state</code> and the like, what percentage of the 8 coins are currently in the same state) &mdash; these feed into no table on this page, they are pure additional context.</div></div>
 
   <div class="toolbar">
-    <input class="search" id="btcep-search" type="text" placeholder="Datum suchen (z. B. 2021-05)…">
+    <input class="search" id="btcep-search" type="text" placeholder="Search date (e.g. 2021-05)…">
     <span class="rowcount mono" id="btcep-count"></span>
   </div>
   <div class="chipbar" id="btcep-coinchips" data-model="btcep-coin" style="margin-bottom:6px;"></div>
@@ -482,61 +271,62 @@
       <table class="plain" id="btcep-table">
         <thead><tr>
           <th class="sortable active" data-key="coin">Coin<span class="arrow">&#9662;</span></th>
-          <th class="sortable" data-key="regime">Zustand<span class="arrow">&#9662;</span></th>
+          <th class="sortable" data-key="regime">State<span class="arrow">&#9662;</span></th>
           <th class="sortable" data-key="start">Start<span class="arrow">&#9662;</span></th>
-          <th class="sortable" data-key="end">Ende<span class="arrow">&#9662;</span></th>
-          <th class="sortable num" data-key="days">Tage<span class="arrow">&#9662;</span></th>
+          <th class="sortable" data-key="end">End<span class="arrow">&#9662;</span></th>
+          <th class="sortable num" data-key="days">Days<span class="arrow">&#9662;</span></th>
         </tr></thead>
         <tbody id="btcep-body"></tbody>
       </table>
     </div>
   </div>
-  <p class="secintro" style="margin-top:14px;">Episoden je Coin und Zustand, 2020-04-01 bis 2026-08-20, Coins nach Marktkapitalisierung sortiert (BTC #1 bis DASH #72, Stand 2026-09-12, CoinMarketCap). Transition ist überall am häufigsten, aber meist kurz &mdash; der Übergang zwischen den anderen drei Zuständen. <b>*</b> <code class="mono">XMR</code> hat durchgehend am wenigsten Episoden: Binance delistete den Spot-Handel am 2024-02-20, die Kerzen fehlen danach &mdash; kein Fehler in dieser Auswertung.</p>
+  <p class="secintro" style="margin-top:14px;">Episodes per coin and state, 2020-04-01 to 2026-08-20, coins sorted by market capitalisation (BTC #1 to DASH #72, as of 2026-09-12, CoinMarketCap). Transition is the most frequent everywhere, but mostly short &mdash; the transition between the other three states. <b>*</b> <code class="mono">XMR</code> has the fewest episodes throughout: Binance delisted spot trading on 2024-02-20, the candles are missing after that &mdash; not an error in this evaluation.</p>
   <div class="tablebox">
     <table class="plain">
-      <thead><tr><th>Coin</th><th class="num">ADX Uptrend</th><th class="num">ADX Downtrend</th><th class="num">ADX Sideways</th><th class="num">ADX Transition</th><th class="num">Gesamt</th></tr></thead>
+      <thead><tr><th>Coin</th><th class="num">ADX uptrend</th><th class="num">ADX downtrend</th><th class="num">ADX sideways</th><th class="num">ADX transition</th><th class="num">Total</th></tr></thead>
       <tbody id="btcep-counts-body"></tbody>
     </table>
   </div>
 </section>
 
 <section id="sec-log">
-  <div class="sectionhead"><h2>Änderungsprotokoll</h2><span class="hint">Korrekturen, Neuberechnungen und was sie verschoben haben</span></div>
-  <details class="fold"><summary>Neuberechnung vom 2026-09-20 <span class="sub">Duplikate entfernt, 629 Strategien</span></summary><div class="foldbody">
+  <div class="sectionhead"><h2>Change log</h2><span class="hint">corrections, recalculations and what they shifted</span></div>
+  <details class="fold"><summary>Change of 2026-09-26: the full backtest is always resolved at 5m <span class="sub">author-timeframe results above 5m no longer shown, default sort on 5m</span></summary><div class="foldbody">
+  <div class="callout info" style="margin-top:10px;"><span class="dot">&#8505;</span><div><b>Owner decision 2026-09-26: the full backtest always runs with 5m detail candles, no longer at the author timeframe alone.</b> Reason: 1m cannot practically be tested over a window this long, and 5m is the most practical solution. For strategies above 5m, the results of a run at the author timeframe are therefore not real results &mdash; the order of events inside a candle is not resolved there &mdash; and are no longer shown; the page defaults to sorting by 5m. Strategies at or below 5m are unaffected (their baseline already simulates at that granularity). <code class="mono">regime/full_backtest.py</code> now passes <code class="mono">--timeframe-detail 5m</code> for every strategy above 5m by default.</div></div>
+  </div></details>
+  <details class="fold"><summary>Recalculation of 2026-09-20 <span class="sub">duplicates removed, 629 strategies</span></summary><div class="foldbody">
 {{callout_recalc}}
   </div></details>
-  <details class="fold"><summary>Fünf Korrekturen vom 2026-09-12 bis 2026-09-14 <span class="sub">Episoden-Mittelung, Floor im Fenster, B&amp;H-Betrag, Drawdown, Duplikate</span></summary><div class="foldbody">
-  <div class="callout info" style="margin-top:10px;"><span class="dot">&#8505;</span><div><b>Korrektur 2026-09-14: Excess-Return mittelte bisher über Trades, nicht über Episoden &mdash; genau die Schieflage, die beim Dollar-Vergleich schon einmal behoben wurde, nur subtiler.</b> Eine Episode mit 50 Trades zählte 25-mal so stark in den Mittelwert wie eine mit nur 2 Trades, obwohl beide nur eine einzige unabhängige Beobachtung sind. Behoben in <code class="mono">_episode_pairs()</code>: jede Episode wird zuerst für sich selbst aufsummiert, erst danach wird über die Episoden gemittelt &mdash; symmetrisch zum längst korrekten <code class="mono">mean_benchmark_return</code>. Dadurch haben sich die Excess-Return-Werte in allen Tabellen verschoben (u. a. 372&rarr;359 bei "ADX Uptrend schwächstes Regime", 0&rarr;8 vollständig konsistente Kandidaten) &mdash; siehe auch die beiden neuen Spalten "Episoden-Excess-LCB" und "Grade" unten.</div></div>
-  <div class="callout info" style="margin-top:10px;"><span class="dot">&#8505;</span><div><b>Korrektur 2026-09-14: die VALIDATION/EXPLORATORY-Einstufung zählte Episoden über die volle Historie, nicht nur das Validierungsfenster.</b> Gefunden bei einem vollen Code-Review durch DeepSeek-v4-pro. Die eingefrorene Regel verlangt "5 unabhängige Regime-Episoden <i>innerhalb des Validierungsfensters</i>" (<code class="mono">REGIME_PREREGISTRATION.md</code>) &mdash; die Trade-Zahl wurde schon immer korrekt nur im Fenster gezählt, die Episodenzahl aber aus der kompletten Historie seit 2020, sodass alte Episoden vor 2024 eine Strategie in einer Phase fälschlich über die Schwelle heben konnten. Behoben durch Filtern auf das Validierungsfenster vor der Episodenzählung. Verschiebt die reinen Anzahlen (BTC 1.828&rarr;1.671, Coin 1.770&rarr;1.757 Strategien im VALIDATION-Tier, je Phase gezählt), ändert aber weder die Universal-Kandidaten-Zahl (379) noch die "ADX Uptrend schwächstes Regime"-Quote (359/379) noch die 8 vollständig konsistenten Kandidaten &mdash; die davon betroffenen Strategien lagen außerhalb dieser beiden Auswertungen.</div></div>
-  <div class="callout info" style="margin-top:10px;"><span class="dot">&#8505;</span><div><b>Korrektur 2026-09-12 (nach diesem Callout): der B&amp;H-Dollar-Betrag zählte bis eben jede Episode einmal <i>je Trade</i> statt einmal <i>je Episode</i>.</b> Eine Strategie mit 1.230 Trades über nur 40 Episoden zeigte dadurch einen um &ndash;grob das 30-fache&ndash; überhöhten "B&amp;H-Gewinn" ($94.882 statt real rund $4.800). Behoben in <code class="mono">_specialist_table()</code>: sowohl die Dollar-Summe als auch der Prozent-Mittelwert (und damit Excess-Return) zählen jetzt jede eindeutige (Coin, Episode)-Kombination genau einmal, unabhängig davon, wie viele Trades die Strategie darin gemacht hat. Die Zahlen in diesem Callout und in allen Tabellen unten spiegeln bereits die Korrektur.</div></div>
-  <div class="callout info" style="margin-top:10px;"><span class="dot">&#8505;</span><div><b>Korrektur 2026-09-13: Max Drawdown zeigte bis eben teils &uuml;ber 100% &mdash; das war ein Rechenfehler, keine Hebelwirkung.</b> Max Drawdown normalisierte den schlimmsten Einbruch der Fixed-$1000-Kurve am eigenen bisherigen Höchststand statt am tatsächlich eingesetzten Kapital. Bei vielen Trades in einem Regime bleibt dieser Höchststand klein, während sich viele gewöhnliche kleine Verluste zu einem großen Betrag summieren &mdash; <code class="mono">CryptoFrogHO2</code> zeigte dadurch 685% Drawdown in einem Regime, obwohl der schlechteste Einzeltrade dieser Strategie nur &minus;13% verlor (kein Short, kein Hebel). Behoben in <code class="mono">_regime_drawdown()</code>: die Normalisierung läuft jetzt gegen das bis dahin kumulierte Kapital (Anzahl Trades &times; $1000), wodurch der Wert mathematisch nicht über 100% steigen kann, solange kein einzelner Trade mehr als 100% seines eigenen Einsatzes verliert &mdash; genau das wäre dann echte Hebelwirkung oder ein Short-Verlust über den vollen Einsatz hinaus. Nach der Korrektur liegt aktuell keine Strategie in Modell 0 oder den 21 Modell-1/2/3-Piloten-Kandidaten über 100%.</div></div>
-  <div class="callout info" style="margin-top:10px;"><span class="dot">&#8505;</span><div><b>Korrektur 2026-09-14: 6 Strategien waren dieselbe Handelsimplementierung unter zwei Namen, nicht zwei verschiedene Strategien.</b> <code class="mono">evidence.semantic_duplicates</code> vergleicht den normalisierten, ausführbaren Quelltext jeder kanonischen Strategie (Klassenname neutralisiert, Kommentare entfernt) und bestätigt einen Treffer erst, wenn zusätzlich zwei oder mehr kanonische Full-Backtests exakt denselben Trade-Hash liefern &mdash; reiner Code-Gleichstand allein schließt nichts aus. Sechs Strategien erfüllten beides: <code class="mono">FastSupertrend_optim3_rsi_75fix</code> (Dublette von <code class="mono">FastSupertrend_optim3_rsi_75</code>), <code class="mono">chispei</code> (von <code class="mono">Chispei</code>), <code class="mono">NostalgiaForInfinityV7</code> (von <code class="mono">MyStratV1</code>), sowie <code class="mono">Combined_NFIv7_SMA_bAdBoY_20211204</code>, <code class="mono">Combined_NFIv7_SMA_Rallipanos_20210707</code> und <code class="mono">NostalgiaForInfinityV7_SMAv2</code> (alle drei von <code class="mono">NostalgiaForInfinityV7_SMA</code> bzw. <code class="mono">Combined_NFIv7_SMA</code>, je nachdem welcher Name kürzer ist &mdash; die Auswahlregel bei einem Gleichstand). Jede Dublette wird jetzt vor der Auswertung herausgefiltert (<code class="mono">regime.specialist_evaluation.duplicate_excluded_ids()</code>), ihr jeweiliger Vertreter bleibt unverändert stehen. Verschiebt 589&rarr;584 gemessene Strategien, 379&rarr;374 Universal-Kandidaten, 8&rarr;7 vollständig konsistente Kandidaten (<code class="mono">FastSupertrend_optim3_rsi_75fix</code> war einer der acht) &mdash; alle Zahlen auf dieser Seite spiegeln bereits die Korrektur, ebenso die Kriterienliste C11 in <code class="mono">evidence/exclusion_criteria.py</code>.</div></div>
+  <details class="fold"><summary>Five corrections from 2026-09-12 to 2026-09-14 <span class="sub">episode averaging, floor in window, B&amp;H amount, drawdown, duplicates</span></summary><div class="foldbody">
+  <div class="callout info" style="margin-top:10px;"><span class="dot">&#8505;</span><div><b>Correction 2026-09-14: excess return so far averaged over trades, not over episodes &mdash; exactly the skew that was already fixed once in the dollar comparison, only more subtle.</b> An episode with 50 trades counted 25 times as strongly in the mean as one with only 2 trades, although both are only a single independent observation. Fixed in <code class="mono">_episode_pairs()</code>: each episode is first summed on its own, only then is the mean taken over the episodes &mdash; symmetric to the long since correct <code class="mono">mean_benchmark_return</code>. As a result the excess-return values shifted in all tables (among others 372&rarr;359 for "ADX uptrend weakest regime", 0&rarr;8 fully consistent candidates) &mdash; see also the two new columns "episode excess LCB" and "grade" below.</div></div>
+  <div class="callout info" style="margin-top:10px;"><span class="dot">&#8505;</span><div><b>Correction 2026-09-14: the VALIDATION/EXPLORATORY classification counted episodes over the full history, not only the validation window.</b> Found in a full code review by DeepSeek-v4-pro. The frozen rule requires "5 independent regime episodes <i>within the validation window</i>" (<code class="mono">REGIME_PREREGISTRATION.md</code>) &mdash; the trade count was always correctly counted within the window only, but the episode count from the complete history since 2020, so old episodes before 2024 could wrongly lift a strategy over the threshold in a phase. Fixed by filtering to the validation window before the episode count. Shifts the raw counts (BTC 1,828&rarr;1,671, coin 1,770&rarr;1,757 strategies in the VALIDATION tier, counted per phase), but changes neither the number of universal candidates (379) nor the "ADX uptrend weakest regime" rate (359/379) nor the 8 fully consistent candidates &mdash; the strategies affected lay outside these two evaluations.</div></div>
+  <div class="callout info" style="margin-top:10px;"><span class="dot">&#8505;</span><div><b>Correction 2026-09-12 (after this callout): the B&amp;H dollar amount until just now counted each episode once <i>per trade</i> instead of once <i>per episode</i>.</b> A strategy with 1,230 trades over only 40 episodes thereby showed a "B&amp;H gain" inflated by roughly a factor of 30 ($94,882 instead of a real ~$4,800). Fixed in <code class="mono">_specialist_table()</code>: both the dollar sum and the percentage mean (and thus excess return) now count each unique (coin, episode) combination exactly once, regardless of how many trades the strategy made in it. The figures in this callout and in all tables below already reflect the correction.</div></div>
+  <div class="callout info" style="margin-top:10px;"><span class="dot">&#8505;</span><div><b>Correction 2026-09-13: max drawdown until just now sometimes showed over 100% &mdash; that was a calculation error, not a leverage effect.</b> Max drawdown normalised the worst drop of the fixed-$1000 curve against its own previous peak instead of against the capital actually deployed. With many trades in a regime this peak stays small, while many ordinary small losses add up to a large amount &mdash; <code class="mono">CryptoFrogHO2</code> thereby showed 685% drawdown in a regime although this strategy's worst single trade lost only &minus;13% (no short, no leverage). Fixed in <code class="mono">_regime_drawdown()</code>: the normalisation now runs against the capital accumulated up to that point (number of trades &times; $1000), which mathematically cannot exceed 100% as long as no single trade loses more than 100% of its own stake &mdash; that would then be genuine leverage or a short loss beyond the full stake. After the correction, currently no strategy in model 0 or the 21 model 1/2/3 pilot candidates is above 100%.</div></div>
+  <div class="callout info" style="margin-top:10px;"><span class="dot">&#8505;</span><div><b>Correction 2026-09-14: 6 strategies were the same trading implementation under two names, not two different strategies.</b> <code class="mono">evidence.semantic_duplicates</code> compares the normalised, executable source of every canonical strategy (class name neutralised, comments removed) and confirms a hit only when in addition two or more canonical full backtests yield exactly the same trade hash &mdash; code equality alone excludes nothing. Six strategies met both: <code class="mono">FastSupertrend_optim3_rsi_75fix</code> (duplicate of <code class="mono">FastSupertrend_optim3_rsi_75</code>), <code class="mono">chispei</code> (of <code class="mono">Chispei</code>), <code class="mono">NostalgiaForInfinityV7</code> (of <code class="mono">MyStratV1</code>), as well as <code class="mono">Combined_NFIv7_SMA_bAdBoY_20211204</code>, <code class="mono">Combined_NFIv7_SMA_Rallipanos_20210707</code> and <code class="mono">NostalgiaForInfinityV7_SMAv2</code> (all three of <code class="mono">NostalgiaForInfinityV7_SMA</code> or <code class="mono">Combined_NFIv7_SMA</code>, whichever name is shorter &mdash; the selection rule for a tie). Each duplicate is now filtered out before the evaluation (<code class="mono">regime.specialist_evaluation.duplicate_excluded_ids()</code>), its representative stays unchanged. Shifts 589&rarr;584 measured strategies, 379&rarr;374 universal candidates, 8&rarr;7 fully consistent candidates (<code class="mono">FastSupertrend_optim3_rsi_75fix</code> was one of the eight) &mdash; all figures on this page already reflect the correction, as does the criteria list C11 in <code class="mono">evidence/exclusion_criteria.py</code>.</div></div>
 
   </div></details>
-  <details class="fold"><summary>Historisch: Dollar-Gewinn höher als B&amp;H trotz negativem Excess <span class="sub">seit der Korrektur nicht mehr möglich</span></summary><div class="foldbody">
-  <div class="callout info"><span class="dot">&#8505;</span><div><b>Historisch: warum Dollar-Gewinn &gt; B&amp;H-Gewinn trotz negativem Excess-Return auftreten konnte &mdash; und warum das jetzt nicht mehr vorkommt.</b> Bis zur Korrektur unten (2026-09-14) mittelte Excess-Return über <i>Trades</i>, während Dollar-Gewinn über Trades summierte und B&amp;H-Gewinn nur über <i>Episoden</i> &mdash; zwei unterschiedliche Zählbasen. Beispiel damals: <code class="mono">FastSupertrend_optim3_rsi_80</code> hatte 1.536 Trades über nur 39 Episoden; der Trade-Mittelwert (+0,61%) lag unter dem Episoden-Mittelwert von B&amp;H (+7,80%), obwohl die Dollar-Summe der Trades ($9.435) die der Episoden ($8.188) übertraf &mdash; weil hier schlicht 39-mal mehr Einzelbeträge aufsummiert wurden. Seit Excess-Return ebenfalls episodenweise gemittelt wird, ist dieser Widerspruch verschwunden: <code class="mono">FastSupertrend_optim3_rsi_80</code> selbst zeigt jetzt +1,19% Excess-Return, passend zum höheren Dollar-Gewinn, und im gesamten Modell-0-Bestand ({{tbl_btc}} Kombinationen aus Strategie und BTC-Phase, {{tbl_coin}} aus Strategie und Coin-Phase, Stand 2026-09-20) tritt die alte Konstellation (Dollar-Gewinn höher, aber Excess-Return negativ) {{contradiction_text}} auf.</div></div>
+  <details class="fold"><summary>Historical: dollar gain higher than B&amp;H despite negative excess <span class="sub">no longer possible since the correction</span></summary><div class="foldbody">
+  <div class="callout info"><span class="dot">&#8505;</span><div><b>Historical: why dollar gain &gt; B&amp;H gain could occur despite a negative excess return &mdash; and why that no longer happens.</b> Until the correction below (2026-09-14), excess return averaged over <i>trades</i>, while dollar gain summed over trades and B&amp;H gain only over <i>episodes</i> &mdash; two different counting bases. Example at the time: <code class="mono">FastSupertrend_optim3_rsi_80</code> had 1,536 trades over only 39 episodes; the trade mean (+0.61%) was below B&amp;H's episode mean (+7.80%), although the dollar sum of the trades ($9,435) exceeded that of the episodes ($8,188) &mdash; because here simply 39 times more single amounts were summed. Since excess return is also averaged per episode, this contradiction has disappeared: <code class="mono">FastSupertrend_optim3_rsi_80</code> itself now shows +1.19% excess return, matching the higher dollar gain, and in the whole model 0 inventory ({{tbl_btc}} combinations of strategy and BTC phase, {{tbl_coin}} of strategy and coin phase, as of 2026-09-20) the old constellation (dollar gain higher, but excess return negative) occurs {{contradiction_text}}.</div></div>
   </div></details>
 </section>
 
 <footer>
   <div class="prov">
-    Quelle: <code>regime/specialist_evaluation.py</code>, <code>regime/discovery_comparison.py</code>, <code>regime/detail_totals.py</code>, <code>tools/regime_specialists_page.py</code><br>
-    Daten: <code>results/regime/specialist_evaluation/{btc,coin}_specialist_table.csv</code>, <code>{btc,coin}_specialist_ranking.csv</code>, <code>universal_strategies.csv</code>, <code>strategy_total_dollar_gain.csv</code>, <code>detail_5m_total_dollar_gain.csv</code>, <code>discovery_vs_validation.csv</code>, <code>universal_confirmation.csv</code>, <code>evaluation_manifest.json</code>; Stufe 8b: <code>evidence/EXECUTION_ROBUSTNESS.json</code>, <code>evidence/COST_SCREEN.json</code><br>
-    Herkunft/Mechanik von <code>FastSupertrend_optim3_rsi_80</code>: <a href="https://claude.ai/artifact/RHddoXo3XhxGafPWem3Vw3" target="_blank" rel="noopener">FastSupertrend Dossier</a>
+    Source: <code>regime/specialist_evaluation.py</code>, <code>regime/discovery_comparison.py</code>, <code>regime/detail_totals.py</code>, <code>tools/regime_specialists_page.py</code><br>
+    Data: <code>results/regime/specialist_evaluation/{btc,coin}_specialist_table.csv</code>, <code>{btc,coin}_specialist_ranking.csv</code>, <code>universal_strategies.csv</code>, <code>strategy_total_dollar_gain.csv</code>, <code>detail_5m_total_dollar_gain.csv</code>, <code>discovery_vs_validation.csv</code>, <code>universal_confirmation.csv</code>, <code>evaluation_manifest.json</code>; stage 8b: <code>evidence/EXECUTION_ROBUSTNESS.json</code>, <code>evidence/COST_SCREEN.json</code><br>
+    Origin/mechanics of <code>FastSupertrend_optim3_rsi_80</code>: <a href="https://claude.ai/artifact/RHddoXo3XhxGafPWem3Vw3" target="_blank" rel="noopener">FastSupertrend dossier</a>
   </div>
 </footer>
 
 </div>
-
 <script>
+var PAGE_LANG = 'en';
 const REGIMEFULL = __REGIMEFULL_JSON__;
 const UNIVERSAL = __UNIVERSAL_JSON__;
-const TOTALGAIN = __TOTALGAIN_JSON__;
 const DVSCATTER = __DVSCATTER_JSON__;
 const DVTOP = __DVTOP_JSON__;
 const DVSUMMARY = __DVSUMMARY_JSON__;
 const PORTFOLIO = __PORTFOLIO_JSON__;
-const FTSTATS = __FTSTATS_JSON__;
 const COINEPISODES = __COINEPISODES_JSON__;
 const COINEPISODECOUNTS = __COINEPISODECOUNTS_JSON__;
 const FUTURESSTRATEGIES = __FUTURESSTRATEGIES_JSON__;
@@ -546,24 +336,25 @@ const REPOMAP = __REPOMAP_JSON__;
 
 /*__COMMON_JS__*/
 
-// Column spec of the phase tables: key, label, tooltip, formatter. Every one has an author and a 5m side.
+// Column spec of the phase tables: key, label, tooltip, formatter. Every one has an author and a 5m side;
+// the author side is left out for strategies above 5m (see authorHidden in the common script).
 var REG_COLS = [
-  ['trades', 'Trades', 'Anzahl der Trades in dieser Phase im Validierungsfenster.', F.int],
-  ['episodes', 'Episoden', 'Zusammenhängende Abschnitte dieser Marktphase. Jede Episode zählt als eine unabhängige Beobachtung; der Floor verlangt mindestens 5.', F.int],
-  ['excess_return', 'Excess-Return', 'Rendite der Strategie in den Episoden dieser Phase minus Buy-and-Hold über dieselben Episoden. Über 0 heißt: besser als Halten.', F.pct],
-  ['dollar_gain_usd', 'Dollar-Gewinn', 'Summe der Gewinne aller Trades bei festem 1.000-$-Einsatz je Trade, ohne Wiederanlage.', F.usd],
-  ['benchmark_dollar_gain_usd', 'B&amp;H-Gewinn', 'Derselbe Betrag für Buy-and-Hold des jeweiligen Coins über die ganzen Episoden.', F.usd],
-  ['median_excess_return', 'Median Excess-Return', 'Median der Excess-Returns dieser Strategie über ihre Phasen, in denen sie den Floor erreicht.', F.pct],
-  ['max_drawdown', 'Max Drawdown', 'Größter Einbruch der Gewinnkurve bei festem 1.000-$-Einsatz, in Prozent des bis dahin eingesetzten Kapitals.', F.dd],
-  ['worst_trade', 'Worst Trade', 'Der schlechteste einzelne Trade in dieser Phase, in Prozent seines Einsatzes.', F.pct],
-  ['sortino', 'Sortino', 'Ertrag geteilt durch die Streuung der Verlust-Trades, aufs Jahr hochgerechnet. „kein Verlust“ heißt: es gab keinen Verlust-Trade.', F.sortino],
-  ['annualized_return', 'Rendite p.a.', 'Mittlere Trade-Rendite mal Trades pro Jahr. Linear hochgerechnet, ohne Zinseszins.', F.ann],
-  ['profit_factor', 'Profit-Factor', 'Bruttogewinn geteilt durch Bruttoverlust. Über 1 heißt: mehr Gewinn als Verlust. ∞ heißt: kein Verlust-Trade.', F.pf],
-  ['freqforge_score', 'FreqForge-Score', 'Punktwert von 0 bis 100 aus sechs Kategorien nach FreqForge. Nur eine Zusatzspalte, kein Ranking-Kriterium.', F.score],
-  ['episode_excess_lcb', 'Episoden-Excess-LCB', 'LCB (Lower Confidence Bound): untere 95-%-Vertrauensgrenze des mittleren Excess-Returns je Episode. Über 0 heißt: der Vorsprung ist statistisch belastbar.', F.lcb],
-  ['lcb_grade', 'Grade', 'Note A bis F aus dem LCB: A über +2 %, B 0 bis +2 %, C −2 bis 0 %, D −5 bis −2 %, F darunter.', F.grade],
-  ['dc', 'Pro Tag, eingesetzt', 'Tagesrendite auf das tatsächlich eingesetzte Kapital, Validation, nach 0,1 % Slippage je Seite. Schmeichelt kurzen Trades.', function(v){ return '<span class="val ' + dailyClass(v) + '">' + fmtDaily(v) + '</span>'; }],
-  ['ds', 'Pro Tag, bereitgestellt', 'Tagesrendite auf das bereitgestellte Kapital (ein Platz je Coin und Tag der Phase), Validation, nach 0,1 % Slippage je Seite. Das Ziel ist 0,08 % pro Tag.', function(v){ return '<span class="val ' + dailyClass(v) + '">' + fmtDaily(v) + '</span>'; }]
+  ['trades', 'Trades', 'Number of trades in this phase in the validation window.', F.int],
+  ['episodes', 'Episodes', 'Contiguous stretches of this market phase. Each episode counts as one independent observation; the floor requires at least 5.', F.int],
+  ['excess_return', 'Excess return', 'Return of the strategy in the episodes of this phase minus buy-and-hold over the same episodes. Above 0 means: better than holding.', F.pct],
+  ['dollar_gain_usd', 'Dollar gain', 'Sum of the gains of all trades at a fixed $1,000 stake per trade, without reinvestment.', F.usd],
+  ['benchmark_dollar_gain_usd', 'B&amp;H gain', 'The same amount for buy-and-hold of the respective coin over the whole episodes.', F.usd],
+  ['median_excess_return', 'Median excess return', 'Median of this strategy\'s excess returns over its phases in which it reaches the floor.', F.pct],
+  ['max_drawdown', 'Max drawdown', 'Largest drop of the gain curve at a fixed $1,000 stake, in percent of the capital deployed up to that point.', F.dd],
+  ['worst_trade', 'Worst trade', 'The worst single trade in this phase, in percent of its stake.', F.pct],
+  ['sortino', 'Sortino', 'Return divided by the dispersion of the losing trades, annualised. “no loss” means: there was no losing trade.', F.sortino],
+  ['annualized_return', 'Return p.a.', 'Mean trade return times trades per year. Extrapolated linearly, without compounding.', F.ann],
+  ['profit_factor', 'Profit factor', 'Gross profit divided by gross loss. Above 1 means: more profit than loss. ∞ means: no losing trade.', F.pf],
+  ['freqforge_score', 'FreqForge score', 'Score from 0 to 100 from six categories after FreqForge. An additional column only, not a ranking criterion.', F.score],
+  ['episode_excess_lcb', 'Episode excess LCB', 'LCB (lower confidence bound): lower 95 % confidence bound of the mean excess return per episode. Above 0 means: the lead is statistically reliable.', F.lcb],
+  ['lcb_grade', 'Grade', 'Grade A to F from the LCB: A above +2 %, B 0 to +2 %, C −2 to 0 %, D −5 to −2 %, F below.', F.grade],
+  ['dc', 'Per day, deployed', 'Daily return on the capital actually deployed, validation, after 0.1 % slippage per side. Flatters short trades.', function(v){ return '<span class="val ' + dailyClass(v) + '">' + fmtDaily(v) + '</span>'; }],
+  ['ds', 'Per day, provided', 'Daily return on the capital provided (one slot per coin and day of the phase), validation, after 0.1 % slippage per side. The goal is 0.08 % per day.', function(v){ return '<span class="val ' + dailyClass(v) + '">' + fmtDaily(v) + '</span>'; }]
 ];
 var REG_KEYS = REG_COLS.map(function(c){ return c[0]; });
 
@@ -573,22 +364,22 @@ function renderRegimeFullTable(containerId, rows){
   var activeRegimes = new Set(codes);
   var container = document.getElementById(containerId);
   container.innerHTML =
-    '<div class="toolbar"><input class="search" id="' + prefix + '-search" type="text" placeholder="Strategie suchen…">' +
-    '<label class="okfilter"><input type="checkbox" id="' + prefix + '-ok"> nur Robustheits-PASS</label>' +
-    '<label class="okfilter"><input type="checkbox" id="' + prefix + '-cf"> nur bestätigt</label>' +
+    '<div class="toolbar"><input class="search" id="' + prefix + '-search" type="text" placeholder="Search strategy…">' +
+    '<label class="okfilter"><input type="checkbox" id="' + prefix + '-ok"> robustness PASS only</label>' +
+    '<label class="okfilter"><input type="checkbox" id="' + prefix + '-cf"> confirmed only</label>' +
     '<span class="rowcount mono" id="' + prefix + '-count"></span></div>' +
     '<div class="chipbar" id="' + prefix + '-chips"></div>' +
     '<div class="tablebox"><div class="scrollbody"><table class="plain" id="' + prefix + '-table">' +
     '<thead><tr>' +
-    '<th class="sortable" data-key="strategy_id">Strategie<span class="arrow">&#9662;</span></th>' +
-    '<th class="sortable" data-key="regime">Zustand<span class="arrow">&#9662;</span></th>' +
+    '<th class="sortable" data-key="strategy_id">Strategy<span class="arrow">&#9662;</span></th>' +
+    '<th class="sortable" data-key="regime">State<span class="arrow">&#9662;</span></th>' +
     REG_COLS.map(function(c){ return pairTh(c[0], c[1], c[2]); }).join('') +
-    '<th class="sortable num" data-key="ok">Robustheit<span class="arrow">&#9662;</span></th>' +
-    '<th class="sortable num" data-key="cf" title="Bestätigung über Discovery und Validation">Bestätigung<span class="arrow">&#9662;</span></th>' +
+    '<th class="sortable num" data-key="ok">Robustness<span class="arrow">&#9662;</span></th>' +
+    '<th class="sortable num" data-key="cf" title="Confirmation across discovery and validation">Confirmation<span class="arrow">&#9662;</span></th>' +
     '</tr></thead><tbody id="' + prefix + '-body"></tbody></table></div></div>';
 
   var chipsEl = document.getElementById(prefix + '-chips');
-  chipsEl.innerHTML = '<span class="chiplabel">Zustand</span>' +
+  chipsEl.innerHTML = '<span class="chiplabel">State</span>' +
     codes.map(function(r){
       return '<span class="chip active" data-value="' + r + '">' + stateLabel(r) + '</span>';
     }).join('');
@@ -637,7 +428,7 @@ renderRegimeFullTable('rf-coin-content', REGIMEFULL.coin);
   var activeRegimes = new Set(codes);
   var activeCoins = new Set(coins);
   var sortKey = 'coin', sortDir = 1;
-  chipsEl.innerHTML = '<span class="chiplabel">Zustand</span>' +
+  chipsEl.innerHTML = '<span class="chiplabel">State</span>' +
     codes.map(function(r){
       return '<span class="chip active" data-value="' + r + '">' + stateLabel(r) + '</span>';
     }).join('');
@@ -656,7 +447,7 @@ renderRegimeFullTable('rf-coin-content', REGIMEFULL.coin);
       if (sortKey === 'coin') return (coinRank(a.coin) - coinRank(b.coin)) * sortDir;
       return String(a[sortKey]).localeCompare(String(b[sortKey])) * sortDir;
     });
-    document.getElementById('btcep-count').textContent = rows.length + ' von ' + COINEPISODES.length;
+    document.getElementById('btcep-count').textContent = rows.length + ' of ' + COINEPISODES.length;
     document.getElementById('btcep-body').innerHTML = rows.map(function(r){
       return '<tr><td><b>' + coinDisplay(r.coin) + '</b></td>' +
         '<td><span class="regimebadge rb-' + r.regime + '">' + stateLabel(r.regime) + '</span></td>' +
@@ -705,94 +496,12 @@ renderRegimeFullTable('rf-coin-content', REGIMEFULL.coin);
   }).join('');
 })();
 
-// Universal candidates: the columns are those of the worst coin phase; the 5m side is the rerun's own figure at that phase.
-var UNI_COLS = [
-  ['trades', 'Trades', 'Anzahl der Trades im schwächsten Coin-Regime im Validierungsfenster.', F.int],
-  ['episodes', 'Episoden', 'Episoden im schwächsten Coin-Regime. Der Floor verlangt mindestens 5.', F.int],
-  ['worst_regime_return', 'Excess-Return', 'Excess-Return im schwächsten Coin-Regime: Rendite minus Buy-and-Hold über dieselben Episoden.', F.pct],
-  ['dollar_gain_usd', 'Dollar-Gewinn', 'Summe der Gewinne bei festem 1.000-$-Einsatz je Trade im schwächsten Regime.', F.usd],
-  ['benchmark_dollar_gain_usd', 'B&amp;H-Gewinn', 'Derselbe Betrag für Buy-and-Hold über die ganzen Episoden.', F.usd],
-  ['median_regime_excess_return', 'Median Excess-Return', 'Median der Excess-Returns über die vier Coin-Regime.', F.pct],
-  ['max_drawdown', 'Max Drawdown', 'Größter Einbruch der Gewinnkurve im schwächsten Regime, in Prozent des eingesetzten Kapitals.', F.dd],
-  ['worst_trade', 'Worst Trade', 'Der schlechteste einzelne Trade im schwächsten Regime.', F.pct],
-  ['sortino', 'Sortino', 'Ertrag geteilt durch die Streuung der Verlust-Trades, aufs Jahr hochgerechnet.', F.sortino],
-  ['annualized_return', 'Rendite p.a.', 'Mittlere Trade-Rendite mal Trades pro Jahr, ohne Zinseszins.', F.ann],
-  ['profit_factor', 'Profit-Factor', 'Bruttogewinn geteilt durch Bruttoverlust.', F.pf],
-  ['freqforge_score', 'FreqForge-Score', 'Punktwert von 0 bis 100 aus sechs Kategorien nach FreqForge.', F.score],
-  ['episode_excess_lcb', 'Episoden-Excess-LCB', 'Untere 95-%-Vertrauensgrenze des mittleren Excess-Returns je Episode, im schwächsten Regime.', F.lcb],
-  ['lcb_grade', 'Grade', 'Note A bis F aus dem LCB.', F.grade],
-  ['regime_consistency', 'Konsistenz', 'Anteil der vier Coin-Regime, in denen die Strategie Buy-and-Hold schlägt.', F.cons]
-];
-var UNI_KEYS = UNI_COLS.map(function(c){ return c[0]; });
-function uniHead(withConsistency){
-  var cols = withConsistency ? UNI_COLS : UNI_COLS.filter(function(c){ return c[0] !== 'regime_consistency'; });
-  return '<tr><th class="sortable" data-key="strategy_id">Strategie<span class="arrow">&#9662;</span></th>' +
-    '<th class="sortable" data-key="worst_regime">Schwächstes Regime<span class="arrow">&#9662;</span></th>' +
-    cols.map(function(c){ return pairTh(c[0], c[1], c[2]); }).join('') +
-    '<th class="sortable num" data-key="ok">Robustheit<span class="arrow">&#9662;</span></th>' +
-    '<th class="sortable num" data-key="ur">Bestätigung<span class="arrow">&#9662;</span></th></tr>';
-}
-function uniRow(withConsistency){
-  var cols = withConsistency ? UNI_COLS : UNI_COLS.filter(function(c){ return c[0] !== 'regime_consistency'; });
-  return function(r){
-    return '<tr><td><b>' + futuresLabel(r.strategy_id) + '</b></td>' +
-      '<td><span class="regimebadge rb-' + r.worst_regime + '">' + stateLabel(r.worst_regime) + '</span></td>' +
-      cols.map(function(c){ return pairCell(c[3], r, c[0]); }).join('') +
-      robustCell(r) + uconfirmCell(r) + '</tr>';
-  };
-}
-document.getElementById('consistent-head').innerHTML = uniHead(false);
-document.getElementById('universal-head').innerHTML = uniHead(true);
-var CONSISTENT = UNIVERSAL.filter(function(r){ return r.regime_consistency === 1.0; });
-wireSearchSortTable({
-  data: CONSISTENT, tableId: 'consistent-table', bodyId: 'consistent-body',
-  countId: 'consistent-count', searchId: 'consistent-search',
-  defaultKey: 'median_regime_excess_return', defaultDir: -1, pairedKeys: UNI_KEYS,
-  rowHtml: uniRow(false)
-});
-wireSearchSortTable({
-  data: UNIVERSAL, tableId: 'universal-table', bodyId: 'universal-body',
-  countId: 'universal-count', searchId: 'universal-search',
-  defaultKey: 'median_regime_excess_return', defaultDir: -1, pairedKeys: UNI_KEYS,
-  rowHtml: uniRow(true)
-});
-
-// Freqtrade's own block, for the universal candidates: robustness and confirmation come from the same rows
-(function(){
-  var byId = {};
-  UNIVERSAL.forEach(function(u){ byId[u.strategy_id] = u; });
-  FTSTATS.forEach(function(r){
-    var u = byId[r.strategy_id] || {};
-    r.ok = u.ok || 0; r.xs = u.xs; r.ur = u.ur === undefined ? -1 : u.ur; r.us = u.us === undefined ? null : u.us;
-    r.up = u.up || 0; r.cn = u.cn || 0; r.bn = u.bn || 0; r.cq = u.cq || 0;
-  });
-})();
-wireSearchSortTable({
-  data: FTSTATS, tableId: 'ft-table', bodyId: 'ft-body',
-  countId: 'ft-count', searchId: 'ft-search',
-  defaultKey: 'sharpe', defaultDir: -1,
-  rowHtml: function(r){
-    return '<tr><td><b>' + futuresLabel(r.strategy_id) + '</b></td>' +
-      '<td class="num mono">' + r.total_trades + '</td>' +
-      '<td class="num mono">' + Math.round(r.winrate * 100) + '%</td>' +
-      '<td class="num val ' + signClass(r.cagr) + '">' + fmtCagr(r.cagr) + '</td>' +
-      '<td class="num val ' + signClass(r.sharpe) + '">' + fmtRatio(r.sharpe) + '</td>' +
-      '<td class="num val ' + signClass(r.sortino) + '">' + fmtRatio(r.sortino) + '</td>' +
-      '<td class="num val ' + signClass(r.calmar) + '">' + fmtRatio(r.calmar) + '</td>' +
-      '<td class="num val ' + signClass(r.profit_factor - 1) + '">' + r.profit_factor.toFixed(2) + '</td>' +
-      '<td class="num mono">' + Math.round(r.max_drawdown_account * 100) + '%</td>' +
-      '<td class="num val ' + signClass(r.final_balance - r.starting_balance) + '">$' + Math.round(r.final_balance).toLocaleString('de-DE') + '</td>' +
-      robustCell(r) + uconfirmCell(r) + '</tr>';
-  }
-});
-
-
 // ---- daily return: format, colour against the target, and the phase portfolio
 function fmtDaily(v){
   if (v === null || v === undefined) return '–';
   var p = v * 100;
   var s = Math.abs(p) >= 10 ? Math.abs(p).toFixed(0) : Math.abs(p).toFixed(3);
-  return (p >= 0 ? '+' : '−') + s.replace('.', ',') + ' %';
+  return (p >= 0 ? '+' : '−') + dec(s) + ' %';
 }
 function dailyClass(v){
   if (v === null || v === undefined) return '';
@@ -809,15 +518,15 @@ function dailyClass(v){
     var val, disc, name, trades = '–', ok = '<td class="num">–</td>', conf = '<td class="num">–</td>', cap = '–';
     if (holdOnly) {
       val = hold.val; disc = hold.disc;
-      name = '<b>Buy-and-Hold</b> <span class="mono" style="color:var(--text-muted)">(' + hold.episodes + ' Episoden)</span>' +
-        (ph.regime === 'BULL' ? '<div class="mono" style="font-size:11px;color:var(--text-muted);">Entscheidung des Eigentümers; ' + ph.n_qualified + ' Strategien erfüllen die Regel</div>' :
-                                '<div class="mono" style="font-size:11px;color:var(--text-muted);">keine Strategie erfüllt die Regel</div>');
+      name = '<b>Buy-and-hold</b> <span class="mono" style="color:var(--text-muted)">(' + hold.episodes + ' episodes)</span>' +
+        (ph.regime === 'BULL' ? '<div class="mono" style="font-size:11px;color:var(--text-muted);">owner\'s decision; ' + ph.n_qualified + ' strategies meet the rule</div>' :
+                                '<div class="mono" style="font-size:11px;color:var(--text-muted);">no strategy meets the rule</div>');
       cap = fmtDaily(hold.val);
     } else {
       val = pick.ds; disc = pick.dd;
-      name = '<b>' + futuresLabel(pick.sid) + '</b>' + (pick.status === 'unconfirmed' ? ' <span class="rbadge rb-warn" title="Robust und in beiden Fenstern über dem Floor, aber die untere Vertrauensgrenze liegt nicht in beiden über 0.">nicht bestätigt</span>' : '');
+      name = '<b>' + futuresLabel(pick.sid) + '</b>' + (pick.status === 'unconfirmed' ? ' <span class="rbadge rb-warn" title="Robust and above the floor in both windows, but the lower confidence bound is not above 0 in both.">not confirmed</span>' : '');
       trades = pick.trades + ' / ' + pick.episodes;
-      ok = '<td class="num"><span class="rbadge rb-ok" title="5m-Detaillauf und Kostenstress in dieser Phase bestanden">PASS</span></td>';
+      ok = '<td class="num"><span class="rbadge rb-ok" title="5m detail run and cost stress passed in this phase">PASS</span></td>';
       conf = confirmCell({cf: pick.cf, sc: pick.sc});
       cap = fmtDaily(pick.dc);
     }
@@ -829,19 +538,19 @@ function dailyClass(v){
       '<td class="num"><span class="val ' + dailyClass(val) + '">' + fmtDaily(val) + '</span><span class="slash">/</span><span class="val ' + dailyClass(disc) + '">' + fmtDaily(disc) + '</span></td>' +
       '<td class="num mono">' + cap + '</td>' +
       '<td class="num mono">' + trades + '</td>' + ok + conf +
-      '<td class="num">' + (val >= PORTFOLIO.target ? '<span class="rbadge rb-ok" title="Ziel in der Validation nach Slippage erreicht">erreicht</span>' : '<span class="rbadge rb-warn" title="Ziel nicht erreicht">nicht erreicht</span>') + '</td></tr>';
+      '<td class="num">' + (val >= PORTFOLIO.target ? '<span class="rbadge rb-ok" title="Goal reached in validation after slippage">reached</span>' : '<span class="rbadge rb-warn" title="Goal not reached">not reached</span>') + '</td></tr>';
   });
   document.getElementById('pf-body').innerHTML = body;
-  document.getElementById('pf-blend').innerHTML = '<b>Wechsel je Phase, nach Tagesanteil gewichtet:</b> ' +
-    '<span class="val ' + dailyClass(blendVal) + '">' + fmtDaily(blendVal) + '</span> pro Tag in der Validation (Ziel ' + TARGET_TXT + '), ' +
-    '<span class="val ' + dailyClass(blendDisc) + '">' + fmtDaily(blendDisc) + '</span> in der Discovery mit denselben Strategien, dort ohne Slippage. ' +
-    'Reine Buy-and-Hold-Vergleichszahl über alle Phasen: ' + fmtDaily(PH.reduce(function(a, ph){ return a + ph.weight * ph.hold.val; }, 0)) + ' (Validation), ' +
-    fmtDaily(PH.reduce(function(a, ph){ return a + ph.weight * ph.hold.disc; }, 0)) + ' (Discovery).';
+  document.getElementById('pf-blend').innerHTML = '<b>Switching per phase, weighted by share of days:</b> ' +
+    '<span class="val ' + dailyClass(blendVal) + '">' + fmtDaily(blendVal) + '</span> per day in validation (goal ' + TARGET_TXT + '), ' +
+    '<span class="val ' + dailyClass(blendDisc) + '">' + fmtDaily(blendDisc) + '</span> in discovery with the same strategies, there without slippage. ' +
+    'Pure buy-and-hold comparison figure over all phases: ' + fmtDaily(PH.reduce(function(a, ph){ return a + ph.weight * ph.hold.val; }, 0)) + ' (validation), ' +
+    fmtDaily(PH.reduce(function(a, ph){ return a + ph.weight * ph.hold.disc; }, 0)) + ' (discovery).';
   // the other candidates
   var more = '';
   function table(rows){
-    if (!rows.length) return '<p class="secintro" style="margin:4px 0 12px;">keine</p>';
-    return '<div class="tablebox" style="margin-bottom:12px;"><table class="plain"><thead><tr><th>Strategie</th><th class="num" title="Trades in dieser Phase">Trades</th><th class="num" title="Episoden in dieser Phase">Episoden</th><th class="num" title="Excess-Return gegen Buy-and-Hold der Phase">Excess-Return</th><th class="num" title="Tagesrendite auf das bereitgestellte Kapital nach Slippage, Validation">Pro Tag, bereitgestellt</th><th class="num" title="Discovery, vor Slippage">Pro Tag, Discovery</th><th class="num" title="Tagesrendite auf das eingesetzte Kapital nach Slippage">Pro Tag, eingesetzt</th><th class="num">Robustheit</th><th class="num">Bestätigung</th></tr></thead><tbody>' +
+    if (!rows.length) return '<p class="secintro" style="margin:4px 0 12px;">none</p>';
+    return '<div class="tablebox" style="margin-bottom:12px;"><table class="plain"><thead><tr><th>Strategy</th><th class="num" title="Trades in this phase">Trades</th><th class="num" title="Episodes in this phase">Episodes</th><th class="num" title="Excess return against buy-and-hold of the phase">Excess return</th><th class="num" title="Daily return on the capital provided after slippage, validation">Per day, provided</th><th class="num" title="Discovery, before slippage">Per day, discovery</th><th class="num" title="Daily return on the capital deployed after slippage">Per day, deployed</th><th class="num">Robustness</th><th class="num">Confirmation</th></tr></thead><tbody>' +
       rows.map(function(r){
         return '<tr><td><b>' + futuresLabel(r.sid) + '</b></td><td class="num mono">' + r.trades + '</td><td class="num mono">' + r.episodes + '</td>' +
           '<td class="num val ' + valClass(r.excess) + '">' + fmtPct(r.excess) + '</td>' +
@@ -851,90 +560,30 @@ function dailyClass(v){
   }
   PH.forEach(function(ph){
     more += '<h4 class="mono" style="font-size:11px;margin:14px 0 6px;color:var(--text-muted);text-transform:uppercase;letter-spacing:.05em;">' + stateLabel(ph.regime) +
-      ' <span style="text-transform:none;letter-spacing:0;color:var(--accent-text);">&mdash; ' + ph.n_qualified + ' erfüllen die Regel, ' + ph.n_partial + ' weitere ohne Bestätigung</span></h4>' +
-      '<p class="secintro" style="margin:0 0 4px;max-width:none;">Bestätigt und über dem Ziel (bis zu 6):</p>' + table(ph.qualified) +
-      '<p class="secintro" style="margin:0 0 4px;max-width:none;">Robust, über dem Ziel, aber nicht bestätigt (bis zu 4):</p>' + table(ph.partial);
+      ' <span style="text-transform:none;letter-spacing:0;color:var(--accent-text);">&mdash; ' + ph.n_qualified + ' meet the rule, ' + ph.n_partial + ' more without confirmation</span></h4>' +
+      '<p class="secintro" style="margin:0 0 4px;max-width:none;">Confirmed and above the goal (up to 6):</p>' + table(ph.qualified) +
+      '<p class="secintro" style="margin:0 0 4px;max-width:none;">Robust, above the goal, but not confirmed (up to 4):</p>' + table(ph.partial);
   });
   document.getElementById('pf-more-body').innerHTML = more;
-})();
-
-// ---- whole validation window: every strategy, author timeframe / 5m rerun side by side
-(function renderTotal(){
-  var KEYS5 = {trades: 'd_trades', dollar_gain_usd: 'd_gain', benchmark_dollar_gain_usd: 'd_bench',
-               excess_dollar_gain_usd: 'd_excess', cm: 'd_cm', dc: 'd_dc', ds: 'd_ds'};
-  function why(r){
-    if (r.ok) return 'PASS';
-    if (r.xs === 'SENSITIVE') return '5m sensitiv';
-    if (r.xs === 'PENDING') return '5m offen';
-    if (r.xs === 'ERROR') return '5m Fehler';
-    if (r.xs === 'PASS') return 'Kosten ✗';
-    return '–';
-  }
-  function fmt2(v){ return (v >= 0 ? '+' : '−') + Math.abs(v).toFixed(2).replace('.', ','); }
-  function noteFor(r){
-    if (r.xs === 'ERROR') return 'Der 5m-Lauf ist fehlgeschlagen (Zeitlimit oder Fehler).';
-    if (r.xb === 'rule') return 'Kein 5m-Lauf: der Timeframe der Strategie liegt bei ' + r.tf + ' und damit nicht über 5m (Regel, keine Messung).';
-    if (r.xb === 'measured') return 'Der 5m-Lauf hat im Validierungsfenster keinen Trade.';
-    return 'Für diese Strategie liegt kein 5m-Lauf vor.';
-  }
-  function two(a, b){ return '<td class="num">' + a + '<span class="slash">/</span>' + b + '</td>'; }
-  function miss(r){ return '<span class="na5" title="' + noteFor(r) + '">–</span>'; }
-  var has5 = function(r){ return r.d_trades !== null && r.d_trades !== undefined; };
-  var byRank = TOTALGAIN.slice();
-  var api = wireSearchSortTable({
-    data: TOTALGAIN, tableId: 'total-table', bodyId: 'total-body',
-    countId: 'total-count', searchId: 'total-search',
-    defaultKey: 'rk', defaultDir: 1,
-    filter: function(r){
-      if (document.getElementById('total-ok').checked && !r.ok) return false;
-      if (document.getElementById('total-cf').checked && !((r.cn || 0) + (r.bn || 0) > 0)) return false;
-      return true;
-    },
-    keys5: KEYS5,
-    rowHtml: function(r){
-      var d = has5(r);
-      var cost = r.cm === null || r.cm === undefined ? '–' : fmt2(r.cm) + ' → ' + fmt2(r.c10) + ' %';
-      var cost5 = d && r.d_cm !== null && r.d_cm !== undefined ? fmt2(r.d_cm) + ' → ' + fmt2(r.d_c10) + ' %' : null;
-      return '<tr><td class="num mono">' + r.rk + '</td><td><b>' + futuresLabel(r.strategy_id) + '</b></td>' +
-        '<td class="mono">' + (r.tf || '–') + '</td>' +
-        two('<span class="mono">' + r.trades + '</span>', d ? '<span class="mono">' + r.d_trades + '</span>' : miss(r)) +
-        two('<span class="val ' + dollarClass(r.dollar_gain_usd) + '">' + fmtUsd(r.dollar_gain_usd) + '</span>', d ? '<span class="val ' + dollarClass(r.d_gain) + '">' + fmtUsd(r.d_gain) + '</span>' : miss(r)) +
-        two('<span class="val ' + dollarClass(r.benchmark_dollar_gain_usd) + '">' + fmtUsd(r.benchmark_dollar_gain_usd) + '</span>', d ? '<span class="val ' + dollarClass(r.d_bench) + '">' + fmtUsd(r.d_bench) + '</span>' : miss(r)) +
-        two('<span class="val ' + dollarClass(r.excess_dollar_gain_usd) + '">' + fmtUsd(r.excess_dollar_gain_usd) + '</span>', d ? '<span class="val ' + dollarClass(r.d_excess) + '">' + fmtUsd(r.d_excess) + '</span>' : miss(r)) +
-        two('<span class="mono">' + cost + '</span>', cost5 ? '<span class="mono">' + cost5 + '</span>' : miss(r)) +
-        two('<span class="val ' + dailyClass(r.dc) + '">' + fmtDaily(r.dc) + '</span>', d && r.d_dc !== null && r.d_dc !== undefined ? '<span class="val ' + dailyClass(r.d_dc) + '">' + fmtDaily(r.d_dc) + '</span>' : miss(r)) +
-        two('<span class="val ' + dailyClass(r.ds) + '">' + fmtDaily(r.ds) + '</span>', d && r.d_ds !== null && r.d_ds !== undefined ? '<span class="val ' + dailyClass(r.d_ds) + '">' + fmtDaily(r.d_ds) + '</span>' : miss(r)) +
-        robustCell(r) + stratConfirmCell(r) + '</tr>';
-    },
-    extra: function(rows){
-      var only = document.getElementById('total-ok').checked;
-      var lost = TOTALGAIN.slice(0, 10).filter(function(r){ return !r.ok; });
-      document.getElementById('rob-total-drop').innerHTML = lost.length ?
-        '<b>Aus den zehn größten Dollar-Gewinnern (Autor-Timeframe) fallen ' + lost.length + ' heraus:</b> ' + lost.map(function(r){
-          return futuresLabel(r.strategy_id) + ' (' + fmtUsd(r.dollar_gain_usd) + ', ' + why(r) + (r.xs === 'PASS' && r.cv !== 'PASS' ? ', Kosten gesamt ' + (r.cv === 'NA' ? 'nicht profitabel' : 'nicht bestanden') : '') + ')';
-        }).join(', ') + '.' : 'Alle zehn größten Dollar-Gewinner bestehen die Robustheit.';
-    }
-  });
-  ['total-ok', 'total-cf'].forEach(function(id){ document.getElementById(id).addEventListener('change', api.render); });
 })();
 
 (function renderDiscoveryComparison(){
   var STATES = ['BULL', 'BEAR', 'SIDEWAYS', 'TRANSITION'];
   var KIND_LABEL = {btc: 'BTC', coin: 'Coin'};
-  function num(v, d){ return (v === null || v === undefined) ? '–' : v.toFixed(d).replace('.', ','); }
+  function num(v, d){ return (v === null || v === undefined) ? '–' : dec(v.toFixed(d)); }
   function share(v){ return (v === null || v === undefined) ? '–' : Math.round(100 * v) + ' %'; }
-  function pct1(v){ return (v === null || v === undefined) ? '–' : (v >= 0 ? '+' : '−') + Math.abs(100 * v).toFixed(1).replace('.', ',') + ' %'; }
+  function pct1(v){ return (v === null || v === undefined) ? '–' : (v >= 0 ? '+' : '−') + dec(Math.abs(100 * v).toFixed(1)) + ' %'; }
 
   var s = DVSUMMARY;
   var all = s['coin/ALL'], allb = s['btc/ALL'];
   document.getElementById('dv-lead').innerHTML =
-    '<b>Kurz gesagt:</b> Ja, es gibt einen deutlichen Zusammenhang. Über alle Phasen liegt die Rang-Korrelation bei ρ&nbsp;=&nbsp;' + num(all.spearman, 2) +
-    ' (Coin) und ' + num(allb.spearman, 2) + ' (BTC), je Phase zwischen ' +
-    num(Math.min.apply(null, STATES.map(function(x){ return s['coin/' + x].spearman; }).concat(STATES.map(function(x){ return s['btc/' + x].spearman; }))), 2) + ' und ' +
+    '<b>In short:</b> Yes, there is a clear relationship. Over all phases the rank correlation is ρ&nbsp;=&nbsp;' + num(all.spearman, 2) +
+    ' (coin) and ' + num(allb.spearman, 2) + ' (BTC), per phase between ' +
+    num(Math.min.apply(null, STATES.map(function(x){ return s['coin/' + x].spearman; }).concat(STATES.map(function(x){ return s['btc/' + x].spearman; }))), 2) + ' and ' +
     num(Math.max.apply(null, STATES.map(function(x){ return s['coin/' + x].spearman; }).concat(STATES.map(function(x){ return s['btc/' + x].spearman; }))), 2) +
-    '. Waren Strategien mit coin-spezifischen Marktphasen in der Discovery besser als Buy-and-Hold, waren es ' + share(all.val_positive_given_disc_positive) + ' davon in der Validation wieder (waren sie es nicht, wurden nur ' + share(all.val_positive_given_disc_not_positive) + ' später besser; ohne Kenntnis der Discovery wären es ' + share(all.val_positive_all_both) + '). ' +
-    'Grundlage: ' + all.rows_both + ' Kombinationen aus Strategie und coin-spezifischer Marktphase sowie ' + allb.rows_both + ' aus Strategie und BTC-Marktphase, jeweils mit Floor in beiden Fenstern, ' +
-    (s.discovery_trades / 1e6).toFixed(2).replace('.', ',') + ' Mio. Trades in der Discovery, ' + (s.validation_trades / 1e6).toFixed(2).replace('.', ',') + ' Mio. in der Validation.';
+    '. If strategies with coin-specific market phases were better than buy-and-hold in discovery, ' + share(all.val_positive_given_disc_positive) + ' of them were again in validation (if they were not, only ' + share(all.val_positive_given_disc_not_positive) + ' became better later; without knowing discovery it would be ' + share(all.val_positive_all_both) + '). ' +
+    'Basis: ' + all.rows_both + ' combinations of strategy and coin-specific market phase and ' + allb.rows_both + ' of strategy and BTC market phase, each with the floor in both windows, ' +
+    dec((s.discovery_trades / 1e6).toFixed(2)) + ' million trades in discovery, ' + dec((s.validation_trades / 1e6).toFixed(2)) + ' million in validation.';
 
   var html = '';
   ['btc', 'coin'].forEach(function(kind){
@@ -946,7 +595,7 @@ function dailyClass(v){
         '<td class="num mono">' + share(r.val_positive_given_disc_positive) + ' <span style="color:var(--text-muted)">(' + r.disc_positive + ')</span></td>' +
         '<td class="num mono">' + share(r.val_positive_given_disc_not_positive) + '</td>' +
         '<td class="num mono">' + share(r.val_positive_all_both) + '</td>' +
-        '<td class="num mono"><b>' + pct1(r.top_decile_val_median) + '</b> <span style="color:var(--text-muted)">vs ' + pct1(r.all_val_median) + ' (alle)</span></td>' +
+        '<td class="num mono"><b>' + pct1(r.top_decile_val_median) + '</b> <span style="color:var(--text-muted)">vs ' + pct1(r.all_val_median) + ' (all)</span></td>' +
         '<td class="num mono">' + share(r.val_positive_given_disc_lcb_positive) + ' <span style="color:var(--text-muted)">(' + r.disc_lcb_positive + ')</span></td></tr>';
     });
   });
@@ -958,7 +607,7 @@ function dailyClass(v){
   setText('ex-top', pct1(eu.top_decile_val_median)); setText('ex-all', pct1(eu.all_val_median));
   setText('ex-top2', pct1(eu.top_decile_val_median)); setText('ex-all2', pct1(eu.all_val_median));
   var gap = 100 * (eu.top_decile_val_median - eu.all_val_median);
-  setText('ex-gap', Math.abs(gap).toFixed(1).replace('.', ',')); setText('ex-dir', gap >= 0 ? 'zugunsten der Discovery-Auswahl' : 'zulasten der Discovery-Auswahl');
+  setText('ex-gap', dec(Math.abs(gap).toFixed(1))); setText('ex-dir', gap >= 0 ? 'in favour of the discovery selection' : 'to the detriment of the discovery selection');
 
   // scatter, one canvas per phase
   function css(name){ return getComputedStyle(document.documentElement).getPropertyValue(name).trim() || '#888'; }
@@ -989,7 +638,7 @@ function dailyClass(v){
     STATES.forEach(function(st, i){
       var r = s[kind + '/' + st];
       out += '<div class="dvcard"><div class="dvhead" style="background:var(--' + ({BULL: 'bull', BEAR: 'bear', SIDEWAYS: 'sideways', TRANSITION: 'transition'})[st] + ')"><span>' + stateLabel(st) + '</span><span>ρ ' + num(r.spearman, 2) + '</span></div>' +
-        '<canvas id="dv-c-' + i + '"></canvas><div class="dvfoot">' + r.rows_both + ' Strategien · x: Discovery, y: Validation</div></div>';
+        '<canvas id="dv-c-' + i + '"></canvas><div class="dvfoot">' + r.rows_both + ' strategies · x: discovery, y: validation</div></div>';
     });
     document.getElementById('dv-scatter').innerHTML = out;
     STATES.forEach(function(st, i){
@@ -1012,22 +661,22 @@ function dailyClass(v){
   var top = '';
   STATES.forEach(function(st){
     (DVTOP.coin[st] || []).forEach(function(r, i){
-      var okBadge = r.ok ? '<span class="rbadge rb-ok" title="5m-Detaillauf und Kostenstress in dieser Phase bestanden">PASS</span>' : '<span class="rbadge rb-no" title="Kein Robustheits-PASS in dieser Phase">–</span>';
+      var okBadge = r.ok ? '<span class="rbadge rb-ok" title="5m detail run and cost stress passed in this phase">PASS</span>' : '<span class="rbadge rb-no" title="No robustness PASS in this phase">–</span>';
       top += '<tr><td><span class="regimebadge rb-' + st + '">' + stateLabel(st) + '</span></td><td class="num mono">' + (i + 1) + '</td>' +
         '<td><b>' + futuresLabel(r.strategy_id) + '</b></td>' +
         '<td class="num val ' + valClass(r.disc_excess) + '">' + fmtPct(r.disc_excess) + '</td>' +
         '<td class="num mono">' + r.disc_trades + ' / ' + r.disc_episodes + '</td>' +
         '<td class="num val ' + (r.val_excess === null ? '' : valClass(r.val_excess)) + '">' + (r.val_excess === null ? '–' : fmtPct(r.val_excess)) + '</td>' +
-        '<td class="num mono" data-v="' + (r.val_rank || 99999) + '">' + (r.val_rank ? r.val_rank + ' von ' + r.val_rows :
-          '<span title="In der Validation weniger als 5 Episoden oder weniger als 10 Trades in dieser Phase: nicht gerankt, Excess nicht belastbar." style="color:var(--text-muted)">unter Floor (' +
-          (r.val_trades === null ? 'keine Trades' : r.val_trades + (r.val_trades === 1 ? ' Trade, ' : ' Trades, ') + r.val_episodes + ' Ep.') + ')</span>') + '</td>' +
+        '<td class="num mono" data-v="' + (r.val_rank || 99999) + '">' + (r.val_rank ? r.val_rank + ' of ' + r.val_rows :
+          '<span title="In validation fewer than 5 episodes or fewer than 10 trades in this phase: not ranked, excess not reliable." style="color:var(--text-muted)">below floor (' +
+          (r.val_trades === null ? 'no trades' : r.val_trades + (r.val_trades === 1 ? ' trade, ' : ' trades, ') + r.val_episodes + ' ep.') + ')</span>') + '</td>' +
         '<td class="num">' + okBadge + '</td>' + confirmCell(r) + '</tr>';
     });
   });
   document.getElementById('dv-top').innerHTML = top;
   var cc = s.confirmation;
   if (cc) {
-    document.getElementById('cf-univ-counts').textContent = 'Aktuell: ' + cc.universal.strict + ' streng, ' + cc.universal.mild + ' mild bestätigt, ' + cc.universal.none + ' nicht bestätigt (von ' + (cc.universal.strict + cc.universal.mild + cc.universal.none) + '). Bestätigte Strategien je Phase gezählt: ' + cc.confirmed_rows.coin + ' bei Coin-, ' + cc.confirmed_rows.btc + ' bei BTC-Marktphasen.';
+    document.getElementById('cf-univ-counts').textContent = 'Currently: ' + cc.universal.strict + ' strictly, ' + cc.universal.mild + ' mildly confirmed, ' + cc.universal.none + ' not confirmed (of ' + (cc.universal.strict + cc.universal.mild + cc.universal.none) + '). Confirmed strategies counted per phase: ' + cc.confirmed_rows.coin + ' for coin, ' + cc.confirmed_rows.btc + ' for BTC market phases.';
   }
 })();
 
@@ -1036,10 +685,10 @@ function dailyClass(v){
   function byExcess(a, b){ return b.excess_return - a.excess_return; }
   function why(r){
     if (r.ok) return 'PASS';
-    if (r.xs === 'SENSITIVE') return '5m sensitiv';
-    if (r.xs === 'PENDING') return '5m offen';
-    if (r.xs === 'ERROR') return '5m Fehler';
-    if (r.xs === 'PASS') return 'Kosten ✗';
+    if (r.xs === 'SENSITIVE') return '5m sensitive';
+    if (r.xs === 'PENDING') return '5m open';
+    if (r.xs === 'ERROR') return '5m error';
+    if (r.xs === 'PASS') return 'Cost ✗';
     return '–';
   }
   function badge(r){
@@ -1048,7 +697,7 @@ function dailyClass(v){
   }
   function pct2(v){
     if (v === null || v === undefined) return '–';
-    return (v >= 0 ? '+' : '−') + Math.abs(v).toFixed(2).replace('.', ',') + ' %';
+    return (v >= 0 ? '+' : '−') + dec(Math.abs(v).toFixed(2)) + ' %';
   }
   function sorted(rows, state){ return rows.filter(function(r){ return r.regime === state; }).sort(byExcess); }
 
@@ -1071,7 +720,7 @@ function dailyClass(v){
         '<td class="num mono">' + rows.filter(function(r){ return r.cf === 2; }).length + '</td><td class="num mono">' + rows.filter(function(r){ return r.cf === 2 && r.ok; }).length + '</td>' +
         '<td>' + (top ? futuresLabel(top.strategy_id) + ' <span class="mono" style="color:var(--text-muted)">' + fmtPct(top.excess_return) + '</span>' : '–') + '</td>' +
         '<td>' + (topOk ? futuresLabel(topOk.strategy_id) + ' <span class="mono" style="color:var(--text-muted)">' + fmtPct(topOk.excess_return) + '</span>' +
-          (same ? '' : '<span class="moved">Rang ' + rank + ' ohne Filter</span>') : '–') + '</td></tr>';
+          (same ? '' : '<span class="moved">rank ' + rank + ' without filter</span>') : '–') + '</td></tr>';
     });
   });
   document.getElementById('rob-matrix').innerHTML = html;
@@ -1085,19 +734,19 @@ function dailyClass(v){
       var winners = rows.filter(function(r){ return r.ok; }).slice(0, 5);
       var dropped = rows.slice(0, 5).filter(function(r){ return !r.ok; });
       var okCount = rows.filter(function(r){ return r.ok; }).length;
-      out += '<div class="regimecard"><div class="rhead ' + s + '"><span>' + stateLabel(s) + '</span><span class="of">' + okCount + ' von ' + rows.length + ' mit PASS</span></div><ol>';
-      if (!winners.length) out += '<li><div class="li-top"><span class="nm" style="color:var(--text-muted);font-weight:500">Keine Strategie mit PASS.</span></div></li>';
+      out += '<div class="regimecard"><div class="rhead ' + s + '"><span>' + stateLabel(s) + '</span><span class="of">' + okCount + ' of ' + rows.length + ' with PASS</span></div><ol>';
+      if (!winners.length) out += '<li><div class="li-top"><span class="nm" style="color:var(--text-muted);font-weight:500">No strategy with PASS.</span></div></li>';
       winners.forEach(function(r, i){
         out += '<li><div class="li-top"><span class="rk">' + (i + 1) + '</span><span class="nm" title="' + r.strategy_id + '">' + futuresLabel(r.strategy_id) + '</span>' +
           '<span class="vv val ' + valClass(r.excess_return) + '">' + fmtPct(r.excess_return) + '</span></div>' +
-          '<div class="li-bottom"><span class="mt" style="white-space:normal">Rang ' + (rows.indexOf(r) + 1) + ' ohne Filter · ' + r.trades + ' Trades · ' + r.episodes + ' Ep.</span>' +
+          '<div class="li-bottom"><span class="mt" style="white-space:normal">Rank ' + (rows.indexOf(r) + 1) + ' without filter · ' + r.trades + ' trades · ' + r.episodes + ' ep.</span>' +
           '<span class="dd val ' + gradeClass(r.lcb_grade) + '">Grade ' + (r.lcb_grade || '–') + '</span></div>' +
-          '<div class="li-bottom"><span class="mt">Robustheit: PASS</span>' + confInline(r) + '</div></li>';
+          '<div class="li-bottom"><span class="mt">Robustness: PASS</span>' + confInline(r) + '</div></li>';
       });
       out += '</ol><div class="dropnote">' + (dropped.length ?
-        '<b>Aus der ungefilterten Top&nbsp;5 fallen heraus:</b> ' + dropped.map(function(r){
-          return futuresLabel(r.strategy_id) + ' (Rang ' + (rows.indexOf(r) + 1) + ', ' + why(r) + ')';
-        }).join(', ') : '<b>Die ungefilterte Top&nbsp;5 besteht die Robustheit vollständig.</b>') + '</div></div>';
+        '<b>Dropping out of the unfiltered top&nbsp;5:</b> ' + dropped.map(function(r){
+          return futuresLabel(r.strategy_id) + ' (rank ' + (rows.indexOf(r) + 1) + ', ' + why(r) + ')';
+        }).join(', ') : '<b>The unfiltered top&nbsp;5 passes robustness in full.</b>') + '</div></div>';
     });
     document.getElementById('rob-winners').innerHTML = out;
   }
@@ -1119,7 +768,7 @@ function dailyClass(v){
       '<td class="num mono">' + r.trades + '</td>' +
       '<td class="num val ' + dollarClass(r.dollar_gain_usd) + '">' + fmtUsd(r.dollar_gain_usd) + '</td>' +
       '<td class="num val ' + gradeClass(r.lcb_grade) + '">' + (r.lcb_grade || '–') + '</td>' + robustCell(r) + uconfirmCell(r) + '</tr>';
-  }).join('') : '<tr><td colspan="10" style="color:var(--text-muted);font-style:italic;">Kein Universal-Kandidat besteht in allen vier Coin-Phasen.</td></tr>';
+  }).join('') : '<tr><td colspan="10" style="color:var(--text-muted);font-style:italic;">No universal candidate passes in all four coin phases.</td></tr>';
 })();
 </script>
 

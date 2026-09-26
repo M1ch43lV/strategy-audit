@@ -14,6 +14,7 @@ from pathlib import Path
 from evidence import profile_smoke
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from evidence import profile_full_window
+from evidence import execution_robustness
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -118,15 +119,20 @@ def main(argv=None) -> int:
     parser.add_argument("--output", type=Path, default=OUTPUT)
     parser.add_argument("--timeout", type=int, default=3600)
     parser.add_argument("--workers", type=int, default=2)
-    parser.add_argument("--timeframe-detail",
-                        help="intracandle detail timeframe; requires a non-canonical --output")
+    parser.add_argument("--timeframe-detail", default="auto",
+                        help="intracandle detail timeframe. Default `auto`: 5m for every strategy "
+                             "whose timeframe is above 5m (owner decision 2026-09-26: the full "
+                             "backtest is always resolved at 5m, 1m is not practical over this "
+                             "window); nothing at or below 5m. `none` turns it off. Any other "
+                             "value requires a non-canonical --output")
     parser.add_argument("--force", action="store_true")
     parser.add_argument("--import-manifest", action="append", type=Path, default=[],
                         help="import identity-matching measured results from another runtime")
     parser.add_argument("--import-only", action="store_true")
     args = parser.parse_args(argv)
-    if args.timeframe_detail and args.output == OUTPUT:
-        raise SystemExit("--timeframe-detail requires an explicit non-canonical --output")
+    if args.timeframe_detail not in ("auto", "none", "5m") and args.output == OUTPUT:
+        raise SystemExit("--timeframe-detail other than auto/none/5m requires an explicit "
+                         "non-canonical --output")
     rows = eligible()
     row_by_strategy = {row["strategy_id"]: row for row in rows}
     if args.strategy:
@@ -268,8 +274,14 @@ def main(argv=None) -> int:
                 return strategy, result, False
         mode = "futures" if row["run_profile"].startswith("futures_") else "spot"
         settings = overrides.get(strategy) or None
-        detail_args = (["--timeframe-detail", args.timeframe_detail]
-                       if args.timeframe_detail else None)
+        detail = args.timeframe_detail
+        if detail == "auto":
+            # The timeframe the run really uses: a recovered override wins over the declared one.
+            detail = execution_robustness.detail_timeframe(
+                (settings or {}).get("timeframe") or row.get("execution_timeframe"))
+        elif detail == "none":
+            detail = None
+        detail_args = ["--timeframe-detail", detail] if detail else None
         result = profile_smoke.run_one(row, timerange(mode), args.timeout,
                                         config_overrides=settings,
                                         extra_cli_args=detail_args)
@@ -278,8 +290,8 @@ def main(argv=None) -> int:
         result.update(fingerprint)
         result["pairs"] = profile_smoke._read_jsonc(config)["exchange"]["pair_whitelist"]
         result["measurement_scope"] = "canonical_pooled_native_pair_universe"
-        if args.timeframe_detail:
-            result["timeframe_detail"] = args.timeframe_detail
+        if detail:
+            result["timeframe_detail"] = detail
         result["attempted_at"] = datetime.datetime.now(datetime.timezone.utc).isoformat(timespec="seconds")
         # Every earlier try this runner overwrote used to vanish outright, so a
         # strategy that needed several retries before it measured - or that

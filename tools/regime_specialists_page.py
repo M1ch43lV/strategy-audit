@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""Build the "Regime-Spezialisten" page from the Model 0 evaluation.
+"""Build the "Regime Specialists" page from the Model 0 evaluation.
 
 The page used to be assembled by hand from exports kept outside the repository, so it
 went stale the moment the evaluation was rerun. This puts one command between the two:
@@ -8,12 +8,12 @@ went stale the moment the evaluation was rerun. This puts one command between th
 
 It reads `results/regime/specialist_evaluation/` (Model 0), the Stage 8b stores
 (`evidence/EXECUTION_ROBUSTNESS.json`, `evidence/COST_SCREEN.json`) and writes
-`regime_specialists.html` at the repository root. Every number in the running text is
+`regime_specialists.html` (English) at the repository root. Every number in the running text is
 computed here and filled into `{{token}}` slots of `tools/REGIME_SPECIALISTS.template.html`;
 a claim that depends on the result (that the fully consistent candidates are all
 FastSupertrend variants, for one) is written only when the data still shows it.
 
-It also writes `regime_gating.html`, the second page: the Model 1/2/3 sections and the top-10
+It also writes `regime_gating.html` (German), the second page: the Model 1/2/3 sections and the top-10
 selection are snapshots of the gated runs and live as JSON under
 `tools/regime_specialists_data/`; they are not recomputed here. Both pages share
 `tools/regime_pages_common.css` and `tools/regime_pages_common.js`.
@@ -28,6 +28,7 @@ import argparse
 import csv
 import datetime
 import io
+import math
 import json
 import os
 import re
@@ -57,15 +58,20 @@ SPEC = os.path.join(ROOT, "results", "regime", "specialist_evaluation")
 DATA = os.path.join(ROOT, "tools", "regime_specialists_data")
 TEMPLATE = os.path.join(ROOT, "tools", "REGIME_SPECIALISTS.template.html")
 GATING_TEMPLATE = os.path.join(ROOT, "tools", "REGIME_GATING.template.html")
+BENCHMARK_TEMPLATE = os.path.join(ROOT, "tools", "VALIDATION_BENCHMARK.template.html")
 COMMON_CSS = os.path.join(ROOT, "tools", "regime_pages_common.css")
 COMMON_JS = os.path.join(ROOT, "tools", "regime_pages_common.js")
 DETAIL_TOTALS = os.path.join(SPEC, "detail_5m_total_dollar_gain.csv")
+GAIN_COLUMNS = ["strategy_id", "trades", "dollar_gain_usd", "benchmark_matched_trades",
+                "benchmark_dollar_gain_usd", "excess_dollar_gain_usd"]
 # The two artifacts link to each other. The gating page is published first; its address goes here.
 MAIN_URL = "https://claude.ai/artifact/6PoC2NwYCruR6UoJ81Bgia"
 # Owner's target: at least this return per day on the capital (0.08 %).
 DAILY_TARGET = 0.0008
 # A pick needs this many trades in its phase; a thinner one is listed but not chosen.
 PORTFOLIO_MIN_TRADES = 30
+# Until it is published, the benchmark page is linked by its file name.
+BENCHMARK_URL = "validation_benchmark.html"
 GATING_URL = "https://claude.ai/artifact/LjAu8PjEDrZXdK8vnAbcZM"
 STATUS = os.path.join(ROOT, "STRATEGY_STATUS.csv")
 PROFILES = os.path.join(ROOT, "evidence", "EXECUTION_PROFILES.csv")
@@ -74,13 +80,13 @@ ATTRIBUTION = os.path.join(ROOT, "results", "regime", "attribution_manifest.json
 TRADES = os.path.join(ROOT, "results", "regime", "trade_regime_attribution.csv")
 
 STATES = ["BULL", "BEAR", "SIDEWAYS", "TRANSITION"]
-WORDS = {0: "keinmal", 1: "einmal", 2: "zweimal", 3: "dreimal", 4: "viermal", 5: "fünfmal",
-         6: "sechsmal", 7: "siebenmal", 8: "achtmal", 9: "neunmal", 10: "zehnmal",
-         11: "elfmal", 12: "zwölfmal", 13: "dreizehnmal", 14: "vierzehnmal",
-         15: "fünfzehnmal", 16: "sechzehnmal", 17: "siebzehnmal", 18: "achtzehnmal",
-         19: "neunzehnmal", 20: "zwanzigmal"}
-COUNT_WORDS = {2: "zwei", 3: "drei", 4: "vier", 5: "fünf", 6: "sechs", 7: "sieben", 8: "acht",
-               9: "neun", 10: "zehn"}
+WORDS = {0: "zero times", 1: "once", 2: "twice", 3: "three times", 4: "four times", 5: "five times",
+         6: "six times", 7: "seven times", 8: "eight times", 9: "nine times", 10: "ten times",
+         11: "eleven times", 12: "twelve times", 13: "thirteen times", 14: "fourteen times",
+         15: "fifteen times", 16: "sixteen times", 17: "seventeen times", 18: "eighteen times",
+         19: "nineteen times", 20: "twenty times"}
+COUNT_WORDS = {2: "two", 3: "three", 4: "four", 5: "five", 6: "six", 7: "seven", 8: "eight",
+               9: "nine", 10: "ten"}
 
 
 def clean(value):
@@ -92,11 +98,12 @@ def clean(value):
 
 
 def de_int(n):
-    return "{:,}".format(int(n)).replace(",", ".")
+    """Integer with thousands commas (the name is historical; the page is English now)."""
+    return "{:,}".format(int(n))
 
 
 def de_pct(x, digits=0):
-    return ("{:.%df}%%" % digits).format(x).replace(".", ",")
+    return ("{:.%df}%%" % digits).format(x)
 
 
 def _read_json(path):
@@ -149,14 +156,9 @@ class Robustness(object):
 
 
 # ------------------------------------------------------------------ confirmation
-def confirmation_lookups():
+def confirmation_lookups(frame, universal):
     """Discovery confirmation (regime/discovery_comparison.py) per strategy, kind and phase,
-    and per universal candidate. Read, never recomputed here."""
-    paired = os.path.join(SPEC, "discovery_vs_validation.csv")
-    universal = os.path.join(SPEC, "universal_confirmation.csv")
-    if not (os.path.isfile(paired) and os.path.isfile(universal)):
-        raise SystemExit("run `python -m regime.discovery_comparison` first")
-    frame = pd.read_csv(paired)
+    and per universal candidate, from the 5m-basis pairs (`five_minute_basis`)."""
     rows = {}
     for r in frame.itertuples(index=False):
         both = bool(r.floor_disc and r.floor_val)
@@ -164,11 +166,45 @@ def confirmation_lookups():
             2 if r.confirmed else (1 if both else 0),
             None if pd.isna(r.confirmation_score) else round(float(r.confirmation_score), 4))
     uni = {}
-    for r in pd.read_csv(universal).itertuples(index=False):
+    for r in universal.itertuples(index=False):
         uni[r.strategy_id] = ({"strict": 2, "mild": 1, "none": 0}[r.rule],
                               None if pd.isna(r.score) else round(float(r.score), 4),
                               int(r.phases_better_in_both), int(r.phases_confirmed))
     return rows, uni
+
+
+def five_minute_basis(robustness, author_tables, universal_ids):
+    """The tables every figure on the page is computed from (owner decision 2026-09-26).
+
+    A strategy above 5m contributes its 5m detail run only, because a run at the author timeframe is not
+    a real result there; a strategy at or below 5m contributes its baseline, which already is the 5m
+    resolution. A strategy above 5m without a finished 5m run contributes nothing. Returns the effective
+    BTC, coin and total-gain tables and the set of strategies above 5m."""
+    above = {s for s in robustness.record if robustness.timeframe(s)[1] > 5}
+    names = {"btc": "detail_5m_btc_specialist_table.csv", "coin": "detail_5m_coin_specialist_table.csv"}
+    out = {}
+    for kind, file in names.items():
+        detail = pd.read_csv(os.path.join(SPEC, file))
+        base = author_tables[kind]
+        out[kind] = pd.concat([base[~base["strategy_id"].isin(above)],
+                               detail[detail["strategy_id"].isin(above)]], ignore_index=True)
+    detail = pd.read_csv(DETAIL_TOTALS)[GAIN_COLUMNS]
+    base = author_tables["gain"]
+    out["gain"] = pd.concat([base[~base["strategy_id"].isin(above)],
+                             detail[detail["strategy_id"].isin(above)]], ignore_index=True)
+    out["gain"] = out["gain"].sort_values("dollar_gain_usd", ascending=False).reset_index(drop=True)
+    return out, above
+
+
+def discovery_basis(above):
+    """Discovery against validation on the 5m basis: the frame, its summary and the universal confirmation."""
+    from regime import discovery_comparison as dc
+    paired = os.path.join(SPEC, "discovery_vs_validation.csv")
+    detail = os.path.join(SPEC, "detail_5m_discovery_vs_validation.csv")
+    if not (os.path.isfile(paired) and os.path.isfile(detail)):
+        raise SystemExit("run `python -m regime.discovery_comparison` and `python -m regime.detail_totals` first")
+    frame = dc.five_minute_basis(pd.read_csv(paired), pd.read_csv(detail), above)
+    return frame, dc
 
 
 def _num(value, digits=6):
@@ -287,9 +323,8 @@ def detail_lookup():
     return out
 
 
-def confirmed_phase_counts():
+def confirmed_phase_counts(frame):
     """Per strategy: in how many coin and BTC phases it is confirmed."""
-    frame = pd.read_csv(os.path.join(SPEC, "discovery_vs_validation.csv"))
     done = frame[frame["confirmed"]]
     counts = {}
     for kind in ("coin", "btc"):
@@ -297,18 +332,21 @@ def confirmed_phase_counts():
     return counts
 
 
-def total_rows(gain, robustness, uconfirm, daily_total):
+def total_rows(gain, robustness, uconfirm, daily_total, pairs, author_gain):
     """The whole-window table: author timeframe and 5m rerun side by side, robustness and
-    confirmation. The 5m side comes from regime/detail_totals.py, never recomputed here."""
+    confirmation. The 5m side comes from regime/detail_totals.py, never recomputed here.
+
+    The rank (`rk`) is by the 5m gain. A strategy at or below 5m ranks by its own run (that run already is
+    the 5m resolution); a strategy above 5m without a 5m run is unranked, because its author-timeframe
+    figure is not a real result."""
     if not os.path.isfile(DETAIL_TOTALS):
         raise SystemExit("run `python -m regime.detail_totals` first")
     d5 = pd.read_csv(DETAIL_TOTALS).set_index("strategy_id")
-    phases = confirmed_phase_counts()
+    phases = confirmed_phase_counts(pairs)
     rows = []
-    for rank, row in enumerate(gain.to_dict(orient="records"), start=1):
+    for row in gain.to_dict(orient="records"):
         sid = row["strategy_id"]
         record = {k: clean(v) for k, v in row.items()}
-        record["rk"] = rank
         record.update(robustness.total(sid))
         record.update(daily_total.get(sid, {}))
         if sid in d5.index:
@@ -320,6 +358,9 @@ def total_rows(gain, robustness, uconfirm, daily_total):
                           d_dc=_num(d["daily_on_capital"]), d_ds=_num(d["daily_on_slots"]))
         tf, minutes = robustness.timeframe(sid)
         record["tfm"] = minutes
+        if minutes > 5 and sid in d5.index:
+            # above 5m the row already is the 5m run; the author side is not shown
+            record.update(dc=record.get("d_dc"), ds=record.get("d_ds"))
         if tf == "5m":
             record.update(d_trades=record["trades"], d_gain=record["dollar_gain_usd"],
                           d_bench=record["benchmark_dollar_gain_usd"], d_excess=record["excess_dollar_gain_usd"],
@@ -328,6 +369,30 @@ def total_rows(gain, robustness, uconfirm, daily_total):
         cn, bn = phases["coin"].get(sid, 0), phases["btc"].get(sid, 0)
         record.update(ur=ur, us=us, up=up, cn=cn, bn=bn, cq=100 * max(ur, 0) + 10 * cn + bn)
         rows.append(record)
+    # above 5m without a finished 5m run: listed with its status, no figures (an author-timeframe figure is not a result)
+    have = {r["strategy_id"] for r in rows}
+    for row in author_gain.to_dict(orient="records"):
+        sid = row["strategy_id"]
+        tf, minutes = robustness.timeframe(sid)
+        if sid in have or minutes <= 5:
+            continue
+        record = {"strategy_id": sid}
+        record.update(robustness.total(sid))
+        record["tfm"] = minutes
+        ur, us, up, _ = uconfirm.get(sid, (-1, None, 0, 0))
+        record.update(ur=ur, us=us, up=up, cn=0, bn=0, cq=0)
+        rows.append(record)
+    ranked = []
+    for record in rows:
+        at_or_below_5m = 0 < record["tfm"] <= 5
+        effective = record.get("d_gain")
+        if effective is None and at_or_below_5m:
+            effective = record.get("dollar_gain_usd")
+        record["rk"] = None
+        if effective is not None:
+            ranked.append((-effective, record["strategy_id"], record))
+    for rank, (_, _, record) in enumerate(sorted(ranked, key=lambda t: (t[0], t[1])), start=1):
+        record["rk"] = rank
     return rows
 
 
@@ -360,6 +425,10 @@ def regime_rows(table, regime_col, kind, robustness, confirm, daily, detail):
         record.update(daily.get((row["strategy_id"], kind, row[regime_col]), {"dc": None, "ds": None, "dd": None}))
         tf, minutes = robustness.timeframe(row["strategy_id"])
         record["tf"], record["tfm"] = tf, minutes
+        if minutes > 5:
+            # the row is the 5m run itself; its daily returns come from the 5m run too
+            x = detail.get((kind, row["strategy_id"], row[regime_col])) or {}
+            record.update(dc=x.get("dc"), ds=x.get("ds"), dd=x.get("dd"))
         if tf == "5m":
             # the author timeframe is 5m: the same run, the same figures
             record["x5"] = {k: record.get(k) for k in X5_KEYS}
@@ -413,13 +482,37 @@ def universal_rows(universal, coin, robustness, uconfirm, detail):
     return rows
 
 
-def native_stats(strategy_ids):
-    """Freqtrade's own report block for each strategy, through the identity-checked
-    lookup that the Model 0/1/2/3 comparison uses."""
+def native_stats(strategy_ids, robustness):
+    """Freqtrade's own report block for every strategy that has a run at 5m resolution.
+
+    A strategy above 5m takes the block of its 5m detail run (`EXECUTION_ROBUSTNESS.json`, `detail.archive`);
+    a strategy at or below 5m takes its baseline block through the identity-checked lookup that the
+    Model 0/1/2/3 comparison uses. Returns the rows and the number of baseline strategies that lookup rejected."""
     from regime import model_compare
+    strategy_ids = list(strategy_ids)
+    above = [s for s in strategy_ids if robustness.timeframe(s)[1] > 5]
+    below = [s for s in strategy_ids if robustness.timeframe(s)[1] <= 5]
     full = _read_json(str(model_compare.MODEL0))
     _, accepted, rejected = model_compare._load_model0(
-        model_compare.MODEL0, set(strategy_ids), full["timerange"])
+        model_compare.MODEL0, set(below), full["timerange"])
+    accepted = dict(accepted)
+    # The owner-approved 5m recovery baselines (dagger) carry another measurement scope than the
+    # strict Model 0 check accepts, but the evaluation accepts them (`ACCEPTED_BASELINE_SCOPES`);
+    # their archive is read directly.
+    manifest = _read_json(POOLED)["results"]
+    for item in list(rejected):
+        result = manifest.get(item["strategy_id"]) or {}
+        if (item["reason"] == "model0_measurement_scope_mismatch" and _run_verdict(result.get("status")) == "MEASURED"
+                and result.get("measurement_scope") in er.ACCEPTED_BASELINE_SCOPES and result.get("archive")):
+            block = er.read_block(result["archive"], item["strategy_id"])
+            if block is not None:
+                accepted[item["strategy_id"]] = {"summary": block}
+                rejected.remove(item)
+    for strategy in above:
+        archive = ((robustness.record.get(strategy) or {}).get("detail") or {}).get("archive")
+        block = er.read_block(archive, strategy) if archive else None
+        if block is not None:
+            accepted[strategy] = {"summary": block}
     keep = ("total_trades", "trade_count_long", "trade_count_short", "profit_total",
             "profit_total_abs", "cagr", "sharpe", "sortino", "calmar", "sqn", "profit_factor",
             "expectancy", "expectancy_ratio", "winrate", "wins", "losses", "draws",
@@ -433,19 +526,51 @@ def native_stats(strategy_ids):
     return rows, len(rejected)
 
 
-def discovery_blobs(robustness, confirm):
-    """Discovery against validation (regime/discovery_comparison.py), for the page.
+def discovery_benchmark(robustness):
+    """Dollar gain and Freqtrade's own metrics of the discovery window, on the 5m basis
+    (`regime/discovery_benchmark.py`): a strategy above 5m takes its 5m detail run, every other one its
+    baseline, and a strategy above 5m without a finished 5m run has no row."""
+    totals = pd.read_csv(os.path.join(SPEC, "discovery_total_dollar_gain.csv"))
+    native = pd.read_csv(os.path.join(SPEC, "discovery_native_stats.csv"))
+
+    def wanted(frame):
+        keep = []
+        for sid, source in zip(frame["strategy_id"], frame["source"]):
+            minutes = robustness.timeframe(sid)[1]
+            keep.append(source == "detail_5m" if minutes > 5 else source == "baseline")
+        return frame[keep]
+
+    totals, native = wanted(totals), wanted(native)
+    gain_rows = []
+    for record in totals.sort_values("dollar_gain_usd", ascending=False).to_dict(orient="records"):
+        tf, minutes = robustness.timeframe(record["strategy_id"])
+        gain_rows.append({"strategy_id": record["strategy_id"], "tf": tf, "tfm": minutes,
+                          "trades": int(record["trades"]),
+                          "dollar_gain_usd": round(float(record["dollar_gain_usd"]), 2),
+                          "benchmark_dollar_gain_usd": _round_or_none(record["benchmark_dollar_gain_usd"], 2),
+                          "excess_dollar_gain_usd": _round_or_none(record["excess_dollar_gain_usd"], 2)})
+    for rank, row in enumerate(gain_rows, 1):
+        row["rk"] = rank
+    ft_rows = []
+    for record in native.to_dict(orient="records"):
+        row = {k: (None if isinstance(v, float) and math.isnan(v) else v) for k, v in record.items() if k != "source"}
+        row["tf"], row["tfm"] = robustness.timeframe(row["strategy_id"])
+        ft_rows.append(row)
+    return gain_rows, ft_rows
+
+
+def _round_or_none(value, digits):
+    return None if pd.isna(value) else round(float(value), digits)
+
+
+def discovery_blobs(robustness, confirm, frame, summary):
+    """Discovery against validation on the 5m basis (regime/discovery_comparison.py), for the page.
 
     The scatter carries one point per strategy, kind and phase that clears the floor in
     both windows: [kind, phase, discovery excess, validation excess, robustness PASS].
     The top-five table lists, per phase, the best coin rows of the discovery and what
     those rows did in the validation.
     """
-    paired = os.path.join(SPEC, "discovery_vs_validation.csv")
-    summary = os.path.join(SPEC, "discovery_vs_validation_summary.json")
-    if not (os.path.isfile(paired) and os.path.isfile(summary)):
-        raise SystemExit("run `python -m regime.discovery_comparison` first")
-    frame = pd.read_csv(paired)
     scatter = []
     both = frame[frame["floor_disc"] & frame["floor_val"]]
     for _, row in both.iterrows():
@@ -476,7 +601,7 @@ def discovery_blobs(robustness, confirm):
                 cf, sc = confirm.get((kind, row["strategy_id"], state), (0, None))
                 rows[-1]["cf"], rows[-1]["sc"] = cf, sc
             top[kind][state] = rows
-    return scatter, top, _read_json(summary)
+    return scatter, top, summary
 
 
 def top10_annotation(robustness, confirm):
@@ -553,10 +678,10 @@ def detail_check_text():
     with contextlib.redirect_stdout(io.StringIO()):
         ok = detail_totals.check()
     if not ok:
-        return ('<b>Achtung:</b> die Gegenprobe (<code class="mono">regime/detail_totals.py --check</code>) stimmt '
-                'nicht mehr mit den Ranglisten überein; die 5m-Zahlen sind nicht belastbar.')
-    return ('Die Rechnung wurde an Basis-Archiven gegengeprüft: dieselben Funktionen reproduzieren die Zahlen der '
-            'Autor-Timeframe-Seite auf die Stelle genau (<code class="mono">regime/detail_totals.py --check</code>).')
+        return ('<b>Warning:</b> the cross-check (<code class="mono">regime/detail_totals.py --check</code>) no longer '
+                'matches the rankings; the 5m figures are not reliable.')
+    return ('The calculation was cross-checked against base archives: the same functions reproduce the figures of the '
+            'author-timeframe run to the digit (<code class="mono">regime/detail_totals.py --check</code>).')
 
 
 def facts_and_text(btc, coin, universal, gain, native, rejected, robustness, futures, dca, rows, summary, total):
@@ -603,10 +728,10 @@ def facts_and_text(btc, coin, universal, gain, native, rejected, robustness, fut
     # plain `NA` both normalize to `NA`, so the mapped comparison would absorb
     # the 673 rows that were never classified into the failure count.
     failed = sum(1 for s in evaluated if robustness.status(s) == "ERROR")
-    run_state = ("bei %d steht der 5m-Lauf noch aus (Timeframe über 5m)" % pending if pending
-                 else "alle 5m-Läufe sind abgeschlossen")
+    run_state = ("for %d the 5m run is still pending (timeframe above 5m)" % pending if pending
+                 else "all 5m runs are finished")
     if failed:
-        run_state += ", bei %d ist er fehlgeschlagen oder am Zeitlimit von 3600 s gescheitert" % failed
+        run_state += ", for %d it failed or hit the 3600 s time limit" % failed
 
     def pct(part, whole):
         return de_pct(100.0 * part / whole)
@@ -619,7 +744,7 @@ def facts_and_text(btc, coin, universal, gain, native, rejected, robustness, fut
         "n_eval": n_eval, "n_eligible": n_eligible, "n_not_measured": len(missing),
         "n_oom": by_status.get("oom_confirmed", 0), "n_perf": by_status.get("performance_limited", 0),
         "n_stake": by_status.get("stake_overflow_confirmed", 0),
-        "trades_total": de_int(trades), "trades_mio": ("%.2f" % (trades / 1e6)).replace(".", ","),
+        "trades_total": de_int(trades), "trades_mio": "%.2f" % (trades / 1e6),
         "n_forced_exits": de_int(forced_exits()),
         "rows_btc": de_int(len(val_btc)), "rows_coin": de_int(len(val_coin)),
         "cand_range": "%d-%d" % (min(counts), max(counts)),
@@ -641,7 +766,7 @@ def facts_and_text(btc, coin, universal, gain, native, rejected, robustness, fut
         "pct_consistent": pct(n_cons, n_eligible), "w_consistent": width(n_cons, n_eligible),
         "drop_no_validation": n_eval - n_gain,
         "drop_exploratory": n_gain - n_floor_coin,
-        "drop_exploratory_word": WORDS.get(n_gain - n_floor_coin, "%d-mal" % (n_gain - n_floor_coin)),
+        "drop_exploratory_word": WORDS.get(n_gain - n_floor_coin, "%d times" % (n_gain - n_floor_coin)),
         "drop_not_universal": n_floor_coin - n_universal,
         "drop_not_consistent": n_universal - n_cons,
         "n_uptrend_weakest": len(weakest_bull),
@@ -657,15 +782,15 @@ def facts_and_text(btc, coin, universal, gain, native, rejected, robustness, fut
         # Stamped at generation, always: a page that carries an old date reads as current.
         "generated": datetime.datetime.now().strftime("%Y-%m-%d %H:%M"),
         "n_d5": sum(1 for r in total if r.get("d_trades") is not None),
-        "gating_url": GATING_URL, "main_url": MAIN_URL,
+        "gating_url": GATING_URL, "main_url": MAIN_URL, "benchmark_url": BENCHMARK_URL,
         "daily_target": de_pct(100 * DAILY_TARGET, 2), "pf_min_trades": PORTFOLIO_MIN_TRADES,
         "d5_check": detail_check_text(),
     }
     facts.update(window_facts(summary))
     contradictions = int(((btc["dollar_gain_usd"] > btc["benchmark_dollar_gain_usd"]) & (btc["excess_return"] < 0)).sum()
                          + ((coin["dollar_gain_usd"] > coin["benchmark_dollar_gain_usd"]) & (coin["excess_return"] < 0)).sum())
-    facts["contradiction_text"] = ("kein einziges Mal mehr" if contradictions == 0
-                                   else "%d-mal" % contradictions)
+    facts["contradiction_text"] = ("not a single time any more" if contradictions == 0
+                                   else "%d times" % contradictions)
 
     # -- claims that hold only while the data shows them ---------------------
     ids = consistent["strategy_id"].tolist()
@@ -673,71 +798,71 @@ def facts_and_text(btc, coin, universal, gain, native, rejected, robustness, fut
     all_transition = bool(ids) and bool((consistent["worst_regime"] == "TRANSITION").all())
     count_word = COUNT_WORDS.get(n_cons, str(n_cons))
     rest = n_universal - n_cons
-    intro = ("Die stärkste Teilmenge der %d Universal-Kandidaten: kein einziges der vier Coin-Regime mit "
-             "negativem Excess-Return. Unter dem phasenweiten, episoden-gewichteten Benchmark schaffen "
-             "das %d von %d (%s)" % (n_universal, n_cons, n_universal, de_pct(100.0 * n_cons / n_universal, 1)))
+    intro = ("The strongest subset of the %d universal candidates: not a single one of the four coin regimes with "
+             "a negative excess return. Against the phase-wise, episode-weighted benchmark, %d of %d (%s) manage "
+             "that" % (n_universal, n_cons, n_universal, de_pct(100.0 * n_cons / n_universal, 1)))
     if all_ft and all_transition:
-        intro += (" &mdash; alle %s sind Varianten von <code class=\"mono\">FastSupertrend</code>, und bei allen "
-                  "%s ist nicht ADX Uptrend, sondern ADX Transition das (knapp positive) schwächste Regime."
+        intro += (" &mdash; all %s are variants of <code class=\"mono\">FastSupertrend</code>, and for all "
+                  "%s it is not ADX Uptrend but ADX Transition that is the (barely positive) weakest regime."
                   % (count_word, count_word))
     else:
         intro += ": " + ", ".join("<code class=\"mono\">%s</code>" % i for i in ids) + "."
-    intro += (" Für die übrigen %d bleibt der Grund oben belegt: ADX Uptrend kippt bei ihnen fast überall "
-              "ins Negative." % rest)
+    intro += (" For the remaining %d the reason stays documented above: ADX Uptrend turns negative for them almost "
+              "everywhere." % rest)
     text = {"consistent_intro": intro, "lcb_example": lcb_example(coin)}
 
     best = weakest_bull.sort_values("median_regime_excess_return", ascending=False).head(1)
     if len(best):
         row = best.iloc[0]
         text["uptrend_anecdote"] = (
-            "Unter den Kandidaten, bei denen ADX Uptrend tatsächlich das schwächste Regime bleibt, liegt "
-            "selbst der nach Median-Excess-Return beste, <code class=\"mono\">%s</code> (Konsistenz %s, "
-            "Median-Excess %s), in ADX Uptrend im Mittel %s Prozentpunkte %s Buy-and-Hold."
-            % (row["strategy_id"], ("%.2f" % row["regime_consistency"]).replace(".", ","),
+            "Among the candidates for which ADX Uptrend really stays the weakest regime, even the best one by median "
+            "excess return, <code class=\"mono\">%s</code> (consistency %s, median excess %s), is on average %s "
+            "percentage points %s buy-and-hold in ADX Uptrend."
+            % (row["strategy_id"], "%.2f" % row["regime_consistency"],
                de_pct(100 * row["median_regime_excess_return"], 1),
-               ("%.1f" % abs(100 * row["worst_regime_return"])).replace(".", ","),
-               "hinter" if row["worst_regime_return"] < 0 else "vor"))
+               "%.1f" % abs(100 * row["worst_regime_return"]),
+               "behind" if row["worst_regime_return"] < 0 else "ahead of"))
     else:
         text["uptrend_anecdote"] = ""
 
-    if rejected:
-        ft_tail = ("%d von %d lassen sich zuordnen (identitätsgeprüfter nativer Archiv-Treffer, dieselbe "
-                   "Prüfung wie beim Modell-0/1/2/3-Vergleich); %d nicht." % (len(native), n_universal, rejected))
-    else:
-        ft_tail = ("Alle %d lassen sich zuordnen (identitätsgeprüfter nativer Archiv-Treffer, dieselbe Prüfung "
-                   "wie beim Modell-0/1/2/3-Vergleich &mdash; passendes Profil, Archiv-Hash, Zeitraum)." % n_universal)
-    ft_tail += (" Stand der Neuberechnung 2026-09-20: %s/%s Strategien im VALIDATION-Tier (je Phase gezählt), %d Universal-Kandidaten."
-                % (de_int(len(val_btc)), de_int(len(val_coin)), n_universal))
+    ft_tail = ("%d strategies are shown: %d with a 5m detail run, %d with a baseline run at or below 5m "
+               "(identity-checked native archive hit, the same check as in the Model 0/1/2/3 comparison; %d baseline "
+               "strategies could not be matched)."
+               % (len(native), sum(1 for r in native if r.get("tfm", 0) > 5),
+                  sum(1 for r in native if r.get("tfm", 0) <= 5), rejected))
     text["ft_intro_tail"] = ft_tail
 
     bull_lcb = sorted(val_coin[(val_coin["coin_regime"] == "BULL") & (val_coin["episode_excess_lcb"] > 0)]["strategy_id"])
     text["uptrend_recount"] = (
-        "Neuberechnung 2026-09-20 (%d Strategien): %d %s in ADX Uptrend einen Coin-Edge mit "
-        "<code class=\"mono\">episode_excess_lcb &gt; 0</code>: %s. Die Auswahl für Modell 1-3 bleibt der Stand vom "
-        "15.09., weil die gegateten Läufe darauf beruhen."
-        % (n_eval, len(bull_lcb), "hat" if len(bull_lcb) == 1 else "haben",
-           ", ".join("<code class=\"mono\">%s</code>" % s for s in bull_lcb) or "keine"))
+        "Recalculated on 2026-09-20 (%d strategies): %d %s an edge in ADX Uptrend with "
+        "<code class=\"mono\">episode_excess_lcb &gt; 0</code>: %s. The selection for Models 1-3 stays as of "
+        "15.09., because the gated runs are based on it."
+        % (n_eval, len(bull_lcb), "has" if len(bull_lcb) == 1 else "have",
+           ", ".join("<code class=\"mono\">%s</code>" % s for s in bull_lcb) or "none"))
 
     text["callout_recalc"] = (
-        '<div class="callout warn"><span class="dot">&#9888;</span><div><b>Neu berechnet am 2026-09-20.</b> '
-        'Vier beim Intake gelöschte Duplikate (<code class="mono">chispei</code>, <code class="mono">MyStratV1</code>, '
+        '<div class="callout warn"><span class="dot">&#9888;</span><div><b>Recalculated on 2026-09-20.</b> '
+        'Four duplicates deleted at intake (<code class="mono">chispei</code>, <code class="mono">MyStratV1</code>, '
         '<code class="mono">Combined_NFIv7_SMA_bAdBoY_20211204</code>, <code class="mono">Combined_NFIv7_SMA_Rallipanos_20210707</code>) '
-        'sind aus allen Ergebnisspeichern entfernt; <code class="mono">MyStratV1</code> stand bis dahin mit je vier Phasen-Einträgen '
-        'in beiden Ranglisten neben seinem Vertreter. Zugleich bezieht die Auswertung jetzt alle seit dem 15.09. gemessenen '
-        'Vollfenster-Läufe ein (%d statt 584 Strategien). Die Zahlen weichen deshalb von der Fassung vom 15.09. ab, und die '
-        'Abweichung stammt überwiegend aus den neu gemessenen Strategien, nicht aus dem Entfernen der Duplikate. '
-        'Der Abschnitt zu Modell 1-3 mit der Top-10-Auswahl steht im eigenen Artefakt Gating-Hypothese; er ist eine '
-        'Momentaufnahme der gegateten Läufe und wurde nicht neu gerechnet.</div></div>'
+        'are removed from all result stores; until then <code class="mono">MyStratV1</code> stood next to its representative with four phase '
+        'entries each in both rankings. At the same time the evaluation now includes every full-window run measured since 15.09. '
+        '(%d instead of 584 strategies). The figures therefore differ from the version of 15.09., and the '
+        'difference comes mostly from the newly measured strategies, not from removing the duplicates. '
+        'The section on Model 1-3 with the top-10 selection is in its own artifact, Gating hypothesis; it is a '
+        'snapshot of the gated runs and was not recalculated.</div></div>'
         % n_eval)
     text["callout_robust"] = (
-        '<div class="callout info"><span class="dot">&#8505;</span><div><b>Robustheit (Stufe 8b), in jeder Tabelle mit Marktphasen-Ergebnissen.</b> '
-        'Ein Spezialist gilt erst als <i>verified</i>, wenn die Strategie den 5m-Detaillauf besteht und der Gewinn im '
-        '<i>behaupteten</i> ADX-Zustand einen zusätzlichen Slippage von 0,1 %% je Seite übersteht (Validierungsfenster, '
-        'mindestens 10 Trades in diesem Zustand). Bei Strategien bis 5m entfällt der Lauf, sie zählen per Entscheidung des '
-        'Eigentümers als bestanden; das ist eine Regel und keine Messung. Die Spalte ändert kein Ranking. '
-        'Stand: %d der %d Strategien sind im 5m-Lauf <code class="mono">sensitiv</code>, %s. <b>Rangfolge und Robustheit sind getrennte Aussagen:</b> Ein Rang 1 ohne PASS ist nur der beste '
-        'Wert einer Strategie in dieser Phase, kein verifizierter Spezialist.</div></div>'
+        '<div class="callout info"><span class="dot">&#8505;</span><div><b>Robustness (stage 8b), in every table with market-phase results.</b> '
+        'A specialist counts as <i>verified</i> only if the strategy passes the 5m detail run and the profit in the '
+        '<i>claimed</i> ADX state survives an additional slippage of 0.1 %% per side (validation window, '
+        'at least 10 trades in that state). For strategies up to 5m the run is not needed; by the owner\'s decision they count as '
+        'passed, which is a rule and not a measurement. The column changes no ranking. '
+        'State: %d of the %d strategies are <code class="mono">sensitive</code> in the 5m run, %s. <b>Rank and robustness are separate statements:</b> a rank 1 without PASS is only the best '
+        'value of a strategy in this phase, not a verified specialist.</div></div>'
         % (sensitive, n_eval, run_state))
+    return facts, text, manifest
+
+
     return facts, text, manifest
 
 
@@ -756,17 +881,17 @@ def lcb_example(coin):
     b = many.sort_values("episode_excess_lcb", ascending=False).iloc[0]
 
     def pct(v):
-        return ("&minus;" if v < 0 else "+") + ("%.1f" % abs(100 * v)).replace(".", ",") + "&nbsp;%"
+        return ("&minus;" if v < 0 else "+") + ("%.1f" % abs(100 * v)) + "&nbsp;%"
 
     def label(r):
         return '<code class="mono">%s</code> in %s' % (r["strategy_id"], {
             "BULL": "ADX Uptrend", "BEAR": "ADX Downtrend", "SIDEWAYS": "ADX Sideways",
             "TRANSITION": "ADX Transition"}[r["coin_regime"]])
 
-    return ('<p style="margin:8px 0 0;max-width:none;"><b>Beispiel aus den Daten.</b> %s: mittlerer Excess %s, aber nur %d '
-            'Episoden, die Untergrenze liegt bei %s. Der Vorsprung kann Zufall sein. %s: mittlerer Excess nur %s, dafür %d '
-            'Episoden, die Untergrenze liegt bei %s. Dieser Vorsprung ist belastbar. Der Mittelwert allein hätte die beiden '
-            'in die falsche Reihenfolge gebracht.</p>'
+    return ('<p style="margin:8px 0 0;max-width:none;"><b>Example from the data.</b> %s: mean excess %s, but only %d '
+            'episodes, the lower bound is at %s. The lead may be chance. %s: mean excess only %s, but %d '
+            'episodes, the lower bound is at %s. This lead is reliable. The mean alone would have put the two '
+            'in the wrong order.</p>'
             % (label(a), pct(a["excess_return"]), int(a["episodes"]), pct(a["episode_excess_lcb"]),
                label(b), pct(b["excess_return"]), int(b["episodes"]), pct(b["episode_excess_lcb"])))
 
@@ -811,30 +936,46 @@ def rendered_pages(skip_native=False):
     same split `tools.strategy_status_page` uses.
     """
     robustness = Robustness()
-    btc = pd.read_csv(os.path.join(SPEC, "btc_specialist_table.csv"))
-    coin = pd.read_csv(os.path.join(SPEC, "coin_specialist_table.csv"))
-    universal = pd.read_csv(os.path.join(SPEC, "universal_strategies.csv"))
-    gain = pd.read_csv(os.path.join(SPEC, "strategy_total_dollar_gain.csv"))
+    author = {"btc": pd.read_csv(os.path.join(SPEC, "btc_specialist_table.csv")),
+              "coin": pd.read_csv(os.path.join(SPEC, "coin_specialist_table.csv")),
+              "gain": pd.read_csv(os.path.join(SPEC, "strategy_total_dollar_gain.csv"))}
+    effective, above = five_minute_basis(robustness, author, None)
+    btc, coin, gain = effective["btc"], effective["coin"], effective["gain"]
+    from regime import specialist_evaluation as se
+    universal = se.universal_table(coin)
 
-    confirm, uconfirm = confirmation_lookups()
+    pairs, dc = discovery_basis(above)
+    summary = dc.summarize(pairs)
+    confirmation = dc.universal_confirmation(pairs, universal["strategy_id"])
+    summary["confirmation"] = {
+        "confirmed_rows": {kind: int(pairs[(pairs["kind"] == kind) & pairs["confirmed"]].shape[0])
+                           for kind in ("btc", "coin")},
+        "universal": {rule: int((confirmation["rule"] == rule).sum()) for rule in ("strict", "mild", "none")}}
+    both_kind = pairs[pairs["kind"] == "btc"]
+    summary["discovery_trades"] = int(both_kind["trades_disc"].sum())
+    summary["validation_trades"] = int(both_kind["trades_val"].sum())
+
+    confirm, uconfirm = confirmation_lookups(pairs, confirmation)
     daily_phase, daily_total = daily_lookup(robustness)
     detail = detail_lookup()
     rows = {"btc": regime_rows(btc, "btc_regime", "btc", robustness, confirm, daily_phase, detail),
             "coin": regime_rows(coin, "coin_regime", "coin", robustness, confirm, daily_phase, detail),
             "universal": universal_rows(universal, coin, robustness, uconfirm, detail)}
-    gain_rows = total_rows(gain, robustness, uconfirm, daily_total)
+    gain_rows = total_rows(gain, robustness, uconfirm, daily_total, pairs, author["gain"])
     plan = portfolio(rows["coin"], buy_hold_daily())
     if skip_native:
         native, rejected = [], 0
     else:
-        native, rejected = native_stats(universal["strategy_id"])
+        native, rejected = native_stats(gain["strategy_id"], robustness)
+        for r in native:
+            r["tf"], r["tfm"] = robustness.timeframe(r["strategy_id"])
 
     profiles = pd.read_csv(PROFILES, usecols=["strategy_id", "run_profile"])
     futures = sorted(profiles.loc[profiles["run_profile"].str.startswith("futures_", na=False),
                                   "strategy_id"].unique().tolist())
     dca = dca_strategies()
 
-    dv_scatter, dv_top, dv_summary = discovery_blobs(robustness, confirm)
+    dv_scatter, dv_top, dv_summary = discovery_blobs(robustness, confirm, pairs, summary)
     facts, text, _ = facts_and_text(btc, coin, universal, gain, native or [{}], rejected,
                                     robustness, futures, dca, rows, dv_summary, gain_rows)
     static = {name: io.open(os.path.join(DATA, name.lower() + ".json"), encoding="utf-8").read().strip()
@@ -847,29 +988,37 @@ def rendered_pages(skip_native=False):
               "RECOVERY5MSTRATEGIES": _dump(recovery_5m_strategies()), "REPOMAP": _dump(repo_map)}
     main_blobs = {
         "REGIMEFULL": _dump({"btc": rows["btc"], "coin": rows["coin"]}),
-        "UNIVERSAL": _dump(rows["universal"]), "TOTALGAIN": _dump(gain_rows), "PORTFOLIO": _dump(plan),
+        "UNIVERSAL": _dump(rows["universal"]), "PORTFOLIO": _dump(plan),
         "DVSCATTER": _dump(dv_scatter), "DVTOP": _dump(dv_top), "DVSUMMARY": _dump(dv_summary),
-        "FTSTATS": _dump(native), "COINEPISODES": static["COINEPISODES"],
+        "COINEPISODES": static["COINEPISODES"],
         "COINEPISODECOUNTS": static["COINEPISODECOUNTS"]}
     main_blobs.update(shared)
     gating_blobs = {"GATEDCOMPARE": static["GATEDCOMPARE"], "GATEDDETAIL": static["GATEDDETAIL"],
                     "TOP10BYREGIME": static["TOP10BYREGIME"],
                     "TOP10ANNOT": _dump(top10_annotation(robustness, confirm))}
     gating_blobs.update(shared)
+    disc_gain, disc_ft = discovery_benchmark(robustness)
+    facts.update(n_disc_gain=len(disc_gain), n_disc_pos=sum(1 for r in disc_gain if r["dollar_gain_usd"] > 0),
+                 n_disc_ft=len(disc_ft))
+    benchmark_blobs = {"TOTALGAIN": _dump(gain_rows), "FTSTATS": _dump(native), "DAILYTARGET": _dump(DAILY_TARGET),
+                       "DISCGAIN": _dump(disc_gain), "DISCFT": _dump(disc_ft)}
+    benchmark_blobs.update(shared)
     return (facts,
             render(TEMPLATE, facts, text, main_blobs),
-            render(GATING_TEMPLATE, facts, text, gating_blobs))
+            render(GATING_TEMPLATE, facts, text, gating_blobs),
+            render(BENCHMARK_TEMPLATE, facts, text, benchmark_blobs))
 
 
-def build(destination, gating_destination, skip_native=False):
-    facts, main_page, gating_page = rendered_pages(skip_native)
-    for path, page in ((destination, main_page), (gating_destination, gating_page)):
+def build(destination, gating_destination, benchmark_destination, skip_native=False):
+    facts, main_page, gating_page, benchmark_page = rendered_pages(skip_native)
+    for path, page in ((destination, main_page), (gating_destination, gating_page),
+                       (benchmark_destination, benchmark_page)):
         with io.open(path, "w", encoding="utf-8", newline="\n") as handle:
             handle.write(page)
     return facts
 
 
-RX_STAMP = re.compile(r"(Stand )\d{4}-\d\d-\d\d \d\d:\d\d")
+RX_STAMP = re.compile(r"(Stand |As of )\d{4}-\d\d-\d\d \d\d:\d\d")
 
 
 def _without_stamp(content):
@@ -892,17 +1041,18 @@ def selftest():
     # become byte-exact and report both pages stale the minute after every
     # build; if it matched more than the eyebrow, a real content change could
     # hide behind a blanked field. Both directions are asserted here.
-    for template in (TEMPLATE, GATING_TEMPLATE):
-        assert "Stand {{generated}}" in io.open(template, encoding="utf-8").read(), template
-    sample = 'class="eyebrow">Specialist-/Universal-Auswertung &middot; Stand 2026-09-23 21:56</div>'
+    for template, marker in ((TEMPLATE, "As of {{generated}}"), (GATING_TEMPLATE, "Stand {{generated}}"),
+                              (BENCHMARK_TEMPLATE, "As of {{generated}}")):
+        assert marker in io.open(template, encoding="utf-8").read(), template
+    sample = 'class="eyebrow">Specialist / universal evaluation &middot; As of 2026-09-23 21:56</div>'
     assert len(RX_STAMP.findall(sample)) == 1, "the stamp pattern does not match the eyebrow"
     assert _without_stamp(sample) == _without_stamp(sample.replace("21:56", "22:04")), \
         "a rebuilt page would read as stale"
-    assert _without_stamp(sample) != _without_stamp(sample.replace("Specialist-", "Gating-")), \
+    assert _without_stamp(sample) != _without_stamp(sample.replace("Specialist", "Gating")), \
         "a content change would hide behind the blanked stamp"
     # Dates that are content rather than the build stamp - an "as of" column,
     # a timerange - must survive the blanking untouched.
-    for content in ("| 2026-09-02 | 16:13 |", "20200401-20260821", "Stand der Daten"):
+    for content in ("| 2026-09-02 | 16:13 |", "20200401-20260821", "Stand der Daten", "As of the data"):
         assert _without_stamp(content) == content, content
     print("regime_specialists_page selftest: PASS")
 
@@ -911,6 +1061,7 @@ def main(argv=None):
     parser = argparse.ArgumentParser()
     parser.add_argument("--out", default=os.path.join(ROOT, "regime_specialists.html"))
     parser.add_argument("--gating-out", default=os.path.join(ROOT, "regime_gating.html"))
+    parser.add_argument("--benchmark-out", default=os.path.join(ROOT, "validation_benchmark.html"))
     parser.add_argument("--skip-native", action="store_true",
                         help="leave the Freqtrade-native block empty (fast, for layout work)")
     parser.add_argument("--selftest", action="store_true")
@@ -926,9 +1077,10 @@ def main(argv=None):
         if args.skip_native:
             parser.error("--check cannot be combined with --skip-native: the native "
                          "block is part of the page being compared")
-        _facts, main_page, gating_page = rendered_pages()
+        _facts, main_page, gating_page, benchmark_page = rendered_pages()
         stale = []
-        for path, fresh in ((args.out, main_page), (args.gating_out, gating_page)):
+        for path, fresh in ((args.out, main_page), (args.gating_out, gating_page),
+                            (args.benchmark_out, benchmark_page)):
             if not os.path.exists(path):
                 stale.append(os.path.relpath(path, ROOT))
                 continue
@@ -939,8 +1091,8 @@ def main(argv=None):
             return 1
         print("regime pages: current")
         return 0
-    facts = build(args.out, args.gating_out, args.skip_native)
-    for path in (args.out, args.gating_out):
+    facts = build(args.out, args.gating_out, args.benchmark_out, args.skip_native)
+    for path in (args.out, args.gating_out, args.benchmark_out):
         print("built %s (%.1f KB)" % (path, os.path.getsize(path) / 1024.0))
     for key in ("n_eval", "n_eligible", "n_universal", "n_consistent", "n_verified_rows_btc",
                 "n_verified_rows_coin", "n_verified_universal"):

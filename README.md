@@ -10,6 +10,18 @@ Counts change as resumable measurements finish, so no document states one. Use
 [`strategy_status.html`](strategy_status.html), [`STRATEGY_STATUS.csv`](STRATEGY_STATUS.csv)
 or `python -m evidence.pipeline_state --summary`.
 
+## Result pages
+
+| Page | What it shows |
+|---|---|
+| [`regime_specialists.html`](regime_specialists.html) | Model 0: which strategies hold up in which BTC and coin market phase, confirmed across discovery and validation, on the 5m basis |
+| [`regime_gating.html`](regime_gating.html) | Models 1/2/3: does an entry gate by market phase help (pilot of 25 strategies) |
+| [`validation_benchmark.html`](validation_benchmark.html) | Discovery and Validation benchmark: whole-window dollar gain and Freqtrade's own metrics per strategy, for the validation and the discovery window |
+| [`strategy_status.html`](strategy_status.html) | Strategy Test Bench: state of every strategy in the pipeline |
+| [`strategy_ideas.html`](strategy_ideas.html) | Strategy Ideas: what each strategy family does, read from the code |
+
+The first three are rebuilt by `python -m tools.regime_specialists_page`; the discovery-window tables of the third come from `python -m regime.discovery_benchmark`.
+
 ## Benchmark models
 
 The frozen primary model is Wilder DMI/ADX(14), calculated from completed daily
@@ -46,7 +58,7 @@ copied into a second file is the file that will be wrong first.
 | What went wrong before, why the benchmark is buy-and-hold, and which traps invalidate a conclusion? | [`LESSONS.md`](LESSONS.md) |
 | Which image or shim does a strategy need, and which rows never ran? | [`RUNTIME_ENVIRONMENTS.md`](RUNTIME_ENVIRONMENTS.md), [`REPAIR_LIST.md`](REPAIR_LIST.md), `evidence/repair_measures_list.md`, `repair/REGISTER.md` |
 | What are the regime labels and their episode counts? | [`REGIME_DATA_REPORT.md`](REGIME_DATA_REPORT.md) |
-| Results for a reader | [`regime_specialists.html`](regime_specialists.html), [`regime_gating.html`](regime_gating.html) (rebuilt by `python -m tools.regime_specialists_page`) |
+| Results for a reader | [`regime_specialists.html`](regime_specialists.html), [`regime_gating.html`](regime_gating.html), [`validation_benchmark.html`](validation_benchmark.html) (whole-window benchmark, discovery and validation) (rebuilt by `python -m tools.regime_specialists_page`) |
 | What does each strategy actually do, what changed between its versions, and when is it from - and where is that written down from the code? | [`strategy_ideas.html`](strategy_ideas.html), written by an LLM session into `evidence/STRATEGY_IDEAS.json` and rendered by `python -m tools.strategy_ideas --render`; `--check` says whether an idea still describes the revision it was read from. Forty-eight families so far - the ten the published family table leads with and ranks 1 to 39 of the corpus ranking (`python -m tools.strategy_ideas --rank`), each with a note on what changed from revision to revision, and a Date column whose three sources are named per cell, including the honest one: where a repository's files cluster on a single commit date the cell says `repo, import`, because that date is when the import was pushed and 2,475 of the 3,216 dates in the corpus are of that kind (`python -m tools.source_dates --fetch`, store `evidence/SOURCE_DATES.json`). No measurements and no verdicts |
 | What kind of trading logic is a strategy (trend, momentum, mean reversion, breakout, volatility, grid ...), and how sure is that label? | `logic_labels`, `logic_status` in `STRATEGY_STATUS.csv`; evidence and second opinions in `evidence/STRATEGY_LABELS.json`; rule in [`PIPELINE.md`](PIPELINE.md) (`tools/label_intake.py`); families with labels in the Strategy Ideas artifact (`python -m tools.families_page`) |
 | The regime rotation bot | rule of each variant and its results: [`PIPELINE_EXTENSIONS.md`](PIPELINE_EXTENSIONS.md) Part 4; code in `bot/`, data under `results/regime/rotation_bot/` |
@@ -113,7 +125,7 @@ strategy-audit/
 │   Binding regime-study rules; design reasoning; traps and corrections
 ├── STRATEGY_STATUS.{csv,md}, strategy_status.html
 │   Current published strategy inventory
-├── regime_specialists.html, regime_gating.html
+├── regime_specialists.html, regime_gating.html, validation_benchmark.html
 │   Published result pages
 ├── evidence/
 │   Current eligibility/profile writers and their generated evidence stores

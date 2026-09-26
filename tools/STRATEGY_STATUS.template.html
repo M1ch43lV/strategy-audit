@@ -4,39 +4,39 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Serif:ital,wght@0,400;0,600;1,400&display=swap">
 <style>
   :root{
-    --ground:#F5F7FA; --surface:#FFFFFF; --sunk:#EDF0F5; --raised:#FBFCFD;
-    --ink:#131A22; --muted:#5A6673; --faint:#8894A3;
-    --line:#DDE2EA; --line-soft:#EAEEF3;
-    --accent:#39508F; --accent-soft:#39508F14;
-    --pass:#26694C; --pass-soft:#26694C16;
-    --fail:#9E4632; --fail-soft:#9E463214;
-    --hold:#84631F; --hold-soft:#84631F16;
-    --cand:#4557A0; --cand-soft:#4557A016;
-    --none:#6D7885; --none-soft:#6D788514;
+    --ground:#EEF2EF; --surface:#FFFFFF; --sunk:#E4EAE5; --raised:#F6F9F7;
+    --ink:#182420; --muted:#5C6B63; --faint:#8A9A91;
+    --line:#D1D9D3; --line-soft:#E1E8E3;
+    --accent:#0E6F63; --accent-soft:#0E6F6314;
+    --pass:#1F8A4C; --pass-soft:#1F8A4C16;
+    --fail:#C8453F; --fail-soft:#C8453F14;
+    --hold:#B8791B; --hold-soft:#B8791B16;
+    --cand:#5E4FC4; --cand-soft:#5E4FC416;
+    --none:#6B7A72; --none-soft:#6B7A7214;
   }
   @media (prefers-color-scheme:dark){
     :root:not([data-theme="light"]){
-      --ground:#0D1218; --surface:#151C25; --sunk:#111820; --raised:#1A222C;
-      --ink:#E3E9F0; --muted:#8B98A8; --faint:#65717F;
-      --line:#242E3A; --line-soft:#1C242E;
-      --accent:#8098E0; --accent-soft:#8098E022;
-      --pass:#5FAB83; --pass-soft:#5FAB8322;
-      --fail:#D68065; --fail-soft:#D6806522;
-      --hold:#C7A257; --hold-soft:#C7A25722;
-      --cand:#8A9CE2; --cand-soft:#8A9CE222;
-      --none:#8894A3; --none-soft:#8894A322;
+      --ground:#0E1512; --surface:#161F1B; --sunk:#111A16; --raised:#1C2622;
+      --ink:#E6ECE8; --muted:#93A39A; --faint:#6D7D74;
+      --line:#2B3833; --line-soft:#212C27;
+      --accent:#4FD1BB; --accent-soft:#4FD1BB22;
+      --pass:#49C987; --pass-soft:#49C98722;
+      --fail:#EA6B64; --fail-soft:#EA6B6422;
+      --hold:#E0A84F; --hold-soft:#E0A84F22;
+      --cand:#9A8FF0; --cand-soft:#9A8FF022;
+      --none:#93A39A; --none-soft:#93A39A22;
     }
   }
   :root[data-theme="dark"]{
-    --ground:#0D1218; --surface:#151C25; --sunk:#111820; --raised:#1A222C;
-    --ink:#E3E9F0; --muted:#8B98A8; --faint:#65717F;
-    --line:#242E3A; --line-soft:#1C242E;
-    --accent:#8098E0; --accent-soft:#8098E022;
-    --pass:#5FAB83; --pass-soft:#5FAB8322;
-    --fail:#D68065; --fail-soft:#D6806522;
-    --hold:#C7A257; --hold-soft:#C7A25722;
-    --cand:#8A9CE2; --cand-soft:#8A9CE222;
-    --none:#8894A3; --none-soft:#8894A322;
+    --ground:#0E1512; --surface:#161F1B; --sunk:#111A16; --raised:#1C2622;
+    --ink:#E6ECE8; --muted:#93A39A; --faint:#6D7D74;
+    --line:#2B3833; --line-soft:#212C27;
+    --accent:#4FD1BB; --accent-soft:#4FD1BB22;
+    --pass:#49C987; --pass-soft:#49C98722;
+    --fail:#EA6B64; --fail-soft:#EA6B6422;
+    --hold:#E0A84F; --hold-soft:#E0A84F22;
+    --cand:#9A8FF0; --cand-soft:#9A8FF022;
+    --none:#93A39A; --none-soft:#93A39A22;
   }
 
   *{box-sizing:border-box}
@@ -53,7 +53,7 @@
     font-weight:500; letter-spacing:.14em; text-transform:uppercase; color:var(--accent)}
   h1{font-size:clamp(27px,3.6vw,38px); font-weight:700; letter-spacing:-.02em;
      line-height:1.08; margin:0; text-wrap:balance}
-  .lede{font-family:"IBM Plex Serif",Georgia,serif; font-size:16.5px;
+  .lede{font-size:16.5px;
         color:var(--muted); max-width:66ch; margin:0}
 
   .stats{display:grid; grid-template-columns:repeat(auto-fit,minmax(148px,1fr));
